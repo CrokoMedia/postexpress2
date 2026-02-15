@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "2: Como estruturei meu sistema de vendas que gera 7 dígitos",
+    "original": "carrossel-02.md",
+    "converted": "2026-02-13T09:17:34.663Z",
+    "number": 2
+  },
+  "stories": [
+    {
+      "id": 1,
+      "title": "DE R$ 30K/MÊS PARA R$ 1,2 MILHÃO/ANO",
+      "subtitle": "O sistema exato que me fez escalar (e pode funcionar pra você)",
+      "text": "",
+      "background": "gradient-escuro",
+      "accentColor": "#3498DB"
+    },
+    {
+      "id": 2,
+      "title": "1. PAREI DE VENDER PARA TODO MUNDO",
+      "text": "Defini meu ICP com precisão cirúrgica. 3 critérios não-negociáveis que eliminam 80% dos leads ruins.",
+      "background": "gradient-escuro",
+      "accentColor": "#E74C3C"
+    },
+    {
+      "id": 3,
+      "title": "2. CRIEI UM FUNIL PREVISÍVEL",
+      "text": "Cada etapa com métrica clara. Se não posso medir, não posso melhorar. Simples assim.",
+      "background": "gradient-transicao",
+      "accentColor": "#FFD23F"
+    },
+    {
+      "id": 4,
+      "title": "4. SCRIPT QUE NÃO PARECE SCRIPT",
+      "text": "Framework de perguntas que revela dor real. O cliente vende pra ele mesmo. Minha taxa de fechamento: 64%.",
+      "background": "gradient-prosperidade",
+      "accentColor": "#2ECC71"
+    },
+    {
+      "id": 5,
+      "title": "6. PROPOSTA QUE FECHA SOZINHA",
+      "text": "Estrutura em 5 blocos. ROI na primeira página. Elimina 90% das objeções antes da apresentação.",
+      "background": "gradient-prosperidade",
+      "accentColor": "#2ECC71"
+    },
+    {
+      "id": 6,
+      "title": "7. TIME TREINADO SEMANALMENTE",
+      "text": "Roleplays, análise de calls, feedback constante. Venda é habilidade, não talento. Treino = resultado.",
+      "background": "gradient-prosperidade",
+      "accentColor": "#2ECC71"
+    },
+    {
+      "id": 7,
+      "title": "ESSE SISTEMA LEVOU 3 ANOS PRA REFINAR",
+      "text": "Mas você pode implementar em 90 dias",
+      "cta": "SALVE ESTE POST",
+      "background": "gradient-prosperidade",
+      "accentColor": "#FFD23F"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-02-13T17:46:09.263Z",
+  "results": [
+    {
+      "id": "carousel-01-tempo",
+      "topic": "Como empreendedores milionários gerenciam o tempo",
+      "title": "Como empreendedores milionários gerenciam o tempo",
+      "slides": 7,
+      "images": 7,
+      "caption": "Você trabalha 12h por dia e ainda sente que não fez nada?\n\nO problema não é falta de tempo. É falta de SISTEMA.\n\nEstudei a rotina de empreendedores que faturam 7+ dígitos e descobri: eles não fazem mais. Eles fazem MENOS — mas as coisas certas, na ordem certa.\n\nSalva esse carrossel e aplica amanhã. Depois volta aqui e me conta o resultado. 👇",
+      "hashtags": [
+        "#gestãodetempo",
+        "#empreendedorismo",
+        "#produtividade",
+        "#mindsetempreendedor",
+        "#negóciosdigitais"
+      ],
+      "outputDir": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/batch-3-carousels/carousel-01-tempo"
+    },
+    {
+      "id": "carousel-02-mentalidade",
+      "topic": "Os 5 pilares da mentalidade milionária",
+      "title": "Os 5 Pilares da Mentalidade Milionária — De Escassez para Abundância",
+      "slides": 7,
+      "images": 7,
+      "caption": "Eu estudei o que separa quem vive no aperto de quem vive na abundância.\n\nNão é sorte. Não é herança. É uma REPROGRAMAÇÃO mental que 97% das pessoas nunca fazem.\n\nNeste carrossel, te mostro os 5 pilares exatos que mudaram minha relação com dinheiro — e podem mudar a sua hoje.\n\nSalva esse post, manda pra alguém que precisa ouvir isso e comenta o número do pilar que mais te atingiu. 👇",
+      "hashtags": [
+        "#mentalidademilionaria",
+        "#abundancia",
+        "#mindsetdericos",
+        "#educacaofinanceira",
+        "#mentalidadedeabundancia"
+      ],
+      "outputDir": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/batch-3-carousels/carousel-02-mentalidade"
+    },
+    {
+      "id": "carousel-03-vendas",
+      "topic": "Como triplicar suas vendas em 30 dias sem gastar mais em tráfego",
+      "title": "Como triplicar suas vendas em 30 dias sem gastar mais em trafego",
+      "slides": 7,
+      "images": 7,
+      "caption": "Voce nao tem um problema de trafego. Tem um problema de conversao. Essas 5 alavancas mudaram tudo pra mim e pros meus clientes. Salva e aplica HOJE.",
+      "hashtags": [
+        "#copywriting",
+        "#vendasonline",
+        "#marketingdigital",
+        "#conversao",
+        "#negociodigital"
+      ],
+      "outputDir": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/batch-3-carousels/carousel-03-vendas"
+    }
+  ]
+}

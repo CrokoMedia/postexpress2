@@ -1,0 +1,136 @@
+{
+  "id": "carousel_14",
+  "tipo": "vendas",
+  "tema": "Mentoria em Grupo",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "VOCÊ ESTÁ CERCADO\nDAS PESSOAS ERRADAS",
+      "subtitulo": "E isso te custa mais do que pensa",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#9B59B6",
+        "layout": "centered",
+        "fontSize": "72px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "dor",
+      "titulo": "SEU AMBIENTE\nNÃO TE PUXA PRA CIMA",
+      "subtitulo": "Te puxa pra baixo.\nTe mantém na mediocridade.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#9B59B6",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "custo",
+      "titulo": "O CUSTO INVISÍVEL:",
+      "subtitulo": "→ Sonhos diminuídos\n→ Metas medianas\n→ Conversas vazias\n→ Energia drenada\n→ Potencial desperdiçado",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#9B59B6",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "solucao",
+      "titulo": "MENTORIA EM GRUPO\nDE ALTA PERFORMANCE",
+      "subtitulo": "Pessoas que pensam grande.\nQue executam.\nQue crescem junto.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#9B59B6",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "prova",
+      "titulo": "O QUE ESTÁ INCLUÍDO:",
+      "subtitulo": "✓ 3 meses de mentoria intensiva\n✓ Sessões semanais ao vivo\n✓ Comunidade exclusiva 24/7\n✓ Accountability em grupo\n✓ Materiais e frameworks\n✓ Network de alto nível",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#9B59B6",
+        "layout": "left-aligned",
+        "fontSize": "36px",
+        "fontWeight": "700"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "prova-social",
+      "titulo": "12 ALUNOS JÁ\nTRANSFORMAREM RESULTADOS",
+      "subtitulo": "Novos negócios lançados.\nObjetivos alcançados.\nMindset transformado.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#9B59B6",
+        "layout": "centered",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "urgencia",
+      "titulo": "ÚLTIMAS 8 VAGAS\nTURMA FECHANDO",
+      "subtitulo": "Grupos pequenos.\nAtenção individualizada.\nVagas limitadas por design.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#9B59B6",
+        "layout": "centered",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 8,
+      "tipo": "cta",
+      "titulo": "CHAMA NA DM:\nMENTORIA",
+      "subtitulo": "E muda de círculo.\nE muda de vida.",
+      "design": {
+        "background": "#9B59B6",
+        "textColor": "#FFFFFF",
+        "accentColor": "#000000",
+        "layout": "centered",
+        "fontSize": "60px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "VOCÊ ESTÁ CERCADO DAS PESSOAS ERRADAS 🚨\n\nE isso te custa mais do que você pensa.\n\nA verdade brutal:\nSeu ambiente não te puxa pra cima.\nTe puxa pra baixo.\nTe mantém na mediocridade.\nTe faz pensar pequeno.\n\nO CUSTO INVISÍVEL DE ESTAR NO AMBIENTE ERRADO:\n\n→ Seus sonhos são diminuídos\n→ Suas metas ficam medianas\n→ Suas conversas são vazias\n→ Sua energia é drenada\n→ Seu potencial é desperdiçado\n\nVocê vira a média das 5 pessoas com quem mais convive.\nIsso não é teoria.\nÉ ciência.\n\nA SOLUÇÃO:\n\n— MENTORIA EM GRUPO DE ALTA PERFORMANCE —\n\nUm círculo de pessoas que:\n→ Pensam GRANDE\n→ Executam RÁPIDO\n→ Crescem JUNTO\n→ Te desafiam\n→ Te puxam pra cima\n\nO QUE ESTÁ INCLUÍDO:\n✓ 3 meses de mentoria intensiva\n✓ Sessões semanais ao vivo comigo\n✓ Comunidade exclusiva ativa 24/7\n✓ Accountability em grupo (peer pressure positivo)\n✓ Materiais, frameworks e ferramentas\n✓ Network de alto nível (o ativo mais valioso)\n\n12 ALUNOS JÁ TRANSFORMARAM RESULTADOS:\n→ Novos negócios lançados\n→ Objetivos alcançados\n→ Mindset completamente transformado\n→ Círculo social elevado\n\nÚLTIMAS 8 VAGAS.\nTURMA FECHANDO.\n\nGrupos pequenos são intencionais.\nAtenção individualizada exige isso.\nVagas limitadas por design, não por marketing.\n\nCHAMA NA DM: \"MENTORIA\"\n\nE muda de círculo.\nE muda de vida.\n\nOu continua no mesmo ambiente.\nCom os mesmos resultados.\n\nA escolha é sua.\n\n—\n#mentoria #altaperformance #mindset #crescimentopessoal #desenvolvimentopessoal #comunidade #network #transformacao #empreendedorismo #sucessopessoal",
+  "hashtags": [
+    "#mentoria",
+    "#altaperformance",
+    "#mindset",
+    "#crescimentopessoal",
+    "#desenvolvimentopessoal",
+    "#comunidade",
+    "#network",
+    "#transformacao",
+    "#empreendedorismo",
+    "#sucessopessoal"
+  ],
+  "bestTime": "18:00",
+  "estimatedER": "1.0-1.5%",
+  "objetivo": "Vendas - Mentoria em Grupo"
+}

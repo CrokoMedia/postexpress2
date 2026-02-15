@@ -1,0 +1,77 @@
+{
+  "meta": {
+    "title": "Inveja e Prosperidade - 7 Stories",
+    "created": "2026-02-12T22:39:40.024Z",
+    "author": "User"
+  },
+  "config": {
+    "width": 1080,
+    "height": 1920,
+    "spacing": 100
+  },
+  "stories": [
+    {
+      "id": 1,
+      "title": "INVEJA",
+      "subtitle": "E PROSPERIDADE",
+      "text": "O que você precisa saber",
+      "background": "gradient-escuro",
+      "accentColor": "#E74C3C"
+    },
+    {
+      "id": 2,
+      "title": "ELES NORMALIZAM",
+      "text": "a sua inveja.\n\nFazem você acreditar\nque é natural.",
+      "background": "gradient-escuro",
+      "accentColor": "#3498DB"
+    },
+    {
+      "id": 3,
+      "title": "O PROBLEMA",
+      "text": "Inveja bloqueia\nsua prosperidade.\n\nEnquanto você foca\nno que o outro tem,\nnão constrói o SEU.",
+      "background": "gradient-escuro",
+      "accentColor": "#E74C3C"
+    },
+    {
+      "id": 4,
+      "title": "REFRAME",
+      "subtitle": "⭐ MOMENTO CHAVE",
+      "text": "Transforme inveja\nem INSPIRAÇÃO.\n\n\"Se ele conseguiu,\neu também consigo\"",
+      "background": "gradient-transicao",
+      "accentColor": "#FFD23F"
+    },
+    {
+      "id": 5,
+      "title": "O MÉTODO",
+      "text": "1. Reconheça a inveja\n2. Agradeça o exemplo\n3. Trace SEU caminho\n4. Foque na SUA jornada",
+      "background": "gradient-prosperidade",
+      "accentColor": "#2ECC71"
+    },
+    {
+      "id": 6,
+      "title": "EXEMPLO",
+      "text": "Pessoa próspera vê\nalguém bem-sucedido:\n\n\"Que inspirador!\nVou aprender com ele\"",
+      "background": "gradient-prosperidade",
+      "accentColor": "#2ECC71"
+    },
+    {
+      "id": 7,
+      "title": "COMECE HOJE",
+      "text": "Inveja → Inspiração\nComparação → Criação\nRessntimento → Realização",
+      "cta": "SALVE ESTE POST",
+      "background": "gradient-prosperidade",
+      "accentColor": "#FFD23F"
+    }
+  ],
+  "colors": {
+    "azulEscuro": "#2C3E50",
+    "azulMedio": "#34495E",
+    "verdeProsp": "#27AE60",
+    "verdeClaro": "#2ECC71",
+    "vermelhoInv": "#E74C3C",
+    "dourado": "#FFD23F",
+    "azulDest": "#3498DB",
+    "preto": "#1A1A1A",
+    "branco": "#FFFFFF"
+  }
+}

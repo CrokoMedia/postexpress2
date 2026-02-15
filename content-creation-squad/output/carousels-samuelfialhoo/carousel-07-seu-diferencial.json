@@ -1,0 +1,123 @@
+{
+  "id": "carousel_07",
+  "tema": "Seu diferencial",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "SEU DIFERENCIAL\nNÃO É SER O MELHOR",
+      "subtitulo": "É ser você mesmo",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FF6B6B",
+        "layout": "centered",
+        "fontSize": "72px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "contexto",
+      "titulo": "MERCADOS COMPETITIVOS\nPEDEM AUTENTICIDADE",
+      "subtitulo": "Não mais habilidade.\nTodos têm skill hoje.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FF6B6B",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "ponto",
+      "titulo": "SUA HISTÓRIA É ÚNICA",
+      "subtitulo": "Ninguém tem sua jornada.\nSeus erros.\nSuas vitórias.\nConte isso.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FF6B6B",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "ponto",
+      "titulo": "SUA PERSPECTIVA IMPORTA",
+      "subtitulo": "Mesmo conteúdo,\nângulo diferente.\nIsso é posicionamento.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FF6B6B",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "ponto",
+      "titulo": "SUAS FALHAS TE DIFERENCIAM",
+      "subtitulo": "Vulnerabilidade > Perfeição.\nConexão > Admiração.\nHumanidade vende.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FF6B6B",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "aplicacao",
+      "titulo": "COMO SE DESTACAR:",
+      "subtitulo": "1. Pare de copiar\n2. Compartilhe sua jornada real\n3. Tenha opinião clara\n4. Seja consistentemente você\n5. Atraia quem ressoa contigo",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FF6B6B",
+        "layout": "left-aligned",
+        "fontSize": "36px",
+        "fontWeight": "700"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "cta",
+      "titulo": "VOCÊ JÁ TEM\nSEU DIFERENCIAL",
+      "subtitulo": "Só precisa ter coragem\nde mostrá-lo.",
+      "design": {
+        "background": "#FF6B6B",
+        "textColor": "#FFFFFF",
+        "accentColor": "#000000",
+        "layout": "centered",
+        "fontSize": "60px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 8,
+      "tipo": "closer",
+      "titulo": "QUAL É O SEU\nDIFERENCIAL?",
+      "subtitulo": "Compartilha aqui 👇",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FF6B6B",
+        "layout": "centered",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "SEU DIFERENCIAL NÃO É SER O MELHOR 🎯\n\nÉ ser você mesmo.\n\nMercados competitivos não pedem mais habilidade.\nTodos têm skill hoje.\nTodos têm curso.\nTodos têm certificado.\n\nO que separa você dos outros?\n\n→ SUA HISTÓRIA É ÚNICA\nNinguém tem sua jornada.\nSeus erros específicos.\nSuas vitórias particulares.\nConte isso. É ouro.\n\n→ SUA PERSPECTIVA IMPORTA\nMesmo conteúdo, ângulo diferente.\nIsso é posicionamento.\nIsso é diferenciação.\n\n→ SUAS FALHAS TE DIFERENCIAM\nVulnerabilidade > Perfeição.\nConexão > Admiração.\nHumanidade vende mais que curriculum.\n\nA verdade:\nPessoas não compram do melhor.\nCompram de quem elas confiam.\nDe quem elas se identificam.\nDe quem elas sentem conexão.\n\nCOMO SE DESTACAR:\n1. Pare de copiar os outros\n2. Compartilhe sua jornada real\n3. Tenha opinião clara sobre as coisas\n4. Seja consistentemente você\n5. Atraia quem ressoa contigo\n\nVocê já tem seu diferencial.\nSó precisa ter coragem de mostrá-lo.\n\nAutenticidade não é estratégia.\nMas funciona como uma.\n\nQual é o SEU diferencial?\nCompartilha aqui 👇\n\n—\nSalva pra lembrar do seu valor único 🔖",
+  "hashtags": ["#diferencial", "#autenticidade", "#posicionamento", "#mindset", "#marcapessoal", "#empreendedorismo", "#sejautentico", "#desenvolvimentopessoal", "#sucessopessoal", "#branding"],
+  "bestTime": "18:00",
+  "estimatedER": "0.8-1.2%"
+}

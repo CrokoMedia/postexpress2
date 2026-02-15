@@ -1,0 +1,32 @@
+{
+  "name": "post-express-content-creation-squad",
+  "version": "2.0.0",
+  "description": "Content Creation Squad - Geração automática de conteúdo e imagens para redes sociais",
+  "type": "module",
+  "scripts": {
+    "generate": "node generate-images.js",
+    "generate:all": "node generate-images.js all",
+    "generate:posts": "node generate-images.js posts-figma",
+    "generate:stories": "node generate-images.js stories-gradient",
+    "generate:brands-decoded": "node example-brands-decoded.js",
+    "demo": "cd engines/image-generator && node demo.js",
+    "test": "cd engines/image-generator && node test-zip.js",
+    "help": "node generate-images.js help"
+  },
+  "keywords": [
+    "content-creation",
+    "instagram",
+    "linkedin",
+    "carousel",
+    "stories",
+    "ai",
+    "automation",
+    "post-express"
+  ],
+  "author": "Post Express Team - Content Creation Squad",
+  "license": "MIT",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "playwright": "^1.58.2"
+  }
+}

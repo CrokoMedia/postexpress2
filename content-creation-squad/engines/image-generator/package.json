@@ -1,0 +1,26 @@
+{
+  "name": "post-express-image-generator",
+  "version": "1.0.0",
+  "description": "Engine de geração automática de imagens para carrosséis do Post Express",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "generate": "node index.js",
+    "test": "node test-generator.js",
+    "demo": "node demo.js"
+  },
+  "keywords": [
+    "image-generation",
+    "carousel",
+    "instagram",
+    "linkedin",
+    "stories",
+    "post-express"
+  ],
+  "author": "Post Express Team",
+  "license": "MIT",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "playwright": "^1.58.2"
+  }
+}

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview: Stories - Inveja e Prosperidade</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Open+Sans:wght@400;600&family=Bebas+Neue&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #27AE60, #2ECC71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .story-container {
+            position: relative;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8);
+            aspect-ratio: 9/16;
+        }
+
+        .story {
+            display: none;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .story.active {
+            display: flex;
+        }
+
+        /* Progress bars */
+        .progress-bars {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            gap: 4px;
+            z-index: 10;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar.active {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .progress-bar.completed {
+            background: #fff;
+        }
+
+        /* Story 1 - Hook */
+        .story-1 {
+            background: linear-gradient(180deg, #1A1A1A 0%, #2C3E50 100%);
+        }
+
+        .story-1 .emoji {
+            font-size: 120px;
+            margin-bottom: 40px;
+        }
+
+        .story-1 h2 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .story-1 .highlight {
+            font-size: 72px;
+            font-weight: 900;
+            color: #E74C3C;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .story-1 .subtitle {
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+            margin-top: 20px;
+        }
+
+        /* Story 2 - Normalização */
+        .story-2 {
+            background: linear-gradient(180deg, #2C3E50 0%, #34495E 100%);
+        }
+
+        .story-2 .stat {
+            font-size: 96px;
+            font-weight: 900;
+            color: #3498DB;
+            margin-bottom: 30px;
+        }
+
+        .story-2 .text {
+            font-size: 36px;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 40px;
+        }
+
+        .story-2 .footer {
+            font-size: 32px;
+            font-family: 'Open Sans', sans-serif;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        /* Story 3 - Problema */
+        .story-3 {
+            background: #2C3E50;
+            justify-content: flex-start;
+            padding-top: 120px;
+        }
+
+        .story-3 h2 {
+            font-size: 56px;
+            font-weight: 900;
+            color: #E74C3C;
+            margin-bottom: 50px;
+            align-self: flex-start;
+            margin-left: 20px;
+        }
+
+        .story-3 .list {
+            align-self: flex-start;
+            margin-left: 20px;
+        }
+
+        .story-3 .list-item {
+            font-size: 36px;
+            font-weight: 500;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .story-3 .footer {
+            font-size: 32px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 50px;
+        }
+
+        /* Story 4 - Reframe ⭐ */
+        .story-4 {
+            background: linear-gradient(180deg, #34495E 0%, #27AE60 100%);
+        }
+
+        .story-4 .old {
+            font-size: 52px;
+            font-weight: 700;
+            color: #E74C3C;
+            margin-bottom: 20px;
+        }
+
+        .story-4 .arrow {
+            font-size: 96px;
+            font-weight: 900;
+            color: #FFD23F;
+            margin: 20px 0;
+        }
+
+        .story-4 .new {
+            font-size: 56px;
+            font-weight: 900;
+            color: #FFD23F;
+            margin-bottom: 30px;
+        }
+
+        .story-4 .subtitle {
+            font-size: 32px;
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.4;
+        }
+
+        /* Story 5 - Método */
+        .story-5 {
+            background: linear-gradient(180deg, #27AE60 0%, #2ECC71 100%);
+            justify-content: flex-start;
+            padding-top: 100px;
+        }
+
+        .story-5 h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 80px;
+            align-self: flex-start;
+            margin-left: 40px;
+        }
+
+        .story-5 .steps {
+            align-self: flex-start;
+            margin-left: 40px;
+        }
+
+        .story-5 .step {
+            margin: 35px 0;
+        }
+
+        .story-5 .step-title {
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .story-5 .step-desc {
+            font-size: 24px;
+            font-family: 'Open Sans', sans-serif;
+            color: rgba(255, 255, 255, 0.8);
+            margin-left: 60px;
+        }
+
+        .story-5 .footer {
+            font-size: 32px;
+            font-weight: 500;
+            color: #FFD23F;
+            margin-top: 60px;
+        }
+
+        /* Story 6 - Exemplo (Split) */
+        .story-6 {
+            padding: 0;
+            flex-direction: row;
+        }
+
+        .story-6 .half {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 30px;
+        }
+
+        .story-6 .left {
+            background: #E74C3C;
+        }
+
+        .story-6 .right {
+            background: #27AE60;
+        }
+
+        .story-6 .label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 40px;
+            margin-bottom: 150px;
+            letter-spacing: 2px;
+        }
+
+        .story-6 .quote {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 100px;
+        }
+
+        .story-6 .word {
+            font-size: 36px;
+            font-weight: 900;
+        }
+
+        /* Story 7 - CTA */
+        .story-7 {
+            background: linear-gradient(180deg, #27AE60 0%, #2ECC71 100%);
+        }
+
+        .story-7 h2 {
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 50px;
+        }
+
+        .story-7 .cta {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 64px;
+            color: #FFD23F;
+            letter-spacing: 2px;
+            margin: 40px 0;
+        }
+
+        .story-7 .poll {
+            font-size: 28px;
+            font-family: 'Open Sans', sans-serif;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+            margin-top: 60px;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .btn {
+            background: #27AE60;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #2ECC71;
+            transform: scale(1.05);
+        }
+
+        .btn:disabled {
+            background: #333;
+            color: #666;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .info {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .info h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #27AE60;
+        }
+
+        .info p {
+            font-size: 14px;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .story h2 {
+                font-size: 36px;
+            }
+
+            .story-1 .highlight {
+                font-size: 56px;
+            }
+
+            .story-5 .step-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Stories: Inveja e Prosperidade</h1>
+            <p>7 Stories • Formato 9:16 • Instagram</p>
+        </div>
+
+        <div class="story-container">
+            <div class="progress-bars">
+                <div class="progress-bar active"></div>
+                <div class="progress-bar"></div>
+                <div class="progress-bar"></div>
+                <div class="progress-bar"></div>
+                <div class="progress-bar"></div>
+                <div class="progress-bar"></div>
+                <div class="progress-bar"></div>
+            </div>
+
+            <!-- STORY 1 - HOOK -->
+            <div class="story story-1 active">
+                <div class="emoji">😒</div>
+                <h2>VOCÊ SENTE</h2>
+                <span class="highlight">INVEJA?</span>
+                <p class="subtitle">(seja honesto)</p>
+            </div>
+
+            <!-- STORY 2 - NORMALIZAÇÃO -->
+            <div class="story story-2">
+                <div class="stat">👥 90%</div>
+                <div class="text">das pessoas<br>sentem inveja</div>
+                <div class="footer">Você não está<br>sozinho</div>
+            </div>
+
+            <!-- STORY 3 - PROBLEMA -->
+            <div class="story story-3">
+                <h2>MAS...</h2>
+                <div class="list">
+                    <div class="list-item">❌ Te paralisa</div>
+                    <div class="list-item">❌ Te frustra</div>
+                    <div class="list-item">❌ Te consome</div>
+                </div>
+                <div class="footer">Inveja mal<br>direcionada</div>
+            </div>
+
+            <!-- STORY 4 - REFRAME ⭐ -->
+            <div class="story story-4">
+                <div class="old">INVEJA</div>
+                <div class="arrow">↓</div>
+                <div class="new">É UM MAPA</div>
+                <div class="subtitle">Do que você<br>realmente quer</div>
+            </div>
+
+            <!-- STORY 5 - MÉTODO -->
+            <div class="story story-5">
+                <h2>MÉTODO:</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-title">1️⃣ Identifica</div>
+                        <div class="step-desc">(quem te causa inveja?)</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">2️⃣ Decifra</div>
+                        <div class="step-desc">(o que eles têm?)</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">3️⃣ Age</div>
+                        <div class="step-desc">(construa sua versão)</div>
+                    </div>
+                </div>
+                <div class="footer">Inveja → Ação</div>
+            </div>
+
+            <!-- STORY 6 - EXEMPLO (SPLIT) -->
+            <div class="story story-6">
+                <div class="half left">
+                    <div class="label">ANTES</div>
+                    <div class="quote">"Fulano<br>tem tudo"</div>
+                    <div class="word">Inveja</div>
+                </div>
+                <div class="half right">
+                    <div class="label">DEPOIS</div>
+                    <div class="quote">"Vou criar<br>o meu"</div>
+                    <div class="word">Prosperidade</div>
+                </div>
+            </div>
+
+            <!-- STORY 7 - CTA -->
+            <div class="story story-7">
+                <h2>DE INVEJA<br>PARA<br>PROSPERIDADE</h2>
+                <div class="cta">▶ Começa HOJE</div>
+                <div class="poll">[Enquete Interativa]<br>Você vai transformar<br>sua inveja em ação?</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" id="prevBtn" onclick="changeStory(-1)">← Anterior</button>
+            <button class="btn" id="nextBtn" onclick="changeStory(1)">Próximo →</button>
+        </div>
+
+        <div class="info">
+            <h3>📱 Especificações Instagram Stories</h3>
+            <p>
+                <strong>Formato:</strong> 1080x1920px (9:16) •
+                <strong>Fontes:</strong> Montserrat, Open Sans, Bebas Neue<br>
+                <strong>Paleta:</strong> Azul escuro, Verde prosperidade, Vermelho inveja, Dourado<br>
+                <strong>Story 4:</strong> ⭐ Momento chave (Reframe) •
+                <strong>Duração:</strong> 7s cada story
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let currentStory = 0;
+        const stories = document.querySelectorAll('.story');
+        const progressBars = document.querySelectorAll('.progress-bar');
+        const totalStories = stories.length;
+
+        function updateStories() {
+            stories.forEach((story, index) => {
+                story.classList.remove('active');
+                if (index === currentStory) {
+                    story.classList.add('active');
+                }
+            });
+
+            progressBars.forEach((bar, index) => {
+                bar.classList.remove('active', 'completed');
+                if (index < currentStory) {
+                    bar.classList.add('completed');
+                } else if (index === currentStory) {
+                    bar.classList.add('active');
+                }
+            });
+
+            document.getElementById('prevBtn').disabled = currentStory === 0;
+            document.getElementById('nextBtn').disabled = currentStory === totalStories - 1;
+        }
+
+        function changeStory(direction) {
+            currentStory += direction;
+            if (currentStory < 0) currentStory = 0;
+            if (currentStory >= totalStories) currentStory = totalStories - 1;
+            updateStories();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeStory(-1);
+            if (e.key === 'ArrowRight') changeStory(1);
+        });
+
+        // Click to advance (like Instagram)
+        document.querySelector('.story-container').addEventListener('click', (e) => {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            if (x > rect.width / 2) {
+                changeStory(1);
+            } else {
+                changeStory(-1);
+            }
+        });
+
+        updateStories();
+    </script>
+</body>
+</html>

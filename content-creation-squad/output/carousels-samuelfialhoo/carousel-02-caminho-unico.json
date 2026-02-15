@@ -1,0 +1,123 @@
+{
+  "id": "carousel_02",
+  "tema": "Seu caminho é único",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "PARE DE SEGUIR\nFÓRMULAS PRONTAS",
+      "subtitulo": "Seu caminho é único",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#00D9FF",
+        "layout": "centered",
+        "fontSize": "72px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "contexto",
+      "titulo": "O SUCESSO DOS OUTROS\nNÃO É SEU MANUAL",
+      "subtitulo": "O que funcionou pra eles\npode não funcionar pra você.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#00D9FF",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "ponto",
+      "titulo": "CONTEXTOS DIFERENTES",
+      "subtitulo": "Timing, mercado, momento de vida.\nNada disso é igual pra ninguém.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#00D9FF",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "ponto",
+      "titulo": "RECURSOS DIFERENTES",
+      "subtitulo": "Tempo, dinheiro, network, skills.\nVocê tem seu próprio combo único.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#00D9FF",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "ponto",
+      "titulo": "VALORES DIFERENTES",
+      "subtitulo": "O que é sucesso pra eles\npode ser prisão pra você.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#00D9FF",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "aplicacao",
+      "titulo": "CONSTRUA SEU PRÓPRIO CAMINHO:",
+      "subtitulo": "1. Inspire-se, não copie\n2. Teste e adapte ao seu contexto\n3. Ouça sua intuição\n4. Foque no que você quer\n5. Respeite seu timing",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#00D9FF",
+        "layout": "left-aligned",
+        "fontSize": "36px",
+        "fontWeight": "700"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "cta",
+      "titulo": "SEU CAMINHO\nÉ SUA MARCA",
+      "subtitulo": "Autenticidade vence imitação.\nSempre.",
+      "design": {
+        "background": "#00D9FF",
+        "textColor": "#000000",
+        "accentColor": "#FFFFFF",
+        "layout": "centered",
+        "fontSize": "64px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 8,
+      "tipo": "closer",
+      "titulo": "VOCÊ ESTÁ SEGUINDO\nSEU CAMINHO OU O DOS OUTROS?",
+      "subtitulo": "Honestidade brutal aqui 👇",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#00D9FF",
+        "layout": "centered",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "PARE DE SEGUIR FÓRMULAS PRONTAS 🚫\n\nSeu caminho é único.\n\nO sucesso dos outros não é seu manual de instruções.\n\nPor quê?\n\n→ CONTEXTOS DIFERENTES\nTiming, mercado, momento de vida.\nNada disso é igual pra ninguém.\n\n→ RECURSOS DIFERENTES\nTempo, dinheiro, network, skills.\nVocê tem seu próprio combo único.\n\n→ VALORES DIFERENTES\nO que é sucesso pra eles pode ser prisão pra você.\n\nA verdade:\nQuando você copia o caminho dos outros, você perde o que te torna único.\n\nCOMO CONSTRUIR SEU PRÓPRIO CAMINHO:\n1. Inspire-se nos outros, não copie\n2. Teste e adapte ao seu contexto\n3. Ouça sua intuição sobre o que funciona\n4. Foque no que VOCÊ realmente quer\n5. Respeite seu timing e processo\n\nAutenticidade vence imitação. Sempre.\n\nSeu caminho é sua marca.\nSua jornada única é seu diferencial.\n\nVocê está seguindo seu caminho ou o dos outros?\nHonestidade brutal aqui 👇\n\n—\nSalva pra lembrar quando bater a comparação 🔖",
+  "hashtags": ["#empreendedorismo", "#mindset", "#autenticidade", "#sucessopessoal", "#desenvolvimentopessoal", "#focoproprio", "#jornadadosucesso", "#crescimentopessoal", "#motivacao", "#sejautentico"],
+  "bestTime": "18:00",
+  "estimatedER": "0.8-1.2%"
+}

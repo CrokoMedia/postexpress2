@@ -1,0 +1,123 @@
+{
+  "id": "carousel_01",
+  "tema": "Crenças que te limitam",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "SUAS CRENÇAS\nTÊM TE SABOTADO",
+      "subtitulo": "E você nem percebe",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FF6B35",
+        "layout": "centered",
+        "fontSize": "72px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "contexto",
+      "titulo": "O QUE VOCÊ ACREDITA\nDEFINE SEUS LIMITES",
+      "subtitulo": "Não são suas habilidades.\nSão suas crenças sobre elas.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FF6B35",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "ponto",
+      "titulo": "\"NÃO SOU BOM O SUFICIENTE\"",
+      "subtitulo": "Esta crença mata mais sonhos\ndo que qualquer outra coisa.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FF6B35",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "ponto",
+      "titulo": "\"PRECISO DE TUDO PERFEITO\"",
+      "subtitulo": "Perfeccionismo é só medo disfarçado.\nAção imperfeita > Inação perfeita",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FF6B35",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "ponto",
+      "titulo": "\"NÃO TENHO TEMPO/DINHEIRO\"",
+      "subtitulo": "Você sempre encontra recursos\npara o que realmente importa.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FF6B35",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "aplicacao",
+      "titulo": "COMO QUEBRAR ISSO:",
+      "subtitulo": "1. Identifique a crença\n2. Questione: é verdade?\n3. Busque evidências contra\n4. Reformule positivamente\n5. Aja contrário ao medo",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FF6B35",
+        "layout": "left-aligned",
+        "fontSize": "36px",
+        "fontWeight": "700"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "cta",
+      "titulo": "PARE DE SE\nAUTOSABOTAR",
+      "subtitulo": "Suas crenças não são fatos.\nSão escolhas.",
+      "design": {
+        "background": "#FF6B35",
+        "textColor": "#FFFFFF",
+        "accentColor": "#000000",
+        "layout": "centered",
+        "fontSize": "64px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 8,
+      "tipo": "closer",
+      "titulo": "QUAL CRENÇA VOCÊ\nVAI QUEBRAR HOJE?",
+      "subtitulo": "Comenta aqui 👇",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FF6B35",
+        "layout": "centered",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "SUAS CRENÇAS TÊM TE SABOTADO 🎯\n\nE você nem percebe.\n\nO que você acredita sobre si mesmo define seus limites mais do que suas habilidades.\n\n❌ \"Não sou bom o suficiente\"\n❌ \"Preciso de tudo perfeito\"\n❌ \"Não tenho tempo/dinheiro\"\n\nEstas crenças matam mais sonhos do que qualquer outra coisa.\n\nA verdade dura:\n→ Perfeccionismo é medo disfarçado\n→ Você sempre encontra recursos para o que importa\n→ Suas crenças não são fatos. São escolhas.\n\nCOMO QUEBRAR ISSO:\n1. Identifique a crença limitante\n2. Questione: isso é realmente verdade?\n3. Busque evidências contra ela\n4. Reformule positivamente\n5. Aja contrário ao medo\n\nPare de se autosabotar.\nSuas crenças são suas, mas não precisam te controlar.\n\nQual crença você vai quebrar hoje?\nComenta aqui 👇\n\n—\nSalva esse post pra revisar quando precisar 🔖",
+  "hashtags": ["#mindset", "#empreendedorismo", "#desenvolvimentopessoal", "#motivacao", "#crencaslimitantes", "#crescimentopessoal", "#foconoresultado", "#mentalidadevencedora", "#transformacao", "#sucessopessoal"],
+  "bestTime": "18:00",
+  "estimatedER": "0.8-1.2%"
+}

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preview PREMIUM - Design Minimalista Apple Style</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #F5F5F7;
+      padding: 60px 30px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #1d1d1f;
+      margin-bottom: 10px;
+      letter-spacing: -1px;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      color: #86868b;
+      font-weight: 500;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 20px;
+      background: #000;
+      color: #fff;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 10px 5px;
+      letter-spacing: 0.5px;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+
+    .story {
+      aspect-ratio: 9/16;
+      border-radius: 20px;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+    }
+
+    .story:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 60px rgba(0,0,0,0.18);
+    }
+
+    .story-badge {
+      position: absolute;
+      top: 50px;
+      left: 40px;
+      padding: 10px 24px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      backdrop-filter: blur(10px);
+    }
+
+    .story-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 60px;
+    }
+
+    .story-title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.8px;
+    }
+
+    .story-subtitle {
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 30px;
+    }
+
+    .story-line {
+      width: 80px;
+      height: 3px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    .story-text {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      font-weight: 400;
+      white-space: pre-line;
+    }
+
+    .story-cta {
+      margin-top: auto;
+      padding: 28px 40px;
+      border-radius: 16px;
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .story-sig {
+      position: absolute;
+      bottom: 60px;
+      left: 40px;
+      right: 40px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    /* Story 1: Hero - Deep Black */
+    .story-1 {
+      background: #000000;
+    }
+    .story-1 .story-badge {
+      background: rgba(14, 165, 233, 0.15);
+      color: #0EA5E9;
+    }
+    .story-1 .story-title {
+      color: #FFFFFF;
+    }
+    .story-1 .story-subtitle {
+      color: #0EA5E9;
+    }
+
+    /* Story 2: Problem - Dark Slate */
+    .story-2 {
+      background: #1C1C1E;
+    }
+    .story-2 .story-badge {
+      background: rgba(239, 68, 68, 0.15);
+      color: #EF4444;
+    }
+    .story-2 .story-title {
+      color: #FFFFFF;
+    }
+    .story-2 .story-text {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Story 3: Solution - Pure White */
+    .story-3 {
+      background: #FFFFFF;
+    }
+    .story-3 .story-line {
+      background: #0A1929;
+    }
+    .story-3 .story-title {
+      color: #0A1929;
+    }
+    .story-3 .story-text {
+      color: #374151;
+    }
+    .story-3 .story-sig {
+      color: rgba(10, 25, 41, 0.7);
+    }
+
+    /* Story 4: Method - Deep Navy */
+    .story-4 {
+      background: #0A1929;
+    }
+    .story-4 .story-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10B981;
+    }
+    .story-4 .story-line {
+      background: #10B981;
+    }
+    .story-4 .story-title {
+      color: #FFFFFF;
+    }
+    .story-4 .story-text {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Story 5: Method - Deep Navy */
+    .story-5 {
+      background: #0A1929;
+    }
+    .story-5 .story-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10B981;
+    }
+    .story-5 .story-line {
+      background: #10B981;
+    }
+    .story-5 .story-title {
+      color: #FFFFFF;
+    }
+    .story-5 .story-text {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Story 6: Proof - Pure White */
+    .story-6 {
+      background: #FFFFFF;
+    }
+    .story-6 .story-line {
+      background: #5B21B6;
+    }
+    .story-6 .story-title {
+      color: #5B21B6;
+    }
+    .story-6 .story-text {
+      color: #374151;
+    }
+    .story-6 .story-sig {
+      color: rgba(91, 33, 182, 0.7);
+    }
+
+    /* Story 7: CTA - Rich Purple */
+    .story-7 {
+      background: #5B21B6;
+    }
+    .story-7 .story-title {
+      color: #FFFFFF;
+    }
+    .story-7 .story-text {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .story-7 .story-cta {
+      background: #F59E0B;
+      color: #000000;
+    }
+    .story-7 .story-sig {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .comparison {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .comparison h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #1d1d1f;
+    }
+
+    .comparison ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .comparison li {
+      padding: 15px 0;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      align-items: center;
+    }
+
+    .comparison li::before {
+      content: '✓';
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background: #10B981;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      margin-right: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎨 Design PREMIUM</h1>
+    <p>Minimalista Apple Style • Profissional • Elegante</p>
+    <div>
+      <span class="badge">SEM GRADIENTES NEON</span>
+      <span class="badge">CORES SÓLIDAS</span>
+      <span class="badge">LAYOUT APPLE</span>
+      <span class="badge">MUITO ESPAÇO BRANCO</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="stories-grid">
+      <!-- Story 1: Hero -->
+      <div class="story story-1">
+        <div class="story-badge">STORY 1</div>
+        <div class="story-content">
+          <div class="story-title">DE R$ 30K/MÊS PARA R$ 1,2 MILHÃO/ANO</div>
+          <div class="story-subtitle">O sistema exato que me fez escalar (e pode funcionar pra você)</div>
+        </div>
+      </div>
+
+      <!-- Story 2: Problem -->
+      <div class="story story-2">
+        <div class="story-badge">STORY 2</div>
+        <div class="story-content">
+          <div class="story-title">PAREI DE VENDER PARA TODO MUNDO</div>
+          <div class="story-text">Defini meu ICP com precisão cirúrgica. 3 critérios não-negociáveis que eliminam 80% dos leads ruins.</div>
+        </div>
+      </div>
+
+      <!-- Story 3: Solution -->
+      <div class="story story-3">
+        <div class="story-content">
+          <div class="story-line"></div>
+          <div class="story-title">CRIEI UM FUNIL PREVISÍVEL</div>
+          <div class="story-text">Cada etapa com métrica clara. Se não posso medir, não posso melhorar. Simples assim.</div>
+        </div>
+        <div class="story-sig">@samuelfialhoo</div>
+      </div>
+
+      <!-- Story 4: Method -->
+      <div class="story story-4">
+        <div class="story-badge">STORY 4</div>
+        <div class="story-content">
+          <div class="story-line"></div>
+          <div class="story-title">SCRIPT QUE NÃO PARECE SCRIPT</div>
+          <div class="story-text">Framework de perguntas que revela dor real. O cliente vende pra ele mesmo. Minha taxa de fechamento: 64%.</div>
+        </div>
+      </div>
+
+      <!-- Story 5: Method -->
+      <div class="story story-5">
+        <div class="story-badge">STORY 5</div>
+        <div class="story-content">
+          <div class="story-line"></div>
+          <div class="story-title">PROPOSTA QUE FECHA SOZINHA</div>
+          <div class="story-text">Estrutura em 5 blocos. ROI na primeira página. Elimina 90% das objeções antes da apresentação.</div>
+        </div>
+      </div>
+
+      <!-- Story 6: Proof -->
+      <div class="story story-6">
+        <div class="story-content">
+          <div class="story-line"></div>
+          <div class="story-title">TIME TREINADO SEMANALMENTE</div>
+          <div class="story-text">Roleplays, análise de calls, feedback constante. Venda é habilidade, não talento. Treino = resultado.</div>
+        </div>
+        <div class="story-sig">@samuelfialhoo</div>
+      </div>
+
+      <!-- Story 7: CTA -->
+      <div class="story story-7">
+        <div class="story-content">
+          <div class="story-title">ESSE SISTEMA LEVOU 3 ANOS PRA REFINAR</div>
+          <div class="story-text">Mas você pode implementar em 90 dias</div>
+          <div class="story-cta">SALVE ESTE POST</div>
+        </div>
+        <div class="story-sig">@samuelfialhoo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comparison">
+    <h2>✨ Melhorias do Design Premium:</h2>
+    <ul>
+      <li>Cores sólidas elegantes (sem gradientes neon)</li>
+      <li>Tipografia forte e hierárquica (Inter font)</li>
+      <li>Muito espaço em branco (respira)</li>
+      <li>Layout variado por Story (não repetitivo)</li>
+      <li>Elementos visuais sutis (linhas, badges)</li>
+      <li>Paleta profissional (Apple/Twitter style)</li>
+      <li>Alternância de fundos (preto, branco, navy, purple)</li>
+      <li>Sombras e efeitos sutis</li>
+      <li>CTA destacado com visual premium</li>
+      <li>Assinatura discreta mas presente</li>
+    </ul>
+  </div>
+</body>
+</html>

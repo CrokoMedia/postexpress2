@@ -1,0 +1,25 @@
+{
+  "carouselId": "alex-hormozi-brands-decoded-black",
+  "formats": {
+    "post-brands-decoded-black": {
+      "format": "post",
+      "style": "brands-decoded-black",
+      "dimensions": "1080x1350",
+      "images": [
+        {
+          "slideNumber": "01",
+          "fileName": "slide-01.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/alex-hormozi-brands-decoded-black/post-brands-decoded-black/slide-01.png"
+        }
+      ]
+    }
+  },
+  "totalImages": 1,
+  "outputDir": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/alex-hormozi-brands-decoded-black",
+  "generation": {
+    "duration": "3.14",
+    "successful": 1,
+    "failed": 0,
+    "errors": []
+  }
+}

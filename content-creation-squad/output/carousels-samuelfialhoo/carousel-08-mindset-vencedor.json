@@ -1,0 +1,123 @@
+{
+  "id": "carousel_08",
+  "tema": "Mindset de vencedor",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "MINDSET NÃO É\nPENSAMENTO POSITIVO",
+      "subtitulo": "É transformação de identidade",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#4ECDC4",
+        "layout": "centered",
+        "fontSize": "64px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "contexto",
+      "titulo": "VOCÊ NÃO PRECISA\nDE MOTIVAÇÃO",
+      "subtitulo": "Você precisa de uma nova\nforma de ver a realidade.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#4ECDC4",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "ponto",
+      "titulo": "SHIFT #1:\nPROBLEMAS → DESAFIOS",
+      "subtitulo": "Vencedores veem obstáculos\ncomo oportunidades de crescer.\nSempre.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#4ECDC4",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "ponto",
+      "titulo": "SHIFT #2:\nFALHA → FEEDBACK",
+      "subtitulo": "Não existe fracasso.\nExiste aprendizado rápido\nou aprendizado lento.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#4ECDC4",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "ponto",
+      "titulo": "SHIFT #3:\nEU TENHO → EU SOU",
+      "subtitulo": "Não é sobre ter um negócio.\nÉ sobre ser empreendedor.\nIdentidade > Ação.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#4ECDC4",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "aplicacao",
+      "titulo": "TRANSFORME SEU MINDSET:",
+      "subtitulo": "1. Identifique crenças limitantes\n2. Questione cada uma delas\n3. Reformule para crescimento\n4. Aja baseado na nova crença\n5. Repita até virar identidade",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#4ECDC4",
+        "layout": "left-aligned",
+        "fontSize": "36px",
+        "fontWeight": "700"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "cta",
+      "titulo": "MUDE SUA MENTE\nMUDE SUA VIDA",
+      "subtitulo": "Tudo começa aqui.\nSempre começou.",
+      "design": {
+        "background": "#4ECDC4",
+        "textColor": "#000000",
+        "accentColor": "#FFFFFF",
+        "layout": "centered",
+        "fontSize": "60px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 8,
+      "tipo": "closer",
+      "titulo": "QUAL SHIFT DE MINDSET\nVOCÊ MAIS PRECISA?",
+      "subtitulo": "Honestidade aqui 👇",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#4ECDC4",
+        "layout": "centered",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "MINDSET NÃO É PENSAMENTO POSITIVO 🧠\n\nÉ transformação de identidade.\n\nVocê não precisa de mais motivação.\nVocê precisa de uma nova forma de ver a realidade.\n\nOS 3 SHIFTS FUNDAMENTAIS:\n\n→ SHIFT #1: PROBLEMAS → DESAFIOS\nVencedores veem obstáculos como oportunidades.\nNão é otimismo cego.\nÉ perspectiva estratégica.\nCada problema tem uma lição.\n\n→ SHIFT #2: FALHA → FEEDBACK\nNão existe fracasso.\nExiste aprendizado rápido ou aprendizado lento.\nCada \"não\" te aproxima do \"sim\".\nCada erro te ensina o caminho certo.\n\n→ SHIFT #3: EU TENHO → EU SOU\nNão é sobre TER um negócio.\nÉ sobre SER empreendedor.\nIdentidade > Ação.\nQuando você muda quem você É,\no que você FAZ muda automaticamente.\n\nCOMO TRANSFORMAR SEU MINDSET:\n1. Identifique suas crenças limitantes\n2. Questione cada uma delas brutalmente\n3. Reformule para mentalidade de crescimento\n4. Aja baseado na nova crença\n5. Repita até virar identidade\n\nMude sua mente, mude sua vida.\n\nTudo começa aqui.\nTudo sempre começou aqui.\n\nSeus resultados são reflexo direto\nda sua forma de pensar.\n\nQual shift de mindset você mais precisa fazer?\nHonestidade aqui 👇\n\n—\nSalva pra reprogramar sua mente 🔖",
+  "hashtags": ["#mindset", "#mentalidadevencedora", "#transformacao", "#desenvolvimentopessoal", "#crescimentopessoal", "#sucessopessoal", "#mudancademindset", "#empreendedorismo", "#foconoresultado", "#motivacao"],
+  "bestTime": "18:00",
+  "estimatedER": "0.8-1.2%"
+}

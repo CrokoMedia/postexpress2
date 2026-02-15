@@ -1,0 +1,81 @@
+{
+  "carouselId": "test-zip-carousel",
+  "formats": {
+    "post-figma": {
+      "format": "post",
+      "style": "figma",
+      "dimensions": "1080x1350",
+      "images": [
+        {
+          "slideNumber": "01",
+          "fileName": "slide-01.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/test-zip-carousel/post-figma/slide-01.png"
+        },
+        {
+          "slideNumber": "02",
+          "fileName": "slide-02.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/test-zip-carousel/post-figma/slide-02.png"
+        }
+      ]
+    },
+    "post-gradient": {
+      "format": "post",
+      "style": "gradient",
+      "dimensions": "1080x1350",
+      "images": [
+        {
+          "slideNumber": "01",
+          "fileName": "slide-01.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/test-zip-carousel/post-gradient/slide-01.png"
+        },
+        {
+          "slideNumber": "02",
+          "fileName": "slide-02.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/test-zip-carousel/post-gradient/slide-02.png"
+        }
+      ]
+    },
+    "stories-figma": {
+      "format": "stories",
+      "style": "figma",
+      "dimensions": "1080x1920",
+      "images": [
+        {
+          "slideNumber": "01",
+          "fileName": "slide-01.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/test-zip-carousel/stories-figma/slide-01.png"
+        },
+        {
+          "slideNumber": "02",
+          "fileName": "slide-02.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/test-zip-carousel/stories-figma/slide-02.png"
+        }
+      ]
+    },
+    "stories-gradient": {
+      "format": "stories",
+      "style": "gradient",
+      "dimensions": "1080x1920",
+      "images": [
+        {
+          "slideNumber": "01",
+          "fileName": "slide-01.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/test-zip-carousel/stories-gradient/slide-01.png"
+        },
+        {
+          "slideNumber": "02",
+          "fileName": "slide-02.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/test-zip-carousel/stories-gradient/slide-02.png"
+        }
+      ]
+    }
+  },
+  "totalImages": 8,
+  "outputDir": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/test-zip-carousel",
+  "generation": {
+    "duration": "7.50",
+    "successful": 8,
+    "failed": 0,
+    "errors": []
+  }
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template Samuel Fialho</title>
+
+  <!-- Fonte Inter (similar ao Instagram) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 1080px;
+      height: 1350px;
+      background: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 60px;
+      position: relative;
+    }
+
+    /* Header com perfil */
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: #000000;
+      margin-right: 24px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Ícone padrão se não houver imagem */
+    .profile-pic.no-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: white;
+    }
+
+    .profile-info {
+      flex: 1;
+    }
+
+    .profile-name {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .profile-name h1 {
+      font-size: 42px;
+      font-weight: 700;
+      color: #000000;
+    }
+
+    /* Badge de verificação azul */
+    .verified-badge {
+      width: 38px;
+      height: 38px;
+      background: #0095F6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .verified-badge::after {
+      content: '✓';
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .profile-handle {
+      font-size: 36px;
+      color: #737373;
+      font-weight: 400;
+    }
+
+    /* Conteúdo principal - parágrafos */
+    .content-text {
+      font-size: 34px;
+      line-height: 1.5;
+      color: #000000;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .content-text p {
+      margin-bottom: 24px;
+    }
+
+    /* Imagem do conteúdo */
+    .content-image {
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .content-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Texto final em negrito */
+    .final-text {
+      font-size: 34px;
+      line-height: 1.4;
+      color: #000000;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header com perfil do Samuel -->
+  <div class="header">
+    <div class="profile-pic no-image">
+      🔥
+    </div>
+    <div class="profile-info">
+      <div class="profile-name">
+        <h1>Samuel Fialho</h1>
+        <div class="verified-badge"></div>
+      </div>
+      <div class="profile-handle">@samuelfialhoo</div>
+    </div>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <div class="content-text">
+    <p>Um ex-dono de academia acaba de mudar a história do marketing digital para sempre.</p><p>Há poucos dias atrás, Alex Hormozi vendeu 2,9 milhões de cópias do seu livro em 24 horas.</p>
+  </div>
+
+  <!-- Imagem (opcional) -->
+  
+
+  <!-- Texto final em negrito -->
+  <div class="final-text">
+    Foram US$ 87,5 milhões em receita, um recorde mundial — mostrando um novo modelo de como transformar lançamentos em um espetáculo global.
+  </div>
+</body>
+</html>

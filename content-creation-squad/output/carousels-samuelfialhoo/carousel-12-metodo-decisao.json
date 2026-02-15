@@ -1,0 +1,136 @@
+{
+  "id": "carousel_12",
+  "tipo": "autoridade",
+  "tema": "Método de Decisão Rápida",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "COMO TOMO DECISÕES\nEM 5 MINUTOS",
+      "subtitulo": "Meu método testado em 100+ decisões",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#1ABC9C",
+        "layout": "centered",
+        "fontSize": "72px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "insight",
+      "titulo": "DECISÕES LENTAS\nMATA MOMENTUM",
+      "subtitulo": "Velocidade de decisão\n= Velocidade de crescimento",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#1ABC9C",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "framework",
+      "titulo": "PERGUNTA 1:\nALINHA COM MEU OBJETIVO?",
+      "subtitulo": "Se não alinha:\nNÃO.\nSem discussão.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#1ABC9C",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "framework",
+      "titulo": "PERGUNTA 2:\nÉ REVERSÍVEL?",
+      "subtitulo": "Se sim: decide rápido, ajusta depois.\nSe não: pensa mais um pouco.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#1ABC9C",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "framework",
+      "titulo": "PERGUNTA 3:\nQUAL O PIOR CENÁRIO?",
+      "subtitulo": "Se você consegue viver com isso:\nVAI.\nSe não consegue:\nNÃO VAI.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#1ABC9C",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "framework",
+      "titulo": "PERGUNTA 4:\nO QUE EU FARIA SE SOUBESSE\nQUE NÃO VAI DAR ERRADO?",
+      "subtitulo": "Elimina o medo.\nRevela o que você realmente quer.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#1ABC9C",
+        "layout": "left-aligned",
+        "fontSize": "40px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "framework",
+      "titulo": "PERGUNTA 5:\nEU VOU ME ARREPENDER\nDE NÃO TENTAR?",
+      "subtitulo": "Arrependimento de ação < Arrependimento de inação.\nSempre.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#1ABC9C",
+        "layout": "left-aligned",
+        "fontSize": "40px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 8,
+      "tipo": "cta",
+      "titulo": "5 PERGUNTAS\nDECISÃO FEITA",
+      "subtitulo": "Simples, rápido, eficaz.\nTestado 100+ vezes.",
+      "design": {
+        "background": "#1ABC9C",
+        "textColor": "#FFFFFF",
+        "accentColor": "#000000",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "COMO TOMO DECISÕES EM 5 MINUTOS ⚡\n\nMeu método testado em 100+ decisões importantes.\n\nDecisões lentas matam momentum.\nVelocidade de decisão = Velocidade de crescimento.\n\nCriei um método de 5 perguntas que simplifica QUALQUER decisão:\n\n→ PERGUNTA 1: ALINHA COM MEU OBJETIVO?\nSe não alinha: NÃO.\nSem discussão.\nSem exceção.\nSem \"mas pode ser interessante\".\n\n→ PERGUNTA 2: É REVERSÍVEL?\nSe sim: decide rápido, ajusta depois.\nA maioria das decisões é reversível.\nPare de tratar tudo como permanente.\nSe não: pensa mais um pouco.\n\n→ PERGUNTA 3: QUAL O PIOR CENÁRIO?\nSeja brutalmente honesto.\nSe você consegue viver com o pior cenário: VAI.\nSe não consegue: NÃO VAI.\nSimples assim.\n\n→ PERGUNTA 4: O QUE EU FARIA SE SOUBESSE QUE NÃO VAI DAR ERRADO?\nElimina o medo da equação.\nRevela o que você realmente quer.\nMuitas vezes a resposta está aqui.\n\n→ PERGUNTA 5: EU VOU ME ARREPENDER DE NÃO TENTAR?\nArrependimento de ação < Arrependimento de inação.\nSempre.\nErros você supera.\nArrependimento você carrega.\n\n5 perguntas. Decisão feita.\nSimples, rápido, eficaz.\n\nTestei isso em:\n✓ Contratar pessoas\n✓ Investimentos\n✓ Parcerias\n✓ Mudanças de estratégia\n✓ Decisões pessoais\n\nFunciona. Sempre.\n\nQual decisão você vai tomar hoje usando esse método?\n\n—\nSalva pra ter o método sempre acessível 🔖",
+  "hashtags": [
+    "#tomadadedecisao",
+    "#metodo5perguntas",
+    "#autoridade",
+    "#mindset",
+    "#produtividade",
+    "#desenvolvimentopessoal",
+    "#lideranca",
+    "#empreendedorismo",
+    "#decisaorapida",
+    "#framework"
+  ],
+  "bestTime": "18:00",
+  "estimatedER": "1.0-1.5%",
+  "objetivo": "Autoridade"
+}

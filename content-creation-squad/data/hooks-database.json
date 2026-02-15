@@ -1,0 +1,247 @@
+{
+  "hooks": {
+    "byAwarenessStage": {
+      "unaware": {
+        "description": "Prospect não sabe que tem o problema",
+        "approach": "Revelar problema oculto + consequências",
+        "templates": [
+          "Você está perdendo [VALOR] sem perceber",
+          "Todo mundo faz isso errado (inclusive você)",
+          "[X]% das pessoas têm [PROBLEMA] e não sabem",
+          "O erro invisível que está custando [CONSEQUÊNCIA]",
+          "Ninguém te contou sobre [VERDADE OCULTA]"
+        ],
+        "examples": [
+          "Você está perdendo R$ 5 mil por mês sem perceber",
+          "9 em 10 empreendedores cometem este erro silencioso",
+          "78% dos gestores de tráfego estão desperdiçando budget"
+        ]
+      },
+      "problemAware": {
+        "description": "Sabe do problema, não sabe das soluções",
+        "approach": "Agitar problema + introduzir solução nova",
+        "templates": [
+          "[X] motivos pelos quais [PROBLEMA] nunca vai embora",
+          "Por que [SOLUÇÃO COMUM] não funciona",
+          "A verdade sobre [PROBLEMA] que ninguém te conta",
+          "[PROBLEMA] está piorando. Aqui está o porquê",
+          "Se [PROBLEMA] fosse fácil de resolver, você já teria resolvido"
+        ],
+        "examples": [
+          "3 razões pelas quais seu tráfego não converte",
+          "Por que postar todo dia não traz resultados",
+          "Se crescer no Instagram fosse fácil, todo mundo crescia"
+        ]
+      },
+      "solutionAware": {
+        "description": "Conhece soluções, não conhece a SUA",
+        "approach": "Diferenciar sua abordagem + provar superioridade",
+        "templates": [
+          "[NÚMERO] erros que estão sabotando seu [RESULTADO]",
+          "O método que [AUTORIDADE] usa para [RESULTADO]",
+          "[RESULTADO] sem [DOR COMUM DA CATEGORIA]",
+          "Como [RESULTADO] em [TEMPO] usando [SEU MÉTODO]",
+          "A diferença entre [SOLUÇÃO COMUM] e [SUA SOLUÇÃO]"
+        ],
+        "examples": [
+          "7 erros de copy que matam conversão (e como corrigir)",
+          "O framework que Neil Patel usa para SEO",
+          "Como vender sem ser chato ou insistente"
+        ]
+      },
+      "productAware": {
+        "description": "Conhece seu produto, ainda não comprou",
+        "approach": "Educação sobre produto + superar objeções",
+        "templates": [
+          "Por dentro: como [SEU PRODUTO] realmente funciona",
+          "O que ninguém te conta sobre [CATEGORIA]",
+          "[RESULTADO] com [SEU PRODUTO]: veja como",
+          "Você perguntou sobre [SEU PRODUTO]. Aqui está tudo",
+          "[X] coisas que só [SEU PRODUTO] faz"
+        ],
+        "examples": [
+          "Por dentro: como o método V.E.N.D.A funciona na prática",
+          "O que ninguém conta sobre cursos de copywriting",
+          "Você perguntou se funciona. Veja os bastidores"
+        ]
+      },
+      "mostAware": {
+        "description": "Pronto para comprar, precisa de empurrão",
+        "approach": "Urgência + escassez + facilitação",
+        "templates": [
+          "OFERTA ESPECIAL: [BENEFÍCIO] por [PREÇO/CONDIÇÃO]",
+          "Últimas vagas: [OPORTUNIDADE]",
+          "[DESCONTO]% OFF termina em [PRAZO]",
+          "Bônus exclusivo se agir até [DATA]",
+          "Apenas [NÚMERO] vagas restantes"
+        ],
+        "examples": [
+          "PROMOÇÃO: 50% OFF termina hoje à meia-noite",
+          "Últimas 7 vagas para mentoria de Fevereiro",
+          "Acesso vitalício + 5 bônus se comprar hoje"
+        ]
+      }
+    },
+    "byEmotionalTrigger": {
+      "curiosity": {
+        "description": "Criar gap de curiosidade",
+        "templates": [
+          "O que [AUTORIDADE] não quer que você saiba",
+          "O segredo por trás de [RESULTADO]",
+          "A tática contraintuitiva para [OBJETIVO]",
+          "[X] coisas estranhas sobre [TEMA]",
+          "Isso vai soar maluco, mas..."
+        ],
+        "examples": [
+          "O que grandes marcas não querem que você saiba",
+          "A tática contraintuitiva que dobrou meu faturamento",
+          "Isso vai soar maluco, mas funciona: poste MENOS"
+        ]
+      },
+      "fear": {
+        "description": "Medo de perder ou ficar para trás",
+        "templates": [
+          "Você está [X anos/meses] atrasado em [ÁREA]",
+          "[CONCORRENTE] já está fazendo isso (e você não)",
+          "O custo de ignorar [PROBLEMA]: R$ [VALOR]",
+          "Enquanto você espera, [CONSEQUÊNCIA NEGATIVA]",
+          "Daqui [PRAZO], [CENÁRIO RUIM]"
+        ],
+        "examples": [
+          "Você está 3 anos atrasado em IA (veja como recuperar)",
+          "Seus concorrentes já usam isso (e estão te passando)",
+          "O custo de ignorar UX: R$ 50k/ano em vendas perdidas"
+        ]
+      },
+      "greed": {
+        "description": "Desejo de ganho, ambição",
+        "templates": [
+          "Como fazer R$ [VALOR] com [MÉTODO]",
+          "[RESULTADO] em [PRAZO] usando [ESTRATÉGIA]",
+          "O atalho para [OBJETIVO AMBICIOSO]",
+          "De [ANTES] para [DEPOIS] em [TEMPO]",
+          "[X]x seu [MÉTRICA] fazendo [AÇÃO]"
+        ],
+        "examples": [
+          "Como fazer R$ 100k/mês com um curso online",
+          "De 0 a 10k seguidores em 90 dias",
+          "3x sua conversão mudando apenas isso"
+        ]
+      },
+      "anger": {
+        "description": "Indignação, injustiça percebida",
+        "templates": [
+          "Pare de [COMPORTAMENTO COMUM]. É sabotagem",
+          "[AUTORIDADE/INDÚSTRIA] está mentindo sobre [TEMA]",
+          "A verdade que [GRUPO] não quer que você saiba",
+          "Por que [SISTEMA] é projetado para você falhar",
+          "Isso me irrita profundamente: [INJUSTIÇA]"
+        ],
+        "examples": [
+          "Pare de postar 3x/dia. Gurus estão mentindo pra você",
+          "A indústria de cursos não quer que você saiba isso",
+          "Por que o algoritmo é projetado contra pequenos criadores"
+        ]
+      },
+      "belonging": {
+        "description": "Desejo de pertencer, status",
+        "templates": [
+          "[X] coisas que todo [GRUPO DESEJADO] sabe",
+          "Se você quer ser [STATUS], faça [AÇÃO]",
+          "Como [GRUPO ELITE] realmente [AÇÃO]",
+          "Você não é [GRUPO INFERIOR]. Faça isso",
+          "Junte-se aos [%] que [COMPORTAMENTO DIFERENCIADO]"
+        ],
+        "examples": [
+          "7 coisas que todo copywriter de 6 dígitos sabe",
+          "Se você quer ser top 1%, pare de fazer isso",
+          "Como os top creators realmente crescem (não é sorte)"
+        ]
+      }
+    },
+    "byFormat": {
+      "question": {
+        "description": "Hook em formato de pergunta",
+        "templates": [
+          "[PESSOA] está fazendo [ERRO]?",
+          "Por que [FENÔMENO ESTRANHO]?",
+          "Você comete [X] desses [Y] erros?",
+          "Qual é o melhor [OPÇÃO]: A, B ou C?",
+          "Quando você vai parar de [COMPORTAMENTO RUIM]?"
+        ],
+        "examples": [
+          "Seu copy está matando suas vendas?",
+          "Por que alguns carrosséis viralizam e outros morrem?",
+          "Você comete 3 desses 5 erros de CTA?"
+        ]
+      },
+      "number": {
+        "description": "Hook com número específico",
+        "templates": [
+          "[X] maneiras de [RESULTADO]",
+          "[X] erros que [CONSEQUÊNCIA]",
+          "[X] sinais de que você [SITUAÇÃO]",
+          "[X] hacks de [ÁREA] que [RESULTADO]",
+          "Apenas [X%] das pessoas sabem isso"
+        ],
+        "examples": [
+          "7 maneiras de triplicar conversão (testadas)",
+          "5 erros que matam seu engajamento",
+          "3 sinais de que seu negócio está estagnado"
+        ]
+      },
+      "command": {
+        "description": "Hook imperativo, ação direta",
+        "templates": [
+          "Pare de [AÇÃO ERRADA]. Faça isso",
+          "Nunca mais [ERRO COMUM]",
+          "Ignore [CONSELHO POPULAR]. Faça [ALTERNATIVA]",
+          "Delete [FERRAMENTA/MÉTODO]. Use [SUA SOLUÇÃO]",
+          "Comece a [AÇÃO] agora mesmo"
+        ],
+        "examples": [
+          "Pare de postar diariamente. Faça isso",
+          "Nunca mais use essa palavra em vendas",
+          "Delete o Canva. Use isso"
+        ]
+      },
+      "controversial": {
+        "description": "Hook polêmico, contraintuitivo",
+        "templates": [
+          "Opinião impopular: [DECLARAÇÃO POLÊMICA]",
+          "[CRENÇA COMUM] é uma mentira",
+          "Vou ser cancelado por isso, mas: [VERDADE]",
+          "[PRÁTICA POPULAR] é perda de tempo",
+          "Desculpa, mas [AUTORIDADE] está errado sobre [TEMA]"
+        ],
+        "examples": [
+          "Opinião impopular: consistência não traz crescimento",
+          "Marketing orgânico é uma mentira vendida por gurus",
+          "Vou ser cancelado, mas: nicho é armadilha"
+        ]
+      }
+    }
+  },
+  "bestPractices": {
+    "generalRules": [
+      "Específico > genérico (R$ 37.439 > 'muito dinheiro')",
+      "Benefício claro em 3 segundos de leitura",
+      "Usa palavras poderosas (sem, nunca, segredo, verdade)",
+      "Cria gap de curiosidade (começa, não termina)",
+      "Evita clickbait vazio (promessa deve ser cumprida)"
+    ],
+    "testingFramework": {
+      "scrollStopTest": "Pararia de scrollar se visse isso?",
+      "relevanceTest": "É relevante para 80%+ da minha audiência?",
+      "deliveryTest": "Consigo entregar o que prometo?",
+      "unicityTest": "Já vi 100x ou é diferente?",
+      "emotionalTest": "Gera emoção forte (curiosidade/medo/raiva)?"
+    }
+  },
+  "metaData": {
+    "version": "1.0.0",
+    "totalHooks": 60,
+    "source": "Eugene Schwartz principles + testing data",
+    "lastUpdated": "2026-02-12"
+  }
+}

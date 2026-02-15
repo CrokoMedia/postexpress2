@@ -1,0 +1,408 @@
+================================================================================
+                              POST EXPRESS
+           Sistema de Criação de Conteúdo Automatizado
+                    Product Requirements Document (PRD)
+                              Pazos Media
+                            Fevereiro 2026
+================================================================================
+
+
+================================================================================
+1. VISÃO GERAL
+================================================================================
+
+1.1 PROBLEMA
+------------
+Infoprodutores, experts e empresas enfrentam desafios críticos na criação de conteúdo:
+
+• Perdem tempo excessivo pensando e criando conteúdo
+• Não conseguem manter consistência de postagens
+• Falta escala na produção de conteúdo
+• Dificuldade em construir autoridade de forma sistemática
+• Engajamento baixo e poucos seguidores
+• Conteúdo não converte em vendas
+
+
+1.2 SOLUÇÃO
+-----------
+Post Express é um sistema interno da Pazos Media que automatiza 80% do processo 
+de criação de conteúdo, utilizando IA com metodologias comprovadas de marketing 
+para gerar carrosséis de alta conversão em escala.
+
+
+1.3 PROPOSTA DE VALOR
+---------------------
+• Escala: Atender mais clientes sem aumentar equipe
+• Qualidade Consistente: IA com metodologia das "mentes" garante padrão
+• Margem Maior: Custo por cliente reduzido, lucro aumentado
+• Velocidade: Entrega mais rápida = cliente mais satisfeito
+
+
+1.4 PÚBLICO-ALVO
+----------------
+• Infoprodutores
+• Experts e coaches
+• Empresas que precisam de presença digital
+
+
+1.5 MODELO DE NEGÓCIO
+---------------------
+Done-for-you: Ferramenta interna da Pazos Media. A equipe opera o sistema e 
+entrega os conteúdos prontos. O cliente apenas visualiza e aprova conteúdos 
+e legendas através de um portal dedicado.
+
+
+================================================================================
+2. ARQUITETURA DO SISTEMA
+================================================================================
+
+2.1 STACK TÉCNICA
+-----------------
+┌─────────────────────┬─────────────────────────────────┐
+│ Componente          │ Tecnologia                      │
+├─────────────────────┼─────────────────────────────────┤
+│ Backend/Lógica      │ Claude Code (AI)                │
+│ Banco de Dados      │ Supabase                        │
+│ Scraping            │ Apify                           │
+│ Geração de Imagens  │ Cloudinary                      │
+│ Transcrição         │ API de transcrição (a definir)  │
+└─────────────────────┴─────────────────────────────────┘
+
+
+2.2 FLUXO GERAL DO SISTEMA
+--------------------------
+
+COLETA DE DADOS → AUDITORIA → CRIAÇÃO → GERAÇÃO → APROVAÇÃO
+
+1. Coleta de Dados: Scraping via Apify + uploads de documentos + transcrições
+2. Squad Auditores: 5 mentes analisam os dados e geram Score Card
+3. Squad Criação: 5 mentes criam conteúdos baseados na auditoria
+4. Geração de Carrosséis: Cloudinary renderiza imagens finais
+5. Portal de Aprovação: Cliente visualiza e aprova conteúdos
+
+
+================================================================================
+3. MÓDULO DE COLETA DE DADOS
+================================================================================
+
+3.1 FONTES DE DADOS
+-------------------
+┌─────────────┬─────────────────────────┬──────────────────────────────────────┐
+│ Fonte       │ Método                  │ Dados Extraídos                      │
+├─────────────┼─────────────────────────┼──────────────────────────────────────┤
+│ Instagram   │ Apify (scraping)        │ Posts, métricas, captions, hashtags  │
+│ TikTok      │ Apify (scraping)        │ Vídeos, views, engajamento           │
+│ YouTube     │ Apify (scraping)        │ Vídeos, transcrições, métricas       │
+│ Documentos  │ Upload na plataforma    │ Briefing, informações do cliente     │
+│ Vídeos      │ Transcrição automática  │ Texto transcrito para análise        │
+└─────────────┴─────────────────────────┴──────────────────────────────────────┘
+
+
+3.2 POR QUE APIFY?
+------------------
+O scraping externo via Apify foi escolhido para proteger as contas dos clientes.
+A integração direta com Instagram pode causar queda de engajamento e riscos de 
+bloqueio da conta.
+
+
+================================================================================
+4. SQUAD AUDITORES
+================================================================================
+
+4.1 AS 5 MENTES AUDITORAS
+-------------------------
+┌───────────────────┬─────────────────┬────────────────────────────────────┬──────┐
+│ Auditor           │ Mente           │ Foco da Análise                    │ Peso │
+├───────────────────┼─────────────────┼────────────────────────────────────┼──────┤
+│ 🧠 Audit Lead     │ Daniel Kahneman │ Comportamento e viés da audiência  │ 20%  │
+│ ✍️ Copy Auditor   │ Eugene Schwartz │ Copy, hooks e awareness stage      │ 25%  │
+│ 💰 Offer Auditor  │ Alex Hormozi    │ Ofertas, CTAs e value equation     │ 25%  │
+│ 📊 Metrics Auditor│ Marty Cagan     │ Métricas, outcomes vs outputs      │ 15%  │
+│ 🔍 Anomaly Detect │ Paul Graham     │ Anomalias e oportunidades          │ 15%  │
+└───────────────────┴─────────────────┴────────────────────────────────────┴──────┘
+
+
+4.2 PIPELINE DE ANÁLISE
+-----------------------
+1. INGESTÃO: Processar dados do scraper
+2. COMPORTAMENTO (Kahneman): Analisar padrões comportamentais
+3. COPY (Schwartz): Avaliar qualidade de copy
+4. OFERTA (Hormozi): Avaliar força das ofertas
+5. MÉTRICAS (Cagan): Analisar outcomes vs outputs
+6. ANOMALIAS (Graham): Detectar padrões incomuns
+7. RELATÓRIO: Consolidar insights e gerar Score Card
+
+
+4.3 OUTPUT: SCORE CARD
+----------------------
+O Squad Auditores gera um Score Card (0-100) em 5 dimensões:
+
+┌─────────────────────────────────────────────────────────┐
+│              AUDIT SCORE CARD — @conta                  │
+├─────────────────────────────────┬───────────────────────┤
+│ 🧠 Comportamento da Audiência   │      XX/100           │
+│ ✍️ Qualidade de Copy            │      XX/100           │
+│ 💰 Força das Ofertas & CTAs     │      XX/100           │
+│ 📊 Métricas & Outcomes          │      XX/100           │
+│ 🔍 Oportunidades & Anomalias    │      XX/100           │
+├─────────────────────────────────┼───────────────────────┤
+│ 🏆 SCORE GERAL                  │      XX/100           │
+└─────────────────────────────────┴───────────────────────┘
+
+Relatório inclui:
+• Score detalhado por dimensão
+• Métricas brutas do scraping
+• Red flags identificados
+• Green flags (pontos fortes)
+• Benchmarks por plataforma
+• Recomendações priorizadas
+• Anomalias detectadas
+
+
+================================================================================
+5. SQUAD CRIAÇÃO DE CONTEÚDO
+================================================================================
+
+5.1 AS 5 MENTES MILIONÁRIAS
+---------------------------
+┌─────────────────────┬─────────────────────┬─────────────────────────┬──────────────────┐
+│ Mente               │ Papel               │ Especialidade           │ Quando Ativa     │
+├─────────────────────┼─────────────────────┼─────────────────────────┼──────────────────┤
+│ Eugene Schwartz 🎯  │ Copywriting         │ Breakthrough Advertising│ Fase de COPY     │
+│ Seth Godin 📖       │ Branding/Narrativas │ Marketing de permissão  │ Fase ESTRATÉGIA  │
+│ Alex Hormozi 💰     │ Ofertas Irresistíveis│ $100M Offers           │ Fase OTIMIZAÇÃO  │
+│ Thiago Finch 🇧🇷    │ Marketing BR        │ Funis, gatilhos BR      │ Fase LOCALIZAÇÃO │
+│ Adriano De Marqui 🎨│ Design Visual       │ Branding, identidade    │ Fase de DESIGN   │
+└─────────────────────┴─────────────────────┴─────────────────────────┴──────────────────┘
+
+
+5.2 PIPELINE DE CRIAÇÃO (10-15 min)
+-----------------------------------
+1. BRIEFING (2 min): Definir objetivo, audiência, mensagem, CTA
+2. ESTRATÉGIA (3 min) — Seth Godin: Ângulo estratégico, tom, estrutura
+3. COPY (4 min) — Eugene Schwartz: Escrever hooks, títulos, textos
+4. OTIMIZAÇÃO (2 min) — Alex Hormozi: Refinar copy para conversão
+5. LOCALIZAÇÃO (1-2 min) — Thiago Finch: Adaptar para contexto brasileiro
+6. VISUAL (2-3 min) — Adriano De Marqui: Planejar layout e cores
+7. REVIEW (1 min): Checklist de qualidade
+
+
+5.3 TIPOS DE CARROSSEL
+----------------------
+• Educacional: Ensinar, construir autoridade
+• Vendas: Vender produto/serviço
+• Autoridade: Thought leadership
+• Viral: Máximo alcance
+
+
+5.4 FÓRMULAS COMPROVADAS
+------------------------
+1. Problema → Solução (8 slides)
+2. Lista Numérica (7 slides)
+3. Framework/Método (6 slides)
+4. Storytelling (9 slides)
+5. Venda Direta (7 slides)
+6. Controvérsia (6 slides)
+
+
+================================================================================
+6. GERAÇÃO DE CARROSSÉIS (CLOUDINARY)
+================================================================================
+
+6.1 TEMPLATE ESTILO TWEET
+-------------------------
+O template segue o estilo de posts do Twitter/X, que tem alta conversão no 
+mercado brasileiro.
+
+ESPECIFICAÇÕES:
+┌─────────────────────┬────────────────────────────────────────────┐
+│ Elemento            │ Especificação                              │
+├─────────────────────┼────────────────────────────────────────────┤
+│ Fundo               │ Branco (#FFFFFF)                           │
+│ Foto de Perfil      │ Circular, canto superior esquerdo          │
+│ Nome                │ Bold, ao lado da foto + verificado (✓ azul)│
+│ Username            │ Cinza, abaixo do nome (@usuario)           │
+│ Texto               │ Preto, fonte clean, tamanho legível        │
+│ Imagem              │ Opcional, quadrada, abaixo do texto        │
+└─────────────────────┴────────────────────────────────────────────┘
+
+
+6.2 VARIAÇÕES DO TEMPLATE
+-------------------------
+
+VARIAÇÃO 1 — SÓ TEXTO (CENTRALIZADO):
+┌─────────────────────────────────────┐
+│                                     │
+│  (○) Nome do Cliente    ✓           │
+│      @username                      │
+│                                     │
+│                                     │
+│      "Texto centralizado aqui,      │
+│       frase de impacto ou           │
+│       insight poderoso"             │
+│                                     │
+│                                     │
+└─────────────────────────────────────┘
+
+VARIAÇÃO 2 — TEXTO + IMAGEM:
+┌─────────────────────────────────────┐
+│                                     │
+│  (○) Nome do Cliente    ✓           │
+│      @username                      │
+│                                     │
+│  "Texto do post aqui..."            │
+│                                     │
+│  ┌─────────────────────────────┐    │
+│  │                             │    │
+│  │    [Imagem quadrada]        │    │
+│  │                             │    │
+│  └─────────────────────────────┘    │
+│                                     │
+└─────────────────────────────────────┘
+
+
+6.3 FLUXO DE GERAÇÃO
+--------------------
+1. Sistema busca dados do cliente no Supabase (foto, nome, username)
+2. Squad Criação envia texto do post
+3. Cloudinary recebe: template base + foto + nome + username + texto
+4. Cloudinary renderiza imagem final de cada slide
+5. URLs das imagens são retornadas e armazenadas
+
+
+================================================================================
+7. CADASTRO DE CLIENTES
+================================================================================
+
+7.1 ESTRUTURA DO BANCO DE DADOS (SUPABASE)
+------------------------------------------
+
+TABELA: clientes
+┌─────────────┬───────────┬─────────────────────────────────┐
+│ Campo       │ Tipo      │ Descrição                       │
+├─────────────┼───────────┼─────────────────────────────────┤
+│ id          │ UUID      │ Identificador único             │
+│ nome        │ TEXT      │ Nome completo do cliente        │
+│ username    │ TEXT      │ @usuario (sem @)                │
+│ foto_url    │ TEXT      │ URL da foto de perfil           │
+│ email       │ TEXT      │ Email para acesso ao portal     │
+│ nicho       │ TEXT      │ Área de atuação                 │
+│ created_at  │ TIMESTAMP │ Data de cadastro                │
+└─────────────┴───────────┴─────────────────────────────────┘
+
+TABELA: conteudos
+┌─────────────────┬───────────┬─────────────────────────────────┐
+│ Campo           │ Tipo      │ Descrição                       │
+├─────────────────┼───────────┼─────────────────────────────────┤
+│ id              │ UUID      │ Identificador único             │
+│ cliente_id      │ UUID      │ FK para clientes                │
+│ tipo            │ TEXT      │ educacional/vendas/autoridade   │
+│ slides          │ JSONB     │ Array com dados de cada slide   │
+│ legenda         │ TEXT      │ Caption do post                 │
+│ status          │ TEXT      │ pendente/aprovado/ajustes       │
+│ created_at      │ TIMESTAMP │ Data de criação                 │
+└─────────────────┴───────────┴─────────────────────────────────┘
+
+
+================================================================================
+8. PORTAL DE APROVAÇÃO DO CLIENTE
+================================================================================
+
+8.1 VISÃO GERAL
+---------------
+Interface simples onde o cliente visualiza e aprova os conteúdos gerados. 
+Esta é a única parte do sistema visível para o cliente.
+
+
+8.2 FUNCIONALIDADES
+-------------------
+• Visualizar carrosséis gerados (imagens)
+• Visualizar legendas/captions
+• Aprovar conteúdo
+• Solicitar ajustes (com comentários)
+• Histórico de conteúdos aprovados
+
+
+8.3 STATUS DOS CONTEÚDOS
+------------------------
+┌─────────────────┬────────────────────────────────────────────┐
+│ Status          │ Descrição                                  │
+├─────────────────┼────────────────────────────────────────────┤
+│ 🟡 Pendente     │ Aguardando revisão do cliente              │
+│ 🟢 Aprovado     │ Cliente aprovou, pronto para publicar      │
+│ 🔴 Ajustes      │ Cliente solicitou modificações             │
+│ ✅ Publicado    │ Conteúdo já foi ao ar                      │
+└─────────────────┴────────────────────────────────────────────┘
+
+
+================================================================================
+9. ENTREGÁVEIS POR CLIENTE
+================================================================================
+
+9.1 FORMATO DE ENTREGA
+----------------------
+• Carrosséis: Imagens prontas para postar (formato 1080x1350 ou 1080x1080)
+• Legendas: Texto da caption com hashtags
+• Plataformas: Instagram e LinkedIn
+
+
+9.2 QUANTIDADE
+--------------
+A quantidade de carrosséis por cliente é flexível e definida no contrato. 
+O sistema suporta geração sob demanda, permitindo escalar conforme necessidade.
+
+
+================================================================================
+10. ROADMAP DE IMPLEMENTAÇÃO
+================================================================================
+
+FASE 1: FUNDAÇÃO
+----------------
+• Configurar Supabase (tabelas de clientes e conteúdos)
+• Integrar Apify para scraping
+• Implementar upload de documentos
+• Configurar transcrição de vídeos
+
+FASE 2: SQUADS DE IA
+--------------------
+• Desenvolver Squad Auditores (5 mentes)
+• Desenvolver Squad Criação (5 mentes)
+• Integrar fluxo entre squads
+
+FASE 3: GERAÇÃO VISUAL
+----------------------
+• Configurar Cloudinary
+• Criar template estilo Tweet
+• Implementar geração automática de slides
+
+FASE 4: PORTAL DO CLIENTE
+-------------------------
+• Desenvolver interface de aprovação
+• Sistema de notificações
+• Histórico e métricas
+
+FASE 5: OTIMIZAÇÃO
+------------------
+• Refinar prompts das mentes
+• Otimizar templates visuais
+• Implementar feedback loop
+
+
+================================================================================
+11. MÉTRICAS DE SUCESSO
+================================================================================
+
+┌────────────────────────────────────┬─────────────────┬─────────────────────┐
+│ Métrica                            │ Meta            │ Como Medir          │
+├────────────────────────────────────┼─────────────────┼─────────────────────┤
+│ Tempo de criação por carrossel     │ < 15 min        │ Logs do sistema     │
+│ Taxa de aprovação do cliente       │ > 80%           │ Portal de aprovação │
+│ Engajamento dos posts              │ > 5%            │ Métricas das redes  │
+│ Custo por conteúdo                 │ Redução de 60%  │ Análise financeira  │
+│ Clientes atendidos/mês             │ Dobrar capac.   │ Dashboard interno   │
+└────────────────────────────────────┴─────────────────┴─────────────────────┘
+
+
+================================================================================
+                    Post Express — Pazos Media © 2026
+================================================================================

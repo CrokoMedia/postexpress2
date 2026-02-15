@@ -1,0 +1,55 @@
+{
+  "carouselId": "demo-2-stories-gradient",
+  "formats": {
+    "stories-gradient": {
+      "format": "stories",
+      "style": "gradient",
+      "dimensions": "1080x1920",
+      "images": [
+        {
+          "slideNumber": "01",
+          "fileName": "slide-01.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/demo-2-stories-gradient/stories-gradient/slide-01.png"
+        },
+        {
+          "slideNumber": "02",
+          "fileName": "slide-02.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/demo-2-stories-gradient/stories-gradient/slide-02.png"
+        },
+        {
+          "slideNumber": "03",
+          "fileName": "slide-03.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/demo-2-stories-gradient/stories-gradient/slide-03.png"
+        },
+        {
+          "slideNumber": "04",
+          "fileName": "slide-04.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/demo-2-stories-gradient/stories-gradient/slide-04.png"
+        },
+        {
+          "slideNumber": "05",
+          "fileName": "slide-05.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/demo-2-stories-gradient/stories-gradient/slide-05.png"
+        },
+        {
+          "slideNumber": "06",
+          "fileName": "slide-06.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/demo-2-stories-gradient/stories-gradient/slide-06.png"
+        },
+        {
+          "slideNumber": "07",
+          "fileName": "slide-07.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/demo-2-stories-gradient/stories-gradient/slide-07.png"
+        }
+      ]
+    }
+  },
+  "totalImages": 7,
+  "outputDir": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/demo-2-stories-gradient",
+  "generation": {
+    "duration": "6.93",
+    "successful": 7,
+    "failed": 0,
+    "errors": []
+  }
+}

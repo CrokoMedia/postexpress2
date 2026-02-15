@@ -1,0 +1,310 @@
+{
+  "formulas": [
+    {
+      "id": "problema-solucao",
+      "name": "Problema → Solução",
+      "slides": 8,
+      "bestFor": "Educacional, Autoridade",
+      "structure": [
+        {
+          "slide": 1,
+          "type": "hook",
+          "template": "X pessoas fazem [ERRO] que [CONSEQUÊNCIA NEGATIVA]",
+          "example": "9 em 10 empreendedores fazem este erro que mata o crescimento"
+        },
+        {
+          "slide": 2,
+          "type": "context",
+          "template": "Por que isso importa + amplificação da dor",
+          "example": "Você pode ter o melhor produto do mundo, mas se comete esses erros..."
+        },
+        {
+          "slide": 3,
+          "type": "problem",
+          "template": "Problema #1: [TÍTULO]\n[Breve explicação]",
+          "example": "ERRO #1: Focar em features\nNinguém compra furadeira, compram buracos na parede"
+        },
+        {
+          "slide": 4,
+          "type": "problem",
+          "template": "Problema #2: [TÍTULO]\n[Breve explicação]"
+        },
+        {
+          "slide": 5,
+          "type": "problem",
+          "template": "Problema #3: [TÍTULO]\n[Breve explicação]"
+        },
+        {
+          "slide": 6,
+          "type": "solution",
+          "template": "A solução: [FRAMEWORK/MÉTODO]",
+          "example": "A solução: Copywriting baseado em benefícios"
+        },
+        {
+          "slide": 7,
+          "type": "result",
+          "template": "Resultado quando você aplica: [TRANSFORMAÇÃO]",
+          "example": "Resultado: Conversão sobe 200-400%"
+        },
+        {
+          "slide": 8,
+          "type": "cta",
+          "template": "Próximo passo: [AÇÃO ESPECÍFICA]",
+          "example": "Salve este post e revise seu copy hoje"
+        }
+      ]
+    },
+    {
+      "id": "lista-numerica",
+      "name": "Lista Numérica",
+      "slides": 7,
+      "bestFor": "Viral, Saves",
+      "structure": [
+        {
+          "slide": 1,
+          "type": "hook",
+          "template": "X [COISAS] que [RESULTADO DESEJADO]",
+          "example": "5 hacks de copy que triplicaram minhas vendas"
+        },
+        {
+          "slide": 2,
+          "type": "item",
+          "template": "#1: [TÍTULO]\n[Explicação em 1-2 linhas]",
+          "example": "#1: Hook em forma de pergunta\nPerguntas criam gap de curiosidade"
+        },
+        {
+          "slide": 3,
+          "type": "item",
+          "template": "#2: [TÍTULO]\n[Explicação]"
+        },
+        {
+          "slide": 4,
+          "type": "item",
+          "template": "#3: [TÍTULO]\n[Explicação]"
+        },
+        {
+          "slide": 5,
+          "type": "item",
+          "template": "#4: [TÍTULO]\n[Explicação]"
+        },
+        {
+          "slide": 6,
+          "type": "item",
+          "template": "#5: [TÍTULO]\n[Explicação]"
+        },
+        {
+          "slide": 7,
+          "type": "cta",
+          "template": "Qual você vai testar primeiro?\n[CTA]",
+          "example": "Qual você vai testar primeiro?\nComenta o número aqui 👇"
+        }
+      ]
+    },
+    {
+      "id": "framework",
+      "name": "Framework/Método",
+      "slides": 6,
+      "bestFor": "Autoridade, Thought Leadership",
+      "structure": [
+        {
+          "slide": 1,
+          "type": "hook",
+          "template": "O método [NOME] para [RESULTADO]",
+          "example": "O método R.A.C.E para carrosséis virais"
+        },
+        {
+          "slide": 2,
+          "type": "overview",
+          "template": "Visão geral: [4 LETRAS/PASSOS]\n[Breve explicação]",
+          "example": "R - Reach (Hook irresistível)\nA - Attention (Manter interesse)\nC - Convert (CTA claro)\nE - Engage (Pedir interação)"
+        },
+        {
+          "slide": 3,
+          "type": "step",
+          "template": "Passo 1: [LETRA]\n[Explicação + exemplo]",
+          "example": "R - REACH\nCrie hook que para o scroll:\n'Você está fazendo X errado'"
+        },
+        {
+          "slide": 4,
+          "type": "step",
+          "template": "Passo 2: [LETRA]\n[Explicação + exemplo]"
+        },
+        {
+          "slide": 5,
+          "type": "step",
+          "template": "Passo 3: [LETRA]\n[Explicação + exemplo]"
+        },
+        {
+          "slide": 6,
+          "type": "implementation",
+          "template": "Como aplicar: [AÇÃO PRÁTICA]\n[CTA]",
+          "example": "Teste no seu próximo carrossel\nSalva para não esquecer"
+        }
+      ]
+    },
+    {
+      "id": "storytelling",
+      "name": "Storytelling/Jornada",
+      "slides": 9,
+      "bestFor": "Conexão emocional, Inspiração",
+      "structure": [
+        {
+          "slide": 1,
+          "type": "hook",
+          "template": "Situação inicial surpreendente",
+          "example": "Há 2 anos eu estava falido\nHoje faturei R$ 3M"
+        },
+        {
+          "slide": 2,
+          "type": "problem",
+          "template": "O problema que eu tinha",
+          "example": "Eu trabalhava 16h/dia\nmas mal pagava as contas"
+        },
+        {
+          "slide": 3,
+          "type": "decision",
+          "template": "Ponto de virada/decisão",
+          "example": "Um dia decidi:\nOu aprendo a vender\nou volto pro emprego"
+        },
+        {
+          "slide": 4,
+          "type": "action",
+          "template": "O que fiz diferente",
+          "example": "Estudei copy 4h/dia\npor 90 dias seguidos"
+        },
+        {
+          "slide": 5,
+          "type": "obstacle",
+          "template": "Desafio enfrentado",
+          "example": "Primeiras 20 tentativas:\nZERO vendas"
+        },
+        {
+          "slide": 6,
+          "type": "breakthrough",
+          "template": "Momento de superação",
+          "example": "Até aplicar [PRINCÍPIO]\nTudo mudou na venda 21"
+        },
+        {
+          "slide": 7,
+          "type": "result",
+          "template": "Transformação alcançada",
+          "example": "6 meses depois:\nR$ 250k em vendas"
+        },
+        {
+          "slide": 8,
+          "type": "lesson",
+          "template": "O aprendizado chave",
+          "example": "Lição: Persistência > talento\nMas persistência INTELIGENTE"
+        },
+        {
+          "slide": 9,
+          "type": "cta",
+          "template": "Como você pode aplicar",
+          "example": "Qual área da sua vida precisa\nde persistência inteligente?\n\nComenta aqui 👇"
+        }
+      ]
+    },
+    {
+      "id": "vendas-direta",
+      "name": "Venda Direta",
+      "slides": 7,
+      "bestFor": "Lançamentos, Promoções",
+      "activeMind": "alex_hormozi",
+      "structure": [
+        {
+          "slide": 1,
+          "type": "hook",
+          "template": "Promessa grande e específica",
+          "example": "Como fazer sua primeira venda de R$ 10k\nem 30 dias (mesmo começando do zero)"
+        },
+        {
+          "slide": 2,
+          "type": "pain",
+          "template": "Dor/problema atual do prospect",
+          "example": "Você já tentou vender online mas:\n❌ Ninguém compra\n❌ Tráfego não converte\n❌ Não sabe o que fazer"
+        },
+        {
+          "slide": 3,
+          "type": "cost",
+          "template": "Custo de NÃO resolver (urgência)",
+          "example": "Cada dia perdido = R$ 333\nEm 1 ano: R$ 120.000 perdidos"
+        },
+        {
+          "slide": 4,
+          "type": "solution",
+          "template": "Sua oferta/produto/serviço",
+          "example": "Método V.E.N.D.A Rápida:\nO sistema que usei para\nR$ 3M em 12 meses"
+        },
+        {
+          "slide": 5,
+          "type": "proof",
+          "template": "Prova social + resultados",
+          "example": "Mais de 487 alunos:\n✓ João: R$ 50k no 1º mês\n✓ Maria: R$ 120k em 60 dias\n✓ Pedro: R$ 300k em 6 meses"
+        },
+        {
+          "slide": 6,
+          "type": "offer",
+          "template": "Detalhes da oferta + value stack",
+          "example": "Você recebe:\n✓ Curso completo (R$ 2.997)\n✓ Templates prontos (R$ 497)\n✓ Mentoria em grupo (R$ 1.997)\n✓ Garantia 30 dias\n\nValor: R$ 5.491\nPOR APENAS: R$ 997"
+        },
+        {
+          "slide": 7,
+          "type": "cta",
+          "template": "Call-to-action + escassez",
+          "example": "ÚLTIMAS 12 VAGAS\na esse preço\n\nLink na bio ou\nDM 'QUERO' agora"
+        }
+      ]
+    },
+    {
+      "id": "controversia",
+      "name": "Controvérsia/Hot Take",
+      "slides": 6,
+      "bestFor": "Engajamento, Viralização",
+      "activeMind": "seth_godin",
+      "structure": [
+        {
+          "slide": 1,
+          "type": "hook",
+          "template": "Opinião polêmica/contraintuitiva",
+          "example": "Opinião impopular:\nMarketing orgânico é PERDA de tempo"
+        },
+        {
+          "slide": 2,
+          "type": "context",
+          "template": "Por que as pessoas acreditam no contrário",
+          "example": "Todo guru diz:\n'Poste todo dia'\n'Seja consistente'\n'Algoritmo vai te recompensar'"
+        },
+        {
+          "slide": 3,
+          "type": "truth",
+          "template": "A verdade inconveniente",
+          "example": "A verdade:\n10.000 posts ruins < 10 posts geniais\n\nQualidade ≠ Quantidade"
+        },
+        {
+          "slide": 4,
+          "type": "evidence",
+          "template": "Evidência/dados que comprovam",
+          "example": "Meu teste:\n30 dias, 2x/semana = 100k alcance\n30 dias, 2x/dia = 80k alcance"
+        },
+        {
+          "slide": 5,
+          "type": "alternative",
+          "template": "O que fazer ao invés",
+          "example": "Faça isso:\n✓ 1 carrossel épico/semana\n✓ Pesquise 3h antes\n✓ Revise 5x\n✓ Promova ativamente"
+        },
+        {
+          "slide": 6,
+          "type": "cta",
+          "template": "Provocação final + engajamento",
+          "example": "Concorda ou quer me xingar?\n\nComenta sua opinião 👇"
+        }
+      ]
+    }
+  ],
+  "metaData": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-02-12",
+    "totalFormulas": 6,
+    "source": "content-creation-squad"
+  }
+}

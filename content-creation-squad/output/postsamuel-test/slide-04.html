@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template PostSamuel</title>
+
+  <!-- Fonte Inter (similar ao Instagram) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 1080px;
+      height: 1080px;
+      background: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 50px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* Header com perfil - Otimizado para quadrado */
+    .header {
+      width: 420px;
+      height: 130px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .profile-pic {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: #000000;
+      margin-right: 20px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Ícone padrão se não houver imagem */
+    .profile-pic.no-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      color: white;
+    }
+
+    .profile-info {
+      flex: 1;
+    }
+
+    .profile-name {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .profile-name h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #000000;
+      line-height: 1.2;
+    }
+
+    /* Badge de verificação azul */
+    .verified-badge {
+      width: 28px;
+      height: 28px;
+      background: #0095F6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .verified-badge::after {
+      content: '✓';
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .profile-handle {
+      font-size: 26px;
+      color: #737373;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    /* Conteúdo principal - Otimizado para quadrado */
+    .content-text {
+      width: 980px;
+      min-height: 650px;
+      font-size: 34px;
+      line-height: 1.4;
+      color: #000000;
+      margin-bottom: 0;
+      font-weight: 400;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .content-text p {
+      margin-bottom: 20px;
+    }
+
+    /* Imagem do conteúdo */
+    .content-image {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+
+    .content-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Texto final em negrito - Dentro da área de conteúdo */
+    .final-text {
+      width: 980px;
+      font-size: 36px;
+      line-height: 1.3;
+      color: #000000;
+      font-weight: 700;
+      text-align: left;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header com perfil do Samuel -->
+  <div class="header">
+    <div class="profile-pic ">
+      <img src="https://instagram.fcgh8-1.fna.fbcdn.net/v/t51.2885-19/469489466_602726122376870_7934686901629894953_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fcgh8-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=4uK2Y0xOWYEQ7kNvgGi_S7k&_nc_gid=b81cd4a06a5e496e8fb84c3d2c476ba5&edm=AEhyXUkBAAAA&ccb=7-5&oh=00_AYBbQJNFQ4F5sY7z5DRZLLcqWmVy8y9R5fHdBbOh2sqmxA&oe=67562A43&_nc_sid=8f1549" alt="Samuel Fialho">
+    </div>
+    <div class="profile-info">
+      <div class="profile-name">
+        <h1>Samuel Fialho</h1>
+        <div class="verified-badge"></div>
+      </div>
+      <div class="profile-handle">@samuelfialhoo</div>
+    </div>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <div class="content-text">
+    <p>Pilar 2: Posicionamento Cirúrgico</p><p>Não tente falar com todo mundo. Fale com UMA pessoa específica que tem UM problema específico.</p>
+  </div>
+
+  <!-- Imagem (opcional) -->
+  
+
+  <!-- Texto final em negrito -->
+  <div class="final-text">
+    Quanto mais específico, mais fácil de vender.
+  </div>
+</body>
+</html>

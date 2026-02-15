@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      width: {{WIDTH}}px;
+      height: {{HEIGHT}}px;
+      background: {{BACKGROUND}};
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: {{PADDING_VERTICAL}}px {{PADDING_HORIZONTAL}}px;
+      position: relative;
+      font-family: {{FONT_FAMILY}}, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .content {
+      width: 100%;
+      max-width: {{CONTENT_WIDTH}}px;
+      display: flex;
+      flex-direction: column;
+      gap: {{CONTENT_GAP}}px;
+      text-align: {{TEXT_ALIGN}};
+    }
+
+    .title {
+      font-size: {{TITLE_FONT_SIZE}}px;
+      font-weight: {{TITLE_FONT_WEIGHT}};
+      color: {{TITLE_COLOR}};
+      line-height: {{LINE_HEIGHT}};
+      letter-spacing: {{LETTER_SPACING}};
+      margin-bottom: {{TITLE_MARGIN}}px;
+    }
+
+    .subtitle {
+      font-size: {{SUBTITLE_FONT_SIZE}}px;
+      font-weight: {{SUBTITLE_FONT_WEIGHT}};
+      color: {{SUBTITLE_COLOR}};
+      line-height: {{LINE_HEIGHT}};
+      letter-spacing: {{LETTER_SPACING}};
+      margin-bottom: {{SUBTITLE_MARGIN}}px;
+    }
+
+    .text {
+      font-size: {{TEXT_FONT_SIZE}}px;
+      font-weight: {{TEXT_FONT_WEIGHT}};
+      color: {{TEXT_COLOR}};
+      line-height: {{LINE_HEIGHT}};
+      letter-spacing: {{LETTER_SPACING}};
+      white-space: pre-line;
+    }
+
+    .text.underline {
+      text-decoration: underline;
+      text-underline-offset: 8px;
+    }
+
+    .cta {
+      font-size: {{CTA_FONT_SIZE}}px;
+      font-weight: {{CTA_FONT_WEIGHT}};
+      color: {{CTA_COLOR}};
+      border: 3px solid {{CTA_COLOR}};
+      padding: 20px 40px;
+      border-radius: {{BORDER_RADIUS}};
+      margin-top: auto;
+      display: inline-block;
+      align-self: {{CTA_ALIGN}};
+    }
+
+    .image-container {
+      width: 100%;
+      margin-top: {{IMAGE_MARGIN_TOP}}px;
+      border-radius: {{BORDER_RADIUS}};
+      overflow: hidden;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Gradient backgrounds */
+    .gradient-escuro {
+      background: linear-gradient(135deg, #1A1A1A 0%, #2C3E50 100%);
+    }
+
+    .gradient-transicao {
+      background: linear-gradient(135deg, #34495E 0%, #27AE60 70%);
+    }
+
+    .gradient-prosperidade {
+      background: linear-gradient(135deg, #27AE60 0%, #2ECC71 100%);
+    }
+
+    /* Accent colors */
+    .accent-vermelho { color: #E74C3C; }
+    .accent-azul { color: #3498DB; }
+    .accent-dourado { color: #FFD23F; }
+    .accent-verde { color: #2ECC71; }
+    .accent-preto { color: #000000; }
+  </style>
+</head>
+<body>
+  <div class="container {{GRADIENT_CLASS}}">
+    <div class="content">
+      {{#TITLE}}
+      <div class="title {{TITLE_ACCENT_CLASS}}">{{TITLE}}</div>
+      {{/TITLE}}
+
+      {{#SUBTITLE}}
+      <div class="subtitle {{SUBTITLE_ACCENT_CLASS}}">{{SUBTITLE}}</div>
+      {{/SUBTITLE}}
+
+      {{#TEXT}}
+      <div class="text {{TEXT_CLASS}}">{{TEXT}}</div>
+      {{/TEXT}}
+
+      {{#IMAGE_URL}}
+      <div class="image-container">
+        <img src="{{IMAGE_URL}}" alt="Conteúdo visual">
+      </div>
+      {{/IMAGE_URL}}
+
+      {{#CTA}}
+      <div class="cta">{{CTA}}</div>
+      {{/CTA}}
+    </div>
+  </div>
+</body>
+</html>

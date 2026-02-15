@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Designs Twitter Style - Samuel Fialho</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .carousel-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .carousel-card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .carousel-card h3 {
+      font-size: 1rem;
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    .carousel-card p {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .slide-grid {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 10px;
+    }
+
+    .slide-thumb {
+      aspect-ratio: 1;
+      background: #f7f9fc;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      padding: 10px;
+    }
+
+    .slide-thumb:hover {
+      background: #667eea;
+      border-color: #667eea;
+      transform: translateY(-2px);
+    }
+
+    .slide-num {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #667eea;
+    }
+
+    .slide-thumb:hover .slide-num {
+      color: white;
+    }
+
+    .slide-type {
+      font-size: 0.65rem;
+      color: #999;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    .slide-thumb:hover .slide-type {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .footer {
+      text-align: center;
+      color: white;
+      margin-top: 40px;
+      padding: 20px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎨 Designs Twitter Style</h1>
+      <p>90 slides prontos para uso • Formato 1080x1080px</p>
+    </div>
+
+    <div class="carousel-grid">
+      
+    <div class="carousel-card">
+      <h3>Carrossel #1</h3>
+      <p>5 gatilhos mentais que aumentam conversão em 300%</p>
+      <div class="slide-grid">
+        
+          <a href="carrossel-01/slide-01.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">1</span>
+            <span class="slide-type">HOOK</span>
+          </a>
+        
+          <a href="carrossel-01/slide-02.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">2</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-01/slide-03.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">3</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-01/slide-04.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">4</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-01/slide-05.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">5</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-01/slide-06.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">6</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-01/slide-07.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">7</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-01/slide-08.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">8</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-01/slide-09.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">9</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-01/slide-10.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">10</span>
+            <span class="slide-type">CLOSER</span>
+          </a>
+        
+      </div>
+    </div>
+  
+    <div class="carousel-card">
+      <h3>Carrossel #2</h3>
+      <p>Como estruturei meu sistema de vendas que gera 7 dígitos</p>
+      <div class="slide-grid">
+        
+          <a href="carrossel-02/slide-01.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">1</span>
+            <span class="slide-type">HOOK</span>
+          </a>
+        
+          <a href="carrossel-02/slide-02.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">2</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-02/slide-03.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">3</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-02/slide-04.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">4</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-02/slide-05.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">5</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-02/slide-06.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">6</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-02/slide-08.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">8</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-02/slide-09.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">9</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-02/slide-10.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">10</span>
+            <span class="slide-type">CLOSER</span>
+          </a>
+        
+      </div>
+    </div>
+  
+    <div class="carousel-card">
+      <h3>Carrossel #3</h3>
+      <p>3 erros que matam o engajamento dos seus posts</p>
+      <div class="slide-grid">
+        
+          <a href="carrossel-03/slide-01.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">1</span>
+            <span class="slide-type">HOOK</span>
+          </a>
+        
+          <a href="carrossel-03/slide-02.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">2</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-03/slide-03.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">3</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-03/slide-04.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">4</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-03/slide-05.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">5</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-03/slide-06.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">6</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-03/slide-07.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">7</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-03/slide-08.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">8</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-03/slide-09.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">9</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-03/slide-10.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">10</span>
+            <span class="slide-type">CLOSER</span>
+          </a>
+        
+      </div>
+    </div>
+  
+    <div class="carousel-card">
+      <h3>Carrossel #4</h3>
+      <p>Framework P.A.S.O para criar ofertas irresistíveis</p>
+      <div class="slide-grid">
+        
+          <a href="carrossel-04/slide-01.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">1</span>
+            <span class="slide-type">HOOK</span>
+          </a>
+        
+          <a href="carrossel-04/slide-02.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">2</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-04/slide-03.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">3</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-04/slide-04.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">4</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-04/slide-05.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">5</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-04/slide-06.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">6</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-04/slide-07.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">7</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-04/slide-08.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">8</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-04/slide-09.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">9</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-04/slide-10.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">10</span>
+            <span class="slide-type">CLOSER</span>
+          </a>
+        
+      </div>
+    </div>
+  
+    <div class="carousel-card">
+      <h3>Carrossel #5</h3>
+      <p>7 princípios de negócios que aprendi faturando milhões</p>
+      <div class="slide-grid">
+        
+          <a href="carrossel-05/slide-01.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">1</span>
+            <span class="slide-type">HOOK</span>
+          </a>
+        
+          <a href="carrossel-05/slide-02.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">2</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-05/slide-03.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">3</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-05/slide-04.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">4</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-05/slide-05.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">5</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-05/slide-06.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">6</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-05/slide-07.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">7</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-05/slide-08.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">8</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-05/slide-09.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">9</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-05/slide-10.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">10</span>
+            <span class="slide-type">CLOSER</span>
+          </a>
+        
+      </div>
+    </div>
+  
+    <div class="carousel-card">
+      <h3>Carrossel #6</h3>
+      <p>Anatomia de um funil que converte 15%+ (passo a passo)</p>
+      <div class="slide-grid">
+        
+          <a href="carrossel-06/slide-01.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">1</span>
+            <span class="slide-type">HOOK</span>
+          </a>
+        
+          <a href="carrossel-06/slide-02.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">2</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-06/slide-03.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">3</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-06/slide-04.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">4</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-06/slide-05.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">5</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-06/slide-06.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">6</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-06/slide-07.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">7</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-06/slide-08.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">8</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-06/slide-09.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">9</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-06/slide-10.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">10</span>
+            <span class="slide-type">CLOSER</span>
+          </a>
+        
+      </div>
+    </div>
+  
+    <div class="carousel-card">
+      <h3>Carrossel #7</h3>
+      <p>10 verdades sobre vender online que ninguém te conta</p>
+      <div class="slide-grid">
+        
+          <a href="carrossel-07/slide-01.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">1</span>
+            <span class="slide-type">HOOK</span>
+          </a>
+        
+          <a href="carrossel-07/slide-02.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">2</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-07/slide-03.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">3</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-07/slide-04.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">4</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-07/slide-05.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">5</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-07/slide-08.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">8</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-07/slide-09.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">9</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-07/slide-10.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">10</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-07/slide-11.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">11</span>
+            <span class="slide-type">CLOSER</span>
+          </a>
+        
+      </div>
+    </div>
+  
+    <div class="carousel-card">
+      <h3>Carrossel #8</h3>
+      <p>Método de 3 passos para escrever hooks que param scroll</p>
+      <div class="slide-grid">
+        
+          <a href="carrossel-08/slide-01.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">1</span>
+            <span class="slide-type">HOOK</span>
+          </a>
+        
+          <a href="carrossel-08/slide-02.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">2</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-08/slide-03.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">3</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-08/slide-04.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">4</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-08/slide-05.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">5</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-08/slide-06.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">6</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-08/slide-07.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">7</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-08/slide-08.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">8</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-08/slide-09.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">9</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-08/slide-10.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">10</span>
+            <span class="slide-type">CLOSER</span>
+          </a>
+        
+      </div>
+    </div>
+  
+    <div class="carousel-card">
+      <h3>Carrossel #9</h3>
+      <p>Case: Como escalonei de R$ 50k para R$ 500k/mês em 6 meses</p>
+      <div class="slide-grid">
+        
+          <a href="carrossel-09/slide-01.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">1</span>
+            <span class="slide-type">HOOK</span>
+          </a>
+        
+          <a href="carrossel-09/slide-02.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">2</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-09/slide-03.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">3</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-09/slide-04.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">4</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-09/slide-05.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">5</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-09/slide-07.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">7</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-09/slide-08.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">8</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-09/slide-09.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">9</span>
+            <span class="slide-type">content</span>
+          </a>
+        
+          <a href="carrossel-09/slide-10.html" target="_blank" class="slide-thumb">
+            <span class="slide-num">10</span>
+            <span class="slide-type">CLOSER</span>
+          </a>
+        
+      </div>
+    </div>
+  
+    </div>
+
+    <div class="footer">
+      <h2>📊 Estatísticas</h2>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value">9</div>
+          <div class="stat-label">Carrosséis</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">87</div>
+          <div class="stat-label">Slides</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">1080x1080</div>
+          <div class="stat-label">Formato</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Responsivo</div>
+        </div>
+      </div>
+      <p style="margin-top: 30px; opacity: 0.8;">
+        💡 Clique em qualquer slide para visualizá-lo em tela cheia<br>
+        🖼️ Use Print Screen ou ferramentas de captura para salvar como imagem
+      </p>
+    </div>
+  </div>
+</body>
+</html>

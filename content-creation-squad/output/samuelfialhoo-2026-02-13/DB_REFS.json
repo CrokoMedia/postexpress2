@@ -1,0 +1,20 @@
+{
+  "generatedAt": "2026-02-13T21:58:21.060Z",
+  "user": {
+    "id": "f91c71ee-7575-487b-8198-aa69327b17f1",
+    "email": "karlapazosvendas@gmail.com",
+    "supabaseUserId": "0cc40d87-d62c-4c09-bea6-a45cdb42ddef"
+  },
+  "organization": {
+    "id": "25412c5a-fd71-4795-a2f5-50ffda9e089b",
+    "slug": "karlapazosvendas"
+  },
+  "instagramAccount": {
+    "id": "687699c7-e719-4065-af9d-3c3b67ed5b61",
+    "username": "samuelfialhoo"
+  },
+  "auditSnapshot": {
+    "id": "b8576a7b-ddea-4ac6-88f7-cbccb1cbd668",
+    "squadScoreTotal": 45
+  }
+}

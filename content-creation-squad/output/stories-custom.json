@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "1: 5 gatilhos mentais que aumentam conversão em 300%",
+    "original": "carrossel-01.md",
+    "converted": "2026-02-13T08:59:22.835Z"
+  },
+  "stories": [
+    {
+      "id": 1,
+      "title": "5 GATILHOS MENTAIS QUE AUMENTAM CONVERSÃO EM 300%",
+      "subtitle": "(E você provavelmente está ignorando o #3)",
+      "text": "",
+      "background": "gradient-escuro",
+      "accentColor": "#3498DB"
+    },
+    {
+      "id": 2,
+      "title": "POR QUE SEUS CONCORRENTES VENDEM MAIS QUE VOCÊ?",
+      "text": "Não é sobre preço. É sobre como você apresenta sua oferta ao cérebro do seu cliente.",
+      "background": "gradient-escuro",
+      "accentColor": "#E74C3C"
+    },
+    {
+      "id": 3,
+      "title": "GATILHO #1",
+      "text": "\"Últimas 3 vagas\" vende mais que \"vagas abertas\". Nosso cérebro valoriza 10x mais o que pode perder.",
+      "background": "gradient-transicao",
+      "accentColor": "#FFD23F"
+    },
+    {
+      "id": 4,
+      "title": "GATILHO #2",
+      "text": "92% das pessoas confiam mais em outros clientes do que na sua propaganda.",
+      "background": "gradient-prosperidade",
+      "accentColor": "#2ECC71"
+    },
+    {
+      "id": 5,
+      "title": "GATILHO #3",
+      "text": "Quando você dá valor ANTES da venda, as pessoas sentem necessidade de retribuir comprando.",
+      "background": "gradient-prosperidade",
+      "accentColor": "#2ECC71"
+    },
+    {
+      "id": 6,
+      "title": "GATILHO #4: AUTORIDADE",
+      "text": "Pessoas seguem especialistas. Mostre suas certificações, anos de experiência e casos de sucesso.",
+      "background": "gradient-prosperidade",
+      "accentColor": "#2ECC71"
+    },
+    {
+      "id": 7,
+      "title": "SALVE ESSE POST PARA NÃO ESQUECER",
+      "text": "Qual desses gatilhos você vai testar primeiro? Comenta aqui 👇",
+      "cta": "SALVE ESTE POST",
+      "background": "gradient-prosperidade",
+      "accentColor": "#FFD23F"
+    }
+  ]
+}

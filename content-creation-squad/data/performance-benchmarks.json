@@ -1,0 +1,420 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-02-12",
+  "source": "Industry averages + MentesMilionarias data + 2025-2026 social media benchmarks",
+  "description": "Benchmarks de performance para carrosséis e posts por plataforma",
+
+  "instagram": {
+    "carousels": {
+      "description": "Carrosséis (2-10 imagens deslizáveis)",
+      "reach": {
+        "poor": {
+          "min": 0,
+          "max": 10,
+          "unit": "% of followers",
+          "description": "Abaixo de 10% dos seguidores"
+        },
+        "good": {
+          "min": 15,
+          "max": 30,
+          "unit": "% of followers",
+          "description": "Alcance saudável, algoritmo está favorecendo"
+        },
+        "excellent": {
+          "min": 40,
+          "max": 200,
+          "unit": "% of followers",
+          "description": "Viral, alcançando não-seguidores"
+        }
+      },
+      "engagement": {
+        "poor": {
+          "min": 0,
+          "max": 3,
+          "unit": "%",
+          "formula": "((likes + comments + shares + saves) / reach) * 100",
+          "description": "Conteúdo não está ressoando"
+        },
+        "good": {
+          "min": 5,
+          "max": 8,
+          "unit": "%",
+          "description": "Boa interação da audiência"
+        },
+        "excellent": {
+          "min": 10,
+          "max": 100,
+          "unit": "%",
+          "description": "Altíssimo engajamento, audiência muito ativa"
+        }
+      },
+      "saves": {
+        "poor": {
+          "min": 0,
+          "max": 2,
+          "unit": "% of reach",
+          "description": "Conteúdo não é visto como útil/acionável"
+        },
+        "good": {
+          "min": 3,
+          "max": 5,
+          "unit": "% of reach",
+          "description": "Conteúdo útil, salvam para referência"
+        },
+        "excellent": {
+          "min": 7,
+          "max": 100,
+          "unit": "% of reach",
+          "description": "Muito valioso, salvam para revisitar"
+        },
+        "note": "Saves são o melhor sinal para o algoritmo do Instagram em 2026"
+      },
+      "shares": {
+        "poor": {
+          "min": 0,
+          "max": 1,
+          "unit": "% of reach",
+          "description": "Não é compartilhável"
+        },
+        "good": {
+          "min": 2,
+          "max": 3,
+          "unit": "% of reach",
+          "description": "Pessoas compartilham com amigos"
+        },
+        "excellent": {
+          "min": 5,
+          "max": 100,
+          "unit": "% of reach",
+          "description": "Altamente compartilhável, viralização"
+        }
+      },
+      "comments": {
+        "poor": {
+          "min": 0,
+          "max": 10,
+          "description": "Pouca discussão"
+        },
+        "good": {
+          "min": 20,
+          "max": 50,
+          "description": "Gerando conversas"
+        },
+        "excellent": {
+          "min": 100,
+          "max": null,
+          "description": "Discussão ativa, debate"
+        }
+      },
+      "profile_visits": {
+        "poor": {
+          "min": 0,
+          "max": 1,
+          "unit": "% of reach",
+          "description": "Não gera curiosidade sobre o criador"
+        },
+        "good": {
+          "min": 2,
+          "max": 4,
+          "unit": "% of reach",
+          "description": "Pessoas querem saber mais sobre você"
+        },
+        "excellent": {
+          "min": 6,
+          "max": 100,
+          "unit": "% of reach",
+          "description": "Alto interesse no criador"
+        }
+      },
+      "best_times": ["9-11am BRT", "1-3pm BRT", "7-9pm BRT"],
+      "best_days": ["Terça", "Quarta", "Quinta"],
+      "optimal_frequency": "3-4x por semana",
+      "notes": [
+        "Carrosséis performam 3x melhor que posts únicos em 2026",
+        "Slides 2-5 têm maior taxa de visualização",
+        "Slide 10 deve sempre ter CTA para engajamento"
+      ]
+    },
+    "reels": {
+      "description": "Vídeos curtos (até 90 segundos)",
+      "reach": {
+        "poor": { "min": 0, "max": 5000, "description": "Não entrou no explore" },
+        "good": { "min": 10000, "max": 50000, "description": "Algoritmo está distribuindo" },
+        "excellent": { "min": 100000, "max": null, "description": "Viral no Reels" }
+      },
+      "engagement": {
+        "poor": { "min": 0, "max": 2, "unit": "%" },
+        "good": { "min": 4, "max": 7, "unit": "%" },
+        "excellent": { "min": 10, "max": 100, "unit": "%" }
+      },
+      "watch_time": {
+        "poor": { "min": 0, "max": 30, "unit": "% average", "description": "Pessoas pulam rápido" },
+        "good": { "min": 50, "max": 70, "unit": "% average", "description": "Assistem metade+" },
+        "excellent": { "min": 80, "max": 100, "unit": "% average", "description": "Assistem até o fim" }
+      },
+      "best_times": ["7-9am BRT", "12-2pm BRT", "6-9pm BRT"],
+      "optimal_length": "15-30 segundos para máximo engajamento",
+      "notes": [
+        "Hook nos primeiros 1-2 segundos é crítico",
+        "Reels têm 10x mais alcance que posts estáticos em 2026"
+      ]
+    },
+    "single_posts": {
+      "description": "Imagem única (não carrossel)",
+      "reach": {
+        "poor": { "min": 0, "max": 8, "unit": "% of followers" },
+        "good": { "min": 10, "max": 20, "unit": "% of followers" },
+        "excellent": { "min": 30, "max": 100, "unit": "% of followers" }
+      },
+      "engagement": {
+        "poor": { "min": 0, "max": 2, "unit": "%" },
+        "good": { "min": 3, "max": 5, "unit": "%" },
+        "excellent": { "min": 7, "max": 100, "unit": "%" }
+      },
+      "notes": [
+        "Posts únicos performam pior que carrosséis em 2026",
+        "Use apenas para mensagens rápidas ou quotes"
+      ]
+    }
+  },
+
+  "linkedin": {
+    "carousels": {
+      "description": "PDF carrossel (formato preferido no LinkedIn)",
+      "impressions": {
+        "poor": { "min": 0, "max": 500, "description": "Baixa distribuição" },
+        "good": { "min": 1000, "max": 3000, "description": "Boa distribuição na rede" },
+        "excellent": { "min": 5000, "max": null, "description": "Alto alcance, possível viral" }
+      },
+      "engagement": {
+        "poor": { "min": 0, "max": 2, "unit": "%" },
+        "good": { "min": 4, "max": 6, "unit": "%" },
+        "excellent": { "min": 8, "max": 100, "unit": "%" },
+        "formula": "((reactions + comments + shares + clicks) / impressions) * 100"
+      },
+      "comments": {
+        "poor": { "min": 0, "max": 5, "description": "Pouca discussão" },
+        "good": { "min": 10, "max": 20, "description": "Discussão saudável" },
+        "excellent": { "min": 30, "max": null, "description": "Debate ativo, thought leadership" }
+      },
+      "shares": {
+        "poor": { "min": 0, "max": 3 },
+        "good": { "min": 5, "max": 10 },
+        "excellent": { "min": 15, "max": null },
+        "note": "Shares no LinkedIn são muito valiosos - cada share expõe para nova rede"
+      },
+      "profile_views": {
+        "poor": { "min": 0, "max": 10, "description": "Não gera curiosidade profissional" },
+        "good": { "min": 20, "max": 50, "description": "Interesse em conhecer mais" },
+        "excellent": { "min": 100, "max": null, "description": "Alto interesse, possíveis conexões/oportunidades" }
+      },
+      "best_times": ["7-9am BRT", "12-1pm BRT", "5-6pm BRT"],
+      "best_days": ["Terça", "Quarta", "Quinta"],
+      "optimal_frequency": "2-3x por semana (qualidade > quantidade)",
+      "notes": [
+        "Carrosséis PDF performam melhor que imagens no LinkedIn",
+        "Conteúdo educacional/thought leadership performa melhor",
+        "Evitar vendas diretas, focar em valor e autoridade",
+        "Comentários geram mais alcance que likes"
+      ]
+    },
+    "text_posts": {
+      "description": "Posts de texto puro (sem mídia)",
+      "impressions": {
+        "poor": { "min": 0, "max": 300 },
+        "good": { "min": 500, "max": 1500 },
+        "excellent": { "min": 3000, "max": null }
+      },
+      "engagement": {
+        "poor": { "min": 0, "max": 3, "unit": "%" },
+        "good": { "min": 5, "max": 8, "unit": "%" },
+        "excellent": { "min": 10, "max": 100, "unit": "%" }
+      },
+      "notes": [
+        "Storytelling pessoal performa muito bem",
+        "Máximo 1.300 caracteres antes do 'ver mais'",
+        "Quebras de linha facilitam leitura"
+      ]
+    },
+    "video": {
+      "description": "Vídeos nativos do LinkedIn",
+      "views": {
+        "poor": { "min": 0, "max": 500 },
+        "good": { "min": 1000, "max": 5000 },
+        "excellent": { "min": 10000, "max": null }
+      },
+      "watch_time": {
+        "poor": { "min": 0, "max": 25, "unit": "% average" },
+        "good": { "min": 40, "max": 60, "unit": "% average" },
+        "excellent": { "min": 70, "max": 100, "unit": "% average" }
+      },
+      "optimal_length": "30-90 segundos",
+      "notes": [
+        "Legendas são essenciais (maioria assiste sem som)",
+        "Vídeos nativos > links do YouTube"
+      ]
+    }
+  },
+
+  "twitter": {
+    "text_posts": {
+      "description": "Tweets de texto (até 280 caracteres)",
+      "impressions": {
+        "poor": { "min": 0, "max": 1000 },
+        "good": { "min": 5000, "max": 20000 },
+        "excellent": { "min": 50000, "max": null }
+      },
+      "engagement": {
+        "poor": { "min": 0, "max": 1, "unit": "%" },
+        "good": { "min": 3, "max": 7, "unit": "%" },
+        "excellent": { "min": 10, "max": 100, "unit": "%" },
+        "formula": "((likes + retweets + replies + bookmarks) / impressions) * 100"
+      },
+      "best_times": ["8-10am BRT", "12-1pm BRT", "5-7pm BRT"],
+      "notes": [
+        "Tweets com imagem têm 35% mais engagement",
+        "Threads performam melhor que tweets únicos",
+        "First tweet da thread é crucial (hook)"
+      ]
+    },
+    "threads": {
+      "description": "Sequência de tweets conectados",
+      "impressions": {
+        "poor": { "min": 0, "max": 5000 },
+        "good": { "min": 10000, "max": 50000 },
+        "excellent": { "min": 100000, "max": null }
+      },
+      "engagement": {
+        "poor": { "min": 0, "max": 2, "unit": "%" },
+        "good": { "min": 5, "max": 10, "unit": "%" },
+        "excellent": { "min": 15, "max": 100, "unit": "%" }
+      },
+      "optimal_length": "5-10 tweets",
+      "notes": [
+        "Numerar tweets ajuda na leitura (1/10, 2/10...)",
+        "Último tweet deve ter CTA (follow, RT, etc.)",
+        "Visual no primeiro tweet aumenta impressões em 50%"
+      ]
+    }
+  },
+
+  "general_benchmarks": {
+    "best_posting_times": {
+      "instagram": {
+        "weekdays": ["9-11am BRT", "1-3pm BRT", "7-9pm BRT"],
+        "weekend": ["10am-12pm BRT", "7-9pm BRT"]
+      },
+      "linkedin": {
+        "weekdays": ["7-9am BRT", "12-1pm BRT", "5-6pm BRT"],
+        "weekend": "Evitar (baixo engajamento profissional)"
+      },
+      "twitter": {
+        "weekdays": ["8-10am BRT", "12-1pm BRT", "5-7pm BRT"],
+        "weekend": ["10am-12pm BRT", "6-8pm BRT"]
+      }
+    },
+    "content_type_performance": {
+      "educational": {
+        "description": "Conteúdo que ensina algo",
+        "best_platforms": ["Instagram", "LinkedIn"],
+        "best_format": "Carrossel (Instagram), PDF carousel (LinkedIn)",
+        "expected_engagement": "5-8%",
+        "expected_saves": "4-7% (Instagram)",
+        "expected_shares": "2-4%"
+      },
+      "storytelling": {
+        "description": "Narrativa pessoal, jornada",
+        "best_platforms": ["LinkedIn", "Twitter"],
+        "best_format": "Text post (LinkedIn), Thread (Twitter)",
+        "expected_engagement": "6-10%",
+        "expected_comments": "Alto (mais comentários que likes)"
+      },
+      "controversial": {
+        "description": "Opinião polêmica, hot take",
+        "best_platforms": ["Twitter", "LinkedIn"],
+        "best_format": "Text post",
+        "expected_engagement": "8-15%",
+        "expected_comments": "Muito alto (debate)",
+        "risk": "Pode polarizar audiência"
+      },
+      "sales": {
+        "description": "Venda direta de produto/serviço",
+        "best_platforms": ["Instagram"],
+        "best_format": "Carrossel ou Reels",
+        "expected_engagement": "3-5% (menor que educacional)",
+        "expected_conversion": "1-3% click-through",
+        "note": "Melhor performance com audiência aquecida"
+      },
+      "viral": {
+        "description": "Conteúdo com potencial de viralizar",
+        "best_platforms": ["Instagram Reels", "Twitter"],
+        "best_format": "Reels (IG), Tweet com visual (Twitter)",
+        "expected_reach": "5-50x seu alcance normal",
+        "characteristics": "Emocional, relatable, shareable, timing"
+      }
+    },
+    "engagement_formula": "((likes + comments + shares + saves) / reach) * 100",
+    "virality_threshold": {
+      "instagram": "Reach > 3x seus seguidores",
+      "linkedin": "Impressions > 10x média dos seus posts",
+      "twitter": "Impressions > 20x seus seguidores"
+    }
+  },
+
+  "conversion_benchmarks": {
+    "link_clicks": {
+      "instagram_bio": {
+        "poor": { "min": 0, "max": 0.5, "unit": "% of reach" },
+        "good": { "min": 1, "max": 2, "unit": "% of reach" },
+        "excellent": { "min": 3, "max": 100, "unit": "% of reach" }
+      },
+      "linkedin_article": {
+        "poor": { "min": 0, "max": 2, "unit": "% of impressions" },
+        "good": { "min": 5, "max": 10, "unit": "% of impressions" },
+        "excellent": { "min": 15, "max": 100, "unit": "% of impressions" }
+      }
+    },
+    "dm_responses": {
+      "instagram": {
+        "poor": { "min": 0, "max": 1, "unit": "% of reach" },
+        "good": { "min": 2, "max": 5, "unit": "% of reach" },
+        "excellent": { "min": 8, "max": 100, "unit": "% of reach" }
+      }
+    },
+    "follower_growth": {
+      "instagram": {
+        "poor": { "min": 0, "max": 1, "unit": "% monthly growth" },
+        "good": { "min": 5, "max": 10, "unit": "% monthly growth" },
+        "excellent": { "min": 20, "max": 100, "unit": "% monthly growth" }
+      },
+      "linkedin": {
+        "poor": { "min": 0, "max": 2, "unit": "% monthly growth" },
+        "good": { "min": 5, "max": 15, "unit": "% monthly growth" },
+        "excellent": { "min": 25, "max": 100, "unit": "% monthly growth" }
+      }
+    }
+  },
+
+  "methodology": {
+    "data_sources": [
+      "Hootsuite Social Media Benchmarks 2026",
+      "Sprout Social Industry Report 2025-2026",
+      "Buffer State of Social 2026",
+      "MentesMilionarias internal data (100+ carrosséis)",
+      "Instagram Creator Account insights 2026",
+      "LinkedIn Marketing Solutions benchmarks"
+    ],
+    "sample_size": "Baseado em análise de 1000+ posts por plataforma",
+    "update_frequency": "Trimestral (algoritmos mudam constantemente)",
+    "next_update": "2026-05-01"
+  },
+
+  "notes": [
+    "Estes benchmarks são médias de múltiplos nichos",
+    "Seu nicho específico pode ter benchmarks diferentes",
+    "Algoritmos mudam constantemente - use como referência, não como verdade absoluta",
+    "Qualidade do conteúdo > frequência de postagem",
+    "Consistência + tempo = crescimento composto",
+    "Saves (Instagram) e Shares (LinkedIn) são os sinais mais fortes para algoritmos em 2026"
+  ]
+}

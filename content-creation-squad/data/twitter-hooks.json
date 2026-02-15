@@ -1,0 +1,254 @@
+{
+  "hooks": {
+    "byType": {
+      "teaser": {
+        "description": "Criar expectativa para algo futuro",
+        "templates": [
+          "Isso é um teste. Daqui [DIAS] volto com os resultados.",
+          "Testando algo novo. Atualizo vocês em [TEMPO].",
+          "Experimento em andamento. Em [DATA] conto tudo.",
+          "Começando hoje. Daqui [PRAZO] mostro os números.",
+          "Isso pode dar muito certo ou muito errado. Vou descobrir."
+        ],
+        "examples": [
+          "Isso é um teste. Daqui 30 dias eu volto com os resultados.",
+          "Testando algo novo. Em 7 dias mostro se funciona.",
+          "Experimento: 1 post por dia durante 30 dias. Volto com dados."
+        ]
+      },
+      "result": {
+        "description": "Mostrar resultado alcançado",
+        "templates": [
+          "Fiz [NÚMERO/RESULTADO] em [TEMPO]",
+          "[RESULTADO GRANDE] fazendo [COISA SIMPLES]",
+          "De [ANTES] para [DEPOIS] em [TEMPO]",
+          "[NÚMERO] [MÉTRICA] usando [MÉTODO]",
+          "Resultado: [NÚMERO ESPECÍFICO]. Aqui está como:"
+        ],
+        "examples": [
+          "Fiz R$ 500k em 90 dias com IA.",
+          "700 reuniões/mês fazendo isso:",
+          "De 0 para 50k seguidores em 6 meses",
+          "100k visitantes usando 1 tática simples"
+        ]
+      },
+      "controversial": {
+        "description": "Opinião polêmica para engajamento",
+        "templates": [
+          "Opinião impopular: [DECLARAÇÃO]",
+          "Vou ser cancelado, mas: [VERDADE]",
+          "Desculpa, mas [CRENÇA COMUM] é mentira",
+          "[COISA POPULAR] é perda de tempo",
+          "Todo mundo faz [COISA] errado. Aqui está o certo:"
+        ],
+        "examples": [
+          "Opinião impopular: Marketing orgânico é perda de tempo.",
+          "Vou ser cancelado, mas: nicho é armadilha.",
+          "Desculpa, mas postar todo dia não traz resultado.",
+          "LinkedIn virou Instagram. E isso é ruim."
+        ]
+      },
+      "value": {
+        "description": "Entregar valor direto",
+        "templates": [
+          "[NÚMERO] [COISAS] que [RESULTADO]:",
+          "Aqui está exatamente como [FAZER ALGO]:",
+          "[NÚMERO] frameworks que uso todo dia:",
+          "O método completo para [RESULTADO]:",
+          "Lista de [COISAS] que mudaram meu [ÁREA]:"
+        ],
+        "examples": [
+          "5 frameworks de copy que uso todo dia:",
+          "Aqui está exatamente como fiz 700 reuniões/mês:",
+          "3 ferramentas que triplicaram minha produtividade:",
+          "O método completo para viralizar no LinkedIn:"
+        ]
+      },
+      "transformation": {
+        "description": "Mostrar transformação/mudança",
+        "templates": [
+          "De [ANTES] para [DEPOIS]",
+          "[TEMPO ATRÁS]: [SITUAÇÃO RUIM]. Hoje: [SITUAÇÃO BOA]",
+          "Transformação: [ANTES] → [DEPOIS] em [TEMPO]",
+          "Como passei de [PONTO A] para [PONTO B]",
+          "Antes eu [COISA RUIM]. Agora eu [COISA BOA]."
+        ],
+        "examples": [
+          "De 0 seguidores para 50k em 6 meses",
+          "Há 1 ano: quebrado. Hoje: R$ 100k/mês",
+          "Transformação: 3h por post → 10 minutos",
+          "Como passei de funcionário para CEO"
+        ]
+      },
+      "curiosity": {
+        "description": "Criar gap de curiosidade",
+        "templates": [
+          "Descobri algo estranho:",
+          "Isso mudou tudo para mim:",
+          "Ninguém fala sobre isso:",
+          "O que [PESSOA/EMPRESA] não quer que você saiba:",
+          "Segredo: [PREVIEW SEM REVELAR TUDO]"
+        ],
+        "examples": [
+          "Descobri algo estranho sobre o algoritmo do Instagram:",
+          "Isso mudou tudo: o erro que 90% comete",
+          "Ninguém fala sobre isso, mas é o mais importante:",
+          "O que grandes marcas não querem que você saiba:"
+        ]
+      },
+      "authority": {
+        "description": "Demonstrar expertise",
+        "templates": [
+          "Depois de [TEMPO/EXPERIÊNCIA], aprendi que:",
+          "Testei [NÚMERO] [COISAS]. Aqui está o que funciona:",
+          "[ANOS] fazendo [ATIVIDADE]. Esse é meu método:",
+          "Trabalhei com [NÚMERO/TIPO] de clientes. Percebi que:",
+          "Estudei [NÚMERO] [EXPERTS]. Eis o padrão:"
+        ],
+        "examples": [
+          "Depois de 5 anos em marketing, aprendi que:",
+          "Testei 47 ferramentas de IA. Aqui está o que presta:",
+          "10 anos criando conteúdo. Esse é meu framework:",
+          "Trabalhei com 200+ empresas. O erro mais comum é:"
+        ]
+      },
+      "question": {
+        "description": "Hook em pergunta",
+        "templates": [
+          "Por que [FENÔMENO ESTRANHO]?",
+          "Você comete [NÚMERO] desses [NÚMERO] erros?",
+          "Qual é melhor: [OPÇÃO A] ou [OPÇÃO B]?",
+          "Como [PESSOA] fez [RESULTADO]?",
+          "[PERGUNTA PROVOCATIVA]?"
+        ],
+        "examples": [
+          "Por que alguns posts viralizam e outros morrem?",
+          "Você comete 3 desses 5 erros de copy?",
+          "Qual é melhor: LinkedIn ou Instagram para B2B?",
+          "Como ele fez 1M de seguidores em 6 meses?"
+        ]
+      }
+    },
+    "ctas": {
+      "comment": [
+        "Comente '[PALAVRA]' se quiser [BENEFÍCIO]",
+        "Comente '[PALAVRA]' para receber [COISA]",
+        "Comenta aqui 👇",
+        "Qual desses você usa? Comenta",
+        "Concorda ou discorda? 👇"
+      ],
+      "save": [
+        "Salva esse post",
+        "Salva para não esquecer",
+        "Salva e implementa",
+        "Guarda esse",
+        "Salva para revisar depois"
+      ],
+      "share": [
+        "RT se concorda",
+        "Compartilha se foi útil",
+        "Manda pro amigo que precisa",
+        "Tag quem precisa ver isso",
+        "RT para seus seguidores verem"
+      ],
+      "follow": [
+        "Me segue para mais",
+        "Segue aqui para [TIPO DE CONTEÚDO]",
+        "Follow para não perder os próximos",
+        "Me acompanha aqui",
+        "Segue que vem mais"
+      ],
+      "engage": [
+        "Qual você vai testar primeiro?",
+        "Qual desses você já faz?",
+        "Discorda de algum?",
+        "Faltou algum?",
+        "Qual é o melhor na sua opinião?"
+      ]
+    },
+    "formatting": {
+      "breakPatterns": [
+        "Hook (1 linha) + ESPAÇO + Corpo (2-3 linhas) + ESPAÇO + CTA",
+        "Afirmação + ESPAÇO + Lista numerada + ESPAÇO + CTA",
+        "Pergunta + ESPAÇO + Resposta + ESPAÇO + Call to action",
+        "Antes (1-2 linhas) + ESPAÇO + Depois (1-2 linhas) + ESPAÇO + Como + CTA"
+      ],
+      "emojiRules": [
+        "Máximo 1-2 emojis por post",
+        "Emoji no CTA = 👆🏻 👇 🔥 💯 ✅",
+        "Emoji no hook só se reforçar mensagem",
+        "Evitar emoji no meio de frases",
+        "Emoji de apontar funciona bem em CTA"
+      ],
+      "lengthGuidelines": [
+        "Ideal: 150-280 caracteres total",
+        "Hook: Máximo 60 caracteres",
+        "Linhas: 40-60 caracteres cada",
+        "3-5 quebras de linha no total",
+        "Posts curtos > posts longos (no Twitter-style)"
+      ]
+    },
+    "viralTriggers": {
+      "specificity": [
+        "700 reuniões > muitas reuniões",
+        "R$ 47.392 > muito dinheiro",
+        "23 minutos > rapidinho",
+        "3.847 seguidores > alguns milhares"
+      ],
+      "personalStory": [
+        "Eu fiz X e aconteceu Y",
+        "Meu erro custou [NÚMERO]",
+        "Como eu passei de A para B",
+        "Testei isso e descobri que..."
+      ],
+      "controversy": [
+        "[CRENÇA POPULAR] é mentira",
+        "Opinião impopular: [TAKE]",
+        "Todo mundo faz [COISA] errado",
+        "Pare de [CONSELHO COMUM]"
+      ],
+      "curiosityGap": [
+        "O segredo que [RESULTADO]",
+        "Ninguém te conta isso:",
+        "Descobri algo estranho:",
+        "Isso mudou tudo:"
+      ],
+      "socialProof": [
+        "[NÚMERO] clientes usam isso",
+        "Trabalhei com [GRANDES EMPRESAS]",
+        "Depois de [EXPERIÊNCIA RELEVANTE]",
+        "[NÚMERO] testes provaram que"
+      ]
+    }
+  },
+  "bestPractices": {
+    "general": [
+      "Primeira linha decide 70% do engajamento",
+      "Conversacional > formal sempre",
+      "Números específicos > vagos",
+      "Quebras de linha facilitam leitura",
+      "CTA simples = mais conversão",
+      "Teste múltiplas versões do hook"
+    ],
+    "engagement": [
+      "Pergunta no final aumenta comentários",
+      "Polêmica aumenta compartilhamentos",
+      "Valor direto aumenta saves",
+      "Teaser aumenta curiosidade",
+      "Resultado aumenta credibilidade"
+    ],
+    "timing": [
+      "Poste em horário de pico (18-20h BR)",
+      "Terça/Quarta/Quinta = mais engajamento",
+      "Evite segunda de manhã",
+      "Fins de semana = menos alcance profissional"
+    ]
+  },
+  "metaData": {
+    "version": "1.0.0",
+    "totalHooks": 50,
+    "categories": 8,
+    "lastUpdated": "2026-02-12",
+    "source": "Content Creation Squad - Twitter Module"
+  }
+}

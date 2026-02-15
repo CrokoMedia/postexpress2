@@ -1,0 +1,55 @@
+{
+  "carouselId": "alex-hormozi-brands-decoded-white",
+  "formats": {
+    "post-brands-decoded-white": {
+      "format": "post",
+      "style": "brands-decoded-white",
+      "dimensions": "1080x1350",
+      "images": [
+        {
+          "slideNumber": "01",
+          "fileName": "slide-01.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/alex-hormozi-brands-decoded-white/post-brands-decoded-white/slide-01.png"
+        },
+        {
+          "slideNumber": "02",
+          "fileName": "slide-02.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/alex-hormozi-brands-decoded-white/post-brands-decoded-white/slide-02.png"
+        },
+        {
+          "slideNumber": "03",
+          "fileName": "slide-03.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/alex-hormozi-brands-decoded-white/post-brands-decoded-white/slide-03.png"
+        },
+        {
+          "slideNumber": "04",
+          "fileName": "slide-04.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/alex-hormozi-brands-decoded-white/post-brands-decoded-white/slide-04.png"
+        },
+        {
+          "slideNumber": "05",
+          "fileName": "slide-05.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/alex-hormozi-brands-decoded-white/post-brands-decoded-white/slide-05.png"
+        },
+        {
+          "slideNumber": "06",
+          "fileName": "slide-06.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/alex-hormozi-brands-decoded-white/post-brands-decoded-white/slide-06.png"
+        },
+        {
+          "slideNumber": "07",
+          "fileName": "slide-07.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/alex-hormozi-brands-decoded-white/post-brands-decoded-white/slide-07.png"
+        }
+      ]
+    }
+  },
+  "totalImages": 7,
+  "outputDir": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/alex-hormozi-brands-decoded-white",
+  "generation": {
+    "duration": "7.10",
+    "successful": 7,
+    "failed": 0,
+    "errors": []
+  }
+}

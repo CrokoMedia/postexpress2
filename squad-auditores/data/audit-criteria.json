@@ -1,0 +1,155 @@
+{
+  "version": "1.0.0",
+  "squad": "squad-auditores",
+
+  "scoring": {
+    "overall": {
+      "excellent": { "min": 80, "max": 100, "label": "Excelente", "color": "green" },
+      "good":      { "min": 65, "max": 79,  "label": "Bom",       "color": "blue" },
+      "average":   { "min": 50, "max": 64,  "label": "Médio",     "color": "yellow" },
+      "weak":      { "min": 35, "max": 49,  "label": "Fraco",     "color": "orange" },
+      "critical":  { "min": 0,  "max": 34,  "label": "Crítico",   "color": "red" }
+    }
+  },
+
+  "kahneman": {
+    "name": "Análise Comportamental",
+    "weight": 0.20,
+    "metrics": {
+      "engagement_ratio": {
+        "description": "Ratio comentários+salvamentos / total interações",
+        "benchmark_good": 0.15,
+        "benchmark_excellent": 0.25
+      },
+      "system2_ratio": {
+        "description": "% de interações de System 2 (salvar, compartilhar, comentar com intenção)",
+        "benchmark_good": 0.10,
+        "benchmark_excellent": 0.20
+      },
+      "consistency_score": {
+        "description": "Variância do engajamento — baixa variância = audiência fiel",
+        "benchmark_good": "CV < 0.5",
+        "benchmark_excellent": "CV < 0.3"
+      }
+    }
+  },
+
+  "schwartz": {
+    "name": "Qualidade de Copy",
+    "weight": 0.25,
+    "awareness_stages": ["unaware", "problem", "solution", "product", "most_aware"],
+    "ideal_distribution": {
+      "unaware": 0.10,
+      "problem": 0.25,
+      "solution": 0.30,
+      "product": 0.25,
+      "most_aware": 0.10
+    },
+    "hook_score_criteria": {
+      "specificity":  { "weight": 0.20, "description": "Números, nomes, datas específicas" },
+      "curiosity_gap": { "weight": 0.20, "description": "Abre loop mental não fechado" },
+      "relevance":    { "weight": 0.20, "description": "Diretamente relevante para audiência" },
+      "urgency":      { "weight": 0.20, "description": "Urgência ou novidade presente" },
+      "clarity":      { "weight": 0.20, "description": "Entendível em 3 segundos" }
+    },
+    "sophistication_levels": {
+      "1": "Mercado virgem — benefício direto funciona",
+      "2": "Ampliar benefício necessário",
+      "3": "Mecanismo único requerido (maioria dos nichos BR)",
+      "4": "Melhorar mecanismo existente",
+      "5": "Identificação e comunidade — além do produto"
+    }
+  },
+
+  "hormozi": {
+    "name": "Força das Ofertas",
+    "weight": 0.25,
+    "value_equation": {
+      "dream_outcome":  { "weight": 0.30, "description": "Clareza e desejabilidade do resultado" },
+      "likelihood":     { "weight": 0.25, "description": "Prova social e credibilidade" },
+      "time_delay":     { "weight": 0.25, "description": "Velocidade prometida para resultado" },
+      "effort":         { "weight": 0.20, "description": "Facilidade de implementação comunicada" }
+    },
+    "cta_types": ["nenhum", "vago", "direcional", "específico", "grand_slam"],
+    "red_flags": [
+      "CTA vago sem contexto",
+      "Promessa sem mecanismo único",
+      "Nenhuma prova quantificável",
+      "Ausência de urgência real",
+      "Bio sem Value Proposition clara"
+    ],
+    "green_flags": [
+      "Resultado específico e mensurável",
+      "Prova de credibilidade explícita",
+      "Mecanismo único identificável",
+      "CTA com próximo passo claro",
+      "Risk reversal ou garantia presente"
+    ]
+  },
+
+  "cagan": {
+    "name": "Métricas & Outcomes",
+    "weight": 0.15,
+    "outputs": ["likes", "follows", "views", "impressoes", "alcance"],
+    "outcomes": ["salvamentos", "cliques_bio", "dms_iniciados", "mencoes", "comentarios_intencao"],
+    "four_risks": {
+      "value":       "A audiência realmente quer o que é oferecido?",
+      "usability":   "O conteúdo é fácil de consumir e aplicar?",
+      "feasibility": "O criador consegue entregar consistentemente?",
+      "viability":   "O modelo de negócio por trás faz sentido?"
+    },
+    "discovery_signals": [
+      "Testa diferentes formatos",
+      "Muda abordagem por feedback",
+      "Faz perguntas à audiência",
+      "Itera rapidamente"
+    ],
+    "delivery_signals": [
+      "Repete mesmo formato",
+      "Ignora feedbacks",
+      "Não testa hipóteses",
+      "Crescimento estagnado"
+    ]
+  },
+
+  "paul_graham": {
+    "name": "Anomalias & Oportunidades",
+    "weight": 0.15,
+    "anomaly_threshold": {
+      "positive": "Post com 3x+ acima da média de engajamento",
+      "negative": "Post com 3x+ abaixo da média"
+    },
+    "coherence_check": {
+      "message_consistency": "Mensagem central muda ao longo do tempo?",
+      "growth_organic": "Crescimento gradual ou com picos artificiais?",
+      "position_stability": "Posições contraditórias entre posts antigos e novos?"
+    }
+  },
+
+  "benchmarks": {
+    "instagram": {
+      "engagement_rate": {
+        "excellent": 0.06,
+        "good":      0.03,
+        "average":   0.01,
+        "poor":      0.005
+      },
+      "save_rate": {
+        "excellent": 0.05,
+        "good":      0.02,
+        "average":   0.008
+      },
+      "post_frequency": {
+        "ideal": "3-5 posts por semana",
+        "minimum": "1 post por semana"
+      }
+    },
+    "linkedin": {
+      "engagement_rate": {
+        "excellent": 0.04,
+        "good":      0.02,
+        "average":   0.008
+      }
+    }
+  }
+}

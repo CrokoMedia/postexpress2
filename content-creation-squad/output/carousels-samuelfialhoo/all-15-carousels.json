@@ -1,0 +1,1982 @@
+[
+  {
+    "id": "carousel_01",
+    "tema": "Crenças que te limitam",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "SUAS CRENÇAS\nTÊM TE SABOTADO",
+        "subtitulo": "E você nem percebe",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FF6B35",
+          "layout": "centered",
+          "fontSize": "72px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "contexto",
+        "titulo": "O QUE VOCÊ ACREDITA\nDEFINE SEUS LIMITES",
+        "subtitulo": "Não são suas habilidades.\nSão suas crenças sobre elas.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FF6B35",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "ponto",
+        "titulo": "\"NÃO SOU BOM O SUFICIENTE\"",
+        "subtitulo": "Esta crença mata mais sonhos\ndo que qualquer outra coisa.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FF6B35",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "ponto",
+        "titulo": "\"PRECISO DE TUDO PERFEITO\"",
+        "subtitulo": "Perfeccionismo é só medo disfarçado.\nAção imperfeita > Inação perfeita",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FF6B35",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "ponto",
+        "titulo": "\"NÃO TENHO TEMPO/DINHEIRO\"",
+        "subtitulo": "Você sempre encontra recursos\npara o que realmente importa.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FF6B35",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "aplicacao",
+        "titulo": "COMO QUEBRAR ISSO:",
+        "subtitulo": "1. Identifique a crença\n2. Questione: é verdade?\n3. Busque evidências contra\n4. Reformule positivamente\n5. Aja contrário ao medo",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FF6B35",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "cta",
+        "titulo": "PARE DE SE\nAUTOSABOTAR",
+        "subtitulo": "Suas crenças não são fatos.\nSão escolhas.",
+        "design": {
+          "background": "#FF6B35",
+          "textColor": "#FFFFFF",
+          "accentColor": "#000000",
+          "layout": "centered",
+          "fontSize": "64px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 8,
+        "tipo": "closer",
+        "titulo": "QUAL CRENÇA VOCÊ\nVAI QUEBRAR HOJE?",
+        "subtitulo": "Comenta aqui 👇",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FF6B35",
+          "layout": "centered",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "SUAS CRENÇAS TÊM TE SABOTADO 🎯\n\nE você nem percebe.\n\nO que você acredita sobre si mesmo define seus limites mais do que suas habilidades.\n\n❌ \"Não sou bom o suficiente\"\n❌ \"Preciso de tudo perfeito\"\n❌ \"Não tenho tempo/dinheiro\"\n\nEstas crenças matam mais sonhos do que qualquer outra coisa.\n\nA verdade dura:\n→ Perfeccionismo é medo disfarçado\n→ Você sempre encontra recursos para o que importa\n→ Suas crenças não são fatos. São escolhas.\n\nCOMO QUEBRAR ISSO:\n1. Identifique a crença limitante\n2. Questione: isso é realmente verdade?\n3. Busque evidências contra ela\n4. Reformule positivamente\n5. Aja contrário ao medo\n\nPare de se autosabotar.\nSuas crenças são suas, mas não precisam te controlar.\n\nQual crença você vai quebrar hoje?\nComenta aqui 👇\n\n—\nSalva esse post pra revisar quando precisar 🔖",
+    "hashtags": [
+      "#mindset",
+      "#empreendedorismo",
+      "#desenvolvimentopessoal",
+      "#motivacao",
+      "#crencaslimitantes",
+      "#crescimentopessoal",
+      "#foconoresultado",
+      "#mentalidadevencedora",
+      "#transformacao",
+      "#sucessopessoal"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "0.8-1.2%"
+  },
+  {
+    "id": "carousel_02",
+    "tema": "Seu caminho é único",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "PARE DE SEGUIR\nFÓRMULAS PRONTAS",
+        "subtitulo": "Seu caminho é único",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#00D9FF",
+          "layout": "centered",
+          "fontSize": "72px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "contexto",
+        "titulo": "O SUCESSO DOS OUTROS\nNÃO É SEU MANUAL",
+        "subtitulo": "O que funcionou pra eles\npode não funcionar pra você.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#00D9FF",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "ponto",
+        "titulo": "CONTEXTOS DIFERENTES",
+        "subtitulo": "Timing, mercado, momento de vida.\nNada disso é igual pra ninguém.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#00D9FF",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "ponto",
+        "titulo": "RECURSOS DIFERENTES",
+        "subtitulo": "Tempo, dinheiro, network, skills.\nVocê tem seu próprio combo único.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#00D9FF",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "ponto",
+        "titulo": "VALORES DIFERENTES",
+        "subtitulo": "O que é sucesso pra eles\npode ser prisão pra você.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#00D9FF",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "aplicacao",
+        "titulo": "CONSTRUA SEU PRÓPRIO CAMINHO:",
+        "subtitulo": "1. Inspire-se, não copie\n2. Teste e adapte ao seu contexto\n3. Ouça sua intuição\n4. Foque no que você quer\n5. Respeite seu timing",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#00D9FF",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "cta",
+        "titulo": "SEU CAMINHO\nÉ SUA MARCA",
+        "subtitulo": "Autenticidade vence imitação.\nSempre.",
+        "design": {
+          "background": "#00D9FF",
+          "textColor": "#000000",
+          "accentColor": "#FFFFFF",
+          "layout": "centered",
+          "fontSize": "64px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 8,
+        "tipo": "closer",
+        "titulo": "VOCÊ ESTÁ SEGUINDO\nSEU CAMINHO OU O DOS OUTROS?",
+        "subtitulo": "Honestidade brutal aqui 👇",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#00D9FF",
+          "layout": "centered",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "PARE DE SEGUIR FÓRMULAS PRONTAS 🚫\n\nSeu caminho é único.\n\nO sucesso dos outros não é seu manual de instruções.\n\nPor quê?\n\n→ CONTEXTOS DIFERENTES\nTiming, mercado, momento de vida.\nNada disso é igual pra ninguém.\n\n→ RECURSOS DIFERENTES\nTempo, dinheiro, network, skills.\nVocê tem seu próprio combo único.\n\n→ VALORES DIFERENTES\nO que é sucesso pra eles pode ser prisão pra você.\n\nA verdade:\nQuando você copia o caminho dos outros, você perde o que te torna único.\n\nCOMO CONSTRUIR SEU PRÓPRIO CAMINHO:\n1. Inspire-se nos outros, não copie\n2. Teste e adapte ao seu contexto\n3. Ouça sua intuição sobre o que funciona\n4. Foque no que VOCÊ realmente quer\n5. Respeite seu timing e processo\n\nAutenticidade vence imitação. Sempre.\n\nSeu caminho é sua marca.\nSua jornada única é seu diferencial.\n\nVocê está seguindo seu caminho ou o dos outros?\nHonestidade brutal aqui 👇\n\n—\nSalva pra lembrar quando bater a comparação 🔖",
+    "hashtags": [
+      "#empreendedorismo",
+      "#mindset",
+      "#autenticidade",
+      "#sucessopessoal",
+      "#desenvolvimentopessoal",
+      "#focoproprio",
+      "#jornadadosucesso",
+      "#crescimentopessoal",
+      "#motivacao",
+      "#sejautentico"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "0.8-1.2%"
+  },
+  {
+    "id": "carousel_03",
+    "tema": "Construa sua história",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "NINGUÉM VAI\nESCREVER SUA HISTÓRIA",
+        "subtitulo": "É sua responsabilidade",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FFD700",
+          "layout": "centered",
+          "fontSize": "72px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "contexto",
+        "titulo": "VOCÊ É O AUTOR\nDA SUA TRAJETÓRIA",
+        "subtitulo": "Cada escolha é uma linha.\nCada ação é um capítulo.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FFD700",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "ponto",
+        "titulo": "ACEITE O PROTAGONISMO",
+        "subtitulo": "Pare de ser coadjuvante\nna sua própria vida.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FFD700",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "ponto",
+        "titulo": "DEFINA SEUS VALORES",
+        "subtitulo": "Sua história precisa de um tema.\nO que você defende?",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FFD700",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "ponto",
+        "titulo": "TOME DECISÕES ALINHADAS",
+        "subtitulo": "Cada escolha ou constrói\nou destrói sua narrativa.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FFD700",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "aplicacao",
+        "titulo": "CONSTRUINDO SUA HISTÓRIA:",
+        "subtitulo": "1. Defina quem você quer ser\n2. Identifique seus valores core\n3. Tome decisões alinhadas\n4. Aja com consistência\n5. Documente sua jornada",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FFD700",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "cta",
+        "titulo": "SUA HISTÓRIA\nCOMEÇA HOJE",
+        "subtitulo": "Não daqui 5 anos.\nAgora.",
+        "design": {
+          "background": "#FFD700",
+          "textColor": "#000000",
+          "accentColor": "#FFFFFF",
+          "layout": "centered",
+          "fontSize": "64px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 8,
+        "tipo": "closer",
+        "titulo": "QUE HISTÓRIA VOCÊ\nQUER CONTAR DAQUI 5 ANOS?",
+        "subtitulo": "Compartilha aqui 👇",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FFD700",
+          "layout": "centered",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "NINGUÉM VAI ESCREVER SUA HISTÓRIA ✍️\n\nÉ sua responsabilidade.\n\nVocê é o autor da sua trajetória.\nCada escolha é uma linha.\nCada ação é um capítulo.\n\nMas muita gente vive como coadjuvante na própria vida.\n\nEsperando permissão.\nEsperando o momento certo.\nEsperando alguém dar o caminho.\n\nA verdade dura:\n\n→ ACEITE O PROTAGONISMO\nPare de ser coadjuvante na sua própria história.\n\n→ DEFINA SEUS VALORES\nSua história precisa de um tema. O que você defende?\n\n→ TOME DECISÕES ALINHADAS\nCada escolha ou constrói ou destrói sua narrativa.\n\nCOMO CONSTRUIR SUA HISTÓRIA:\n1. Defina quem você quer ser\n2. Identifique seus valores core\n3. Tome decisões alinhadas com eles\n4. Aja com consistência\n5. Documente sua jornada\n\nSua história começa hoje.\nNão daqui 5 anos. Agora.\n\nCada dia é uma página.\nCada semana é um capítulo.\nCada ano é um livro.\n\nQue história você quer contar daqui 5 anos?\nCompartilha aqui 👇\n\n—\nSalva pra revisar sempre que precisar 🔖",
+    "hashtags": [
+      "#protagonismo",
+      "#mindset",
+      "#trajetoria",
+      "#sucessopessoal",
+      "#desenvolvimentopessoal",
+      "#motivacao",
+      "#crescimentopessoal",
+      "#foconoresultado",
+      "#empreendedorismo",
+      "#historiadosucesso"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "0.8-1.2%"
+  },
+  {
+    "id": "carousel_04",
+    "tema": "Verdades do empreendedorismo",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "EMPREENDER NÃO É\nO QUE VOCÊ VÊ NO INSTAGRAM",
+        "subtitulo": "Realidade vs Expectativa",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FF3366",
+          "layout": "centered",
+          "fontSize": "64px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "contexto",
+        "titulo": "AS MENTIRAS QUE\nTE VENDERAM:",
+        "subtitulo": "Liberdade, dinheiro fácil,\ntrabalhar 4h por dia.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FF3366",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "ponto",
+        "titulo": "VERDADE #1",
+        "subtitulo": "Você vai trabalhar MAIS\ndo que como funcionário.\nPelo menos no início.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FF3366",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "ponto",
+        "titulo": "VERDADE #2",
+        "subtitulo": "Solidão é parte do pacote.\nPoucas pessoas entendem\no que você está fazendo.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FF3366",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "ponto",
+        "titulo": "VERDADE #3",
+        "subtitulo": "Resultado demora.\nMuito mais do que você pensa.\nPersistência > Talento.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FF3366",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "aplicacao",
+        "titulo": "MAS VALE A PENA?",
+        "subtitulo": "SIM. Se você busca:\n✓ Controle do seu tempo\n✓ Impacto real\n✓ Liberdade financeira\n✓ Propósito verdadeiro",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FF3366",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "cta",
+        "titulo": "EXPECTATIVA REAL\nGERA RESULTADO REAL",
+        "subtitulo": "Romantizar não ajuda.\nPreparo sim.",
+        "design": {
+          "background": "#FF3366",
+          "textColor": "#FFFFFF",
+          "accentColor": "#000000",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "EMPREENDER NÃO É O QUE VOCÊ VÊ NO INSTAGRAM 📱\n\nRealidade vs Expectativa.\n\nAs mentiras que te venderam:\n→ Liberdade total\n→ Dinheiro fácil\n→ Trabalhar 4h por dia\n→ Sucesso em 6 meses\n\nAgora as VERDADES DURAS:\n\n✗ VERDADE #1\nVocê vai trabalhar MAIS do que como funcionário.\nPelo menos no início. Muito mais.\n\n✗ VERDADE #2\nSolidão é parte do pacote.\nPoucas pessoas entendem o que você está fazendo.\nNinguém vai aplaudir cada pequena vitória.\n\n✗ VERDADE #3\nResultado demora. Muito mais do que você pensa.\nPersistência > Talento. Sempre.\n\nMAS VALE A PENA?\n\nSIM. Se você realmente busca:\n✓ Controle do seu tempo\n✓ Impacto real no mundo\n✓ Liberdade financeira verdadeira\n✓ Propósito além do salário\n\nO problema não é empreender.\nÉ empreender com expectativas irreais.\n\nExpectativa real gera resultado real.\nRomantizar não ajuda. Preparo sim.\n\nVocê está preparado pra realidade\nou ainda acredita na fantasia?\n\n—\nSalva pra ter expectativas realistas 🔖",
+    "hashtags": [
+      "#empreendedorismo",
+      "#realidadeempreendedora",
+      "#mindset",
+      "#sucessoreal",
+      "#verdadesempreendedoras",
+      "#desenvolvimentopessoal",
+      "#foconoresultado",
+      "#empreender",
+      "#motivacao",
+      "#mentoriaempreendedora"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "0.8-1.2%"
+  },
+  {
+    "id": "carousel_05",
+    "tema": "Por que você deve persistir",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "VOCÊ ESTÁ MAIS PERTO\nDO QUE IMAGINA",
+        "subtitulo": "Não desista agora",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#00FF88",
+          "layout": "centered",
+          "fontSize": "72px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "contexto",
+        "titulo": "A MAIORIA DESISTE\nNO ÚLTIMO DEGRAU",
+        "subtitulo": "Quando o resultado estava\na uma ação de distância.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#00FF88",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "ponto",
+        "titulo": "O PROGRESSO É INVISÍVEL",
+        "subtitulo": "Até que não é mais.\nVocê está construindo fundações\nque ninguém vê ainda.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#00FF88",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "ponto",
+        "titulo": "CADA NÃO TE APROXIMA DO SIM",
+        "subtitulo": "Rejeição não é fracasso.\nÉ refinamento.\nÉ aprendizado.\nÉ direcionamento.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#00FF88",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "ponto",
+        "titulo": "CONSISTÊNCIA COMPOSTA",
+        "subtitulo": "1% melhor todo dia =\n37x melhor em 1 ano.\nO jogo é de longo prazo.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#00FF88",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "aplicacao",
+        "titulo": "QUANDO QUISER DESISTIR:",
+        "subtitulo": "1. Lembre por que começou\n2. Veja o quanto já avançou\n3. Dê mais um passo pequeno\n4. Celebre micro-vitórias\n5. Descanse, mas não pare",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#00FF88",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "cta",
+        "titulo": "A PERSISTÊNCIA\nSEPARA OS QUE FICAM\nDOS QUE SAEM",
+        "subtitulo": "Em qual grupo você está?",
+        "design": {
+          "background": "#00FF88",
+          "textColor": "#000000",
+          "accentColor": "#FFFFFF",
+          "layout": "centered",
+          "fontSize": "52px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 8,
+        "tipo": "closer",
+        "titulo": "VOCÊ VAI PERSISTIR\nOU VAI DESISTIR?",
+        "subtitulo": "Compromisso aqui 👇",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#00FF88",
+          "layout": "centered",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "VOCÊ ESTÁ MAIS PERTO DO QUE IMAGINA 🎯\n\nNão desista agora.\n\nA verdade que ninguém fala:\nA maioria desiste no último degrau.\nQuando o resultado estava a uma ação de distância.\n\nPor que você DEVE persistir:\n\n→ O PROGRESSO É INVISÍVEL\nAté que não é mais.\nVocê está construindo fundações que ninguém vê ainda.\nMas elas estão sendo construídas.\n\n→ CADA NÃO TE APROXIMA DO SIM\nRejeição não é fracasso.\nÉ refinamento.\nÉ aprendizado.\nÉ direcionamento.\n\n→ CONSISTÊNCIA COMPOSTA\n1% melhor todo dia = 37x melhor em 1 ano.\nO jogo é de longo prazo.\nQuem entende isso vence.\n\nQUANDO QUISER DESISTIR:\n1. Lembre por que você começou\n2. Veja o quanto já avançou\n3. Dê apenas mais um passo pequeno\n4. Celebre suas micro-vitórias\n5. Descanse se preciso, mas não pare\n\nA persistência separa os que ficam dos que saem.\nOs que conquistam dos que sonham.\nOs que vivem dos que imaginam.\n\nResultado não vem pra quem merece.\nVem pra quem persiste.\n\nVocê vai persistir ou vai desistir?\nFaz seu compromisso aqui 👇\n\n—\nSalva pra ler nos dias difíceis 🔖",
+    "hashtags": [
+      "#persistencia",
+      "#mindset",
+      "#motivacao",
+      "#naodesista",
+      "#foconoresultado",
+      "#sucessopessoal",
+      "#desenvolvimentopessoal",
+      "#crescimentopessoal",
+      "#mentalidadevencedora",
+      "#empreendedorismo"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "0.8-1.2%"
+  },
+  {
+    "id": "carousel_06",
+    "tema": "Crescimento pessoal real",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "CRESCIMENTO PESSOAL\nNÃO É LIVRO DE AUTOAJUDA",
+        "subtitulo": "É ação desconfortável",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#9D4EDD",
+          "layout": "centered",
+          "fontSize": "64px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "contexto",
+        "titulo": "PARE DE CONSUMIR\nCOMECE A IMPLEMENTAR",
+        "subtitulo": "Conhecimento sem ação\né só entretenimento.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#9D4EDD",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "ponto",
+        "titulo": "ESTRATÉGIA #1:\nFAÇA O DESCONFORTÁVEL",
+        "subtitulo": "Crescimento está sempre\ndo outro lado do medo.\nSempre.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#9D4EDD",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "ponto",
+        "titulo": "ESTRATÉGIA #2:\nCERQUE-SE MELHOR",
+        "subtitulo": "Você vira a média das 5 pessoas\ncom quem mais convive.\nEscolha bem.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#9D4EDD",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "ponto",
+        "titulo": "ESTRATÉGIA #3:\nTRACKING BRUTAL",
+        "subtitulo": "O que não é medido\nnão é gerenciado.\nDados > Sentimentos.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#9D4EDD",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "aplicacao",
+        "titulo": "FRAMEWORK PRÁTICO:",
+        "subtitulo": "1. Escolha 1 área pra melhorar\n2. Defina métrica específica\n3. Ação diária não-negociável\n4. Track semanal honesto\n5. Ajuste baseado em dados",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#9D4EDD",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "cta",
+        "titulo": "CRESCIMENTO REAL\nDÓI, CANSA E FUNCIONA",
+        "subtitulo": "Não tem atalho.\nTem trabalho.",
+        "design": {
+          "background": "#9D4EDD",
+          "textColor": "#FFFFFF",
+          "accentColor": "#000000",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 8,
+        "tipo": "closer",
+        "titulo": "QUAL ÁREA VOCÊ VAI\nMELHORAR ESSE MÊS?",
+        "subtitulo": "Compromisso público aqui 👇",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#9D4EDD",
+          "layout": "centered",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "CRESCIMENTO PESSOAL NÃO É LIVRO DE AUTOAJUDA 📚\n\nÉ ação desconfortável.\n\nA verdade que ninguém quer ouvir:\nConhecimento sem ação é só entretenimento.\n\nPare de consumir. Comece a implementar.\n\nESTRATÉGIAS QUE REALMENTE FUNCIONAM:\n\n→ ESTRATÉGIA #1: FAÇA O DESCONFORTÁVEL\nCrescimento está sempre do outro lado do medo.\nSempre.\nSe é fácil, você não está crescendo.\n\n→ ESTRATÉGIA #2: CERQUE-SE MELHOR\nVocê vira a média das 5 pessoas com quem mais convive.\nEscolha bem seu círculo.\nAmbiente > Motivação.\n\n→ ESTRATÉGIA #3: TRACKING BRUTAL\nO que não é medido não é gerenciado.\nDados > Sentimentos.\nHonestidade > Ilusão.\n\nFRAMEWORK PRÁTICO:\n1. Escolha 1 área pra melhorar (só uma)\n2. Defina métrica específica e mensurável\n3. Ação diária não-negociável\n4. Track semanal com honestidade brutal\n5. Ajuste estratégia baseado em dados\n\nCrescimento real dói.\nCansa.\nE funciona.\n\nNão tem atalho. Tem trabalho.\nNão tem hack. Tem consistência.\nNão tem segredo. Tem execução.\n\nQual área você vai melhorar esse mês?\nFaz teu compromisso público aqui 👇\n\n—\nSalva pra ter um plano real 🔖",
+    "hashtags": [
+      "#crescimentopessoal",
+      "#desenvolvimentopessoal",
+      "#mindset",
+      "#acao",
+      "#foconoresultado",
+      "#estrategias",
+      "#sucessopessoal",
+      "#implementacao",
+      "#motivacao",
+      "#transformacao"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "0.8-1.2%"
+  },
+  {
+    "id": "carousel_07",
+    "tema": "Seu diferencial",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "SEU DIFERENCIAL\nNÃO É SER O MELHOR",
+        "subtitulo": "É ser você mesmo",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FF6B6B",
+          "layout": "centered",
+          "fontSize": "72px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "contexto",
+        "titulo": "MERCADOS COMPETITIVOS\nPEDEM AUTENTICIDADE",
+        "subtitulo": "Não mais habilidade.\nTodos têm skill hoje.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FF6B6B",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "ponto",
+        "titulo": "SUA HISTÓRIA É ÚNICA",
+        "subtitulo": "Ninguém tem sua jornada.\nSeus erros.\nSuas vitórias.\nConte isso.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FF6B6B",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "ponto",
+        "titulo": "SUA PERSPECTIVA IMPORTA",
+        "subtitulo": "Mesmo conteúdo,\nângulo diferente.\nIsso é posicionamento.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FF6B6B",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "ponto",
+        "titulo": "SUAS FALHAS TE DIFERENCIAM",
+        "subtitulo": "Vulnerabilidade > Perfeição.\nConexão > Admiração.\nHumanidade vende.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FF6B6B",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "aplicacao",
+        "titulo": "COMO SE DESTACAR:",
+        "subtitulo": "1. Pare de copiar\n2. Compartilhe sua jornada real\n3. Tenha opinião clara\n4. Seja consistentemente você\n5. Atraia quem ressoa contigo",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FF6B6B",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "cta",
+        "titulo": "VOCÊ JÁ TEM\nSEU DIFERENCIAL",
+        "subtitulo": "Só precisa ter coragem\nde mostrá-lo.",
+        "design": {
+          "background": "#FF6B6B",
+          "textColor": "#FFFFFF",
+          "accentColor": "#000000",
+          "layout": "centered",
+          "fontSize": "60px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 8,
+        "tipo": "closer",
+        "titulo": "QUAL É O SEU\nDIFERENCIAL?",
+        "subtitulo": "Compartilha aqui 👇",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FF6B6B",
+          "layout": "centered",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "SEU DIFERENCIAL NÃO É SER O MELHOR 🎯\n\nÉ ser você mesmo.\n\nMercados competitivos não pedem mais habilidade.\nTodos têm skill hoje.\nTodos têm curso.\nTodos têm certificado.\n\nO que separa você dos outros?\n\n→ SUA HISTÓRIA É ÚNICA\nNinguém tem sua jornada.\nSeus erros específicos.\nSuas vitórias particulares.\nConte isso. É ouro.\n\n→ SUA PERSPECTIVA IMPORTA\nMesmo conteúdo, ângulo diferente.\nIsso é posicionamento.\nIsso é diferenciação.\n\n→ SUAS FALHAS TE DIFERENCIAM\nVulnerabilidade > Perfeição.\nConexão > Admiração.\nHumanidade vende mais que curriculum.\n\nA verdade:\nPessoas não compram do melhor.\nCompram de quem elas confiam.\nDe quem elas se identificam.\nDe quem elas sentem conexão.\n\nCOMO SE DESTACAR:\n1. Pare de copiar os outros\n2. Compartilhe sua jornada real\n3. Tenha opinião clara sobre as coisas\n4. Seja consistentemente você\n5. Atraia quem ressoa contigo\n\nVocê já tem seu diferencial.\nSó precisa ter coragem de mostrá-lo.\n\nAutenticidade não é estratégia.\nMas funciona como uma.\n\nQual é o SEU diferencial?\nCompartilha aqui 👇\n\n—\nSalva pra lembrar do seu valor único 🔖",
+    "hashtags": [
+      "#diferencial",
+      "#autenticidade",
+      "#posicionamento",
+      "#mindset",
+      "#marcapessoal",
+      "#empreendedorismo",
+      "#sejautentico",
+      "#desenvolvimentopessoal",
+      "#sucessopessoal",
+      "#branding"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "0.8-1.2%"
+  },
+  {
+    "id": "carousel_08",
+    "tema": "Mindset de vencedor",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "MINDSET NÃO É\nPENSAMENTO POSITIVO",
+        "subtitulo": "É transformação de identidade",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#4ECDC4",
+          "layout": "centered",
+          "fontSize": "64px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "contexto",
+        "titulo": "VOCÊ NÃO PRECISA\nDE MOTIVAÇÃO",
+        "subtitulo": "Você precisa de uma nova\nforma de ver a realidade.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#4ECDC4",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "ponto",
+        "titulo": "SHIFT #1:\nPROBLEMAS → DESAFIOS",
+        "subtitulo": "Vencedores veem obstáculos\ncomo oportunidades de crescer.\nSempre.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#4ECDC4",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "ponto",
+        "titulo": "SHIFT #2:\nFALHA → FEEDBACK",
+        "subtitulo": "Não existe fracasso.\nExiste aprendizado rápido\nou aprendizado lento.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#4ECDC4",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "ponto",
+        "titulo": "SHIFT #3:\nEU TENHO → EU SOU",
+        "subtitulo": "Não é sobre ter um negócio.\nÉ sobre ser empreendedor.\nIdentidade > Ação.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#4ECDC4",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "aplicacao",
+        "titulo": "TRANSFORME SEU MINDSET:",
+        "subtitulo": "1. Identifique crenças limitantes\n2. Questione cada uma delas\n3. Reformule para crescimento\n4. Aja baseado na nova crença\n5. Repita até virar identidade",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#4ECDC4",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "cta",
+        "titulo": "MUDE SUA MENTE\nMUDE SUA VIDA",
+        "subtitulo": "Tudo começa aqui.\nSempre começou.",
+        "design": {
+          "background": "#4ECDC4",
+          "textColor": "#000000",
+          "accentColor": "#FFFFFF",
+          "layout": "centered",
+          "fontSize": "60px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 8,
+        "tipo": "closer",
+        "titulo": "QUAL SHIFT DE MINDSET\nVOCÊ MAIS PRECISA?",
+        "subtitulo": "Honestidade aqui 👇",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#4ECDC4",
+          "layout": "centered",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "MINDSET NÃO É PENSAMENTO POSITIVO 🧠\n\nÉ transformação de identidade.\n\nVocê não precisa de mais motivação.\nVocê precisa de uma nova forma de ver a realidade.\n\nOS 3 SHIFTS FUNDAMENTAIS:\n\n→ SHIFT #1: PROBLEMAS → DESAFIOS\nVencedores veem obstáculos como oportunidades.\nNão é otimismo cego.\nÉ perspectiva estratégica.\nCada problema tem uma lição.\n\n→ SHIFT #2: FALHA → FEEDBACK\nNão existe fracasso.\nExiste aprendizado rápido ou aprendizado lento.\nCada \"não\" te aproxima do \"sim\".\nCada erro te ensina o caminho certo.\n\n→ SHIFT #3: EU TENHO → EU SOU\nNão é sobre TER um negócio.\nÉ sobre SER empreendedor.\nIdentidade > Ação.\nQuando você muda quem você É,\no que você FAZ muda automaticamente.\n\nCOMO TRANSFORMAR SEU MINDSET:\n1. Identifique suas crenças limitantes\n2. Questione cada uma delas brutalmente\n3. Reformule para mentalidade de crescimento\n4. Aja baseado na nova crença\n5. Repita até virar identidade\n\nMude sua mente, mude sua vida.\n\nTudo começa aqui.\nTudo sempre começou aqui.\n\nSeus resultados são reflexo direto\nda sua forma de pensar.\n\nQual shift de mindset você mais precisa fazer?\nHonestidade aqui 👇\n\n—\nSalva pra reprogramar sua mente 🔖",
+    "hashtags": [
+      "#mindset",
+      "#mentalidadevencedora",
+      "#transformacao",
+      "#desenvolvimentopessoal",
+      "#crescimentopessoal",
+      "#sucessopessoal",
+      "#mudancademindset",
+      "#empreendedorismo",
+      "#foconoresultado",
+      "#motivacao"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "0.8-1.2%"
+  },
+  {
+    "id": "carousel_09",
+    "tema": "5 passos para o sucesso",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "5 PASSOS QUE\nREALMENTE FUNCIONAM",
+        "subtitulo": "Framework prático, sem enrolação",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FFB800",
+          "layout": "centered",
+          "fontSize": "64px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "contexto",
+        "titulo": "SUCESSO NÃO É SORTE\nÉ SISTEMA",
+        "subtitulo": "E você pode replicar\no sistema agora.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FFB800",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "ponto",
+        "titulo": "PASSO 1:\nCLAREZA BRUTAL",
+        "subtitulo": "Defina exatamente o que você quer.\nSem clareza, sem direção.\nSem direção, sem chegada.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FFB800",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "ponto",
+        "titulo": "PASSO 2:\nFOCO ABSOLUTO",
+        "subtitulo": "Uma coisa de cada vez.\nBem feita.\nAté terminar.\nMultitarefa é ilusão.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FFB800",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "ponto",
+        "titulo": "PASSO 3:\nAÇÃO MASSIVA",
+        "subtitulo": "Volume de ação\ngera volume de resultado.\nNão tem atalho.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FFB800",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "ponto",
+        "titulo": "PASSO 4:\nAJUSTE CONSTANTE",
+        "subtitulo": "Feedback rápido.\nMudança rápida.\nAdaptação contínua.\nRigidez mata.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#FFB800",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "ponto",
+        "titulo": "PASSO 5:\nPERSISTÊNCIA INSANA",
+        "subtitulo": "Quando todo mundo desiste,\nvocê continua.\nIsso é tudo.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#FFB800",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 8,
+        "tipo": "cta",
+        "titulo": "AGORA VOCÊ SABE\nO QUE FAZER",
+        "subtitulo": "Resta apenas uma coisa:\nFAZER.",
+        "design": {
+          "background": "#FFB800",
+          "textColor": "#000000",
+          "accentColor": "#FFFFFF",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "5 PASSOS QUE REALMENTE FUNCIONAM ⚡\n\nFramework prático, sem enrolação.\n\nSuccesso não é sorte. É sistema.\nE você pode replicar o sistema agora.\n\n→ PASSO 1: CLAREZA BRUTAL\nDefina exatamente o que você quer.\nNúmeros específicos.\nPrazos reais.\nSem clareza, sem direção.\nSem direção, sem chegada.\n\n→ PASSO 2: FOCO ABSOLUTO\nUma coisa de cada vez.\nBem feita.\nAté terminar.\nMultitarefa é ilusão.\nFoco é produtividade real.\n\n→ PASSO 3: AÇÃO MASSIVA\nVolume de ação gera volume de resultado.\nNão tem atalho.\nNão tem hack.\nTem trabalho.\nMuito trabalho.\n\n→ PASSO 4: AJUSTE CONSTANTE\nFeedback rápido.\nMudança rápida.\nAdaptação contínua.\nRigidez mata negócios.\nFlexibilidade constrói impérios.\n\n→ PASSO 5: PERSISTÊNCIA INSANA\nQuando todo mundo desiste, você continua.\nQuando fica difícil, você insiste.\nQuando parece impossível, você persiste.\nIsso é tudo.\n\nO framework é simples.\nA execução é dura.\nO resultado é garantido.\n\nAgora você sabe o que fazer.\nResta apenas uma coisa: FAZER.\n\nQual passo você vai começar hoje?\n\n—\nSalva pra ter o framework sempre à mão 🔖",
+    "hashtags": [
+      "#sucessopessoal",
+      "#framework",
+      "#acao",
+      "#mindset",
+      "#foconoresultado",
+      "#persistencia",
+      "#empreendedorismo",
+      "#desenvolvimentopessoal",
+      "#motivacao",
+      "#estrategia"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "0.8-1.2%"
+  },
+  {
+    "id": "carousel_10",
+    "tipo": "autoridade",
+    "tema": "Framework 3R do Crescimento",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "EU CRIEI UM FRAMEWORK\nQUE MUDOU TUDO",
+        "subtitulo": "O método 3R do crescimento",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#E74C3C",
+          "layout": "centered",
+          "fontSize": "72px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "insight",
+        "titulo": "CRESCIMENTO NÃO É LINEAR\nMAS PODE SER PREVISÍVEL",
+        "subtitulo": "Desde que você siga o sistema certo.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#E74C3C",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "framework",
+        "titulo": "R #1:\nREALIDADE BRUTAL",
+        "subtitulo": "Encare os fatos sem filtro.\nSem vitimismo.\nSem desculpas.\nOnde você está HOJE?",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#E74C3C",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "framework",
+        "titulo": "R #2:\nRESPONSABILIDADE TOTAL",
+        "subtitulo": "Tudo que acontece com você\né responsabilidade SUA.\n100%. Sem exceções.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#E74C3C",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "framework",
+        "titulo": "R #3:\nRITMO CONSISTENTE",
+        "subtitulo": "Ação diária não-negociável.\nSem pausa.\nSem desculpa.\nRitmo > Intensidade.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#E74C3C",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "aplicacao",
+        "titulo": "APLICANDO O FRAMEWORK 3R:",
+        "subtitulo": "1. Liste sua realidade brutal hoje\n2. Assuma 100% de responsabilidade\n3. Defina 1 ação diária obrigatória\n4. Execute sem falhas por 90 dias\n5. Meça resultados e ajuste",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#E74C3C",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "cta",
+        "titulo": "O FRAMEWORK 3R\nFUNCIONA SEMPRE",
+        "subtitulo": "Se você executar.\nSe você não desistir.",
+        "design": {
+          "background": "#E74C3C",
+          "textColor": "#FFFFFF",
+          "accentColor": "#000000",
+          "layout": "centered",
+          "fontSize": "60px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "EU CRIEI UM FRAMEWORK QUE MUDOU TUDO 🎯\n\nO Método 3R do Crescimento.\n\nCrescimento não é linear, mas pode ser previsível.\nDesde que você siga o sistema certo.\n\nDepois de anos testando, refinando e aplicando, consolidei tudo em 3 pilares:\n\n→ R #1: REALIDADE BRUTAL\nEncare os fatos sem filtro.\nSem vitimismo.\nSem desculpas.\nOnde você está HOJE?\nNão onde você gostaria de estar.\nOnde você ESTÁ.\n\n→ R #2: RESPONSABILIDADE TOTAL\nTudo que acontece com você é responsabilidade SUA.\n100%. Sem exceções.\nMercado ruim? Sua responsabilidade encontrar oportunidade.\nSem recursos? Sua responsabilidade ser criativo.\nSem tempo? Sua responsabilidade priorizar.\n\n→ R #3: RITMO CONSISTENTE\nAção diária não-negociável.\nSem pausa. Sem desculpa.\nRitmo > Intensidade.\nMelhor fazer 30min todo dia do que 5h uma vez por semana.\n\nAPLICANDO O FRAMEWORK 3R:\n1. Liste sua realidade brutal hoje (números, fatos, sem história)\n2. Assuma 100% de responsabilidade por mudar\n3. Defina 1 ação diária obrigatória alinhada ao objetivo\n4. Execute sem falhas por 90 dias\n5. Meça resultados e ajuste o sistema\n\nO Framework 3R funciona sempre.\nSe você executar.\nSe você não desistir.\n\nQual dos 3R você precisa aplicar agora?\n\n—\nSalva pra ter o framework sempre acessível 🔖",
+    "hashtags": [
+      "#framework3r",
+      "#crescimentopessoal",
+      "#mindset",
+      "#autoridade",
+      "#desenvolvimentopessoal",
+      "#foconoresultado",
+      "#responsabilidade",
+      "#consistencia",
+      "#empreendedorismo",
+      "#transformacao"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "1.0-1.5%",
+    "objetivo": "Autoridade"
+  },
+  {
+    "id": "carousel_11",
+    "tipo": "autoridade",
+    "tema": "A Verdade Sobre Produtividade",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "PRODUTIVIDADE\nNÃO É FAZER MAIS",
+        "subtitulo": "É a opinião que ninguém quer ouvir",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#3498DB",
+          "layout": "centered",
+          "fontSize": "72px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "insight",
+        "titulo": "VERDADEIRA PRODUTIVIDADE\nÉ ELIMINAR O DESNECESSÁRIO",
+        "subtitulo": "Não adicionar.\nSubtrair.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#3498DB",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "framework",
+        "titulo": "NÍVEL 1:\nELIMINE TAREFAS",
+        "subtitulo": "80% do que você faz\nnão gera 20% de resultado.\nCorte sem dó.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#3498DB",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "framework",
+        "titulo": "NÍVEL 2:\nELIMINE DECISÕES",
+        "subtitulo": "Decisão diária drena energia.\nAutomatize, padronize, sistematize.\nGuarde energia pro que importa.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#3498DB",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "framework",
+        "titulo": "NÍVEL 3:\nELIMINE RELACIONAMENTOS",
+        "subtitulo": "Pessoas erradas consomem\nsua energia e foco.\nProteção > Conexão.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#3498DB",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "aplicacao",
+        "titulo": "COMO APLICAR OS 3 NÍVEIS:",
+        "subtitulo": "1. Liste tudo que você faz\n2. Elimine 50% das tarefas\n3. Automatize decisões repetitivas\n4. Reduza interações tóxicas\n5. Foque apenas no essencial",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#3498DB",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "cta",
+        "titulo": "MENOS É\nEXPONENCIALMENTE MAIS",
+        "subtitulo": "Simplicidade radical\ngera resultado radical.",
+        "design": {
+          "background": "#3498DB",
+          "textColor": "#FFFFFF",
+          "accentColor": "#000000",
+          "layout": "centered",
+          "fontSize": "60px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "PRODUTIVIDADE NÃO É FAZER MAIS 🚫\n\nÉ a opinião contraintuitiva que ninguém quer ouvir.\n\nA verdade:\nVerdadeira produtividade é eliminar o desnecessário.\nNão adicionar. Subtrair.\n\nTodos querem fazer mais.\nEu aprendi que o segredo é fazer MENOS.\nMas fazer melhor.\n\nOS 3 NÍVEIS DE ELIMINAÇÃO:\n\n→ NÍVEL 1: ELIMINE TAREFAS\n80% do que você faz não gera 20% de resultado.\nPareto é real.\nIdentifique o que realmente move a agulha.\nCorte o resto sem dó.\n\n→ NÍVEL 2: ELIMINE DECISÕES\nCada decisão diária drena sua energia.\nAutomatize rotinas.\nPadronize processos.\nSistematize escolhas.\nGuarde sua energia mental pro que realmente importa.\n\n→ NÍVEL 3: ELIMINE RELACIONAMENTOS\nPessoas erradas consomem sua energia e foco.\nNão é ser frio.\nÉ ser estratégico.\nProteção > Conexão indiscriminada.\n\nCOMO APLICAR OS 3 NÍVEIS:\n1. Liste TUDO que você faz numa semana\n2. Elimine brutalmente 50% das tarefas (sim, metade)\n3. Automatize todas as decisões repetitivas\n4. Reduza interações com pessoas que drenam energia\n5. Foque apenas no que realmente importa\n\nMenos é exponencialmente mais.\nSimplicidade radical gera resultado radical.\n\nA pergunta não é \"o que adicionar?\"\nÉ \"o que eliminar?\"\n\nO que você vai eliminar esta semana?\n\n—\nSalva pra lembrar que menos é mais 🔖",
+    "hashtags": [
+      "#produtividade",
+      "#eliminacao",
+      "#mindset",
+      "#autoridade",
+      "#foconoessencial",
+      "#desenvolvimentopessoal",
+      "#simplicidade",
+      "#eficiencia",
+      "#empreendedorismo",
+      "#gestaodetempo"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "1.0-1.5%",
+    "objetivo": "Autoridade"
+  },
+  {
+    "id": "carousel_12",
+    "tipo": "autoridade",
+    "tema": "Método de Decisão Rápida",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "COMO TOMO DECISÕES\nEM 5 MINUTOS",
+        "subtitulo": "Meu método testado em 100+ decisões",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#1ABC9C",
+          "layout": "centered",
+          "fontSize": "72px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "insight",
+        "titulo": "DECISÕES LENTAS\nMATA MOMENTUM",
+        "subtitulo": "Velocidade de decisão\n= Velocidade de crescimento",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#1ABC9C",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "framework",
+        "titulo": "PERGUNTA 1:\nALINHA COM MEU OBJETIVO?",
+        "subtitulo": "Se não alinha:\nNÃO.\nSem discussão.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#1ABC9C",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "framework",
+        "titulo": "PERGUNTA 2:\nÉ REVERSÍVEL?",
+        "subtitulo": "Se sim: decide rápido, ajusta depois.\nSe não: pensa mais um pouco.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#1ABC9C",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "framework",
+        "titulo": "PERGUNTA 3:\nQUAL O PIOR CENÁRIO?",
+        "subtitulo": "Se você consegue viver com isso:\nVAI.\nSe não consegue:\nNÃO VAI.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#1ABC9C",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "framework",
+        "titulo": "PERGUNTA 4:\nO QUE EU FARIA SE SOUBESSE\nQUE NÃO VAI DAR ERRADO?",
+        "subtitulo": "Elimina o medo.\nRevela o que você realmente quer.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#1ABC9C",
+          "layout": "left-aligned",
+          "fontSize": "40px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "framework",
+        "titulo": "PERGUNTA 5:\nEU VOU ME ARREPENDER\nDE NÃO TENTAR?",
+        "subtitulo": "Arrependimento de ação < Arrependimento de inação.\nSempre.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#1ABC9C",
+          "layout": "left-aligned",
+          "fontSize": "40px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 8,
+        "tipo": "cta",
+        "titulo": "5 PERGUNTAS\nDECISÃO FEITA",
+        "subtitulo": "Simples, rápido, eficaz.\nTestado 100+ vezes.",
+        "design": {
+          "background": "#1ABC9C",
+          "textColor": "#FFFFFF",
+          "accentColor": "#000000",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "COMO TOMO DECISÕES EM 5 MINUTOS ⚡\n\nMeu método testado em 100+ decisões importantes.\n\nDecisões lentas matam momentum.\nVelocidade de decisão = Velocidade de crescimento.\n\nCriei um método de 5 perguntas que simplifica QUALQUER decisão:\n\n→ PERGUNTA 1: ALINHA COM MEU OBJETIVO?\nSe não alinha: NÃO.\nSem discussão.\nSem exceção.\nSem \"mas pode ser interessante\".\n\n→ PERGUNTA 2: É REVERSÍVEL?\nSe sim: decide rápido, ajusta depois.\nA maioria das decisões é reversível.\nPare de tratar tudo como permanente.\nSe não: pensa mais um pouco.\n\n→ PERGUNTA 3: QUAL O PIOR CENÁRIO?\nSeja brutalmente honesto.\nSe você consegue viver com o pior cenário: VAI.\nSe não consegue: NÃO VAI.\nSimples assim.\n\n→ PERGUNTA 4: O QUE EU FARIA SE SOUBESSE QUE NÃO VAI DAR ERRADO?\nElimina o medo da equação.\nRevela o que você realmente quer.\nMuitas vezes a resposta está aqui.\n\n→ PERGUNTA 5: EU VOU ME ARREPENDER DE NÃO TENTAR?\nArrependimento de ação < Arrependimento de inação.\nSempre.\nErros você supera.\nArrependimento você carrega.\n\n5 perguntas. Decisão feita.\nSimples, rápido, eficaz.\n\nTestei isso em:\n✓ Contratar pessoas\n✓ Investimentos\n✓ Parcerias\n✓ Mudanças de estratégia\n✓ Decisões pessoais\n\nFunciona. Sempre.\n\nQual decisão você vai tomar hoje usando esse método?\n\n—\nSalva pra ter o método sempre acessível 🔖",
+    "hashtags": [
+      "#tomadadedecisao",
+      "#metodo5perguntas",
+      "#autoridade",
+      "#mindset",
+      "#produtividade",
+      "#desenvolvimentopessoal",
+      "#lideranca",
+      "#empreendedorismo",
+      "#decisaorapida",
+      "#framework"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "1.0-1.5%",
+    "objetivo": "Autoridade"
+  },
+  {
+    "id": "carousel_13",
+    "tipo": "vendas",
+    "tema": "Consultoria 1:1 em Mindset",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "POR QUE 90% DAS PESSOAS\nNÃO CRESCEM",
+        "subtitulo": "Mesmo sabendo o que fazer",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#F39C12",
+          "layout": "centered",
+          "fontSize": "72px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "dor",
+        "titulo": "VOCÊ JÁ SABE\nO QUE FAZER",
+        "subtitulo": "Mas não faz.\nE você sabe por quê.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#F39C12",
+          "layout": "centered",
+          "fontSize": "64px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "custo",
+        "titulo": "O BLOQUEIO NÃO É\nDE CONHECIMENTO",
+        "subtitulo": "É de mindset.\nSão crenças invisíveis\nque te sabotam todo dia.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#F39C12",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "solucao",
+        "titulo": "CONSULTORIA 1:1\nEM MINDSET",
+        "subtitulo": "Identificar e quebrar\nos bloqueios que te travam.\nIndividualmente. Profundamente.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#F39C12",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "prova",
+        "titulo": "O QUE VOCÊ RECEBE:",
+        "subtitulo": "✓ 3 sessões individuais (1h cada)\n✓ Análise profunda de bloqueios\n✓ Plano de ação personalizado\n✓ Suporte via WhatsApp 30 dias\n✓ Materiais exclusivos",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#F39C12",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "oferta",
+        "titulo": "ISSO NÃO É\nPARA TODO MUNDO",
+        "subtitulo": "Só para quem está PRONTO\npara mudança real.\nNão motivação. Transformação.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#F39C12",
+          "layout": "centered",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "urgencia",
+        "titulo": "5 VAGAS ABERTAS\nESTE MÊS",
+        "subtitulo": "Atendimento individualizado\ntem limite de capacidade.\nPrimeiro a chegar, primeiro atendido.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#F39C12",
+          "layout": "centered",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 8,
+        "tipo": "cta",
+        "titulo": "LINK NA BIO\nGARANTA SUA VAGA",
+        "subtitulo": "Ou continue travado.\nA escolha é sua.",
+        "design": {
+          "background": "#F39C12",
+          "textColor": "#000000",
+          "accentColor": "#FFFFFF",
+          "layout": "centered",
+          "fontSize": "60px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "POR QUE 90% DAS PESSOAS NÃO CRESCEM? 🎯\n\nMesmo sabendo o que fazer.\n\nA resposta é simples e dói:\n\nVocê já sabe o que fazer.\nMas não faz.\n\nE você sabe por quê.\n\nO BLOQUEIO NÃO É DE CONHECIMENTO.\nÉ de mindset.\n\nSão crenças invisíveis que te sabotam:\n→ \"Não sou bom o suficiente\"\n→ \"Precisa ser perfeito\"\n→ \"Não tenho tempo/dinheiro\"\n→ \"E se der errado?\"\n\nIsso não some com mais curso.\nNão some com mais conteúdo.\n\nSome com trabalho PROFUNDO.\nIndividual.\nPersonalizado.\n\n— CONSULTORIA 1:1 EM MINDSET —\n\nIdentificar e QUEBRAR os bloqueios que te travam.\n\nO QUE VOCÊ RECEBE:\n✓ 3 sessões individuais (1h cada)\n✓ Análise profunda dos seus bloqueios específicos\n✓ Plano de ação personalizado pro seu contexto\n✓ Suporte direto via WhatsApp por 30 dias\n✓ Materiais exclusivos de transformação\n\nISTO NÃO É PARA TODO MUNDO.\n\nÉ só para quem:\n→ Está cansado de autossabotagem\n→ Está pronto para mudança REAL\n→ Quer transformação, não motivação\n→ Está disposto a fazer o trabalho duro\n\n5 VAGAS ABERTAS ESTE MÊS.\n\nAtendimento individualizado tem limite de capacidade.\nPrimeiro a chegar, primeiro atendido.\n\nLINK NA BIO.\n\nOu continua travado nos mesmos bloqueios.\nA escolha é sua.\n\n—\n#consultoria #mindset #transformacao #crescimentopessoal #bloqueios #desenvolvimentopessoal #mentalidade #coaching #autossabotagem #mudanca",
+    "hashtags": [
+      "#consultoria",
+      "#mindset",
+      "#transformacao",
+      "#crescimentopessoal",
+      "#bloqueios",
+      "#desenvolvimentopessoal",
+      "#mentalidade",
+      "#coaching",
+      "#autossabotagem",
+      "#mudanca"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "1.0-1.5%",
+    "objetivo": "Vendas - Consultoria 1:1"
+  },
+  {
+    "id": "carousel_14",
+    "tipo": "vendas",
+    "tema": "Mentoria em Grupo",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "VOCÊ ESTÁ CERCADO\nDAS PESSOAS ERRADAS",
+        "subtitulo": "E isso te custa mais do que pensa",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#9B59B6",
+          "layout": "centered",
+          "fontSize": "72px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "dor",
+        "titulo": "SEU AMBIENTE\nNÃO TE PUXA PRA CIMA",
+        "subtitulo": "Te puxa pra baixo.\nTe mantém na mediocridade.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#9B59B6",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "custo",
+        "titulo": "O CUSTO INVISÍVEL:",
+        "subtitulo": "→ Sonhos diminuídos\n→ Metas medianas\n→ Conversas vazias\n→ Energia drenada\n→ Potencial desperdiçado",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#9B59B6",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "solucao",
+        "titulo": "MENTORIA EM GRUPO\nDE ALTA PERFORMANCE",
+        "subtitulo": "Pessoas que pensam grande.\nQue executam.\nQue crescem junto.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#9B59B6",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "prova",
+        "titulo": "O QUE ESTÁ INCLUÍDO:",
+        "subtitulo": "✓ 3 meses de mentoria intensiva\n✓ Sessões semanais ao vivo\n✓ Comunidade exclusiva 24/7\n✓ Accountability em grupo\n✓ Materiais e frameworks\n✓ Network de alto nível",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#9B59B6",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "prova-social",
+        "titulo": "12 ALUNOS JÁ\nTRANSFORMAREM RESULTADOS",
+        "subtitulo": "Novos negócios lançados.\nObjetivos alcançados.\nMindset transformado.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#9B59B6",
+          "layout": "centered",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "urgencia",
+        "titulo": "ÚLTIMAS 8 VAGAS\nTURMA FECHANDO",
+        "subtitulo": "Grupos pequenos.\nAtenção individualizada.\nVagas limitadas por design.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#9B59B6",
+          "layout": "centered",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 8,
+        "tipo": "cta",
+        "titulo": "CHAMA NA DM:\nMENTORIA",
+        "subtitulo": "E muda de círculo.\nE muda de vida.",
+        "design": {
+          "background": "#9B59B6",
+          "textColor": "#FFFFFF",
+          "accentColor": "#000000",
+          "layout": "centered",
+          "fontSize": "60px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "VOCÊ ESTÁ CERCADO DAS PESSOAS ERRADAS 🚨\n\nE isso te custa mais do que você pensa.\n\nA verdade brutal:\nSeu ambiente não te puxa pra cima.\nTe puxa pra baixo.\nTe mantém na mediocridade.\nTe faz pensar pequeno.\n\nO CUSTO INVISÍVEL DE ESTAR NO AMBIENTE ERRADO:\n\n→ Seus sonhos são diminuídos\n→ Suas metas ficam medianas\n→ Suas conversas são vazias\n→ Sua energia é drenada\n→ Seu potencial é desperdiçado\n\nVocê vira a média das 5 pessoas com quem mais convive.\nIsso não é teoria.\nÉ ciência.\n\nA SOLUÇÃO:\n\n— MENTORIA EM GRUPO DE ALTA PERFORMANCE —\n\nUm círculo de pessoas que:\n→ Pensam GRANDE\n→ Executam RÁPIDO\n→ Crescem JUNTO\n→ Te desafiam\n→ Te puxam pra cima\n\nO QUE ESTÁ INCLUÍDO:\n✓ 3 meses de mentoria intensiva\n✓ Sessões semanais ao vivo comigo\n✓ Comunidade exclusiva ativa 24/7\n✓ Accountability em grupo (peer pressure positivo)\n✓ Materiais, frameworks e ferramentas\n✓ Network de alto nível (o ativo mais valioso)\n\n12 ALUNOS JÁ TRANSFORMARAM RESULTADOS:\n→ Novos negócios lançados\n→ Objetivos alcançados\n→ Mindset completamente transformado\n→ Círculo social elevado\n\nÚLTIMAS 8 VAGAS.\nTURMA FECHANDO.\n\nGrupos pequenos são intencionais.\nAtenção individualizada exige isso.\nVagas limitadas por design, não por marketing.\n\nCHAMA NA DM: \"MENTORIA\"\n\nE muda de círculo.\nE muda de vida.\n\nOu continua no mesmo ambiente.\nCom os mesmos resultados.\n\nA escolha é sua.\n\n—\n#mentoria #altaperformance #mindset #crescimentopessoal #desenvolvimentopessoal #comunidade #network #transformacao #empreendedorismo #sucessopessoal",
+    "hashtags": [
+      "#mentoria",
+      "#altaperformance",
+      "#mindset",
+      "#crescimentopessoal",
+      "#desenvolvimentopessoal",
+      "#comunidade",
+      "#network",
+      "#transformacao",
+      "#empreendedorismo",
+      "#sucessopessoal"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "1.0-1.5%",
+    "objetivo": "Vendas - Mentoria em Grupo"
+  },
+  {
+    "id": "carousel_15",
+    "tipo": "vendas",
+    "tema": "Ebook Gratuito - Mindset de Vencedor",
+    "template": "BrandsDecoded",
+    "slides": [
+      {
+        "numero": 1,
+        "tipo": "hook",
+        "titulo": "O QUE SEPARA VOCÊ\nDO SUCESSO",
+        "subtitulo": "Não é habilidade. É mindset.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#2ECC71",
+          "layout": "centered",
+          "fontSize": "72px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 2,
+        "tipo": "dor",
+        "titulo": "SEU MINDSET ESTÁ\nTE SABOTANDO",
+        "subtitulo": "E você nem percebe.\nTodo dia. Em cada decisão.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#2ECC71",
+          "layout": "centered",
+          "fontSize": "56px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 3,
+        "tipo": "custo",
+        "titulo": "MINDSET TRAVADO =\nVIDA TRAVADA",
+        "subtitulo": "Oportunidades perdidas.\nPotencial desperdiçado.\nResultados medíocres.\nTudo por crenças invisíveis.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#2ECC71",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 4,
+        "tipo": "solucao",
+        "titulo": "EBOOK GRATUITO:\n7 SHIFTS DE MINDSET",
+        "subtitulo": "As mudanças mentais que\ntransformam tudo.\nProvado. Testado. Gratuito.",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#2ECC71",
+          "layout": "left-aligned",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 5,
+        "tipo": "prova",
+        "titulo": "O QUE VOCÊ VAI APRENDER:",
+        "subtitulo": "✓ Como identificar crenças limitantes\n✓ 7 shifts que mudam tudo\n✓ Exercícios práticos de transformação\n✓ Framework de reprogramação\n✓ Plano de ação de 30 dias",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#2ECC71",
+          "layout": "left-aligned",
+          "fontSize": "36px",
+          "fontWeight": "700"
+        }
+      },
+      {
+        "numero": 6,
+        "tipo": "oferta",
+        "titulo": "100% GRATUITO\n+ BÔNUS EXCLUSIVO",
+        "subtitulo": "Ebook completo (45 páginas)\n+ Checklist de Ação\n+ Workbook de Transformação",
+        "design": {
+          "background": "#FFFFFF",
+          "textColor": "#000000",
+          "accentColor": "#2ECC71",
+          "layout": "left-aligned",
+          "fontSize": "44px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 7,
+        "tipo": "urgencia",
+        "titulo": "DISPONÍVEL\nPOR TEMPO LIMITADO",
+        "subtitulo": "Download gratuito pode\nvirar pago a qualquer momento.\nGarante o seu agora.",
+        "design": {
+          "background": "#000000",
+          "textColor": "#FFFFFF",
+          "accentColor": "#2ECC71",
+          "layout": "centered",
+          "fontSize": "48px",
+          "fontWeight": "900"
+        }
+      },
+      {
+        "numero": 8,
+        "tipo": "cta",
+        "titulo": "LINK NA BIO\nBAIXE AGORA",
+        "subtitulo": "Ou continue com mindset travado.\nVocê escolhe.",
+        "design": {
+          "background": "#2ECC71",
+          "textColor": "#FFFFFF",
+          "accentColor": "#000000",
+          "layout": "centered",
+          "fontSize": "60px",
+          "fontWeight": "900"
+        }
+      }
+    ],
+    "caption": "O QUE SEPARA VOCÊ DO SUCESSO? 🧠\n\nNão é habilidade.\nNão é conhecimento.\nNão é oportunidade.\n\nÉ MINDSET.\n\nE seu mindset está te sabotando.\nTodo dia.\nEm cada decisão.\nE você nem percebe.\n\nMINDSET TRAVADO = VIDA TRAVADA\n\n→ Oportunidades perdidas\n→ Potencial desperdiçado\n→ Resultados medíocres\n→ Autossabotagem constante\n\nTudo por causa de crenças invisíveis que controlam você:\n\"Não sou bom o suficiente\"\n\"Precisa ser perfeito\"\n\"Não tenho tempo/dinheiro\"\n\"E se der errado?\"\n\nEU CRIEI ALGO PRA ISSO:\n\n— EBOOK GRATUITO: 7 SHIFTS DE MINDSET —\n\nAs mudanças mentais que transformam TUDO.\nProvado em centenas de pessoas.\nTestado em mim primeiro.\nGratuito pra você agora.\n\nO QUE VOCÊ VAI APRENDER:\n✓ Como identificar suas crenças limitantes (a maioria é invisível)\n✓ Os 7 shifts fundamentais de mindset de vencedor\n✓ Exercícios práticos de transformação imediata\n✓ Framework completo de reprogramação mental\n✓ Plano de ação estruturado para 30 dias\n\n100% GRATUITO + BÔNUS EXCLUSIVOS:\n→ Ebook completo (45 páginas de conteúdo denso)\n→ Checklist de Ação (passo a passo)\n→ Workbook de Transformação (exercícios práticos)\n\nValor real: R$ 97\nSeu investimento hoje: R$ 0\n\nDISPONÍVEL POR TEMPO LIMITADO.\n\nO download gratuito pode virar pago a qualquer momento.\nQuando os primeiros resultados começarem a chegar,\no preço sobe.\n\nGaranta o seu agora.\n\nLINK NA BIO.\nBAIXE AGORA.\n\nOu continua com o mesmo mindset.\nCom os mesmos resultados.\n\nA escolha é sua.\n\n—\n#ebookgratuito #mindset #transformacao #crescimentopessoal #desenvolvimentopessoal #mentalidadevencedora #crencaslimitantes #autoconhecimento #sucessopessoal #materialgratuito",
+    "hashtags": [
+      "#ebookgratuito",
+      "#mindset",
+      "#transformacao",
+      "#crescimentopessoal",
+      "#desenvolvimentopessoal",
+      "#mentalidadevencedora",
+      "#crencaslimitantes",
+      "#autoconhecimento",
+      "#sucessopessoal",
+      "#materialgratuito"
+    ],
+    "bestTime": "18:00",
+    "estimatedER": "1.0-1.5%",
+    "objetivo": "Vendas - Lead Magnet (Ebook Gratuito)"
+  }
+]

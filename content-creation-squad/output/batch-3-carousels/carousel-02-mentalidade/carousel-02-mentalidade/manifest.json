@@ -1,0 +1,55 @@
+{
+  "carouselId": "carousel-02-mentalidade",
+  "formats": {
+    "post-gradient": {
+      "format": "post",
+      "style": "gradient",
+      "dimensions": "1080x1350",
+      "images": [
+        {
+          "slideNumber": "01",
+          "fileName": "slide-01.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/batch-3-carousels/carousel-02-mentalidade/carousel-02-mentalidade/post-gradient/slide-01.png"
+        },
+        {
+          "slideNumber": "02",
+          "fileName": "slide-02.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/batch-3-carousels/carousel-02-mentalidade/carousel-02-mentalidade/post-gradient/slide-02.png"
+        },
+        {
+          "slideNumber": "03",
+          "fileName": "slide-03.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/batch-3-carousels/carousel-02-mentalidade/carousel-02-mentalidade/post-gradient/slide-03.png"
+        },
+        {
+          "slideNumber": "04",
+          "fileName": "slide-04.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/batch-3-carousels/carousel-02-mentalidade/carousel-02-mentalidade/post-gradient/slide-04.png"
+        },
+        {
+          "slideNumber": "05",
+          "fileName": "slide-05.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/batch-3-carousels/carousel-02-mentalidade/carousel-02-mentalidade/post-gradient/slide-05.png"
+        },
+        {
+          "slideNumber": "06",
+          "fileName": "slide-06.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/batch-3-carousels/carousel-02-mentalidade/carousel-02-mentalidade/post-gradient/slide-06.png"
+        },
+        {
+          "slideNumber": "07",
+          "fileName": "slide-07.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/batch-3-carousels/carousel-02-mentalidade/carousel-02-mentalidade/post-gradient/slide-07.png"
+        }
+      ]
+    }
+  },
+  "totalImages": 7,
+  "outputDir": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/output/batch-3-carousels/carousel-02-mentalidade/carousel-02-mentalidade",
+  "generation": {
+    "duration": "5.76",
+    "successful": 7,
+    "failed": 0,
+    "errors": []
+  }
+}

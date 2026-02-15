@@ -1,0 +1,134 @@
+name: content-creation-squad
+version: 1.0.0
+description: |
+  Squad especializado em criação de conteúdo para Instagram e LinkedIn.
+  Combina 5 mentes milionárias: Eugene Schwartz (Copy), Seth Godin (Branding),
+  Alex Hormozi (Ofertas), Thiago Finch (Marketing BR) e Adriano De Marqui (Design)
+  para produzir carrosséis de alta conversão com identidade visual impactante.
+author: MentesMilionarias
+license: MIT
+slashPrefix: content
+documentation: README.md
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+# Mentes Milionárias do Squad
+mindsLocation: minds/
+mindsCount: 5
+minds:
+  lead: eugene_schwartz
+  members:
+    - eugene_schwartz    # Líder - Copy estruturado
+    - seth_godin         # Branding & narrativas
+    - alex_hormozi       # Ofertas irresistíveis
+    - thiago_finch       # Marketing BR
+    - adriano_de_marqui  # Design visual & identidade (96%, Tier 4)
+
+components:
+  agents:
+    - content-lead.md           # Orquestrador principal
+    - carousel-creator.md       # Especialista em carrosséis
+    - copy-optimizer.md         # Otimizador de copy
+    - visual-planner.md         # Planejador visual técnico
+    - design-lead.md            # Diretor de design & branding (Adriano De Marqui)
+
+  tasks:
+    - create-carousel.md        # Criar carrossel completo
+    - optimize-copy.md          # Otimizar textos
+    - plan-content-batch.md     # Planejar lote de conteúdo
+    - analyze-performance.md    # Analisar resultados
+    - create-design.md          # Criar design visual completo
+
+  templates:
+    - carousel-instagram.md     # Template carrossel IG
+    - carousel-linkedin.md      # Template carrossel LI
+    - hook-library.md           # Biblioteca de hooks
+    - cta-library.md            # Biblioteca de CTAs
+
+  workflows:
+    - carousel-full-flow.md     # Workflow completo
+    - quick-carousel.md         # Carrossel rápido
+    - batch-production.md       # Produção em lote
+
+  data:
+    - carousel-formulas.json    # Fórmulas comprovadas
+    - hooks-database.json       # Database de hooks
+    - performance-benchmarks.json  # Benchmarks
+
+dependencies:
+  squads:
+    - mmos-squad  # Acessa as 4 mentes via emulator
+
+# Configuração de Conteúdo
+contentConfig:
+  primaryPlatforms:
+    - Instagram
+    - LinkedIn
+
+  contentTypes:
+    - Carrossel Educacional
+    - Carrossel de Vendas
+    - Carrossel de Autoridade
+    - Carrossel Viral
+
+  defaultTone: mix-adaptavel
+  defaultLanguage: pt-BR
+
+  carouselSpecs:
+    instagram:
+      maxSlides: 10
+      imageRatio: "1:1"
+      captionLimit: 2200
+    linkedin:
+      maxSlides: 10
+      imageRatio: "1:1"
+      captionLimit: 3000
+
+# Workflow de Criação
+workflow:
+  states:
+    - name: BRIEFING
+      description: "Entender objetivo, audiência e mensagem principal"
+      next: ESTRATEGIA
+
+    - name: ESTRATEGIA
+      description: "Definir estrutura, tom e abordagem do carrossel"
+      activeMind: seth_godin
+      next: COPY
+
+    - name: COPY
+      description: "Escrever hooks, títulos e textos de cada slide"
+      activeMind: eugene_schwartz
+      next: OTIMIZACAO
+
+    - name: OTIMIZACAO
+      description: "Refinar copy para conversão máxima"
+      activeMind: alex_hormozi
+      next: LOCALIZACAO
+
+    - name: LOCALIZACAO
+      description: "Adaptar para contexto brasileiro se necessário"
+      activeMind: thiago_finch
+      next: VISUAL
+
+    - name: VISUAL
+      description: "Planejar layout e elementos visuais"
+      next: REVIEW
+
+    - name: REVIEW
+      description: "Revisão final e checklist de qualidade"
+      next: DONE
+
+    - name: DONE
+      description: "Carrossel pronto para publicação"
+
+tags:
+  - content-creation
+  - carousel
+  - instagram
+  - linkedin
+  - copywriting
+  - marketing
+  - social-media

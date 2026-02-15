@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15 Carrosséis BrandsDecoded - @samuelfialhoo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #000;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 900;
+            color: #000;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            max-width: 1400px;
+            margin: 60px auto 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .section-title.educacional {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .section-title.autoridade {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .section-title.vendas {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .carousel-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .carousel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .carousel-preview {
+            width: 100%;
+            aspect-ratio: 1080/1080;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .carousel-preview h2 {
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1.1;
+            white-space: pre-line;
+        }
+
+        .carousel-preview p {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .carousel-info {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .carousel-info h3 {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: #000;
+        }
+
+        .carousel-info .meta {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .carousel-info .meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .type-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .type-badge.educacional {
+            background: #667eea;
+            color: white;
+        }
+
+        .type-badge.autoridade {
+            background: #f5576c;
+            color: white;
+        }
+
+        .type-badge.vendas {
+            background: #00f2fe;
+            color: #000;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            gap: 40px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .slides-container {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .slide {
+            width: 100%;
+            aspect-ratio: 1080/1080;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .slide.centered {
+            text-align: center;
+        }
+
+        .slide.left-aligned {
+            text-align: left;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .slide h2 {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.1;
+            white-space: pre-line;
+            margin-bottom: 20px;
+        }
+
+        .slide p {
+            font-size: 28px;
+            font-weight: 500;
+            line-height: 1.3;
+            white-space: pre-line;
+        }
+
+        .info-panel {
+            flex: 1;
+            color: white;
+            overflow-y: auto;
+        }
+
+        .info-panel h2 {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .info-panel .section {
+            margin-bottom: 30px;
+        }
+
+        .info-panel .section h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+
+        .info-panel .caption {
+            white-space: pre-line;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .info-panel .hashtags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .info-panel .hashtag {
+            background: rgba(255,255,255,0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .close-modal {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            background: #f0f0f0;
+        }
+
+        .slide-counter {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                flex-direction: column;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .stats {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>15 CARROSSÉIS BRANDSDECODED</h1>
+        <p>Conteúdo otimizado para @samuelfialhoo</p>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">15</div>
+                <div class="stat-label">Carrosséis</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">113</div>
+                <div class="stat-label">Slides Totais</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Educacionais</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Autoridade</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Vendas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDUCACIONAIS -->
+    <div class="section-title educacional">
+        <h2>CARROSSÉIS EDUCACIONAIS (1-9)</h2>
+        <p>Conteúdo de valor, educação, insights, frameworks práticos</p>
+    </div>
+    <div class="grid" id="educacionaisGrid"></div>
+
+    <!-- AUTORIDADE -->
+    <div class="section-title autoridade">
+        <h2>CARROSSÉIS DE AUTORIDADE (10-12)</h2>
+        <p>Posicionamento, thought leadership, frameworks próprios, opinião forte</p>
+    </div>
+    <div class="grid" id="autoridadeGrid"></div>
+
+    <!-- VENDAS -->
+    <div class="section-title vendas">
+        <h2>CARROSSÉIS DE VENDAS (13-15)</h2>
+        <p>Conversão, ofertas, produtos, serviços, calls-to-action</p>
+    </div>
+    <div class="grid" id="vendasGrid"></div>
+
+    <div class="modal" id="modal">
+        <button class="close-modal" onclick="closeModal()">✕</button>
+        <div class="modal-content" id="modalContent"></div>
+    </div>
+
+    <script>
+        const carousels = [
+            // EDUCACIONAIS (1-9)
+            {
+                id: 1,
+                tipo: "educacional",
+                tema: "Crenças que te limitam",
+                slides: 8,
+                hook: "SUAS CRENÇAS\nTÊM TE SABOTADO",
+                color: "#FF6B35",
+                file: "carousel-01-crencas-limitantes.json"
+            },
+            {
+                id: 2,
+                tipo: "educacional",
+                tema: "Seu caminho é único",
+                slides: 8,
+                hook: "PARE DE SEGUIR\nFÓRMULAS PRONTAS",
+                color: "#00D9FF",
+                file: "carousel-02-caminho-unico.json"
+            },
+            {
+                id: 3,
+                tipo: "educacional",
+                tema: "Construa sua história",
+                slides: 8,
+                hook: "NINGUÉM VAI\nESCREVER SUA HISTÓRIA",
+                color: "#FFD700",
+                file: "carousel-03-construa-historia.json"
+            },
+            {
+                id: 4,
+                tipo: "educacional",
+                tema: "Verdades do empreendedorismo",
+                slides: 7,
+                hook: "EMPREENDER NÃO É\nO QUE VOCÊ VÊ NO INSTAGRAM",
+                color: "#FF3366",
+                file: "carousel-04-verdades-empreendedorismo.json"
+            },
+            {
+                id: 5,
+                tipo: "educacional",
+                tema: "Por que você deve persistir",
+                slides: 8,
+                hook: "VOCÊ ESTÁ MAIS PERTO\nDO QUE IMAGINA",
+                color: "#00FF88",
+                file: "carousel-05-persistir.json"
+            },
+            {
+                id: 6,
+                tipo: "educacional",
+                tema: "Crescimento pessoal real",
+                slides: 8,
+                hook: "CRESCIMENTO PESSOAL\nNÃO É LIVRO DE AUTOAJUDA",
+                color: "#9D4EDD",
+                file: "carousel-06-crescimento-real.json"
+            },
+            {
+                id: 7,
+                tipo: "educacional",
+                tema: "Seu diferencial",
+                slides: 8,
+                hook: "SEU DIFERENCIAL\nNÃO É SER O MELHOR",
+                color: "#FF6B6B",
+                file: "carousel-07-seu-diferencial.json"
+            },
+            {
+                id: 8,
+                tipo: "educacional",
+                tema: "Mindset de vencedor",
+                slides: 8,
+                hook: "MINDSET NÃO É\nPENSAMENTO POSITIVO",
+                color: "#4ECDC4",
+                file: "carousel-08-mindset-vencedor.json"
+            },
+            {
+                id: 9,
+                tipo: "educacional",
+                tema: "5 passos para o sucesso",
+                slides: 8,
+                hook: "5 PASSOS QUE\nREALMENTE FUNCIONAM",
+                color: "#FFB800",
+                file: "carousel-09-5-passos-sucesso.json"
+            },
+            // AUTORIDADE (10-12)
+            {
+                id: 10,
+                tipo: "autoridade",
+                tema: "Framework 3R do Crescimento",
+                slides: 7,
+                hook: "EU CRIEI UM FRAMEWORK\nQUE MUDOU TUDO",
+                color: "#E74C3C",
+                file: "carousel-10-framework-3r.json"
+            },
+            {
+                id: 11,
+                tipo: "autoridade",
+                tema: "A Verdade Sobre Produtividade",
+                slides: 7,
+                hook: "PRODUTIVIDADE\nNÃO É FAZER MAIS",
+                color: "#3498DB",
+                file: "carousel-11-verdade-produtividade.json"
+            },
+            {
+                id: 12,
+                tipo: "autoridade",
+                tema: "Método de Decisão Rápida",
+                slides: 8,
+                hook: "COMO TOMO DECISÕES\nEM 5 MINUTOS",
+                color: "#1ABC9C",
+                file: "carousel-12-metodo-decisao.json"
+            },
+            // VENDAS (13-15)
+            {
+                id: 13,
+                tipo: "vendas",
+                tema: "Consultoria 1:1 em Mindset",
+                slides: 8,
+                hook: "POR QUE 90% DAS PESSOAS\nNÃO CRESCEM",
+                color: "#F39C12",
+                file: "carousel-13-consultoria-1x1.json"
+            },
+            {
+                id: 14,
+                tipo: "vendas",
+                tema: "Mentoria em Grupo",
+                slides: 8,
+                hook: "VOCÊ ESTÁ CERCADO\nDAS PESSOAS ERRADAS",
+                color: "#9B59B6",
+                file: "carousel-14-mentoria-grupo.json"
+            },
+            {
+                id: 15,
+                tipo: "vendas",
+                tema: "Ebook Gratuito - Mindset de Vencedor",
+                slides: 8,
+                hook: "O QUE SEPARA VOCÊ\nDO SUCESSO",
+                color: "#2ECC71",
+                file: "carousel-15-ebook-gratuito.json"
+            }
+        ];
+
+        // Renderizar grids separados por tipo
+        function renderCarousels() {
+            const educacionaisGrid = document.getElementById('educacionaisGrid');
+            const autoridadeGrid = document.getElementById('autoridadeGrid');
+            const vendasGrid = document.getElementById('vendasGrid');
+
+            carousels.forEach(carousel => {
+                const card = document.createElement('div');
+                card.className = 'carousel-card';
+                card.onclick = () => openCarousel(carousel.file);
+
+                card.innerHTML = `
+                    <div class="carousel-preview" style="background: #000; color: #fff;">
+                        <div>
+                            <h2>${carousel.hook}</h2>
+                            <p style="color: ${carousel.color};">${carousel.tema}</p>
+                        </div>
+                    </div>
+                    <div class="carousel-info">
+                        <h3>${carousel.tema}</h3>
+                        <div class="meta">
+                            <span class="type-badge ${carousel.tipo}">${carousel.tipo}</span>
+                            <span>📊 ${carousel.slides} slides</span>
+                            <span style="color: ${carousel.color}">●</span>
+                        </div>
+                    </div>
+                `;
+
+                // Adicionar ao grid correto
+                if (carousel.tipo === 'educacional') {
+                    educacionaisGrid.appendChild(card);
+                } else if (carousel.tipo === 'autoridade') {
+                    autoridadeGrid.appendChild(card);
+                } else if (carousel.tipo === 'vendas') {
+                    vendasGrid.appendChild(card);
+                }
+            });
+        }
+
+        async function openCarousel(filename) {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+
+            try {
+                const response = await fetch(filename);
+                const data = await response.json();
+
+                let slidesHTML = '<div class="slides-container">';
+                slidesHTML += `<div class="slide-counter">Deslize para ver todos os ${data.slides.length} slides</div>`;
+
+                data.slides.forEach((slide, index) => {
+                    slidesHTML += `
+                        <div class="slide ${slide.design.layout}" style="
+                            background: ${slide.design.background};
+                            color: ${slide.design.textColor};
+                        ">
+                            <div>
+                                <h2 style="color: ${slide.design.textColor};">${slide.titulo}</h2>
+                                ${slide.subtitulo ? `<p style="color: ${slide.design.accentColor};">${slide.subtitulo}</p>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+                slidesHTML += '</div>';
+
+                const infoHTML = `
+                    <div class="info-panel">
+                        <h2>${data.tema}</h2>
+
+                        <div class="section">
+                            <h3>📊 Informações</h3>
+                            <p>Tipo: <span class="type-badge ${data.tipo}">${data.tipo || 'educacional'}</span></p>
+                            <p>Template: ${data.template}</p>
+                            <p>Slides: ${data.slides.length}</p>
+                            <p>Melhor horário: ${data.bestTime}</p>
+                            <p>ER Estimado: ${data.estimatedER}</p>
+                            ${data.objetivo ? `<p>Objetivo: ${data.objetivo}</p>` : ''}
+                        </div>
+
+                        <div class="section">
+                            <h3>✍️ Caption</h3>
+                            <div class="caption">${data.caption}</div>
+                        </div>
+
+                        <div class="section">
+                            <h3>#️⃣ Hashtags</h3>
+                            <div class="hashtags">
+                                ${data.hashtags.map(tag => `<span class="hashtag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                modalContent.innerHTML = slidesHTML + infoHTML;
+                modal.classList.add('active');
+            } catch (error) {
+                console.error('Erro ao carregar carrossel:', error);
+                alert('Erro ao carregar o carrossel. Verifique se o arquivo JSON existe.');
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+        }
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Fechar modal clicando fora
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.id === 'modal') closeModal();
+        });
+
+        // Inicializar
+        renderCarousels();
+    </script>
+</body>
+</html>

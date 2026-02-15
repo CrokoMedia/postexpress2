@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template Samuel Fialho</title>
+
+  <!-- Fonte Inter (similar ao Instagram) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 1080px;
+      height: 1350px;
+      background: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 62px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* Header com perfil - Dimensões exatas: 442.89 x 164.89 */
+    .header {
+      width: 442.89px;
+      height: 164.89px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+
+    .profile-pic {
+      width: 164.89px;
+      height: 164.89px;
+      border-radius: 50%;
+      background: #000000;
+      margin-right: 24px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Ícone padrão se não houver imagem */
+    .profile-pic.no-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      color: white;
+    }
+
+    .profile-info {
+      flex: 1;
+    }
+
+    .profile-name {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .profile-name h1 {
+      font-size: 38px;
+      font-weight: 700;
+      color: #000000;
+      line-height: 1.2;
+    }
+
+    /* Badge de verificação azul */
+    .verified-badge {
+      width: 32px;
+      height: 32px;
+      background: #0095F6;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .verified-badge::after {
+      content: '✓';
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .profile-handle {
+      font-size: 32px;
+      color: #737373;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    /* Conteúdo principal - Dimensões exatas: 956 x 942 */
+    .content-text {
+      width: 956px;
+      min-height: 942px;
+      font-size: 38px;
+      line-height: 1.45;
+      color: #000000;
+      margin-bottom: 0;
+      font-weight: 400;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .content-text p {
+      margin-bottom: 24px;
+    }
+
+    /* Imagem do conteúdo */
+    .content-image {
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .content-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Texto final em negrito - Dentro da área de conteúdo */
+    .final-text {
+      width: 956px;
+      font-size: 40px;
+      line-height: 1.35;
+      color: #000000;
+      font-weight: 700;
+      text-align: left;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header com perfil do Samuel -->
+  <div class="header">
+    <div class="profile-pic {{profilePicClass}}">
+      {{profilePicContent}}
+    </div>
+    <div class="profile-info">
+      <div class="profile-name">
+        <h1>{{name}}</h1>
+        <div class="verified-badge"></div>
+      </div>
+      <div class="profile-handle">{{handle}}</div>
+    </div>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <div class="content-text">
+    {{mainText}}
+  </div>
+
+  <!-- Imagem (opcional) -->
+  {{#if hasImage}}
+  <div class="content-image">
+    <img src="{{imageSrc}}" alt="{{imageAlt}}">
+  </div>
+  {{/if}}
+
+  <!-- Texto final em negrito -->
+  <div class="final-text">
+    {{finalText}}
+  </div>
+</body>
+</html>

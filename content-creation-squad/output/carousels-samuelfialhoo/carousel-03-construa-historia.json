@@ -1,0 +1,123 @@
+{
+  "id": "carousel_03",
+  "tema": "Construa sua história",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "NINGUÉM VAI\nESCREVER SUA HISTÓRIA",
+      "subtitulo": "É sua responsabilidade",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FFD700",
+        "layout": "centered",
+        "fontSize": "72px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "contexto",
+      "titulo": "VOCÊ É O AUTOR\nDA SUA TRAJETÓRIA",
+      "subtitulo": "Cada escolha é uma linha.\nCada ação é um capítulo.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FFD700",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "ponto",
+      "titulo": "ACEITE O PROTAGONISMO",
+      "subtitulo": "Pare de ser coadjuvante\nna sua própria vida.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FFD700",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "ponto",
+      "titulo": "DEFINA SEUS VALORES",
+      "subtitulo": "Sua história precisa de um tema.\nO que você defende?",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FFD700",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "ponto",
+      "titulo": "TOME DECISÕES ALINHADAS",
+      "subtitulo": "Cada escolha ou constrói\nou destrói sua narrativa.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FFD700",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "aplicacao",
+      "titulo": "CONSTRUINDO SUA HISTÓRIA:",
+      "subtitulo": "1. Defina quem você quer ser\n2. Identifique seus valores core\n3. Tome decisões alinhadas\n4. Aja com consistência\n5. Documente sua jornada",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FFD700",
+        "layout": "left-aligned",
+        "fontSize": "36px",
+        "fontWeight": "700"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "cta",
+      "titulo": "SUA HISTÓRIA\nCOMEÇA HOJE",
+      "subtitulo": "Não daqui 5 anos.\nAgora.",
+      "design": {
+        "background": "#FFD700",
+        "textColor": "#000000",
+        "accentColor": "#FFFFFF",
+        "layout": "centered",
+        "fontSize": "64px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 8,
+      "tipo": "closer",
+      "titulo": "QUE HISTÓRIA VOCÊ\nQUER CONTAR DAQUI 5 ANOS?",
+      "subtitulo": "Compartilha aqui 👇",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FFD700",
+        "layout": "centered",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "NINGUÉM VAI ESCREVER SUA HISTÓRIA ✍️\n\nÉ sua responsabilidade.\n\nVocê é o autor da sua trajetória.\nCada escolha é uma linha.\nCada ação é um capítulo.\n\nMas muita gente vive como coadjuvante na própria vida.\n\nEsperando permissão.\nEsperando o momento certo.\nEsperando alguém dar o caminho.\n\nA verdade dura:\n\n→ ACEITE O PROTAGONISMO\nPare de ser coadjuvante na sua própria história.\n\n→ DEFINA SEUS VALORES\nSua história precisa de um tema. O que você defende?\n\n→ TOME DECISÕES ALINHADAS\nCada escolha ou constrói ou destrói sua narrativa.\n\nCOMO CONSTRUIR SUA HISTÓRIA:\n1. Defina quem você quer ser\n2. Identifique seus valores core\n3. Tome decisões alinhadas com eles\n4. Aja com consistência\n5. Documente sua jornada\n\nSua história começa hoje.\nNão daqui 5 anos. Agora.\n\nCada dia é uma página.\nCada semana é um capítulo.\nCada ano é um livro.\n\nQue história você quer contar daqui 5 anos?\nCompartilha aqui 👇\n\n—\nSalva pra revisar sempre que precisar 🔖",
+  "hashtags": ["#protagonismo", "#mindset", "#trajetoria", "#sucessopessoal", "#desenvolvimentopessoal", "#motivacao", "#crescimentopessoal", "#foconoresultado", "#empreendedorismo", "#historiadosucesso"],
+  "bestTime": "18:00",
+  "estimatedER": "0.8-1.2%"
+}

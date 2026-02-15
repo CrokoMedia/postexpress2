@@ -1,0 +1,133 @@
+name: squad-auditores
+version: 1.0.0
+description: |
+  Squad especializado em auditoria e análise de dados extraídos de scraping
+  de Instagram e redes sociais. Combina 5 mentes analíticas: Daniel Kahneman
+  (comportamento), Alex Hormozi (ofertas), Eugene Schwartz (copy), Marty Cagan
+  (produto/métricas) e Paul Graham (anomalias) para produzir auditorias profundas
+  e acionáveis sobre contas, concorrentes e estratégias de conteúdo.
+author: MentesMilionarias
+license: MIT
+slashPrefix: audit
+documentation: README.md
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+# Mentes do Squad
+mindsLocation: minds/
+mindsCount: 5
+minds:
+  lead: daniel_kahneman
+  members:
+    - daniel_kahneman   # Líder - Comportamento & viés da audiência
+    - alex_hormozi      # Auditor de ofertas & valor
+    - eugene_schwartz   # Auditor de copy & mensagem
+    - marty_cagan       # Métricas de produto & resultados
+    - paul_graham       # Detector de anomalias & oportunidades
+
+components:
+  agents:
+    - audit-lead.md           # Orquestrador principal (Kahneman)
+    - offer-auditor.md        # Auditor de ofertas (Hormozi)
+    - copy-auditor.md         # Auditor de copy (Schwartz)
+    - metrics-auditor.md      # Auditor de métricas (Cagan)
+    - anomaly-detector.md     # Detector de anomalias (Paul Graham)
+
+  tasks:
+    - audit-account.md        # Auditoria completa de conta
+    - audit-content.md        # Auditoria de conteúdo específico
+    - compare-competitors.md  # Comparação de concorrentes
+    - generate-report.md      # Gerar relatório de auditoria
+
+  workflows:
+    - full-audit.md           # Auditoria completa (profunda)
+    - quick-audit.md          # Auditoria rápida (30min)
+    - competitor-map.md       # Mapeamento de concorrência
+
+  templates:
+    - audit-report.md         # Template de relatório final
+    - metrics-dashboard.md    # Dashboard de métricas
+
+  data:
+    - audit-criteria.json     # Critérios e benchmarks de auditoria
+
+# Configuração de Auditoria
+auditConfig:
+  platforms:
+    - Instagram
+    - LinkedIn
+    - TikTok
+    - YouTube
+    - Twitter/X
+
+  auditTypes:
+    - Auditoria de Conta Completa
+    - Auditoria de Conteúdo
+    - Análise de Concorrentes
+    - Análise de Engajamento
+    - Auditoria de Copy & Mensagem
+    - Análise de Oferta & CTA
+
+  inputFormats:
+    - JSON (dados de scraper)
+    - CSV
+    - URL de perfil
+    - Lista de posts
+    - Texto bruto
+
+  outputFormats:
+    - Relatório Markdown
+    - Dashboard de métricas
+    - Score card
+    - Recomendações priorizadas
+
+# Workflow de Auditoria
+workflow:
+  states:
+    - name: INGESTAO
+      description: "Receber e processar dados do scraper"
+      next: COMPORTAMENTO
+
+    - name: COMPORTAMENTO
+      description: "Analisar padrões comportamentais da audiência"
+      activeMind: daniel_kahneman
+      next: COPY
+
+    - name: COPY
+      description: "Auditar qualidade de copy e awareness stage"
+      activeMind: eugene_schwartz
+      next: OFERTA
+
+    - name: OFERTA
+      description: "Avaliar valor das ofertas e CTAs"
+      activeMind: alex_hormozi
+      next: METRICAS
+
+    - name: METRICAS
+      description: "Analisar outcomes vs outputs e métricas de produto"
+      activeMind: marty_cagan
+      next: ANOMALIAS
+
+    - name: ANOMALIAS
+      description: "Detectar padrões incomuns e oportunidades"
+      activeMind: paul_graham
+      next: RELATORIO
+
+    - name: RELATORIO
+      description: "Consolidar insights e gerar relatório final"
+      next: DONE
+
+    - name: DONE
+      description: "Auditoria concluída com recomendações priorizadas"
+
+tags:
+  - audit
+  - analytics
+  - instagram
+  - social-media
+  - scraping
+  - data-analysis
+  - content-strategy
+  - competitive-intelligence

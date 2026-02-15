@@ -1,0 +1,123 @@
+{
+  "id": "carousel_06",
+  "tema": "Crescimento pessoal real",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "CRESCIMENTO PESSOAL\nNÃO É LIVRO DE AUTOAJUDA",
+      "subtitulo": "É ação desconfortável",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#9D4EDD",
+        "layout": "centered",
+        "fontSize": "64px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "contexto",
+      "titulo": "PARE DE CONSUMIR\nCOMECE A IMPLEMENTAR",
+      "subtitulo": "Conhecimento sem ação\né só entretenimento.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#9D4EDD",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "ponto",
+      "titulo": "ESTRATÉGIA #1:\nFAÇA O DESCONFORTÁVEL",
+      "subtitulo": "Crescimento está sempre\ndo outro lado do medo.\nSempre.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#9D4EDD",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "ponto",
+      "titulo": "ESTRATÉGIA #2:\nCERQUE-SE MELHOR",
+      "subtitulo": "Você vira a média das 5 pessoas\ncom quem mais convive.\nEscolha bem.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#9D4EDD",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "ponto",
+      "titulo": "ESTRATÉGIA #3:\nTRACKING BRUTAL",
+      "subtitulo": "O que não é medido\nnão é gerenciado.\nDados > Sentimentos.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#9D4EDD",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "aplicacao",
+      "titulo": "FRAMEWORK PRÁTICO:",
+      "subtitulo": "1. Escolha 1 área pra melhorar\n2. Defina métrica específica\n3. Ação diária não-negociável\n4. Track semanal honesto\n5. Ajuste baseado em dados",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#9D4EDD",
+        "layout": "left-aligned",
+        "fontSize": "36px",
+        "fontWeight": "700"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "cta",
+      "titulo": "CRESCIMENTO REAL\nDÓI, CANSA E FUNCIONA",
+      "subtitulo": "Não tem atalho.\nTem trabalho.",
+      "design": {
+        "background": "#9D4EDD",
+        "textColor": "#FFFFFF",
+        "accentColor": "#000000",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 8,
+      "tipo": "closer",
+      "titulo": "QUAL ÁREA VOCÊ VAI\nMELHORAR ESSE MÊS?",
+      "subtitulo": "Compromisso público aqui 👇",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#9D4EDD",
+        "layout": "centered",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "CRESCIMENTO PESSOAL NÃO É LIVRO DE AUTOAJUDA 📚\n\nÉ ação desconfortável.\n\nA verdade que ninguém quer ouvir:\nConhecimento sem ação é só entretenimento.\n\nPare de consumir. Comece a implementar.\n\nESTRATÉGIAS QUE REALMENTE FUNCIONAM:\n\n→ ESTRATÉGIA #1: FAÇA O DESCONFORTÁVEL\nCrescimento está sempre do outro lado do medo.\nSempre.\nSe é fácil, você não está crescendo.\n\n→ ESTRATÉGIA #2: CERQUE-SE MELHOR\nVocê vira a média das 5 pessoas com quem mais convive.\nEscolha bem seu círculo.\nAmbiente > Motivação.\n\n→ ESTRATÉGIA #3: TRACKING BRUTAL\nO que não é medido não é gerenciado.\nDados > Sentimentos.\nHonestidade > Ilusão.\n\nFRAMEWORK PRÁTICO:\n1. Escolha 1 área pra melhorar (só uma)\n2. Defina métrica específica e mensurável\n3. Ação diária não-negociável\n4. Track semanal com honestidade brutal\n5. Ajuste estratégia baseado em dados\n\nCrescimento real dói.\nCansa.\nE funciona.\n\nNão tem atalho. Tem trabalho.\nNão tem hack. Tem consistência.\nNão tem segredo. Tem execução.\n\nQual área você vai melhorar esse mês?\nFaz teu compromisso público aqui 👇\n\n—\nSalva pra ter um plano real 🔖",
+  "hashtags": ["#crescimentopessoal", "#desenvolvimentopessoal", "#mindset", "#acao", "#foconoresultado", "#estrategias", "#sucessopessoal", "#implementacao", "#motivacao", "#transformacao"],
+  "bestTime": "18:00",
+  "estimatedER": "0.8-1.2%"
+}

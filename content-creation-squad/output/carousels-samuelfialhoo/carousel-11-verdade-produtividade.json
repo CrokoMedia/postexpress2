@@ -1,0 +1,122 @@
+{
+  "id": "carousel_11",
+  "tipo": "autoridade",
+  "tema": "A Verdade Sobre Produtividade",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "PRODUTIVIDADE\nNÃO É FAZER MAIS",
+      "subtitulo": "É a opinião que ninguém quer ouvir",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#3498DB",
+        "layout": "centered",
+        "fontSize": "72px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "insight",
+      "titulo": "VERDADEIRA PRODUTIVIDADE\nÉ ELIMINAR O DESNECESSÁRIO",
+      "subtitulo": "Não adicionar.\nSubtrair.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#3498DB",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "framework",
+      "titulo": "NÍVEL 1:\nELIMINE TAREFAS",
+      "subtitulo": "80% do que você faz\nnão gera 20% de resultado.\nCorte sem dó.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#3498DB",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "framework",
+      "titulo": "NÍVEL 2:\nELIMINE DECISÕES",
+      "subtitulo": "Decisão diária drena energia.\nAutomatize, padronize, sistematize.\nGuarde energia pro que importa.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#3498DB",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "framework",
+      "titulo": "NÍVEL 3:\nELIMINE RELACIONAMENTOS",
+      "subtitulo": "Pessoas erradas consomem\nsua energia e foco.\nProteção > Conexão.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#3498DB",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "aplicacao",
+      "titulo": "COMO APLICAR OS 3 NÍVEIS:",
+      "subtitulo": "1. Liste tudo que você faz\n2. Elimine 50% das tarefas\n3. Automatize decisões repetitivas\n4. Reduza interações tóxicas\n5. Foque apenas no essencial",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#3498DB",
+        "layout": "left-aligned",
+        "fontSize": "36px",
+        "fontWeight": "700"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "cta",
+      "titulo": "MENOS É\nEXPONENCIALMENTE MAIS",
+      "subtitulo": "Simplicidade radical\ngera resultado radical.",
+      "design": {
+        "background": "#3498DB",
+        "textColor": "#FFFFFF",
+        "accentColor": "#000000",
+        "layout": "centered",
+        "fontSize": "60px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "PRODUTIVIDADE NÃO É FAZER MAIS 🚫\n\nÉ a opinião contraintuitiva que ninguém quer ouvir.\n\nA verdade:\nVerdadeira produtividade é eliminar o desnecessário.\nNão adicionar. Subtrair.\n\nTodos querem fazer mais.\nEu aprendi que o segredo é fazer MENOS.\nMas fazer melhor.\n\nOS 3 NÍVEIS DE ELIMINAÇÃO:\n\n→ NÍVEL 1: ELIMINE TAREFAS\n80% do que você faz não gera 20% de resultado.\nPareto é real.\nIdentifique o que realmente move a agulha.\nCorte o resto sem dó.\n\n→ NÍVEL 2: ELIMINE DECISÕES\nCada decisão diária drena sua energia.\nAutomatize rotinas.\nPadronize processos.\nSistematize escolhas.\nGuarde sua energia mental pro que realmente importa.\n\n→ NÍVEL 3: ELIMINE RELACIONAMENTOS\nPessoas erradas consomem sua energia e foco.\nNão é ser frio.\nÉ ser estratégico.\nProteção > Conexão indiscriminada.\n\nCOMO APLICAR OS 3 NÍVEIS:\n1. Liste TUDO que você faz numa semana\n2. Elimine brutalmente 50% das tarefas (sim, metade)\n3. Automatize todas as decisões repetitivas\n4. Reduza interações com pessoas que drenam energia\n5. Foque apenas no que realmente importa\n\nMenos é exponencialmente mais.\nSimplicidade radical gera resultado radical.\n\nA pergunta não é \"o que adicionar?\"\nÉ \"o que eliminar?\"\n\nO que você vai eliminar esta semana?\n\n—\nSalva pra lembrar que menos é mais 🔖",
+  "hashtags": [
+    "#produtividade",
+    "#eliminacao",
+    "#mindset",
+    "#autoridade",
+    "#foconoessencial",
+    "#desenvolvimentopessoal",
+    "#simplicidade",
+    "#eficiencia",
+    "#empreendedorismo",
+    "#gestaodetempo"
+  ],
+  "bestTime": "18:00",
+  "estimatedER": "1.0-1.5%",
+  "objetivo": "Autoridade"
+}

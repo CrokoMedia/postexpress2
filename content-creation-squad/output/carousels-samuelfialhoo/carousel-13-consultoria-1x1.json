@@ -1,0 +1,136 @@
+{
+  "id": "carousel_13",
+  "tipo": "vendas",
+  "tema": "Consultoria 1:1 em Mindset",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "POR QUE 90% DAS PESSOAS\nNÃO CRESCEM",
+      "subtitulo": "Mesmo sabendo o que fazer",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#F39C12",
+        "layout": "centered",
+        "fontSize": "72px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "dor",
+      "titulo": "VOCÊ JÁ SABE\nO QUE FAZER",
+      "subtitulo": "Mas não faz.\nE você sabe por quê.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#F39C12",
+        "layout": "centered",
+        "fontSize": "64px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "custo",
+      "titulo": "O BLOQUEIO NÃO É\nDE CONHECIMENTO",
+      "subtitulo": "É de mindset.\nSão crenças invisíveis\nque te sabotam todo dia.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#F39C12",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "solucao",
+      "titulo": "CONSULTORIA 1:1\nEM MINDSET",
+      "subtitulo": "Identificar e quebrar\nos bloqueios que te travam.\nIndividualmente. Profundamente.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#F39C12",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "prova",
+      "titulo": "O QUE VOCÊ RECEBE:",
+      "subtitulo": "✓ 3 sessões individuais (1h cada)\n✓ Análise profunda de bloqueios\n✓ Plano de ação personalizado\n✓ Suporte via WhatsApp 30 dias\n✓ Materiais exclusivos",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#F39C12",
+        "layout": "left-aligned",
+        "fontSize": "36px",
+        "fontWeight": "700"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "oferta",
+      "titulo": "ISSO NÃO É\nPARA TODO MUNDO",
+      "subtitulo": "Só para quem está PRONTO\npara mudança real.\nNão motivação. Transformação.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#F39C12",
+        "layout": "centered",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "urgencia",
+      "titulo": "5 VAGAS ABERTAS\nESTE MÊS",
+      "subtitulo": "Atendimento individualizado\ntem limite de capacidade.\nPrimeiro a chegar, primeiro atendido.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#F39C12",
+        "layout": "centered",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 8,
+      "tipo": "cta",
+      "titulo": "LINK NA BIO\nGARANTA SUA VAGA",
+      "subtitulo": "Ou continue travado.\nA escolha é sua.",
+      "design": {
+        "background": "#F39C12",
+        "textColor": "#000000",
+        "accentColor": "#FFFFFF",
+        "layout": "centered",
+        "fontSize": "60px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "POR QUE 90% DAS PESSOAS NÃO CRESCEM? 🎯\n\nMesmo sabendo o que fazer.\n\nA resposta é simples e dói:\n\nVocê já sabe o que fazer.\nMas não faz.\n\nE você sabe por quê.\n\nO BLOQUEIO NÃO É DE CONHECIMENTO.\nÉ de mindset.\n\nSão crenças invisíveis que te sabotam:\n→ \"Não sou bom o suficiente\"\n→ \"Precisa ser perfeito\"\n→ \"Não tenho tempo/dinheiro\"\n→ \"E se der errado?\"\n\nIsso não some com mais curso.\nNão some com mais conteúdo.\n\nSome com trabalho PROFUNDO.\nIndividual.\nPersonalizado.\n\n— CONSULTORIA 1:1 EM MINDSET —\n\nIdentificar e QUEBRAR os bloqueios que te travam.\n\nO QUE VOCÊ RECEBE:\n✓ 3 sessões individuais (1h cada)\n✓ Análise profunda dos seus bloqueios específicos\n✓ Plano de ação personalizado pro seu contexto\n✓ Suporte direto via WhatsApp por 30 dias\n✓ Materiais exclusivos de transformação\n\nISTO NÃO É PARA TODO MUNDO.\n\nÉ só para quem:\n→ Está cansado de autossabotagem\n→ Está pronto para mudança REAL\n→ Quer transformação, não motivação\n→ Está disposto a fazer o trabalho duro\n\n5 VAGAS ABERTAS ESTE MÊS.\n\nAtendimento individualizado tem limite de capacidade.\nPrimeiro a chegar, primeiro atendido.\n\nLINK NA BIO.\n\nOu continua travado nos mesmos bloqueios.\nA escolha é sua.\n\n—\n#consultoria #mindset #transformacao #crescimentopessoal #bloqueios #desenvolvimentopessoal #mentalidade #coaching #autossabotagem #mudanca",
+  "hashtags": [
+    "#consultoria",
+    "#mindset",
+    "#transformacao",
+    "#crescimentopessoal",
+    "#bloqueios",
+    "#desenvolvimentopessoal",
+    "#mentalidade",
+    "#coaching",
+    "#autossabotagem",
+    "#mudanca"
+  ],
+  "bestTime": "18:00",
+  "estimatedER": "1.0-1.5%",
+  "objetivo": "Vendas - Consultoria 1:1"
+}

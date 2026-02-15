@@ -1,0 +1,123 @@
+{
+  "id": "carousel_09",
+  "tema": "5 passos para o sucesso",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "5 PASSOS QUE\nREALMENTE FUNCIONAM",
+      "subtitulo": "Framework prático, sem enrolação",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FFB800",
+        "layout": "centered",
+        "fontSize": "64px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "contexto",
+      "titulo": "SUCESSO NÃO É SORTE\nÉ SISTEMA",
+      "subtitulo": "E você pode replicar\no sistema agora.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FFB800",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "ponto",
+      "titulo": "PASSO 1:\nCLAREZA BRUTAL",
+      "subtitulo": "Defina exatamente o que você quer.\nSem clareza, sem direção.\nSem direção, sem chegada.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FFB800",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "ponto",
+      "titulo": "PASSO 2:\nFOCO ABSOLUTO",
+      "subtitulo": "Uma coisa de cada vez.\nBem feita.\nAté terminar.\nMultitarefa é ilusão.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FFB800",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "ponto",
+      "titulo": "PASSO 3:\nAÇÃO MASSIVA",
+      "subtitulo": "Volume de ação\ngera volume de resultado.\nNão tem atalho.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FFB800",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "ponto",
+      "titulo": "PASSO 4:\nAJUSTE CONSTANTE",
+      "subtitulo": "Feedback rápido.\nMudança rápida.\nAdaptação contínua.\nRigidez mata.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FFB800",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "ponto",
+      "titulo": "PASSO 5:\nPERSISTÊNCIA INSANA",
+      "subtitulo": "Quando todo mundo desiste,\nvocê continua.\nIsso é tudo.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FFB800",
+        "layout": "left-aligned",
+        "fontSize": "44px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 8,
+      "tipo": "cta",
+      "titulo": "AGORA VOCÊ SABE\nO QUE FAZER",
+      "subtitulo": "Resta apenas uma coisa:\nFAZER.",
+      "design": {
+        "background": "#FFB800",
+        "textColor": "#000000",
+        "accentColor": "#FFFFFF",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "5 PASSOS QUE REALMENTE FUNCIONAM ⚡\n\nFramework prático, sem enrolação.\n\nSuccesso não é sorte. É sistema.\nE você pode replicar o sistema agora.\n\n→ PASSO 1: CLAREZA BRUTAL\nDefina exatamente o que você quer.\nNúmeros específicos.\nPrazos reais.\nSem clareza, sem direção.\nSem direção, sem chegada.\n\n→ PASSO 2: FOCO ABSOLUTO\nUma coisa de cada vez.\nBem feita.\nAté terminar.\nMultitarefa é ilusão.\nFoco é produtividade real.\n\n→ PASSO 3: AÇÃO MASSIVA\nVolume de ação gera volume de resultado.\nNão tem atalho.\nNão tem hack.\nTem trabalho.\nMuito trabalho.\n\n→ PASSO 4: AJUSTE CONSTANTE\nFeedback rápido.\nMudança rápida.\nAdaptação contínua.\nRigidez mata negócios.\nFlexibilidade constrói impérios.\n\n→ PASSO 5: PERSISTÊNCIA INSANA\nQuando todo mundo desiste, você continua.\nQuando fica difícil, você insiste.\nQuando parece impossível, você persiste.\nIsso é tudo.\n\nO framework é simples.\nA execução é dura.\nO resultado é garantido.\n\nAgora você sabe o que fazer.\nResta apenas uma coisa: FAZER.\n\nQual passo você vai começar hoje?\n\n—\nSalva pra ter o framework sempre à mão 🔖",
+  "hashtags": ["#sucessopessoal", "#framework", "#acao", "#mindset", "#foconoresultado", "#persistencia", "#empreendedorismo", "#desenvolvimentopessoal", "#motivacao", "#estrategia"],
+  "bestTime": "18:00",
+  "estimatedER": "0.8-1.2%"
+}

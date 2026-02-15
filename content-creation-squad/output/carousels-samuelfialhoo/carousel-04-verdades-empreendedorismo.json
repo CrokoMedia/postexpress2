@@ -1,0 +1,109 @@
+{
+  "id": "carousel_04",
+  "tema": "Verdades do empreendedorismo",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "EMPREENDER NÃO É\nO QUE VOCÊ VÊ NO INSTAGRAM",
+      "subtitulo": "Realidade vs Expectativa",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FF3366",
+        "layout": "centered",
+        "fontSize": "64px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "contexto",
+      "titulo": "AS MENTIRAS QUE\nTE VENDERAM:",
+      "subtitulo": "Liberdade, dinheiro fácil,\ntrabalhar 4h por dia.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FF3366",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "ponto",
+      "titulo": "VERDADE #1",
+      "subtitulo": "Você vai trabalhar MAIS\ndo que como funcionário.\nPelo menos no início.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FF3366",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "ponto",
+      "titulo": "VERDADE #2",
+      "subtitulo": "Solidão é parte do pacote.\nPoucas pessoas entendem\no que você está fazendo.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FF3366",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "ponto",
+      "titulo": "VERDADE #3",
+      "subtitulo": "Resultado demora.\nMuito mais do que você pensa.\nPersistência > Talento.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#FF3366",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "aplicacao",
+      "titulo": "MAS VALE A PENA?",
+      "subtitulo": "SIM. Se você busca:\n✓ Controle do seu tempo\n✓ Impacto real\n✓ Liberdade financeira\n✓ Propósito verdadeiro",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#FF3366",
+        "layout": "left-aligned",
+        "fontSize": "36px",
+        "fontWeight": "700"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "cta",
+      "titulo": "EXPECTATIVA REAL\nGERA RESULTADO REAL",
+      "subtitulo": "Romantizar não ajuda.\nPreparo sim.",
+      "design": {
+        "background": "#FF3366",
+        "textColor": "#FFFFFF",
+        "accentColor": "#000000",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "EMPREENDER NÃO É O QUE VOCÊ VÊ NO INSTAGRAM 📱\n\nRealidade vs Expectativa.\n\nAs mentiras que te venderam:\n→ Liberdade total\n→ Dinheiro fácil\n→ Trabalhar 4h por dia\n→ Sucesso em 6 meses\n\nAgora as VERDADES DURAS:\n\n✗ VERDADE #1\nVocê vai trabalhar MAIS do que como funcionário.\nPelo menos no início. Muito mais.\n\n✗ VERDADE #2\nSolidão é parte do pacote.\nPoucas pessoas entendem o que você está fazendo.\nNinguém vai aplaudir cada pequena vitória.\n\n✗ VERDADE #3\nResultado demora. Muito mais do que você pensa.\nPersistência > Talento. Sempre.\n\nMAS VALE A PENA?\n\nSIM. Se você realmente busca:\n✓ Controle do seu tempo\n✓ Impacto real no mundo\n✓ Liberdade financeira verdadeira\n✓ Propósito além do salário\n\nO problema não é empreender.\nÉ empreender com expectativas irreais.\n\nExpectativa real gera resultado real.\nRomantizar não ajuda. Preparo sim.\n\nVocê está preparado pra realidade\nou ainda acredita na fantasia?\n\n—\nSalva pra ter expectativas realistas 🔖",
+  "hashtags": ["#empreendedorismo", "#realidadeempreendedora", "#mindset", "#sucessoreal", "#verdadesempreendedoras", "#desenvolvimentopessoal", "#foconoresultado", "#empreender", "#motivacao", "#mentoriaempreendedora"],
+  "bestTime": "18:00",
+  "estimatedER": "0.8-1.2%"
+}

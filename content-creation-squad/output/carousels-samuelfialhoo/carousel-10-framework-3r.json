@@ -1,0 +1,122 @@
+{
+  "id": "carousel_10",
+  "tipo": "autoridade",
+  "tema": "Framework 3R do Crescimento",
+  "template": "BrandsDecoded",
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "hook",
+      "titulo": "EU CRIEI UM FRAMEWORK\nQUE MUDOU TUDO",
+      "subtitulo": "O método 3R do crescimento",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#E74C3C",
+        "layout": "centered",
+        "fontSize": "72px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 2,
+      "tipo": "insight",
+      "titulo": "CRESCIMENTO NÃO É LINEAR\nMAS PODE SER PREVISÍVEL",
+      "subtitulo": "Desde que você siga o sistema certo.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#E74C3C",
+        "layout": "centered",
+        "fontSize": "56px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 3,
+      "tipo": "framework",
+      "titulo": "R #1:\nREALIDADE BRUTAL",
+      "subtitulo": "Encare os fatos sem filtro.\nSem vitimismo.\nSem desculpas.\nOnde você está HOJE?",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#E74C3C",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 4,
+      "tipo": "framework",
+      "titulo": "R #2:\nRESPONSABILIDADE TOTAL",
+      "subtitulo": "Tudo que acontece com você\né responsabilidade SUA.\n100%. Sem exceções.",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#E74C3C",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 5,
+      "tipo": "framework",
+      "titulo": "R #3:\nRITMO CONSISTENTE",
+      "subtitulo": "Ação diária não-negociável.\nSem pausa.\nSem desculpa.\nRitmo > Intensidade.",
+      "design": {
+        "background": "#000000",
+        "textColor": "#FFFFFF",
+        "accentColor": "#E74C3C",
+        "layout": "left-aligned",
+        "fontSize": "48px",
+        "fontWeight": "900"
+      }
+    },
+    {
+      "numero": 6,
+      "tipo": "aplicacao",
+      "titulo": "APLICANDO O FRAMEWORK 3R:",
+      "subtitulo": "1. Liste sua realidade brutal hoje\n2. Assuma 100% de responsabilidade\n3. Defina 1 ação diária obrigatória\n4. Execute sem falhas por 90 dias\n5. Meça resultados e ajuste",
+      "design": {
+        "background": "#FFFFFF",
+        "textColor": "#000000",
+        "accentColor": "#E74C3C",
+        "layout": "left-aligned",
+        "fontSize": "36px",
+        "fontWeight": "700"
+      }
+    },
+    {
+      "numero": 7,
+      "tipo": "cta",
+      "titulo": "O FRAMEWORK 3R\nFUNCIONA SEMPRE",
+      "subtitulo": "Se você executar.\nSe você não desistir.",
+      "design": {
+        "background": "#E74C3C",
+        "textColor": "#FFFFFF",
+        "accentColor": "#000000",
+        "layout": "centered",
+        "fontSize": "60px",
+        "fontWeight": "900"
+      }
+    }
+  ],
+  "caption": "EU CRIEI UM FRAMEWORK QUE MUDOU TUDO 🎯\n\nO Método 3R do Crescimento.\n\nCrescimento não é linear, mas pode ser previsível.\nDesde que você siga o sistema certo.\n\nDepois de anos testando, refinando e aplicando, consolidei tudo em 3 pilares:\n\n→ R #1: REALIDADE BRUTAL\nEncare os fatos sem filtro.\nSem vitimismo.\nSem desculpas.\nOnde você está HOJE?\nNão onde você gostaria de estar.\nOnde você ESTÁ.\n\n→ R #2: RESPONSABILIDADE TOTAL\nTudo que acontece com você é responsabilidade SUA.\n100%. Sem exceções.\nMercado ruim? Sua responsabilidade encontrar oportunidade.\nSem recursos? Sua responsabilidade ser criativo.\nSem tempo? Sua responsabilidade priorizar.\n\n→ R #3: RITMO CONSISTENTE\nAção diária não-negociável.\nSem pausa. Sem desculpa.\nRitmo > Intensidade.\nMelhor fazer 30min todo dia do que 5h uma vez por semana.\n\nAPLICANDO O FRAMEWORK 3R:\n1. Liste sua realidade brutal hoje (números, fatos, sem história)\n2. Assuma 100% de responsabilidade por mudar\n3. Defina 1 ação diária obrigatória alinhada ao objetivo\n4. Execute sem falhas por 90 dias\n5. Meça resultados e ajuste o sistema\n\nO Framework 3R funciona sempre.\nSe você executar.\nSe você não desistir.\n\nQual dos 3R você precisa aplicar agora?\n\n—\nSalva pra ter o framework sempre acessível 🔖",
+  "hashtags": [
+    "#framework3r",
+    "#crescimentopessoal",
+    "#mindset",
+    "#autoridade",
+    "#desenvolvimentopessoal",
+    "#foconoresultado",
+    "#responsabilidade",
+    "#consistencia",
+    "#empreendedorismo",
+    "#transformacao"
+  ],
+  "bestTime": "18:00",
+  "estimatedER": "1.0-1.5%",
+  "objetivo": "Autoridade"
+}

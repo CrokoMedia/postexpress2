@@ -1,0 +1,181 @@
+{
+  "carouselId": "inveja-prosperidade-demo",
+  "formats": {
+    "post-figma": {
+      "format": "post",
+      "style": "figma",
+      "dimensions": "1080x1350",
+      "images": [
+        {
+          "slideNumber": "01",
+          "fileName": "slide-01.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-figma/slide-01.png"
+        },
+        {
+          "slideNumber": "02",
+          "fileName": "slide-02.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-figma/slide-02.png"
+        },
+        {
+          "slideNumber": "03",
+          "fileName": "slide-03.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-figma/slide-03.png"
+        },
+        {
+          "slideNumber": "04",
+          "fileName": "slide-04.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-figma/slide-04.png"
+        },
+        {
+          "slideNumber": "05",
+          "fileName": "slide-05.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-figma/slide-05.png"
+        },
+        {
+          "slideNumber": "06",
+          "fileName": "slide-06.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-figma/slide-06.png"
+        },
+        {
+          "slideNumber": "07",
+          "fileName": "slide-07.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-figma/slide-07.png"
+        }
+      ]
+    },
+    "post-gradient": {
+      "format": "post",
+      "style": "gradient",
+      "dimensions": "1080x1350",
+      "images": [
+        {
+          "slideNumber": "01",
+          "fileName": "slide-01.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-gradient/slide-01.png"
+        },
+        {
+          "slideNumber": "02",
+          "fileName": "slide-02.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-gradient/slide-02.png"
+        },
+        {
+          "slideNumber": "03",
+          "fileName": "slide-03.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-gradient/slide-03.png"
+        },
+        {
+          "slideNumber": "04",
+          "fileName": "slide-04.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-gradient/slide-04.png"
+        },
+        {
+          "slideNumber": "05",
+          "fileName": "slide-05.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-gradient/slide-05.png"
+        },
+        {
+          "slideNumber": "06",
+          "fileName": "slide-06.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-gradient/slide-06.png"
+        },
+        {
+          "slideNumber": "07",
+          "fileName": "slide-07.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/post-gradient/slide-07.png"
+        }
+      ]
+    },
+    "stories-figma": {
+      "format": "stories",
+      "style": "figma",
+      "dimensions": "1080x1920",
+      "images": [
+        {
+          "slideNumber": "01",
+          "fileName": "slide-01.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-figma/slide-01.png"
+        },
+        {
+          "slideNumber": "02",
+          "fileName": "slide-02.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-figma/slide-02.png"
+        },
+        {
+          "slideNumber": "03",
+          "fileName": "slide-03.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-figma/slide-03.png"
+        },
+        {
+          "slideNumber": "04",
+          "fileName": "slide-04.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-figma/slide-04.png"
+        },
+        {
+          "slideNumber": "05",
+          "fileName": "slide-05.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-figma/slide-05.png"
+        },
+        {
+          "slideNumber": "06",
+          "fileName": "slide-06.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-figma/slide-06.png"
+        },
+        {
+          "slideNumber": "07",
+          "fileName": "slide-07.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-figma/slide-07.png"
+        }
+      ]
+    },
+    "stories-gradient": {
+      "format": "stories",
+      "style": "gradient",
+      "dimensions": "1080x1920",
+      "images": [
+        {
+          "slideNumber": "01",
+          "fileName": "slide-01.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-gradient/slide-01.png"
+        },
+        {
+          "slideNumber": "02",
+          "fileName": "slide-02.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-gradient/slide-02.png"
+        },
+        {
+          "slideNumber": "03",
+          "fileName": "slide-03.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-gradient/slide-03.png"
+        },
+        {
+          "slideNumber": "04",
+          "fileName": "slide-04.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-gradient/slide-04.png"
+        },
+        {
+          "slideNumber": "05",
+          "fileName": "slide-05.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-gradient/slide-05.png"
+        },
+        {
+          "slideNumber": "06",
+          "fileName": "slide-06.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-gradient/slide-06.png"
+        },
+        {
+          "slideNumber": "07",
+          "fileName": "slide-07.png",
+          "path": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo/stories-gradient/slide-07.png"
+        }
+      ]
+    }
+  },
+  "totalImages": 28,
+  "outputDir": "/Users/macbook-karla/MentesMilionarias/content-creation-squad/engines/image-generator/output/inveja-prosperidade-demo",
+  "generation": {
+    "duration": "17.85",
+    "successful": 28,
+    "failed": 0,
+    "errors": []
+  }
+}
