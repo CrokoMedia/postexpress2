@@ -10,8 +10,47 @@
 
 import fs from 'fs';
 import path from 'path';
+import https from 'https';
 
-function gerarSlide(username) {
+/**
+ * Baixa imagem de uma URL e salva localmente
+ */
+async function baixarImagem(url, destino) {
+  return new Promise((resolve, reject) => {
+    const file = fs.createWriteStream(destino);
+
+    https.get(url, (response) => {
+      // Seguir redirects
+      if (response.statusCode === 301 || response.statusCode === 302) {
+        return baixarImagem(response.headers.location, destino)
+          .then(resolve)
+          .catch(reject);
+      }
+
+      if (response.statusCode !== 200) {
+        reject(new Error(`Falha ao baixar imagem: ${response.statusCode}`));
+        return;
+      }
+
+      response.pipe(file);
+
+      file.on('finish', () => {
+        file.close();
+        resolve(destino);
+      });
+
+      file.on('error', (err) => {
+        fs.unlink(destino, () => {});
+        reject(err);
+      });
+    }).on('error', (err) => {
+      fs.unlink(destino, () => {});
+      reject(err);
+    });
+  });
+}
+
+async function gerarSlide(username) {
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('🎨 GERADOR DE SLIDES - POST EXPRESS');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
@@ -52,6 +91,32 @@ function gerarSlide(username) {
       console.warn('⚠️  AVISO: Foto de perfil não encontrada nos dados extraídos!\n');
     }
 
+    // 2.5. Baixar foto de perfil localmente
+    let fotoLocal = '';
+
+    if (fotoUrl) {
+      console.log('📥 Baixando foto de perfil...');
+
+      // Criar diretório para fotos se não existir
+      const fotosDir = 'assets/fotos-perfil';
+      if (!fs.existsSync(fotosDir)) {
+        fs.mkdirSync(fotosDir, { recursive: true });
+      }
+
+      // Extensão da imagem
+      const ext = fotoUrl.includes('.png') ? 'png' : 'jpg';
+      fotoLocal = `${fotosDir}/${username}.${ext}`;
+
+      try {
+        await baixarImagem(fotoUrl, fotoLocal);
+        console.log(`✅ Foto salva em: ${fotoLocal}\n`);
+      } catch (error) {
+        console.warn(`⚠️  Erro ao baixar foto: ${error.message}`);
+        console.warn(`   Usando URL original (pode expirar)\n`);
+        fotoLocal = fotoUrl; // Fallback para URL original
+      }
+    }
+
     // 3. Ler template
     const templateFile = 'templateagoravai.html';
 
@@ -65,7 +130,7 @@ function gerarSlide(username) {
     // 4. Substituir placeholders
     console.log(`🔄 Substituindo placeholders...`);
 
-    template = template.replace('{{FOTO_URL}}', fotoUrl);
+    template = template.replace('{{FOTO_URL}}', fotoLocal || fotoUrl);
     template = template.replace('{{NOME}}', nome);
     template = template.replace('{{USERNAME}}', usernameFormatado);
     template = template.replace('{{TEXTO}}', formatarBiografia(biografia));
@@ -141,4 +206,7 @@ if (!username) {
   process.exit(1);
 }
 
-gerarSlide(username);
+// Executar de forma assíncrona
+(async () => {
+  await gerarSlide(username);
+})();

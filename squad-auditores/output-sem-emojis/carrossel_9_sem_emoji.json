@@ -1,0 +1,21 @@
+{
+  "numero": 9,
+  "titulo": "IA Elimina Categoria",
+  "slides": [
+    {
+      "texto": "IA não vai roubar emprego.\n\nVai ELIMINAR sua categoria inteira.\n\nVocê tem < 3 anos."
+    },
+    {
+      "texto": "CATEGORIAS EM RISCO:\n\n VA genérico\n Copywriter jr\n Designer de templates\n Analista de planilhas"
+    },
+    {
+      "texto": "TESTE:\n\nSua categoria vai sumir?\n\n4 perguntas no próximo slide"
+    },
+    {
+      "texto": "PERGUNTAS:\n\n1. Processos repetitivos?\n2. Só \"passa informação\"?\n3. Não cria proprietário?\n4. IA já faz 40%+ disso?\n\n3+ SIM = < 3 anos"
+    },
+    {
+      "texto": "TRANSFORMAÇÃO:\n\nDM \"TRANSFORMAÇÃO\"\n\nDiagnóstico + Plano\n(30 vagas)"
+    }
+  ]
+}

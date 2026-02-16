@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Slide — @frankcosta</title>
+  <title>Template A — Só Texto</title>
   <style>
     @font-face {
       font-family: 'Chirp';
@@ -16,7 +16,6 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { margin: 0; padding: 0; }
 
     .slide {
       width: 1080px;
@@ -27,48 +26,50 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 100px 110px;
+      padding: 80px;
     }
+
+    .slide.square { height: 1080px; }
 
     .post-wrapper { width: 100%; }
 
     .header {
       display: flex;
       align-items: center;
-      gap: 18px;
-      margin-bottom: 36px;
+      gap: 24px;
+      margin-bottom: 32px;
     }
 
     .avatar {
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid #e1e1e1;
+      border: 3px solid #e1e1e1;
       flex-shrink: 0;
     }
 
     .user-info {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 4px;
     }
 
     .name-row {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .name {
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 700;
       color: #0f1419;
     }
 
     .verified {
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       background: #1d9bf0;
       border-radius: 50%;
       display: flex;
@@ -77,25 +78,23 @@
     }
 
     .verified svg {
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       fill: white;
     }
 
     .username {
-      font-size: 22px;
+      font-size: 26px;
       color: #536471;
       font-weight: 400;
     }
 
     .text {
-      font-size: 36px;
+      font-size: 42px;
       font-weight: 400;
       color: #0f1419;
-      line-height: 1.5;
+      line-height: 1.4;
       text-align: left;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
     }
 
     .text strong, .text b { font-weight: 700; }
@@ -107,19 +106,18 @@
   <div class="slide">
     <div class="post-wrapper">
       <div class="header">
-        <img src="assets/fotos-perfil/frankcosta.jpg" alt="Avatar" class="avatar">
+        <img src="{{FOTO_URL}}" alt="Avatar" class="avatar">
         <div class="user-info">
           <div class="name-row">
-            <span class="name">Frank Costa | INTELIGÊNCIA ARTIFICIAL PARA NEGÓCIOS</span>
+            <span class="name">{{NOME}}</span>
             <div class="verified">
               <svg viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z"></path></svg>
             </div>
           </div>
-          <span class="username">@frankcosta</span>
+          <span class="username">@{{USERNAME}}</span>
         </div>
       </div>
-      <div class="text"><p>🤖 Te ajudo a usar <strong>IA</strong> pra vender <strong>MAIS</strong>, gastar <strong>MENOS</strong> e aumentar em 10X a produtividade do seu negócio.</p>
-        <p>Veja a <strong>IA</strong> <strong>NA</strong> <strong>PRÁTICA</strong> 👇</p></div>
+      <div class="text">{{TEXTO}}</div>
     </div>
   </div>
 </body>

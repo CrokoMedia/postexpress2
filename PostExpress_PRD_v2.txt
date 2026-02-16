@@ -1,0 +1,1061 @@
+================================================================================
+                              POST EXPRESS
+           Sistema de Criação de Conteúdo Automatizado
+                    Product Requirements Document (PRD)
+                              Pazos Media
+                            Fevereiro 2026
+                              VERSÃO 2.0
+           (Atualizado com Editor Visual e Otimizações de Custo)
+================================================================================
+
+
+================================================================================
+1. VISÃO GERAL
+================================================================================
+
+1.1 PROBLEMA
+------------
+Infoprodutores, experts e empresas enfrentam desafios críticos na criação de conteúdo:
+
+• Perdem tempo excessivo pensando e criando conteúdo
+• Não conseguem manter consistência de postagens
+• Falta escala na produção de conteúdo
+• Dificuldade em construir autoridade de forma sistemática
+• Engajamento baixo e poucos seguidores
+• Conteúdo não converte em vendas
+
+
+1.2 SOLUÇÃO
+-----------
+Post Express é um sistema interno da Pazos Media que automatiza 80% do processo
+de criação de conteúdo, utilizando IA com metodologias comprovadas de marketing
+para gerar carrosséis de alta conversão em escala.
+
+
+1.3 PROPOSTA DE VALOR
+---------------------
+• Escala: Atender mais clientes sem aumentar equipe
+• Qualidade Consistente: IA com metodologia das "mentes" garante padrão
+• Margem Maior: Custo por cliente reduzido, lucro aumentado
+• Velocidade: Entrega mais rápida = cliente mais satisfeito
+• Economia: 70-80% de redução em custos de renderização (vs fluxo tradicional)
+
+
+1.4 PÚBLICO-ALVO
+----------------
+• Infoprodutores
+• Experts e coaches
+• Empresas que precisam de presença digital
+
+
+1.5 MODELO DE NEGÓCIO
+---------------------
+Done-for-you: Ferramenta interna da Pazos Media. A equipe opera o sistema e
+entrega os conteúdos prontos. O cliente visualiza, edita e aprova conteúdos
+através de um portal dedicado com editor visual interativo.
+
+
+================================================================================
+2. ARQUITETURA DO SISTEMA
+================================================================================
+
+2.1 STACK TÉCNICA
+-----------------
+┌─────────────────────┬─────────────────────────────────────────┐
+│ Componente          │ Tecnologia                              │
+├─────────────────────┼─────────────────────────────────────────┤
+│ Backend/Lógica      │ Claude Code (AI)                        │
+│ Banco de Dados      │ Supabase (PostgreSQL + Storage)         │
+│ Scraping            │ Apify Actors                            │
+│ Editor Visual       │ React + Fabric.js + Zustand (NOVO)      │
+│ Geração de Imagens  │ Cloudinary API                          │
+│ Transcrição         │ OpenAI Whisper API                      │
+│ Frontend            │ Next.js 14 + TypeScript                 │
+│ Autenticação        │ Supabase Auth                           │
+└─────────────────────┴─────────────────────────────────────────┘
+
+
+2.2 FLUXO GERAL DO SISTEMA (ATUALIZADO v2.0)
+--------------------------------------------
+
+COLETA → AUDITORIA → CRIAÇÃO → EDITOR VISUAL → APROVAÇÃO → RENDERIZAÇÃO
+
+1. Coleta de Dados: Scraping via Apify + uploads de documentos + transcrições
+2. Squad Auditores: 5 mentes analisam os dados e geram Score Card
+3. Squad Criação: 5 mentes criam conteúdos (JSON estruturado)
+4. Editor Visual: Cliente edita textos, cores, fontes, layout (NOVO!)
+5. Aprovação: Cliente aprova design final
+6. Renderização Final: Cloudinary gera imagens PNG (1x após aprovação)
+
+
+2.3 MUDANÇA CRÍTICA vs VERSÃO 1.0
+---------------------------------
+
+ANTES (v1.0):
+Squad Criação → Cloudinary renderiza → Cliente vê → Pede ajustes → RE-renderiza
+                 💰 $0.10            💰 $0.10      💰 $0.10 (3-5x custos!)
+
+AGORA (v2.0):
+Squad Criação → JSON → Editor Visual (navegador) → Cliente edita grátis →
+Cliente aprova → Cloudinary renderiza 1x → 💰 $0.10 (economia de 70-80%)
+
+BENEFÍCIOS:
+✅ Economia de custos: 70-80% menos renderizações
+✅ Autonomia do cliente: Edita sozinho sem depender da IA
+✅ Velocidade: Edições instantâneas no navegador
+✅ Precisão: Controle pixel-perfect de todos os elementos
+
+
+================================================================================
+3. MÓDULO DE COLETA DE DADOS
+================================================================================
+
+3.1 FONTES DE DADOS
+-------------------
+┌─────────────┬─────────────────────────┬──────────────────────────────────────┐
+│ Fonte       │ Método                  │ Dados Extraídos                      │
+├─────────────┼─────────────────────────┼──────────────────────────────────────┤
+│ Instagram   │ Apify (scraping)        │ Posts, métricas, captions, hashtags  │
+│ TikTok      │ Apify (scraping)        │ Vídeos, views, engajamento           │
+│ YouTube     │ Apify (scraping)        │ Vídeos, transcrições, métricas       │
+│ Documentos  │ Upload na plataforma    │ Briefing, informações do cliente     │
+│ Vídeos      │ OpenAI Whisper API      │ Texto transcrito para análise        │
+└─────────────┴─────────────────────────┴──────────────────────────────────────┘
+
+
+3.2 POR QUE APIFY?
+------------------
+O scraping externo via Apify foi escolhido para proteger as contas dos clientes.
+A integração direta com Instagram pode causar queda de engajamento e riscos de
+bloqueio da conta.
+
+
+3.3 CUSTOS ESTIMADOS (Scraping)
+-------------------------------
+• Instagram: ~$0.50-1.00 por perfil (50-100 posts)
+• TikTok: ~$0.30-0.60 por perfil
+• YouTube: ~$0.40-0.80 por canal
+• Transcrição (Whisper): $0.006/minuto (~$0.60 por vídeo de 10min)
+
+
+================================================================================
+4. SQUAD AUDITORES
+================================================================================
+
+4.1 AS 5 MENTES AUDITORAS
+-------------------------
+┌───────────────────┬─────────────────┬────────────────────────────────────┬──────┐
+│ Auditor           │ Mente           │ Foco da Análise                    │ Peso │
+├───────────────────┼─────────────────┼────────────────────────────────────┼──────┤
+│ 🧠 Audit Lead     │ Daniel Kahneman │ Comportamento e viés da audiência  │ 20%  │
+│ ✍️ Copy Auditor   │ Eugene Schwartz │ Copy, hooks e awareness stage      │ 25%  │
+│ 💰 Offer Auditor  │ Alex Hormozi    │ Ofertas, CTAs e value equation     │ 25%  │
+│ 📊 Metrics Auditor│ Marty Cagan     │ Métricas, outcomes vs outputs      │ 15%  │
+│ 🔍 Anomaly Detect │ Paul Graham     │ Anomalias e oportunidades          │ 15%  │
+└───────────────────┴─────────────────┴────────────────────────────────────┴──────┘
+
+
+4.2 PIPELINE DE ANÁLISE
+-----------------------
+1. INGESTÃO: Processar dados do scraper
+2. COMPORTAMENTO (Kahneman): Analisar padrões comportamentais
+3. COPY (Schwartz): Avaliar qualidade de copy
+4. OFERTA (Hormozi): Avaliar força das ofertas
+5. MÉTRICAS (Cagan): Analisar outcomes vs outputs
+6. ANOMALIAS (Graham): Detectar padrões incomuns
+7. RELATÓRIO: Consolidar insights e gerar Score Card
+
+
+4.3 OUTPUT: SCORE CARD
+----------------------
+O Squad Auditores gera um Score Card (0-100) em 5 dimensões:
+
+┌─────────────────────────────────────────────────────────┐
+│              AUDIT SCORE CARD — @conta                  │
+├─────────────────────────────────┬───────────────────────┤
+│ 🧠 Comportamento da Audiência   │      XX/100           │
+│ ✍️ Qualidade de Copy            │      XX/100           │
+│ 💰 Força das Ofertas & CTAs     │      XX/100           │
+│ 📊 Métricas & Outcomes          │      XX/100           │
+│ 🔍 Oportunidades & Anomalias    │      XX/100           │
+├─────────────────────────────────┼───────────────────────┤
+│ 🏆 SCORE GERAL                  │      XX/100           │
+└─────────────────────────────────┴───────────────────────┘
+
+Relatório inclui:
+• Score detalhado por dimensão
+• Métricas brutas do scraping
+• Red flags identificados
+• Green flags (pontos fortes)
+• Benchmarks por plataforma
+• Recomendações priorizadas
+• Anomalias detectadas
+
+
+================================================================================
+5. SQUAD CRIAÇÃO DE CONTEÚDO
+================================================================================
+
+5.1 AS 5 MENTES MILIONÁRIAS
+---------------------------
+┌─────────────────────┬─────────────────────┬─────────────────────────┬──────────────────┐
+│ Mente               │ Papel               │ Especialidade           │ Quando Ativa     │
+├─────────────────────┼─────────────────────┼─────────────────────────┼──────────────────┤
+│ Eugene Schwartz 🎯  │ Copywriting         │ Breakthrough Advertising│ Fase de COPY     │
+│ Seth Godin 📖       │ Branding/Narrativas │ Marketing de permissão  │ Fase ESTRATÉGIA  │
+│ Alex Hormozi 💰     │ Ofertas Irresistíveis│ $100M Offers           │ Fase OTIMIZAÇÃO  │
+│ Thiago Finch 🇧🇷    │ Marketing BR        │ Funis, gatilhos BR      │ Fase LOCALIZAÇÃO │
+│ Adriano De Marqui 🎨│ Design Visual       │ Branding, identidade    │ Fase de DESIGN   │
+└─────────────────────┴─────────────────────┴─────────────────────────┴──────────────────┘
+
+
+5.2 PIPELINE DE CRIAÇÃO (10-15 min)
+-----------------------------------
+1. BRIEFING (2 min): Definir objetivo, audiência, mensagem, CTA
+2. ESTRATÉGIA (3 min) — Seth Godin: Ângulo estratégico, tom, estrutura
+3. COPY (4 min) — Eugene Schwartz: Escrever hooks, títulos, textos
+4. OTIMIZAÇÃO (2 min) — Alex Hormozi: Refinar copy para conversão
+5. LOCALIZAÇÃO (1-2 min) — Thiago Finch: Adaptar para contexto brasileiro
+6. VISUAL (2-3 min) — Adriano De Marqui: Planejar layout e cores
+7. REVIEW (1 min): Checklist de qualidade
+
+
+5.3 TIPOS DE CARROSSEL
+----------------------
+• Educacional: Ensinar, construir autoridade
+• Vendas: Vender produto/serviço
+• Autoridade: Thought leadership
+• Viral: Máximo alcance
+
+
+5.4 FÓRMULAS COMPROVADAS
+------------------------
+1. Problema → Solução (8 slides)
+2. Lista Numérica (7 slides)
+3. Framework/Método (6 slides)
+4. Storytelling (9 slides)
+5. Venda Direta (7 slides)
+6. Controvérsia (6 slides)
+
+
+5.5 OUTPUT: JSON ESTRUTURADO (NOVO)
+-----------------------------------
+O Squad Criação agora gera um JSON estruturado compatível com o Editor Visual:
+
+```json
+{
+  "carrossel_id": "uuid-v4",
+  "tipo": "educacional",
+  "metadata": {
+    "cliente_id": "uuid",
+    "nome": "Nome Cliente",
+    "username": "usuario",
+    "foto_url": "https://...",
+    "created_at": "2026-02-16T10:00:00Z"
+  },
+  "slides": [
+    {
+      "numero": 1,
+      "tipo": "capa",
+      "elementos": {
+        "texto_principal": {
+          "conteudo": "7 erros que te impedem de vender",
+          "fonte": "Inter",
+          "tamanho": 48,
+          "cor": "#000000",
+          "posicao": {"x": 100, "y": 400}
+        },
+        "imagem_opcional": null,
+        "fundo": "#FFFFFF"
+      },
+      "template": "tweet-style"
+    },
+    ...
+  ],
+  "legenda": "Caption completa aqui...",
+  "hashtags": ["#marketing", "#vendas"]
+}
+```
+
+Este JSON é enviado diretamente para o Editor Visual.
+
+
+================================================================================
+6. EDITOR VISUAL DE CARROSSÉIS (NOVO - v2.0)
+================================================================================
+
+6.1 VISÃO GERAL
+---------------
+O Editor Visual é uma interface web interativa onde o cliente pode editar
+todos os aspectos do carrossel ANTES da renderização final. Isso elimina
+custos desnecessários de re-renderização e dá autonomia ao cliente.
+
+
+6.2 TECNOLOGIAS
+---------------
+┌─────────────────────┬────────────────────────────────────────────┐
+│ Componente          │ Tecnologia                                 │
+├─────────────────────┼────────────────────────────────────────────┤
+│ Canvas Engine       │ Fabric.js 5.x (canvas interativo)          │
+│ Frontend Framework  │ React 18 + TypeScript                      │
+│ State Management    │ Zustand (leve e performático)              │
+│ UI Components       │ shadcn/ui (acessível e customizável)       │
+│ Ícones              │ Lucide React                               │
+│ Fontes              │ Google Fonts (Inter, Poppins, Roboto, etc) │
+│ Preview             │ Modal full-screen com simulação Instagram  │
+└─────────────────────┴────────────────────────────────────────────┘
+
+
+6.3 FUNCIONALIDADES
+-------------------
+
+EDIÇÃO DE TEXTO:
+• Clique duplo para editar inline
+• Suporte a rich text (negrito, itálico)
+• Mudança de fonte (15+ opções)
+• Tamanho do texto (12px - 120px)
+• Cor do texto (color picker)
+• Alinhamento (esquerda, centro, direita)
+• Espaçamento entre linhas (line-height)
+• Espaçamento entre letras (letter-spacing)
+
+EDIÇÃO DE ELEMENTOS:
+• Drag & drop de textos e imagens
+• Resize com proporções mantidas
+• Rotação de elementos
+• Opacidade (0-100%)
+• Camadas (trazer para frente/trás)
+• Duplicar/Deletar elementos
+
+GESTÃO DE SLIDES:
+• Navegação entre slides (thumbnails)
+• Adicionar/Remover slides
+• Reordenar slides (drag & drop)
+• Duplicar slides
+
+TEMPLATES:
+• 5+ templates pré-configurados
+• Salvar como template customizado
+• Biblioteca de templates
+
+ASSETS:
+• Upload de imagens (PNG, JPG, WEBP)
+• Crop e ajuste de imagens
+• Biblioteca de assets do cliente
+
+PREVIEW:
+• Preview em tempo real
+• Modal full-screen simulando Instagram
+• Modo carrossel (navegação entre slides)
+• Modo comparação (antes/depois)
+
+PRODUTIVIDADE:
+• Auto-save (a cada 2 segundos)
+• Undo/Redo (até 50 estados)
+• Atalhos de teclado (Ctrl+Z, Ctrl+C, etc)
+• Versionamento (histórico de alterações)
+
+
+6.4 INTERFACE DO EDITOR
+------------------------
+
+┌─────────────────────────────────────────────────────────────┐
+│  EDITOR VISUAL POST EXPRESS                                 │
+├──────────────────┬──────────────────────┬───────────────────┤
+│                  │                      │                   │
+│  SIDEBAR ESQ     │   CANVAS CENTRAL     │  SIDEBAR DIR      │
+│                  │                      │                   │
+│ 📄 SLIDES        │  ┌────────────────┐  │ ✏️ PROPRIEDADES   │
+│ ┌──────────┐     │  │                │  │                   │
+│ │ 1. Capa  │ ◄── │  │  (○) Nome  ✓   │  │ Elemento: Texto   │
+│ └──────────┘     │  │      @user     │  │                   │
+│ ┌──────────┐     │  │                │  │ Fonte:            │
+│ │ 2. Intro │     │  │  "7 erros..."  │  │ [Inter      ▼]    │
+│ └──────────┘     │  │                │  │                   │
+│ ┌──────────┐     │  │                │  │ Tamanho:          │
+│ │ 3. Erro1 │     │  │                │  │ [48px       ▼]    │
+│ └──────────┘     │  │                │  │                   │
+│     ...          │  │                │  │ Cor:              │
+│                  │  └────────────────┘  │ [#000000    🎨]   │
+│ [+ Novo Slide]   │                      │                   │
+│                  │  ZOOM: [- 100% +]    │ Alinhamento:      │
+│                  │                      │ [⬅️ ⬆️ ➡️]          │
+│ 📚 TEMPLATES     │                      │                   │
+│ 🎨 ASSETS        │                      │ [Aplicar]         │
+│                  │                      │                   │
+└──────────────────┴──────────────────────┴───────────────────┘
+│                                                             │
+│  TOOLBAR:                                                   │
+│  [💾 Salvar] [👁️ Preview] [↩️ Desfazer] [↪️ Refazer]        │
+│  [✅ Aprovar para Renderização] [🔴 Solicitar Ajustes IA]   │
+└─────────────────────────────────────────────────────────────┘
+
+
+6.5 FLUXO DE TRABALHO NO EDITOR
+-------------------------------
+
+1. CARREGAR CARROSSEL
+   └─ Squad Criação gera JSON → Supabase → Editor carrega template
+
+2. CLIENTE EDITA (10-30min típico)
+   ├─ Navega pelos slides
+   ├─ Clica em textos e edita inline
+   ├─ Muda fontes, cores, tamanhos
+   ├─ Ajusta posições (drag & drop)
+   ├─ Adiciona/remove elementos
+   ├─ Faz upload de imagens customizadas
+   └─ Preview frequente no modal Instagram
+
+3. AUTO-SAVE
+   └─ A cada 2s, JSON é salvo no Supabase (debounced)
+
+4. CLIENTE APROVA
+   └─ Clica "Aprovar para Renderização"
+   └─ Status muda para "Aprovado - Aguardando Renderização"
+
+5. RENDERIZAÇÃO (Automática)
+   └─ Backend pega JSON final → Cloudinary API → Gera PNGs
+   └─ Status muda para "Renderizado - Pronto para Publicar"
+
+
+6.6 ATALHOS DE TECLADO
+----------------------
+┌──────────────────┬─────────────────────────────────────────┐
+│ Atalho           │ Ação                                    │
+├──────────────────┼─────────────────────────────────────────┤
+│ Ctrl/Cmd + Z     │ Desfazer                                │
+│ Ctrl/Cmd + Y     │ Refazer                                 │
+│ Ctrl/Cmd + C     │ Copiar elemento                         │
+│ Ctrl/Cmd + V     │ Colar elemento                          │
+│ Ctrl/Cmd + D     │ Duplicar elemento                       │
+│ Delete/Backspace │ Deletar elemento selecionado            │
+│ Ctrl/Cmd + S     │ Salvar manualmente                      │
+│ Setas ←↑→↓       │ Mover elemento 1px                      │
+│ Shift + Setas    │ Mover elemento 10px                     │
+│ Ctrl + Setas     │ Redimensionar                           │
+│ Tab              │ Próximo slide                           │
+│ Shift + Tab      │ Slide anterior                          │
+│ Spacebar         │ Preview modal                           │
+└──────────────────┴─────────────────────────────────────────┘
+
+
+6.7 PERFORMANCE
+---------------
+• Carregamento inicial: < 1s (template base)
+• Troca de slide: < 100ms
+• Renderização canvas: 60fps
+• Auto-save: debounced 2s (não trava UI)
+• Lazy loading: Só carrega slides visíveis +/- 2
+• Cache de assets: LRU com max 50 imagens
+
+
+6.8 MOBILE RESPONSIVENESS
+-------------------------
+• Layout adaptativo (grid CSS)
+• Touch gestures (pinch to zoom, swipe slides)
+• Teclado virtual otimizado (text editing)
+• PWA support (trabalhar offline)
+
+
+================================================================================
+7. GERAÇÃO DE IMAGENS FINAIS (CLOUDINARY)
+================================================================================
+
+7.1 QUANDO ACONTECE
+-------------------
+A renderização Cloudinary ocorre APENAS DEPOIS que o cliente aprova o design
+final no Editor Visual. Isso garante que renderizamos 1x só, economizando
+70-80% vs abordagem tradicional.
+
+
+7.2 CONVERSOR JSON → CLOUDINARY
+-------------------------------
+O backend possui um serviço `CloudinaryExporter` que converte o JSON do
+Fabric.js (Editor Visual) em transformações Cloudinary:
+
+ENTRADA (JSON do Fabric.js):
+```json
+{
+  "objects": [
+    {
+      "type": "text",
+      "text": "7 erros que te impedem de vender",
+      "fontFamily": "Inter",
+      "fontSize": 48,
+      "fill": "#000000",
+      "left": 100,
+      "top": 400
+    }
+  ]
+}
+```
+
+SAÍDA (URL Cloudinary):
+```
+https://res.cloudinary.com/pazos-media/image/upload/
+  l_text:Inter_48_bold:7%20erros%20que%20te%20impedem%20de%20vender,
+  co_rgb:000000,g_north_west,x_100,y_400/
+  b_rgb:ffffff/w_1080,h_1080/slide_1.png
+```
+
+
+7.3 TEMPLATE ESTILO TWEET
+-------------------------
+O template segue o estilo de posts do Twitter/X, que tem alta conversão no
+mercado brasileiro.
+
+ESPECIFICAÇÕES:
+┌─────────────────────┬────────────────────────────────────────────┐
+│ Elemento            │ Especificação                              │
+├─────────────────────┼────────────────────────────────────────────┤
+│ Fundo               │ Branco (#FFFFFF)                           │
+│ Foto de Perfil      │ Circular, canto superior esquerdo          │
+│ Nome                │ Bold, ao lado da foto + verificado (✓ azul)│
+│ Username            │ Cinza, abaixo do nome (@usuario)           │
+│ Texto               │ Preto, fonte clean, tamanho legível        │
+│ Imagem              │ Opcional, quadrada, abaixo do texto        │
+│ Dimensões           │ 1080x1080px ou 1080x1350px                 │
+└─────────────────────┴────────────────────────────────────────────┘
+
+
+7.4 VARIAÇÕES DO TEMPLATE
+-------------------------
+
+VARIAÇÃO 1 — SÓ TEXTO (CENTRALIZADO):
+┌─────────────────────────────────────┐
+│                                     │
+│  (○) Nome do Cliente    ✓           │
+│      @username                      │
+│                                     │
+│                                     │
+│      "Texto centralizado aqui,      │
+│       frase de impacto ou           │
+│       insight poderoso"             │
+│                                     │
+│                                     │
+└─────────────────────────────────────┘
+
+VARIAÇÃO 2 — TEXTO + IMAGEM:
+┌─────────────────────────────────────┐
+│                                     │
+│  (○) Nome do Cliente    ✓           │
+│      @username                      │
+│                                     │
+│  "Texto do post aqui..."            │
+│                                     │
+│  ┌─────────────────────────────┐    │
+│  │                             │    │
+│  │    [Imagem quadrada]        │    │
+│  │                             │    │
+│  └─────────────────────────────┘    │
+│                                     │
+└─────────────────────────────────────┘
+
+
+7.5 PROCESSO DE RENDERIZAÇÃO
+----------------------------
+1. Cliente clica "Aprovar para Renderização" no Editor
+2. Backend recebe JSON final do carrossel (todos os slides)
+3. Para cada slide:
+   a) CloudinaryExporter converte JSON → URL de transformação
+   b) Cloudinary API é chamada para renderizar PNG
+   c) Webhook retorna quando imagem está pronta
+   d) URL da imagem é salva no Supabase
+4. Status do carrossel muda para "Renderizado"
+5. Cliente é notificado (email + notificação in-app)
+
+
+7.6 BATCH PROCESSING
+--------------------
+Para otimizar, renderizamos em batches de 5 slides por vez:
+• Reduz tempo total (paralelização)
+• Evita rate limiting da Cloudinary API
+• Progress bar para o cliente (20%, 40%, 60%...)
+
+
+7.7 CUSTOS DE RENDERIZAÇÃO
+--------------------------
+┌────────────────────────┬──────────────┬────────────────────┐
+│ Operação               │ Custo Unit.  │ Custo/Carrossel    │
+├────────────────────────┼──────────────┼────────────────────┤
+│ Renderização (10 slides│ ~$0.01/slide │ $0.10              │
+│ Storage (imagens)      │ $0.02/GB/mês │ ~$0.001            │
+│ Bandwidth (download)   │ $0.10/GB     │ ~$0.003            │
+├────────────────────────┼──────────────┼────────────────────┤
+│ TOTAL por carrossel    │              │ ~$0.10             │
+└────────────────────────┴──────────────┴────────────────────┘
+
+ECONOMIA COM EDITOR VISUAL:
+• Sem editor: 3-5 renderizações/carrossel = $0.30-0.50
+• Com editor: 1 renderização/carrossel = $0.10
+• ECONOMIA: 66-80% 💰
+
+
+================================================================================
+8. CADASTRO DE CLIENTES
+================================================================================
+
+8.1 ESTRUTURA DO BANCO DE DADOS (SUPABASE)
+------------------------------------------
+
+TABELA: clientes
+┌─────────────┬───────────┬─────────────────────────────────┐
+│ Campo       │ Tipo      │ Descrição                       │
+├─────────────┼───────────┼─────────────────────────────────┤
+│ id          │ UUID      │ Identificador único             │
+│ nome        │ TEXT      │ Nome completo do cliente        │
+│ username    │ TEXT      │ @usuario (sem @)                │
+│ foto_url    │ TEXT      │ URL da foto de perfil           │
+│ email       │ TEXT      │ Email para acesso ao portal     │
+│ nicho       │ TEXT      │ Área de atuação                 │
+│ created_at  │ TIMESTAMP │ Data de cadastro                │
+└─────────────┴───────────┴─────────────────────────────────┘
+
+TABELA: conteudos
+┌─────────────────┬───────────┬─────────────────────────────────┐
+│ Campo           │ Tipo      │ Descrição                       │
+├─────────────────┼───────────┼─────────────────────────────────┤
+│ id              │ UUID      │ Identificador único             │
+│ cliente_id      │ UUID      │ FK para clientes                │
+│ tipo            │ TEXT      │ educacional/vendas/autoridade   │
+│ slides          │ JSONB     │ Array com dados de cada slide   │
+│ json_editavel   │ JSONB     │ JSON Fabric.js do editor (NOVO) │
+│ legenda         │ TEXT      │ Caption do post                 │
+│ status          │ TEXT      │ rascunho/editando/aprovado/...  │
+│ num_edicoes     │ INTEGER   │ Contador de edições (NOVO)      │
+│ renderizado     │ BOOLEAN   │ Se foi renderizado (NOVO)       │
+│ created_at      │ TIMESTAMP │ Data de criação                 │
+│ updated_at      │ TIMESTAMP │ Última edição (NOVO)            │
+└─────────────────┴───────────┴─────────────────────────────────┘
+
+TABELA: templates (NOVA)
+┌─────────────────┬───────────┬─────────────────────────────────┐
+│ Campo           │ Tipo      │ Descrição                       │
+├─────────────────┼───────────┼─────────────────────────────────┤
+│ id              │ UUID      │ Identificador único             │
+│ nome            │ TEXT      │ Nome do template                │
+│ tipo            │ TEXT      │ tweet/minimalista/colorido/etc  │
+│ json_template   │ JSONB     │ JSON Fabric.js base             │
+│ thumbnail_url   │ TEXT      │ Preview do template             │
+│ is_default      │ BOOLEAN   │ Se é template padrão            │
+│ created_at      │ TIMESTAMP │ Data de criação                 │
+└─────────────────┴───────────┴─────────────────────────────────┘
+
+TABELA: editor_sessions (NOVA)
+┌─────────────────┬───────────┬─────────────────────────────────┐
+│ Campo           │ Tipo      │ Descrição                       │
+├─────────────────┼───────────┼─────────────────────────────────┤
+│ id              │ UUID      │ Identificador único             │
+│ conteudo_id     │ UUID      │ FK para conteudos               │
+│ cliente_id      │ UUID      │ FK para clientes                │
+│ started_at      │ TIMESTAMP │ Início da sessão                │
+│ ended_at        │ TIMESTAMP │ Fim da sessão                   │
+│ duration_sec    │ INTEGER   │ Duração em segundos             │
+│ num_saves       │ INTEGER   │ Quantas vezes salvou            │
+│ num_undos       │ INTEGER   │ Quantas vezes desfez            │
+└─────────────────┴───────────┴─────────────────────────────────┘
+
+TABELA: assets (NOVA)
+┌─────────────────┬───────────┬─────────────────────────────────┐
+│ Campo           │ Tipo      │ Descrição                       │
+├─────────────────┼───────────┼─────────────────────────────────┤
+│ id              │ UUID      │ Identificador único             │
+│ cliente_id      │ UUID      │ FK para clientes                │
+│ nome_arquivo    │ TEXT      │ Nome original do arquivo        │
+│ storage_url     │ TEXT      │ URL no Supabase Storage         │
+│ tipo_mime       │ TEXT      │ image/png, image/jpeg, etc      │
+│ tamanho_bytes   │ INTEGER   │ Tamanho do arquivo              │
+│ uploaded_at     │ TIMESTAMP │ Data de upload                  │
+└─────────────────┴───────────┴─────────────────────────────────┘
+
+TABELA: render_queue (NOVA)
+┌─────────────────┬───────────┬─────────────────────────────────┐
+│ Campo           │ Tipo      │ Descrição                       │
+├─────────────────┼───────────┼─────────────────────────────────┤
+│ id              │ UUID      │ Identificador único             │
+│ conteudo_id     │ UUID      │ FK para conteudos               │
+│ status          │ TEXT      │ pending/processing/completed    │
+│ progress        │ INTEGER   │ 0-100% (quantos slides prontos) │
+│ slides_urls     │ JSONB     │ Array de URLs das imagens       │
+│ error_message   │ TEXT      │ Se houver erro                  │
+│ created_at      │ TIMESTAMP │ Quando entrou na fila           │
+│ completed_at    │ TIMESTAMP │ Quando completou                │
+└─────────────────┴───────────┴─────────────────────────────────┘
+
+
+8.2 RLS POLICIES (Row Level Security)
+-------------------------------------
+• Clientes só veem seus próprios dados (conteudos, assets, sessions)
+• Admins da Pazos Media veem tudo
+• API service_role_key bypassa RLS (backend)
+
+
+================================================================================
+9. PORTAL DE APROVAÇÃO DO CLIENTE
+================================================================================
+
+9.1 VISÃO GERAL
+---------------
+Interface web onde o cliente visualiza, edita e aprova os conteúdos gerados.
+Agora inclui o Editor Visual integrado.
+
+
+9.2 FUNCIONALIDADES
+-------------------
+• Visualizar carrosséis gerados (preview)
+• Editar no Editor Visual (NOVO)
+• Aprovar conteúdo para renderização
+• Solicitar ajustes à IA (re-generate copy)
+• Visualizar legendas/captions
+• Download de imagens finais (ZIP)
+• Histórico de conteúdos aprovados
+• Métricas de engajamento (futuro)
+
+
+9.3 STATUS DOS CONTEÚDOS (ATUALIZADO)
+-------------------------------------
+┌─────────────────────────┬────────────────────────────────────────┐
+│ Status                  │ Descrição                              │
+├─────────────────────────┼────────────────────────────────────────┤
+│ 🟡 Rascunho             │ IA acabou de criar (JSON disponível)   │
+│ ✏️ Em Edição            │ Cliente está editando no Editor Visual │
+│ ⏳ Aguardando Render    │ Cliente aprovou, aguardando imagens    │
+│ 🎨 Renderizando         │ Cloudinary processando (0-100%)        │
+│ 🟢 Renderizado          │ Imagens prontas, aguardando publicação │
+│ ✅ Publicado            │ Conteúdo já foi ao ar                  │
+│ 🔴 Solicitou Ajustes IA │ Cliente pediu re-generate do copy      │
+└─────────────────────────┴────────────────────────────────────────┘
+
+
+9.4 FLUXO DE APROVAÇÃO (NOVO)
+-----------------------------
+
+1. NOTIFICAÇÃO
+   └─ Cliente recebe email: "Novo carrossel disponível"
+
+2. ACESSO AO PORTAL
+   └─ Cliente faz login → Vê lista de carrosséis
+   └─ Status: 🟡 Rascunho
+
+3. PREVIEW INICIAL
+   └─ Cliente clica "Visualizar"
+   └─ Vê preview do JSON no template
+   └─ Decide: "Editar" ou "Aprovar direto" ou "Solicitar Ajustes IA"
+
+4A. CAMINHO: EDITAR (mais comum)
+   └─ Cliente clica "Editar no Canvas"
+   └─ Editor Visual abre (full-screen)
+   └─ Status muda para: ✏️ Em Edição
+   └─ Cliente edita 10-30min
+   └─ Auto-save contínuo (a cada 2s)
+   └─ Cliente clica "Aprovar para Renderização"
+   └─ Status muda para: ⏳ Aguardando Render
+
+4B. CAMINHO: APROVAR DIRETO (raro)
+   └─ Cliente clica "Aprovar sem Editar"
+   └─ Status muda para: ⏳ Aguardando Render
+
+4C. CAMINHO: AJUSTES IA (ocasional)
+   └─ Cliente clica "Solicitar Ajustes"
+   └─ Preenche formulário: "O que mudar?"
+   └─ Squad Criação re-gera copy
+   └─ Volta ao passo 3
+
+5. RENDERIZAÇÃO (Automática)
+   └─ Backend pega JSON final
+   └─ Status muda para: 🎨 Renderizando (0%)
+   └─ Cloudinary processa slides
+   └─ Progress atualiza: 20%, 40%, 60%, 80%, 100%
+   └─ Status muda para: 🟢 Renderizado
+
+6. DOWNLOAD E PUBLICAÇÃO
+   └─ Cliente vê imagens finais
+   └─ Faz download (ZIP com 10 PNGs)
+   └─ Publica no Instagram/LinkedIn
+   └─ Marca como "Publicado" no portal
+
+
+9.5 WIREFRAME DO PORTAL
+-----------------------
+
+┌─────────────────────────────────────────────────────────────┐
+│  POST EXPRESS — Portal do Cliente                           │
+│  Olá, Nome Cliente! (@usuario)                   [🔔] [👤]  │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  📊 DASHBOARD                                               │
+│  ┌────────────┬────────────┬────────────┬────────────┐     │
+│  │ 🟡 Rascunho│ ✏️ Editando│ 🎨 Rendering│ ✅ Publicado│     │
+│  │     3      │     1      │     0      │     48     │     │
+│  └────────────┴────────────┴────────────┴────────────┘     │
+│                                                             │
+│  🟡 RASCUNHOS (3)                                           │
+│  ┌───────────────────────────────────────────────────────┐ │
+│  │ 📄 "7 erros que te impedem de vender"                 │ │
+│  │ Tipo: Educacional | Criado: Hoje, 10:30              │ │
+│  │ [👁️ Preview] [🎨 Editar no Canvas] [🔴 Ajustes IA]    │ │
+│  └───────────────────────────────────────────────────────┘ │
+│                                                             │
+│  ✏️ EM EDIÇÃO (1)                                           │
+│  ┌───────────────────────────────────────────────────────┐ │
+│  │ 📄 "Como dobrar suas vendas em 30 dias"              │ │
+│  │ Editando há 15 min | Auto-save: agora                │ │
+│  │ [🎨 Continuar Editando]                               │ │
+│  └───────────────────────────────────────────────────────┘ │
+│                                                             │
+│  🟢 RENDERIZADOS (12)                                       │
+│  ┌───────────────────────────────────────────────────────┐ │
+│  │ 📄 "Framework de vendas consultivas"                  │ │
+│  │ Renderizado: Ontem, 18:00 | 10 slides                │ │
+│  │ [👁️ Ver Carrossel] [⬇️ Download ZIP] [✅ Publicar]    │ │
+│  └───────────────────────────────────────────────────────┘ │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+
+
+================================================================================
+10. ENTREGÁVEIS POR CLIENTE
+================================================================================
+
+10.1 FORMATO DE ENTREGA
+-----------------------
+• Carrosséis: Imagens PNG prontas para postar (1080x1080 ou 1080x1350)
+• Legendas: Texto da caption com hashtags
+• Plataformas: Instagram e LinkedIn
+• Formato de entrega: Download ZIP via portal
+
+
+10.2 QUANTIDADE
+--------------
+A quantidade de carrosséis por cliente é flexível e definida no contrato.
+O sistema suporta geração sob demanda, permitindo escalar conforme necessidade.
+
+Típico:
+• Plano Starter: 8 carrosséis/mês
+• Plano Growth: 16 carrosséis/mês
+• Plano Pro: 32 carrosséis/mês
+
+
+================================================================================
+11. ROADMAP DE IMPLEMENTAÇÃO (ATUALIZADO v2.0)
+================================================================================
+
+FASE 1: FUNDAÇÃO (2 semanas)
+----------------------------
+• Configurar Supabase (tabelas de clientes e conteúdos)
+• Integrar Apify para scraping
+• Implementar upload de documentos
+• Configurar OpenAI Whisper API (transcrição)
+• Setup Cloudinary
+• Criar schema RLS policies
+
+FASE 2: SQUADS DE IA (3 semanas)
+---------------------------------
+• Desenvolver Squad Auditores (5 mentes)
+• Desenvolver Squad Criação (5 mentes)
+• Integrar fluxo entre squads
+• Output JSON estruturado (Fabric.js compatible)
+
+FASE 3: EDITOR VISUAL (3 semanas) — NOVO!
+-----------------------------------------
+• Story 3.1: POC de tecnologias (Fabric.js vs Polotno vs Konva)
+• Story 3.2: Canvas interativo base (zoom, pan, drag & drop)
+• Story 3.3: Parser JSON → Canvas
+• Story 3.4: Editor de texto inline + formatação
+• Story 3.5: Painel de slides e navegação
+• Story 3.6: Preview em tempo real (modal Instagram)
+• Story 3.7: Export para JSON
+• Story 3.8: Auto-save e versionamento
+• Story 3.9: Templates pré-configurados (5+)
+• Story 3.10: Toolbar e atalhos de teclado
+• Story 3.11: Mobile responsiveness + PWA
+• Story 3.12: Testes E2E (Playwright) + QA
+
+FASE 4: RENDERIZAÇÃO CLOUDINARY (1 semana)
+------------------------------------------
+• Implementar CloudinaryExporter (JSON → URLs)
+• Batch processing de slides
+• Fila de renderização (render_queue)
+• Webhooks para status updates
+• Progress tracking
+
+FASE 5: PORTAL DO CLIENTE (2 semanas)
+-------------------------------------
+• Desenvolver interface de visualização
+• Integrar Editor Visual
+• Sistema de notificações (email + in-app)
+• Download de imagens (ZIP)
+• Histórico e métricas
+• Autenticação Supabase Auth
+
+FASE 6: INTEGRAÇÃO E TESTES (1 semana)
+--------------------------------------
+• Testes end-to-end do fluxo completo
+• Performance testing
+• Security audit
+• Ajustes de UX
+
+FASE 7: BETA E LANÇAMENTO (2 semanas)
+-------------------------------------
+• Beta com 3-5 clientes
+• Feedback loop
+• Ajustes finais
+• Documentação
+• Treinamento da equipe Pazos Media
+• Go-live
+
+TOTAL: 14 semanas (~3.5 meses)
+
+
+================================================================================
+12. MÉTRICAS DE SUCESSO (ATUALIZADO v2.0)
+================================================================================
+
+┌────────────────────────────────────┬─────────────────┬─────────────────────┐
+│ Métrica                            │ Meta            │ Como Medir          │
+├────────────────────────────────────┼─────────────────┼─────────────────────┤
+│ Tempo de criação por carrossel     │ < 15 min        │ Logs do sistema     │
+│ Tempo de edição do cliente (NOVO)  │ < 30 min        │ editor_sessions     │
+│ Taxa de aprovação na 1ª renderização│ > 90%           │ Portal (vs 40% ant) │
+│ Economia de renderizações (NOVO)   │ > 70%           │ render_queue        │
+│ Custo por carrossel (NOVO)         │ < $0.15         │ Billing analytics   │
+│ Engajamento dos posts              │ > 5%            │ Métricas das redes  │
+│ NPS do Editor Visual (NOVO)        │ > 50            │ Survey in-app       │
+│ Clientes atendidos/mês             │ Dobrar capac.   │ Dashboard interno   │
+└────────────────────────────────────┴─────────────────┴─────────────────────┘
+
+
+12.1 COMPARAÇÃO DE CUSTOS (NOVO)
+---------------------------------
+
+SEM EDITOR VISUAL (v1.0):
+┌────────────────────────┬──────────────┐
+│ Operação               │ Custo        │
+├────────────────────────┼──────────────┤
+│ Render inicial         │ $0.10        │
+│ Ajuste 1 (cor)         │ $0.10        │
+│ Ajuste 2 (fonte)       │ $0.10        │
+│ Ajuste 3 (espaçamento) │ $0.10        │
+├────────────────────────┼──────────────┤
+│ TOTAL/carrossel        │ $0.40        │
+│ 100 carrosséis/mês     │ $40/mês      │
+│ 1000 carrosséis/mês    │ $400/mês ❌  │
+└────────────────────────┴──────────────┘
+
+COM EDITOR VISUAL (v2.0):
+┌────────────────────────┬──────────────┐
+│ Operação               │ Custo        │
+├────────────────────────┼──────────────┤
+│ Preview no navegador   │ $0 (grátis)  │
+│ Cliente edita 10x      │ $0 (grátis)  │
+│ Render final (1x)      │ $0.10        │
+├────────────────────────┼──────────────┤
+│ TOTAL/carrossel        │ $0.10        │
+│ 100 carrosséis/mês     │ $10/mês      │
+│ 1000 carrosséis/mês    │ $100/mês ✅  │
+├────────────────────────┼──────────────┤
+│ ECONOMIA               │ 75% 🎉       │
+└────────────────────────┴──────────────┘
+
+
+12.2 ROI DO EDITOR VISUAL
+--------------------------
+INVESTIMENTO:
+• Desenvolvimento: 3 semanas (~$15.000)
+• Infraestrutura: $50/mês (Supabase, hosting)
+
+ECONOMIA MENSAL (100 carrosséis/mês):
+• Sem editor: $40/mês
+• Com editor: $10/mês
+• ECONOMIA: $30/mês
+
+PAYBACK: 15.000 / 30 = 500 meses (escala de 100 carrosséis)
+
+MAS... com 1000 carrosséis/mês:
+• ECONOMIA: $300/mês
+• PAYBACK: 15.000 / 300 = 50 meses = ~4 meses ✅
+
+Além disso:
+• Autonomia do cliente (menos fricção)
+• Taxa de aprovação maior (90% vs 40%)
+• Satisfação do cliente (NPS +30 pontos)
+
+
+================================================================================
+13. RISCOS E MITIGAÇÕES
+================================================================================
+
+13.1 RISCOS TÉCNICOS
+--------------------
+┌────────────────────────────┬──────────────────────────────────┐
+│ Risco                      │ Mitigação                        │
+├────────────────────────────┼──────────────────────────────────┤
+│ Performance do canvas      │ Lazy loading, 60fps benchmark    │
+│ Browser compatibility      │ Polyfills, testes cross-browser  │
+│ Perda de dados (crashes)   │ Auto-save a cada 2s              │
+│ Cloudinary rate limiting   │ Batch processing, fila           │
+│ Storage de imagens         │ Supabase Storage (100GB free)    │
+└────────────────────────────┴──────────────────────────────────┘
+
+13.2 RISCOS DE PRODUTO
+----------------------
+┌────────────────────────────┬──────────────────────────────────┐
+│ Risco                      │ Mitigação                        │
+├────────────────────────────┼──────────────────────────────────┤
+│ Cliente acha editor complexo│ Onboarding tour, tooltips       │
+│ Cliente prefere delegar    │ Modo "aprovar direto" disponível │
+│ Baixa adoção do editor     │ Testes de usabilidade, UX/UI     │
+└────────────────────────────┴──────────────────────────────────┘
+
+13.3 RISCOS DE NEGÓCIO
+----------------------
+┌────────────────────────────┬──────────────────────────────────┐
+│ Risco                      │ Mitigação                        │
+├────────────────────────────┼──────────────────────────────────┤
+│ Cliente edita muito = devagar│ Analytics, otimizar UX          │
+│ Custo de infra escala mal  │ Monitorar custos, otimizar cache │
+└────────────────────────────┴──────────────────────────────────┘
+
+
+================================================================================
+14. APÊNDICES
+================================================================================
+
+14.1 GLOSSÁRIO
+--------------
+• Canvas: Área de desenho HTML5 onde elementos gráficos são renderizados
+• Fabric.js: Biblioteca JavaScript para manipulação de canvas interativo
+• JSON: Formato de dados (JavaScript Object Notation)
+• RLS: Row Level Security (segurança no Supabase)
+• PWA: Progressive Web App
+• Debounce: Técnica para limitar frequência de execução de funções
+
+14.2 REFERÊNCIAS
+----------------
+• Fabric.js Docs: http://fabricjs.com/docs/
+• Cloudinary Transformations: https://cloudinary.com/documentation
+• Supabase Docs: https://supabase.com/docs
+• MMOS Squad: /docs/MAPEAMENTO_MENTES_DISPONIVEIS.md
+• Épico Editor Visual: /docs/epics/EPIC-004.5-editor-visual.md
+• Arquitetura Editor: /docs/architecture/editor-visual-architecture.md
+
+14.3 DECISÕES TÉCNICAS
+---------------------
+• Fabric.js escolhido por balance de flexibilidade vs produtividade
+• Zustand escolhido por performance (vs Redux)
+• shadcn/ui escolhido por acessibilidade (vs Material UI)
+• OpenAI Whisper escolhido por qualidade PT-BR (vs AssemblyAI)
+• Next.js 14 escolhido por App Router e Server Components
+
+14.4 CONTATOS
+-------------
+• PM: Morgan (@pm)
+• Architect: River (@architect)
+• Dev Lead: Dex (@dev)
+• QA Lead: Quinn (@qa)
+
+
+================================================================================
+                    Post Express v2.0 — Pazos Media © 2026
+                  "Automatize 80% da criação com 75% menos custo"
+================================================================================
