@@ -1,0 +1,190 @@
+'use client'
+
+import { useState } from 'react'
+import { PageHeader } from '@/components/molecules/page-header'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/atoms/card'
+import { Button } from '@/components/atoms/button'
+import { Badge } from '@/components/atoms/badge'
+import { Skeleton } from '@/components/atoms/skeleton'
+import { DeleteProfileModal } from '@/components/molecules/delete-profile-modal'
+import { useProfile } from '@/hooks/use-profiles'
+import { formatNumber, formatDate, getScoreClassification } from '@/lib/format'
+import { CheckCircle, Users, FileText, Calendar, Trash2 } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useParams, useRouter } from 'next/navigation'
+
+export default function ProfilePage() {
+  const params = useParams()
+  const router = useRouter()
+  const id = params.id as string
+  const { profile, isLoading, isError } = useProfile(id)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+
+  if (isLoading) {
+    return (
+      <div>
+        <Skeleton className="h-12 w-64 mb-8" />
+        <div className="grid gap-6">
+          <Skeleton className="h-48 w-full" />
+          <Skeleton className="h-64 w-full" />
+        </div>
+      </div>
+    )
+  }
+
+  if (isError || !profile) {
+    return (
+      <div>
+        <PageHeader title="Perfil não encontrado" />
+        <div className="text-error-500 text-center py-12">
+          Erro ao carregar perfil
+        </div>
+      </div>
+    )
+  }
+
+  const sortedAudits = profile.audits || []
+  const latestAudit = sortedAudits[0]
+
+  return (
+    <div>
+      <PageHeader
+        title={profile.full_name || profile.username}
+        description={`@${profile.username}`}
+      />
+
+      {/* Profile Info */}
+      <Card className="mb-6">
+        <CardContent className="p-6">
+          <div className="flex items-start gap-6">
+            {/* Avatar */}
+            <div className="relative h-24 w-24 rounded-full bg-neutral-700 shrink-0 overflow-hidden ring-4 ring-neutral-700">
+              {profile.profile_pic_url_hd || profile.profile_pic_cloudinary_url ? (
+                <Image
+                  src={profile.profile_pic_cloudinary_url || profile.profile_pic_url_hd || ''}
+                  alt={profile.username}
+                  fill
+                  className="object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-neutral-500 text-4xl font-bold">
+                  {profile.username[0].toUpperCase()}
+                </div>
+              )}
+            </div>
+
+            {/* Info */}
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-2">
+                <h2 className="text-2xl font-bold">{profile.full_name || profile.username}</h2>
+                {profile.is_verified && <CheckCircle className="h-6 w-6 text-info-500" />}
+              </div>
+              {profile.biography && (
+                <p className="text-neutral-300 mb-4">{profile.biography}</p>
+              )}
+              <div className="flex gap-6 text-sm">
+                <div className="flex items-center gap-2">
+                  <Users className="h-4 w-4 text-neutral-400" />
+                  <span className="text-neutral-300 font-medium">{formatNumber(profile.followers_count || 0)}</span>
+                  <span className="text-neutral-500">seguidores</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <FileText className="h-4 w-4 text-neutral-400" />
+                  <span className="text-neutral-300 font-medium">{profile.posts_count || 0}</span>
+                  <span className="text-neutral-500">posts</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-neutral-400" />
+                  <span className="text-neutral-300 font-medium">{profile.total_audits}</span>
+                  <span className="text-neutral-500">auditorias</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Latest Score & Actions */}
+            <div className="text-right space-y-3">
+              {latestAudit && (
+                <>
+                  <div className={`text-5xl font-bold ${getScoreClassification(latestAudit.score_overall || 0).color}`}>
+                    {latestAudit.score_overall}
+                  </div>
+                  <Badge
+                    variant={
+                      (latestAudit.score_overall || 0) >= 75 ? 'success' :
+                      (latestAudit.score_overall || 0) >= 50 ? 'warning' :
+                      'error'
+                    }
+                  >
+                    {getScoreClassification(latestAudit.score_overall || 0).label}
+                  </Badge>
+                </>
+              )}
+
+              {/* Delete Button */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowDeleteModal(true)}
+                className="text-error-500 hover:text-error-400 hover:bg-error-500/10"
+              >
+                <Trash2 className="h-4 w-4 mr-2" />
+                Deletar Perfil
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Audits History */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Histórico de Auditorias</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {sortedAudits.length === 0 ? (
+            <div className="text-neutral-400 text-center py-8">
+              Nenhuma auditoria encontrada
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {sortedAudits.map((audit: any) => (
+                <Link key={audit.id} href={`/dashboard/audits/${audit.id}`}>
+                  <div className="flex items-center justify-between p-4 rounded-lg border border-neutral-700 hover:border-primary-500/50 hover:bg-neutral-800/50 transition-all cursor-pointer">
+                    <div>
+                      <div className="text-sm font-medium text-neutral-300">
+                        {formatDate(audit.audit_date)}
+                      </div>
+                      <div className="text-xs text-neutral-500">
+                        {audit.posts_analyzed} posts analisados
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className={`text-2xl font-bold ${getScoreClassification(audit.score_overall || 0).color}`}>
+                        {audit.score_overall}
+                      </div>
+                      <Button variant="ghost" size="sm">
+                        Ver →
+                      </Button>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Delete Modal */}
+      <DeleteProfileModal
+        profileId={id}
+        username={profile.username}
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onDeleteSuccess={() => {
+          router.push('/dashboard')
+        }}
+      />
+    </div>
+  )
+}
