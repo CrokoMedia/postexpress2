@@ -25,19 +25,16 @@ async function testInstagramScraper(username) {
   console.log(`🎯 Perfil alvo: @${username}\n`);
 
   try {
-    // ⚠️ IMPORTANTE: Substitua 'SEU_USERNAME' pelo seu username do Apify
-    // Exemplo: 'crokomedia/instagram-scraper-profile'
-    const ACTOR_NAME = 'SEU_USERNAME/instagram-scraper-profile';
+    // ✅ USANDO ACTOR OFICIAL DO APIFY
+    const ACTOR_NAME = 'apify/instagram-profile-scraper';
 
     console.log(`🚀 Iniciando execução do Actor: ${ACTOR_NAME}`);
     console.log('⏳ Aguarde...\n');
 
-    // Executar o Actor
+    // Executar o Actor com input correto
     const run = await client.actor(ACTOR_NAME).call({
-      username,
-      maxPosts: 10,
-      includeComments: true,
-      commentsLimit: 5,
+      usernames: [username],
+      resultsLimit: 10,
     });
 
     console.log(`✅ Actor iniciado!`);
@@ -69,37 +66,43 @@ async function testInstagramScraper(username) {
 
     // Verificar dados do perfil
     if (items.length > 0) {
-      const firstPost = items[0];
+      const profile = items[0];
 
       console.log('👤 DADOS DO PERFIL:');
-      console.log(`   Nome completo: ${firstPost.ownerFullName || '❌ Não encontrado'}`);
-      console.log(`   Username: ${firstPost.ownerUsername || '❌ Não encontrado'}`);
-      console.log(`   ID: ${firstPost.ownerId || '❌ Não encontrado'}`);
-      console.log(`   📸 Foto de perfil: ${firstPost.ownerProfilePicUrl ? '✅ ENCONTRADA!' : '❌ NÃO ENCONTRADA'}`);
+      console.log(`   Nome completo: ${profile.fullName || profile.name || '❌ Não encontrado'}`);
+      console.log(`   Username: ${profile.username || '❌ Não encontrado'}`);
+      console.log(`   Biografia: ${profile.biography?.substring(0, 100) || '❌ Não encontrada'}...`);
+      console.log(`   Seguidores: ${profile.followersCount || 0}`);
+      console.log(`   Seguindo: ${profile.followsCount || 0}`);
+      console.log(`   Posts totais: ${profile.postsCount || 0}`);
+      console.log(`   📸 Foto de perfil: ${profile.profilePicUrl || profile.profilePicUrlHD ? '✅ ENCONTRADA!' : '❌ NÃO ENCONTRADA'}`);
 
-      if (firstPost.ownerProfilePicUrl) {
-        console.log(`\n🔗 URL da foto de perfil:`);
-        console.log(`   ${firstPost.ownerProfilePicUrl}\n`);
+      if (profile.profilePicUrl || profile.profilePicUrlHD) {
+        console.log(`\n🔗 URL da foto de perfil (HD):`);
+        console.log(`   ${profile.profilePicUrlHD || profile.profilePicUrl}\n`);
       }
 
-      console.log('\n📝 EXEMPLO DE POST:');
-      console.log(`   Tipo: ${firstPost.type}`);
-      console.log(`   Likes: ${firstPost.likesCount}`);
-      console.log(`   Comentários: ${firstPost.commentsCount}`);
-      console.log(`   Caption: ${firstPost.caption?.substring(0, 100)}...`);
-      console.log(`   URL: ${firstPost.url}`);
+      // Estatísticas de posts (se houver)
+      if (profile.latestPosts && profile.latestPosts.length > 0) {
+        console.log('\n📝 POSTS RECENTES:');
+        const totalLikes = profile.latestPosts.reduce((sum, post) => sum + (post.likesCount || 0), 0);
+        const totalComments = profile.latestPosts.reduce((sum, post) => sum + (post.commentsCount || 0), 0);
+        const avgLikes = (totalLikes / profile.latestPosts.length).toFixed(0);
+        const avgComments = (totalComments / profile.latestPosts.length).toFixed(0);
 
-      // Estatísticas gerais
-      const totalLikes = items.reduce((sum, post) => sum + (post.likesCount || 0), 0);
-      const totalComments = items.reduce((sum, post) => sum + (post.commentsCount || 0), 0);
-      const avgLikes = (totalLikes / items.length).toFixed(0);
-      const avgComments = (totalComments / items.length).toFixed(0);
+        console.log(`   Total de posts extraídos: ${profile.latestPosts.length}`);
+        console.log(`   Total de likes: ${totalLikes}`);
+        console.log(`   Total de comentários: ${totalComments}`);
+        console.log(`   Média de likes/post: ${avgLikes}`);
+        console.log(`   Média de comentários/post: ${avgComments}`);
 
-      console.log('\n📊 ESTATÍSTICAS:');
-      console.log(`   Total de likes: ${totalLikes}`);
-      console.log(`   Total de comentários: ${totalComments}`);
-      console.log(`   Média de likes/post: ${avgLikes}`);
-      console.log(`   Média de comentários/post: ${avgComments}`);
+        console.log('\n   📌 Exemplo de post:');
+        const firstPost = profile.latestPosts[0];
+        console.log(`      Caption: ${firstPost.caption?.substring(0, 80)}...`);
+        console.log(`      Likes: ${firstPost.likesCount}`);
+        console.log(`      Comentários: ${firstPost.commentsCount}`);
+        console.log(`      URL: ${firstPost.url}`);
+      }
     }
 
     // Salvar em arquivo
@@ -121,12 +124,10 @@ async function testInstagramScraper(username) {
     // Retornar resumo
     return {
       success: true,
-      posts: items.length,
-      profilePicUrl: items[0]?.ownerProfilePicUrl,
-      username: items[0]?.ownerUsername,
-      fullName: items[0]?.ownerFullName,
-      totalLikes,
-      totalComments,
+      items: items.length,
+      profilePicUrl: items[0]?.profilePicUrlHD || items[0]?.profilePicUrl,
+      username: items[0]?.username,
+      fullName: items[0]?.fullName || items[0]?.name,
     };
 
   } catch (error) {
