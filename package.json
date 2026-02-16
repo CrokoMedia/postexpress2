@@ -15,7 +15,8 @@
     "ocr-gemini": "node scripts/ocr-gemini-analyzer.js",
     "ocr-tesseract": "node scripts/ocr-image-analyzer.js",
     "fix-profile-pics": "node scripts/fix-missing-profile-pics.js",
-    "test-profile-pics": "node scripts/test-profile-pic.js"
+    "test-profile-pics": "node scripts/test-profile-pic.js",
+    "upload-to-cloudinary": "node scripts/upload-profile-pics-to-cloudinary.js"
   },
   "keywords": [
     "instagram",
@@ -35,6 +36,7 @@
     "@supabase/supabase-js": "^2.39.7",
     "@types/pdfkit": "^0.17.5",
     "class-variance-authority": "^0.7.0",
+    "cloudinary": "^2.9.0",
     "clsx": "^2.1.0",
     "dotenv": "^16.4.7",
     "framer-motion": "^11.0.5",
