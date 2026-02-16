@@ -140,7 +140,7 @@ export function DeleteProfileModal({
             Cancelar
           </Button>
           <Button
-            variant="error"
+            variant="danger"
             onClick={handleDelete}
             disabled={confirmText !== username || isDeleting}
             loading={isDeleting}

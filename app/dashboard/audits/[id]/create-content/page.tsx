@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { useAudit } from '@/hooks/use-audit'
 import { PageHeader } from '@/components/molecules/page-header'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/atoms/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/atoms/card'
 import { Button } from '@/components/atoms/button'
 import { Skeleton } from '@/components/atoms/skeleton'
 import { Badge } from '@/components/atoms/badge'
@@ -25,6 +25,8 @@ export default function CreateContentPage() {
   const [slidesError, setSlidesError] = useState<string | null>(null)
   const [loadingExisting, setLoadingExisting] = useState(true)
   const [approvingCarousel, setApprovingCarousel] = useState<number | null>(null)
+  const [customTheme, setCustomTheme] = useState('')
+  const [usedTheme, setUsedTheme] = useState<string | null>(null)
 
   // Carregar conteúdo e slides existentes ao abrir a página
   useEffect(() => {
@@ -59,8 +61,14 @@ export default function CreateContentPage() {
     setError(null)
 
     try {
+      const themeToUse = customTheme.trim() || null
+
       const response = await fetch(`/api/audits/${id}/generate-content`, {
-        method: 'POST'
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          custom_theme: themeToUse
+        })
       })
 
       if (!response.ok) {
@@ -70,6 +78,7 @@ export default function CreateContentPage() {
 
       const data = await response.json()
       setContent(data.content)
+      setUsedTheme(themeToUse)
     } catch (err: any) {
       console.error('Erro:', err)
       setError(err.message)
@@ -274,6 +283,42 @@ CTA: ${carousel.cta}
         </CardContent>
       </Card>
 
+      {/* Campo de Tema Personalizado */}
+      {!content && (
+        <Card className="border-primary-500/30 bg-neutral-900/50">
+          <CardHeader>
+            <CardTitle className="text-lg">Tema Personalizado (Opcional)</CardTitle>
+            <CardDescription>
+              Defina um tema específico para os carrosséis ou deixe vazio para gerar baseado apenas na auditoria
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <textarea
+              value={customTheme}
+              onChange={(e) => setCustomTheme(e.target.value)}
+              placeholder="Ex: Carrosséis sobre como aumentar vendas com Reels no Instagram..."
+              rows={4}
+              maxLength={500}
+              className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+            />
+            <div className="flex justify-between items-center text-xs">
+              <span className="text-neutral-500">💡 Quanto mais específico, melhor será o resultado</span>
+              <span className={`font-mono ${
+                customTheme.length > 450 ? 'text-warning-500' : 'text-neutral-500'
+              }`}>
+                {customTheme.length}/500
+              </span>
+            </div>
+            {customTheme.trim() && (
+              <div className="flex items-center gap-2 text-sm">
+                <Badge variant="info">Tema Definido</Badge>
+                <span className="text-neutral-400">Os carrosséis serão criados focados neste tema</span>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
       {/* Loading State */}
       {generating && (
         <Card>
@@ -305,7 +350,18 @@ CTA: ${carousel.cta}
         <>
           {/* Actions */}
           <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold">Sugestões de Carrosséis</h2>
+            <div className="flex items-center gap-3">
+              <h2 className="text-2xl font-bold">Sugestões de Carrosséis</h2>
+              {usedTheme ? (
+                <Badge variant="info" className="text-xs">
+                  Tema: {usedTheme.length > 40 ? usedTheme.substring(0, 40) + '...' : usedTheme}
+                </Badge>
+              ) : (
+                <Badge variant="neutral" className="text-xs">
+                  Baseado na Auditoria
+                </Badge>
+              )}
+            </div>
             <div className="flex gap-2">
               <Button variant="secondary" onClick={handleDownloadJSON}>
                 <Download className="w-4 h-4 mr-2" />

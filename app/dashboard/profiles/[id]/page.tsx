@@ -1,15 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { PageHeader } from '@/components/molecules/page-header'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/atoms/card'
 import { Button } from '@/components/atoms/button'
 import { Badge } from '@/components/atoms/badge'
 import { Skeleton } from '@/components/atoms/skeleton'
 import { DeleteProfileModal } from '@/components/molecules/delete-profile-modal'
+import { ProfileContextModal } from '@/components/organisms/profile-context-modal'
+import { ContentSquadChatModal } from '@/components/organisms/content-squad-chat-modal'
 import { useProfile } from '@/hooks/use-profiles'
 import { formatNumber, formatDate, getScoreClassification } from '@/lib/format'
-import { CheckCircle, Users, FileText, Calendar, Trash2 } from 'lucide-react'
+import { CheckCircle, Users, FileText, Calendar, Trash2, FileEdit, Sparkles, Loader2, BookOpen, MessageSquare } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
@@ -20,6 +22,73 @@ export default function ProfilePage() {
   const id = params.id as string
   const { profile, isLoading, isError } = useProfile(id)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [showContextModal, setShowContextModal] = useState(false)
+  const [showChatModal, setShowChatModal] = useState(false)
+  const [hasContext, setHasContext] = useState(false)
+  const [isReAuditing, setIsReAuditing] = useState(false)
+  const [contentCount, setContentCount] = useState(0)
+
+  // Verificar se tem contexto
+  useEffect(() => {
+    const checkContext = async () => {
+      try {
+        const res = await fetch(`/api/profiles/${id}/context`)
+        if (res.ok) {
+          const data = await res.json()
+          setHasContext(!!data.context)
+        }
+      } catch (error) {
+        console.error('Erro ao verificar contexto:', error)
+      }
+    }
+    if (id) checkContext()
+  }, [id])
+
+  // Verificar quantos conteúdos gerados existem
+  useEffect(() => {
+    const checkContents = async () => {
+      try {
+        const res = await fetch(`/api/profiles/${id}/contents`)
+        if (res.ok) {
+          const data = await res.json()
+          setContentCount(data.total || 0)
+        }
+      } catch (error) {
+        console.error('Erro ao verificar conteúdos:', error)
+      }
+    }
+    if (id) checkContents()
+  }, [id])
+
+  // Executar re-auditoria
+  const handleReAudit = async () => {
+    if (!latestAudit || isReAuditing) return
+
+    setIsReAuditing(true)
+    try {
+      const res = await fetch(`/api/audits/${latestAudit.id}/re-audit`, {
+        method: 'POST'
+      })
+
+      if (!res.ok) {
+        const error = await res.json()
+        throw new Error(error.error || 'Erro ao re-auditar')
+      }
+
+      const data = await res.json()
+
+      // Redirecionar para página de comparação
+      if (data.comparison_url) {
+        router.push(data.comparison_url)
+      } else {
+        router.push(`/dashboard/audits/${latestAudit.id}/compare?v2=${data.audit_v2.id}`)
+      }
+    } catch (error: any) {
+      alert(error.message)
+    } finally {
+      setIsReAuditing(false)
+    }
+  }
 
   if (isLoading) {
     return (
@@ -121,12 +190,81 @@ export default function ProfilePage() {
                 </>
               )}
 
+              {/* Context Button */}
+              <Button
+                variant={hasContext ? 'secondary' : 'primary'}
+                size="sm"
+                onClick={() => setShowContextModal(true)}
+                className="w-full"
+              >
+                {hasContext ? (
+                  <>
+                    <FileEdit className="h-4 w-4 mr-2" />
+                    Editar Contexto
+                  </>
+                ) : (
+                  <>
+                    <FileEdit className="h-4 w-4 mr-2" />
+                    Adicionar Contexto
+                  </>
+                )}
+              </Button>
+
+              {/* Re-Audit Button (only if has context) */}
+              {hasContext && latestAudit && (
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={handleReAudit}
+                  disabled={isReAuditing}
+                  className="w-full"
+                >
+                  {isReAuditing ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Re-auditando...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="h-4 w-4 mr-2" />
+                      Re-auditar com Contexto
+                    </>
+                  )}
+                </Button>
+              )}
+
+              {/* Chat with Content Squad Button */}
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={() => setShowChatModal(true)}
+                disabled={!latestAudit}
+                className="w-full"
+                title={!latestAudit ? 'Faça uma auditoria primeiro' : 'Conversar com Content Squad'}
+              >
+                <MessageSquare className="h-4 w-4 mr-2" />
+                Conversar com Content Squad
+              </Button>
+
+              {/* View Contents Button */}
+              {contentCount > 0 && (
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => router.push(`/dashboard/profiles/${id}/content`)}
+                  className="w-full"
+                >
+                  <BookOpen className="h-4 w-4 mr-2" />
+                  Ver Conteúdos ({contentCount})
+                </Button>
+              )}
+
               {/* Delete Button */}
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowDeleteModal(true)}
-                className="text-error-500 hover:text-error-400 hover:bg-error-500/10"
+                className="text-error-500 hover:text-error-400 hover:bg-error-500/10 w-full"
               >
                 <Trash2 className="h-4 w-4 mr-2" />
                 Deletar Perfil
@@ -185,6 +323,30 @@ export default function ProfilePage() {
           router.push('/dashboard')
         }}
       />
+
+      {/* Profile Context Modal */}
+      {showContextModal && (
+        <ProfileContextModal
+          profileId={id}
+          username={profile.username}
+          onClose={() => setShowContextModal(false)}
+          onSave={() => {
+            setHasContext(true)
+            setShowContextModal(false)
+          }}
+        />
+      )}
+
+      {/* Content Squad Chat Modal */}
+      {showChatModal && latestAudit && (
+        <ContentSquadChatModal
+          profileId={id}
+          username={profile.username}
+          latestAudit={latestAudit}
+          isOpen={showChatModal}
+          onClose={() => setShowChatModal(false)}
+        />
+      )}
     </div>
   )
 }
