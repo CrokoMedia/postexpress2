@@ -1,0 +1,190 @@
+# 📸 Instagram Scraper Scripts - Post Express
+
+Scripts para extrair dados de perfis do Instagram usando Apify.
+
+---
+
+## ✅ Script Recomendado: `test-instagram-scraper.js`
+
+Extrai **foto de perfil HD** + dados completos do perfil usando `apify/instagram-profile-scraper`.
+
+### 🚀 Como Usar:
+
+```bash
+node scripts/test-instagram-scraper.js [username]
+```
+
+**Exemplo:**
+```bash
+node scripts/test-instagram-scraper.js frankcosta
+```
+
+### 📊 O que extrai:
+
+- ✅ **Foto de perfil HD** (URL completa)
+- ✅ Nome completo
+- ✅ Username
+- ✅ Biografia
+- ✅ Número de seguidores
+- ✅ Número de pessoas seguindo
+- ✅ Total de posts
+- ✅ 12 posts mais recentes com métricas (likes, comentários)
+
+### 💾 Resultado:
+
+Salvo em: `squad-auditores/data/{username}-teste-scraper.json`
+
+---
+
+## 📋 Pré-requisitos:
+
+### 1. Instalar Dependências
+
+```bash
+npm install apify-client dotenv
+```
+
+### 2. Configurar Token do Apify
+
+Crie um arquivo `.env` na raiz do projeto:
+
+```env
+APIFY_API_TOKEN=seu_token_aqui
+```
+
+Para obter seu token:
+1. Acesse: https://console.apify.com/account/integrations
+2. Copie o "Personal API token"
+
+---
+
+## 🎯 Exemplo de Saída:
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📸 TESTE DO INSTAGRAM SCRAPER - POST EXPRESS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎯 Perfil alvo: @frankcosta
+
+✅ Total de posts extraídos: 1
+
+👤 DADOS DO PERFIL:
+   Nome completo: Frank Costa | INTELIGÊNCIA ARTIFICIAL...
+   Username: frankcosta
+   Biografia: 🤖 Te ajudo a usar IA pra vender MAIS...
+   Seguidores: 129300
+   Seguindo: 1070
+   Posts totais: 849
+   📸 Foto de perfil: ✅ ENCONTRADA!
+
+🔗 URL da foto de perfil (HD):
+   https://scontent-msp1-1.cdninstagram.com/v/t51.2885-19/...
+
+📝 POSTS RECENTES:
+   Total de posts extraídos: 12
+   Média de likes/post: 259
+   Média de comentários/post: 29
+
+💾 Dados salvos em: squad-auditores/data/frankcosta-teste-scraper.json
+```
+
+---
+
+## 🔧 Scripts Disponíveis:
+
+| Script | Descrição | Actor Usado |
+|--------|-----------|-------------|
+| `test-instagram-scraper.js` | ⭐ **RECOMENDADO** - Extrai foto de perfil HD | `apify/instagram-profile-scraper` |
+| `test-instagram-official.js` | Alternativo (mesmo resultado) | `apify/instagram-profile-scraper` |
+| `instagram-scraper-apify.js` | ❌ NÃO extrai foto de perfil | `apify/instagram-scraper` |
+
+---
+
+## 📚 Estrutura de Dados Extraídos:
+
+```json
+{
+  "id": "44870418",
+  "username": "frankcosta",
+  "fullName": "Frank Costa | INTELIGÊNCIA ARTIFICIAL...",
+  "biography": "🤖 Te ajudo a usar IA...",
+  "profilePicUrl": "https://...",
+  "profilePicUrlHD": "https://...",
+  "followersCount": 129300,
+  "followsCount": 1070,
+  "postsCount": 849,
+  "latestPosts": [
+    {
+      "id": "...",
+      "caption": "...",
+      "likesCount": 655,
+      "commentsCount": 47,
+      "timestamp": "2023-11-15T...",
+      "url": "https://www.instagram.com/p/..."
+    }
+  ]
+}
+```
+
+---
+
+## 🐛 Troubleshooting:
+
+### Erro: "Cannot find package 'apify-client'"
+
+```bash
+npm install apify-client dotenv
+```
+
+### Erro: "APIFY_API_TOKEN is not defined"
+
+Verifique se o arquivo `.env` existe e contém:
+```
+APIFY_API_TOKEN=seu_token_aqui
+```
+
+### Actor falhou ou retornou dados vazios
+
+- Verifique se o perfil do Instagram é **público**
+- Perfis privados não podem ser scrapeados
+- Instagram pode bloquear temporariamente (tente novamente depois)
+
+---
+
+## 💡 Dicas:
+
+### Extrair múltiplos perfis:
+
+```bash
+node scripts/test-instagram-scraper.js frankcosta
+node scripts/test-instagram-scraper.js outro_perfil
+node scripts/test-instagram-scraper.js mais_um_perfil
+```
+
+### Usar em scripts automatizados:
+
+```javascript
+import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({
+  token: process.env.APIFY_API_TOKEN,
+});
+
+const run = await client.actor('apify/instagram-profile-scraper').call({
+  usernames: ['frankcosta'],
+  resultsLimit: 10,
+});
+
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items[0].profilePicUrlHD);
+```
+
+---
+
+## 🎉 Sucesso!
+
+Agora você pode extrair foto de perfil HD de qualquer perfil público do Instagram!
+
+**Dúvidas?** Consulte a documentação do Actor:
+https://apify.com/apify/instagram-profile-scraper
