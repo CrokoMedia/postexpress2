@@ -11,6 +11,42 @@
 import fs from 'fs';
 import path from 'path';
 import https from 'https';
+import cloudinary from 'cloudinary';
+import 'dotenv/config';
+
+// Configurar Cloudinary
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+/**
+ * Upload para Cloudinary
+ */
+async function uploadParaCloudinary(caminhoLocal, username) {
+  return new Promise((resolve, reject) => {
+    cloudinary.v2.uploader.upload(
+      caminhoLocal,
+      {
+        folder: 'instagram-perfis',
+        public_id: username,
+        overwrite: true,
+        transformation: [
+          { width: 320, height: 320, crop: 'fill', gravity: 'face' },
+          { quality: 'auto:best' }
+        ]
+      },
+      (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      }
+    );
+  });
+}
 
 /**
  * Baixa imagem de uma URL e salva localmente
@@ -93,6 +129,7 @@ async function gerarSlide(username) {
 
     // 2.5. Baixar foto de perfil localmente
     let fotoLocal = '';
+    let fotoCloudinary = '';
 
     if (fotoUrl) {
       console.log('📥 Baixando foto de perfil...');
@@ -109,11 +146,41 @@ async function gerarSlide(username) {
 
       try {
         await baixarImagem(fotoUrl, fotoLocal);
-        console.log(`✅ Foto salva em: ${fotoLocal}\n`);
+        console.log(`✅ Foto salva localmente: ${fotoLocal}\n`);
+
+        // Upload para Cloudinary
+        console.log('☁️  Fazendo upload para Cloudinary...');
+        const resultado = await uploadParaCloudinary(fotoLocal, username);
+
+        // URL otimizada do Cloudinary
+        fotoCloudinary = resultado.secure_url.replace('/upload/', '/upload/w_320,h_320,c_fill,g_face/');
+
+        console.log(`✅ Upload Cloudinary concluído!`);
+        console.log(`   URL: ${fotoCloudinary}\n`);
+
+        // Salvar mapeamento
+        const mappingFile = 'assets/fotos-perfil/cloudinary-urls.json';
+        let mapping = {};
+
+        if (fs.existsSync(mappingFile)) {
+          mapping = JSON.parse(fs.readFileSync(mappingFile, 'utf-8'));
+        }
+
+        mapping[username] = {
+          cloudinary_url: resultado.secure_url,
+          cloudinary_url_optimized: fotoCloudinary,
+          cloudinary_public_id: resultado.public_id,
+          uploaded_at: new Date().toISOString(),
+          local_path: fotoLocal,
+          original_url: fotoUrl
+        };
+
+        fs.writeFileSync(mappingFile, JSON.stringify(mapping, null, 2));
+
       } catch (error) {
-        console.warn(`⚠️  Erro ao baixar foto: ${error.message}`);
-        console.warn(`   Usando URL original (pode expirar)\n`);
-        fotoLocal = fotoUrl; // Fallback para URL original
+        console.warn(`⚠️  Erro ao processar foto: ${error.message}`);
+        console.warn(`   Usando foto local (se disponível)\n`);
+        fotoCloudinary = fotoLocal || fotoUrl; // Fallback
       }
     }
 
@@ -130,7 +197,10 @@ async function gerarSlide(username) {
     // 4. Substituir placeholders
     console.log(`🔄 Substituindo placeholders...`);
 
-    template = template.replace('{{FOTO_URL}}', fotoLocal || fotoUrl);
+    // Prioridade: Cloudinary > Local > URL original
+    const fotoParaUsar = fotoCloudinary || fotoLocal || fotoUrl;
+
+    template = template.replace('{{FOTO_URL}}', fotoParaUsar);
     template = template.replace('{{NOME}}', nome);
     template = template.replace('{{USERNAME}}', usernameFormatado);
     template = template.replace('{{TEXTO}}', formatarBiografia(biografia));
