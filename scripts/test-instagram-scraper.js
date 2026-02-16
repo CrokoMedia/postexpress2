@@ -32,9 +32,12 @@ async function testInstagramScraper(username) {
     console.log('⏳ Aguarde...\n');
 
     // Executar o Actor com input correto
+    // Aceita segundo argumento para número de posts (padrão: 5)
+    const maxPosts = parseInt(process.argv[3]) || 5;
+
     const run = await client.actor(ACTOR_NAME).call({
       usernames: [username],
-      resultsLimit: 10,
+      resultsLimit: maxPosts,
     });
 
     console.log(`✅ Actor iniciado!`);
