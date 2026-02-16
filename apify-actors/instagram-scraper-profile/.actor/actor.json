@@ -1,0 +1,67 @@
+{
+  "actorSpecification": 1,
+  "name": "instagram-scraper-profile",
+  "title": "Instagram Profile Scraper - Post Express (Com Foto de Perfil)",
+  "description": "Extrai dados completos de perfis do Instagram, incluindo nome, username, ID, FOTO DE PERFIL, posts, métricas e comentários. Versão customizada do Post Express.",
+  "version": "1.0.0",
+  "meta": {
+    "templateId": "instagram-scraper-profile"
+  },
+  "input": "./INPUT_SCHEMA.json",
+  "dockerfile": "./Dockerfile",
+  "readme": "./README.md",
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "title": "Instagram Posts Dataset",
+      "description": "Dataset contendo posts do Instagram com dados completos do dono do perfil",
+      "views": {
+        "overview": {
+          "title": "Posts Overview",
+          "transformation": {
+            "fields": [
+              "ownerUsername",
+              "ownerFullName",
+              "ownerProfilePicUrl",
+              "type",
+              "caption",
+              "likesCount",
+              "commentsCount",
+              "url",
+              "timestamp"
+            ]
+          },
+          "display": {
+            "component": "table",
+            "properties": {
+              "ownerUsername": {
+                "label": "Username",
+                "format": "text"
+              },
+              "ownerFullName": {
+                "label": "Nome Completo",
+                "format": "text"
+              },
+              "ownerProfilePicUrl": {
+                "label": "Foto de Perfil",
+                "format": "image"
+              },
+              "type": {
+                "label": "Tipo",
+                "format": "text"
+              },
+              "likesCount": {
+                "label": "Likes",
+                "format": "number"
+              },
+              "commentsCount": {
+                "label": "Comentários",
+                "format": "number"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
