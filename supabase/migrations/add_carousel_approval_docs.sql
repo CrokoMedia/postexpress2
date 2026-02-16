@@ -1,0 +1,45 @@
+-- Documentação sobre o sistema de aprovação de carrosséis
+--
+-- Os carrosséis são armazenados em content_suggestions.content_json como um JSONB
+-- com a seguinte estrutura:
+--
+-- {
+--   "carousels": [
+--     {
+--       "titulo": "...",
+--       "tipo": "educacional|vendas|autoridade|viral",
+--       "objetivo": "...",
+--       "baseado_em": "...",
+--       "approved": true|false|null,  -- Campo de aprovação
+--       "slides": [...],
+--       "caption": "...",
+--       "hashtags": [...],
+--       "cta": "..."
+--     }
+--   ],
+--   "estrategia_geral": "...",
+--   "proximos_passos": [...]
+-- }
+--
+-- FLUXO DE APROVAÇÃO:
+--
+-- 1. Content Squad gera carrosséis (campo "approved" é null por padrão)
+-- 2. Expert revisa e marca como aprovado (true) ou rejeitado (false)
+-- 3. Geração de slides visuais só processa carrosséis com approved=true
+-- 4. API: PUT /api/content/[id]/approve para aprovar/rejeitar
+--
+-- ENDPOINTS:
+--
+-- PUT /api/content/[id]/approve
+--   Body: { carouselIndex: number, approved: boolean }
+--   Atualiza um carrossel específico
+--
+-- POST /api/content/[id]/approve
+--   Body: { approvals: [{ carouselIndex: number, approved: boolean }] }
+--   Atualiza múltiplos carrosséis de uma vez
+--
+-- POST /api/content/[id]/generate-slides
+--   Filtra apenas carrosséis com approved=true
+--   Retorna erro se nenhum carrossel estiver aprovado
+
+COMMENT ON COLUMN content_suggestions.content_json IS 'JSON completo com carrosséis (campo "approved" controla geração de slides), estratégia e próximos passos';
