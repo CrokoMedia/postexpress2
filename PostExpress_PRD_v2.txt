@@ -115,7 +115,9 @@ BENEFÍCIOS:
 ┌─────────────┬─────────────────────────┬──────────────────────────────────────┐
 │ Fonte       │ Método                  │ Dados Extraídos                      │
 ├─────────────┼─────────────────────────┼──────────────────────────────────────┤
-│ Instagram   │ Apify (scraping)        │ Posts, métricas, captions, hashtags  │
+│ Instagram   │ Apify (scraping)        │ profilePicUrlHD (320x320), fullName, │
+│             │                         │ username, verified, followersCount,  │
+│             │                         │ bio, posts, métricas, captions       │
 │ TikTok      │ Apify (scraping)        │ Vídeos, views, engajamento           │
 │ YouTube     │ Apify (scraping)        │ Vídeos, transcrições, métricas       │
 │ Documentos  │ Upload na plataforma    │ Briefing, informações do cliente     │
@@ -136,6 +138,55 @@ bloqueio da conta.
 • TikTok: ~$0.30-0.60 por perfil
 • YouTube: ~$0.40-0.80 por canal
 • Transcrição (Whisper): $0.006/minuto (~$0.60 por vídeo de 10min)
+
+
+3.4 CAMPO CRÍTICO: profilePicUrlHD
+----------------------------------
+O scraper Apify retorna dois campos de foto de perfil:
+
+• profilePicUrl: 150x150px (baixa resolução) - NÃO USAR
+• profilePicUrlHD: 320x320px (alta definição) - USAR ESTE ✅
+
+PROCESSAMENTO DA FOTO:
+1. Apify scraper extrai profilePicUrlHD do Instagram
+2. Backend faz upload imediato no Cloudinary (evita CORS + garante persistência)
+3. Cloudinary otimiza: resize 200x200px, crop fill, quality auto
+4. URL do Cloudinary é salva em clientes.foto_url
+5. URL original do Instagram salva em clientes.foto_url_instagram (backup)
+
+MOTIVOS DO UPLOAD NO CLOUDINARY:
+✅ URLs do Instagram têm CORS restritivo
+✅ URLs do Instagram podem expirar
+✅ Cloudinary oferece CDN global (performance)
+✅ Permite transformações (resize, crop, otimização)
+✅ Cache automático
+
+EXEMPLO DE PROCESSAMENTO:
+```javascript
+// Input do Apify
+{
+  "profilePicUrlHD": "https://instagram.com/.../320x320.jpg"
+}
+
+// Upload no Cloudinary
+const uploaded = await cloudinary.uploader.upload(
+  profilePicUrlHD,
+  {
+    folder: 'post-express/profile-pics',
+    public_id: `cliente_${username}`,
+    transformation: [
+      { width: 200, height: 200, crop: 'fill' },
+      { quality: 'auto:best' }
+    ]
+  }
+);
+
+// Salvar no Supabase
+{
+  "foto_url": "https://res.cloudinary.com/.../cliente_usuario.png",
+  "foto_url_instagram": "https://instagram.com/.../320x320.jpg"
+}
+```
 
 
 ================================================================================
@@ -250,7 +301,7 @@ O Squad Criação agora gera um JSON estruturado compatível com o Editor Visual
     "cliente_id": "uuid",
     "nome": "Nome Cliente",
     "username": "usuario",
-    "foto_url": "https://...",
+    "foto_url": "https://res.cloudinary.com/pazos-media/image/upload/.../cliente_usuario.png",
     "created_at": "2026-02-16T10:00:00Z"
   },
   "slides": [
@@ -276,6 +327,9 @@ O Squad Criação agora gera um JSON estruturado compatível com o Editor Visual
   "hashtags": ["#marketing", "#vendas"]
 }
 ```
+
+NOTA: O campo metadata.foto_url contém a URL do Cloudinary (processada do
+profilePicUrlHD do Apify), NÃO a URL original do Instagram.
 
 Este JSON é enviado diretamente para o Editor Visual.
 
@@ -599,17 +653,21 @@ ECONOMIA COM EDITOR VISUAL:
 ------------------------------------------
 
 TABELA: clientes
-┌─────────────┬───────────┬─────────────────────────────────┐
-│ Campo       │ Tipo      │ Descrição                       │
-├─────────────┼───────────┼─────────────────────────────────┤
-│ id          │ UUID      │ Identificador único             │
-│ nome        │ TEXT      │ Nome completo do cliente        │
-│ username    │ TEXT      │ @usuario (sem @)                │
-│ foto_url    │ TEXT      │ URL da foto de perfil           │
-│ email       │ TEXT      │ Email para acesso ao portal     │
-│ nicho       │ TEXT      │ Área de atuação                 │
-│ created_at  │ TIMESTAMP │ Data de cadastro                │
-└─────────────┴───────────┴─────────────────────────────────┘
+┌──────────────────────┬───────────┬──────────────────────────────────────┐
+│ Campo                │ Tipo      │ Descrição                            │
+├──────────────────────┼───────────┼──────────────────────────────────────┤
+│ id                   │ UUID      │ Identificador único                  │
+│ nome                 │ TEXT      │ Nome completo do cliente             │
+│ username             │ TEXT      │ @usuario (sem @)                     │
+│ foto_url             │ TEXT      │ URL Cloudinary da foto (200x200)     │
+│ foto_url_instagram   │ TEXT      │ URL original profilePicUrlHD (backup)│
+│ verificado           │ BOOLEAN   │ Se conta tem ✓ azul (verified)       │
+│ followers            │ INTEGER   │ Número de seguidores (followersCount)│
+│ bio                  │ TEXT      │ Bio do Instagram                     │
+│ email                │ TEXT      │ Email para acesso ao portal          │
+│ nicho                │ TEXT      │ Área de atuação                      │
+│ created_at           │ TIMESTAMP │ Data de cadastro                     │
+└──────────────────────┴───────────┴──────────────────────────────────────┘
 
 TABELA: conteudos
 ┌─────────────────┬───────────┬─────────────────────────────────┐
@@ -956,6 +1014,11 @@ COM EDITOR VISUAL (v2.0):
 ├────────────────────────┼──────────────┤
 │ ECONOMIA               │ 75% 🎉       │
 └────────────────────────┴──────────────┘
+
+IMPORTANTE: Upload de fotos no Cloudinary:
+• profilePicUrlHD → Cloudinary: ~$0.001 por foto
+• Storage: Incluído no plano grátis (25GB)
+• Custo negligível comparado aos savings de renderização
 
 
 12.2 ROI DO EDITOR VISUAL

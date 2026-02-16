@@ -121,6 +121,30 @@ src/
     └── editor.ts                     # Tipos do editor
 ```
 
+### Gestão de Assets (Fotos profilePicUrlHD)
+
+**Fluxo da Foto de Perfil**:
+```
+Apify Scraper → profilePicUrlHD (320x320) → Backend
+                                               ↓
+                                    Upload Cloudinary
+                                   (200x200, optimized)
+                                               ↓
+                                      Supabase (foto_url)
+                                               ↓
+                                      Editor Visual (Fabric.js)
+                                         (circular mask)
+                                               ↓
+                                      Cloudinary Final Render
+```
+
+**Storage Strategy**:
+- Original Instagram URL: `clientes.foto_url_instagram` (backup only)
+- Cloudinary optimized: `clientes.foto_url` (used in system)
+- Cloudinary folder: `post-express/profile-pics/`
+- Naming: `cliente_{username}.png`
+- Transformations: 200x200px, crop fill, quality auto:best
+
 ### Fluxo de Dados
 
 ```mermaid
@@ -282,6 +306,106 @@ Implementar parser que converte JSON do Squad Criação para formato do canvas.
 - [ ] Tratamento de erros (JSON inválido)
 
 **Estimativa**: 24 horas
+
+---
+
+### Story 4.5.3.5: Gestão de Fotos de Perfil (profilePicUrlHD)
+
+**Descrição**: Implementar sistema completo para carregar, exibir e gerenciar fotos de perfil extraídas pelo campo `profilePicUrlHD` do scraper Apify.
+
+**Contexto**:
+O Apify Instagram Scraper retorna `profilePicUrlHD` (320x320px). Precisamos:
+1. Fazer upload no Cloudinary (evitar CORS do Instagram)
+2. Renderizar circular no canvas com borda
+3. Permitir cliente trocar foto
+4. Otimizar para performance (cache, lazy load)
+
+**Acceptance Criteria**:
+- [ ] Parser JSON detecta campo `foto_perfil` com URL do Cloudinary
+- [ ] Fabric.js carrega foto usando `fabric.Image.fromURL()`
+- [ ] Máscara circular aplicada via `clipPath` (fabric.Circle)
+- [ ] Borda circular renderizada (stroke + strokeWidth)
+- [ ] Foto é selectable e movable no canvas
+- [ ] Foto mantém aspect ratio circular ao redimensionar
+- [ ] Cliente pode trocar foto via upload (botão "Trocar Foto")
+- [ ] Upload vai para Cloudinary e atualiza `clientes.foto_url`
+- [ ] Fallback se foto não carregar: avatar com iniciais do nome
+- [ ] CORS resolvido (foto vem do Cloudinary, não do Instagram)
+- [ ] Performance: lazy load de fotos (só carregar slide visível)
+- [ ] Cache de fotos por 24h (localStorage ou service worker)
+
+**Tarefas Técnicas**:
+- [ ] Criar componente `ProfilePhoto.tsx` (Fabric.js Image + Circle mask)
+- [ ] API endpoint `/api/clientes/[id]/update-photo` (upload Cloudinary)
+- [ ] Validação de arquivo (MIME type, tamanho max 5MB)
+- [ ] Otimização automática (200x200px, WebP, quality 85%)
+- [ ] Histórico de fotos (versionamento, rollback se necessário)
+- [ ] Testes E2E: carregar foto, trocar foto, fallback
+
+**Estimativa**: 8 horas
+
+**Prioridade**: 🔴 Alta (crítico para template Tweet-style)
+
+**Dependências**:
+- Depende de: Story 4.5.3 (Parser JSON → Canvas)
+- Bloqueia: Story 4.5.6 (Preview completo precisa de foto)
+
+**Mockup da Interface**:
+```
+┌─────────────────────────────────────────────┐
+│  CANVAS                                     │
+│                                             │
+│  ┌────┐                                     │
+│  │ (○)│ ← Foto circular (80x80px)           │
+│  └────┘                                     │
+│    ↑                                        │
+│  Selectable + movable                       │
+│                                             │
+│  PAINEL DE PROPRIEDADES (quando selecionada)│
+│  ┌─────────────────────┐                   │
+│  │ ✏️ FOTO DE PERFIL   │                   │
+│  │                     │                   │
+│  │ Tamanho: 80px       │                   │
+│  │ Borda: #E1E8ED 2px  │                   │
+│  │                     │                   │
+│  │ [🔄 Trocar Foto]    │                   │
+│  │ [📤 Upload Nova]    │                   │
+│  └─────────────────────┘                   │
+└─────────────────────────────────────────────┘
+```
+
+**Code Snippet (Fabric.js)**:
+```javascript
+fabric.Image.fromURL(
+  fotoData.url,  // URL do Cloudinary
+  (img) => {
+    const circle = new fabric.Circle({
+      radius: 40,
+      left: 0,
+      top: 0
+    });
+
+    img.set({
+      left: 50,
+      top: 50,
+      scaleX: 80 / img.width,
+      scaleY: 80 / img.height,
+      clipPath: circle,
+      selectable: true
+    });
+
+    canvas.add(img);
+  },
+  { crossOrigin: 'anonymous' }
+);
+```
+
+**Testes**:
+- ✅ Foto carrega corretamente (200ms)
+- ✅ Máscara circular perfeita
+- ✅ Upload funciona (novo arquivo → Cloudinary → canvas)
+- ✅ Fallback funciona (foto quebrada → avatar iniciais)
+- ✅ Performance OK (lazy load, cache)
 
 ---
 
@@ -889,6 +1013,9 @@ Criar documentação completa do editor e tutorial de onboarding para clientes.
 | Bugs críticos | 0 | GitHub Issues |
 | Performance (mobile) | >60fps | Lighthouse Performance score |
 | Acessibilidade | WCAG AA | axe-core audit |
+| **Asset Loading Time** | **< 200ms** | **Tempo para foto de perfil carregar** |
+| **Upload Success Rate** | **> 99%** | **profilePicUrlHD → Cloudinary** |
+| **Fallback Activation** | **< 1%** | **Foto não carrega → avatar iniciais** |
 
 ### KPIs de Negócio
 - **ROI**: Editor se paga em 3 meses (economia vs custo de desenvolvimento)

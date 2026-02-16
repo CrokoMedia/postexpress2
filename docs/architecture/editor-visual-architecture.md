@@ -317,6 +317,333 @@ interface EditorState {
 
 ---
 
+## 2.6 Gestão de Fotos de Perfil (profilePicUrlHD)
+
+### 2.6.1 Extração e Processamento
+
+**Campo do Scraper Apify**:
+```json
+{
+  "profilePicUrl": "https://instagram.com/.../150x150.jpg",  // Não usar
+  "profilePicUrlHD": "https://instagram.com/.../320x320.jpg"  // ← USAR ESTE
+}
+```
+
+**Por que profilePicUrlHD?**
+- Resolução superior (320x320 vs 150x150)
+- Qualidade suficiente para renderização 1080x1080
+- Downscale mantém nitidez (melhor que upscale)
+
+### 2.6.2 Pipeline de Upload
+
+```javascript
+// backend/services/InstagramProcessor.js
+
+class InstagramProcessor {
+  async processProfile(apifyData) {
+    const { profilePicUrlHD, username, fullName, verified } = apifyData;
+
+    // 1. Upload no Cloudinary (evita CORS + expiration)
+    const uploaded = await cloudinary.uploader.upload(profilePicUrlHD, {
+      folder: 'post-express/profile-pics',
+      public_id: `cliente_${username}`,
+      overwrite: true,
+      transformation: [
+        { width: 200, height: 200, crop: 'fill', gravity: 'face' },
+        { quality: 'auto:best' },
+        { fetch_format: 'auto' }  // WebP se browser suporta
+      ],
+      eager: [
+        { width: 80, height: 80, crop: 'fill', radius: 'max' }  // Thumbnail circular
+      ]
+    });
+
+    // 2. Salvar no Supabase
+    const { data } = await supabase.from('clientes').insert({
+      nome: fullName,
+      username: username,
+      foto_url: uploaded.secure_url,  // Cloudinary URL (usado no sistema)
+      foto_url_instagram: profilePicUrlHD,  // Backup da URL original
+      verificado: verified,
+      created_at: new Date().toISOString()
+    });
+
+    return data;
+  }
+}
+```
+
+### 2.6.3 Renderização no Canvas (Fabric.js)
+
+**Máscara Circular**:
+```javascript
+// components/ProfilePhoto.tsx
+
+import { fabric } from 'fabric';
+
+export function renderProfilePhoto(canvas, photoData) {
+  const { url, posicao, tamanho, borda } = photoData;
+
+  // 1. Criar máscara circular
+  const clipPath = new fabric.Circle({
+    radius: tamanho.width / 2,
+    originX: 'center',
+    originY: 'center'
+  });
+
+  // 2. Carregar imagem
+  fabric.Image.fromURL(
+    url,  // URL do Cloudinary (CORS ok)
+    (img) => {
+      // 3. Aplicar transformações
+      img.set({
+        left: posicao.x,
+        top: posicao.y,
+        scaleX: tamanho.width / img.width,
+        scaleY: tamanho.height / img.height,
+        clipPath: clipPath,
+        originX: 'center',
+        originY: 'center',
+        selectable: true,
+        hasControls: true,
+        hasBorders: true,
+        lockScalingFlip: true,  // Previne flip acidental
+        objectCaching: false  // Performance otimizada
+      });
+
+      // 4. Borda circular (separada da imagem)
+      const border = new fabric.Circle({
+        left: posicao.x,
+        top: posicao.y,
+        radius: tamanho.width / 2,
+        fill: 'transparent',
+        stroke: borda.cor,
+        strokeWidth: borda.espessura,
+        originX: 'center',
+        originY: 'center',
+        selectable: false,  // Borda não é selecionável
+        evented: false
+      });
+
+      // 5. Adicionar ao canvas (ordem importa)
+      canvas.add(img);
+      canvas.add(border);
+
+      // 6. Sincronizar movimento (borda segue foto)
+      img.on('moving', () => {
+        border.set({
+          left: img.left,
+          top: img.top
+        });
+        canvas.renderAll();
+      });
+
+      canvas.renderAll();
+    },
+    {
+      crossOrigin: 'anonymous'  // CORS (Cloudinary permite)
+    }
+  );
+}
+```
+
+### 2.6.4 Troca de Foto (Upload)
+
+**API Endpoint**:
+```javascript
+// pages/api/clientes/[id]/update-photo.js
+
+export default async function handler(req, res) {
+  const { id } = req.query;
+  const { file } = req.body;  // Base64 ou FormData
+
+  // 1. Validação
+  const validation = validatePhoto(file);
+  if (!validation.valid) {
+    return res.status(400).json({ error: validation.error });
+  }
+
+  // 2. Upload Cloudinary
+  const uploaded = await cloudinary.uploader.upload(file, {
+    folder: 'post-express/profile-pics',
+    public_id: `cliente_${id}`,
+    overwrite: true,
+    transformation: [
+      { width: 200, height: 200, crop: 'fill', gravity: 'face' },
+      { quality: 'auto:best' }
+    ]
+  });
+
+  // 3. Atualizar Supabase
+  const { data } = await supabase
+    .from('clientes')
+    .update({ foto_url: uploaded.secure_url })
+    .eq('id', id)
+    .select()
+    .single();
+
+  // 4. Invalidar cache
+  await redis.del(`profile-pic-${id}`);
+
+  return res.json({ foto_url: data.foto_url });
+}
+
+function validatePhoto(file) {
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+  const maxSize = 5 * 1024 * 1024;  // 5MB
+
+  if (!allowedTypes.includes(file.type)) {
+    return { valid: false, error: 'Tipo de arquivo não suportado' };
+  }
+
+  if (file.size > maxSize) {
+    return { valid: false, error: 'Arquivo muito grande (max 5MB)' };
+  }
+
+  return { valid: true };
+}
+```
+
+### 2.6.5 Fallback (Foto Não Carrega)
+
+**Avatar com Iniciais**:
+```javascript
+function generateAvatarFallback(fullName) {
+  const initials = fullName
+    .split(' ')
+    .map(word => word[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);  // Max 2 letras
+
+  // Criar canvas temporário
+  const tempCanvas = document.createElement('canvas');
+  tempCanvas.width = 200;
+  tempCanvas.height = 200;
+  const ctx = tempCanvas.getContext('2d');
+
+  // Fundo gradiente
+  const gradient = ctx.createLinearGradient(0, 0, 200, 200);
+  gradient.addColorStop(0, '#667eea');
+  gradient.addColorStop(1, '#764ba2');
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 200, 200);
+
+  // Iniciais
+  ctx.fillStyle = '#ffffff';
+  ctx.font = 'bold 80px Inter';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(initials, 100, 100);
+
+  // Converter para blob
+  return tempCanvas.toDataURL('image/png');
+}
+```
+
+### 2.6.6 Performance e Cache
+
+**Cache Strategy**:
+```javascript
+// Cache em múltiplas camadas
+
+// 1. Browser Cache (Service Worker)
+self.addEventListener('fetch', (event) => {
+  if (event.request.url.includes('cloudinary.com')) {
+    event.respondWith(
+      caches.match(event.request).then((response) => {
+        return response || fetch(event.request).then((fetchResponse) => {
+          return caches.open('profile-pics-v1').then((cache) => {
+            cache.put(event.request, fetchResponse.clone());
+            return fetchResponse;
+          });
+        });
+      })
+    );
+  }
+});
+
+// 2. Redis Cache (Backend)
+async function getCachedPhoto(clienteId) {
+  const cacheKey = `profile-pic-${clienteId}`;
+  const cached = await redis.get(cacheKey);
+
+  if (cached) {
+    return JSON.parse(cached);
+  }
+
+  const { data } = await supabase
+    .from('clientes')
+    .select('foto_url')
+    .eq('id', clienteId)
+    .single();
+
+  await redis.setex(cacheKey, 86400, JSON.stringify(data));  // 24h
+  return data;
+}
+
+// 3. Cloudinary CDN (automático)
+// URLs do Cloudinary já têm cache CDN global
+```
+
+### 2.6.7 Integração com Cloudinary Final Render
+
+**Converter Fabric.js → Cloudinary Overlay**:
+```javascript
+// services/CloudinaryExporter.js
+
+class CloudinaryExporter {
+  async exportProfilePhoto(fabricImageObject) {
+    // 1. Extrair propriedades do Fabric.js
+    const { src, left, top, scaleX, scaleY, strokeWidth, stroke } = fabricImageObject;
+
+    // 2. Extrair public_id da URL do Cloudinary
+    const publicId = this.extractPublicId(src);
+
+    // 3. Gerar transformação Cloudinary
+    const transformation = {
+      overlay: publicId,
+      width: Math.round(fabricImageObject.width * scaleX),
+      height: Math.round(fabricImageObject.height * scaleY),
+      radius: 'max',  // Circular
+      gravity: 'north_west',
+      x: Math.round(left),
+      y: Math.round(top),
+      border: `${strokeWidth}px_solid_rgb:${this.colorToHex(stroke)}`
+    };
+
+    return transformation;
+  }
+
+  extractPublicId(cloudinaryUrl) {
+    // https://res.cloudinary.com/pazos-media/image/upload/v123/post-express/profile-pics/cliente_usuario.png
+    const match = cloudinaryUrl.match(/upload\/(?:v\d+\/)?(.+)\.[^.]+$/);
+    return match ? match[1] : null;
+  }
+}
+```
+
+### 2.6.8 Segurança
+
+**Validações**:
+- MIME type whitelist: `image/jpeg`, `image/png`, `image/webp`
+- Magic bytes validation (não confiar apenas em extension)
+- Max file size: 5MB
+- Scan de malware (ClamAV ou Cloudinary moderation)
+- Rate limiting: 10 uploads/15min por cliente
+
+**RLS Supabase**:
+```sql
+-- Apenas o próprio cliente pode atualizar sua foto
+CREATE POLICY "Clientes atualizam própria foto"
+  ON clientes
+  FOR UPDATE
+  USING (auth.uid()::text = id::text)
+  WITH CHECK (auth.uid()::text = id::text);
+```
+
+---
+
 ## 3. Fluxo de Dados
 
 ### 3.1 Diagrama de Fluxo
@@ -408,6 +735,73 @@ interface EditorState {
    │   Backend    │ ─────────────────────────────> │   Supabase    │
    └──────────────┘   UPDATE conteudos            │  (conteudos)  │
                       status = 'renderizado'       └──────────────┘
+```
+
+### 3.1.1 Fluxo de Dados: Foto de Perfil (profilePicUrlHD)
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│              FLUXO: Apify → Cloudinary → Editor → Render        │
+└─────────────────────────────────────────────────────────────────┘
+
+[Apify Scraper]
+      │
+      │ profilePicUrlHD (320x320)
+      ▼
+┌──────────────────┐
+│ Backend API      │
+│ (processProfile) │
+└──────────────────┘
+      │
+      │ 1. Upload para Cloudinary
+      │    - Transformação: 200x200, crop face
+      │    - Eager: 80x80 thumbnail circular
+      ▼
+┌──────────────────┐
+│ Cloudinary       │
+│ /profile-pics/   │
+└──────────────────┘
+      │
+      │ 2. Retorna secure_url
+      ▼
+┌──────────────────┐
+│ Supabase         │
+│ (clientes)       │
+│ - foto_url       │ ← URL do Cloudinary (usado no sistema)
+│ - foto_url_ig    │ ← URL original Instagram (backup)
+└──────────────────┘
+      │
+      │ 3. Editor carrega foto
+      ▼
+┌──────────────────┐
+│ Fabric.js Canvas │
+│ - Máscara        │
+│   circular       │
+│ - Borda          │
+└──────────────────┘
+      │
+      │ 4. Cliente edita posição/tamanho
+      ▼
+┌──────────────────┐
+│ Cloudinary       │
+│ Exporter         │
+│ - Extrai         │
+│   public_id      │
+│ - Gera overlay   │
+└──────────────────┘
+      │
+      │ 5. Renderização final
+      ▼
+┌──────────────────┐
+│ Cloudinary API   │
+│ - Overlay com    │
+│   radius: max    │
+│ - Border         │
+└──────────────────┘
+      │
+      │ PNG final 1080x1080
+      ▼
+[Cliente aprova]
 ```
 
 ### 3.2 Schema JSON de Slides
@@ -657,7 +1051,11 @@ ADD COLUMN preferencias_editor JSONB DEFAULT '{
   "fonte_padrao": "Inter",
   "cores_marca": ["#000000", "#FFFFFF"],
   "templates_favoritos": []
-}'::jsonb;
+}'::jsonb,
+ADD COLUMN foto_url_instagram TEXT,  -- URL original profilePicUrlHD (backup)
+ADD COLUMN verificado BOOLEAN DEFAULT false,  -- Instagram verified badge
+ADD COLUMN followers INTEGER DEFAULT 0,  -- Follower count
+ADD COLUMN bio TEXT;  -- Instagram bio
 
 -- =====================================================
 -- TABELA: conteudos (adicionar referência a template)
