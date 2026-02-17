@@ -1,6 +1,47 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const supabase = getServerSupabase()
+    const { id } = await params
+
+    // Verificar se a auditoria existe
+    const { data: audit, error: fetchError } = await supabase
+      .from('audits')
+      .select('id, profile_id')
+      .eq('id', id)
+      .is('deleted_at', null)
+      .single()
+
+    if (fetchError || !audit) {
+      return NextResponse.json(
+        { error: 'Auditoria não encontrada' },
+        { status: 404 }
+      )
+    }
+
+    // Soft delete
+    const { error } = await supabase
+      .from('audits')
+      .update({ deleted_at: new Date().toISOString() })
+      .eq('id', id)
+
+    if (error) throw error
+
+    return NextResponse.json({ message: 'Auditoria excluída com sucesso', audit_id: id })
+  } catch (error: any) {
+    console.error('Error deleting audit:', error)
+    return NextResponse.json(
+      { error: error.message || 'Falha ao excluir auditoria' },
+      { status: 500 }
+    )
+  }
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

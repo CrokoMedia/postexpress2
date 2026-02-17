@@ -7,6 +7,7 @@ import { Button } from '@/components/atoms/button'
 import { Badge } from '@/components/atoms/badge'
 import { Skeleton } from '@/components/atoms/skeleton'
 import { DeleteProfileModal } from '@/components/molecules/delete-profile-modal'
+import { DeleteAuditModal } from '@/components/molecules/delete-audit-modal'
 import { ProfileContextModal } from '@/components/organisms/profile-context-modal'
 import { ContentSquadChatModal } from '@/components/organisms/content-squad-chat-modal'
 import { useProfile } from '@/hooks/use-profiles'
@@ -27,6 +28,8 @@ export default function ProfilePage() {
   const [hasContext, setHasContext] = useState(false)
   const [isReAuditing, setIsReAuditing] = useState(false)
   const [contentCount, setContentCount] = useState(0)
+  const [auditToDelete, setAuditToDelete] = useState<{ id: string; date: string } | null>(null)
+  const [localAudits, setLocalAudits] = useState<any[] | null>(null)
 
   // Verificar se tem contexto
   useEffect(() => {
@@ -113,8 +116,13 @@ export default function ProfilePage() {
     )
   }
 
-  const sortedAudits = profile.audits || []
+  const sortedAudits = localAudits ?? (profile.audits || [])
   const latestAudit = sortedAudits[0]
+
+  const handleAuditDeleted = (deletedAuditId: string) => {
+    setLocalAudits((sortedAudits).filter((a: any) => a.id !== deletedAuditId))
+    setAuditToDelete(null)
+  }
 
   return (
     <div>
@@ -427,9 +435,9 @@ export default function ProfilePage() {
           ) : (
             <div className="space-y-3">
               {sortedAudits.map((audit: any) => (
-                <Link key={audit.id} href={`/dashboard/audits/${audit.id}`}>
-                  <div className="flex items-center justify-between p-4 rounded-lg border border-neutral-700 hover:border-primary-500/50 hover:bg-neutral-800/50 transition-all cursor-pointer">
-                    <div>
+                <div key={audit.id} className="flex items-center justify-between p-4 rounded-lg border border-neutral-700 hover:border-neutral-600 transition-all group">
+                  <Link href={`/dashboard/audits/${audit.id}`} className="flex items-center gap-4 flex-1 min-w-0">
+                    <div className="flex-1 min-w-0">
                       <div className="text-sm font-medium text-neutral-300">
                         {formatDate(audit.audit_date)}
                       </div>
@@ -445,15 +453,22 @@ export default function ProfilePage() {
                         Ver →
                       </Button>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                  <button
+                    onClick={() => setAuditToDelete({ id: audit.id, date: audit.audit_date })}
+                    className="ml-3 p-2 rounded-lg text-neutral-600 hover:text-error-400 hover:bg-error-500/10 opacity-0 group-hover:opacity-100 transition-all"
+                    title="Excluir auditoria"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
               ))}
             </div>
           )}
         </CardContent>
       </Card>
 
-      {/* Delete Modal */}
+      {/* Delete Profile Modal */}
       <DeleteProfileModal
         profileId={id}
         username={profile.username}
@@ -463,6 +478,17 @@ export default function ProfilePage() {
           router.push('/dashboard')
         }}
       />
+
+      {/* Delete Audit Modal */}
+      {auditToDelete && (
+        <DeleteAuditModal
+          auditId={auditToDelete.id}
+          auditDate={auditToDelete.date}
+          isOpen={true}
+          onClose={() => setAuditToDelete(null)}
+          onDeleteSuccess={() => handleAuditDeleted(auditToDelete.id)}
+        />
+      )}
 
       {/* Profile Context Modal */}
       {showContextModal && (
