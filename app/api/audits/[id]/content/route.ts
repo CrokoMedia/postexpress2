@@ -15,7 +15,7 @@ export async function GET(
     // Buscar conteúdo salvo (incluindo slides)
     const { data, error } = await supabase
       .from('content_suggestions')
-      .select('content_json, slides_json, generated_at')
+      .select('content_json, slides_json, reels_json, generated_at')
       .eq('audit_id', id)
       .single()
 
@@ -25,6 +25,7 @@ export async function GET(
         return NextResponse.json({
           content: null,
           slides: null,
+          reels: null,
           message: 'Nenhum conteúdo gerado ainda'
         })
       }
@@ -35,6 +36,7 @@ export async function GET(
     return NextResponse.json({
       content: data.content_json,
       slides: data.slides_json,
+      reels: data.reels_json,
       generated_at: data.generated_at
     })
 

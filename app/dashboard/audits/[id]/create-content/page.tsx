@@ -8,7 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/atoms/button'
 import { Skeleton } from '@/components/atoms/skeleton'
 import { Badge } from '@/components/atoms/badge'
-import { Sparkles, ArrowLeft, Download, Copy, Check, Image as ImageIcon, Loader2, CheckCircle, XCircle, Archive, FolderOpen, Pencil, RefreshCw, Save, X } from 'lucide-react'
+import { Sparkles, ArrowLeft, Download, Copy, Check, Image as ImageIcon, Loader2, CheckCircle, XCircle, Archive, FolderOpen, Pencil, RefreshCw, Save, X, Video } from 'lucide-react'
+import Link from 'next/link'
 
 export default function CreateContentPage() {
   const params = useParams()
@@ -379,6 +380,21 @@ CTA: ${carousel.cta}
             {generating ? 'Gerando...' : 'Gerar Sugestões'}
           </Button>
         )}
+      </div>
+
+      {/* Tabs: Carrosséis / Reels */}
+      <div className="flex gap-1 bg-neutral-900 border border-neutral-800 rounded-xl p-1 w-fit">
+        <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-500/20 text-primary-400 font-medium text-sm">
+          <ImageIcon className="w-4 h-4" />
+          Carrosséis
+        </div>
+        <Link
+          href={`/dashboard/audits/${id}/create-content/reels`}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg text-neutral-400 hover:text-neutral-200 hover:bg-neutral-800 font-medium text-sm transition-all"
+        >
+          <Video className="w-4 h-4" />
+          Reels
+        </Link>
       </div>
 
       {/* Resumo da Auditoria */}
