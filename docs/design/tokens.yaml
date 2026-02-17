@@ -1,0 +1,797 @@
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# POSTEXPRESS DESIGN TOKENS
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#
+# Versão: 1.0.0
+# Data: 2026-02-16
+# Designer: Uma (UX Design Expert)
+# Metodologia: Brad Frost Design Tokens + Atomic Design
+#
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ 1. COLORS (Cores)                                               │
+# └─────────────────────────────────────────────────────────────────┘
+
+colors:
+  # ───────────────────────────────────────────────────────────────
+  # Brand Colors (Twitter/X inspired)
+  # ───────────────────────────────────────────────────────────────
+  brand:
+    twitter-blue:
+      value: "#1d9bf0"
+      description: "Azul Twitter/X - uso primário"
+      wcag: "AA (4.5:1 em branco)"
+
+    twitter-blue-dark:
+      value: "#1a8cd8"
+      description: "Azul escuro - hover states"
+
+    twitter-blue-light:
+      value: "#e8f5fd"
+      description: "Azul claro - backgrounds sutis"
+
+  # ───────────────────────────────────────────────────────────────
+  # Neutral Colors (Escala de cinzas)
+  # ───────────────────────────────────────────────────────────────
+  neutral:
+    white:
+      value: "#ffffff"
+      description: "Branco puro - fundo padrão"
+
+    gray-50:
+      value: "#f7f9fa"
+      description: "Cinza mais claro - surface"
+
+    gray-100:
+      value: "#e1e8ed"
+      description: "Cinza claro - borders"
+
+    gray-200:
+      value: "#cfd9de"
+      description: "Cinza - dividers"
+
+    gray-300:
+      value: "#aab8c2"
+      description: "Cinza médio - desabilitado"
+
+    gray-400:
+      value: "#8899a6"
+      description: "Cinza - ícones secundários"
+
+    gray-500:
+      value: "#657786"
+      description: "Cinza - texto terciário"
+
+    gray-600:
+      value: "#536471"
+      description: "Cinza escuro - texto secundário"
+
+    gray-700:
+      value: "#3e4c59"
+      description: "Cinza muito escuro"
+
+    gray-800:
+      value: "#283541"
+      description: "Quase preto"
+
+    gray-900:
+      value: "#0f1419"
+      description: "Preto Twitter - texto primário"
+      wcag: "AAA (19.8:1 em branco)"
+
+    black:
+      value: "#000000"
+      description: "Preto puro - uso raro"
+
+  # ───────────────────────────────────────────────────────────────
+  # Semantic Colors (Status e feedback)
+  # ───────────────────────────────────────────────────────────────
+  semantic:
+    success:
+      value: "#00ba7c"
+      description: "Verde - sucesso, aprovado"
+      wcag: "AA (4.6:1 em branco)"
+
+    success-light:
+      value: "#d7f4e8"
+      description: "Verde claro - backgrounds de sucesso"
+
+    warning:
+      value: "#ffad1f"
+      description: "Laranja - atenção"
+      wcag: "AA (3.2:1 em branco)"
+
+    warning-light:
+      value: "#fff3d9"
+      description: "Laranja claro - backgrounds de aviso"
+
+    error:
+      value: "#f4212e"
+      description: "Vermelho - erro, perigo"
+      wcag: "AA (4.5:1 em branco)"
+
+    error-light:
+      value: "#fde8ea"
+      description: "Vermelho claro - backgrounds de erro"
+
+    info:
+      value: "#1d9bf0"
+      description: "Azul - informação (usa brand)"
+
+    info-light:
+      value: "#e8f5fd"
+      description: "Azul claro - backgrounds de info"
+
+  # ───────────────────────────────────────────────────────────────
+  # Status Colors (Workflow states)
+  # ───────────────────────────────────────────────────────────────
+  status:
+    draft:
+      value: "#ffd93d"
+      description: "Amarelo - rascunho"
+
+    editing:
+      value: "#6bcf7f"
+      description: "Verde claro - em edição"
+
+    pending:
+      value: "#a8dadc"
+      description: "Azul claro - aguardando"
+
+    rendering:
+      value: "#457b9d"
+      description: "Azul - renderizando"
+
+    approved:
+      value: "#00ba7c"
+      description: "Verde - aprovado (usa success)"
+
+    published:
+      value: "#2a9d8f"
+      description: "Verde escuro - publicado"
+
+    needs-review:
+      value: "#e63946"
+      description: "Vermelho - precisa ajustes"
+
+  # ───────────────────────────────────────────────────────────────
+  # Background Colors
+  # ───────────────────────────────────────────────────────────────
+  background:
+    primary:
+      value: "#ffffff"
+      description: "Fundo principal - branco"
+
+    secondary:
+      value: "#f7f9fa"
+      description: "Fundo secundário - cinza claro"
+
+    tertiary:
+      value: "#e1e8ed"
+      description: "Fundo terciário - cinza médio"
+
+    overlay:
+      value: "rgba(0, 0, 0, 0.5)"
+      description: "Overlay escuro - modais"
+
+  # ───────────────────────────────────────────────────────────────
+  # Text Colors
+  # ───────────────────────────────────────────────────────────────
+  text:
+    primary:
+      value: "#0f1419"
+      description: "Texto principal - preto Twitter"
+      wcag: "AAA (19.8:1 em branco)"
+
+    secondary:
+      value: "#536471"
+      description: "Texto secundário - cinza"
+      wcag: "AA (7.5:1 em branco)"
+
+    tertiary:
+      value: "#8899a6"
+      description: "Texto terciário - cinza claro"
+      wcag: "AA (4.5:1 em branco)"
+
+    disabled:
+      value: "#aab8c2"
+      description: "Texto desabilitado"
+
+    inverse:
+      value: "#ffffff"
+      description: "Texto inverso - branco em fundos escuros"
+
+    link:
+      value: "#1d9bf0"
+      description: "Links - azul Twitter"
+
+    link-hover:
+      value: "#1a8cd8"
+      description: "Links hover - azul escuro"
+
+  # ───────────────────────────────────────────────────────────────
+  # Border Colors
+  # ───────────────────────────────────────────────────────────────
+  border:
+    light:
+      value: "#e1e8ed"
+      description: "Borda padrão - cinza claro"
+
+    medium:
+      value: "#cfd9de"
+      description: "Borda média"
+
+    dark:
+      value: "#aab8c2"
+      description: "Borda escura"
+
+    focus:
+      value: "#1d9bf0"
+      description: "Borda de foco - azul Twitter"
+
+    error:
+      value: "#f4212e"
+      description: "Borda de erro - vermelho"
+
+    success:
+      value: "#00ba7c"
+      description: "Borda de sucesso - verde"
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ 2. TYPOGRAPHY (Tipografia)                                      │
+# └─────────────────────────────────────────────────────────────────┘
+
+typography:
+  # ───────────────────────────────────────────────────────────────
+  # Font Families
+  # ───────────────────────────────────────────────────────────────
+  fontFamily:
+    primary:
+      value: "'Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+      description: "Fonte primária - Chirp (Twitter) com fallbacks"
+
+    ui:
+      value: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+      description: "Fonte UI - Inter para interface"
+
+    display:
+      value: "'Poppins', 'Inter', sans-serif"
+      description: "Fonte display - títulos grandes"
+
+    monospace:
+      value: "'JetBrains Mono', 'Fira Code', 'Courier New', monospace"
+      description: "Fonte monospace - código"
+
+  # ───────────────────────────────────────────────────────────────
+  # Font Sizes (Escala modular 1.250 - Major Third)
+  # ───────────────────────────────────────────────────────────────
+  fontSize:
+    xs:
+      value: "11px"
+      lineHeight: "16px"
+      description: "Extra pequeno - captions"
+
+    sm:
+      value: "12px"
+      lineHeight: "18px"
+      description: "Pequeno - labels, helpers"
+
+    base:
+      value: "14px"
+      lineHeight: "21px"
+      description: "Base - corpo de texto padrão"
+
+    md:
+      value: "16px"
+      lineHeight: "24px"
+      description: "Médio - texto maior"
+
+    lg:
+      value: "18px"
+      lineHeight: "27px"
+      description: "Grande - subheadings"
+
+    xl:
+      value: "20px"
+      lineHeight: "30px"
+      description: "Extra grande"
+
+    2xl:
+      value: "24px"
+      lineHeight: "36px"
+      description: "Headings h3"
+
+    3xl:
+      value: "28px"
+      lineHeight: "42px"
+      description: "Headings h2"
+
+    4xl:
+      value: "32px"
+      lineHeight: "48px"
+      description: "Headings h1"
+
+    5xl:
+      value: "36px"
+      lineHeight: "54px"
+      description: "Display text - carrosséis"
+
+    6xl:
+      value: "48px"
+      lineHeight: "72px"
+      description: "Display large - hero"
+
+  # ───────────────────────────────────────────────────────────────
+  # Font Weights
+  # ───────────────────────────────────────────────────────────────
+  fontWeight:
+    normal:
+      value: 400
+      description: "Normal - corpo de texto"
+
+    medium:
+      value: 500
+      description: "Medium - ênfase leve"
+
+    semibold:
+      value: 600
+      description: "Semibold - subheadings"
+
+    bold:
+      value: 700
+      description: "Bold - headings, nomes"
+
+  # ───────────────────────────────────────────────────────────────
+  # Letter Spacing
+  # ───────────────────────────────────────────────────────────────
+  letterSpacing:
+    tight:
+      value: "-0.02em"
+      description: "Espaçamento apertado - títulos grandes"
+
+    normal:
+      value: "0"
+      description: "Espaçamento normal"
+
+    wide:
+      value: "0.02em"
+      description: "Espaçamento largo - botões"
+
+    wider:
+      value: "0.05em"
+      description: "Espaçamento mais largo - labels"
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ 3. SPACING (Espaçamento)                                        │
+# └─────────────────────────────────────────────────────────────────┘
+
+spacing:
+  # Base de 8px grid
+  0:
+    value: "0px"
+
+  1:
+    value: "4px"
+    description: "Extra pequeno"
+
+  2:
+    value: "8px"
+    description: "Pequeno - base grid"
+
+  3:
+    value: "12px"
+    description: "Médio pequeno"
+
+  4:
+    value: "16px"
+    description: "Médio - padrão"
+
+  5:
+    value: "20px"
+    description: "Médio grande"
+
+  6:
+    value: "24px"
+    description: "Grande"
+
+  7:
+    value: "28px"
+    description: "Grande+"
+
+  8:
+    value: "32px"
+    description: "Extra grande"
+
+  10:
+    value: "40px"
+    description: "2XL"
+
+  12:
+    value: "48px"
+    description: "3XL"
+
+  16:
+    value: "64px"
+    description: "4XL"
+
+  20:
+    value: "80px"
+    description: "5XL"
+
+  24:
+    value: "96px"
+    description: "6XL"
+
+  # ───────────────────────────────────────────────────────────────
+  # Safe Area (Instagram specific)
+  # ───────────────────────────────────────────────────────────────
+  safeArea:
+    top:
+      value: "150px"
+      description: "Padding superior - Instagram 4:5"
+
+    bottom:
+      value: "200px"
+      description: "Padding inferior - Instagram 4:5"
+
+    horizontal:
+      value: "120px"
+      description: "Padding lateral - Instagram 4:5"
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ 4. BORDERS (Bordas)                                             │
+# └─────────────────────────────────────────────────────────────────┘
+
+border:
+  width:
+    none:
+      value: "0px"
+
+    thin:
+      value: "1px"
+      description: "Borda fina - padrão"
+
+    medium:
+      value: "2px"
+      description: "Borda média"
+
+    thick:
+      value: "4px"
+      description: "Borda grossa - focus"
+
+  radius:
+    none:
+      value: "0px"
+
+    sm:
+      value: "4px"
+      description: "Pequeno - buttons, inputs"
+
+    md:
+      value: "8px"
+      description: "Médio - cards"
+
+    lg:
+      value: "12px"
+      description: "Grande - modais"
+
+    xl:
+      value: "16px"
+      description: "Extra grande"
+
+    2xl:
+      value: "24px"
+      description: "2XL"
+
+    full:
+      value: "9999px"
+      description: "Circular - avatares, badges"
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ 5. SHADOWS (Sombras)                                            │
+# └─────────────────────────────────────────────────────────────────┘
+
+shadow:
+  none:
+    value: "none"
+
+  sm:
+    value: "0 1px 2px 0 rgba(0, 0, 0, 0.05)"
+    description: "Sombra pequena - hover sutil"
+
+  md:
+    value: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+    description: "Sombra média - cards"
+
+  lg:
+    value: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+    description: "Sombra grande - dropdowns"
+
+  xl:
+    value: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+    description: "Sombra extra grande - modais"
+
+  2xl:
+    value: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+    description: "Sombra 2XL - popups"
+
+  inner:
+    value: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)"
+    description: "Sombra interna - inputs"
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ 6. TRANSITIONS (Transições)                                     │
+# └─────────────────────────────────────────────────────────────────┘
+
+transition:
+  duration:
+    instant:
+      value: "50ms"
+      description: "Instantâneo"
+
+    fast:
+      value: "100ms"
+      description: "Rápido - hover, focus"
+
+    normal:
+      value: "200ms"
+      description: "Normal - padrão"
+
+    slow:
+      value: "300ms"
+      description: "Lento - modais"
+
+    slower:
+      value: "500ms"
+      description: "Mais lento - animações complexas"
+
+  easing:
+    linear:
+      value: "linear"
+
+    ease:
+      value: "ease"
+
+    easeIn:
+      value: "ease-in"
+
+    easeOut:
+      value: "ease-out"
+
+    easeInOut:
+      value: "ease-in-out"
+
+    custom:
+      value: "cubic-bezier(0.4, 0, 0.2, 1)"
+      description: "Curva custom - suave"
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ 7. Z-INDEX (Camadas)                                            │
+# └─────────────────────────────────────────────────────────────────┘
+
+zIndex:
+  base:
+    value: 0
+    description: "Base - elementos normais"
+
+  dropdown:
+    value: 1000
+    description: "Dropdowns"
+
+  sticky:
+    value: 1100
+    description: "Elementos sticky"
+
+  fixed:
+    value: 1200
+    description: "Elementos fixed (header, footer)"
+
+  modalBackdrop:
+    value: 1300
+    description: "Backdrop de modais"
+
+  modal:
+    value: 1400
+    description: "Modais"
+
+  popover:
+    value: 1500
+    description: "Popovers"
+
+  tooltip:
+    value: 1600
+    description: "Tooltips"
+
+  notification:
+    value: 1700
+    description: "Notificações"
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ 8. BREAKPOINTS (Responsividade)                                 │
+# └─────────────────────────────────────────────────────────────────┘
+
+breakpoints:
+  xs:
+    value: "0px"
+    description: "Mobile portrait"
+
+  sm:
+    value: "640px"
+    description: "Mobile landscape"
+
+  md:
+    value: "768px"
+    description: "Tablet portrait"
+
+  lg:
+    value: "1024px"
+    description: "Tablet landscape"
+
+  xl:
+    value: "1280px"
+    description: "Desktop"
+
+  2xl:
+    value: "1536px"
+    description: "Large desktop"
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ 9. COMPONENT-SPECIFIC TOKENS                                    │
+# └─────────────────────────────────────────────────────────────────┘
+
+components:
+  # ───────────────────────────────────────────────────────────────
+  # Avatar
+  # ───────────────────────────────────────────────────────────────
+  avatar:
+    size:
+      xs:
+        value: "24px"
+      sm:
+        value: "32px"
+      md:
+        value: "48px"
+      lg:
+        value: "72px"
+      xl:
+        value: "80px"
+
+    border:
+      width:
+        value: "2px"
+      color:
+        value: "#e1e8ed"
+
+  # ───────────────────────────────────────────────────────────────
+  # Badge (verificado)
+  # ───────────────────────────────────────────────────────────────
+  badge:
+    verified:
+      background:
+        value: "#1d9bf0"
+      size:
+        sm:
+          value: "18px"
+        md:
+          value: "22px"
+        lg:
+          value: "24px"
+
+  # ───────────────────────────────────────────────────────────────
+  # Button
+  # ───────────────────────────────────────────────────────────────
+  button:
+    height:
+      sm:
+        value: "32px"
+      md:
+        value: "40px"
+      lg:
+        value: "48px"
+
+    padding:
+      horizontal:
+        value: "16px"
+
+    borderRadius:
+      value: "9999px"  # Fully rounded
+
+    fontSize:
+      sm:
+        value: "14px"
+      md:
+        value: "15px"
+      lg:
+        value: "16px"
+
+  # ───────────────────────────────────────────────────────────────
+  # Input
+  # ───────────────────────────────────────────────────────────────
+  input:
+    height:
+      sm:
+        value: "32px"
+      md:
+        value: "40px"
+      lg:
+        value: "48px"
+
+    padding:
+      horizontal:
+        value: "12px"
+
+    borderRadius:
+      value: "4px"
+
+    fontSize:
+      value: "14px"
+
+  # ───────────────────────────────────────────────────────────────
+  # Card
+  # ───────────────────────────────────────────────────────────────
+  card:
+    padding:
+      value: "24px"
+
+    borderRadius:
+      value: "8px"
+
+    border:
+      width:
+        value: "1px"
+      color:
+        value: "#e1e8ed"
+
+  # ───────────────────────────────────────────────────────────────
+  # Slide (Carrossel)
+  # ───────────────────────────────────────────────────────────────
+  slide:
+    dimensions:
+      width:
+        value: "1080px"
+      height:
+        value: "1350px"  # Instagram 4:5
+
+    padding:
+      top:
+        value: "150px"
+      bottom:
+        value: "200px"
+      horizontal:
+        value: "120px"
+
+    usableArea:
+      width:
+        value: "840px"  # 1080 - (120 * 2)
+      height:
+        value: "1000px"  # 1350 - 150 - 200
+
+# ┌─────────────────────────────────────────────────────────────────┐
+# │ 10. EXPORTS (Para diferentes plataformas)                       │
+# └─────────────────────────────────────────────────────────────────┘
+
+exports:
+  css:
+    enabled: true
+    filename: "tokens.css"
+    format: "css-variables"
+
+  scss:
+    enabled: true
+    filename: "tokens.scss"
+    format: "scss-variables"
+
+  js:
+    enabled: true
+    filename: "tokens.js"
+    format: "es6"
+
+  tailwind:
+    enabled: true
+    filename: "tailwind.config.js"
+    format: "tailwind-extend"
+
+  figma:
+    enabled: true
+    format: "figma-tokens"

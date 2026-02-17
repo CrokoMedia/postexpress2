@@ -1,0 +1,191 @@
+{
+  "audit_metadata": {
+    "username": "destinoschina",
+    "audit_type": "express",
+    "audit_date": "2025-01-27",
+    "posts_analyzed": 10,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "destinoschina",
+    "full_name": "Destino China",
+    "biography": "Theo Paul Santana | Especialista China-Brasil\n15 anos conectando negócios 🇧🇷🇨🇳\n+1000 empresas | +100 feiras | @langya_china\n📍 Tubarão | Shanghai | HK",
+    "followers_count": 477418,
+    "following_count": 2168,
+    "posts_count": 4921,
+    "is_verified": true,
+    "is_business_account": true
+  },
+  "metrics": {
+    "posts_analyzed": 10,
+    "total_likes": 12678,
+    "total_comments_extracted": 619,
+    "relevant_comments": 619,
+    "engagement_rate": "0.28%",
+    "avg_likes_per_post": 1268,
+    "avg_comments_per_post": 62,
+    "total_images_ocr": 74
+  },
+  "score_card": {
+    "overall_score": 74,
+    "classification": "BOM",
+    "classification_emoji": "🟢",
+    "needs_improvement": "Ofertas e CTAs mais claros",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 82,
+        "status": "✅",
+        "summary": "Conteúdo ativa System 1 com autoridade clara, mas pode explorar mais loss aversion"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 78,
+        "status": "✅",
+        "summary": "Copy sólido com hooks fortes, mas precisa de mais especificidade em benefícios"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 65,
+        "status": "⚠️",
+        "summary": "Ofertas implícitas sem CTAs diretos e pouco risk reversal"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 68,
+        "status": "⚠️",
+        "summary": "Engagement baixo para o tamanho da audiência, falta métricas de negócio"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 77,
+        "status": "✅",
+        "summary": "Posicionamento único combinando análise cultural com negócios China-Brasil"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Autoridade Estabelecida",
+      "description": "15 anos de experiência real na China, verificação, +470k seguidores e aparições na CNN/Exame criam credibilidade instantânea. O perfil transmite expertise genuína.",
+      "emoji": "👑"
+    },
+    {
+      "rank": 2,
+      "title": "Conteúdo Único e Relevante",
+      "description": "Análises culturais profundas (robótica chinesa, soft power) que outros não fazem. Combina tendências globais com insights práticos de negócios.",
+      "emoji": "🎯"
+    },
+    {
+      "rank": 3,
+      "title": "Timing Perfeito",
+      "description": "Aproveita eventos atuais (Ano Novo Chinês, tecnologia) para criar conteúdo viral. Post da CNN teve 9k likes - sabe surfar momentos.",
+      "emoji": "⚡"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "Engagement Rate Crítico",
+      "description": "0.28% de engagement com 477k seguidores indica audiência desengajada. Para comparação, contas saudáveis têm 3-6%. Pode indicar seguidores comprados ou conteúdo que não ressoa.",
+      "severity": "crítico",
+      "emoji": "📉"
+    },
+    {
+      "rank": 2,
+      "title": "CTAs Inexistentes",
+      "description": "Ótimo conteúdo mas sem direcionamento claro. Não fica claro como contratar consultoria, comprar livro ou próximos passos. Perdendo conversões.",
+      "severity": "alto",
+      "emoji": "🚫"
+    },
+    {
+      "rank": 3,
+      "title": "Monetização Pouco Clara",
+      "description": "Com essa autoridade e audiência, deveria estar gerando muito mais valor comercial. Falta estrutura de ofertas e funil de vendas organizado.",
+      "severity": "alto",
+      "emoji": "💸"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 82,
+      "key_findings": [
+        "Conteúdo ativa System 1 com autoridade clara e prova social forte",
+        "Usa storytelling pessoal efetivo (15 anos de experiência)",
+        "Timing perfeito aproveitando eventos atuais para viralizar"
+      ],
+      "recommendations": [
+        "Adicionar mais elementos de loss aversion ('últimas vagas', 'oportunidade limitada')",
+        "Criar padrões de postagem mais consistentes para formar hábitos",
+        "Usar mais gatilhos de escassez e urgência"
+      ]
+    },
+    "copy": {
+      "score": 78,
+      "key_findings": [
+        "Headlines fortes que despertam curiosidade",
+        "Tom direto e sem romantização ressoa bem",
+        "Especificidade boa (15 anos, 331 páginas, +1000 empresas)"
+      ],
+      "recommendations": [
+        "Adicionar mais benefícios específicos em cada post",
+        "Criar hooks mais orientados ao mercado brasileiro",
+        "Desenvolver mecanismo único mais claro na comunicação"
+      ]
+    },
+    "offers": {
+      "score": 65,
+      "key_findings": [
+        "Livro é oferta clara mas sem call-to-action forte",
+        "Consultoria mencionada no bio mas sem detalhamento",
+        "Evento presencial bem estruturado (200 livros grátis)"
+      ],
+      "recommendations": [
+        "Criar CTAs diretos em todo post relevante",
+        "Desenvolver ofertas escalonadas (lead magnet > consultoria)",
+        "Adicionar elementos de risk reversal e garantias"
+      ]
+    },
+    "metrics": {
+      "score": 68,
+      "key_findings": [
+        "Engagement rate de 0.28% extremamente baixo para o nicho",
+        "Distribuição de likes muito desigual (46 a 9034)",
+        "Média de comentários boa (62) mas inconsistente"
+      ],
+      "recommendations": [
+        "Investigar qualidade da audiência e possível limpeza",
+        "Focar em métricas de negócio (leads, vendas) além de vanity metrics",
+        "Criar conteúdo mais engajador e conversacional"
+      ]
+    },
+    "anomalies": {
+      "score": 77,
+      "key_findings": [
+        "Único perfil combinando análise cultural chinesa com negócios práticos",
+        "Aproveitamento inteligente de eventos para criar relevância",
+        "Posicionamento claro como ponte Brasil-China"
+      ],
+      "opportunities": [
+        "Explorar mais o gap de conhecimento sobre China no Brasil",
+        "Criar conteúdo educativo premium sobre negociação com chineses",
+        "Desenvolver comunidade de empresários interessados no mercado chinês"
+      ]
+    }
+  },
+  "quick_wins": [
+    "Adicionar CTA claro no bio e stories destacados com link para consultoria",
+    "Criar templates de stories com CTAs para posts que performam bem",
+    "Responder mais comentários para aumentar engagement orgânico",
+    "Fazer post perguntando diretamente o que a audiência quer aprender sobre China"
+  ],
+  "strategic_moves": [
+    "Desenvolver funil completo: lead magnet > email > consultoria > curso premium",
+    "Criar webinar mensal gratuito 'Negócios com China' para capturar leads",
+    "Lançar curso online sobre como fazer negócios na China",
+    "Estabelecer parcerias com outras contas de negócios/empreendedorismo",
+    "Investigar e limpar audiência para melhorar engagement rate"
+  ]
+}

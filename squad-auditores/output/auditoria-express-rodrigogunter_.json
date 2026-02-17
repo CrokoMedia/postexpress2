@@ -1,0 +1,171 @@
+{
+  "audit_metadata": {
+    "username": "rodrigogunter_",
+    "audit_type": "express",
+    "audit_date": "2024-12-28",
+    "posts_analyzed": 10,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "rodrigogunter_",
+    "full_name": "Rodrigo Gunter",
+    "biography": "Ex-militar•Empresário•Mentor de negócios\n@goldmix.lentes @next.laboratorio \n📈Ajudo empresários a expandirem seus negócios.\n✍️Escrita, treinos e trips.",
+    "followers_count": 56322,
+    "following_count": 1124,
+    "posts_count": 1243,
+    "is_verified": false,
+    "is_business_account": false
+  },
+  "metrics": {
+    "posts_analyzed": 10,
+    "total_likes": 262300,
+    "total_comments_extracted": 45078,
+    "relevant_comments": 45078,
+    "engagement_rate": "54.58%",
+    "avg_likes_per_post": 26230,
+    "avg_comments_per_post": 4508,
+    "total_images_ocr": 51
+  },
+  "score_card": {
+    "overall_score": 42,
+    "classification": "MEDIANO",
+    "classification_emoji": "🟡",
+    "needs_improvement": "Ofertas e CTAs - Zero monetização visível",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 75,
+        "status": "✅",
+        "summary": "Conteúdo emocional forte que ativa System 1, mas falta direcionamento estratégico"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 35,
+        "status": "❌",
+        "summary": "Captions vagas sem hooks específicos, baixo awareness do problema"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 15,
+        "status": "❌",
+        "summary": "Zero ofertas claras, CTAs inexistentes, não monetiza audiência de 56k"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 45,
+        "status": "❌",
+        "summary": "Alta variação no engajamento, foco em vanity metrics sem conversão"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 40,
+        "status": "❌",
+        "summary": "Perfil confuso entre lifestyle e business, desperdiça potencial de mentor"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Engajamento Emocional Excepcional",
+      "description": "Post sobre esposa dormindo alcançou 215k likes (54% da audiência), demonstrando capacidade viral e conexão emocional. Histórias pessoais geram identificação massiva.",
+      "emoji": "❤️"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "Zero Monetização com 56k Seguidores",
+      "description": "Não há ofertas, produtos ou CTAs claros. Desperdiça completamente uma audiência altamente engajada que poderia gerar receita significativa como mentor de negócios.",
+      "severity": "crítico",
+      "emoji": "💸"
+    },
+    {
+      "rank": 2,
+      "title": "Inconsistência Extrema de Performance",
+      "description": "Variação brutal: 63 likes vs 215k likes. Não entende quais gatilhos funcionam, criando conteúdo aleatório sem estratégia clara de replicação.",
+      "severity": "alto",
+      "emoji": "📊"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 75,
+      "key_findings": [
+        "Conteúdo emocional ativa fortemente System 1 (post da esposa = 215k likes)",
+        "Histórias pessoais criam loss aversion e identificação",
+        "Frases motivacionais funcionam como âncoras comportamentais"
+      ],
+      "recommendations": [
+        "Mapear exatamente quais emoções geram mais engajamento",
+        "Criar fórmulas replicáveis para conteúdo emocional",
+        "Usar gatilhos comportamentais para direcionar ações comerciais"
+      ]
+    },
+    "copy": {
+      "score": 35,
+      "key_findings": [
+        "Captions genéricas sem especificidade ('Quem sabe, sabe')",
+        "Falta de hooks que parem o scroll",
+        "Não identifica nível de awareness da audiência"
+      ],
+      "recommendations": [
+        "Criar hooks específicos com números e benefícios concretos",
+        "Desenvolver mecanismo único como ex-militar empresário",
+        "Usar fórmulas PAS (Problem-Agitation-Solution)"
+      ]
+    },
+    "offers": {
+      "score": 15,
+      "key_findings": [
+        "Zero produtos ou serviços oferecidos",
+        "Nenhum CTA comercial identificado",
+        "Audiência de 56k completamente não monetizada"
+      ],
+      "recommendations": [
+        "Criar oferta irresistível de mentoria empresarial",
+        "Implementar CTAs em 80% dos posts",
+        "Desenvolver funil de valor: conteúdo → lead magnet → venda"
+      ]
+    },
+    "metrics": {
+      "score": 45,
+      "key_findings": [
+        "Variação absurda: 63 a 215k likes no mesmo período",
+        "Alta taxa de engajamento (54%) mas sem conversão comercial",
+        "Foco em vanity metrics sem outcomes de negócio"
+      ],
+      "recommendations": [
+        "Definir North Star Metric comercial (leads/vendas)",
+        "Trackear quais posts geram mais DMs/interesse comercial",
+        "Criar dashboard de outcomes reais vs métricas de vaidade"
+      ]
+    },
+    "anomalies": {
+      "score": 40,
+      "key_findings": [
+        "Profile confusion: mentor de negócios + lifestyle posts",
+        "Desperdiça autoridade de ex-militar no mercado business",
+        "Audiência engajada mas sem direcionamento comercial"
+      ],
+      "opportunities": [
+        "Posicionar como 'ex-militar que ensina disciplina empresarial'",
+        "Criar conteúdo híbrido: histórias pessoais + lições business",
+        "Explorar nicho sub-explorado de militares empreendedores"
+      ]
+    }
+  },
+  "quick_wins": [
+    "Adicionar CTA simples no final de cada post: 'DM para mentoria'",
+    "Criar Stories destacados com depoimentos e casos de sucesso",
+    "Replicar formato do post viral (215k) com outras situações pessoais",
+    "Adicionar link na bio para lead magnet gratuito"
+  ],
+  "strategic_moves": [
+    "Desenvolver produto digital 'Método Militar para Empresários'",
+    "Criar série de posts 'Lições do Quartel para os Negócios'",
+    "Implementar funil completo: conteúdo → lead magnet → mentoria",
+    "Definir calendário editorial 70% business + 30% lifestyle"
+  ]
+}

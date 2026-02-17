@@ -6,6 +6,24 @@ const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 })
 
+// Remove surrogates Unicode inválidos (causa erro 400 na Anthropic API)
+function sanitizeString(str: string): string {
+  return str.replace(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, '')
+}
+
+function sanitizeDeep(value: unknown): unknown {
+  if (typeof value === 'string') return sanitizeString(value)
+  if (Array.isArray(value)) return value.map(sanitizeDeep)
+  if (value !== null && typeof value === 'object') {
+    const result: Record<string, unknown> = {}
+    for (const key of Object.keys(value as object)) {
+      result[key] = sanitizeDeep((value as Record<string, unknown>)[key])
+    }
+    return result
+  }
+  return value
+}
+
 // Prompt do Content Squad
 const CONTENT_CREATION_PROMPT = `Você é o líder do Content Creation Squad com 5 mentes especializadas:
 
@@ -165,6 +183,9 @@ export async function POST(
       console.log('🎯 Com tema personalizado')
     }
 
+    // Sanitizar dados antes de enviar (remove surrogates inválidos do conteúdo scrapeado)
+    const sanitizedAuditData = sanitizeDeep(auditData)
+
     // Chamar Claude API com o Content Squad
     const message = await client.messages.create({
       model: 'claude-sonnet-4-20250514',
@@ -173,7 +194,7 @@ export async function POST(
       messages: [
         {
           role: 'user',
-          content: CONTENT_CREATION_PROMPT + themeInstruction + '\n\n```json\n' + JSON.stringify(auditData, null, 2) + '\n```'
+          content: CONTENT_CREATION_PROMPT + themeInstruction + '\n\n```json\n' + JSON.stringify(sanitizedAuditData, null, 2) + '\n```'
         }
       ]
     })

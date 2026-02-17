@@ -1,0 +1,178 @@
+{
+  "audit_metadata": {
+    "username": "karlapazos",
+    "audit_type": "express",
+    "audit_date": "2024-12-19",
+    "posts_analyzed": 6,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "karlapazos",
+    "full_name": "Karla Pazos",
+    "biography": "2026 é NOSSO 🤍💚\nNo risk, no story. ✨🧠\n@crokomedia @ge.onepercent @convertte.ai \n🇧🇷🇨🇱🇪🇸🇦🇩🇫🇷🇲🇨🇮🇹🇶🇦🇹🇭🇨🇳🇦🇪",
+    "followers_count": 14114,
+    "following_count": 768,
+    "posts_count": 6,
+    "is_verified": false,
+    "is_business_account": false
+  },
+  "metrics": {
+    "posts_analyzed": 6,
+    "total_likes": 471,
+    "total_comments_extracted": 45,
+    "relevant_comments": 45,
+    "engagement_rate": "0.61%",
+    "avg_likes_per_post": 79,
+    "avg_comments_per_post": 8,
+    "total_images_ocr": 11
+  },
+  "score_card": {
+    "overall_score": 45,
+    "classification": "MEDIANO",
+    "classification_emoji": "🟡",
+    "needs_improvement": "Amostra insuficiente de conteúdo e falta de CTAs claros",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 42,
+        "status": "❌",
+        "summary": "Storytelling emocional forte, mas poucos posts para validar padrões comportamentais"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 48,
+        "status": "❌",
+        "summary": "Narrativas pessoais envolventes, porém falta especificidade e mecanismo único claro"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 25,
+        "status": "❌",
+        "summary": "Ausência total de ofertas estruturadas e CTAs diretos - só menciona empresas na bio"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 35,
+        "status": "❌",
+        "summary": "Engagement baixo (0.61%) e impossível avaliar outcomes com apenas 6 posts"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 55,
+        "status": "⚠️",
+        "summary": "Posicionamento único como 'nômade digital empresária', mas oportunidade subexplorada"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Storytelling Autêntico",
+      "description": "Narrativas pessoais vulneráveis que criam conexão emocional forte. Os posts sobre 'queimar barcos' e mudanças de vida geram identificação real com a audiência.",
+      "emoji": "📖"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "Amostra Insuficiente de Conteúdo",
+      "description": "Apenas 6 posts impossibilitam análise precisa de padrões. Para insights confiáveis e score mais alto, são necessários no mínimo 10-15 posts.",
+      "severity": "crítico",
+      "emoji": "📊"
+    },
+    {
+      "rank": 2,
+      "title": "Zero Monetização Visível",
+      "description": "Nenhum post contém ofertas, CTAs ou direcionamento para produtos/serviços. Com 14k seguidores, está perdendo oportunidades claras de conversão.",
+      "severity": "crítico",
+      "emoji": "💰"
+    },
+    {
+      "rank": 3,
+      "title": "Engagement Muito Baixo",
+      "description": "Taxa de 0.61% está bem abaixo da média do mercado (1.5-3%). Indica desconexão entre conteúdo e audiência ou problemas de alcance.",
+      "severity": "alto",
+      "emoji": "📉"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 42,
+      "key_findings": [
+        "Posts ativam System 1 com narrativas emocionais sobre mudanças de vida",
+        "Loss Aversion bem explorada no post sobre 'medo de perder o que conquistou'",
+        "Amostra pequena impede validação de padrões comportamentais consistentes"
+      ],
+      "recommendations": [
+        "Criar série de posts explorando medos comuns do público-alvo",
+        "Usar mais gatilhos de escassez e urgência",
+        "Implementar storytelling em formato de jornada do herói"
+      ]
+    },
+    "copy": {
+      "score": 48,
+      "key_findings": [
+        "Awareness Stage: Audience aparenta estar em Problem Aware (conhece dores)",
+        "Hooks emocionais funcionam, mas faltam dados específicos e números",
+        "Mecanismo único não está claro - o que exatamente ela oferece?"
+      ],
+      "recommendations": [
+        "Adicionar mais especificidade: números, resultados, timeframes",
+        "Definir e comunicar mecanismo único de transformação",
+        "Criar hooks mais diretos sobre benefícios tangíveis"
+      ]
+    },
+    "offers": {
+      "score": 25,
+      "key_findings": [
+        "Nenhuma oferta estruturada identificada nos posts",
+        "CTAs inexistentes - posts não direcionam para ação específica",
+        "Menciona empresas na bio mas não conecta com conteúdo"
+      ],
+      "recommendations": [
+        "Criar ofertas lead magnet relacionadas ao estilo de vida nômade",
+        "Implementar CTAs suaves em 1 de cada 3 posts",
+        "Desenvolver Grand Slam Offer para consultorias ou mentorias"
+      ]
+    },
+    "metrics": {
+      "score": 35,
+      "key_findings": [
+        "Engagement rate 0.61% muito abaixo da média (1.5-3%)",
+        "Apenas 6 posts impossibilitam análise de tendências",
+        "Foco em vanity metrics sem outcomes claros de negócio"
+      ],
+      "recommendations": [
+        "Postar consistentemente para ter dados confiáveis",
+        "Definir North Star Metric específica (leads, vendas, etc)",
+        "Implementar tracking de conversões da bio para empresas"
+      ]
+    },
+    "anomalies": {
+      "score": 55,
+      "key_findings": [
+        "Posicionamento 'nômade digital empresária' é diferenciado no mercado brasileiro",
+        "Alto contraste entre lifestyle glamouroso e vulnerabilidade",
+        "Gap: não conecta experiência internacional com valor para brasileiros"
+      ],
+      "opportunities": [
+        "Explorar insights únicos sobre mercados internacionais",
+        "Criar conteúdo sobre diferenças culturais para negócios",
+        "Posicionar como ponte entre Brasil e mundo para empreendedores"
+      ]
+    }
+  },
+  "quick_wins": [
+    "Adicionar CTA suave no final dos próximos 3 posts direcionando para DM",
+    "Criar stories perguntando o que a audiência mais quer saber sobre vida nômade",
+    "Postar pelo menos 2x por semana para aumentar amostra de dados",
+    "Adicionar mais números específicos nos próximos posts (86% crescimento foi ótimo)"
+  ],
+  "strategic_moves": [
+    "Desenvolver lead magnet: 'Guia completo para ser nômade digital brasileira'",
+    "Criar série de 10 posts sobre lições de negócio aprendidas em cada país",
+    "Lançar consultoria/mentoria para mulheres que querem internacionalizar negócios",
+    "Implementar estratégia de conteúdo consistente: 3 posts/semana + stories diários"
+  ]
+}

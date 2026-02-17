@@ -1,0 +1,187 @@
+{
+  "audit_metadata": {
+    "username": "samuelfialhoo",
+    "audit_type": "express",
+    "audit_date": "2024-12-19",
+    "posts_analyzed": 10,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "samuelfialhoo",
+    "full_name": "Samuel Fialho",
+    "biography": "Eu irei gerar de 50 a 100 calls/mês em sua operação. \nClique abaixo 👇🏼",
+    "followers_count": 60374,
+    "following_count": 263,
+    "posts_count": 463,
+    "is_verified": true,
+    "is_business_account": false
+  },
+  "metrics": {
+    "posts_analyzed": 10,
+    "total_likes": 638,
+    "total_comments_extracted": 133,
+    "relevant_comments": 133,
+    "engagement_rate": "0.13%",
+    "avg_likes_per_post": 64,
+    "avg_comments_per_post": 13,
+    "total_images_ocr": 22
+  },
+  "score_card": {
+    "overall_score": 25,
+    "classification": "CRÍTICO",
+    "classification_emoji": "🔴",
+    "needs_improvement": "Estratégia de conteúdo e copy",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 20,
+        "status": "❌",
+        "summary": "Conteúdo não ativa System 1, sem gatilhos comportamentais claros"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 15,
+        "status": "❌",
+        "summary": "90% dos posts sem caption, zero hooks ou mecanismos únicos"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 30,
+        "status": "❌",
+        "summary": "Bio tem CTA específico mas posts não convertem para ofertas"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 35,
+        "status": "❌",
+        "summary": "Engagement extremamente baixo (0.13%) para base de 60k seguidores"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 25,
+        "status": "❌",
+        "summary": "Estratégia visual não alinhada com promessa de geração de leads"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Base de seguidores estabelecida",
+      "description": "60k+ seguidores com perfil verificado indica credibilidade. CTA na bio é específico e quantificado (50-100 calls/mês).",
+      "emoji": "✅"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "Conteúdo sem propósito claro",
+      "description": "90% dos posts sem caption ou contexto. Não há conexão entre o conteúdo visual e a promessa de geração de leads da bio.",
+      "severity": "crítico",
+      "emoji": "🚨"
+    },
+    {
+      "rank": 2,
+      "title": "Engagement catastrófico",
+      "description": "0.13% de engagement com 60k seguidores indica audiência morta ou desengajada. Algoritmo não está distribuindo o conteúdo.",
+      "severity": "crítico",
+      "emoji": "📉"
+    },
+    {
+      "rank": 3,
+      "title": "Estratégia de copy inexistente",
+      "description": "Ausência total de storytelling, hooks, ou qualquer elemento de copywriting que conecte com a audiência e gere ação.",
+      "severity": "crítico",
+      "emoji": "✏️"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 20,
+      "key_findings": [
+        "Conteúdo não ativa gatilhos de System 1 (urgência, escassez, prova social)",
+        "Posts não criam padrões de comportamento ou hábitos de consumo",
+        "Ausência de elementos que geram loss aversion ou FOMO"
+      ],
+      "recommendations": [
+        "Implementar storytelling que ative emoções primárias",
+        "Usar social proof consistente nos posts",
+        "Criar senso de urgência e escassez nas ofertas"
+      ]
+    },
+    "copy": {
+      "score": 15,
+      "key_findings": [
+        "90% dos posts sem caption - oportunidade perdida de comunicação",
+        "Nenhum hook identificável nos poucos textos existentes",
+        "Zero mecanismos únicos apresentados",
+        "Não há adequação ao stage of awareness da audiência"
+      ],
+      "recommendations": [
+        "Desenvolver templates de caption para cada tipo de post",
+        "Implementar hooks testados para captar atenção",
+        "Criar mecanismo único para geração de leads",
+        "Adicionar CTAs específicos em cada post"
+      ]
+    },
+    "offers": {
+      "score": 30,
+      "key_findings": [
+        "Bio tem promessa específica (50-100 calls/mês) mas posts não suportam",
+        "Nenhuma oferta irresistível apresentada no feed",
+        "Ausência total de risk reversal ou garantias",
+        "CTAs limitados apenas à bio"
+      ],
+      "recommendations": [
+        "Criar Grand Slam Offers específicas para posts",
+        "Implementar risk reversal em ofertas",
+        "Desenvolver ladder de ofertas (entrada → premium)",
+        "Adicionar prova social quantificada"
+      ]
+    },
+    "metrics": {
+      "score": 35,
+      "key_findings": [
+        "Engagement rate crítico de 0.13% (saudável seria 1-3%)",
+        "Foco apenas em vanity metrics (seguidores) vs outcomes",
+        "Não há tracking de conversões ou leads gerados",
+        "Distribuição de conteúdo prejudicada pelo algoritmo"
+      ],
+      "recommendations": [
+        "Implementar métricas de outcome (leads, calls agendadas)",
+        "Testar horários e formatos para melhorar reach",
+        "Criar sistema de tracking de conversões",
+        "Focar em engagement quality vs quantity"
+      ]
+    },
+    "anomalies": {
+      "score": 25,
+      "key_findings": [
+        "Desconexão entre promessa (geração de leads) e conteúdo atual",
+        "60k seguidores mas engagement de conta pequena",
+        "Perfil verificado sugere autoridade não explorada",
+        "Conteúdo pessoal não conecta com expertise profissional"
+      ],
+      "opportunities": [
+        "Leverage da verificação para autoridade em leads",
+        "Transformar conteúdo pessoal em proof of lifestyle",
+        "Explorar a base existente com conteúdo educativo",
+        "Criar ponte entre pessoal e profissional"
+      ]
+    }
+  },
+  "quick_wins": [
+    "Adicionar captions em todos os novos posts com hook + valor + CTA",
+    "Criar stories destacados com cases de sucesso e depoimentos",
+    "Implementar CTA específico nos próximos 5 posts",
+    "Responder todos os comentários para aumentar engagement orgânico"
+  ],
+  "strategic_moves": [
+    "Desenvolver content pillar strategy (educação + autoridade + pessoal)",
+    "Criar funil de conteúdo: awareness → consideração → conversão",
+    "Implementar sistema de lead magnets através do conteúdo",
+    "Produzir série de posts educativos sobre geração de leads",
+    "Estabelecer métricas de outcome e sistema de tracking"
+  ]
+}

@@ -100,6 +100,98 @@ Array `latestPosts` contém até **12 posts mais recentes**, cada um com:
 
 ---
 
+## 💬 EXTRAÇÃO DE COMENTÁRIOS (NOVO!)
+
+Usando `resultsType: 'comments'`, você pode extrair comentários de posts:
+
+### Campos dos Comentários
+- `id` - ID do comentário
+- `text` - Texto completo
+- `timestamp` - Data e hora
+- `ownerUsername` - Username de quem comentou
+- `ownerProfilePicUrl` - Foto de perfil
+- `likesCount` - Curtidas no comentário
+
+### Script Recomendado
+```bash
+node scripts/instagram-scraper-with-comments.js rodrigogunter_
+```
+
+### Categorização Automática
+Os comentários são categorizados em:
+- ❓ **Perguntas** - Comentários com "?" ou começam com "como", "onde", etc
+- 💚 **Elogios** - "parabéns", "top", "amei", etc
+- 🤔 **Dúvidas** - "dúvida", "não entendi", etc
+- 💬 **Experiências** - "comigo", "já passei", "aconteceu", etc
+- 📌 **Outros** - Demais comentários
+
+### Filtragem Inteligente
+Remove automaticamente:
+- Comentários muito curtos (< 3 caracteres)
+- Apenas emojis
+- Spam ("follow", "dm", "link in bio", etc)
+
+---
+
+## 🔍 ANÁLISE OCR DAS IMAGENS (NOVO!)
+
+Extração de texto das imagens usando **Claude Vision API**:
+
+### O que é extraído:
+- ✅ Texto completo dos slides
+- ✅ Títulos e subtítulos
+- ✅ Bullets e listas
+- ✅ CTAs (Call-to-Action)
+- ✅ Estrutura do conteúdo
+- ✅ Cores predominantes
+- ✅ Tipo de conteúdo (educacional, vendas, autoridade, viral)
+
+### Script de OCR
+```bash
+node scripts/ocr-image-analyzer.js rodrigogunter_
+```
+
+### Formato de Saída (JSON)
+```json
+{
+  "texto_completo": "Todo o texto extraído",
+  "titulo_principal": "Título do slide",
+  "subtitulos": ["Subtítulo 1", "Subtítulo 2"],
+  "bullets": ["Item 1", "Item 2"],
+  "cta": "Call-to-action identificado",
+  "estrutura": "Descrição da estrutura",
+  "cores_predominantes": ["azul", "branco"],
+  "tipo_conteudo": "educacional|vendas|autoridade|viral",
+  "elementos_especiais": ["ícones", "emojis"]
+}
+```
+
+---
+
+## 🚀 PIPELINE COMPLETO (RECOMENDADO!)
+
+Use `complete-post-analyzer.js` para executar tudo de uma vez:
+
+```bash
+node scripts/complete-post-analyzer.js rodrigogunter_ --limit=10
+```
+
+### O que faz:
+1. ✅ Extrai posts do perfil
+2. ✅ Extrai e categoriza comentários
+3. ✅ Analisa imagens com OCR
+4. ✅ Gera relatório markdown
+
+### Saídas:
+- `squad-auditores/data/{username}-complete-analysis.json` - Dados completos
+- `squad-auditores/output/auditoria-{username}.md` - Relatório formatado
+
+### Opções:
+- `--limit=N` - Número de posts (padrão: 10)
+- `--skip-ocr` - Pular OCR (mais rápido)
+
+---
+
 ## 🚀 COMO USAR
 
 ### 1️⃣ Extrair Dados do Instagram

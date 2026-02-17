@@ -93,11 +93,140 @@ Para obter seu token:
 
 ## 🔧 Scripts Disponíveis:
 
+### 📸 Scraping Básico
+
 | Script | Descrição | Actor Usado |
 |--------|-----------|-------------|
 | `test-instagram-scraper.js` | ⭐ **RECOMENDADO** - Extrai foto de perfil HD | `apify/instagram-profile-scraper` |
 | `test-instagram-official.js` | Alternativo (mesmo resultado) | `apify/instagram-profile-scraper` |
 | `instagram-scraper-apify.js` | ❌ NÃO extrai foto de perfil | `apify/instagram-scraper` |
+
+### 💬 Análise Completa (NOVOS!)
+
+| Script | Descrição | Tecnologias |
+|--------|-----------|-------------|
+| `instagram-scraper-with-comments.js` | 🔥 Extrai posts + comentários categorizados | Apify Instagram Scraper |
+| `ocr-image-analyzer.js` | 🔍 OCR usando Tesseract.js (legado) | Tesseract.js |
+| `ocr-gemini-analyzer.js` | ⭐ **OCR PREMIUM** - Extração superior com Gemini Vision | Google Gemini Vision |
+| `complete-post-analyzer.js` | 🚀 **PIPELINE COMPLETO** - Posts + Comentários + OCR + Relatório | Apify + Vision API |
+
+---
+
+## 🆕 NOVOS SCRIPTS - Análise Completa
+
+### 1️⃣ `instagram-scraper-with-comments.js`
+
+Extrai posts E comentários, categorizando automaticamente:
+
+```bash
+node scripts/instagram-scraper-with-comments.js rodrigogunter_ --limit=20 --comments-per-post=50
+```
+
+**Categorias de comentários:**
+- ❓ Perguntas
+- 💚 Elogios
+- 🤔 Dúvidas
+- 💬 Experiências pessoais
+- 📌 Outros
+
+**Saída:** `squad-auditores/data/{username}-posts-with-comments.json`
+
+---
+
+### 2️⃣ `ocr-image-analyzer.js` (Legado - Tesseract)
+
+Extrai texto de imagens usando Tesseract.js:
+
+```bash
+node scripts/ocr-image-analyzer.js rodrigogunter_
+```
+
+**O que extrai:**
+- Texto completo dos slides
+- Títulos e subtítulos
+- Bullets e listas
+- CTAs (Call-to-Action)
+- Tipo de conteúdo (educacional, vendas, autoridade, viral)
+
+**Saída:** `squad-auditores/data/{username}-ocr-analysis.json`
+
+**⚠️ Nota:** Qualidade inferior, recomendamos usar `ocr-gemini-analyzer.js` para melhores resultados.
+
+---
+
+### 2.1️⃣ `ocr-gemini-analyzer.js` ⭐ **RECOMENDADO**
+
+Extrai texto de imagens usando **Google Gemini Vision API** - OCR superior com contexto semântico:
+
+```bash
+node scripts/ocr-gemini-analyzer.js rodrigogunter_
+# ou use o alias npm:
+npm run ocr-gemini rodrigogunter_
+```
+
+**O que extrai (com qualidade superior):**
+- ✅ Texto completo preservando hierarquia visual
+- ✅ Títulos principais e subtítulos identificados corretamente
+- ✅ Bullets e listas estruturadas
+- ✅ CTAs detectados automaticamente
+- ✅ Números em destaque (estatísticas, métricas)
+- ✅ Cores predominantes
+- ✅ Tipo de conteúdo (educacional, vendas, autoridade, viral)
+- ✅ Elementos especiais (emojis, ícones, badges)
+- ✅ Estrutura visual descrita
+
+**Vantagens sobre Tesseract:**
+- 🚀 Reconhecimento muito superior de texto em imagens estilizadas
+- 🎨 Entende contexto visual e hierarquia
+- 🎯 Detecta tipo de conteúdo com precisão
+- 📊 Identifica elementos especiais automaticamente
+- 💰 Gratuito até 1.5M tokens/mês
+
+**Saída:** `squad-auditores/data/{username}-ocr-gemini-analysis.json`
+
+**Pré-requisito:** Configure `GOOGLE_API_KEY` no `.env` (já configurado ✅)
+
+---
+
+### 3️⃣ `complete-post-analyzer.js` (⭐ PIPELINE COMPLETO)
+
+**Executa tudo automaticamente:**
+1. Scraping de posts
+2. Extração de comentários
+3. OCR das imagens
+4. Geração de relatório
+
+```bash
+node scripts/complete-post-analyzer.js rodrigogunter_ --limit=10
+```
+
+**Opções:**
+- `--limit=N` - Número de posts (padrão: 10)
+- `--skip-ocr` - Pular análise OCR (mais rápido)
+
+**Saídas:**
+- `squad-auditores/data/{username}-complete-analysis.json` (dados completos)
+- `squad-auditores/output/auditoria-{username}.md` (relatório markdown)
+
+---
+
+## 📦 Dependências Adicionais
+
+Para usar os novos scripts, instale:
+
+```bash
+npm install @google/generative-ai @anthropic-ai/sdk tesseract.js
+```
+
+E configure as chaves da API no `.env`:
+
+```env
+# Google Gemini (OCR Premium)
+GOOGLE_API_KEY=AIzaSy...
+
+# Anthropic Claude (Análises)
+ANTHROPIC_API_KEY=sk-ant-api03-...
+```
 
 ---
 

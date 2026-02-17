@@ -1,0 +1,307 @@
+{
+  "template_id": "tweet-style",
+  "template_name": "Tweet Style",
+  "template_description": "Template inspirado no Twitter/X para posts educacionais e de autoridade",
+  "template_version": "1.0.0",
+  "created_by": "Uma (UX Design Expert)",
+  "created_at": "2026-02-16",
+
+  "dimensions": {
+    "width": 1080,
+    "height": 1350,
+    "format": "Instagram 4:5"
+  },
+
+  "safe_area": {
+    "top": 150,
+    "bottom": 200,
+    "left": 120,
+    "right": 120,
+    "usable_width": 840,
+    "usable_height": 1000
+  },
+
+  "design_tokens": {
+    "colors": {
+      "background": "#ffffff",
+      "text_primary": "#0f1419",
+      "text_secondary": "#536471",
+      "brand_blue": "#1d9bf0",
+      "border": "#e1e8ed"
+    },
+    "typography": {
+      "font_family": "Chirp, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      "font_size_name": 26,
+      "font_size_username": 20,
+      "font_size_body": 33
+    },
+    "spacing": {
+      "header_margin_bottom": 32,
+      "avatar_size": 72,
+      "badge_size": 22
+    }
+  },
+
+  "slides": [
+    {
+      "slide_number": 1,
+      "slide_type": "capa",
+      "slide_title": "Slide de Capa",
+      "background": {
+        "type": "solid",
+        "color": "#ffffff"
+      },
+      "elements": [
+        {
+          "type": "group",
+          "id": "header-group",
+          "name": "Header (Avatar + Nome + Username)",
+          "locked": true,
+          "position": {
+            "x": 120,
+            "y": 150
+          },
+          "elements": [
+            {
+              "type": "image",
+              "id": "avatar",
+              "name": "Avatar",
+              "source": "{{AVATAR_URL}}",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "size": {
+                "width": 72,
+                "height": 72
+              },
+              "style": {
+                "borderRadius": "50%",
+                "border": "2px solid #e1e8ed"
+              }
+            },
+            {
+              "type": "text",
+              "id": "nome",
+              "name": "Nome do Cliente",
+              "content": "{{NOME_CLIENTE}}",
+              "position": {
+                "x": 90,
+                "y": 8
+              },
+              "style": {
+                "fontFamily": "Chirp",
+                "fontSize": 26,
+                "fontWeight": 700,
+                "color": "#0f1419"
+              }
+            },
+            {
+              "type": "svg",
+              "id": "badge-verificado",
+              "name": "Badge Verificado",
+              "content": "<svg viewBox='0 0 24 24'><path d='M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .494.083.964.237 1.4-1.272.65-2.147 2.018-2.147 3.6 0 1.495.782 2.798 1.942 3.486-.02.17-.032.34-.032.514 0 2.21 1.708 4 3.818 4 .47 0 .92-.086 1.335-.25.62 1.334 1.926 2.25 3.437 2.25 1.512 0 2.818-.916 3.437-2.25.415.163.865.248 1.336.248 2.11 0 3.818-1.79 3.818-4 0-.174-.012-.344-.033-.513 1.158-.687 1.943-1.99 1.943-3.484zm-6.616-3.334l-4.334 6.5c-.145.217-.382.334-.625.334-.143 0-.288-.04-.416-.126l-.115-.094-2.415-2.415c-.293-.293-.293-.768 0-1.06s.768-.294 1.06 0l1.77 1.767 3.825-5.74c.23-.345.696-.436 1.04-.207.346.23.44.696.21 1.04z' fill='#ffffff'/></svg>",
+              "position": {
+                "x": 220,
+                "y": 12
+              },
+              "size": {
+                "width": 22,
+                "height": 22
+              },
+              "style": {
+                "backgroundColor": "#1d9bf0",
+                "borderRadius": "50%"
+              },
+              "visible": "{{VERIFICADO}}"
+            },
+            {
+              "type": "text",
+              "id": "username",
+              "name": "Username",
+              "content": "@{{USERNAME}}",
+              "position": {
+                "x": 90,
+                "y": 40
+              },
+              "style": {
+                "fontFamily": "Chirp",
+                "fontSize": 20,
+                "fontWeight": 400,
+                "color": "#536471"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "texto-principal",
+          "name": "Texto Principal",
+          "content": "{{TEXTO_SLIDE}}",
+          "position": {
+            "x": 120,
+            "y": 280
+          },
+          "size": {
+            "width": 840,
+            "height": "auto",
+            "maxHeight": 870
+          },
+          "style": {
+            "fontFamily": "Chirp",
+            "fontSize": 33,
+            "fontWeight": 400,
+            "color": "#0f1419",
+            "lineHeight": 1.5,
+            "textAlign": "left",
+            "wordWrap": "break-word"
+          },
+          "editable": true
+        }
+      ]
+    },
+    {
+      "slide_number": 2,
+      "slide_type": "conteudo",
+      "slide_title": "Slide de Conteúdo (com imagem opcional)",
+      "background": {
+        "type": "solid",
+        "color": "#ffffff"
+      },
+      "elements": [
+        {
+          "type": "group",
+          "id": "header-group",
+          "name": "Header (reutilizado)",
+          "locked": true,
+          "position": {
+            "x": 120,
+            "y": 150
+          },
+          "elements": [
+            "/* Mesma estrutura do slide 1 */"
+          ]
+        },
+        {
+          "type": "text",
+          "id": "texto-principal",
+          "name": "Texto Principal",
+          "content": "{{TEXTO_SLIDE}}",
+          "position": {
+            "x": 120,
+            "y": 280
+          },
+          "size": {
+            "width": 840,
+            "height": "auto",
+            "maxHeight": 400
+          },
+          "style": {
+            "fontFamily": "Chirp",
+            "fontSize": 31,
+            "fontWeight": 400,
+            "color": "#0f1419",
+            "lineHeight": 1.5,
+            "textAlign": "left"
+          },
+          "editable": true
+        },
+        {
+          "type": "image",
+          "id": "imagem-conteudo",
+          "name": "Imagem do Post",
+          "source": "{{IMAGEM_URL}}",
+          "position": {
+            "x": 120,
+            "y": 750
+          },
+          "size": {
+            "width": 840,
+            "height": 400,
+            "maxHeight": 460
+          },
+          "style": {
+            "objectFit": "cover",
+            "borderRadius": "18px",
+            "border": "1px solid #e1e8ed"
+          },
+          "optional": true,
+          "editable": true
+        }
+      ]
+    }
+  ],
+
+  "variables": {
+    "AVATAR_URL": {
+      "type": "url",
+      "description": "URL da foto de perfil do cliente (Cloudinary)",
+      "required": true,
+      "default": "https://via.placeholder.com/72"
+    },
+    "NOME_CLIENTE": {
+      "type": "text",
+      "description": "Nome completo do cliente",
+      "required": true,
+      "default": "Nome do Cliente"
+    },
+    "USERNAME": {
+      "type": "text",
+      "description": "Username sem @",
+      "required": true,
+      "default": "usuario"
+    },
+    "VERIFICADO": {
+      "type": "boolean",
+      "description": "Se a conta é verificada",
+      "required": false,
+      "default": false
+    },
+    "TEXTO_SLIDE": {
+      "type": "text",
+      "description": "Conteúdo textual do slide",
+      "required": true,
+      "default": "Digite o conteúdo aqui..."
+    },
+    "IMAGEM_URL": {
+      "type": "url",
+      "description": "URL da imagem opcional",
+      "required": false,
+      "default": null
+    }
+  },
+
+  "accessibility": {
+    "wcag_level": "AA",
+    "contrast_ratio": 19.8,
+    "font_min_size": 20,
+    "focus_visible": true,
+    "screen_reader_friendly": true
+  },
+
+  "usage_notes": [
+    "Ideal para conteúdo educacional e de autoridade",
+    "Familiaridade visual com Twitter/X aumenta engajamento",
+    "Funciona bem para listas numeradas e frameworks",
+    "Avatar e badge verificado geram credibilidade",
+    "Safe area garante que nada será cortado no Instagram"
+  ],
+
+  "examples": [
+    {
+      "title": "Lista de erros comuns",
+      "slides_count": 10,
+      "use_case": "Educacional"
+    },
+    {
+      "title": "Framework de vendas",
+      "slides_count": 7,
+      "use_case": "Autoridade"
+    },
+    {
+      "title": "Gatilhos mentais",
+      "slides_count": 8,
+      "use_case": "Marketing"
+    }
+  ]
+}

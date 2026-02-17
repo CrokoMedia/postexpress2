@@ -23,8 +23,17 @@ export function ProfileCard({ profile, lastAudit, onClick }: ProfileCardProps) {
     ? getScoreClassification(lastAudit.score_overall)
     : null
 
-  const profilePicUrl = profile.profile_pic_cloudinary_url || profile.profile_pic_url_hd
+  const profilePicUrl = profile.profile_pic_cloudinary_url || profile.profile_pic_url_hd || profile.profile_pic_url
   const hasProfilePic = profilePicUrl && !imageError
+
+  // Debug: Log para verificar dados da foto
+  if (typeof window !== 'undefined' && !profilePicUrl) {
+    console.log(`⚠️ @${profile.username} - sem foto:`, {
+      cloudinary: profile.profile_pic_cloudinary_url,
+      hd: profile.profile_pic_url_hd,
+      normal: profile.profile_pic_url
+    })
+  }
 
   return (
     <Card
@@ -40,12 +49,15 @@ export function ProfileCard({ profile, lastAudit, onClick }: ProfileCardProps) {
               alt={profile.username}
               fill
               className="object-cover"
-              onError={() => setImageError(true)}
+              onError={(e) => {
+                console.error(`❌ Erro ao carregar imagem de @${profile.username}:`, profilePicUrl)
+                setImageError(true)
+              }}
               unoptimized
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-neutral-500 text-2xl font-bold">
-              {profile.username[0].toUpperCase()}
+            <div className="w-full h-full flex items-center justify-center text-neutral-400 text-2xl font-bold bg-gradient-to-br from-neutral-700 to-neutral-800">
+              {profile.username[0]?.toUpperCase() || '?'}
             </div>
           )}
         </div>

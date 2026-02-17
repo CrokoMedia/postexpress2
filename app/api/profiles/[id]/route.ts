@@ -17,7 +17,6 @@ export async function GET(
         audits:audits(*)
       `)
       .eq('id', id)
-      .is('deleted_at', null)
       .single()
 
     if (error) throw error
@@ -63,7 +62,6 @@ export async function DELETE(
       .from('profiles')
       .select('id, username')
       .eq('id', id)
-      .is('deleted_at', null)
       .single()
 
     if (fetchError || !profile) {

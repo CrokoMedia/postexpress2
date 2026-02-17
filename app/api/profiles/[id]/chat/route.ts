@@ -6,6 +6,24 @@ const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 })
 
+// Remove surrogates Unicode inválidos (causa erro 400 na Anthropic API)
+function sanitizeString(str: string): string {
+  return str.replace(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, '')
+}
+
+function sanitizeDeep(value: unknown): unknown {
+  if (typeof value === 'string') return sanitizeString(value)
+  if (Array.isArray(value)) return value.map(sanitizeDeep)
+  if (value !== null && typeof value === 'object') {
+    const result: Record<string, unknown> = {}
+    for (const key of Object.keys(value as object)) {
+      result[key] = sanitizeDeep((value as Record<string, unknown>)[key])
+    }
+    return result
+  }
+  return value
+}
+
 // Rate limiting simples (em memória - para produção usar Redis)
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
 
@@ -171,13 +189,13 @@ ${quickWins}
       .slice(1) // Remover mensagem de boas-vindas
       .map((msg: any) => ({
         role: msg.role,
-        content: msg.content
+        content: sanitizeString(String(msg.content))
       }))
 
-    // Adicionar mensagem atual
+    // Adicionar mensagem atual (sanitizada)
     conversationMessages.push({
       role: 'user',
-      content: message
+      content: sanitizeString(message)
     })
 
     // Chamar Claude API

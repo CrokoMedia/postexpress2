@@ -1,0 +1,178 @@
+{
+  "audit_metadata": {
+    "username": "eufelipericardo",
+    "audit_type": "express",
+    "audit_date": "2024-12-28",
+    "posts_analyzed": 7,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "eufelipericardo",
+    "full_name": "Felipe Ricardo",
+    "biography": "empresário, nômade",
+    "followers_count": 8696,
+    "following_count": 191,
+    "posts_count": 7,
+    "is_verified": true,
+    "is_business_account": false
+  },
+  "metrics": {
+    "posts_analyzed": 7,
+    "total_likes": 397,
+    "total_comments_extracted": 54,
+    "relevant_comments": 54,
+    "engagement_rate": "0.74%",
+    "avg_likes_per_post": 57,
+    "avg_comments_per_post": 8,
+    "total_images_ocr": 25
+  },
+  "score_card": {
+    "overall_score": 32,
+    "classification": "RUIM",
+    "classification_emoji": "🟠",
+    "needs_improvement": "Estratégia de Conteúdo e Monetização",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 25,
+        "status": "❌",
+        "summary": "Conteúdo ativa System 2 mas falha em criar padrões comportamentais claros"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 35,
+        "status": "❌",
+        "summary": "Captions superficiais sem awareness adequado ou hooks fortes"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 15,
+        "status": "❌",
+        "summary": "Zero ofertas identificáveis, sem CTAs ou direcionamento comercial"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 40,
+        "status": "❌",
+        "summary": "Engagement baixo (0.74%) sem métricas de negócio aparentes"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 45,
+        "status": "❌",
+        "summary": "Bio vaga desperdiça oportunidade de posicionamento como empresário"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Lifestyle Aspiracional",
+      "description": "Conteúdo de viagens e lifestyle nômade gera aspiração. Post mais engajado (157 likes) combina motivação com experiência pessoal, mostrando potencial para conteúdo inspiracional.",
+      "emoji": "✈️"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "Ausência Total de Monetização",
+      "description": "Zero ofertas, produtos ou direcionamentos comerciais identificados. Para alguém que se apresenta como 'empresário', não há evidência de negócios ou geração de valor comercial.",
+      "severity": "crítico",
+      "emoji": "💸"
+    },
+    {
+      "rank": 2,
+      "title": "Engagement Crítico",
+      "description": "Taxa de engagement de 0.74% está muito abaixo da média (3-6%). Com 8.696 seguidores, deveria ter muito mais interação se o conteúdo fosse relevante.",
+      "severity": "crítico",
+      "emoji": "📉"
+    },
+    {
+      "rank": 3,
+      "title": "Posicionamento Confuso",
+      "description": "Bio genérica 'empresário, nômade' não comunica valor específico. Conteúdo parece diário pessoal sem propósito claro ou audiência definida.",
+      "severity": "alto",
+      "emoji": "🎯"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 25,
+      "key_findings": [
+        "Conteúdo não ativa System 1 efetivamente - muito contemplativo",
+        "Falta padrões comportamentais claros para audiência seguir",
+        "Posts não criam urgência ou gatilhos emocionais consistentes"
+      ],
+      "recommendations": [
+        "Criar conteúdo mais visual e emocional (System 1)",
+        "Estabelecer padrões de posting e expectativas claras",
+        "Usar mais gatilhos de escassez e prova social"
+      ]
+    },
+    "copy": {
+      "score": 35,
+      "key_findings": [
+        "Captions muito básicas, sem hooks fortes",
+        "Não identifica awareness stage da audiência",
+        "Falta storytelling estruturado e calls-to-action"
+      ],
+      "recommendations": [
+        "Desenvolver hooks mais impactantes nos primeiros segundos",
+        "Criar copy mais educativo sobre empreendedorismo/lifestyle",
+        "Adicionar perguntas e CTAs para aumentar engagement"
+      ]
+    },
+    "offers": {
+      "score": 15,
+      "key_findings": [
+        "Zero ofertas identificadas em todo o feed",
+        "Sem direcionamento para produtos/serviços",
+        "Desperdiça audiência qualificada interessada em lifestyle empresarial"
+      ],
+      "recommendations": [
+        "Criar lead magnet sobre nomadismo digital",
+        "Desenvolver consultoria ou curso sobre lifestyle empresarial",
+        "Adicionar links no stories e bio direcionando para ofertas"
+      ]
+    },
+    "metrics": {
+      "score": 40,
+      "key_findings": [
+        "Engagement rate 0.74% muito abaixo da média",
+        "Sem métricas de conversão ou negócios aparentes",
+        "Foco em vanity metrics ao invés de outcomes"
+      ],
+      "recommendations": [
+        "Implementar tracking de leads e conversões",
+        "Definir North Star Metric relacionado a negócios",
+        "A/B testing em diferentes tipos de conteúdo"
+      ]
+    },
+    "anomalies": {
+      "score": 45,
+      "key_findings": [
+        "Perfil verificado mas pouco conteúdo (apenas 7 posts)",
+        "Ratio seguindo/seguidores sugere crescimento orgânico",
+        "Post motivacional teve 4x mais engagement que viagens"
+      ],
+      "opportunities": [
+        "Explorar nicho de motivação + empreendedorismo",
+        "Aproveitar verificação para autoridade",
+        "Criar série de conteúdo sobre jornada empresarial"
+      ]
+    }
+  },
+  "quick_wins": [
+    "Atualizar bio com proposta de valor específica (ex: 'Ensino como construir negócios sendo nômade digital')",
+    "Criar 3 posts educativos sobre empreendedorismo baseado na experiência",
+    "Adicionar pergunta no final de cada caption para aumentar comentários",
+    "Usar stories para direcionar tráfego e testar interesse em conteúdo premium"
+  ],
+  "strategic_moves": [
+    "Desenvolver lead magnet 'Guia do Empresário Nômade Digital'",
+    "Criar série de posts sobre construção de negócios remotos",
+    "Lançar consultoria ou mentoria para aspirantes a empreendedores nômades",
+    "Estabelecer calendário de conteúdo com 70% educativo, 30% lifestyle"
+  ]
+}

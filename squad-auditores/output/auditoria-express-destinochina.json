@@ -1,0 +1,178 @@
+{
+  "audit_metadata": {
+    "username": "destinochina",
+    "audit_type": "express",
+    "audit_date": "2024-12-19",
+    "posts_analyzed": 0,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "destinochina",
+    "full_name": "Laura Delboni",
+    "biography": "",
+    "followers_count": 39,
+    "following_count": 1,
+    "posts_count": 0,
+    "is_verified": false,
+    "is_business_account": false
+  },
+  "metrics": {
+    "posts_analyzed": 0,
+    "total_likes": 0,
+    "total_comments_extracted": 0,
+    "relevant_comments": 0,
+    "engagement_rate": "0%",
+    "avg_likes_per_post": 0,
+    "avg_comments_per_post": 0,
+    "total_images_ocr": 0
+  },
+  "score_card": {
+    "overall_score": 5,
+    "classification": "CRÍTICO",
+    "classification_emoji": "🔴",
+    "needs_improvement": "Criar conteúdo - conta completamente inativa",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 5,
+        "status": "❌",
+        "summary": "Impossível ativar System 1 sem conteúdo - conta completamente inativa"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 5,
+        "status": "❌",
+        "summary": "Zero copy para analisar - bio vazia, sem posts ou engajamento"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 5,
+        "status": "❌",
+        "summary": "Nenhuma oferta identificada - conta sem propósito comercial aparente"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 5,
+        "status": "❌",
+        "summary": "Métricas zeradas - sem outcomes ou outputs mensuráveis"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 5,
+        "status": "❌",
+        "summary": "Padrão anômalo: 39 seguidores seguindo apenas 1 conta sem conteúdo próprio"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Username temático disponível",
+      "description": "O handle @destinochina sugere foco em turismo/negócios com a China, um nicho com potencial. O username é claro e memorável para construir autoridade no tema.",
+      "emoji": "🎯"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "Conta completamente inativa",
+      "description": "Zero posts publicados impossibilita qualquer análise de desempenho. Sem conteúdo, não há como gerar engajamento, leads ou conversões. É fundamentalmente uma conta abandonada.",
+      "severity": "crítico",
+      "emoji": "💀"
+    },
+    {
+      "rank": 2,
+      "title": "Bio vazia desperdiça oportunidade",
+      "description": "Biografia completamente vazia não comunica proposta de valor, não direciona tráfego e não estabelece credibilidade. Primeiro ponto de contato com potenciais seguidores está perdido.",
+      "severity": "crítico",
+      "emoji": "❌"
+    },
+    {
+      "rank": 3,
+      "title": "Análise impossível por dados insuficientes",
+      "description": "Com zero posts analisados, qualquer avaliação é especulativa. Para score preciso e recomendações efetivas, é necessário no mínimo 10 posts com conteúdo consistente.",
+      "severity": "crítico",
+      "emoji": "📊"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 5,
+      "key_findings": [
+        "Impossível ativar System 1 sem estímulos visuais ou textuais",
+        "Nenhum padrão comportamental estabelecido",
+        "Zero gatilhos de loss aversion ou urgência"
+      ],
+      "recommendations": [
+        "Criar conteúdo que desperte curiosidade sobre China imediatamente",
+        "Usar imagens impactantes que ativem System 1",
+        "Estabelecer posting schedule consistente"
+      ]
+    },
+    "copy": {
+      "score": 5,
+      "key_findings": [
+        "Bio vazia não comunica awareness stage ou market sophistication",
+        "Sem hooks, mecanismos únicos ou especificidade",
+        "Nenhuma evidência de copywriting estratégico"
+      ],
+      "recommendations": [
+        "Escrever bio focada em transformação específica sobre China",
+        "Desenvolver content pillars com copy persuasivo",
+        "Criar hooks baseados em curiosidades sobre mercado chinês"
+      ]
+    },
+    "offers": {
+      "score": 5,
+      "key_findings": [
+        "Nenhuma value proposition identificada",
+        "Zero CTAs ou direcionamentos",
+        "Sem prova social ou risk reversal"
+      ],
+      "recommendations": [
+        "Definir oferta principal (consultoria, curso, conteúdo premium)",
+        "Criar lead magnet relacionado a negócios na China",
+        "Estabelecer CTAs claros em cada post"
+      ]
+    },
+    "metrics": {
+      "score": 5,
+      "key_findings": [
+        "Todas as métricas zeradas",
+        "Sem north star metric definido",
+        "Impossível medir outcomes vs outputs"
+      ],
+      "recommendations": [
+        "Definir KPIs iniciais: followers growth, engagement rate, reach",
+        "Estabelecer metas de leads qualificados mensais",
+        "Implementar tracking de tráfego para conversões"
+      ]
+    },
+    "anomalies": {
+      "score": 5,
+      "key_findings": [
+        "Padrão incomum: 39 seguidores orgânicos sem conteúdo",
+        "Seguindo apenas 1 conta - estratégia não clara",
+        "Nome Laura Delboni + username China sugere expertise pessoal"
+      ],
+      "opportunities": [
+        "Aproveitar seguidores iniciais para validar nicho de conteúdo",
+        "Explorar conexão pessoal com China para autoridade",
+        "Nicho 'destino China' tem baixa concorrência no Brasil"
+      ]
+    }
+  },
+  "quick_wins": [
+    "Escrever bio explicando expertise em China (negócios/turismo/cultura)",
+    "Postar primeira série: '5 mitos sobre fazer negócios na China'",
+    "Adicionar link na bio direcionando para lead magnet",
+    "Seguir 20-30 contas relevantes do nicho para aumentar visibilidade"
+  ],
+  "strategic_moves": [
+    "Desenvolver content calendar com 3 pilares: negócios, cultura, oportunidades",
+    "Criar série educativa posicionando como especialista em mercado chinês",
+    "Estabelecer parcerias com influencers de business/empreendedorismo",
+    "Desenvolver produto digital: guia para exportar/importar da China"
+  ]
+}

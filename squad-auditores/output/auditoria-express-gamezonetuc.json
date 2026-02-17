@@ -1,0 +1,180 @@
+{
+  "audit_metadata": {
+    "username": "gamezonetuc",
+    "audit_type": "express",
+    "audit_date": "2024-12-19",
+    "posts_analyzed": 10,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "gamezonetuc",
+    "full_name": "Game Zone  - Loja Geek",
+    "biography": "3D•Colecionáveis•Cosplay•Geek\nAqui é um lugar de ser feliz igual uma criança✨\nTucumã-PA 📍\nEnviamos para todo BR🇧🇷\nAv. Belém n 368 centro",
+    "followers_count": 9044,
+    "following_count": 568,
+    "posts_count": 453,
+    "is_verified": false,
+    "is_business_account": false
+  },
+  "metrics": {
+    "posts_analyzed": 10,
+    "total_likes": 471,
+    "total_comments_extracted": 40,
+    "relevant_comments": 40,
+    "engagement_rate": "0.57%",
+    "avg_likes_per_post": 47,
+    "avg_comments_per_post": 4,
+    "total_images_ocr": 35
+  },
+  "score_card": {
+    "overall_score": 35,
+    "classification": "RUIM",
+    "classification_emoji": "🟠",
+    "needs_improvement": "Engajamento e copy estratégico",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 28,
+        "status": "❌",
+        "summary": "Engagement rate crítico (0.57%) indica falha em ativar System 1 da audiência"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 25,
+        "status": "❌",
+        "summary": "Copy genérico sem hooks, mecanismo único ou awareness adequada"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 40,
+        "status": "❌",
+        "summary": "CTAs fracos, sem urgência real ou proposta de valor clara"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 42,
+        "status": "❌",
+        "summary": "Focado em outputs (posts) sem métricas de outcomes claras de vendas"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 48,
+        "status": "❌",
+        "summary": "Nicho geek tem potencial não explorado, oportunidades de viralização perdidas"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Nicho definido e público apaixonado",
+      "description": "Trabalha com público geek/nerd que tem alta paixão pelos produtos. O post do Gaara (177 likes) mostra que quando acerta o conteúdo, há resposta. Bio clara sobre localização e envios nacionais.",
+      "emoji": "🎯"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "Engagement rate catastrófico",
+      "description": "0.57% de engagement com 9k seguidores indica que o algoritmo não está entregando o conteúdo. A audiência não está sendo ativada emocionalmente. Posts com 9, 14, 23 likes mostram desconexão total.",
+      "severity": "crítico",
+      "emoji": "📉"
+    },
+    {
+      "rank": 2,
+      "title": "Copy sem estratégia de awareness",
+      "description": "Textos genéricos como 'Você ainda não comprou a sua?' sem contexto. Não há educação sobre os produtos nem hooks que despertem curiosidade. Falta storytelling e mecanismo único.",
+      "severity": "crítico",
+      "emoji": "✍️"
+    },
+    {
+      "rank": 3,
+      "title": "CTAs fracos e sem urgência",
+      "description": "Chamadas para ação vagas sem criar senso de urgência real. Mesmo quando menciona 'apenas 3 obras primas', não há prova social ou risk reversal que converta.",
+      "severity": "alto",
+      "emoji": "📢"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 28,
+      "key_findings": [
+        "Engagement rate de 0.57% indica falha total em ativar System 1",
+        "Posts de produtos específicos (Gaara) performam melhor que genéricos",
+        "Ausência de gatilhos emocionais e dopamina"
+      ],
+      "recommendations": [
+        "Criar hooks visuais e textuais que ativem curiosidade imediata",
+        "Usar loss aversion com estoque limitado real",
+        "Implementar storytelling que conecte emocionalmente"
+      ]
+    },
+    "copy": {
+      "score": 25,
+      "key_findings": [
+        "Copy genérico sem awareness do nível de sofisticação do mercado",
+        "Ausência de hooks, mecanismo único ou prova social",
+        "Textos curtos demais para gerar desejo"
+      ],
+      "recommendations": [
+        "Desenvolver hooks específicos para cada produto/coleção",
+        "Criar mecanismo único de curadoria geek",
+        "Usar fórmulas AIDA ou PAS nos textos principais"
+      ]
+    },
+    "offers": {
+      "score": 40,
+      "key_findings": [
+        "CTAs existem mas são fracos e sem urgência",
+        "Box surpresa tem potencial mas falta estrutura de oferta",
+        "Ausência de risk reversal e garantias"
+      ],
+      "recommendations": [
+        "Estruturar Grand Slam Offers para Box Geek",
+        "Implementar urgência real com countdown/estoque",
+        "Adicionar garantia de satisfação e política de troca"
+      ]
+    },
+    "metrics": {
+      "score": 42,
+      "key_findings": [
+        "Foco em outputs (número de posts) sem outcomes claros",
+        "Não trackear conversões por tipo de conteúdo",
+        "Métricas de vaidade vs business metrics"
+      ],
+      "recommendations": [
+        "Definir North Star Metric ligada a vendas",
+        "Implementar tracking de conversões por post",
+        "A/B testing em tipos de conteúdo e copy"
+      ]
+    },
+    "anomalies": {
+      "score": 48,
+      "key_findings": [
+        "Nicho geek tem oportunidades de viralização não exploradas",
+        "Trend #masetala teve boa performance (65 likes) mas não replicado",
+        "Box surpresa é diferencial competitivo subexplorado"
+      ],
+      "opportunities": [
+        "Explorar trends do TikTok no nicho geek para viralizar",
+        "Criar séries de unboxing e reações autênticas",
+        "Partnerships com influenciadores geek locais"
+      ]
+    }
+  },
+  "quick_wins": [
+    "Postar stories diários mostrando produtos chegando/sendo preparados",
+    "Criar template de copy com hook + produto + urgência + CTA",
+    "Responder TODOS os comentários para aumentar engagement",
+    "Usar polls/quiz nos stories para ativar audiência",
+    "Replicar formato do post #masetala com outros trends"
+  ],
+  "strategic_moves": [
+    "Desenvolver série 'Chegaram na Game Zone' com unboxings semanais",
+    "Implementar sistema de pré-venda com desconto para coleções limitadas",
+    "Criar programa de afiliados para clientes evangelistas",
+    "Estruturar funil de nurturing via DM para leads qualificados",
+    "Desenvolver calendário editorial sazonal (animes, filmes, datas comemorativas)"
+  ]
+}

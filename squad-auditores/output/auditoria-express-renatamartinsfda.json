@@ -1,0 +1,184 @@
+{
+  "audit_metadata": {
+    "username": "renatamartinsfda",
+    "audit_type": "express",
+    "audit_date": "2024-12-28",
+    "posts_analyzed": 10,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "renatamartinsfda",
+    "full_name": "Renata Martins | Mentora do Despertar 360°",
+    "biography": "👩‍🏫Treinadora\n✨Criadora do Método FDA\nForça • Disciplina • Amor\n🧠Reconstrução consciente em 12 pilares\n🎯Consciência + Ação = Transformação Real",
+    "followers_count": 13289,
+    "following_count": 6725,
+    "posts_count": 4502,
+    "is_verified": true,
+    "is_business_account": false
+  },
+  "metrics": {
+    "posts_analyzed": 10,
+    "total_likes": 536,
+    "total_comments_extracted": 90,
+    "relevant_comments": 90,
+    "engagement_rate": "0.47%",
+    "avg_likes_per_post": 54,
+    "avg_comments_per_post": 9,
+    "total_images_ocr": 10
+  },
+  "score_card": {
+    "overall_score": 48,
+    "classification": "ABAIXO DA MÉDIA",
+    "classification_emoji": "🟠",
+    "needs_improvement": "Engagement e conversão",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 65,
+        "status": "⚠️",
+        "summary": "Conteúdo ativa System 1 mas não gera ações consistentes"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 58,
+        "status": "⚠️",
+        "summary": "Hooks interessantes mas falta clareza e especificidade"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 25,
+        "status": "❌",
+        "summary": "CTAs fracos e ausência de ofertas claras"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 35,
+        "status": "❌",
+        "summary": "Engagement baixo (0.47%) e métricas orientadas a vaidade"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 55,
+        "status": "⚠️",
+        "summary": "Nicho específico mas sem explorar vantagens competitivas"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Autoridade Estabelecida",
+      "description": "Perfil verificado com 13k seguidores e método próprio (FDA) bem posicionado. Bio clara com proposta de valor específica sobre reconstrução consciente em 12 pilares.",
+      "emoji": "🏆"
+    },
+    {
+      "rank": 2,
+      "title": "Conteúdo Filosófico Profundo",
+      "description": "Aborda temas complexos como neurociência do coração, lei da assunção e efeito sombra de forma acessível, diferenciando-se do conteúdo superficial comum.",
+      "emoji": "🧠"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "Engagement Rate Crítico",
+      "description": "0.47% de engagement é extremamente baixo para o tamanho da audiência. Indica desconexão entre conteúdo e audiência ou baixa qualidade dos seguidores.",
+      "severity": "crítico",
+      "emoji": "📉"
+    },
+    {
+      "rank": 2,
+      "title": "Ausência Total de CTAs Comerciais",
+      "description": "Nenhum post analisado contém chamadas claras para ação comercial. Conteúdo valioso sendo desperdiçado sem monetização ou conversão.",
+      "severity": "crítico",
+      "emoji": "💸"
+    },
+    {
+      "rank": 3,
+      "title": "Inconsistência na Performance",
+      "description": "Variação extrema nos likes (10-139) sugere falta de padronização no conteúdo que funciona. Precisa identificar o que gera mais engajamento.",
+      "severity": "alto",
+      "emoji": "📊"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 65,
+      "key_findings": [
+        "Usa bem gatilhos emocionais e System 1 (emojis, perguntas diretas)",
+        "Conteúdo gera reflexão mas não ativa comportamentos práticos",
+        "Aproveita heurística da autoridade (método próprio, conhecimento técnico)"
+      ],
+      "recommendations": [
+        "Incluir mais calls-to-action específicas após reflexões",
+        "Usar mais prova social e testimonials",
+        "Criar padrões de comportamento recorrentes (exercícios diários)"
+      ]
+    },
+    "copy": {
+      "score": 58,
+      "key_findings": [
+        "Hooks funcionam bem (perguntas, provocações)",
+        "Falta especificidade em benefícios tangíveis",
+        "Não identifica claramente o estágio de awareness da audiência"
+      ],
+      "recommendations": [
+        "Ser mais específica sobre resultados e transformações",
+        "Usar mais números e dados concretos",
+        "Ajustar linguagem para awareness stage da audiência"
+      ]
+    },
+    "offers": {
+      "score": 25,
+      "key_findings": [
+        "Zero ofertas diretas nos posts analisados",
+        "Não há risk reversal ou urgência",
+        "Valor percebido alto mas sem conversão em vendas"
+      ],
+      "recommendations": [
+        "Criar ofertas irresistíveis ligadas ao método FDA",
+        "Incluir CTAs em pelo menos 30% dos posts",
+        "Desenvolver funil de conversão claro"
+      ]
+    },
+    "metrics": {
+      "score": 35,
+      "key_findings": [
+        "Engagement rate de 0.47% é crítico para o nicho",
+        "Foca em métricas de vaidade (likes) vs outcomes reais",
+        "Não há tracking de conversões ou leads"
+      ],
+      "recommendations": [
+        "Implementar métricas de conversão e leads",
+        "Testar horários e formatos para melhorar engagement",
+        "Focar em comentários qualificados vs quantidade de likes"
+      ]
+    },
+    "anomalies": {
+      "score": 55,
+      "key_findings": [
+        "Combina espiritualidade com neurociência - posicionamento único",
+        "Post político teve 139 likes vs média de 54 - audiência engaja com temas atuais",
+        "Vídeos performam melhor que imagens"
+      ],
+      "opportunities": [
+        "Explorar mais a intersecção ciência + espiritualidade",
+        "Testar conteúdos sobre temas atuais com viés de desenvolvimento",
+        "Investir mais em formato vídeo"
+      ]
+    }
+  },
+  "quick_wins": [
+    "Adicionar CTA simples no final de cada post ('Comente se identificou')",
+    "Postar vídeos sobre neurociência + espiritualidade (formato que mais engaja)",
+    "Criar posts sobre temas atuais com perspectiva de desenvolvimento pessoal",
+    "Incluir números e dados específicos nas transformações mencionadas"
+  ],
+  "strategic_moves": [
+    "Desenvolver funil de conversão: conteúdo → lead magnet → método FDA",
+    "Criar sistema de métricas focado em leads qualificados vs vanity metrics",
+    "Lançar série de conteúdos testando diferentes awareness stages da audiência",
+    "Implementar estratégia de monetização clara ligada ao método FDA"
+  ]
+}

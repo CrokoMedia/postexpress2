@@ -1,0 +1,361 @@
+{
+  "audit_metadata": {
+    "username": "pontelo.digital",
+    "audit_type": "express",
+    "audit_date": "2026-02-16",
+    "posts_analyzed": 10,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "pontelo.digital",
+    "full_name": "PONTELO | DIGITAL CONTENT",
+    "biography": "Posicionamento digital estratégico para saúde e educação.\nComunicação | Autoridade | Identidade\n↓ Vamos falar sobre sua presença digital?",
+    "followers_count": 13202,
+    "following_count": 1201,
+    "posts_count": 24,
+    "is_verified": true,
+    "is_business_account": true,
+    "business_category": "Marketing Agency"
+  },
+  "metrics": {
+    "posts_analyzed": 10,
+    "total_likes": 449,
+    "total_comments_extracted": 82,
+    "relevant_comments": 47,
+    "engagement_rate": "0.51%",
+    "avg_likes_per_post": 45,
+    "avg_comments_per_post": 23,
+    "total_images_ocr": 24
+  },
+  "score_card": {
+    "overall_score": 42,
+    "classification": "CRÍTICO",
+    "classification_emoji": "🔴",
+    "needs_improvement": "engajamento, humanização, CTAs, prova social",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 32,
+        "status": "🚨",
+        "summary": "Engajamento 0.51% é alarmante - audiência desconectada"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 48,
+        "status": "⚠️",
+        "summary": "Linguagem corporativa demais, falta mecanismo único"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 28,
+        "status": "🚨",
+        "summary": "Zero CTAs, sem oferta clara, prova social inexistente"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 35,
+        "status": "⚠️",
+        "summary": "Modo apresentação institucional vs geração de demanda"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 65,
+        "status": "✅",
+        "summary": "Posts sobre si mesmos funcionaram melhor - oportunidade"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Verificação + Conta Business",
+      "description": "Credibilidade institucional pronta. Pouquíssimas agências têm verificação. NÃO está usando isso como leverage!",
+      "emoji": "✅"
+    },
+    {
+      "rank": 2,
+      "title": "Nicho Claro (Saúde + Educação)",
+      "description": "Posicionamento de nicho é raro. Mercado comprador forte. Falta só comunicar melhor.",
+      "emoji": "🎯"
+    },
+    {
+      "rank": 3,
+      "title": "Posts 2 e 3 Funcionaram",
+      "description": "Storytelling da própria agência engajou (2-3x mais que média). Mostra que audiência quer humanização. Replicar esse padrão.",
+      "emoji": "📈"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "CRISE DE ENGAJAMENTO",
+      "description": "0.51% de taxa de engajamento. Audiência está assistindo, não participando. 340x menor que benchmark de sucesso (rodrigogunter_ 174%).",
+      "severity": "crítico",
+      "emoji": "🚨"
+    },
+    {
+      "rank": 2,
+      "title": "COMUNICAÇÃO CORPORATIVA DEMAIS",
+      "description": "Linguagem genérica de agência. Zero storytelling humano. Parece PPT de apresentação, não conteúdo de rede social.",
+      "severity": "crítico",
+      "emoji": "🚨"
+    },
+    {
+      "rank": 3,
+      "title": "INVISIBILIDADE DE RESULTADOS",
+      "description": "Não mostra números dos clientes. Não prova que funciona. 'A gente amou' ≠ 'Cliente lucrou R$X'.",
+      "severity": "alto",
+      "emoji": "⚠️"
+    }
+  ],
+  "quick_wins": [
+    {
+      "number": 1,
+      "title": "Humanizar 100% do Conteúdo",
+      "description": "❌ 'Posicionamento digital estratégico...'\n✅ 'Ontem uma médica me ligou chorando porque...'",
+      "roi_expected": "+200% de engajamento",
+      "timeframe": "Esta semana"
+    },
+    {
+      "number": 2,
+      "title": "Adicionar CTA em TODOS os Posts",
+      "description": "Exemplos: '📲 Chama no direct \"PONTELO\"', '💾 Salva esse post se você é da área da saúde', '👇 Comenta QUERO se isso faz sentido'",
+      "roi_expected": "+150% de salvamentos e DMs",
+      "timeframe": "Imediatamente"
+    },
+    {
+      "number": 3,
+      "title": "Postar 1 Case com Números",
+      "description": "Formato: 'A Dra. [NOME] estava com 800 seguidores e 2 consultas/mês. Em 4 meses: 5.200 seguidores, 18 consultas/mês, R$47K faturamento'",
+      "roi_expected": "+300% de credibilidade",
+      "timeframe": "Esta semana"
+    },
+    {
+      "number": 4,
+      "title": "Criar Série 'Bastidores da Pontelo'",
+      "description": "Mostrar equipe trabalhando, processo de criação, reuniões com clientes (com permissão)",
+      "roi_expected": "Humanização + diferenciação",
+      "timeframe": "Próximas 2 semanas"
+    },
+    {
+      "number": 5,
+      "title": "Usar Verificação como Leverage",
+      "description": "Exemplo: '✅ Única agência verificada especializada em saúde e educação'. Post: 'Sabe por que conseguimos o selo de verificação? Porque...'",
+      "roi_expected": "Autoridade instantânea",
+      "timeframe": "Esta semana"
+    }
+  ],
+  "strategic_moves": [
+    {
+      "number": 1,
+      "title": "Lançar Personal Brand do(a) Fundador(a)",
+      "description": "B2B compra de pessoas, não de logos. Criar conta pessoal linkada à Pontelo. Usar storytelling pessoal (igual rodrigogunter_).",
+      "timeframe": "60 dias"
+    },
+    {
+      "number": 2,
+      "title": "Repositório de Cases Públicos",
+      "description": "10-15 cases com números reais. Transformar em carrosséis/stories. 1 case/semana durante 3 meses.",
+      "timeframe": "90 dias"
+    },
+    {
+      "number": 3,
+      "title": "Webinar 'Como Médicos Atraem Pacientes'",
+      "description": "Usar base de 13K como lista. Converter audiência fria em quente. Oferta ao vivo.",
+      "timeframe": "60 dias"
+    }
+  ],
+  "hypotheses_to_test": [
+    {
+      "id": 1,
+      "hypothesis": "Storytelling humano vai aumentar engajamento 5-10x",
+      "how_to_test": "Postar 3 histórias pessoais vs 3 posts corporativos",
+      "metric": "Taxa de engajamento comparativa"
+    },
+    {
+      "id": 2,
+      "hypothesis": "Cases com números vão gerar 3x mais leads",
+      "how_to_test": "Postar 1 case/semana durante 4 semanas",
+      "metric": "DMs e salvamentos"
+    },
+    {
+      "id": 3,
+      "hypothesis": "CTAs diretos vão dobrar interação",
+      "how_to_test": "Adicionar CTA claro em 5 próximos posts",
+      "metric": "Comentários e ações"
+    },
+    {
+      "id": 4,
+      "hypothesis": "Personal brand do fundador vai gerar mais confiança",
+      "how_to_test": "Criar conta pessoal e cross-post durante 30 dias",
+      "metric": "Leads qualificados"
+    }
+  ],
+  "auditors_analysis": {
+    "kahneman": {
+      "name": "Daniel Kahneman",
+      "role": "Comportamento da Audiência",
+      "emoji": "🧠",
+      "score": 32,
+      "key_findings": [
+        "Engajamento 0.51% é ALARMANTE (340x menor que benchmark)",
+        "System 1 não está ativado - conteúdo corporativo",
+        "Apenas 1 pergunta em 82 comentários",
+        "Audiência assistindo de longe, não participando",
+        "Comentários são elogios vazios ('parabéns')"
+      ]
+    },
+    "schwartz": {
+      "name": "Eugene Schwartz",
+      "role": "Copy & Awareness Stage",
+      "emoji": "✍️",
+      "score": 48,
+      "awareness_stage": {
+        "unaware": "40%",
+        "problem_aware": "40%",
+        "solution_aware": "20%"
+      },
+      "hooks": [
+        {
+          "post": 1,
+          "hook": "Posicionamento digital estratégico vai além dos posts",
+          "score": 55,
+          "analysis": "Genérico, não cria curiosity gap"
+        },
+        {
+          "post": 2,
+          "hook": "Passamos os últimos meses repensando quem somos...",
+          "score": 68,
+          "analysis": "Introspectivo, melhor"
+        },
+        {
+          "post": 3,
+          "hook": "Por trás de cada marca existe uma história",
+          "score": 42,
+          "analysis": "Clichê do mercado"
+        }
+      ],
+      "key_findings": [
+        "Linguagem corporativa demais",
+        "Zero mecanismo único mencionado",
+        "Market Sophistication erro (Nível 1-2 em mercado 4-5)"
+      ]
+    },
+    "hormozi": {
+      "name": "Alex Hormozi",
+      "role": "Ofertas & CTAs",
+      "emoji": "💰",
+      "score": 28,
+      "value_equation": {
+        "dream_outcome": "MÉDIO",
+        "likelihood": "BAIXO",
+        "time_delay": "DESCONHECIDO",
+        "effort": "DESCONHECIDO"
+      },
+      "grand_slam_offer_score": "0/5",
+      "key_findings": [
+        "Zero CTAs nos posts",
+        "Sem oferta clara (não diz o que vende)",
+        "Prova social inexistente",
+        "Vocabulário genérico sem números"
+      ]
+    },
+    "cagan": {
+      "name": "Marty Cagan",
+      "role": "Métricas & Outcomes",
+      "emoji": "📊",
+      "score": 35,
+      "outputs": {
+        "likes": 449,
+        "comments": 82,
+        "followers": 13202
+      },
+      "outcomes": {
+        "leads": "INVISÍVEL",
+        "contracts": "INVISÍVEL",
+        "roi": "INVISÍVEL"
+      },
+      "four_risks": {
+        "value": 4,
+        "usability": 2,
+        "feasibility": 7,
+        "viability": 3
+      },
+      "mode": "Apresentação Institucional (deveria ser Geração de Demanda)"
+    },
+    "graham": {
+      "name": "Paul Graham",
+      "role": "Anomalias & Oportunidades",
+      "emoji": "🔍",
+      "score": 65,
+      "anomalies": [
+        {
+          "type": "engagement_spike",
+          "description": "Posts 2 e 3 tiveram 2-3x mais engajamento",
+          "data": "Post 2: 85 likes, Post 3: 92 likes vs média de 45",
+          "hypothesis": "Falaram sobre si mesmos, não sobre 'marketing'"
+        },
+        {
+          "type": "counterintuitive_pattern",
+          "description": "Posts sobre 'nós' funcionam melhor que posts sobre 'você'",
+          "insight": "Inverso do esperado em marketing B2B"
+        },
+        {
+          "type": "hidden_opportunity",
+          "description": "Verificação não está sendo usada como leverage",
+          "action": "Usar credibilidade institucional em todos os posts"
+        }
+      ]
+    }
+  },
+  "comparison": {
+    "benchmark": "rodrigogunter_",
+    "metrics": [
+      {
+        "metric": "Engajamento",
+        "benchmark_value": "174%",
+        "current_value": "0.51%",
+        "difference": "340x menor",
+        "status": "🚨"
+      },
+      {
+        "metric": "Storytelling",
+        "benchmark_value": "Pessoal/Emocional",
+        "current_value": "Corporativo",
+        "status": "Crítico"
+      },
+      {
+        "metric": "CTAs",
+        "benchmark_value": "Implícitos",
+        "current_value": "Zero",
+        "status": "Crítico"
+      },
+      {
+        "metric": "Verificação",
+        "benchmark_value": "Não",
+        "current_value": "✅ SIM",
+        "status": "Vantagem Pontelo"
+      }
+    ]
+  },
+  "conclusion": {
+    "summary": "@pontelo.digital tem infraestrutura de sucesso (verificação, nicho, conta business) mas execução de conteúdo falha.",
+    "diagnosis": "Agência pensando como agência, não como criadora de conteúdo",
+    "prescription": [
+      "Manter credibilidade institucional",
+      "Adicionar storytelling humano (copiar rodrigogunter_)",
+      "Mostrar números reais dos clientes",
+      "CTAs em todos os posts"
+    ],
+    "lead_potential": "10-15 leads qualificados/mês",
+    "target_engagement": "2-3% (realista para B2B)",
+    "next_steps": [
+      "Humanizar conteúdo imediatamente",
+      "Postar 1 case com números esta semana",
+      "Adicionar CTAs em todos os posts",
+      "Usar verificação como leverage",
+      "Planejar personal brand do fundador"
+    ]
+  }
+}
