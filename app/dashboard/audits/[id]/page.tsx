@@ -312,10 +312,12 @@ export default function AuditPage() {
           </CardHeader>
           <CardContent>
             <ul className="space-y-2">
-              {audit.raw_json.quick_wins.map((win: string, index: number) => (
+              {audit.raw_json.quick_wins.map((win: any, index: number) => (
                 <li key={index} className="flex items-start gap-2 text-sm">
                   <span className="text-primary-500 font-bold shrink-0">{index + 1}.</span>
-                  <span className="text-neutral-300">{win}</span>
+                  <span className="text-neutral-300">
+                    {typeof win === 'string' ? win : win?.title || win?.description || JSON.stringify(win)}
+                  </span>
                 </li>
               ))}
             </ul>

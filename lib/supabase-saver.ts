@@ -22,6 +22,44 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey, {
   }
 })
 
+/**
+ * Faz upload de foto de perfil para Cloudinary e retorna URL permanente
+ */
+async function uploadProfilePicToCloudinary(imageUrl: string, username: string): Promise<string | null> {
+  try {
+    const cloudinaryCloudName = process.env.CLOUDINARY_CLOUD_NAME
+    const cloudinaryApiKey = process.env.CLOUDINARY_API_KEY
+    const cloudinaryApiSecret = process.env.CLOUDINARY_API_SECRET
+
+    if (!cloudinaryCloudName || !cloudinaryApiKey || !cloudinaryApiSecret) {
+      return null
+    }
+
+    const { v2: cloudinary } = await import('cloudinary')
+    cloudinary.config({
+      cloud_name: cloudinaryCloudName,
+      api_key: cloudinaryApiKey,
+      api_secret: cloudinaryApiSecret
+    })
+
+    const result = await cloudinary.uploader.upload(imageUrl, {
+      folder: 'profile-pics',
+      public_id: username,
+      overwrite: true,
+      resource_type: 'image',
+      transformation: [
+        { width: 400, height: 400, crop: 'fill', gravity: 'face' }
+      ]
+    })
+
+    console.log(`☁️  Foto de @${username} enviada para Cloudinary`)
+    return result.secure_url
+  } catch (error: any) {
+    console.warn(`⚠️  Falha no upload Cloudinary para @${username}: ${error.message}`)
+    return null
+  }
+}
+
 export interface AnalysisData {
   username: string
   profile: any
@@ -34,20 +72,19 @@ export interface AnalysisData {
  * Salva ou atualiza perfil do Instagram
  */
 export async function saveProfile(profileData: any) {
-  const {
-    username,
-    fullName,
-    biography,
-    followersCount,
-    followsCount,
-    postsCount,
-    profilePicUrl,
-    profilePicUrlHD,
-    url,
-    verified,
-    isBusinessAccount,
-    businessCategoryName
-  } = profileData
+  // Suporta camelCase (Apify) e snake_case (Claude/audit JSON)
+  const username = profileData.username
+  const fullName = profileData.fullName || profileData.full_name
+  const biography = profileData.biography
+  const followersCount = profileData.followersCount || profileData.followers_count
+  const followsCount = profileData.followsCount || profileData.following_count
+  const postsCount = profileData.postsCount || profileData.posts_count
+  const profilePicUrl = profileData.profilePicUrl || profileData.profile_pic_url
+  const profilePicUrlHD = profileData.profilePicUrlHD || profileData.profile_pic_url_hd
+  const url = profileData.url
+  const verified = profileData.verified ?? profileData.is_verified ?? false
+  const isBusinessAccount = profileData.isBusinessAccount ?? profileData.is_business_account ?? false
+  const businessCategoryName = profileData.businessCategoryName || profileData.business_category
 
   // Validar dados críticos
   if (!username) {
@@ -59,6 +96,13 @@ export async function saveProfile(profileData: any) {
     console.warn(`⚠️  Profile picture missing for @${username}`)
   }
 
+  // Upload da foto para Cloudinary (URL permanente, sem expiração)
+  let cloudinaryUrl: string | null = null
+  const picUrlForUpload = profilePicUrlHD || profilePicUrl
+  if (picUrlForUpload) {
+    cloudinaryUrl = await uploadProfilePicToCloudinary(picUrlForUpload, username)
+  }
+
   // Verificar se perfil já existe
   const { data: existing } = await supabase
     .from('profiles')
@@ -66,7 +110,7 @@ export async function saveProfile(profileData: any) {
     .eq('username', username)
     .single()
 
-  const profilePayload = {
+  const profilePayload: Record<string, any> = {
     full_name: fullName || null,
     biography: biography || null,
     followers_count: followersCount || null,
@@ -78,14 +122,20 @@ export async function saveProfile(profileData: any) {
     is_verified: verified || false,
     is_business_account: isBusinessAccount || false,
     business_category: businessCategoryName || null,
-    last_scraped_at: new Date().toISOString()
+    last_scraped_at: new Date().toISOString(),
+    deleted_at: null // Restaurar se estava soft-deletado
+  }
+
+  // Incluir URL do Cloudinary se upload bem sucedido
+  if (cloudinaryUrl) {
+    profilePayload.profile_pic_cloudinary_url = cloudinaryUrl
   }
 
   if (existing) {
     // Atualizar (não sobrescrever foto se nova estiver vazia e antiga existir)
     const { data: currentData } = await supabase
       .from('profiles')
-      .select('profile_pic_url, profile_pic_url_hd')
+      .select('profile_pic_url, profile_pic_url_hd, profile_pic_cloudinary_url')
       .eq('id', existing.id)
       .single()
 
@@ -96,6 +146,10 @@ export async function saveProfile(profileData: any) {
       }
       if (!profilePayload.profile_pic_url_hd && currentData.profile_pic_url_hd) {
         profilePayload.profile_pic_url_hd = currentData.profile_pic_url_hd
+      }
+      // Preservar Cloudinary se novo upload não foi feito
+      if (!profilePayload.profile_pic_cloudinary_url && currentData.profile_pic_cloudinary_url) {
+        profilePayload.profile_pic_cloudinary_url = currentData.profile_pic_cloudinary_url
       }
     }
 
@@ -160,10 +214,10 @@ export async function saveAudit(profileId: string, auditData: any, rawData: any)
       avg_likes_per_post: metrics.avg_likes_per_post || metrics.avgLikes || 0,
       avg_comments_per_post: metrics.avg_comments_per_post || metrics.avgComments || 0,
 
-      // Snapshot do perfil (suporta ambos os formatos)
-      snapshot_followers: auditData.profile?.followers_count || rawData.profile?.followersCount || rawData.profile?.followers_count || 0,
-      snapshot_following: auditData.profile?.following_count || rawData.profile?.followsCount || rawData.profile?.following_count || 0,
-      snapshot_posts_count: auditData.profile?.posts_count || rawData.profile?.postsCount || rawData.profile?.posts_count || 0,
+      // Snapshot do perfil (suporta camelCase do Apify e snake_case do Claude)
+      snapshot_followers: auditData.profile?.followersCount || auditData.profile?.followers_count || rawData.profile?.followersCount || rawData.profile?.followers_count || 0,
+      snapshot_following: auditData.profile?.followsCount || auditData.profile?.following_count || rawData.profile?.followsCount || rawData.profile?.following_count || 0,
+      snapshot_posts_count: auditData.profile?.postsCount || auditData.profile?.posts_count || rawData.profile?.postsCount || rawData.profile?.posts_count || 0,
 
       // Dados completos em JSON
       raw_json: auditData,

@@ -69,20 +69,19 @@ export async function POST(
     // 3. Preparar dados para re-auditoria
     const originalData = audit.raw_json || {}
     const posts = originalData.posts || []
-
-    if (posts.length === 0) {
-      return NextResponse.json(
-        { error: 'No posts data found in original audit' },
-        { status: 400 }
-      )
-    }
+    const contextOnly = posts.length === 0
 
     // 4. Montar prompt com contexto adicional (sanitizar dados scrapeados)
-    const sanitizedPosts = sanitizeDeep(posts) as any[]
-    const contextualPrompt = buildReAuditPrompt(audit, context, sanitizedPosts)
+    let contextualPrompt: string
+    if (contextOnly) {
+      contextualPrompt = buildContextOnlyPrompt(audit, context)
+    } else {
+      const sanitizedPosts = sanitizeDeep(posts) as any[]
+      contextualPrompt = buildReAuditPrompt(audit, context, sanitizedPosts)
+    }
 
     console.log('Re-auditando com contexto...')
-    console.log('Posts:', posts.length)
+    console.log('Posts:', posts.length, contextOnly ? '(auditoria por contexto puro)' : '')
     console.log('Contexto:', {
       nicho: context.nicho,
       objetivos: context.objetivos
@@ -152,7 +151,8 @@ export async function POST(
             files: context.files
           },
           original_audit_id: id,
-          version: '2.0'
+          version: '2.0',
+          context_only: contextOnly
         }
       })
       .select()
@@ -336,13 +336,168 @@ function generateAuditMarkdown(analysis: any, profile: any, posts: any[], contex
   }
 
   // Posts analisados
-  md += `## 📝 Posts Analisados\n\n`
-  md += `**Total de posts:** ${posts.length}\n\n`
+  md += `## 📝 Fonte dos Dados\n\n`
+  if (posts.length > 0) {
+    md += `**Total de posts analisados:** ${posts.length}\n\n`
+  } else {
+    md += `**Auditoria baseada em contexto** (sem posts scrapeados)\n`
+    md += `> Esta auditoria foi gerada com base nas informações fornecidas sobre nicho, objetivos e público-alvo, sem dados de posts reais.\n\n`
+  }
 
   md += `---\n\n`
   md += `*Auditoria gerada automaticamente pelo PostExpress - Squad Auditores*\n`
 
   return md
+}
+
+/**
+ * Constrói prompt para auditoria baseada APENAS em contexto (sem posts)
+ */
+function buildContextOnlyPrompt(audit: any, context: any): string {
+  return `Você é o líder do **Squad Auditores**, composto por 5 especialistas que trabalham em harmonia para analisar perfis de experts no Instagram:
+
+1. **Eugene Schwartz** - Copywriting científico e níveis de awareness (líder)
+2. **Seth Godin** - Branding, narrativas e conexão emocional
+3. **Alex Hormozi** - Ofertas irresistíveis e mecânicas de conversão
+4. **Thiago Finch** - Marketing digital brasileiro e adaptação cultural
+5. **Adriano De Marqui** - Design visual, estética e identidade
+
+---
+
+## CONTEXTO DO EXPERT
+
+Este expert ainda não possui posts analisados. A auditoria será feita com base no contexto estratégico fornecido pelo próprio cliente.
+
+**Nicho / Área de Atuação:**
+${context.nicho || 'Não especificado'}
+
+**Objetivos:**
+${context.objetivos || 'Não especificado'}
+
+**Público-Alvo:**
+${context.publico_alvo || 'Não especificado'}
+
+**Produtos / Serviços:**
+${context.produtos_servicos || 'Não especificado'}
+
+**Tom de Voz Desejado:**
+${context.tom_voz || 'Não especificado'}
+
+**Contexto Adicional:**
+${context.contexto_adicional || 'Não especificado'}
+
+${context.files && context.files.length > 0 ? `
+**Arquivos Anexados:**
+${context.files.map((f: any) => `- ${f.name} (${f.type})`).join('\n')}
+` : ''}
+
+---
+
+## DADOS DO PERFIL
+
+**Username:** @${audit.profile?.username}
+**Nome:** ${audit.profile?.full_name || 'N/A'}
+**Seguidores:** ${audit.profile?.followers_count || 0}
+**Biografia:** ${audit.profile?.biography || 'N/A'}
+
+---
+
+## INSTRUÇÃO PARA AUDITORIA ESTRATÉGICA (Sem Posts)
+
+Como não há posts disponíveis para análise, sua missão é fazer uma **auditoria estratégica prospectiva** — ou seja, baseada no que o expert DEVERIA estar fazendo com base no seu contexto.
+
+**Tarefa:**
+1. **Analise o posicionamento** com base no nicho, objetivos e público-alvo declarados
+2. **Identifique gaps estratégicos** entre o que o expert diz que quer e como deveria comunicar
+3. **Avalie a proposta de valor** dos produtos/serviços para o público-alvo descrito
+4. **Crie recomendações de conteúdo** específicas para o nicho e tom de voz desejado
+5. **Dê scores baseados no potencial** e nas oportunidades identificadas no contexto
+
+**IMPORTANTE:**
+- Os scores devem refletir o POTENCIAL estratégico e a clareza do posicionamento
+- Quick wins devem ser ações concretas que o expert pode implementar imediatamente
+- Use o nicho e público-alvo para contextualizar todas as recomendações
+- Seja prático: recomendações que possam ser aplicadas nos próximos 7 dias
+
+---
+
+Retorne a análise em JSON com a SEGUINTE ESTRUTURA EXATA:
+
+\`\`\`json
+{
+  "score_overall": 0-100,
+  "scores": {
+    "behavior": 0-100,
+    "copy": 0-100,
+    "offers": 0-100,
+    "metrics": 0-100,
+    "anomalies": 0-100
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "string (curto)",
+      "description": "string (2-3 linhas)",
+      "emoji": "string"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "string (curto)",
+      "description": "string (2-3 linhas)",
+      "severity": "crítico|alto|médio",
+      "emoji": "string"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 0-100,
+      "key_findings": ["Insight 1", "Insight 2", "Insight 3"],
+      "recommendations": ["Recomendação 1", "Recomendação 2", "Recomendação 3"]
+    },
+    "copy": {
+      "score": 0-100,
+      "key_findings": ["Insight 1", "Insight 2", "Insight 3"],
+      "recommendations": ["Recomendação 1", "Recomendação 2", "Recomendação 3"]
+    },
+    "offers": {
+      "score": 0-100,
+      "key_findings": ["Insight 1", "Insight 2", "Insight 3"],
+      "recommendations": ["Recomendação 1", "Recomendação 2", "Recomendação 3"]
+    },
+    "metrics": {
+      "score": 0-100,
+      "key_findings": ["Insight 1", "Insight 2", "Insight 3"],
+      "recommendations": ["Recomendação 1", "Recomendação 2", "Recomendação 3"]
+    },
+    "anomalies": {
+      "score": 0-100,
+      "key_findings": ["Padrão/oportunidade 1", "Padrão/oportunidade 2", "Padrão/oportunidade 3"],
+      "opportunities": ["Oportunidade 1", "Oportunidade 2", "Oportunidade 3"]
+    }
+  },
+  "quick_wins": [
+    "Ação rápida 1 (específica para o nicho)",
+    "Ação rápida 2 (específica para o público-alvo)",
+    "Ação rápida 3 (específica para os objetivos)"
+  ],
+  "context_insights": {
+    "alignment_score": 0-100,
+    "gaps": [
+      "Gap estratégico 1 identificado no contexto",
+      "Gap estratégico 2 identificado no contexto"
+    ],
+    "opportunities": [
+      "Oportunidade 1 baseada no nicho e objetivos",
+      "Oportunidade 2 baseada no público-alvo"
+    ]
+  }
+}
+\`\`\`
+
+**IMPORTANTE**: Use EXATAMENTE as chaves "behavior", "copy", "offers", "metrics", "anomalies" em auditors_analysis.
+`
 }
 
 /**

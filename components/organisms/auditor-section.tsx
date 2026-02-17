@@ -49,6 +49,14 @@ const auditorConfig = {
   },
 }
 
+function safeString(item: any): string {
+  if (typeof item === 'string') return item
+  if (typeof item === 'object' && item !== null) {
+    return item.title || item.description || item.text || JSON.stringify(item)
+  }
+  return String(item)
+}
+
 export function AuditorSection({
   auditorName,
   auditorType,
@@ -96,7 +104,7 @@ export function AuditorSection({
               {insights.map((insight, index) => (
                 <li key={index} className="text-sm text-neutral-400 flex gap-2">
                   <span className="text-primary-500 shrink-0">•</span>
-                  <span>{insight}</span>
+                  <span>{safeString(insight)}</span>
                 </li>
               ))}
             </ul>
@@ -111,7 +119,7 @@ export function AuditorSection({
               {problems.map((problem, index) => (
                 <li key={index} className="text-sm text-neutral-400 flex gap-2">
                   <span className="text-error-500 shrink-0">⚠</span>
-                  <span>{problem}</span>
+                  <span>{safeString(problem)}</span>
                 </li>
               ))}
             </ul>
@@ -126,7 +134,7 @@ export function AuditorSection({
               {recommendations.map((rec, index) => (
                 <li key={index} className="text-sm text-neutral-400 flex gap-2">
                   <span className="text-success-500 shrink-0">✓</span>
-                  <span>{rec}</span>
+                  <span>{safeString(rec)}</span>
                 </li>
               ))}
             </ul>

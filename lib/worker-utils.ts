@@ -206,10 +206,13 @@ export async function readAnalysisResult(username: string): Promise<any> {
       const auditExpressContent = await fs.readFile(auditExpressPath, 'utf-8')
       const auditExpressData = JSON.parse(auditExpressContent)
 
-      // Mesclar os dois
+      // Mesclar os dois, preservando profile com foto do Apify (camelCase)
+      // auditExpressData.profile tem snake_case sem foto — não pode sobrescrever
       return {
         ...completeData,
-        ...auditExpressData
+        ...auditExpressData,
+        profile: completeData.profile,   // preserva profilePicUrl, followersCount, etc.
+        posts: completeData.posts        // preserva array de posts reais
       }
     } catch {
       // Se auditoria-express não existir, retorna só complete-analysis

@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/atoms/button'
 import { Skeleton } from '@/components/atoms/skeleton'
 import { Badge } from '@/components/atoms/badge'
-import { Sparkles, ArrowLeft, Download, Copy, Check, Image as ImageIcon, Loader2, CheckCircle, XCircle } from 'lucide-react'
+import { Sparkles, ArrowLeft, Download, Copy, Check, Image as ImageIcon, Loader2, CheckCircle, XCircle, Archive, FolderOpen, Pencil, RefreshCw, Save, X } from 'lucide-react'
 
 export default function CreateContentPage() {
   const params = useParams()
@@ -27,6 +27,17 @@ export default function CreateContentPage() {
   const [approvingCarousel, setApprovingCarousel] = useState<number | null>(null)
   const [customTheme, setCustomTheme] = useState('')
   const [usedTheme, setUsedTheme] = useState<string | null>(null)
+  const [downloadingZip, setDownloadingZip] = useState(false)
+  const [sendingToDrive, setSendingToDrive] = useState(false)
+  const [driveMessage, setDriveMessage] = useState<string | null>(null)
+  const [driveError, setDriveError] = useState<string | null>(null)
+
+  // Estados do painel de edição
+  const [editingIndex, setEditingIndex] = useState<number | null>(null)
+  const [editInstructions, setEditInstructions] = useState('')
+  const [editedCarousel, setEditedCarousel] = useState<any>(null)
+  const [refining, setRefining] = useState(false)
+  const [saving, setSaving] = useState(false)
 
   // Carregar conteúdo e slides existentes ao abrir a página
   useEffect(() => {
@@ -193,6 +204,121 @@ CTA: ${carousel.cta}
       setSlidesError(err.message)
     } finally {
       setGeneratingSlides(false)
+    }
+  }
+
+  const handleOpenEdit = (index: number, carousel: any) => {
+    setEditingIndex(index)
+    setEditedCarousel(JSON.parse(JSON.stringify(carousel))) // deep copy
+    setEditInstructions('')
+  }
+
+  const handleCloseEdit = () => {
+    setEditingIndex(null)
+    setEditedCarousel(null)
+    setEditInstructions('')
+  }
+
+  const handleSaveDirectEdits = async () => {
+    if (editingIndex === null || !editedCarousel) return
+    setSaving(true)
+    try {
+      const response = await fetch(`/api/content/${id}/refine-carousel`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ carouselIndex: editingIndex, carousel: editedCarousel })
+      })
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Erro ao salvar')
+      }
+      setContent((prev: any) => {
+        const next = { ...prev }
+        next.carousels[editingIndex] = editedCarousel
+        return next
+      })
+      handleCloseEdit()
+    } catch (err: any) {
+      alert(`Erro: ${err.message}`)
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const handleRegenerateCarousel = async () => {
+    if (editingIndex === null || !editedCarousel || !editInstructions.trim()) return
+    setRefining(true)
+    try {
+      const response = await fetch(`/api/content/${id}/refine-carousel`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          carouselIndex: editingIndex,
+          carousel: editedCarousel,
+          instructions: editInstructions
+        })
+      })
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Erro ao regenerar')
+      }
+      const data = await response.json()
+      setContent((prev: any) => {
+        const next = { ...prev }
+        next.carousels[editingIndex] = data.carousel
+        return next
+      })
+      handleCloseEdit()
+    } catch (err: any) {
+      alert(`Erro: ${err.message}`)
+    } finally {
+      setRefining(false)
+    }
+  }
+
+  const handleDownloadZip = async () => {
+    setDownloadingZip(true)
+    try {
+      const response = await fetch(`/api/content/${id}/export-zip`, { method: 'POST' })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Erro ao gerar ZIP')
+      }
+
+      const blob = await response.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `slides-${audit?.profile.username}-${new Date().toISOString().split('T')[0]}.zip`
+      a.click()
+      URL.revokeObjectURL(url)
+    } catch (err: any) {
+      console.error('Erro ao baixar ZIP:', err)
+      alert(`Erro: ${err.message}`)
+    } finally {
+      setDownloadingZip(false)
+    }
+  }
+
+  const handleSendToDrive = async () => {
+    setSendingToDrive(true)
+    setDriveMessage(null)
+    setDriveError(null)
+    try {
+      const response = await fetch(`/api/content/${id}/export-drive`, { method: 'POST' })
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erro ao enviar para o Drive')
+      }
+
+      setDriveMessage(data.message)
+    } catch (err: any) {
+      console.error('Erro ao enviar para o Drive:', err)
+      setDriveError(err.message)
+    } finally {
+      setSendingToDrive(false)
     }
   }
 
@@ -405,10 +531,59 @@ CTA: ${carousel.cta}
           {slides && (
             <Card className="bg-gradient-to-br from-success-500/10 to-success-500/5 border-success-500/20">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <ImageIcon className="w-5 h-5" />
-                  Slides Visuais Gerados ({slides.summary.totalSlides} imagens)
-                </CardTitle>
+                <div className="flex items-center justify-between flex-wrap gap-3">
+                  <CardTitle className="flex items-center gap-2">
+                    <ImageIcon className="w-5 h-5" />
+                    Slides Visuais Gerados ({slides.summary.totalSlides} imagens)
+                  </CardTitle>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={handleDownloadZip}
+                      disabled={downloadingZip}
+                    >
+                      {downloadingZip ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Gerando ZIP...
+                        </>
+                      ) : (
+                        <>
+                          <Archive className="w-4 h-4 mr-2" />
+                          Baixar ZIP
+                        </>
+                      )}
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      onClick={handleSendToDrive}
+                      disabled={sendingToDrive}
+                    >
+                      {sendingToDrive ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Enviando...
+                        </>
+                      ) : (
+                        <>
+                          <FolderOpen className="w-4 h-4 mr-2" />
+                          Enviar para Drive
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </div>
+                {driveMessage && (
+                  <p className="text-success-400 text-sm mt-2 flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    {driveMessage}
+                  </p>
+                )}
+                {driveError && (
+                  <p className="text-error-400 text-sm mt-2">{driveError}</p>
+                )}
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
@@ -501,8 +676,17 @@ CTA: ${carousel.cta}
                           </div>
                         </div>
 
-                        {/* Botões de Aprovação */}
+                        {/* Botões de Ação */}
                         <div className="flex gap-2">
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            onClick={() => handleOpenEdit(index, carousel)}
+                            className="flex items-center gap-2"
+                          >
+                            <Pencil className="w-4 h-4" />
+                            Editar
+                          </Button>
                           <Button
                             variant={carousel.approved === true ? 'primary' : 'secondary'}
                             size="sm"
@@ -565,6 +749,142 @@ CTA: ${carousel.cta}
                     </Button>
                   </div>
                 </CardHeader>
+
+                {/* Painel de Edição Inline */}
+                {editingIndex === index && editedCarousel && (
+                  <div className="mx-6 mb-4 rounded-xl border border-primary-500/40 bg-neutral-900/80 overflow-hidden">
+                    {/* Header do painel */}
+                    <div className="flex items-center justify-between px-4 py-3 bg-primary-500/10 border-b border-primary-500/30">
+                      <h4 className="font-semibold text-primary-400 flex items-center gap-2">
+                        <Pencil className="w-4 h-4" />
+                        Editando: {editedCarousel.titulo}
+                      </h4>
+                      <Button variant="ghost" size="sm" onClick={handleCloseEdit}>
+                        <X className="w-4 h-4" />
+                      </Button>
+                    </div>
+
+                    <div className="p-4 space-y-4">
+                      {/* Instruções para IA */}
+                      <div>
+                        <label className="block text-sm font-medium text-neutral-300 mb-1">
+                          Instruções para regenerar com IA <span className="text-neutral-500">(opcional)</span>
+                        </label>
+                        <textarea
+                          value={editInstructions}
+                          onChange={(e) => setEditInstructions(e.target.value)}
+                          placeholder="Ex: Adicione dados específicos sobre X, mude o tom para mais descontraído, foque em pequenas empresas, adicione estatísticas sobre Y..."
+                          rows={3}
+                          className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none text-sm"
+                        />
+                      </div>
+
+                      {/* Título */}
+                      <div>
+                        <label className="block text-sm font-medium text-neutral-300 mb-1">Título do Carrossel</label>
+                        <input
+                          type="text"
+                          value={editedCarousel.titulo}
+                          onChange={(e) => setEditedCarousel((p: any) => ({ ...p, titulo: e.target.value }))}
+                          className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
+                        />
+                      </div>
+
+                      {/* Slides */}
+                      <div>
+                        <label className="block text-sm font-medium text-neutral-300 mb-2">Slides</label>
+                        <div className="space-y-3">
+                          {editedCarousel.slides?.map((slide: any, si: number) => (
+                            <div key={si} className="bg-neutral-800/60 rounded-lg p-3 space-y-2">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className="bg-primary-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                                  {slide.numero}
+                                </span>
+                                <input
+                                  type="text"
+                                  value={slide.titulo}
+                                  onChange={(e) => setEditedCarousel((p: any) => {
+                                    const slides = [...p.slides]
+                                    slides[si] = { ...slides[si], titulo: e.target.value }
+                                    return { ...p, slides }
+                                  })}
+                                  placeholder="Título do slide"
+                                  className="flex-1 bg-neutral-700 border border-neutral-600 rounded px-2 py-1 text-neutral-200 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500"
+                                />
+                              </div>
+                              <textarea
+                                value={slide.corpo}
+                                onChange={(e) => setEditedCarousel((p: any) => {
+                                  const slides = [...p.slides]
+                                  slides[si] = { ...slides[si], corpo: e.target.value }
+                                  return { ...p, slides }
+                                })}
+                                placeholder="Corpo do slide"
+                                rows={2}
+                                className="w-full bg-neutral-700 border border-neutral-600 rounded px-2 py-1 text-neutral-200 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 resize-none"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Caption */}
+                      <div>
+                        <label className="block text-sm font-medium text-neutral-300 mb-1">Caption</label>
+                        <textarea
+                          value={editedCarousel.caption}
+                          onChange={(e) => setEditedCarousel((p: any) => ({ ...p, caption: e.target.value }))}
+                          rows={4}
+                          className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none text-sm"
+                        />
+                      </div>
+
+                      {/* CTA */}
+                      <div>
+                        <label className="block text-sm font-medium text-neutral-300 mb-1">Call to Action</label>
+                        <input
+                          type="text"
+                          value={editedCarousel.cta}
+                          onChange={(e) => setEditedCarousel((p: any) => ({ ...p, cta: e.target.value }))}
+                          className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
+                        />
+                      </div>
+
+                      {/* Botões de ação */}
+                      <div className="flex justify-end gap-2 pt-2 border-t border-neutral-700">
+                        <Button variant="ghost" size="sm" onClick={handleCloseEdit}>
+                          Cancelar
+                        </Button>
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={handleSaveDirectEdits}
+                          disabled={saving || refining}
+                        >
+                          {saving ? (
+                            <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Salvando...</>
+                          ) : (
+                            <><Save className="w-4 h-4 mr-2" />Salvar Edições</>
+                          )}
+                        </Button>
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          onClick={handleRegenerateCarousel}
+                          disabled={refining || saving || !editInstructions.trim()}
+                          title={!editInstructions.trim() ? 'Digite as instruções para regenerar com IA' : ''}
+                        >
+                          {refining ? (
+                            <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Regenerando...</>
+                          ) : (
+                            <><RefreshCw className="w-4 h-4 mr-2" />Regenerar com IA</>
+                          )}
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 <CardContent className="space-y-4">
                   {/* Slides */}
                   <div>

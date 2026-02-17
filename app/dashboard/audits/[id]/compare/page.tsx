@@ -413,13 +413,25 @@ function DimensionComparison({ label, v1, v2 }: { label: string; v1: number; v2:
   )
 }
 
+// Converte item para string renderizável (pode vir como string ou objeto do Claude)
+function itemToString(item: any): string {
+  if (typeof item === 'string') return item
+  if (typeof item === 'object' && item !== null) {
+    const emoji = item.emoji ? `${item.emoji} ` : ''
+    const title = item.title || ''
+    const description = item.description ? `: ${item.description}` : ''
+    return `${emoji}${title}${description}`.trim() || JSON.stringify(item)
+  }
+  return String(item)
+}
+
 function AnalysisSection({
   title,
   items,
   variant
 }: {
   title: string
-  items: string[]
+  items: any[]
   variant: 'success' | 'error' | 'warning'
 }) {
   const colors = {
@@ -436,7 +448,7 @@ function AnalysisSection({
           items.map((item, idx) => (
             <li key={idx} className="flex items-start gap-2">
               <span className="text-neutral-500">•</span>
-              <span>{item}</span>
+              <span>{itemToString(item)}</span>
             </li>
           ))
         ) : (

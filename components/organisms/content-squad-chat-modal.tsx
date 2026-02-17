@@ -1,11 +1,12 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { useRouter } from 'next/navigation'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/atoms/dialog'
 import { Button } from '@/components/atoms/button'
 import { Badge } from '@/components/atoms/badge'
 import { toast } from 'sonner'
-import { Sparkles, Send, Loader2, User, Bot, Copy, Check } from 'lucide-react'
+import { Sparkles, Send, Loader2, User, Bot, Copy, Check, Plus } from 'lucide-react'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -27,15 +28,62 @@ export function ContentSquadChatModal({
   isOpen,
   onClose
 }: ContentSquadChatModalProps) {
+  const router = useRouter()
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+  const [savingIndex, setSavingIndex] = useState<number | null>(null)
+  const [savedIndex, setSavedIndex] = useState<number | null>(null)
 
   const handleCopy = async (content: string, index: number) => {
     await navigator.clipboard.writeText(content)
     setCopiedIndex(index)
     setTimeout(() => setCopiedIndex(null), 2000)
+  }
+
+  const handleSaveToContent = async (content: string, index: number) => {
+    if (!latestAudit?.id) {
+      toast.error('Nenhuma auditoria encontrada para salvar o conteúdo')
+      return
+    }
+
+    setSavingIndex(index)
+    try {
+      const response = await fetch(`/api/profiles/${profileId}/save-to-content`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message_content: content,
+          audit_id: latestAudit.id
+        })
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erro ao salvar conteúdo')
+      }
+
+      setSavedIndex(index)
+      setTimeout(() => setSavedIndex(null), 3000)
+
+      toast.success(`Carrossel "${data.carousel_titulo}" adicionado!`, {
+        action: {
+          label: 'Ver Conteúdos',
+          onClick: () => {
+            onClose()
+            router.push(`/dashboard/audits/${latestAudit.id}/create-content`)
+          }
+        },
+        duration: 6000
+      })
+    } catch (error: any) {
+      console.error('Erro ao salvar conteúdo:', error)
+      toast.error(error.message || 'Erro ao adicionar aos conteúdos')
+    } finally {
+      setSavingIndex(null)
+    }
   }
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
@@ -197,23 +245,52 @@ Digite sua solicitação ou pergunta! 🚀`
                 </div>
 
                 {message.role === 'assistant' && (
-                  <button
-                    onClick={() => handleCopy(message.content, index)}
-                    className="self-start flex items-center gap-1.5 text-xs text-neutral-500 hover:text-neutral-300 transition-colors px-1 py-0.5"
-                    title="Copiar resposta"
-                  >
-                    {copiedIndex === index ? (
-                      <>
-                        <Check className="w-3.5 h-3.5 text-green-400" />
-                        <span className="text-green-400">Copiado!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3.5 h-3.5" />
-                        <span>Copiar</span>
-                      </>
+                  <div className="self-start flex items-center gap-2">
+                    <button
+                      onClick={() => handleCopy(message.content, index)}
+                      className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-neutral-300 transition-colors px-1 py-0.5"
+                      title="Copiar resposta"
+                    >
+                      {copiedIndex === index ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-green-400" />
+                          <span className="text-green-400">Copiado!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>Copiar</span>
+                        </>
+                      )}
+                    </button>
+
+                    {/* Botão só aparece nas respostas geradas (não na mensagem de boas-vindas) */}
+                    {index > 0 && (
+                      <button
+                        onClick={() => handleSaveToContent(message.content, index)}
+                        disabled={savingIndex === index}
+                        className="flex items-center gap-1.5 text-xs text-primary-400 hover:text-primary-300 transition-colors px-1 py-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                        title="Adicionar este conteúdo à fila de aprovação"
+                      >
+                        {savingIndex === index ? (
+                          <>
+                            <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                            <span>Salvando...</span>
+                          </>
+                        ) : savedIndex === index ? (
+                          <>
+                            <Check className="w-3.5 h-3.5 text-green-400" />
+                            <span className="text-green-400">Adicionado!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Plus className="w-3.5 h-3.5" />
+                            <span>Adicionar aos Conteúdos</span>
+                          </>
+                        )}
+                      </button>
                     )}
-                  </button>
+                  </div>
                 )}
               </div>
 
