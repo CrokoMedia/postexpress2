@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from '@/components/atoms/button'
 import { Badge } from '@/components/atoms/badge'
 import { toast } from 'sonner'
-import { Sparkles, Send, Loader2, User, Bot } from 'lucide-react'
+import { Sparkles, Send, Loader2, User, Bot, Copy, Check } from 'lucide-react'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -30,6 +30,13 @@ export function ContentSquadChatModal({
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+
+  const handleCopy = async (content: string, index: number) => {
+    await navigator.clipboard.writeText(content)
+    setCopiedIndex(index)
+    setTimeout(() => setCopiedIndex(null), 2000)
+  }
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -176,16 +183,38 @@ Digite sua solicitação ou pergunta! 🚀`
                 </div>
               )}
 
-              <div
-                className={`max-w-[75%] rounded-lg p-4 ${
-                  message.role === 'user'
-                    ? 'bg-primary-500 text-white'
-                    : 'bg-neutral-800 text-neutral-200'
-                }`}
-              >
-                <div className="whitespace-pre-wrap break-words text-sm leading-relaxed">
-                  {message.content}
+              <div className="max-w-[75%] flex flex-col gap-1">
+                <div
+                  className={`rounded-lg p-4 ${
+                    message.role === 'user'
+                      ? 'bg-primary-500 text-white'
+                      : 'bg-neutral-800 text-neutral-200'
+                  }`}
+                >
+                  <div className="whitespace-pre-wrap break-words text-sm leading-relaxed">
+                    {message.content}
+                  </div>
                 </div>
+
+                {message.role === 'assistant' && (
+                  <button
+                    onClick={() => handleCopy(message.content, index)}
+                    className="self-start flex items-center gap-1.5 text-xs text-neutral-500 hover:text-neutral-300 transition-colors px-1 py-0.5"
+                    title="Copiar resposta"
+                  >
+                    {copiedIndex === index ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-green-400" />
+                        <span className="text-green-400">Copiado!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>Copiar</span>
+                      </>
+                    )}
+                  </button>
+                )}
               </div>
 
               {message.role === 'user' && (
