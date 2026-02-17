@@ -30,6 +30,7 @@
   "license": "ISC",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.74.0",
+    "@fal-ai/client": "^1.9.1",
     "@google/generative-ai": "^0.21.0",
     "@mistralai/mistralai": "^1.14.0",
     "@radix-ui/react-dialog": "^1.0.5",

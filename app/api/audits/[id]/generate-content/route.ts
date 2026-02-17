@@ -63,7 +63,8 @@ Retorne um JSON com esta estrutura EXATA:
           "tipo": "hook|conteudo|cta",
           "titulo": "string (título do slide)",
           "corpo": "string (texto do slide)",
-          "notas_design": "string (sugestões visuais)"
+          "notas_design": "string (sugestões visuais)",
+          "imagem_prompt": "string (descrição em inglês da fotografia/ilustração ideal para acompanhar este slide — específica ao contexto do conteúdo, sem texto na imagem)"
         }
       ],
       "caption": "string (legenda do Instagram)",
@@ -83,6 +84,13 @@ Retorne um JSON com esta estrutura EXATA:
 3. **Mantenha autenticidade** - Respeite o tom do perfil auditado
 4. **Ação imediata** - Quick wins que pode publicar hoje
 5. **Retorne APENAS o JSON** - Sem texto adicional
+6. **imagem_prompt obrigatório** - Para cada slide, descreva em inglês a fotografia ou cena visual que melhor ilustra aquele slide específico. REGRAS do imagem_prompt:
+   - Sempre dentro do nicho/área de expertise do perfil auditado (ex: nutricionista → alimentos, academia; coach financeiro → dinheiro, gráficos, escritório)
+   - Descreva a cena com detalhes concretos: o que aparece, ambiente, iluminação, ângulo
+   - Nunca use texto genérico como "a professional image" ou "a person working"
+   - Nunca inclua texto, letras ou palavras na descrição da imagem
+   - Exemplo para perfil de marketing digital: "entrepreneur reviewing social media analytics dashboard on laptop in a modern office, natural window light, focused expression, clean desk"
+   - Exemplo para perfil de fitness: "personal trainer demonstrating proper squat form in a bright modern gym, athletic wear, mirrors in background, motivational energy"
 
 Agora analise a auditoria abaixo e crie as 3 sugestões de carrosséis:`
 

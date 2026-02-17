@@ -181,22 +181,34 @@ export async function POST(
     }
 
     // Buscar content_suggestion para este audit
-    const { data: contentSuggestion } = await supabase
+    const { data: contentSuggestion, error: fetchError } = await supabase
       .from('content_suggestions')
       .select('id')
       .eq('audit_id', id)
       .single()
 
-    if (contentSuggestion) {
-      await supabase
-        .from('content_suggestions')
-        .update({ slides_json: slidesData })
-        .eq('id', contentSuggestion.id)
-
-      console.log('✅ Slides salvos no banco')
-    } else {
-      console.warn('⚠️ Content suggestion não encontrado, slides não foram salvos')
+    if (fetchError || !contentSuggestion) {
+      console.error('❌ Content suggestion não encontrado para audit_id:', id, fetchError)
+      return NextResponse.json(
+        { error: 'Conteúdo não encontrado. Gere o conteúdo textual antes de gerar slides.' },
+        { status: 404 }
+      )
     }
+
+    const { error: updateError } = await supabase
+      .from('content_suggestions')
+      .update({ slides_json: slidesData })
+      .eq('id', contentSuggestion.id)
+
+    if (updateError) {
+      console.error('❌ Erro ao salvar slides no banco:', updateError)
+      return NextResponse.json(
+        { error: 'Slides gerados mas não foi possível salvar. Tente novamente.' },
+        { status: 500 }
+      )
+    }
+
+    console.log('✅ Slides salvos no banco com sucesso')
 
     return NextResponse.json({
       success: true,

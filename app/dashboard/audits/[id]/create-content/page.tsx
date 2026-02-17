@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/atoms/button'
 import { Skeleton } from '@/components/atoms/skeleton'
 import { Badge } from '@/components/atoms/badge'
-import { Sparkles, ArrowLeft, Download, Copy, Check, Image as ImageIcon, Loader2, CheckCircle, XCircle, Archive, FolderOpen, Pencil, RefreshCw, Save, X, Video, Repeat2 } from 'lucide-react'
+import { Sparkles, ArrowLeft, Download, Copy, Check, Image as ImageIcon, Loader2, CheckCircle, XCircle, Archive, FolderOpen, Pencil, RefreshCw, Save, X, Video, Repeat2, GalleryHorizontal } from 'lucide-react'
 import Link from 'next/link'
 
 export default function CreateContentPage() {
@@ -34,6 +34,15 @@ export default function CreateContentPage() {
   const [driveError, setDriveError] = useState<string | null>(null)
 
   const [generatingVariations, setGeneratingVariations] = useState<number | null>(null)
+
+  // Template V2 (fal.ai)
+  const [generatingSlidesV2, setGeneratingSlidesV2] = useState(false)
+  const [slidesV2Error, setSlidesV2Error] = useState<string | null>(null)
+
+  // Seleção de carrosséis para gerar slides
+  const [selectedForSlides, setSelectedForSlides] = useState<Set<number>>(new Set())
+  // Seleção de slides individuais: carouselIndex → Set de índices de slides selecionados
+  const [selectedSlides, setSelectedSlides] = useState<Map<number, Set<number>>>(new Map())
 
   // Estados do painel de edição
   const [editingIndex, setEditingIndex] = useState<number | null>(null)
@@ -160,6 +169,27 @@ CTA: ${carousel.cta}
         return newContent
       })
 
+      // Sincronizar seleção: aprovado → seleciona, rejeitado → remove
+      setSelectedForSlides(prev => {
+        const next = new Set(prev)
+        approved ? next.add(carouselIndex) : next.delete(carouselIndex)
+        return next
+      })
+
+      // Inicializar slides selecionados (todos) quando carrossel é aprovado
+      setSelectedSlides(prev => {
+        const next = new Map(prev)
+        if (approved) {
+          const carousel = content?.carousels?.[carouselIndex]
+          if (carousel) {
+            next.set(carouselIndex, new Set(carousel.slides.map((_: any, i: number) => i)))
+          }
+        } else {
+          next.delete(carouselIndex)
+        }
+        return next
+      })
+
       console.log(`✅ Carrossel ${carouselIndex} ${approved ? 'aprovado' : 'desaprovado'}`)
     } catch (err: any) {
       console.error('Erro ao aprovar carrossel:', err)
@@ -175,22 +205,30 @@ CTA: ${carousel.cta}
       return
     }
 
-    const approvedCount = content.carousels.filter((c: any) => c.approved === true).length
-
-    if (approvedCount === 0) {
-      setSlidesError('Aprove pelo menos um carrossel antes de gerar slides')
+    if (selectedForSlides.size === 0) {
+      setSlidesError('Selecione pelo menos um carrossel para gerar slides')
       return
     }
 
     setGeneratingSlides(true)
     setSlidesError(null)
 
+    // Enviar apenas os selecionados, filtrando slides individuais
+    const carouselsToGenerate = content.carousels.map((c: any, i: number) => {
+      if (!selectedForSlides.has(i)) return { ...c, approved: false }
+      const slideSel = selectedSlides.get(i)
+      const filteredSlides = slideSel
+        ? c.slides.filter((_: any, si: number) => slideSel.has(si))
+        : c.slides
+      return { ...c, approved: true, slides: filteredSlides }
+    })
+
     try {
       const response = await fetch(`/api/content/${id}/generate-slides`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          carousels: content.carousels,
+          carousels: carouselsToGenerate,
           profile: audit.profile
         })
       })
@@ -207,6 +245,55 @@ CTA: ${carousel.cta}
       setSlidesError(err.message)
     } finally {
       setGeneratingSlides(false)
+    }
+  }
+
+  const handleGenerateSlidesV2 = async () => {
+    if (!content || !content.carousels) {
+      setSlidesV2Error('Gere as sugestões de conteúdo primeiro')
+      return
+    }
+
+    if (selectedForSlides.size === 0) {
+      setSlidesV2Error('Selecione pelo menos um carrossel para gerar slides')
+      return
+    }
+
+    setGeneratingSlidesV2(true)
+    setSlidesV2Error(null)
+
+    // Enviar apenas os selecionados, filtrando slides individuais
+    const carouselsToGenerate = content.carousels.map((c: any, i: number) => {
+      if (!selectedForSlides.has(i)) return { ...c, approved: false }
+      const slideSel = selectedSlides.get(i)
+      const filteredSlides = slideSel
+        ? c.slides.filter((_: any, si: number) => slideSel.has(si))
+        : c.slides
+      return { ...c, approved: true, slides: filteredSlides }
+    })
+
+    try {
+      const response = await fetch(`/api/content/${id}/generate-slides-v2`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          carousels: carouselsToGenerate,
+          profile: audit.profile,
+        }),
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Erro ao gerar slides V2')
+      }
+
+      const data = await response.json()
+      setSlides(data)
+    } catch (err: any) {
+      console.error('Erro ao gerar slides V2:', err)
+      setSlidesV2Error(err.message)
+    } finally {
+      setGeneratingSlidesV2(false)
     }
   }
 
@@ -400,17 +487,29 @@ CTA: ${carousel.cta}
           />
         </div>
 
-        {!content && (
-          <Button
-            onClick={handleGenerateContent}
-            disabled={generating}
-            size="lg"
-            className="flex items-center gap-2"
-          >
-            <Sparkles className="w-5 h-5" />
-            {generating ? 'Gerando...' : 'Gerar Sugestões'}
-          </Button>
-        )}
+        <div className="flex items-center gap-2">
+          {slides && (
+            <Button
+              variant="secondary"
+              onClick={() => router.push(`/dashboard/audits/${id}/slides`)}
+              className="flex items-center gap-2"
+            >
+              <GalleryHorizontal className="w-4 h-4" />
+              Ver Slides Gerados
+            </Button>
+          )}
+          {!content && (
+            <Button
+              onClick={handleGenerateContent}
+              disabled={generating}
+              size="lg"
+              className="flex items-center gap-2"
+            >
+              <Sparkles className="w-5 h-5" />
+              {generating ? 'Gerando...' : 'Gerar Sugestões'}
+            </Button>
+          )}
+        </div>
       </div>
 
       {/* Tabs: Carrosséis / Reels */}
@@ -543,8 +642,8 @@ CTA: ${carousel.cta}
               <Button
                 variant="primary"
                 onClick={handleGenerateSlides}
-                disabled={generatingSlides || approvedCarouselsCount === 0}
-                title={approvedCarouselsCount === 0 ? 'Aprove pelo menos um carrossel primeiro' : ''}
+                disabled={generatingSlides || selectedForSlides.size === 0}
+                title={selectedForSlides.size === 0 ? 'Selecione pelo menos um carrossel' : ''}
               >
                 {generatingSlides ? (
                   <>
@@ -554,7 +653,25 @@ CTA: ${carousel.cta}
                 ) : (
                   <>
                     <ImageIcon className="w-4 h-4 mr-2" />
-                    Gerar Slides Visuais ({approvedCarouselsCount}/{totalCarouselsCount} aprovados)
+                    Gerar Slides ({selectedForSlides.size} selecionado{selectedForSlides.size !== 1 ? 's' : ''})
+                  </>
+                )}
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={handleGenerateSlidesV2}
+                disabled={generatingSlidesV2 || selectedForSlides.size === 0}
+                title={selectedForSlides.size === 0 ? 'Selecione pelo menos um carrossel' : 'Gerar slides com imagens geradas por IA (novo template)'}
+              >
+                {generatingSlidesV2 ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Gerando com IA...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-4 h-4 mr-2" />
+                    Gerar com IA ({selectedForSlides.size} selecionado{selectedForSlides.size !== 1 ? 's' : ''})
                   </>
                 )}
               </Button>
@@ -570,6 +687,15 @@ CTA: ${carousel.cta}
             <Card className="border-error-500">
               <CardContent className="p-4">
                 <p className="text-error-500">{slidesError}</p>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Slides V2 Error */}
+          {slidesV2Error && (
+            <Card className="border-error-500">
+              <CardContent className="p-4">
+                <p className="text-error-500">{slidesV2Error}</p>
               </CardContent>
             </Card>
           )}
@@ -671,6 +797,38 @@ CTA: ${carousel.cta}
             </Card>
           )}
 
+          {/* Seleção para gerar slides */}
+          {approvedCarouselsCount > 0 && (
+            <div className="flex items-center gap-3 py-2 px-4 bg-neutral-900/60 border border-neutral-800 rounded-xl">
+              <span className="text-sm text-neutral-400">Selecionar para gerar slides:</span>
+              <button
+                onClick={() => {
+                  const allApproved = new Set<number>(
+                    content.carousels
+                      .map((_: any, i: number) => i)
+                      .filter((i: number) => content.carousels[i].approved === true)
+                  )
+                  setSelectedForSlides(allApproved)
+                }}
+                className="text-sm font-medium text-primary-400 hover:text-primary-300 transition-colors"
+              >
+                Selecionar todos
+              </button>
+              <span className="text-neutral-700">|</span>
+              <button
+                onClick={() => setSelectedForSlides(new Set())}
+                className="text-sm font-medium text-neutral-400 hover:text-neutral-300 transition-colors"
+              >
+                Desmarcar todos
+              </button>
+              {selectedForSlides.size > 0 && (
+                <span className="ml-auto text-xs text-primary-400 font-medium">
+                  {selectedForSlides.size} de {approvedCarouselsCount} selecionado{selectedForSlides.size !== 1 ? 's' : ''}
+                </span>
+              )}
+            </div>
+          )}
+
           {/* Estratégia Geral */}
           {content.estrategia_geral && (
             <Card>
@@ -734,20 +892,48 @@ CTA: ${carousel.cta}
                         {/* Botões de Ação */}
                         <div className="flex gap-2 flex-wrap justify-end">
                           {carousel.approved === true && (
-                            <Button
-                              variant="secondary"
-                              size="sm"
-                              onClick={() => handleGenerateVariations(index)}
-                              disabled={generatingVariations === index}
-                              className="flex items-center gap-2 border-primary-500/40 text-primary-400 hover:text-primary-300"
-                              title="Gerar novos conteúdos a partir deste tema aprovado"
-                            >
-                              {generatingVariations === index ? (
-                                <><Loader2 className="w-4 h-4 animate-spin" />Gerando...</>
-                              ) : (
-                                <><Repeat2 className="w-4 h-4" />Gerar Variações</>
-                              )}
-                            </Button>
+                            <>
+                              {/* Checkbox de seleção para gerar slides */}
+                              <button
+                                onClick={() => setSelectedForSlides(prev => {
+                                  const next = new Set(prev)
+                                  next.has(index) ? next.delete(index) : next.add(index)
+                                  return next
+                                })}
+                                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-medium transition-all ${
+                                  selectedForSlides.has(index)
+                                    ? 'border-primary-500 bg-primary-500/15 text-primary-400'
+                                    : 'border-neutral-700 bg-neutral-800/50 text-neutral-500 hover:border-neutral-600 hover:text-neutral-400'
+                                }`}
+                                title={selectedForSlides.has(index) ? 'Desmarcar para geração de slides' : 'Marcar para geração de slides'}
+                              >
+                                <div className={`w-4 h-4 rounded border-2 flex items-center justify-center flex-shrink-0 transition-all ${
+                                  selectedForSlides.has(index)
+                                    ? 'border-primary-500 bg-primary-500'
+                                    : 'border-neutral-600'
+                                }`}>
+                                  {selectedForSlides.has(index) && (
+                                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                                      <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                  )}
+                                </div>
+                                Gerar slide
+                              </button>
+                              <Button
+                                variant="secondary"
+                                size="sm"
+                                onClick={() => handleGenerateVariations(index)}
+                                disabled={generatingVariations === index}
+                                className="flex items-center gap-2 border-primary-500/40 text-primary-400 hover:text-primary-300"
+                              >
+                                {generatingVariations === index ? (
+                                  <><Loader2 className="w-4 h-4 animate-spin" />Gerando...</>
+                                ) : (
+                                  <><Repeat2 className="w-4 h-4" />Gerar Variações</>
+                                )}
+                              </Button>
+                            </>
                           )}
                           <Button
                             variant="secondary"
@@ -959,29 +1145,90 @@ CTA: ${carousel.cta}
                 <CardContent className="space-y-4">
                   {/* Slides */}
                   <div>
-                    <h4 className="font-semibold mb-3">Slides ({carousel.slides.length})</h4>
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-semibold">Slides ({carousel.slides.length})</h4>
+                      {carousel.approved === true && (
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={() => setSelectedSlides(prev => {
+                              const next = new Map(prev)
+                              next.set(index, new Set(carousel.slides.map((_: any, i: number) => i)))
+                              return next
+                            })}
+                            className="text-xs text-primary-400 hover:text-primary-300 transition-colors"
+                          >
+                            Todos
+                          </button>
+                          <span className="text-neutral-700">|</span>
+                          <button
+                            onClick={() => setSelectedSlides(prev => {
+                              const next = new Map(prev)
+                              next.set(index, new Set())
+                              return next
+                            })}
+                            className="text-xs text-neutral-500 hover:text-neutral-400 transition-colors"
+                          >
+                            Nenhum
+                          </button>
+                          <span className="text-xs text-neutral-500">
+                            {selectedSlides.get(index)?.size ?? carousel.slides.length}/{carousel.slides.length} selecionados
+                          </span>
+                        </div>
+                      )}
+                    </div>
                     <div className="space-y-3">
-                      {carousel.slides.map((slide: any) => (
-                        <Card key={slide.numero} className="bg-neutral-800/50">
-                          <CardContent className="p-4">
-                            <div className="flex items-start gap-4">
-                              <div className="bg-primary-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">
-                                {slide.numero}
-                              </div>
-                              <div className="flex-1">
-                                <Badge variant="neutral" className="mb-2">{slide.tipo}</Badge>
-                                <h5 className="font-semibold mb-2">{slide.titulo}</h5>
-                                <p className="text-neutral-300 mb-2">{slide.corpo}</p>
-                                {slide.notas_design && (
-                                  <p className="text-xs text-neutral-400 italic">
-                                    💡 {slide.notas_design}
-                                  </p>
+                      {carousel.slides.map((slide: any, slideIndex: number) => {
+                        const isSlideSelected = carousel.approved !== true || (selectedSlides.get(index)?.has(slideIndex) ?? true)
+                        return (
+                          <Card
+                            key={slide.numero}
+                            className={`transition-all ${isSlideSelected ? 'bg-neutral-800/50' : 'bg-neutral-900/30 opacity-50'}`}
+                          >
+                            <CardContent className="p-4">
+                              <div className="flex items-start gap-4">
+                                {/* Checkbox de seleção do slide */}
+                                {carousel.approved === true && (
+                                  <button
+                                    onClick={() => setSelectedSlides(prev => {
+                                      const next = new Map(prev)
+                                      const slideSet = new Set<number>(next.get(index) ?? carousel.slides.map((_: any, i: number) => i))
+                                      slideSet.has(slideIndex) ? slideSet.delete(slideIndex) : slideSet.add(slideIndex)
+                                      next.set(index, slideSet)
+                                      return next
+                                    })}
+                                    className="mt-1 flex-shrink-0"
+                                  >
+                                    <div className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all ${
+                                      isSlideSelected
+                                        ? 'border-primary-500 bg-primary-500'
+                                        : 'border-neutral-600 bg-transparent'
+                                    }`}>
+                                      {isSlideSelected && (
+                                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                                          <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                        </svg>
+                                      )}
+                                    </div>
+                                  </button>
                                 )}
+                                <div className="bg-primary-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">
+                                  {slide.numero}
+                                </div>
+                                <div className="flex-1">
+                                  <Badge variant="neutral" className="mb-2">{slide.tipo}</Badge>
+                                  <h5 className="font-semibold mb-2">{slide.titulo}</h5>
+                                  <p className="text-neutral-300 mb-2">{slide.corpo}</p>
+                                  {slide.notas_design && (
+                                    <p className="text-xs text-neutral-400 italic">
+                                      💡 {slide.notas_design}
+                                    </p>
+                                  )}
+                                </div>
                               </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
+                            </CardContent>
+                          </Card>
+                        )
+                      })}
                     </div>
                   </div>
 

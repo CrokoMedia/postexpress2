@@ -255,6 +255,15 @@ node scripts/ocr-gemini-analyzer.js <username>
 ### Content Creation Squad (`/content-creation-squad`)
 **Quando usar:** Criar carrosséis, posts, copy de vendas, conteúdo de lançamento
 
+### Content Distillery Squad (`/content-distillery`)
+**Quando usar:** Transformar livestreams longos do YouTube em frameworks, modelos mentais e 60+ peças de conteúdo multiplataforma
+**Pasta:** `content-distillery/` (na raiz do projeto)
+**Comandos:**
+- `*distill <URL>` → Pipeline completo (6 fases)
+- `*extract <URL>` → Só extrair frameworks
+- `*derive <path>` → Derivar conteúdo de frameworks existentes
+- `*compare <pathA> <pathB>` → Comparar duas fontes
+
 ### AIOS Master (`@aios-master`)
 **Quando usar:** Orchestrar agentes, criar stories de desenvolvimento
 
