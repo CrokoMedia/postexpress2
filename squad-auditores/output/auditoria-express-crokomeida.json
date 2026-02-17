@@ -1,0 +1,173 @@
+{
+  "audit_metadata": {
+    "username": "crokomeida",
+    "audit_type": "express",
+    "audit_date": "2024-12-19",
+    "posts_analyzed": 0,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "crokomeida",
+    "full_name": "N/A",
+    "biography": "N/A",
+    "followers_count": 0,
+    "following_count": 0,
+    "posts_count": 0,
+    "is_verified": false,
+    "is_business_account": false
+  },
+  "metrics": {
+    "posts_analyzed": 0,
+    "total_likes": 0,
+    "total_comments_extracted": 0,
+    "relevant_comments": 0,
+    "engagement_rate": "0.00%",
+    "avg_likes_per_post": 0,
+    "avg_comments_per_post": 0,
+    "total_images_ocr": 0
+  },
+  "score_card": {
+    "overall_score": 5,
+    "classification": "CRÍTICO",
+    "classification_emoji": "🔴",
+    "needs_improvement": "Criação de presença digital básica",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 5,
+        "status": "❌",
+        "summary": "Ausência total de conteúdo impossibilita qualquer análise comportamental"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 5,
+        "status": "❌",
+        "summary": "Nenhum copy disponível para análise - situação crítica"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 5,
+        "status": "❌",
+        "summary": "Zero ofertas ou CTAs identificados - perfil inexistente comercialmente"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 5,
+        "status": "❌",
+        "summary": "Métricas zeradas indicam ausência completa de atividade"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 10,
+        "status": "❌",
+        "summary": "Perfil pode estar inativo, privado ou bloqueado - investigar status"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Username Disponível",
+      "description": "O handle @crokomeida está ativo, oferecendo uma base para construir presença digital do zero com identidade definida.",
+      "emoji": "🆔"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "Perfil Completamente Inativo",
+      "description": "Zero posts, zero engajamento, perfil sem biografia ou informações básicas. Situação crítica que impede qualquer análise ou estratégia.",
+      "severity": "crítico",
+      "emoji": "🚨"
+    },
+    {
+      "rank": 2,
+      "title": "Ausência Total de Dados",
+      "description": "Impossível realizar auditoria sem posts ou métricas. Conta pode estar privada, bloqueada ou nunca foi utilizada efetivamente.",
+      "severity": "crítico",
+      "emoji": "📭"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 5,
+      "key_findings": [
+        "Nenhum padrão comportamental identificável",
+        "Ausência total de conteúdo para análise psicológica",
+        "Impossível avaliar gatilhos mentais ou heurísticas"
+      ],
+      "recommendations": [
+        "Criar strategy de conteúdo baseada em System 1 thinking",
+        "Definir buyer persona antes de produzir conteúdo",
+        "Implementar posting schedule consistente"
+      ]
+    },
+    "copy": {
+      "score": 5,
+      "key_findings": [
+        "Zero exemplos de copy para análise",
+        "Sem dados sobre awareness stage do público",
+        "Ausência de headlines, hooks ou calls to action"
+      ],
+      "recommendations": [
+        "Desenvolver biblioteca de templates de copy",
+        "Definir tom de voz e personalidade da marca",
+        "Criar sistema de headlines testáveis"
+      ]
+    },
+    "offers": {
+      "score": 5,
+      "key_findings": [
+        "Nenhuma oferta ou proposta de valor identificada",
+        "Ausência total de CTAs",
+        "Sem evidência de monetização ou conversão"
+      ],
+      "recommendations": [
+        "Definir core offer antes de criar conteúdo",
+        "Desenvolver value stack claro",
+        "Implementar system de lead magnets"
+      ]
+    },
+    "metrics": {
+      "score": 5,
+      "key_findings": [
+        "Todas as métricas zeradas",
+        "Impossível identificar KPIs relevantes",
+        "Sem baseline para comparação ou crescimento"
+      ],
+      "recommendations": [
+        "Estabelecer north star metric desde o início",
+        "Implementar tracking de métricas básicas",
+        "Definir metas realistas de crescimento"
+      ]
+    },
+    "anomalies": {
+      "score": 10,
+      "key_findings": [
+        "Perfil pode estar privado ou com restrições",
+        "Possível conta nova ou abandonada",
+        "Oportunidade de construir do zero com estratégia clara"
+      ],
+      "opportunities": [
+        "Vantagem competitiva de começar com best practices",
+        "Possibilidade de evitar erros comuns de iniciantes",
+        "Espaço livre para definir posicionamento único"
+      ]
+    }
+  },
+  "quick_wins": [
+    "Verificar se o perfil está público e acessível",
+    "Criar biografia completa com proposta de valor clara",
+    "Publicar primeiro post com call to action",
+    "Definir aesthetic/tema visual básico",
+    "Seguir 10-20 contas relevantes do nicho"
+  ],
+  "strategic_moves": [
+    "Desenvolver content pillar strategy com 3-4 temas principais",
+    "Criar cronograma de postagem consistente (mínimo 3x/semana)",
+    "Definir funil de conversão desde awareness até venda",
+    "Implementar sistema de métricas e análise de performance",
+    "Construir audiência orgânica através de engagement autêntico"
+  ]
+}

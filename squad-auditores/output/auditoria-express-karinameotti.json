@@ -1,0 +1,172 @@
+{
+  "audit_metadata": {
+    "username": "karinameotti",
+    "audit_type": "express",
+    "audit_date": "2024-12-19",
+    "posts_analyzed": 10,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "karinameotti",
+    "full_name": "KARINA MEOTTI | Social Selling",
+    "biography": "• Transformo seu direct em um canal poderoso de vendas orgânicas. 💵\n• +6 dígitos gerados em perpétuos e lançamentos\n• Quer vender mais? Fale comigo ↓",
+    "followers_count": 3187,
+    "following_count": 687,
+    "posts_count": 471,
+    "is_verified": false,
+    "is_business_account": true
+  },
+  "metrics": {
+    "posts_analyzed": 10,
+    "total_likes": 5643,
+    "total_comments_extracted": 14,
+    "relevant_comments": 14,
+    "engagement_rate": "17.75%",
+    "avg_likes_per_post": 564,
+    "avg_comments_per_post": 1,
+    "total_images_ocr": 14
+  },
+  "score_card": {
+    "overall_score": 25,
+    "classification": "RUIM",
+    "classification_emoji": "🟠",
+    "needs_improvement": "Desalinhamento total entre biografia comercial e conteúdo pessoal",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 35,
+        "status": "❌",
+        "summary": "Conteúdo introspectivo ativa System 2 mas não gera comportamentos de compra"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 15,
+        "status": "❌",
+        "summary": "Zero alinhamento com awareness - biografia vende social selling, posts falam de vida pessoal"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 5,
+        "status": "❌",
+        "summary": "Nenhuma oferta, CTA ou menção aos serviços de vendas em 10 posts"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 40,
+        "status": "❌",
+        "summary": "Alto engagement em conteúdo irrelevante para o objetivo comercial"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 30,
+        "status": "❌",
+        "summary": "Oportunidade perdida: audiência engajada com persona totalmente diferente"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Engajamento Orgânico Alto",
+      "description": "Taxa de 17.75% de engajement é excelente, especialmente o post sobre rotinas que teve 5013 likes. Audiência realmente conecta com o conteúdo reflexivo e de desenvolvimento pessoal.",
+      "emoji": "📈"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "Desalinhamento Total de Posicionamento",
+      "description": "Biografia promete 'social selling' e 'vendas orgânicas' mas 100% dos posts são sobre desenvolvimento pessoal e vida no campo. Zero conexão com a promessa comercial.",
+      "severity": "crítico",
+      "emoji": "🚨"
+    },
+    {
+      "rank": 2,
+      "title": "Ausência Completa de Monetização",
+      "description": "Nenhum post menciona serviços, produtos ou gera leads. Está desperdiçando uma audiência altamente engajada sem direcionar para objetivos comerciais.",
+      "severity": "crítico",
+      "emoji": "💸"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 35,
+      "key_findings": [
+        "Conteúdo reflexivo ativa System 2",
+        "Gera identificação emocional forte",
+        "Cria padrões de consumo contemplativo",
+        "Não direciona para ação comercial"
+      ],
+      "recommendations": [
+        "Conectar reflexões com decisões de negócio",
+        "Usar storytelling para introduzir serviços",
+        "Manter tom pessoal mas incluir elementos comerciais"
+      ]
+    },
+    "copy": {
+      "score": 15,
+      "key_findings": [
+        "Zero menção a vendas ou social selling",
+        "Textos longos e contemplativos",
+        "Linguagem poética inadequada para B2B",
+        "Desconexão total com nicho prometido"
+      ],
+      "recommendations": [
+        "Reformular biografia ou mudar conteúdo",
+        "Incluir cases de vendas nas reflexões",
+        "Criar ponte entre desenvolvimento pessoal e resultados comerciais"
+      ]
+    },
+    "offers": {
+      "score": 5,
+      "key_findings": [
+        "Nenhuma oferta em 10 posts",
+        "Sem CTAs comerciais",
+        "Sem menção a serviços",
+        "Desperdiça tráfego qualificado"
+      ],
+      "recommendations": [
+        "Adicionar CTAs sutis nos posts",
+        "Criar ofertas relacionadas a mindset de vendas",
+        "Usar stories para direcionar leads"
+      ]
+    },
+    "metrics": {
+      "score": 40,
+      "key_findings": [
+        "Engajamento alto mas irrelevante comercialmente",
+        "Audiência engajada com persona errada",
+        "Métricas de vaidade sem conversão"
+      ],
+      "recommendations": [
+        "Medir leads gerados",
+        "Rastrear conversões da bio",
+        "Definir métricas comerciais claras"
+      ]
+    },
+    "anomalies": {
+      "score": 30,
+      "key_findings": [
+        "Oportunidade única: audiência altamente engajada",
+        "Gap entre promessa e entrega total",
+        "Pode estar perdendo audiência comercial"
+      ],
+      "opportunities": [
+        "Criar conteúdo híbrido: desenvolvimento + vendas",
+        "Posicionar como 'vendas conscientes'",
+        "Usar audiência atual para pivotar gradualmente"
+      ]
+    }
+  },
+  "quick_wins": [
+    "Adicionar CTA sutil no final dos posts: 'Se essas reflexões fazem sentido e você quer aplicar essa clareza nas suas vendas, me manda uma mensagem'",
+    "Incluir um story semanal conectando desenvolvimento pessoal com resultados em vendas",
+    "Reformular biografia para algo como 'Desenvolvimento pessoal aplicado a vendas conscientes'"
+  ],
+  "strategic_moves": [
+    "Criar série de conteúdo: 'Mindset para vendas autênticas' conectando reflexões pessoais com estratégias comerciais",
+    "Desenvolver método próprio que una desenvolvimento pessoal + social selling",
+    "Fazer transição gradual (70% pessoal, 30% comercial) nos próximos 60 dias"
+  ]
+}

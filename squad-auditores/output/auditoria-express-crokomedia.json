@@ -1,0 +1,178 @@
+{
+  "audit_metadata": {
+    "username": "crokomedia",
+    "audit_type": "express",
+    "audit_date": "2024-12-19",
+    "posts_analyzed": 0,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "crokomedia",
+    "full_name": "Croko Media",
+    "biography": "🐊 CROKO MEDIA | R$40Mi+ Gerados\n⚡ ESTRATÉGIA • SISTEMA •IA\n🤖 Automação inteligente que escala sem limite",
+    "followers_count": 114,
+    "following_count": 8,
+    "posts_count": 0,
+    "is_verified": false,
+    "is_business_account": true
+  },
+  "metrics": {
+    "posts_analyzed": 0,
+    "total_likes": 0,
+    "total_comments_extracted": 0,
+    "relevant_comments": 0,
+    "engagement_rate": "0%",
+    "avg_likes_per_post": 0,
+    "avg_comments_per_post": 0,
+    "total_images_ocr": 0
+  },
+  "score_card": {
+    "overall_score": 8,
+    "classification": "CRÍTICO",
+    "classification_emoji": "🔴",
+    "needs_improvement": "Criação urgente de conteúdo",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 5,
+        "status": "❌",
+        "summary": "Zero ativação do System 1 - nenhum conteúdo para gerar comportamento"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 15,
+        "status": "❌",
+        "summary": "Bio tem elementos de copy (prova social R$40Mi+) mas sem posts para análise"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 5,
+        "status": "❌",
+        "summary": "Nenhuma oferta visível, zero CTAs, sem risk reversal"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 5,
+        "status": "❌",
+        "summary": "Impossível medir outcomes sem conteúdo - apenas vanity metrics do perfil"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 10,
+        "status": "❌",
+        "summary": "Anomalia: 114 seguidores mas 0 posts - possível reset de conta"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Prova Social na Bio",
+      "description": "Bio menciona 'R$40Mi+ Gerados' que é uma forte prova social. Posicionamento claro como agência de marketing com foco em automação e IA. Emoji do crocodilo cria identidade visual memorável.",
+      "emoji": "💰"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "Zero Conteúdo Publicado",
+      "description": "Perfil completamente vazio com 0 posts. Impossível gerar engajamento, leads ou vendas sem conteúdo. Seguidores não têm razão para permanecer conectados.",
+      "severity": "crítico",
+      "emoji": "📭"
+    },
+    {
+      "rank": 2,
+      "title": "Desperdício de Seguidores",
+      "description": "114 seguidores sem nenhum conteúdo para consumi-los. Estes leads estão sendo completamente desperdiçados e provavelmente vão parar de seguir por inatividade.",
+      "severity": "crítico",
+      "emoji": "🗑️"
+    },
+    {
+      "rank": 3,
+      "title": "Análise Impossível por Dados Inexistentes",
+      "description": "Com 0 posts analisados, é impossível avaliar estratégia, copy, ofertas ou performance. Score limitado ao mínimo absoluto por ausência total de dados.",
+      "severity": "crítico",
+      "emoji": "❌"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 5,
+      "key_findings": [
+        "Nenhum conteúdo para ativar System 1 dos seguidores",
+        "Zero triggers comportamentais implementados",
+        "Ausência total de padrões de postagem"
+      ],
+      "recommendations": [
+        "Criar cronograma de posts diário focado em pain points",
+        "Usar storytelling para ativar emoções (System 1)",
+        "Implementar hooks visuais e emocionais"
+      ]
+    },
+    "copy": {
+      "score": 15,
+      "key_findings": [
+        "Bio tem elementos de copy decentes (prova social, benefícios)",
+        "Falta especificidade no mecanismo único",
+        "Nenhum copy de posts para avaliar awareness stage"
+      ],
+      "recommendations": [
+        "Criar posts com copy testado para diferentes awareness levels",
+        "Desenvolver hooks específicos para pain points de automação",
+        "Usar linguagem mais específica que 'escala sem limite'"
+      ]
+    },
+    "offers": {
+      "score": 5,
+      "key_findings": [
+        "Nenhuma oferta clara no perfil",
+        "Ausência total de CTAs",
+        "Sem demonstração de value stack"
+      ],
+      "recommendations": [
+        "Criar lead magnets específicos sobre automação",
+        "Implementar CTAs claros em cada post",
+        "Desenvolver ofertas irresistíveis com garantias"
+      ]
+    },
+    "metrics": {
+      "score": 5,
+      "key_findings": [
+        "Impossível medir engagement sem posts",
+        "Foco apenas em vanity metrics (followers)",
+        "Nenhuma métrica de conversão disponível"
+      ],
+      "recommendations": [
+        "Definir métricas de outcome (leads gerados, vendas)",
+        "Implementar tracking de conversões",
+        "Monitorar engagement rate e reach"
+      ]
+    },
+    "anomalies": {
+      "score": 10,
+      "key_findings": [
+        "114 seguidores com 0 posts é altamente anômalo",
+        "Possível reset recente da conta",
+        "Following apenas 8 pessoas sugere estratégia específica"
+      ],
+      "opportunities": [
+        "Aproveitar base de seguidores existente com conteúdo de valor",
+        "Criar curiosidade sobre o 'sumiço' com comeback post",
+        "Usar ratio followers/following para autoridade"
+      ]
+    }
+  },
+  "quick_wins": [
+    "Publicar primeiro post hoje explicando a proposta de valor da Croko Media",
+    "Criar stories diários mostrando bastidores e casos de sucesso dos R$40Mi+",
+    "Adicionar link no bio para lead magnet ou landing page",
+    "Fazer post de apresentação contando a história da agência"
+  ],
+  "strategic_moves": [
+    "Desenvolver calendário editorial com 1-2 posts diários focados em dores do público",
+    "Criar série de cases dos R$40Mi+ gerados com provas sociais específicas",
+    "Implementar funil de nutrição via DM automation",
+    "Lançar webinar ou mini-curso sobre automação como lead magnet"
+  ]
+}

@@ -1,0 +1,178 @@
+{
+  "audit_metadata": {
+    "username": "rutillatayna",
+    "audit_type": "express",
+    "audit_date": "2024-12-19",
+    "posts_analyzed": 10,
+    "auditor_lead": "Daniel Kahneman",
+    "version": "1.0"
+  },
+  "profile": {
+    "username": "rutillatayna",
+    "full_name": "Rútilla Tayná",
+    "biography": "🔎 As pessoas buscam pelo que você oferece. Você está sendo encontrado?\n💵 Mais Clientes sem investir em trafego\n🔧 Simples, direto e com resultado",
+    "followers_count": 1433,
+    "following_count": 258,
+    "posts_count": 15,
+    "is_verified": false,
+    "is_business_account": false
+  },
+  "metrics": {
+    "posts_analyzed": 10,
+    "total_likes": 431,
+    "total_comments_extracted": 52,
+    "relevant_comments": 52,
+    "engagement_rate": "3.37%",
+    "avg_likes_per_post": 43,
+    "avg_comments_per_post": 5,
+    "total_images_ocr": 33
+  },
+  "score_card": {
+    "overall_score": 35,
+    "classification": "RUIM",
+    "classification_emoji": "🟠",
+    "needs_improvement": "Falta de conteúdo de valor e CTAs claros",
+    "dimensions": {
+      "behavior": {
+        "auditor": "Daniel Kahneman",
+        "score": 25,
+        "status": "❌",
+        "summary": "Conteúdo pessoal demais, não ativa gatilhos de compra no System 1"
+      },
+      "copy": {
+        "auditor": "Eugene Schwartz",
+        "score": 30,
+        "status": "❌",
+        "summary": "Poucos posts educativos, hooks fracos, sem mecanismo único claro"
+      },
+      "offers": {
+        "auditor": "Alex Hormozi",
+        "score": 20,
+        "status": "❌",
+        "summary": "Nenhum CTA direto, ofertas inexistentes, sem prova social"
+      },
+      "metrics": {
+        "auditor": "Marty Cagan",
+        "score": 40,
+        "status": "❌",
+        "summary": "Engajement baixo, foco em métricas de vaidade, sem conversão"
+      },
+      "anomalies": {
+        "auditor": "Paul Graham",
+        "score": 60,
+        "status": "⚠️",
+        "summary": "Case de 60k visualizações é ouro, mas não está sendo explorado"
+      }
+    }
+  },
+  "top_strengths": [
+    {
+      "rank": 1,
+      "title": "Case de 60mil visualizações",
+      "description": "Tem um case real e impressionante de resultado orgânico no Google que gera credibilidade e pode ser usado como prova social principal.",
+      "emoji": "🏆"
+    }
+  ],
+  "critical_problems": [
+    {
+      "rank": 1,
+      "title": "80% conteúdo pessoal vs 20% profissional",
+      "description": "Perfil confuso entre pessoal e profissional. Audiência não sabe se você é influencer de lifestyle ou consultora de marketing digital.",
+      "severity": "crítico",
+      "emoji": "🎭"
+    },
+    {
+      "rank": 2,
+      "title": "Zero CTAs e ofertas",
+      "description": "Nenhum post tem call-to-action claro. Como alguém vai contratar seus serviços se você não pede para isso?",
+      "severity": "crítico",
+      "emoji": "❌"
+    },
+    {
+      "rank": 3,
+      "title": "Engajamento em queda livre",
+      "description": "Posts profissionais têm 6-25 likes enquanto pessoais têm 60+. Sua audiência não se conecta com seu conteúdo de negócio.",
+      "severity": "alto",
+      "emoji": "📉"
+    }
+  ],
+  "auditors_analysis": {
+    "behavior": {
+      "score": 25,
+      "key_findings": [
+        "Conteúdo pessoal (80%) domina sobre profissional (20%)",
+        "Posts profissionais não ativam gatilhos emocionais",
+        "Audiência não associa o perfil com solução de problemas de negócio"
+      ],
+      "recommendations": [
+        "Inverter proporção: 70% profissional, 30% pessoal",
+        "Usar gatilhos de dor e urgência nos posts de negócio",
+        "Mostrar transformações de clientes reais"
+      ]
+    },
+    "copy": {
+      "score": 30,
+      "key_findings": [
+        "Apenas 2 posts de 10 são educativos/profissionais",
+        "Hooks fracos ('Mas Rútilla, o que é que você faz?')",
+        "Falta especificidade nos benefícios"
+      ],
+      "recommendations": [
+        "Criar fórmula de hook baseada em curiosidade + resultado",
+        "Usar números específicos como '60k visualizações'",
+        "Desenvolver stories com antes/depois de clientes"
+      ]
+    },
+    "offers": {
+      "score": 20,
+      "key_findings": [
+        "Zero CTAs diretos nos posts analisados",
+        "Nenhuma oferta ou serviço mencionado",
+        "Não usa o case de 60k views como prova social"
+      ],
+      "recommendations": [
+        "Adicionar CTA em todos os posts profissionais",
+        "Criar oferta irresistível baseada no case de sucesso",
+        "Usar 'link na bio' estrategicamente"
+      ]
+    },
+    "metrics": {
+      "score": 40,
+      "key_findings": [
+        "Engajamento de 3.37% está abaixo da média (6%+)",
+        "Posts profissionais têm 75% menos engajamento",
+        "Sem métricas de conversão ou leads gerados"
+      ],
+      "recommendations": [
+        "Testar horários de publicação diferentes",
+        "Focar em métricas de negócio: leads, consultas, vendas",
+        "Analisar quais posts geram mais DMs"
+      ]
+    },
+    "anomalies": {
+      "score": 60,
+      "key_findings": [
+        "Case de 60k visualizações é extraordinário para o nicho",
+        "Potencial inexplorado de autoridade em Google My Business",
+        "Diferencial real mas mal comunicado"
+      ],
+      "opportunities": [
+        "Criar série de posts sobre o case de 60k views",
+        "Posicionar como 'especialista em visibilidade orgânica'",
+        "Transformar case em mini-curso ou ebook"
+      ]
+    }
+  },
+  "quick_wins": [
+    "Adicionar CTA 'DM para saber mais' nos próximos 3 posts",
+    "Criar post detalhando o case de 60k visualizações",
+    "Mudar bio para focar no resultado: 'Já ajudei negócios a terem 60k+ views sem pagar anúncios'",
+    "Responder todos os comentários para aumentar engajamento"
+  ],
+  "strategic_moves": [
+    "Definir calendário editorial: 70% conteúdo profissional, 30% pessoal",
+    "Criar funil de conteúdo: problema → solução → case → CTA",
+    "Desenvolver oferta principal baseada no método que gerou 60k views",
+    "Implementar sistema de captura de leads via Stories e DM"
+  ]
+}
