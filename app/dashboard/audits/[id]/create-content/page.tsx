@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/atoms/button'
 import { Skeleton } from '@/components/atoms/skeleton'
 import { Badge } from '@/components/atoms/badge'
-import { Sparkles, ArrowLeft, Download, Copy, Check, Image as ImageIcon, Loader2, CheckCircle, XCircle, Archive, FolderOpen, Pencil, RefreshCw, Save, X, Video } from 'lucide-react'
+import { Sparkles, ArrowLeft, Download, Copy, Check, Image as ImageIcon, Loader2, CheckCircle, XCircle, Archive, FolderOpen, Pencil, RefreshCw, Save, X, Video, Repeat2 } from 'lucide-react'
 import Link from 'next/link'
 
 export default function CreateContentPage() {
@@ -32,6 +32,8 @@ export default function CreateContentPage() {
   const [sendingToDrive, setSendingToDrive] = useState(false)
   const [driveMessage, setDriveMessage] = useState<string | null>(null)
   const [driveError, setDriveError] = useState<string | null>(null)
+
+  const [generatingVariations, setGeneratingVariations] = useState<number | null>(null)
 
   // Estados do painel de edição
   const [editingIndex, setEditingIndex] = useState<number | null>(null)
@@ -274,6 +276,35 @@ CTA: ${carousel.cta}
       alert(`Erro: ${err.message}`)
     } finally {
       setRefining(false)
+    }
+  }
+
+  const handleGenerateVariations = async (carouselIndex: number) => {
+    setGeneratingVariations(carouselIndex)
+    try {
+      const response = await fetch(`/api/content/${id}/generate-variations`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sourceType: 'carousel', sourceIndex: carouselIndex })
+      })
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Erro ao gerar variações')
+      }
+      const data = await response.json()
+      // Append das novas variações no estado local
+      setContent((prev: any) => {
+        if (!prev) return prev
+        return {
+          ...prev,
+          carousels: [...prev.carousels, ...data.new_carousels]
+        }
+      })
+      console.log(`✅ ${data.new_carousels_count} carrosséis + ${data.new_reels_count} reels gerados`)
+    } catch (err: any) {
+      alert(`Erro ao gerar variações: ${err.message}`)
+    } finally {
+      setGeneratingVariations(null)
     }
   }
 
@@ -689,11 +720,35 @@ CTA: ${carousel.cta}
                                 Não Aprovado
                               </Badge>
                             )}
+                            {carousel.is_variation && carousel.variation_source && (
+                              <Badge variant="neutral" className="flex items-center gap-1 text-xs">
+                                <Repeat2 className="w-3 h-3" />
+                                Variação de: {carousel.variation_source.title?.length > 25
+                                  ? carousel.variation_source.title.substring(0, 25) + '...'
+                                  : carousel.variation_source.title}
+                              </Badge>
+                            )}
                           </div>
                         </div>
 
                         {/* Botões de Ação */}
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 flex-wrap justify-end">
+                          {carousel.approved === true && (
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              onClick={() => handleGenerateVariations(index)}
+                              disabled={generatingVariations === index}
+                              className="flex items-center gap-2 border-primary-500/40 text-primary-400 hover:text-primary-300"
+                              title="Gerar novos conteúdos a partir deste tema aprovado"
+                            >
+                              {generatingVariations === index ? (
+                                <><Loader2 className="w-4 h-4 animate-spin" />Gerando...</>
+                              ) : (
+                                <><Repeat2 className="w-4 h-4" />Gerar Variações</>
+                              )}
+                            </Button>
+                          )}
                           <Button
                             variant="secondary"
                             size="sm"

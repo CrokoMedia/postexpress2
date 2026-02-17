@@ -11,7 +11,7 @@ import { Skeleton } from '@/components/atoms/skeleton'
 import { Badge } from '@/components/atoms/badge'
 import {
   Video, ArrowLeft, Image as ImageIcon, Sparkles, Loader2,
-  CheckCircle, XCircle, Copy, Check, Maximize2, Clock, Mic
+  CheckCircle, XCircle, Copy, Check, Maximize2, Clock, Mic, Repeat2
 } from 'lucide-react'
 
 export default function ReelsPage() {
@@ -25,6 +25,7 @@ export default function ReelsPage() {
   const [error, setError] = useState<string | null>(null)
   const [loadingExisting, setLoadingExisting] = useState(true)
   const [approvingReel, setApprovingReel] = useState<number | null>(null)
+  const [generatingVariations, setGeneratingVariations] = useState<number | null>(null)
   const [customTheme, setCustomTheme] = useState('')
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
@@ -93,6 +94,32 @@ export default function ReelsPage() {
       alert(`Erro: ${err.message}`)
     } finally {
       setApprovingReel(null)
+    }
+  }
+
+  const handleGenerateVariations = async (reelIndex: number) => {
+    setGeneratingVariations(reelIndex)
+    try {
+      const res = await fetch(`/api/content/${id}/generate-variations`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sourceType: 'reel', sourceIndex: reelIndex })
+      })
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Erro ao gerar variações')
+      }
+      const data = await res.json()
+      // Append dos novos reels no estado local
+      setReels((prev: any) => {
+        if (!prev) return prev
+        return { ...prev, reels: [...prev.reels, ...data.new_reels] }
+      })
+      console.log(`✅ ${data.new_reels_count} reels + ${data.new_carousels_count} carrosséis gerados`)
+    } catch (err: any) {
+      alert(`Erro ao gerar variações: ${err.message}`)
+    } finally {
+      setGeneratingVariations(null)
     }
   }
 
@@ -299,11 +326,35 @@ export default function ReelsPage() {
                             Rejeitado
                           </Badge>
                         )}
+                        {reel.is_variation && reel.variation_source && (
+                          <Badge variant="neutral" className="flex items-center gap-1 text-xs">
+                            <Repeat2 className="w-3 h-3" />
+                            Variação de: {reel.variation_source.title?.length > 25
+                              ? reel.variation_source.title.substring(0, 25) + '...'
+                              : reel.variation_source.title}
+                          </Badge>
+                        )}
                       </div>
                     </div>
 
                     {/* Botões de ação */}
-                    <div className="flex gap-2 flex-shrink-0">
+                    <div className="flex gap-2 flex-wrap justify-end">
+                      {reel.approved === true && (
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => handleGenerateVariations(index)}
+                          disabled={generatingVariations === index}
+                          className="flex items-center gap-2 border-primary-500/40 text-primary-400 hover:text-primary-300"
+                          title="Gerar novos conteúdos a partir deste tema aprovado"
+                        >
+                          {generatingVariations === index ? (
+                            <><Loader2 className="w-4 h-4 animate-spin" />Gerando...</>
+                          ) : (
+                            <><Repeat2 className="w-4 h-4" />Gerar Variações</>
+                          )}
+                        </Button>
+                      )}
                       <Button
                         variant={reel.approved === true ? 'primary' : 'secondary'}
                         size="sm"
