@@ -228,6 +228,30 @@ Classification geral:
 Agora analise os dados abaixo:`
 
 // ============================================
+// SANITIZAÇÃO DE UNICODE
+// Remove surrogates inválidos de texto scrapeado (emojis raros, etc.)
+// ============================================
+
+function sanitizeString(str) {
+  if (typeof str !== 'string') return str
+  // Remove high surrogates sem low surrogate e vice-versa
+  return str.replace(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, '')
+}
+
+function sanitizeDeep(value) {
+  if (typeof value === 'string') return sanitizeString(value)
+  if (Array.isArray(value)) return value.map(sanitizeDeep)
+  if (value !== null && typeof value === 'object') {
+    const result = {}
+    for (const key of Object.keys(value)) {
+      result[key] = sanitizeDeep(value[key])
+    }
+    return result
+  }
+  return value
+}
+
+// ============================================
 // FUNÇÃO PRINCIPAL
 // ============================================
 
@@ -273,13 +297,16 @@ async function auditWithSquad(username) {
     console.log('🤖 Enviando para Claude API (5 auditores)...')
     console.log('')
 
+    // Sanitizar dados antes de enviar (remove surrogates Unicode inválidos do conteúdo scrapeado)
+    const sanitizedData = sanitizeDeep(analysisData)
+
     const message = await client.messages.create({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 4096,
       messages: [
         {
           role: 'user',
-          content: AUDIT_PROMPT + '\n\n```json\n' + JSON.stringify(analysisData, null, 2) + '\n```'
+          content: AUDIT_PROMPT + '\n\n```json\n' + JSON.stringify(sanitizedData, null, 2) + '\n```'
         }
       ]
     })
