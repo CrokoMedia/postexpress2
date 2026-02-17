@@ -1,0 +1,93 @@
+# download-rules.yaml — ETL Data Collector
+# Regras de coleta para o MMOS Mind Mapper
+
+collection:
+  # Número máximo de fontes processadas em paralelo
+  max_concurrent: 3
+
+  # Timeout por fonte (milissegundos)
+  timeout_ms: 60000
+
+  # Continua mesmo se uma fonte falhar
+  continue_on_error: true
+
+  # Pula fontes já coletadas (verifica se arquivo já existe)
+  skip_existing: true
+
+youtube:
+  # Idiomas para tentar legenda automática (em ordem de prioridade)
+  languages: ["pt", "en", "pt-BR"]
+
+  # Usar AssemblyAI como fallback quando não há legenda automática
+  assemblyai_fallback: true
+
+  # Qualidade mínima de transcrição (caracteres mínimos)
+  min_transcript_length: 500
+
+blog:
+  # Timeout para requisições HTTP (milissegundos)
+  request_timeout_ms: 30000
+
+  # Usar Apify como fallback para sites com JS pesado
+  apify_fallback: true
+
+  # Comprimento mínimo de conteúdo (caracteres)
+  min_content_length: 500
+
+  # Seletores CSS para tentar extrair conteúdo principal
+  content_selectors:
+    - "article"
+    - "[class*='post-content']"
+    - "[class*='article-body']"
+    - "[class*='entry-content']"
+    - "[class*='content-body']"
+    - "main"
+    - ".post"
+    - "#content"
+
+pdf:
+  # Número mínimo de palavras para considerar válido
+  min_word_count: 100
+
+audio:
+  # Idioma padrão para transcrição
+  default_language: "pt"
+
+  # Identificação de speakers
+  speaker_labels: true
+
+  # Capítulos automáticos
+  auto_chapters: true
+
+  # Alerta quando saldo de horas cair abaixo deste limite
+  low_balance_alert_hours: 20
+
+social:
+  tiktok:
+    actor: "clockworks/free-tiktok-scraper"
+    default_limit: 100
+    download_subtitles: true    # Tenta pegar legendas automáticas dos vídeos
+    download_videos: false      # Não baixa vídeos (economiza storage e compute)
+
+  instagram:
+    actor: "apify/instagram-scraper"
+    default_limit: 100
+    results_type: "posts"       # posts | reels | stories
+    add_parent_data: true
+
+  twitter:
+    actor: "quacker/twitter-scraper"
+    default_limit: 200
+
+  linkedin:
+    actor: "curious_coder/linkedin-post-search-scraper"
+    default_limit: 50
+
+quality:
+  # Validação mínima de fontes coletadas
+  minimum_sources: 15
+  minimum_tier1: 5
+  minimum_types: 3
+
+  # Score mínimo de qualidade (0-100)
+  minimum_quality_score: 75

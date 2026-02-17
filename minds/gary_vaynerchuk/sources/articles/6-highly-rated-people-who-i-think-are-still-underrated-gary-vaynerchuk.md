@@ -1,0 +1,45 @@
+---
+title: "6 Highly Rated People Who I Think are Still Underrated - Gary Vaynerchuk"
+canonical_url: "https://garyvaynerchuk.com/6-highly-rated-people-who-i-think-are-still-underrated"
+source_type: article
+collected_at: "2026-02-17"
+published_at: ""
+slug: "6-highly-rated-people-who-i-think-are-still-underrated-gary-vaynerchuk"
+tags: []
+---
+
+# 6 Highly Rated People Who I Think are Still Underrated - Gary Vaynerchuk
+
+> Fonte: https://garyvaynerchuk.com/6-highly-rated-people-who-i-think-are-still-underrated
+
+# 6 Highly Rated People Who I Think are Still Underrated
+
+I was having dinner the other day with a buddy of mine and I was talking about how [Rafael Nadal](https://www.usatoday.com/story/sports/tennis/2013/06/09/rafael-nadal-david-ferrer-french-open-mens-final/2405209/) is underrated. He started laughing and said, “how can Rafael Nadal be underrated? He’s _so_ rated!” We got into this kind of philosophical discussion and it lead me to this post today.
+
+I spend a lot of time in the tech business space, and I thought it would be a lot of fun to put together a list of people whom I think are underrated even though the marketplace, depending on the genre or industry they’re in, probably has them rated pretty highly. I’m pretty excited to announce these six people. They’re on this list for very different reasons, but I think that all of them are definitely worth following.
+
+Ev WIlliams – [@Ev](https://twitter.com/ev)
+
+The first one is probably the most difficult of the bunch because he’s so ridiculously rated. He’d probably on every list this year as, like, “Top 50 Tech People in the World Blah Blah Blah”, but I think Ev Williams, the founder of [Blogger](https://www.blogger.com/) and [Odeo](https://en.wikipedia.org/wiki/Odeo), co-founder of [Twitter](https://www.twitter.com/), and now [Medium](https://medium.com/) is quickly becoming one of my favorite product people in the tech industry. I think Ev is remarkably fascinating, and extremely talented. I think the work he puts out is incredible, and [I’m continuously inspired and impacted by his products](https://medium.com/@garyvee). I’ll mention that this list is basically filled with five people I know really well, and one that I’ve known from afar. I would say that I know Ev somewhat, especially lately getting to know him a little bit more, and I’m just very fond of who he is as a human being. He’s just a pleasant guy. You simply can’t find a single person out there who doesn’t hold him in high regard. Even though we’re very different – I’m extroverted/borderline obnoxious, he’s very classy and Midwestern, being from Omaha – I just see an enormous amount of talent, and I have a large amount of admiration for his work. Finally, I think his new project, Medium, is incredible, and one that a lot of people should be paying attention to.
+
+#### Shira Lazar – [@shiralazar](https://twitter.com/shiralazar)
+
+This next person makes me smile even as I’m writing this. I think Shira Lazar is an interesting person to talk about. [She’s in media](https://shiralazar.com/), and covers the tech industry. I think a lot of the time, media personalities can be disrespected, but she is on this list for one very simple reason, which is hustle. Anybody who follows [any of my work](https://www.garyvaynerchuk.com/) or knows anything about me knows that it’s a word that is very near and dear to my heart, and I think that Shira has tons of it. She’s been out there, everybody knows who she is, she’s interviewed a ton of people, and been to every conference, and I think that her hustle is something that people should be paying attention to. I’ve known her for four or five years, and it’s been remarkable. There are very few people who I feel pump as much work and effort into what they do as Shira does. I’ve admired her from afar and I’m proud to consider her a friend. I think that sometimes if you’re a beautiful woman, especially in the media, you can be disrespected, but her grit and execution, and wherewithal in the industry is very strong and something I respect.
+
+#### Josh Elman – [@joshelman](https://twitter.com/joshelman)
+
+The next person on this list is someone I’m _very_ impressed with. He, if I ordered it, could very well be #1 on this list. Josh Elman is a product guy. He’s worked at Twitter, LinkedIn, Facebook, Realplayer, and Zazzle. I mean, this guy’s career is incredible. He’s now a principle at Greylock doing VC. He’s exactly what many people should aspire to be in this industry. Especially as someone who appreciates good debates and talking about where the market’s going in the future, Josh has always been there for late night conversations at SXSW and other conferences. He’s a valuable adversary when we disagree, and shockingly we agree often. I’ll often find myself in a room with some of the thought leaders in our industry at these pow-wows that happen at different events, and think “wow, they’re getting old” or that they’re finished, or don’t realize the future, but Josh is one of those people who never makes me feel that way. To put it into context, Josh and I were having breakfast 18 months ago talking about [Wanelo and Snapchat](https://www.buzzfeed.com/jwherrman/are-teens-abandoning-social-networks). That’s all you need to know about who Josh is and where he’s going. He is at _least_ in the top five visionaries who know where the market is going, and is the one _must_ follow on this list. No matter what you’re into, no matter what you do, I recommend you follow Josh Elman. I have an enormous amount of respect for him, and I just wanted to put it out there.
+
+#### Anil Dash – [@anildash](https://twitter.com/anildash)
+
+For this next guy, I can’t think of anything other than that he’s a major Prince fan. And much like the way most of us think about Prince, which is that he’s a legend, and that he could put out 797,000 shitty songs in a row and we still all think he’s a legend, [Anil Dash](https://dashes.com/anil/) could put out 797,000 incorrect and awful thoughts and he’d still be a legend (not that he ever would, mind you, but his status is just that cemented in my mind and the minds of many others). He’s been a [true pioneer](https://www.wired.com/techbiz/it/news/2004/07/64130) in communication and blogging and culture on the Internet. If this person is not on your follow list, you’re making a huge mistake. He’s someone you should be paying attention to, reading, and admiring because he’s an unbelievable thinker, and a quality human being.
+
+#### Jason Fried – [@jasonfried](https://twitter.com/jasonfried)
+
+Jason is one of my favorite people in the whole world. He and I look at the world fairly differently in a lot of ways. I feel like Jason is a lot [more efficient](https://www.ted.com/talks/jason_fried_why_work_doesn_t_happen_at_work.html) than I am. But while we’re different in a lot of way, I feel like we’re both hardcore entrepreneurs, and this one means a lot to me because back in 2008-2010, our one-hour Instant Message chats at 1am meant the world to me. He’s somebody that I admire tremendously. When his parents showed up for my book signing during the [Crush It](https://www.amazon.com/Crush-It-Time-Cash-Passion/dp/0061914177) tour, it was one of my favorite days of all time. I am a huge fan of [reading his articles in Inc.](https://www.inc.com/author/jason-fried) each month, and he’s just a very thoughtful person to follow on Twitter. (Little side-note: He used to think Twitter wasn’t a good idea. I guess I won that battle, didn’t I?)
+
+#### Kelsey Falter – [@kfalter](https://twitter.com/kfalter)
+
+Finally, this one is the only person on the list I don’t know that well. Kelsey Falter and I have had exchanges or crossed paths at several different conferences and meetups. I’ve watched her [gracefully and strategically](https://www.businessinsider.com/kelsey-falter-founder-of-techstars-poptip-2012-6) navigate the building of Poptip from afar. Kelsey is definitely rated. A lot of people in the NYC tech scene know her and give her props, and she pops up on a lot of “Fresh Faces to Follow” lists, which is why I include her here. From my perspective, she is a very intriguing character. I think she’s quite smart and understands what she’s doing. She’s built a very strong team around her, and I’m just impressed with the way she’s navigating her business at such a young age. To me, knowing that she’s sure to pop up on a ton of lists this year as like “Top 10 People to Follow in New York Tech”, I wanted to get it out there first.
+
+So there’s my list. This is only one not-so-humble man’s point of view. Take it for what it is. I think all six of these people deserve attention, and I think that unlike the lists I’ve put out here on [LinkedIn](https://www.linkedin.com/in/garyvaynerchuk) before, these are people whom everybody knows, but I actually think we’re underestimating. I predict all six of these people, from this point onwards, will achieve more in their careers than they have up until this point, and that’s a tall task.

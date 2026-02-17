@@ -1,0 +1,29 @@
+{
+  "name": "etl-data-collector",
+  "version": "1.0.0",
+  "description": "ETL Data Collector — Coleta paralela de fontes para o MMOS Mind Mapper",
+  "main": "run-collection.js",
+  "scripts": {
+    "collect": "node run-collection.js",
+    "validate": "node validate-log-locations.js",
+    "sync": "node dashboard/sync-to-supabase.js",
+    "dashboard": "open dashboard/index.html",
+    "install-deps": "npm install",
+    "enrich:vision": "node enrichers/mistral-vision-enricher.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.95.3",
+    "apify-client": "^2.9.4",
+    "assemblyai": "^4.8.0",
+    "axios": "^1.7.9",
+    "chalk": "^4.1.2",
+    "cheerio": "^1.0.0",
+    "js-yaml": "^4.1.0",
+    "pdf-parse": "^1.1.1",
+    "slugify": "^1.6.6",
+    "youtube-transcript": "^1.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

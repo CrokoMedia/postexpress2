@@ -1,0 +1,382 @@
+# tier1_batch.yaml — Gary Vaynerchuk
+# Fontes críticas Tier 1 para clonagem cognitiva
+#
+# Executar:
+#   node expansion-packs/etl-data-collector/run-collection.js \
+#     minds/gary_vaynerchuk/sources/tier1_batch.yaml \
+#     minds/gary_vaynerchuk/sources \
+#     expansion-packs/etl-data-collector/config/download-rules.yaml
+
+mind: gary_vaynerchuk
+name: "Tier 1 — Fontes Críticas"
+description: "Livros, YouTube, blog, podcasts e social media do GaryVee"
+
+sources:
+
+  # ─── LIVROS (PDF) ─────────────────────────────────────────
+  # Coloque os PDFs em minds/gary_vaynerchuk/sources/books/
+  # antes de rodar a coleta.
+
+  - id: crush-it
+    type: book
+    title: "Crush It! — Why NOW Is the Time to Cash In on Your Passion"
+    tier: 1
+    year: 2009
+    path: "books/crush-it/crush-it.pdf"
+    notes: "Primeiro livro — filosofia de personal branding"
+
+  - id: jab-jab-jab-right-hook
+    type: book
+    title: "Jab, Jab, Jab, Right Hook"
+    tier: 1
+    year: 2013
+    path: "books/jab-jab-jab-right-hook/jjjrh.pdf"
+    notes: "Framework central: dar valor antes de pedir"
+
+  - id: askgaryvee
+    type: book
+    title: "#AskGaryVee"
+    tier: 1
+    year: 2016
+    path: "books/askgaryvee/askgaryvee.pdf"
+
+  - id: crushing-it
+    type: book
+    title: "Crushing It! — How Great Entrepreneurs Build Their Business"
+    tier: 1
+    year: 2018
+    path: "books/crushing-it/crushing-it.pdf"
+
+  - id: day-trading-attention
+    type: book
+    title: "Day Trading Attention"
+    tier: 1
+    year: 2024
+    path: "books/day-trading-attention/day-trading-attention.pdf"
+    notes: "Framework mais recente — atenção como commodity"
+
+  # ─── YOUTUBE ─────────────────────────────────────────────
+  # Top vídeos por visibilidade de frameworks e frases signature
+
+  - id: yt-patience
+    type: youtube
+    title: "Patience — The Most Important Word in Business"
+    url: "https://www.youtube.com/watch?v=wmEK6DrS2Vc"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-stop-doing-shit-you-hate
+    type: youtube
+    title: "Stop Doing Shit You Hate"
+    url: "https://www.youtube.com/watch?v=y09zIg3HmQk"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-cloud-and-dirt
+    type: youtube
+    title: "The Cloud and the Dirt"
+    url: "https://www.youtube.com/watch?v=S4bAVgMJo8w"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-document-dont-create
+    type: youtube
+    title: "Document, Don't Create"
+    url: "https://www.youtube.com/watch?v=RVKofRN1dyI"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-macro-patience-micro-speed
+    type: youtube
+    title: "Macro Patience, Micro Speed"
+    url: "https://www.youtube.com/watch?v=XFzPuEEvnDU"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-self-awareness
+    type: youtube
+    title: "Self-Awareness is the Key to Everything"
+    url: "https://www.youtube.com/watch?v=kfcZ3k93WtA"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-legacy-greater-than-currency
+    type: youtube
+    title: "Legacy Greater Than Currency"
+    url: "https://www.youtube.com/watch?v=tJaNCmUBhcg"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-day-trading-attention
+    type: youtube
+    title: "Day Trading Attention — The Gary Vee Framework"
+    url: "https://www.youtube.com/watch?v=877QjwqLphY"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-jab-framework
+    type: youtube
+    title: "The Jab, Jab, Jab, Right Hook Framework Explained"
+    url: "https://www.youtube.com/watch?v=C4rWb15vPMc"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-personal-brand
+    type: youtube
+    title: "How to Build a Personal Brand in 2024"
+    url: "https://www.youtube.com/watch?v=M7avgFBqpto"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  # ─── YOUTUBE — Batch 2 (keynotes, frameworks, AI) ────────
+
+  - id: yt-exploding-social-media
+    type: youtube
+    title: "The Real Reason People Are Exploding on Social Media Right Now"
+    url: "https://www.youtube.com/watch?v=GihIvrqLA3Y"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-social-media-changed
+    type: youtube
+    title: "Social Media Changed in the Last Year (and you didn't realize it)"
+    url: "https://www.youtube.com/watch?v=Q7mhzMOA1Go"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-mrbeast-attention
+    type: youtube
+    title: "What MrBeast Understands About Attention That Most Don't"
+    url: "https://www.youtube.com/watch?v=d2KgF5OCKkg"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-fastest-marketing-course
+    type: youtube
+    title: "The Fastest Marketing Course in the World"
+    url: "https://www.youtube.com/watch?v=jyskbDdGsps"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-unlimited-attention-keynote
+    type: youtube
+    title: "How to Build Unlimited Attention on Social Media While You Still Can"
+    url: "https://www.youtube.com/watch?v=IWuVEcQexWo"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+    notes: "Keynote completo"
+
+  - id: yt-only-video-marketer
+    type: youtube
+    title: "The ONLY Video Every Marketer Needs To Watch Today"
+    url: "https://www.youtube.com/watch?v=eoLg14LEFVQ"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+    notes: "Keynote @ POSSIBLE"
+
+  - id: yt-1m-24-months
+    type: youtube
+    title: "How Anyone Can Make $1M in 24 Months: Social Media & Marketing Playbook"
+    url: "https://www.youtube.com/watch?v=gcQtaeUIR6Y"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+    notes: "Keynote @ Aspire"
+
+  - id: yt-ai-biggest-wave
+    type: youtube
+    title: "AI Is the Biggest Wave Since the Internet — AI & Social Media Playbook"
+    url: "https://www.youtube.com/watch?v=lT4qPFs_qRo"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+    notes: "Q&A @ Inventures"
+
+  - id: yt-5-consumer-trends-2026
+    type: youtube
+    title: "5 Consumer Trends That Will Define 2026"
+    url: "https://www.youtube.com/watch?v=-9iDW7Zgv1Q"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-future-marketing-advertising-week
+    type: youtube
+    title: "The Future Of Marketing: AI, Social Media, & Consumer Attention"
+    url: "https://www.youtube.com/watch?v=Kw1x1yRMpW4"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+    notes: "Keynote @ Advertising Week Europe"
+
+  - id: yt-posts-to-profits-keynote
+    type: youtube
+    title: "From Posts to Profits: A Step-by-Step Social Media Guide For Businesses"
+    url: "https://www.youtube.com/watch?v=RJ3ujlMYlus"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+    notes: "Keynote BizX"
+
+  - id: yt-new-rules-social-2025
+    type: youtube
+    title: "The New Rules of Social Media Marketing in 2025"
+    url: "https://www.youtube.com/watch?v=3YiaidPLsnE"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+    notes: "CMO NOW @ Advertising Week"
+
+  - id: yt-business-playbook-2025
+    type: youtube
+    title: "If You're Serious About Winning: The Business Playbook For 2025"
+    url: "https://www.youtube.com/watch?v=XqD39WcEr_w"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+    notes: "Leap Academy"
+
+  - id: yt-vaynermedia-intern-playbook
+    type: youtube
+    title: "POV: Intern At VaynerMedia — Social Media Marketing Playbook"
+    url: "https://www.youtube.com/watch?v=4RfG3I4pANM"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+
+  - id: yt-ai-social-playbook-5-years
+    type: youtube
+    title: "AI & Social Media Playbook For The Next 5 Years"
+    url: "https://www.youtube.com/watch?v=_RiVvFwZ2sw"
+    tier: 1
+    subtype: youtube_main
+    lang: en
+    notes: "Q&A @ Aspire"
+
+  # ─── BLOG ────────────────────────────────────────────────
+  # Artigos do garyvaynerchuk.com — coleta os mais relevantes
+
+  - id: blog-attention-arbitrage
+    type: blog
+    title: "Attention Arbitrage — Why You Should Be on Every Platform"
+    url: "https://garyvaynerchuk.com/attention-arbitrage-why-you-should-be-on-every-platform/"
+    tier: 1
+
+  - id: blog-document-dont-create
+    type: blog
+    title: "Document, Don't Create: Creating Content That Builds Your Personal Brand"
+    url: "https://garyvaynerchuk.com/creating-content-that-builds-your-personal-brand/"
+    tier: 1
+
+  - id: blog-cloud-dirt
+    type: blog
+    title: "The Cloud and the Dirt"
+    url: "https://garyvaynerchuk.com/the-cloud-and-the-dirt/"
+    tier: 1
+
+  - id: blog-legacy-currency
+    type: blog
+    title: "Legacy is Greater Than Currency"
+    url: "https://garyvaynerchuk.com/legacy-is-greater-than-currency/"
+    tier: 1
+
+  - id: blog-self-awareness
+    type: blog
+    title: "Self Awareness: The One Skill That Changes Everything"
+    url: "https://garyvaynerchuk.com/self-awareness-the-one-skill-that-changes-everything/"
+    tier: 1
+
+  - id: blog-patience
+    type: blog
+    title: "Why Patience is the Most Important Word for Entrepreneurs"
+    url: "https://garyvaynerchuk.com/patience-important-word-entrepreneurs/"
+    tier: 1
+
+  - id: blog-content-2024
+    type: blog
+    title: "How to Make Content in 2024"
+    url: "https://garyvaynerchuk.com/how-to-make-content-in-2024/"
+    tier: 1
+
+  - id: blog-personal-brand
+    type: blog
+    title: "How to Build a Personal Brand"
+    url: "https://garyvaynerchuk.com/how-to-build-a-personal-brand/"
+    tier: 1
+
+  # ─── PODCASTS (Guest Appearances) ─────────────────────────
+
+  - id: podcast-tim-ferriss-2016
+    type: podcast
+    title: "The Tim Ferriss Show — Gary Vaynerchuk (2016)"
+    url: "https://tim.blog/2016/01/28/gary-vaynerchuk/"
+    audio_url: "https://traffic.libsyn.com/timferriss/TF-Gary-Vaynerchuk.mp3"
+    tier: 1
+    subtype: guest_appearances
+    lang: en
+    notes: "Episódio clássico — mentalidade de longo prazo, gratidão"
+
+  - id: podcast-impact-theory
+    type: podcast
+    title: "Impact Theory — Gary Vaynerchuk: How to Win at Life"
+    url: "https://impacttheory.com/episode/gary-vaynerchuk/"
+    audio_url: "https://traffic.libsyn.com/secure/impacttheory/GaryVee_Impact_Theory.mp3"
+    tier: 1
+    subtype: guest_appearances
+    lang: en
+
+  # ─── TIKTOK ──────────────────────────────────────────────
+
+  - id: social-tiktok-garyvee
+    type: tiktok
+    platform: tiktok
+    handle: garyvee
+    limit: 100
+    tier: 1
+    notes: "Top 100 vídeos — captions e legendas automáticas"
+
+  # ─── INSTAGRAM ───────────────────────────────────────────
+
+  - id: social-instagram-garyvee
+    type: instagram
+    platform: instagram
+    handle: garyvee
+    limit: 100
+    tier: 1
+    notes: "Top 100 posts — captions concentram os frameworks em formato compacto"
+
+  # ─── TWITTER / X ─────────────────────────────────────────
+
+  - id: social-twitter-garyvee
+    type: twitter
+    platform: twitter
+    handle: garyvee
+    limit: 200
+    tier: 2
+    notes: "200 tweets e threads mais relevantes"
+
+  # ─── LINKEDIN ────────────────────────────────────────────
+
+  - id: social-linkedin-garyvaynerchuk
+    type: linkedin
+    platform: linkedin
+    handle: garyvaynerchuk
+    limit: 50
+    tier: 2
+    notes: "50 posts do LinkedIn"

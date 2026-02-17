@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ETL Dashboard — Mind Cloner</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b0b18;
+      --surface: #111128;
+      --surface2: #161630;
+      --border: #1f1f45;
+      --border-light: #2a2a5a;
+      --primary: #7c3aed;
+      --primary-glow: rgba(124,58,237,0.15);
+      --primary-light: #a78bfa;
+      --success: #10b981;
+      --success-bg: rgba(16,185,129,0.1);
+      --warning: #f59e0b;
+      --warning-bg: rgba(245,158,11,0.1);
+      --error: #ef4444;
+      --error-bg: rgba(239,68,68,0.1);
+      --info: #3b82f6;
+      --info-bg: rgba(59,130,246,0.1);
+      --text: #f1f5f9;
+      --text-muted: #64748b;
+      --text-secondary: #94a3b8;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    html { font-size: 14px; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* ─── Header ────────────────────────────────────────────── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-left { display: flex; align-items: center; gap: 12px; }
+    .logo {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo svg { width: 18px; height: 18px; fill: white; }
+    .header-title { font-size: 16px; font-weight: 600; }
+    .header-subtitle { font-size: 12px; color: var(--text-muted); }
+    .header-right { display: flex; align-items: center; gap: 12px; }
+
+    .sync-status { font-size: 12px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+    .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--success); }
+    .sync-dot.syncing { background: var(--warning); animation: blink 0.8s ease infinite; }
+    .sync-dot.error { background: var(--error); }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+    .btn {
+      padding: 6px 14px; border-radius: var(--radius-sm);
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      border: 1px solid transparent; transition: all 0.15s;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: inherit; text-decoration: none;
+    }
+    .btn-primary { background: var(--primary); color: white; border-color: var(--primary); }
+    .btn-primary:hover { background: #6d28d9; }
+    .btn-ghost { background: transparent; color: var(--text-secondary); border-color: var(--border-light); }
+    .btn-ghost:hover { background: var(--surface2); color: var(--text); }
+    .btn svg { width: 14px; height: 14px; }
+
+    /* ─── Layout ────────────────────────────────────────────── */
+    main { padding: 24px; max-width: 1400px; width: 100%; margin: 0 auto; }
+    .section { margin-bottom: 32px; }
+    .section-title {
+      font-size: 11px; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+
+    /* ─── Stats ─────────────────────────────────────────────── */
+    .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px; position: relative; overflow: hidden;
+    }
+    .stat-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+    .stat-card.purple::before { background: var(--primary); }
+    .stat-card.green::before { background: var(--success); }
+    .stat-card.yellow::before { background: var(--warning); }
+    .stat-card.blue::before { background: var(--info); }
+
+    .stat-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .stat-icon svg { width: 18px; height: 18px; }
+    .stat-card.purple .stat-icon { background: var(--primary-glow); }
+    .stat-card.purple .stat-icon svg { color: var(--primary-light); }
+    .stat-card.green .stat-icon { background: var(--success-bg); }
+    .stat-card.green .stat-icon svg { color: var(--success); }
+    .stat-card.yellow .stat-icon { background: var(--warning-bg); }
+    .stat-card.yellow .stat-icon svg { color: var(--warning); }
+    .stat-card.blue .stat-icon { background: var(--info-bg); }
+    .stat-card.blue .stat-icon svg { color: var(--info); }
+
+    .stat-value { font-size: 28px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 13px; color: var(--text-muted); }
+    .stat-sub { font-size: 12px; color: var(--text-muted); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+
+    /* ─── Minds Grid ────────────────────────────────────────── */
+    .minds-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 16px; }
+
+    .mind-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .mind-card:hover { border-color: var(--border-light); transform: translateY(-1px); }
+
+    .mind-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+    .mind-left { display: flex; align-items: center; gap: 12px; }
+
+    .mind-photo {
+      width: 44px; height: 44px; border-radius: 10px;
+      object-fit: cover; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
+      border: 2px solid var(--border);
+    }
+    .mind-photo-fallback {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; color: white; flex-shrink: 0;
+      letter-spacing: -0.5px;
+    }
+
+    .mind-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+    .mind-purpose { font-size: 12px; color: var(--text-muted); }
+
+    .badge {
+      font-size: 11px; font-weight: 500; padding: 3px 9px;
+      border-radius: 20px; white-space: nowrap; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .badge-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+    .badge-pending { background: rgba(100,116,139,0.12); color: var(--text-muted); }
+    .badge-pending .badge-dot { background: var(--text-muted); }
+    .badge-collecting { background: var(--warning-bg); color: var(--warning); }
+    .badge-collecting .badge-dot { background: var(--warning); animation: blink 1s ease infinite; }
+    .badge-partial { background: var(--info-bg); color: var(--info); }
+    .badge-partial .badge-dot { background: var(--info); }
+    .badge-complete { background: var(--success-bg); color: var(--success); }
+    .badge-complete .badge-dot { background: var(--success); }
+
+    /* Pipeline */
+    .pipeline {
+      display: flex; align-items: center; gap: 3px; margin-bottom: 14px;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .pipeline::-webkit-scrollbar { display: none; }
+    .phase {
+      font-size: 10px; padding: 3px 8px; border-radius: 20px;
+      white-space: nowrap; flex-shrink: 0;
+      background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted);
+    }
+    .phase.active { background: var(--primary-glow); border-color: var(--primary); color: var(--primary-light); }
+    .phase.done { background: var(--success-bg); border-color: transparent; color: var(--success); }
+    .phase-arrow { color: var(--border-light); font-size: 9px; flex-shrink: 0; }
+
+    /* Progress */
+    .mind-progress { margin-bottom: 14px; }
+    .progress-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+    .progress-label { font-size: 12px; color: var(--text-muted); }
+    .progress-value { font-size: 12px; font-weight: 500; color: var(--text-secondary); }
+    .progress-bar { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .progress-fill {
+      height: 100%; border-radius: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      transition: width 0.5s ease;
+    }
+    .progress-fill.complete { background: linear-gradient(90deg, var(--success), #34d399); }
+
+    /* Source chips */
+    .mind-sources { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+    .source-chip {
+      font-size: 11px; padding: 3px 8px; border-radius: 6px;
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text-secondary); display: flex; align-items: center; gap: 4px;
+    }
+    .source-chip svg { width: 11px; height: 11px; opacity: 0.7; }
+    .source-chip .count { font-weight: 600; color: var(--text); }
+
+    /* Meta */
+    .mind-meta { display: flex; gap: 14px; font-size: 12px; color: var(--text-muted); padding-top: 12px; border-top: 1px solid var(--border); }
+    .mind-meta span { display: flex; align-items: center; gap: 4px; }
+    .mind-meta svg { width: 12px; height: 12px; }
+
+    /* ─── Table ─────────────────────────────────────────────── */
+    .table-wrapper { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .table-header { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .table-title { font-size: 14px; font-weight: 600; }
+    .table-count { font-size: 12px; padding: 2px 8px; border-radius: 20px; background: var(--surface2); color: var(--text-muted); }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      text-align: left; padding: 9px 16px;
+      font-size: 11px; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      background: var(--surface2); border-bottom: 1px solid var(--border);
+    }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--surface2); }
+    td { padding: 9px 16px; font-size: 13px; color: var(--text-secondary); }
+    .td-mono { font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+    .td-muted { color: var(--text-muted); font-size: 12px; }
+    .td-tag {
+      font-size: 11px; padding: 2px 7px; border-radius: 5px;
+      background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted);
+    }
+
+    /* Status cells */
+    .st-success { color: var(--success); }
+    .st-failed { color: var(--error); }
+    .st-skipped { color: var(--text-muted); }
+
+    /* ─── API Cards ─────────────────────────────────────────── */
+    .api-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .api-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+    .api-card-title { font-size: 14px; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .api-card-title svg { width: 16px; height: 16px; color: var(--primary-light); }
+
+    .gauge-wrapper { text-align: center; margin-bottom: 8px; }
+    canvas.gauge { display: block; margin: 0 auto; }
+    .gauge-center-val { font-size: 22px; font-weight: 700; }
+    .gauge-center-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .gauge-row { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+    .usage-list { display: flex; flex-direction: column; gap: 10px; }
+    .usage-item {}
+    .usage-item-header { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
+    .usage-item-label { color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+    .usage-item-label svg { width: 12px; height: 12px; }
+    .usage-item-value { color: var(--text); font-weight: 500; }
+    .usage-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .usage-bar-fill { height: 100%; border-radius: 2px; background: var(--primary); transition: width 0.5s; }
+
+    /* ─── Empty / skeleton ──────────────────────────────────── */
+    .empty { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 13px; }
+    .empty svg { width: 36px; height: 36px; opacity: 0.3; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto; }
+    .skeleton {
+      background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+      background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px;
+    }
+    @keyframes shimmer { 0% { background-position:200% 0; } 100% { background-position:-200% 0; } }
+
+    @media (max-width:900px) { .stats-grid { grid-template-columns: repeat(2,1fr); } .api-grid { grid-template-columns: 1fr; } }
+    @media (max-width:600px) { main { padding: 16px; } .stats-grid { grid-template-columns: 1fr; } header { padding: 0 16px; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+    </div>
+    <div>
+      <div class="header-title">ETL Dashboard</div>
+      <div class="header-subtitle">Mind Cloner — Rastreamento de Coleta</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="sync-status" id="syncStatus">
+      <span class="sync-dot syncing" id="syncDot"></span>
+      <span id="syncLabel">Carregando...</span>
+    </div>
+    <button class="btn btn-ghost" onclick="loadData()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+      Atualizar
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- Stats -->
+  <div class="section">
+    <div class="section-title">Visão Geral</div>
+    <div class="stats-grid">
+      <div class="stat-card purple">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="stat-value" id="statMinds">—</div>
+        <div class="stat-label">Mentes Mapeadas</div>
+        <div class="stat-sub" id="statMindsComplete">— completas</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <div class="stat-value" id="statSources">—</div>
+        <div class="stat-label">Fontes Coletadas</div>
+        <div class="stat-sub" id="statWords">— palavras extraídas</div>
+      </div>
+      <div class="stat-card yellow">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </div>
+        <div class="stat-value" id="statAssembly">0h</div>
+        <div class="stat-label">AssemblyAI Usado</div>
+        <div class="stat-sub" id="statAssemblyRemain">185h disponíveis</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="stat-value" id="statEvents">—</div>
+        <div class="stat-label">Eventos de Coleta</div>
+        <div class="stat-sub" id="statLastEvent">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Minds -->
+  <div class="section">
+    <div class="section-title">Mentes em Desenvolvimento</div>
+    <div class="minds-grid" id="mindsGrid">
+      <!-- skeleton -->
+      <div class="mind-card"><div class="skeleton" style="height:44px;width:44px;border-radius:10px;display:inline-block;margin-bottom:12px"></div><div class="skeleton" style="height:16px;width:60%;margin-bottom:8px"></div><div class="skeleton" style="height:5px;width:100%;margin-bottom:12px"></div><div class="skeleton" style="height:24px;width:100%"></div></div>
+    </div>
+  </div>
+
+  <!-- API Usage -->
+  <div class="section">
+    <div class="section-title">Consumo de APIs</div>
+    <div class="api-grid">
+      <div class="api-card">
+        <div class="api-card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+          AssemblyAI — Transcrição de Áudio
+        </div>
+        <div class="gauge-wrapper">
+          <canvas class="gauge" id="assemblyGauge" width="200" height="110"></canvas>
+          <div class="gauge-center-val" id="assemblyGaugePct">0%</div>
+          <div class="gauge-center-sub" id="assemblyGaugeSub">0h de 185h utilizados</div>
+        </div>
+        <div class="gauge-row"><span>0h</span><span style="color:var(--warning)">alerta: 165h</span><span>185h</span></div>
+      </div>
+      <div class="api-card">
+        <div class="api-card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          Apify — Scraping Social e Blog
+        </div>
+        <div class="usage-list" id="apifyUsage">
+          <div class="empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            Nenhuma coleta via Apify ainda
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Log -->
+  <div class="section">
+    <div class="section-title">Log de Coletas</div>
+    <div class="table-wrapper">
+      <div class="table-header">
+        <div class="table-title">Histórico</div>
+        <span class="table-count" id="logCount">0 eventos</span>
+      </div>
+      <div style="overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Mente</th>
+              <th>Tipo</th>
+              <th>Título</th>
+              <th>Tamanho</th>
+              <th>API</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="logTable">
+            <tr><td colspan="7">
+              <div class="empty">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 17H5a2 2 0 0 0-2 2"/><path d="M15 17h4a2 2 0 0 1 2 2"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M9 8H5a2 2 0 0 0-2 2v6"/><path d="M15 8h4a2 2 0 0 1 2 2v6"/></svg>
+                Nenhuma coleta realizada ainda. Execute o ETL para iniciar.
+              </div>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ─── Configuração ─────────────────────────────────────────
+const SUPABASE_URL = 'https://kxhtoxxprobdjzzxtywb.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt4aHRveHhwcm9iZGp6enh0eXdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzExOTAzOTMsImV4cCI6MjA4Njc2NjM5M30.tmlyXCl2acYcJZwYMWIzfVgh1mG8TRRKHz85pRZBUKA';
+
+const { createClient } = supabase;
+const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ─── Mapeamento: mind_id → handle de rede social (para foto) ──
+// Usa unavatar.io para buscar a foto pelo handle do Twitter/X
+const MIND_HANDLES = {
+  gary_vaynerchuk:   { twitter: 'garyvee',          name: 'Gary V.' },
+  alex_hormozi:      { twitter: 'AlexHormozi',       name: 'Alex H.' },
+  elon_musk:         { twitter: 'elonmusk',          name: 'Elon M.' },
+  paul_graham:       { twitter: 'paulg',             name: 'PG' },
+  sam_altman:        { twitter: 'sama',              name: 'Sam A.' },
+  seth_godin:        { twitter: 'ThisIsSethsBlog',   name: 'Seth G.' },
+  steve_jobs:        { twitter: null,                name: 'SJ' },
+  daniel_kahneman:   { twitter: null,                name: 'DK' },
+  eugene_schwartz:   { twitter: null,                name: 'ES' },
+  napoleon_hill:     { twitter: null,                name: 'NH' },
+  ray_kurzweil:      { twitter: 'kurzweil',          name: 'RK' },
+  kapil_gupta:       { twitter: 'KapilGuptaMD',      name: 'KG' },
+  andrej_karpathy:   { twitter: 'karpathy',          name: 'AK' },
+  mitchell_hashimoto:{ twitter: 'mitchellh',         name: 'MH' },
+  guillermo_rauch:   { twitter: 'rauchg',            name: 'GR' },
+  kent_beck:         { twitter: 'KentBeck',          name: 'KB' },
+  marty_cagan:       { twitter: 'cagan',             name: 'MC' },
+  brad_frost:        { twitter: 'brad_frost',        name: 'BF' },
+  don_norman:        { twitter: null,                name: 'DN' },
+  jeff_patton:       { twitter: 'jeffpatton',        name: 'JP' },
+  cagan_patton:      { twitter: null,                name: 'CP' },
+  jesus_cristo:      { twitter: null,                name: 'JC' },
+  adriano_de_marqui: { twitter: null,                name: 'ADM' },
+  alan_nicolas:      { twitter: 'alan_nicolas',      name: 'AN' },
+  joao_lozano:       { twitter: null,                name: 'JL' },
+  jose_amorim:       { twitter: null,                name: 'JA' },
+  pedro_valerio:     { twitter: null,                name: 'PV' },
+  thiago_finch:      { twitter: 'ThiagoFinch',       name: 'TF' },
+};
+
+function getMindPhoto(mindId) {
+  const meta = MIND_HANDLES[mindId];
+  if (!meta) return null;
+  if (meta.twitter) return `https://unavatar.io/twitter/${meta.twitter}?fallback=false`;
+  return null;
+}
+
+function getMindInitials(mindId) {
+  const meta = MIND_HANDLES[mindId];
+  if (meta?.name) return meta.name.slice(0, 2).toUpperCase();
+  return mindId.split('_').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+}
+
+// ─── State ────────────────────────────────────────────────
+let state = { minds: [], log: [], apiUsage: [] };
+
+// ─── Load ─────────────────────────────────────────────────
+async function loadData() {
+  setSyncState('syncing', 'Atualizando...');
+  try {
+    const [mindsRes, logRes, usageRes] = await Promise.all([
+      db.from('etl_minds').select('*').order('updated_at', { ascending: false }),
+      db.from('etl_collection_log').select('*').order('logged_at', { ascending: false }).limit(100),
+      db.from('etl_api_usage').select('*').order('logged_at', { ascending: false }).limit(200),
+    ]);
+    if (mindsRes.error) throw mindsRes.error;
+    state.minds = mindsRes.data || [];
+    state.log = logRes.data || [];
+    state.apiUsage = usageRes.data || [];
+    renderAll();
+    setSyncState('ok', `Atualizado ${new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'})}`);
+  } catch (err) {
+    console.error(err);
+    setSyncState('error', `Erro: ${err.message}`);
+  }
+}
+
+// ─── Render ───────────────────────────────────────────────
+function renderAll() {
+  renderStats();
+  renderMinds();
+  renderLog();
+  renderAPIUsage();
+}
+
+function renderStats() {
+  const complete = state.minds.filter(m => m.status === 'complete').length;
+  const totalSources = state.minds.reduce((s,m) => s + (m.collected_sources||0), 0);
+  const totalWords = state.minds.reduce((s,m) => s + (m.total_words||0), 0);
+  const totalMinutes = state.minds.reduce((s,m) => s + (m.assemblyai_minutes_used||0), 0);
+  const hoursUsed = totalMinutes / 60;
+
+  setText('statMinds', state.minds.length || '0');
+  setText('statMindsComplete', `${complete} completa${complete !== 1 ? 's' : ''}`);
+  setText('statSources', totalSources.toLocaleString('pt-BR'));
+  setText('statWords', `${fmtNum(totalWords)} palavras`);
+  setText('statAssembly', `${hoursUsed.toFixed(1)}h`);
+  setText('statAssemblyRemain', `${(185 - hoursUsed).toFixed(1)}h disponíveis`);
+  setText('statEvents', state.log.length.toLocaleString('pt-BR'));
+
+  if (state.log.length > 0) {
+    const d = new Date(state.log[0].logged_at);
+    setText('statLastEvent', `Último: ${d.toLocaleDateString('pt-BR')} ${d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}`);
+  }
+
+  drawGauge('assemblyGauge', hoursUsed, 185, '#f59e0b', '#ef4444', 165);
+  setText('assemblyGaugePct', `${((hoursUsed/185)*100).toFixed(1)}%`);
+  setText('assemblyGaugeSub', `${hoursUsed.toFixed(1)}h de 185h utilizados`);
+}
+
+// ─── SVG icons para tipos de fonte ────────────────────────
+const TYPE_SVG = {
+  youtube:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>`,
+  video:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>`,
+  blog:      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`,
+  article:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`,
+  pdf:       `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`,
+  book:      `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
+  audio:     `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>`,
+  podcast:   `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>`,
+  tiktok:    `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V9.41a8.16 8.16 0 0 0 4.77 1.52V7.46a4.85 4.85 0 0 1-1-.77z"/></svg>`,
+  instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+  twitter:   `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`,
+  linkedin:  `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`,
+  social:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`,
+  newsletter:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+  course:    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
+};
+
+const PHASES = ['viability','research','analysis','synthesis','system_prompt','testing'];
+const PHASE_LABELS = { viability:'Viabilidade', research:'Pesquisa', analysis:'Análise', synthesis:'Síntese KB', system_prompt:'System Prompt', testing:'Testes' };
+
+function renderMinds() {
+  const el = document.getElementById('mindsGrid');
+  if (state.minds.length === 0) {
+    el.innerHTML = `<div class="empty" style="grid-column:1/-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Nenhuma mente cadastrada. Execute: <code style="color:var(--primary-light)">npm run sync</code></div>`;
+    return;
+  }
+
+  el.innerHTML = state.minds.map(mind => {
+    const pct = mind.total_sources > 0 ? Math.round((mind.collected_sources / mind.total_sources) * 100) : 0;
+    const phaseIdx = PHASES.indexOf(mind.pipeline_phase);
+    const badgeLabel = { pending:'Pendente', collecting:'Coletando', partial:'Parcial', complete:'Completo' }[mind.status] || mind.status || 'Pendente';
+    const badgeCls = `badge-${mind.status || 'pending'}`;
+
+    const photoUrl = getMindPhoto(mind.id);
+    const initials = getMindInitials(mind.id);
+    const avatarHtml = photoUrl
+      ? `<img class="mind-photo" src="${photoUrl}" alt="${mind.display_name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+        + `<div class="mind-photo-fallback" style="display:none">${initials}</div>`
+      : `<div class="mind-photo-fallback">${initials}</div>`;
+
+    const pipelineHtml = PHASES.map((phase, i) => {
+      const cls = phaseIdx > i ? 'done' : phaseIdx === i ? 'active' : '';
+      const prefix = phaseIdx > i ? '+ ' : '';
+      return `<span class="phase ${cls}">${prefix}${PHASE_LABELS[phase]}</span>${i < PHASES.length-1 ? '<span class="phase-arrow">›</span>' : ''}`;
+    }).join('');
+
+    const sourcesByType = mind.sources_by_type || {};
+    const chips = Object.entries(sourcesByType).filter(([,v]) => v > 0)
+      .map(([type, count]) => `<span class="source-chip">${TYPE_SVG[type] || ''}<span class="count">${count}</span>${type}</span>`).join('');
+
+    const wordStr = mind.total_words > 0 ? `${fmtNum(mind.total_words)} palavras` : '0 palavras';
+    const audioStr = mind.audio_minutes > 0 ? `${Math.round(mind.audio_minutes/60)}h áudio` : null;
+
+    return `
+      <div class="mind-card">
+        <div class="mind-header">
+          <div class="mind-left">
+            ${avatarHtml}
+            <div>
+              <div class="mind-name">${mind.display_name}</div>
+              <div class="mind-purpose">${mind.purpose || 'Uso geral'}</div>
+            </div>
+          </div>
+          <span class="badge ${badgeCls}"><span class="badge-dot"></span>${badgeLabel}</span>
+        </div>
+        <div class="pipeline">${pipelineHtml}</div>
+        <div class="mind-progress">
+          <div class="progress-header">
+            <span class="progress-label">Fontes coletadas</span>
+            <span class="progress-value">${mind.collected_sources||0} / ${mind.total_sources||'?'}</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill ${pct >= 100 ? 'complete' : ''}" style="width:${Math.min(pct,100)}%"></div>
+          </div>
+        </div>
+        ${chips ? `<div class="mind-sources">${chips}</div>` : ''}
+        <div class="mind-meta">
+          <span>${svgInline('file-text')} ${wordStr}</span>
+          ${audioStr ? `<span>${svgInline('mic')} ${audioStr}</span>` : ''}
+          <span>${svgInline('clock')} ${fmtDate(mind.updated_at)}</span>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function renderLog() {
+  const tbody = document.getElementById('logTable');
+  setText('logCount', `${state.log.length} eventos`);
+  if (state.log.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7"><div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 17H5a2 2 0 0 0-2 2"/><path d="M15 17h4a2 2 0 0 1 2 2"/><rect x="9" y="2" width="6" height="6" rx="1"/></svg>Nenhuma coleta ainda.</div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = state.log.map(row => {
+    const d = new Date(row.logged_at);
+    const dateStr = d.toLocaleDateString('pt-BR');
+    const timeStr = d.toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
+    const stClass = { success:'st-success', failed:'st-failed', skipped:'st-skipped' }[row.status] || '';
+    const stIcon = { success:'OK', failed:'ERRO', skipped:'SKIP' }[row.status] || row.status || '—';
+    return `<tr>
+      <td class="td-mono td-muted">${dateStr} ${timeStr}</td>
+      <td><span class="td-tag">${row.mind_id||'—'}</span></td>
+      <td class="td-muted">${row.source_type||'—'}</td>
+      <td style="max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${row.title||''}">${row.title||'—'}</td>
+      <td class="td-muted">${row.duration_or_size||'—'}</td>
+      <td class="td-mono td-muted">${row.api_used||'—'}</td>
+      <td class="td-mono ${stClass}" style="font-size:11px;font-weight:600">${stIcon}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderAPIUsage() {
+  const apifyEl = document.getElementById('apifyUsage');
+  const calls = state.log.filter(l => l.api_used === 'apify');
+  if (calls.length === 0) return;
+  const byType = {};
+  for (const c of calls) {
+    const t = c.source_type || 'other';
+    byType[t] = (byType[t]||0) + 1;
+  }
+  const maxVal = Math.max(...Object.values(byType));
+  apifyEl.innerHTML = `<div class="usage-list">${Object.entries(byType).sort(([,a],[,b])=>b-a).map(([type,count]) => `
+    <div class="usage-item">
+      <div class="usage-item-header">
+        <span class="usage-item-label">${TYPE_SVG[type]||''} ${type}</span>
+        <span class="usage-item-value">${count} coleta${count!==1?'s':''}</span>
+      </div>
+      <div class="usage-bar"><div class="usage-bar-fill" style="width:${(count/maxVal*100).toFixed(0)}%"></div></div>
+    </div>`).join('')}</div>`;
+}
+
+// ─── Gauge canvas ─────────────────────────────────────────
+function drawGauge(id, value, max, colorNormal, colorDanger, warnAt) {
+  const canvas = document.getElementById(id);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0,0,W,H);
+  const cx = W/2, cy = H - 10, r = Math.min(W, H*2)/2 - 10;
+  const pct = Math.min(value/max, 1);
+  const fillAngle = Math.PI + pct * Math.PI;
+  // Track
+  ctx.beginPath(); ctx.arc(cx,cy,r,Math.PI,0,false);
+  ctx.strokeStyle='#1f1f45'; ctx.lineWidth=14; ctx.lineCap='round'; ctx.stroke();
+  // Warning zone
+  const warnAngle = Math.PI + (warnAt/max)*Math.PI;
+  ctx.beginPath(); ctx.arc(cx,cy,r,warnAngle,0,false);
+  ctx.strokeStyle='rgba(239,68,68,0.12)'; ctx.lineWidth=14; ctx.stroke();
+  // Fill
+  if (pct > 0) {
+    ctx.beginPath(); ctx.arc(cx,cy,r,Math.PI,fillAngle,false);
+    ctx.strokeStyle = value >= warnAt ? colorDanger : colorNormal;
+    ctx.lineWidth=14; ctx.lineCap='round'; ctx.stroke();
+  }
+}
+
+// ─── Inline SVG helpers ───────────────────────────────────
+function svgInline(name) {
+  const svgs = {
+    'file-text': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>`,
+    'mic': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>`,
+    'clock': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  };
+  return svgs[name] || '';
+}
+
+// ─── Helpers ──────────────────────────────────────────────
+function setText(id, text) { const el = document.getElementById(id); if (el) el.textContent = text; }
+function fmtNum(n) {
+  if (!n) return '0';
+  if (n >= 1e6) return `${(n/1e6).toFixed(1)}M`;
+  if (n >= 1e3) return `${(n/1e3).toFixed(1)}K`;
+  return n.toLocaleString('pt-BR');
+}
+function fmtDate(iso) {
+  if (!iso) return '—';
+  return new Date(iso).toLocaleDateString('pt-BR', {day:'2-digit',month:'short'});
+}
+function setSyncState(st, label) {
+  const dot = document.getElementById('syncDot');
+  const lbl = document.getElementById('syncLabel');
+  if (dot) dot.className = `sync-dot${st==='ok'?'':' '+st}`;
+  if (lbl) lbl.textContent = label;
+}
+
+// ─── Realtime ─────────────────────────────────────────────
+db.channel('etl')
+  .on('postgres_changes', {event:'*', schema:'public', table:'etl_minds'}, loadData)
+  .on('postgres_changes', {event:'INSERT', schema:'public', table:'etl_collection_log'}, loadData)
+  .subscribe();
+
+loadData();
+setInterval(loadData, 60000);
+</script>
+</body>
+</html>

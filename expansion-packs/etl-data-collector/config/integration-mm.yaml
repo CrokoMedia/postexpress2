@@ -1,0 +1,86 @@
+# integration-mm.yaml — ETL Data Collector
+# Configuração de integração com o MMOS Mind Mapper
+# Referenciado em: mmos-squad/tasks/research-collection.md
+
+integration:
+  name: etl-data-collector
+  version: "1.0.0"
+  compatible_with: "mmos-squad >= 3.0.0"
+
+# Caminhos relativos ao root do projeto
+paths:
+  minds_base: "minds"
+  squads_minds_base: "squads/mmos-squad/minds"
+  collection_inventory: "expansion-packs/etl-data-collector/data/COLLECTION-INVENTORY.md"
+
+# Interface de entrada (batch file)
+input:
+  batch_file_schema:
+    required_fields: ["mind", "sources"]
+    source_fields: ["id", "type", "title"]
+    optional_fields: ["url", "video_id", "path", "audio_url", "tier", "lang"]
+
+  supported_types:
+    - youtube    # Vídeos YouTube (transcrição automática ou AssemblyAI)
+    - blog       # Artigos e posts de blog
+    - article    # Alias para blog
+    - pdf        # Documentos PDF locais
+    - document   # Alias para pdf
+    - audio      # Podcasts e áudios (AssemblyAI)
+    - podcast    # Alias para audio
+
+# Interface de saída
+output:
+  directory_structure:
+    sources/: "Conteúdo coletado (NÃO colocar logs aqui)"
+    sources/articles/: "Artigos e posts de blog ({slug}.md)"
+    sources/videos/youtube_main/: "Vídeos YouTube canal principal ({slug}/transcript.md)"
+    sources/videos/youtube_shorts/: "YouTube Shorts ({slug}/transcript.md)"
+    sources/books/: "Livros e PDFs ({titulo}/{text.md|text.txt|metadata.json})"
+    sources/podcasts/guest_appearances/: "Aparições em podcasts ({slug}/transcript.md)"
+    sources/podcasts/own_podcast/: "Podcast próprio ({slug}/transcript.md)"
+    sources/social/twitter/: "Posts do Twitter"
+    sources/social/instagram/: "Posts do Instagram"
+    sources/social/linkedin/: "Posts do LinkedIn"
+    sources/newsletters/: "Newsletters ({slug}.md)"
+    sources/transcripts/: "Transcrições avulsas"
+    sources/courses/: "Cursos e materiais educacionais"
+    sources/raw/: "Dados brutos (JSON, exports, etc.)"
+    sources/SOURCE_INVENTORY.md: "Inventário legível (mesmo padrão dos clones)"
+    sources/sources_master.yaml: "Inventário estruturado para o MMOS (gerado automaticamente)"
+    docs/logs/: "Relatórios e logs (NÃO colocar conteúdo aqui)"
+
+  required_outputs:
+    - "sources/sources_master.yaml"
+    - "docs/logs/{timestamp}-collection-report.yaml"
+
+# Handoff para o MMOS após coleta
+handoff:
+  trigger: "Coleta concluída — sources_master.yaml gerado"
+  next_agent: "cognitive-analyst"
+  next_task: "cognitive-analysis.md"
+  signal_file: "docs/logs/COLLECTION_COMPLETE.yaml"
+
+# APIs utilizadas
+apis:
+  youtube_transcript:
+    package: "youtube-transcript"
+    cost: "gratuito"
+    requires_key: false
+
+  assemblyai:
+    env_var: "ASSEMBLYAI_API_KEY"
+    cost: "185h gratuito, depois pago"
+    requires_key: true
+    fallback_for: ["youtube (sem legenda)", "podcasts", "audio"]
+
+  apify:
+    env_var: "APIFY_API_TOKEN"
+    cost: "por compute unit"
+    requires_key: true
+    fallback_for: ["blogs com JS pesado"]
+
+  pdf_parse:
+    package: "pdf-parse"
+    cost: "gratuito"
+    requires_key: false

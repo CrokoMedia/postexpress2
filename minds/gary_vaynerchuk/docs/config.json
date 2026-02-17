@@ -1,0 +1,36 @@
+{
+  "name": "Gary Vaynerchuk",
+  "id": "gary_vaynerchuk",
+  "also_known_as": ["GaryVee", "Gary Vee"],
+  "youtube": {
+    "channel_url": "https://www.youtube.com/@garyvee",
+    "channel_id": "UCctXZhXmG-kf3tlIXgVZUlw",
+    "shorts_channel": "https://www.youtube.com/@GaryVeeShorts",
+    "known_videos": []
+  },
+  "blog": {
+    "base_url": "https://garyvaynerchuk.com",
+    "archive_url": "https://garyvaynerchuk.com/blog/",
+    "article_selector": "article",
+    "content_selector": ".entry-content",
+    "main_articles": []
+  },
+  "podcast": {
+    "own": "The GaryVee Audio Experience",
+    "rss": "https://feeds.simplecast.com/3i8sYBdE"
+  },
+  "social": {
+    "twitter": "https://twitter.com/garyvee",
+    "instagram": "https://instagram.com/garyvee",
+    "linkedin": "https://linkedin.com/in/garyvaynerchuk",
+    "tiktok": "https://tiktok.com/@garyvee"
+  },
+  "patterns": {
+    "signature_words": [
+      "patience", "hustle", "grateful", "self-aware",
+      "legacy", "attention", "document", "authentic"
+    ],
+    "track_profanity": true,
+    "track_questions": true
+  }
+}

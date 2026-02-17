@@ -1,0 +1,42 @@
+sources_master:
+  mind_name: gary_vaynerchuk
+  compilation_date: '2026-02-17T15:23:28.716Z'
+  metadata:
+    total_sources: 4
+    sources_by_type:
+      book: 2
+      tiktok: 1
+      instagram: 1
+  sources:
+    - id: nocaute
+      title: Nocaute — Gary Vaynerchuk (PT)
+      type: book
+      tier: 1
+      path: books/nocaute-gary-vaynerchuk-pt
+      url: null
+      word_count: 58640
+      collected_at: '2026-02-17'
+    - id: gratidao
+      title: Gratidão — Gary Vaynerchuk (PT)
+      type: book
+      tier: 1
+      path: books/gratidao-gary-vaynerchuk-pt
+      url: null
+      word_count: 58882
+      collected_at: '2026-02-17'
+    - id: social-tiktok-garyvee
+      title: null
+      type: tiktok
+      tier: 1
+      path: social/tiktok
+      url: null
+      word_count: null
+      collected_at: '2026-02-17'
+    - id: social-instagram-garyvee
+      title: null
+      type: instagram
+      tier: 1
+      path: social/instagram
+      url: null
+      word_count: null
+      collected_at: '2026-02-17'
