@@ -285,7 +285,7 @@ export default function ProfilePage() {
       {/* Central de Conteúdo */}
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-neutral-300 mb-3">Central de Conteúdo</h3>
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
 
           {/* Card: Criar Conteúdo */}
           {latestAudit ? (
@@ -418,6 +418,39 @@ export default function ProfilePage() {
               )}
             </div>
           </button>
+
+          {/* Card: Ver Slides */}
+          {latestAudit ? (
+            <Link href={`/dashboard/audits/${latestAudit.id}/slides`}>
+              <div className="group relative rounded-xl border border-neutral-600/40 bg-gradient-to-br from-neutral-800/60 to-neutral-900/40 p-5 hover:border-neutral-500/70 hover:from-neutral-800/80 transition-all cursor-pointer h-full flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-neutral-700/60 flex items-center justify-center">
+                    <ImageIcon className="w-5 h-5 text-neutral-300" />
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-neutral-100 mb-1">Ver Slides</h4>
+                  <p className="text-xs text-neutral-400 leading-relaxed">
+                    Galeria de slides gerados
+                  </p>
+                </div>
+                <div className="mt-3 pt-3 border-t border-neutral-700/50">
+                  <span className="text-xs text-neutral-400 font-medium">
+                    Acesso rápido aos slides
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ) : (
+            <div className="rounded-xl border border-neutral-700/50 bg-neutral-800/30 p-5 opacity-50 flex flex-col h-full">
+              <div className="w-10 h-10 rounded-lg bg-neutral-700/50 flex items-center justify-center mb-3">
+                <ImageIcon className="w-5 h-5 text-neutral-500" />
+              </div>
+              <h4 className="font-semibold text-neutral-400 mb-1">Ver Slides</h4>
+              <p className="text-xs text-neutral-500">Faça uma auditoria primeiro</p>
+            </div>
+          )}
 
         </div>
       </div>

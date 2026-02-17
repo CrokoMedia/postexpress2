@@ -10,7 +10,7 @@ import { Skeleton } from '@/components/atoms/skeleton'
 import { useAudit } from '@/hooks/use-audit'
 import { getScoreClassification, formatNumber } from '@/lib/format'
 import { useParams } from 'next/navigation'
-import { Brain, Pencil, DollarSign, BarChart3, AlertTriangle, TrendingUp, Users, Heart, MessageCircle, Download, Sparkles } from 'lucide-react'
+import { Brain, Pencil, DollarSign, BarChart3, AlertTriangle, TrendingUp, Users, Heart, MessageCircle, Download, Sparkles, Image as ImageIcon } from 'lucide-react'
 import { Button } from '@/components/atoms/button'
 
 export default function AuditPage() {
@@ -83,6 +83,14 @@ export default function AuditPage() {
           })}
         />
         <div className="flex gap-2">
+          <Button
+            onClick={() => window.location.href = `/dashboard/audits/${id}/slides`}
+            variant="secondary"
+            className="flex items-center gap-2"
+          >
+            <ImageIcon className="w-4 h-4" />
+            Ver Slides
+          </Button>
           <Button
             onClick={() => window.location.href = `/dashboard/audits/${id}/create-content`}
             variant="primary"
