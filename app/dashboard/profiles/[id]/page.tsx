@@ -11,7 +11,7 @@ import { ProfileContextModal } from '@/components/organisms/profile-context-moda
 import { ContentSquadChatModal } from '@/components/organisms/content-squad-chat-modal'
 import { useProfile } from '@/hooks/use-profiles'
 import { formatNumber, formatDate, getScoreClassification } from '@/lib/format'
-import { CheckCircle, Users, FileText, Calendar, Trash2, FileEdit, Sparkles, Loader2, BookOpen, MessageSquare } from 'lucide-react'
+import { CheckCircle, Users, FileText, Calendar, Trash2, FileEdit, Sparkles, Loader2, BookOpen, MessageSquare, TrendingUp, Image as ImageIcon, ChevronRight, PlusCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
@@ -273,6 +273,146 @@ export default function ProfilePage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Central de Conteúdo */}
+      <div className="mb-6">
+        <h3 className="text-lg font-semibold text-neutral-300 mb-3">Central de Conteúdo</h3>
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+
+          {/* Card: Criar Conteúdo */}
+          {latestAudit ? (
+            <Link href={`/dashboard/audits/${latestAudit.id}/create-content`}>
+              <div className="group relative rounded-xl border border-primary-500/30 bg-gradient-to-br from-primary-500/10 to-primary-500/5 p-5 hover:border-primary-500/60 hover:from-primary-500/15 hover:to-primary-500/10 transition-all cursor-pointer h-full flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-primary-500/20 flex items-center justify-center">
+                    <Sparkles className="w-5 h-5 text-primary-400" />
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-neutral-500 group-hover:text-primary-400 transition-colors" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-neutral-100 mb-1">Criar Conteúdo</h4>
+                  <p className="text-xs text-neutral-400 leading-relaxed">
+                    Gere carrosséis com o Content Squad
+                  </p>
+                </div>
+                {contentCount > 0 && (
+                  <div className="mt-3 pt-3 border-t border-primary-500/20">
+                    <span className="text-xs text-primary-400 font-medium">
+                      {contentCount} carrossel{contentCount !== 1 ? 'is' : ''} gerado{contentCount !== 1 ? 's' : ''}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </Link>
+          ) : (
+            <div className="rounded-xl border border-neutral-700/50 bg-neutral-800/30 p-5 opacity-50 flex flex-col h-full">
+              <div className="w-10 h-10 rounded-lg bg-neutral-700/50 flex items-center justify-center mb-3">
+                <Sparkles className="w-5 h-5 text-neutral-500" />
+              </div>
+              <h4 className="font-semibold text-neutral-400 mb-1">Criar Conteúdo</h4>
+              <p className="text-xs text-neutral-500">Faça uma auditoria primeiro</p>
+            </div>
+          )}
+
+          {/* Card: Última Auditoria */}
+          {latestAudit ? (
+            <Link href={`/dashboard/audits/${latestAudit.id}`}>
+              <div className="group relative rounded-xl border border-info-500/30 bg-gradient-to-br from-info-500/10 to-info-500/5 p-5 hover:border-info-500/60 hover:from-info-500/15 hover:to-info-500/10 transition-all cursor-pointer h-full flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-info-500/20 flex items-center justify-center">
+                    <TrendingUp className="w-5 h-5 text-info-400" />
+                  </div>
+                  <div className={`text-2xl font-bold ${getScoreClassification(latestAudit.score_overall || 0).color}`}>
+                    {latestAudit.score_overall}
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-neutral-100 mb-1">Última Auditoria</h4>
+                  <p className="text-xs text-neutral-400">
+                    {formatDate(latestAudit.audit_date)}
+                  </p>
+                </div>
+                <div className="mt-3 pt-3 border-t border-info-500/20 flex items-center justify-between">
+                  <span className="text-xs text-info-400 font-medium">
+                    {getScoreClassification(latestAudit.score_overall || 0).label}
+                  </span>
+                  <ChevronRight className="w-4 h-4 text-neutral-500 group-hover:text-info-400 transition-colors" />
+                </div>
+              </div>
+            </Link>
+          ) : (
+            <Link href={`/dashboard/new?username=${profile.username}`}>
+              <div className="group rounded-xl border border-dashed border-neutral-600 bg-neutral-800/20 p-5 hover:border-neutral-500 hover:bg-neutral-800/40 transition-all cursor-pointer h-full flex flex-col items-center justify-center text-center">
+                <PlusCircle className="w-8 h-8 text-neutral-500 mb-2 group-hover:text-neutral-400" />
+                <h4 className="font-semibold text-neutral-400 mb-1">Nova Auditoria</h4>
+                <p className="text-xs text-neutral-500">Analisar este perfil</p>
+              </div>
+            </Link>
+          )}
+
+          {/* Card: Chat Content Squad */}
+          <button
+            onClick={() => latestAudit && setShowChatModal(true)}
+            disabled={!latestAudit}
+            className={`group rounded-xl border text-left p-5 transition-all h-full flex flex-col w-full ${
+              latestAudit
+                ? 'border-success-500/30 bg-gradient-to-br from-success-500/10 to-success-500/5 hover:border-success-500/60 hover:from-success-500/15 cursor-pointer'
+                : 'border-neutral-700/50 bg-neutral-800/30 opacity-50 cursor-not-allowed'
+            }`}
+          >
+            <div className="flex items-center justify-between mb-3">
+              <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                latestAudit ? 'bg-success-500/20' : 'bg-neutral-700/50'
+              }`}>
+                <MessageSquare className={`w-5 h-5 ${latestAudit ? 'text-success-400' : 'text-neutral-500'}`} />
+              </div>
+              {latestAudit && (
+                <ChevronRight className="w-4 h-4 text-neutral-500 group-hover:text-success-400 transition-colors" />
+              )}
+            </div>
+            <div className="flex-1">
+              <h4 className={`font-semibold mb-1 ${latestAudit ? 'text-neutral-100' : 'text-neutral-400'}`}>
+                Content Squad
+              </h4>
+              <p className="text-xs text-neutral-400 leading-relaxed">
+                Chat com os 5 especialistas em conteúdo
+              </p>
+            </div>
+          </button>
+
+          {/* Card: Contexto do Expert */}
+          <button
+            onClick={() => setShowContextModal(true)}
+            className="group rounded-xl border border-warning-500/30 bg-gradient-to-br from-warning-500/10 to-warning-500/5 p-5 hover:border-warning-500/60 hover:from-warning-500/15 transition-all cursor-pointer h-full flex flex-col text-left w-full"
+          >
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-10 h-10 rounded-lg bg-warning-500/20 flex items-center justify-center">
+                <BookOpen className="w-5 h-5 text-warning-400" />
+              </div>
+              <ChevronRight className="w-4 h-4 text-neutral-500 group-hover:text-warning-400 transition-colors" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-semibold text-neutral-100 mb-1">Contexto do Expert</h4>
+              <p className="text-xs text-neutral-400 leading-relaxed">
+                Informações adicionais sobre o perfil
+              </p>
+            </div>
+            <div className="mt-3 pt-3 border-t border-warning-500/20">
+              {hasContext ? (
+                <span className="text-xs text-success-400 font-medium flex items-center gap-1">
+                  <CheckCircle className="w-3 h-3" />
+                  Contexto configurado
+                </span>
+              ) : (
+                <span className="text-xs text-warning-400 font-medium">
+                  Clique para adicionar
+                </span>
+              )}
+            </div>
+          </button>
+
+        </div>
+      </div>
 
       {/* Audits History */}
       <Card>
