@@ -12,7 +12,7 @@ import { ProfileContextModal } from '@/components/organisms/profile-context-moda
 import { ContentSquadChatModal } from '@/components/organisms/content-squad-chat-modal'
 import { useProfile } from '@/hooks/use-profiles'
 import { formatNumber, formatDate, getScoreClassification } from '@/lib/format'
-import { CheckCircle, Users, FileText, Calendar, Trash2, FileEdit, Sparkles, Loader2, BookOpen, MessageSquare, TrendingUp, Image as ImageIcon, ChevronRight, PlusCircle } from 'lucide-react'
+import { CheckCircle, Users, FileText, Calendar, Trash2, Sparkles, Loader2, BookOpen, MessageSquare, TrendingUp, Image as ImageIcon, ChevronRight, PlusCircle, Eye, EyeOff, Pencil } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
@@ -26,25 +26,28 @@ export default function ProfilePage() {
   const [showContextModal, setShowContextModal] = useState(false)
   const [showChatModal, setShowChatModal] = useState(false)
   const [hasContext, setHasContext] = useState(false)
+  const [contextData, setContextData] = useState<any>(null)
+  const [showContextViewer, setShowContextViewer] = useState(false)
   const [isReAuditing, setIsReAuditing] = useState(false)
   const [contentCount, setContentCount] = useState(0)
   const [auditToDelete, setAuditToDelete] = useState<{ id: string; date: string } | null>(null)
   const [localAudits, setLocalAudits] = useState<any[] | null>(null)
 
-  // Verificar se tem contexto
+  // Buscar contexto completo
   useEffect(() => {
-    const checkContext = async () => {
+    const fetchContext = async () => {
       try {
         const res = await fetch(`/api/profiles/${id}/context`)
         if (res.ok) {
           const data = await res.json()
           setHasContext(!!data.context)
+          setContextData(data.context || null)
         }
       } catch (error) {
         console.error('Erro ao verificar contexto:', error)
       }
     }
-    if (id) checkContext()
+    if (id) fetchContext()
   }, [id])
 
   // Verificar quantos conteúdos gerados existem
@@ -95,12 +98,9 @@ export default function ProfilePage() {
 
   if (isLoading) {
     return (
-      <div>
-        <Skeleton className="h-12 w-64 mb-8" />
-        <div className="grid gap-6">
-          <Skeleton className="h-48 w-full" />
-          <Skeleton className="h-64 w-full" />
-        </div>
+      <div className="grid gap-6">
+        <Skeleton className="h-48 w-full" />
+        <Skeleton className="h-64 w-full" />
       </div>
     )
   }
@@ -126,11 +126,6 @@ export default function ProfilePage() {
 
   return (
     <div>
-      <PageHeader
-        title={profile.full_name || profile.username}
-        description={`@${profile.username}`}
-      />
-
       {/* Profile Info */}
       <Card className="mb-6">
         <CardContent className="p-6">
@@ -153,12 +148,13 @@ export default function ProfilePage() {
 
             {/* Info */}
             <div className="flex-1">
-              <div className="flex items-center gap-3 mb-2">
+              <div className="flex items-center gap-3 mb-1">
                 <h2 className="text-2xl font-bold">{profile.full_name || profile.username}</h2>
                 {profile.is_verified && <CheckCircle className="h-6 w-6 text-info-500" />}
               </div>
+              <p className="text-neutral-400 text-sm mb-3">@{profile.username}</p>
               {profile.biography && (
-                <p className="text-neutral-300 mb-4">{profile.biography}</p>
+                <p className="text-neutral-300 mb-4 text-sm">{profile.biography}</p>
               )}
               <div className="flex gap-6 text-sm">
                 <div className="flex items-center gap-2">
@@ -198,26 +194,6 @@ export default function ProfilePage() {
                 </>
               )}
 
-              {/* Context Button */}
-              <Button
-                variant={hasContext ? 'secondary' : 'primary'}
-                size="sm"
-                onClick={() => setShowContextModal(true)}
-                className="w-full"
-              >
-                {hasContext ? (
-                  <>
-                    <FileEdit className="h-4 w-4 mr-2" />
-                    Editar Contexto
-                  </>
-                ) : (
-                  <>
-                    <FileEdit className="h-4 w-4 mr-2" />
-                    Adicionar Contexto
-                  </>
-                )}
-              </Button>
-
               {/* Re-Audit Button (only if has context) */}
               {hasContext && latestAudit && (
                 <Button
@@ -240,19 +216,6 @@ export default function ProfilePage() {
                   )}
                 </Button>
               )}
-
-              {/* Chat with Content Squad Button */}
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={() => setShowChatModal(true)}
-                disabled={!latestAudit}
-                className="w-full"
-                title={!latestAudit ? 'Faça uma auditoria primeiro' : 'Conversar com Content Squad'}
-              >
-                <MessageSquare className="h-4 w-4 mr-2" />
-                Conversar com Content Squad
-              </Button>
 
               {/* View Contents Button */}
               {contentCount > 0 && (
@@ -455,6 +418,100 @@ export default function ProfilePage() {
         </div>
       </div>
 
+      {/* Contexto do Expert — Visualizador */}
+      {hasContext && contextData && (
+        <Card className="mb-6">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <CardTitle className="flex items-center gap-2 text-base">
+                <BookOpen className="h-4 w-4 text-warning-400" />
+                Contexto Salvo
+              </CardTitle>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowContextViewer(!showContextViewer)}
+                  className="text-neutral-400 text-xs"
+                >
+                  {showContextViewer ? (
+                    <><EyeOff className="h-3.5 w-3.5 mr-1" /> Ocultar</>
+                  ) : (
+                    <><Eye className="h-3.5 w-3.5 mr-1" /> Visualizar</>
+                  )}
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowContextModal(true)}
+                  className="text-neutral-400 text-xs"
+                >
+                  <Pencil className="h-3.5 w-3.5 mr-1" /> Editar
+                </Button>
+              </div>
+            </div>
+          </CardHeader>
+
+          {showContextViewer && (
+            <CardContent className="space-y-4">
+              {/* Campos de texto */}
+              {[
+                { label: 'Nicho / Área de Atuação', value: contextData.nicho },
+                { label: 'Objetivos', value: contextData.objetivos },
+                { label: 'Público-Alvo', value: contextData.publico_alvo },
+                { label: 'Produtos / Serviços', value: contextData.produtos_servicos },
+                { label: 'Tom de Voz', value: contextData.tom_voz },
+                { label: 'Contexto Adicional', value: contextData.contexto_adicional },
+              ].map(({ label, value }) =>
+                value ? (
+                  <div key={label}>
+                    <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-1">
+                      {label}
+                    </p>
+                    <p className="text-sm text-neutral-200 bg-neutral-800/60 rounded-lg px-3 py-2 whitespace-pre-wrap">
+                      {value}
+                    </p>
+                  </div>
+                ) : null
+              )}
+
+              {/* Arquivos anexados */}
+              {contextData.files && contextData.files.length > 0 && (
+                <div>
+                  <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-2">
+                    Arquivos Anexados ({contextData.files.length})
+                  </p>
+                  <div className="space-y-2">
+                    {contextData.files.map((file: any, idx: number) => (
+                      <div
+                        key={idx}
+                        className="flex items-center gap-3 bg-neutral-800/60 rounded-lg px-3 py-2"
+                      >
+                        <FileText className="h-4 w-4 text-primary-400 shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-neutral-200 truncate">
+                            {file.name}
+                          </p>
+                          <p className="text-xs text-neutral-500">
+                            {file.type} • {file.size ? `${(file.size / 1024).toFixed(1)} KB` : 'Tamanho desconhecido'}
+                          </p>
+                        </div>
+                        <Badge variant="warning" className="text-xs shrink-0">
+                          Só metadados
+                        </Badge>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-warning-400 mt-2">
+                    ⚠️ Os arquivos estão salvos mas o texto ainda não é extraído. A extração de PDF/DOCX será implementada em breve.
+                  </p>
+                </div>
+              )}
+            </CardContent>
+          )}
+        </Card>
+      )}
+
       {/* Audits History */}
       <Card>
         <CardHeader>
@@ -529,9 +586,17 @@ export default function ProfilePage() {
           profileId={id}
           username={profile.username}
           onClose={() => setShowContextModal(false)}
-          onSave={() => {
+          onSave={async () => {
             setHasContext(true)
             setShowContextModal(false)
+            // Recarregar contexto após salvar
+            try {
+              const res = await fetch(`/api/profiles/${id}/context`)
+              if (res.ok) {
+                const data = await res.json()
+                setContextData(data.context || null)
+              }
+            } catch {}
           }}
         />
       )}
