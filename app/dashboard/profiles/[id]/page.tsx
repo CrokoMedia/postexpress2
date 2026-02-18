@@ -427,97 +427,106 @@ export default function ProfilePage() {
                 <BookOpen className="h-4 w-4 text-warning-400" />
                 Contexto Salvo
               </CardTitle>
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowContextViewer(!showContextViewer)}
-                  className="text-neutral-400 text-xs"
-                >
-                  {showContextViewer ? (
-                    <><EyeOff className="h-3.5 w-3.5 mr-1" /> Ocultar</>
-                  ) : (
-                    <><Eye className="h-3.5 w-3.5 mr-1" /> Visualizar</>
-                  )}
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowContextModal(true)}
-                  className="text-neutral-400 text-xs"
-                >
-                  <Pencil className="h-3.5 w-3.5 mr-1" /> Editar
-                </Button>
-              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowContextModal(true)}
+                className="text-neutral-400 text-xs"
+              >
+                <Pencil className="h-3.5 w-3.5 mr-1" /> Editar
+              </Button>
             </div>
           </CardHeader>
 
-          {showContextViewer && (
-            <CardContent className="space-y-4">
-              {/* Campos de texto */}
-              {[
+          <CardContent className="space-y-4">
+            {/* Arquivos com extração — sempre visível */}
+            {contextData.files && contextData.files.length > 0 && (
+              <div>
+                <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-2">
+                  Documentos ({contextData.files.length})
+                </p>
+                <div className="space-y-3">
+                  {contextData.files.map((file: any, idx: number) => (
+                    <div key={idx} className="bg-neutral-800/60 rounded-lg px-3 py-3">
+                      <div className="flex items-center gap-3 mb-2">
+                        <FileText className="h-4 w-4 text-primary-400 shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-neutral-200 truncate">{file.name}</p>
+                          <p className="text-xs text-neutral-500">
+                            {file.size ? `${(file.size / 1024).toFixed(1)} KB` : ''}
+                            {file.wordCount ? ` • ${file.wordCount.toLocaleString()} palavras` : ''}
+                            {file.pages ? ` • ${file.pages} págs` : ''}
+                          </p>
+                        </div>
+                        <Badge
+                          variant={file.extractionStatus === 'completed' ? 'success' : file.extractionStatus === 'failed' ? 'error' : 'warning'}
+                          className="text-xs shrink-0"
+                        >
+                          {file.extractionStatus === 'completed' ? 'Texto extraído' : file.extractionStatus === 'failed' ? 'Falha' : 'Sem extração'}
+                        </Badge>
+                      </div>
+                      {file.extractedText ? (
+                        <p className="text-xs text-neutral-400 bg-neutral-900/50 rounded p-2 max-h-32 overflow-y-auto whitespace-pre-wrap leading-relaxed">
+                          {file.extractedText.slice(0, 600)}{file.extractedText.length > 600 ? '…' : ''}
+                        </p>
+                      ) : file.extractionError ? (
+                        <p className="text-xs text-error-400 bg-error-500/5 rounded p-2">{file.extractionError}</p>
+                      ) : (
+                        <p className="text-xs text-neutral-500 italic">
+                          Texto não extraído — faça o upload novamente para extrair.
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Campos de texto — colapsáveis */}
+            {(() => {
+              const fields = [
                 { label: 'Nicho / Área de Atuação', value: contextData.nicho },
                 { label: 'Objetivos', value: contextData.objetivos },
                 { label: 'Público-Alvo', value: contextData.publico_alvo },
                 { label: 'Produtos / Serviços', value: contextData.produtos_servicos },
                 { label: 'Tom de Voz', value: contextData.tom_voz },
                 { label: 'Contexto Adicional', value: contextData.contexto_adicional },
-              ].map(({ label, value }) =>
-                value ? (
-                  <div key={label}>
-                    <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-1">
-                      {label}
-                    </p>
-                    <p className="text-sm text-neutral-200 bg-neutral-800/60 rounded-lg px-3 py-2 whitespace-pre-wrap">
-                      {value}
-                    </p>
-                  </div>
-                ) : null
-              )}
+              ].filter(f => f.value)
 
-              {/* Arquivos anexados */}
-              {contextData.files && contextData.files.length > 0 && (
+              if (fields.length === 0) return null
+
+              return (
                 <div>
-                  <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-2">
-                    Arquivos Anexados ({contextData.files.length})
-                  </p>
-                  <div className="space-y-3">
-                    {contextData.files.map((file: any, idx: number) => (
-                      <div key={idx} className="bg-neutral-800/60 rounded-lg px-3 py-3">
-                        <div className="flex items-center gap-3 mb-2">
-                          <FileText className="h-4 w-4 text-primary-400 shrink-0" />
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-neutral-200 truncate">
-                              {file.name}
-                            </p>
-                            <p className="text-xs text-neutral-500">
-                              {file.type} • {file.size ? `${(file.size / 1024).toFixed(1)} KB` : ''}
-                              {file.wordCount ? ` • ${file.wordCount.toLocaleString()} palavras` : ''}
-                              {file.pages ? ` • ${file.pages} págs` : ''}
-                            </p>
-                          </div>
-                          <Badge
-                            variant={file.extractionStatus === 'completed' ? 'success' : file.extractionStatus === 'failed' ? 'error' : 'warning'}
-                            className="text-xs shrink-0"
-                          >
-                            {file.extractionStatus === 'completed' ? 'Texto extraído' : file.extractionStatus === 'failed' ? 'Falha' : 'Só metadados'}
-                          </Badge>
-                        </div>
-                        {file.extractedText && (
-                          <p className="text-xs text-neutral-400 bg-neutral-900/50 rounded p-2 max-h-24 overflow-y-auto whitespace-pre-wrap">
-                            {file.extractedText.slice(0, 400)}{file.extractedText.length > 400 ? '...' : ''}
+                  <button
+                    onClick={() => setShowContextViewer(!showContextViewer)}
+                    className="flex items-center gap-2 text-xs font-medium text-neutral-500 uppercase tracking-wide mb-2 hover:text-neutral-300 transition-colors w-full text-left"
+                  >
+                    {showContextViewer ? (
+                      <EyeOff className="h-3 w-3" />
+                    ) : (
+                      <Eye className="h-3 w-3" />
+                    )}
+                    Campos preenchidos ({fields.length})
+                  </button>
+
+                  {showContextViewer && (
+                    <div className="space-y-3">
+                      {fields.map(({ label, value }) => (
+                        <div key={label}>
+                          <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-1">
+                            {label}
                           </p>
-                        )}
-                        {file.extractionError && (
-                          <p className="text-xs text-error-400 mt-1">{file.extractionError}</p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
+                          <p className="text-sm text-neutral-200 bg-neutral-800/60 rounded-lg px-3 py-2 whitespace-pre-wrap">
+                            {value}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              )}
-            </CardContent>
-          )}
+              )
+            })()}
+          </CardContent>
         </Card>
       )}
 
