@@ -4,9 +4,6 @@
  * Extrai texto de documentos PDF, DOCX, TXT
  */
 
-const pdfParse = require('pdf-parse') // eslint-disable-line
-const mammoth = require('mammoth') // eslint-disable-line
-
 export interface ExtractionResult {
   text: string
   success: boolean
@@ -43,6 +40,7 @@ async function extractFromTxt(buffer: Buffer): Promise<ExtractionResult> {
  */
 async function extractFromPdf(buffer: Buffer): Promise<ExtractionResult> {
   try {
+    const pdfParse = require('pdf-parse') // eslint-disable-line
     const data = await pdfParse(buffer)
     const text = data.text?.trim() || ''
 
@@ -77,6 +75,7 @@ async function extractFromPdf(buffer: Buffer): Promise<ExtractionResult> {
  */
 async function extractFromDocx(buffer: Buffer): Promise<ExtractionResult> {
   try {
+    const mammoth = require('mammoth') // eslint-disable-line
     const result = await mammoth.extractRawText({ buffer })
     const text = result.value?.trim() || ''
 
