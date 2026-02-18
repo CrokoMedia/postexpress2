@@ -47,3 +47,28 @@ temp/
 
 # Docker
 docker-compose.override.yml
+
+# Arquivos binários e dados pesados
+*.pdf
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+*.mp3
+*.wav
+
+# Pastas de dados locais (não vão para produção)
+uploads/
+temp/
+tmp/
+minds/
+figma-plugin/
+orgchart-*.html
+
+# Dados de análise local
+squad-auditores/data/
+squad-auditores/output/
+
+# TypeScript build info
+*.tsbuildinfo
