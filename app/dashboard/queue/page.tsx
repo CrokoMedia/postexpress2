@@ -20,6 +20,8 @@ import {
   AlertCircle,
   ListChecks
 } from 'lucide-react'
+import { Skeleton } from '@/components/atoms/skeleton'
+import { PageHeader } from '@/components/molecules/page-header'
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
@@ -129,9 +131,24 @@ export default function QueuePage() {
   if (isLoading) {
     return (
       <div className="p-8">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">Fila de Análises</h1>
-          <p className="text-gray-600">Carregando...</p>
+        <PageHeader
+          title="Fila de Análises"
+          description="Acompanhe o progresso das análises em andamento"
+        />
+        <div className="space-y-4 mt-6">
+          {[1, 2, 3].map((i) => (
+            <Card key={i} className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <Skeleton className="h-5 w-32" />
+                <Skeleton className="h-6 w-20 rounded-full" />
+              </div>
+              <Skeleton className="h-2 w-full mb-3" />
+              <div className="flex gap-4">
+                <Skeleton className="h-4 w-24" />
+                <Skeleton className="h-4 w-24" />
+              </div>
+            </Card>
+          ))}
         </div>
       </div>
     )
