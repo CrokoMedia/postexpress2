@@ -103,7 +103,7 @@ export async function POST(
         await page.setContent(html, { waitUntil: 'networkidle0' })
 
         // Criar diretório temporário
-        const tempDir = path.join(process.cwd(), 'temp', 'slides', id)
+        const tempDir = path.join('/tmp', 'slides', id)
         if (!fs.existsSync(tempDir)) {
           fs.mkdirSync(tempDir, { recursive: true })
         }
