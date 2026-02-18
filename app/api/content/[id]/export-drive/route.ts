@@ -31,10 +31,10 @@ export async function POST(
       )
     }
 
-    // Buscar slides e profile_id
+    // Buscar slides de ambos os templates e profile_id
     const { data: contentData, error: contentError } = await supabase
       .from('content_suggestions')
-      .select('slides_json, profile_id')
+      .select('slides_json, slides_v2_json, profile_id')
       .eq('audit_id', id)
       .single()
 
@@ -45,23 +45,15 @@ export async function POST(
       )
     }
 
-    const slidesData = contentData.slides_json as any
+    const slidesV1 = contentData.slides_json as any
+    const slidesV2 = contentData.slides_v2_json as any
 
-    if (!slidesData?.carousels || slidesData.carousels.length === 0) {
+    const approvedV1 = slidesV1?.carousels?.filter((c: any) => c.approved === true) || []
+    const approvedV2 = slidesV2?.carousels?.filter((c: any) => c.approved === true) || []
+
+    if (approvedV1.length === 0 && approvedV2.length === 0) {
       return NextResponse.json(
         { error: 'Nenhum slide gerado. Gere os slides visuais primeiro.' },
-        { status: 400 }
-      )
-    }
-
-    // Filtrar apenas carrosséis aprovados
-    const approvedCarousels = slidesData.carousels.filter(
-      (c: any) => c.approved === true
-    )
-
-    if (approvedCarousels.length === 0) {
-      return NextResponse.json(
-        { error: 'Nenhum carrossel aprovado encontrado.' },
         { status: 400 }
       )
     }
@@ -82,7 +74,7 @@ export async function POST(
 
     const username = profileData.username
 
-    console.log(`☁️ Enviando ${approvedCarousels.length} carrosséis para o Google Drive (@${username})...`)
+    console.log(`☁️ Enviando carrosséis para o Google Drive (@${username})...`)
 
     const drive = getGoogleDriveClient()
 
@@ -97,32 +89,44 @@ export async function POST(
 
     let totalSlidesUploaded = 0
 
-    for (const carousel of approvedCarousels) {
-      const carouselFolderName = `Carrossel-${carousel.carouselIndex + 1}-${slugify(carousel.title)}`
-      const carouselFolderId = await findOrCreateFolder(drive, carouselFolderName, userFolderId)
+    // Função auxiliar para enviar carrosséis de um template para uma pasta
+    const uploadCarousels = async (carousels: any[], parentFolderId: string) => {
+      for (const carousel of carousels) {
+        const carouselFolderName = `Carrossel-${carousel.carouselIndex + 1}-${slugify(carousel.title)}`
+        const carouselFolderId = await findOrCreateFolder(drive, carouselFolderName, parentFolderId)
 
-      let slidesUploaded = 0
+        let slidesUploaded = 0
 
-      for (const slide of carousel.slides) {
-        const slideResponse = await fetch(slide.cloudinaryUrl)
-        if (!slideResponse.ok) {
-          console.warn(`⚠️ Falha ao baixar slide ${slide.slideNumber}: ${slide.cloudinaryUrl}`)
-          continue
+        for (const slide of carousel.slides) {
+          const slideResponse = await fetch(slide.cloudinaryUrl)
+          if (!slideResponse.ok) {
+            console.warn(`⚠️ Falha ao baixar slide ${slide.slideNumber}`)
+            continue
+          }
+
+          const buffer = Buffer.from(await slideResponse.arrayBuffer())
+          await uploadFile(drive, `slide-${slide.slideNumber}.png`, buffer, 'image/png', carouselFolderId)
+          slidesUploaded++
         }
 
-        const buffer = Buffer.from(await slideResponse.arrayBuffer())
-        await uploadFile(drive, `slide-${slide.slideNumber}.png`, buffer, 'image/png', carouselFolderId)
-        slidesUploaded++
+        uploadedCarousels.push({ title: carousel.title, folderId: carouselFolderId, slidesUploaded })
+        totalSlidesUploaded += slidesUploaded
+        console.log(`  ✅ ${carouselFolderName}: ${slidesUploaded} slides enviados`)
       }
+    }
 
-      uploadedCarousels.push({
-        title: carousel.title,
-        folderId: carouselFolderId,
-        slidesUploaded,
-      })
+    // Enviar slides V1 (template padrão)
+    if (approvedV1.length > 0) {
+      const v1FolderId = await findOrCreateFolder(drive, 'Template-Padrao', userFolderId)
+      console.log(`☁️ Enviando ${approvedV1.length} carrosséis V1...`)
+      await uploadCarousels(approvedV1, v1FolderId)
+    }
 
-      totalSlidesUploaded += slidesUploaded
-      console.log(`  ✅ ${carouselFolderName}: ${slidesUploaded} slides enviados`)
+    // Enviar slides V2 (template com IA)
+    if (approvedV2.length > 0) {
+      const v2FolderId = await findOrCreateFolder(drive, 'Template-Com-IA', userFolderId)
+      console.log(`☁️ Enviando ${approvedV2.length} carrosséis V2...`)
+      await uploadCarousels(approvedV2, v2FolderId)
     }
 
     return NextResponse.json({
@@ -131,7 +135,7 @@ export async function POST(
       userFolderId,
       carousels: uploadedCarousels,
       totalSlidesUploaded,
-      message: `${totalSlidesUploaded} slides enviados para o Google Drive em ${approvedCarousels.length} pasta(s).`,
+      message: `${totalSlidesUploaded} slides enviados para o Google Drive em ${uploadedCarousels.length} pasta(s).`,
     })
   } catch (error: any) {
     console.error('Erro ao enviar para o Google Drive:', error)

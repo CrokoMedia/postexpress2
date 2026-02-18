@@ -232,7 +232,7 @@ export async function POST(
 
     const { error: updateError } = await supabase
       .from('content_suggestions')
-      .update({ slides_json: slidesData })
+      .update({ slides_v2_json: slidesData })
       .eq('id', contentSuggestion.id)
 
     if (updateError) {

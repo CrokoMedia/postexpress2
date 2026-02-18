@@ -12,10 +12,10 @@ export async function GET(
     const { id } = await params
     const supabase = getServerSupabase()
 
-    // Buscar conteúdo salvo (incluindo slides)
+    // Buscar conteúdo salvo (incluindo slides de ambos os templates)
     const { data, error } = await supabase
       .from('content_suggestions')
-      .select('content_json, slides_json, reels_json, generated_at')
+      .select('content_json, slides_json, slides_v2_json, reels_json, generated_at')
       .eq('audit_id', id)
       .single()
 
@@ -36,6 +36,7 @@ export async function GET(
     return NextResponse.json({
       content: data.content_json,
       slides: data.slides_json,
+      slides_v2: data.slides_v2_json,
       reels: data.reels_json,
       generated_at: data.generated_at
     })

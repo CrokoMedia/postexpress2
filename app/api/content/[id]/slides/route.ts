@@ -23,13 +23,15 @@ export async function DELETE(
     const { id } = await params
     const { searchParams } = new URL(request.url)
     const carouselIndexParam = searchParams.get('carouselIndex')
+    // template=v1|v2 — qual template deletar (padrão: v1)
+    const template = searchParams.get('template') || 'v1'
 
     const supabase = getServerSupabase()
 
-    // Buscar content_suggestion com slides atuais
+    // Buscar content_suggestion com slides de ambos os templates
     const { data: contentSuggestion, error: fetchError } = await supabase
       .from('content_suggestions')
-      .select('id, slides_json')
+      .select('id, slides_json, slides_v2_json')
       .eq('audit_id', id)
       .single()
 
@@ -40,7 +42,9 @@ export async function DELETE(
       )
     }
 
-    const slidesJson = contentSuggestion.slides_json as any
+    const isV2 = template === 'v2'
+    const slidesJson = (isV2 ? contentSuggestion.slides_v2_json : contentSuggestion.slides_json) as any
+    const dbField = isV2 ? 'slides_v2_json' : 'slides_json'
 
     if (!slidesJson || !slidesJson.carousels) {
       return NextResponse.json(
@@ -85,7 +89,7 @@ export async function DELETE(
       }
       // else: newSlidesJson permanece null (sem carrosséis restantes)
     } else {
-      // Deletar todos os slides
+      // Deletar todos os slides do template
       for (const carousel of slidesJson.carousels) {
         for (const slide of carousel.slides) {
           if (slide.cloudinaryPublicId) {
@@ -110,10 +114,10 @@ export async function DELETE(
       }
     }
 
-    // Atualizar banco de dados
+    // Atualizar banco de dados (campo correto por template)
     const { error: updateError } = await supabase
       .from('content_suggestions')
-      .update({ slides_json: newSlidesJson })
+      .update({ [dbField]: newSlidesJson })
       .eq('id', contentSuggestion.id)
 
     if (updateError) {

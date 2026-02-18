@@ -22,7 +22,7 @@ export default function CreateContentPage() {
   const [error, setError] = useState<string | null>(null)
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
   const [generatingSlides, setGeneratingSlides] = useState(false)
-  const [slides, setSlides] = useState<any>(null)
+  const [slides, setSlides] = useState<any>(null) // V1 - template padrão
   const [slidesError, setSlidesError] = useState<string | null>(null)
   const [loadingExisting, setLoadingExisting] = useState(true)
   const [approvingCarousel, setApprovingCarousel] = useState<number | null>(null)
@@ -37,6 +37,7 @@ export default function CreateContentPage() {
 
   // Template V2 (fal.ai)
   const [generatingSlidesV2, setGeneratingSlidesV2] = useState(false)
+  const [slidesV2, setSlidesV2] = useState<any>(null) // V2 - template com IA
   const [slidesV2Error, setSlidesV2Error] = useState<string | null>(null)
 
   // Seleção de carrosséis para gerar slides
@@ -66,7 +67,11 @@ export default function CreateContentPage() {
           }
           if (data.slides) {
             setSlides(data.slides)
-            console.log('✅ Slides existentes carregados')
+            console.log('✅ Slides V1 existentes carregados')
+          }
+          if (data.slides_v2) {
+            setSlidesV2(data.slides_v2)
+            console.log('✅ Slides V2 existentes carregados')
           }
         }
       } catch (err) {
@@ -288,7 +293,7 @@ CTA: ${carousel.cta}
       }
 
       const data = await response.json()
-      setSlides(data)
+      setSlidesV2(data)
     } catch (err: any) {
       console.error('Erro ao gerar slides V2:', err)
       setSlidesV2Error(err.message)
@@ -488,7 +493,7 @@ CTA: ${carousel.cta}
         </div>
 
         <div className="flex items-center gap-2">
-          {slides && (
+          {(slides || slidesV2) && (
             <Button
               variant="secondary"
               onClick={() => router.push(`/dashboard/audits/${id}/slides`)}
@@ -701,13 +706,13 @@ CTA: ${carousel.cta}
           )}
 
           {/* Slides Results */}
-          {slides && (
+          {(slides || slidesV2) && (
             <Card className="bg-gradient-to-br from-success-500/10 to-success-500/5 border-success-500/20">
               <CardHeader>
                 <div className="flex items-center justify-between flex-wrap gap-3">
                   <CardTitle className="flex items-center gap-2">
                     <ImageIcon className="w-5 h-5" />
-                    Slides Visuais Gerados ({slides.summary.totalSlides} imagens)
+                    Slides Visuais Gerados ({(slides?.summary?.totalSlides || 0) + (slidesV2?.summary?.totalSlides || 0)} imagens)
                   </CardTitle>
                   <div className="flex gap-2">
                     <Button
@@ -759,39 +764,92 @@ CTA: ${carousel.cta}
                 )}
               </CardHeader>
               <CardContent>
-                <div className="space-y-6">
-                  {slides.carousels.map((carousel: any, idx: number) => (
-                    <div key={idx}>
-                      <h4 className="font-semibold mb-3">{carousel.title}</h4>
-                      <div className="grid grid-cols-3 gap-4">
-                        {carousel.slides.map((slide: any) => (
-                          <a
-                            key={slide.slideNumber}
-                            href={slide.cloudinaryUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block group"
-                          >
-                            <div className="relative aspect-[4/5] rounded-lg overflow-hidden border border-neutral-700 hover:border-primary-500 transition-all">
-                              <img
-                                src={slide.cloudinaryUrl}
-                                alt={`Slide ${slide.slideNumber}`}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                              />
-                              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                <span className="text-white font-semibold">
-                                  Ver em Tamanho Real
-                                </span>
-                              </div>
-                              <div className="absolute top-2 right-2 bg-primary-500 text-white px-2 py-1 rounded text-xs font-semibold">
-                                {slide.slideNumber}/{carousel.slides.length}
-                              </div>
-                            </div>
-                          </a>
-                        ))}
+                <div className="space-y-8">
+                  {/* Template Padrão V1 */}
+                  {slides && (
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2">
+                        <Badge variant="neutral" className="flex items-center gap-1 text-xs">
+                          <ImageIcon className="w-3 h-3" />
+                          Template Padrão
+                        </Badge>
+                        <span className="text-xs text-neutral-500">{slides.summary?.totalSlides} slides</span>
                       </div>
+                      {slides.carousels.map((carousel: any, idx: number) => (
+                        <div key={idx}>
+                          <h4 className="font-semibold mb-3 text-sm text-neutral-300">{carousel.title}</h4>
+                          <div className="grid grid-cols-3 gap-3">
+                            {carousel.slides.map((slide: any) => (
+                              <a
+                                key={slide.slideNumber}
+                                href={slide.cloudinaryUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block group"
+                              >
+                                <div className="relative aspect-[4/5] rounded-lg overflow-hidden border border-neutral-700 hover:border-primary-500 transition-all">
+                                  <img
+                                    src={slide.cloudinaryUrl}
+                                    alt={`Slide ${slide.slideNumber}`}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                  />
+                                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <span className="text-white text-xs font-semibold">Ver tamanho real</span>
+                                  </div>
+                                  <div className="absolute top-2 right-2 bg-primary-500 text-white px-2 py-1 rounded text-xs font-semibold">
+                                    {slide.slideNumber}/{carousel.slides.length}
+                                  </div>
+                                </div>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  )}
+
+                  {/* Template com IA V2 */}
+                  {slidesV2 && (
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2">
+                        <Badge variant="info" className="flex items-center gap-1 text-xs">
+                          <Sparkles className="w-3 h-3" />
+                          Template com IA
+                        </Badge>
+                        <span className="text-xs text-neutral-500">{slidesV2.summary?.totalSlides} slides</span>
+                      </div>
+                      {slidesV2.carousels.map((carousel: any, idx: number) => (
+                        <div key={idx}>
+                          <h4 className="font-semibold mb-3 text-sm text-neutral-300">{carousel.title}</h4>
+                          <div className="grid grid-cols-3 gap-3">
+                            {carousel.slides.map((slide: any) => (
+                              <a
+                                key={slide.slideNumber}
+                                href={slide.cloudinaryUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block group"
+                              >
+                                <div className="relative aspect-[4/5] rounded-lg overflow-hidden border border-neutral-700 hover:border-info-500 transition-all">
+                                  <img
+                                    src={slide.cloudinaryUrl}
+                                    alt={`Slide ${slide.slideNumber}`}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                                  />
+                                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <span className="text-white text-xs font-semibold">Ver tamanho real</span>
+                                  </div>
+                                  <div className="absolute top-2 right-2 bg-info-500 text-white px-2 py-1 rounded text-xs font-semibold">
+                                    {slide.slideNumber}/{carousel.slides.length}
+                                  </div>
+                                </div>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
