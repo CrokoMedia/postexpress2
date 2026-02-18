@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
-import puppeteer from 'puppeteer'
+import { getBrowser } from '@/lib/browser'
 import cloudinary from 'cloudinary'
 import fs from 'fs'
 import path from 'path'
@@ -64,10 +64,7 @@ export async function POST(
 
     console.log(`🎨 Gerando slides para ${approvedCarousels.length} carrosséis aprovados (de ${carousels.length} totais)...`)
 
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    })
+    const browser = await getBrowser()
 
     const results = []
 

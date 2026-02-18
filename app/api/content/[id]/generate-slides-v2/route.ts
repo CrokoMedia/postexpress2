@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { generateContentImage } from '@/lib/fal-image'
-import puppeteer from 'puppeteer'
+import { getBrowser } from '@/lib/browser'
 import cloudinary from 'cloudinary'
 import fs from 'fs'
 import path from 'path'
@@ -73,10 +73,7 @@ export async function POST(
       .filter(Boolean)
       .join('. ')
 
-    const browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    })
+    const browser = await getBrowser()
 
     const results = []
 
