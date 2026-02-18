@@ -249,12 +249,8 @@ function generateSlideHTML({
   <meta charset="UTF-8">
   <title>Slide ${slideNumber}/${totalSlides} — @${username}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Emoji&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
   <style>
-    @font-face {
-      font-family: 'Noto Emoji';
-      src: url('https://fonts.gstatic.com/s/notoemoji/v47/bMrnmSyK7YY-MEu6aWjPDs-ar6uWaGWuob-r0jwvS-FGJCMY.woff2') format('woff2');
-    }
     @font-face {
       font-family: 'Chirp';
       src: url('https://abs.twimg.com/fonts/chirp-regular-web.woff') format('woff');
@@ -273,7 +269,7 @@ function generateSlideHTML({
       width: 1080px;
       height: 1350px;
       background: #ffffff;
-      font-family: 'Chirp', 'Noto Emoji', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Chirp', 'Noto Color Emoji', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: #0f1419;
       display: flex;
       justify-content: center;

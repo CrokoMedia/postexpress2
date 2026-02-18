@@ -301,13 +301,7 @@ function generateSlideHTMLV2({
   <meta charset="UTF-8">
   <title>Slide ${slideNumber}/${totalSlides} — @${username}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Emoji&display=swap" rel="stylesheet">
-  <style>
-    @font-face {
-      font-family: 'Noto Emoji';
-      src: url('https://fonts.gstatic.com/s/notoemoji/v47/bMrnmSyK7YY-MEu6aWjPDs-ar6uWaGWuob-r0jwvS-FGJCMY.woff2') format('woff2');
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { margin: 0; padding: 0; background: #ffffff; }
@@ -316,7 +310,7 @@ function generateSlideHTMLV2({
       width: 1080px;
       height: 1350px;
       background: #ffffff;
-      font-family: 'Inter', 'Noto Emoji', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Inter', 'Noto Color Emoji', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: #0f1419;
       display: flex;
       flex-direction: column;
