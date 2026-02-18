@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { generateContentImage } from '@/lib/fal-image'
 import { getBrowser } from '@/lib/browser'
+import { replaceEmojisWithAppleImages } from '@/lib/emoji-utils'
 import cloudinary from 'cloudinary'
 import fs from 'fs'
 import path from 'path'
@@ -302,7 +303,7 @@ function generateSlideHTMLV2({
   <meta charset="UTF-8">
   <title>Slide ${slideNumber}/${totalSlides} — @${username}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { margin: 0; padding: 0; background: #ffffff; }
@@ -437,8 +438,8 @@ function generateSlideHTMLV2({
       </div>
     </div>
 
-    <div class="slide-titulo">${titulo}</div>
-    ${corpo ? `<div class="slide-corpo">${corpo.split('\n').map((p: string) => p.trim()).filter((p: string) => p.length > 0).map((p: string) => `<p>${p}</p>`).join('')}</div>` : ''}
+    <div class="slide-titulo">${replaceEmojisWithAppleImages(titulo)}</div>
+    ${corpo ? `<div class="slide-corpo">${corpo.split('\n').map((p: string) => p.trim()).filter((p: string) => p.length > 0).map((p: string) => `<p>${replaceEmojisWithAppleImages(p)}</p>`).join('')}</div>` : ''}
     <div class="content-image">
       ${contentImageSection}
     </div>

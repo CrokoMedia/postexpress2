@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { getBrowser } from '@/lib/browser'
+import { replaceEmojisWithAppleImages } from '@/lib/emoji-utils'
 import cloudinary from 'cloudinary'
 import fs from 'fs'
 import path from 'path'
@@ -249,8 +250,6 @@ function generateSlideHTML({
 <head>
   <meta charset="UTF-8">
   <title>Slide ${slideNumber}/${totalSlides} — @${username}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'Chirp';
@@ -379,8 +378,10 @@ function formatTextToHTML(text: string): string {
 
   // Formatar cada parágrafo
   const formatted = paragraphs.map(p => {
+    // Substituir emojis por imagens Apple antes de outros processamentos
+    const withEmojis = replaceEmojisWithAppleImages(p)
     // Aplicar negrito em palavras em CAPS
-    const withBold = p.replace(/\b([A-ZÀ-Ú]{2,})\b/g, '<strong>$1</strong>')
+    const withBold = withEmojis.replace(/\b([A-ZÀ-Ú]{2,})\b/g, '<strong>$1</strong>')
     return `<p>${withBold}</p>`
   })
 
