@@ -89,7 +89,7 @@ export async function POST(
         console.log(`   🖼️  Gerando ${slideName}...`)
 
         // Gerar HTML do slide
-        const html = generateSlideHTML({
+        const html = await generateSlideHTML({
           text: formatSlideText(slide),
           profilePicUrl: profile?.profile_pic_cloudinary_url || profile?.profile_pic_url_hd || '',
           username: profile?.username || '',
@@ -230,7 +230,7 @@ export async function POST(
 /**
  * Gera HTML para um slide individual
  */
-function generateSlideHTML({
+async function generateSlideHTML({
   text,
   profilePicUrl,
   username,
@@ -244,7 +244,8 @@ function generateSlideHTML({
   fullName: string
   slideNumber: number
   totalSlides: number
-}): string {
+}): Promise<string> {
+  const formattedContent = await formatTextToHTML(text)
   return `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -358,7 +359,7 @@ function generateSlideHTML({
         </div>
       </div>
       <div class="content">
-        ${formatTextToHTML(text)}
+        ${formattedContent}
       </div>
       <div class="footer">
         <div class="slide-number">${slideNumber}/${totalSlides}</div>
@@ -372,18 +373,18 @@ function generateSlideHTML({
 /**
  * Formata texto para HTML com quebras de linha e negrito
  */
-function formatTextToHTML(text: string): string {
+async function formatTextToHTML(text: string): Promise<string> {
   // Quebrar em parágrafos
   const paragraphs = text.split('\n').filter(p => p.trim())
 
   // Formatar cada parágrafo
-  const formatted = paragraphs.map(p => {
+  const formatted = await Promise.all(paragraphs.map(async p => {
     // Substituir emojis por imagens Apple antes de outros processamentos
-    const withEmojis = replaceEmojisWithAppleImages(p)
+    const withEmojis = await replaceEmojisWithAppleImages(p)
     // Aplicar negrito em palavras em CAPS
     const withBold = withEmojis.replace(/\b([A-ZÀ-Ú]{2,})\b/g, '<strong>$1</strong>')
     return `<p>${withBold}</p>`
-  })
+  }))
 
   return formatted.join('\n        ')
 }

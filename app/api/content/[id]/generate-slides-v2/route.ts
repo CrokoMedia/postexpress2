@@ -119,7 +119,7 @@ export async function POST(
         }
 
         // Gerar HTML V2 do slide
-        const html = generateSlideHTMLV2({
+        const html = await generateSlideHTMLV2({
           titulo,
           corpo,
           contentImageUrl,
@@ -266,7 +266,7 @@ export async function POST(
  * Gera HTML para um slide individual usando o template V2 (1080x1350px)
  * com foto de perfil, badge verificado e imagem gerada por IA
  */
-function generateSlideHTMLV2({
+async function generateSlideHTMLV2({
   titulo,
   corpo,
   contentImageUrl,
@@ -284,7 +284,18 @@ function generateSlideHTMLV2({
   fullName: string
   slideNumber: number
   totalSlides: number
-}): string {
+}): Promise<string> {
+  // Pré-processar emojis em título e parágrafos do corpo
+  const tituloHtml = await replaceEmojisWithAppleImages(titulo)
+  const corpoHtml = corpo
+    ? await Promise.all(
+        corpo.split('\n')
+          .map(p => p.trim())
+          .filter(p => p.length > 0)
+          .map(async p => `<p>${await replaceEmojisWithAppleImages(p)}</p>`)
+      ).then(parts => parts.join(''))
+    : ''
+
   // Badge verificado Twitter/X (SVG inline, azul #1D9BF0, 52x52px)
   const verifiedBadgeSVG = `<svg width="32" height="32" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="26" cy="26" r="26" fill="#1D9BF0"/>
@@ -438,8 +449,8 @@ function generateSlideHTMLV2({
       </div>
     </div>
 
-    <div class="slide-titulo">${replaceEmojisWithAppleImages(titulo)}</div>
-    ${corpo ? `<div class="slide-corpo">${corpo.split('\n').map((p: string) => p.trim()).filter((p: string) => p.length > 0).map((p: string) => `<p>${replaceEmojisWithAppleImages(p)}</p>`).join('')}</div>` : ''}
+    <div class="slide-titulo">${tituloHtml}</div>
+    ${corpoHtml ? `<div class="slide-corpo">${corpoHtml}</div>` : ''}
     <div class="content-image">
       ${contentImageSection}
     </div>
