@@ -250,7 +250,7 @@ function generateSlideHTML({
   <meta charset="UTF-8">
   <title>Slide ${slideNumber}/${totalSlides} — @${username}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'Chirp';
@@ -265,13 +265,12 @@ function generateSlideHTML({
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { margin: 0; padding: 0; }
-    img.emoji { height: 1em; width: 1em; margin: 0 0.05em 0 0.1em; vertical-align: -0.1em; display: inline; }
 
     .slide {
       width: 1080px;
       height: 1350px;
       background: #ffffff;
-      font-family: 'Chirp', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Chirp', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Emoji", sans-serif;
       color: #0f1419;
       display: flex;
       justify-content: center;
@@ -367,11 +366,6 @@ function generateSlideHTML({
       </div>
     </div>
   </div>
-  <script>
-    if (typeof twemoji !== 'undefined') {
-      twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
-    }
-  </script>
 </body>
 </html>`
 }
