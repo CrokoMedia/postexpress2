@@ -153,7 +153,7 @@ async function processAnalysis(item: QueueItem): Promise<void> {
       progress: 60
     })
 
-    const analysisResult = await runCompleteAnalysis(username, skip_ocr)
+    const analysisResult = await runCompleteAnalysis(username, skip_ocr, post_limit)
 
     if (!analysisResult.success) {
       throw new Error(`Análise completa falhou: ${analysisResult.error}`)

@@ -150,9 +150,10 @@ export async function runOCRAnalysis(
  */
 export async function runCompleteAnalysis(
   username: string,
-  skipOcr: boolean = false
+  skipOcr: boolean = false,
+  postLimit: number = 10
 ): Promise<ScriptResult> {
-  const args = [username]
+  const args = [username, `--limit=${postLimit}`]
 
   if (skipOcr) {
     args.push('--skip-ocr')
