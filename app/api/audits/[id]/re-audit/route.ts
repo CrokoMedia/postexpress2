@@ -387,8 +387,14 @@ ${context.tom_voz || 'Não especificado'}
 ${context.contexto_adicional || 'Não especificado'}
 
 ${context.files && context.files.length > 0 ? `
-**Arquivos Anexados:**
-${context.files.map((f: any) => `- ${f.name} (${f.type})`).join('\n')}
+**Documentos Anexados:**
+${context.files.map((f: any) => {
+  const header = `### ${f.name} (${f.type})`
+  if (f.extractionStatus === 'completed' && f.extractedText) {
+    return `${header}\n${f.extractedText.slice(0, 3000)}${f.extractedText.length > 3000 ? '\n[... conteúdo truncado ...]' : ''}`
+  }
+  return `${header}\n[Texto não disponível: ${f.extractionError || 'arquivo sem texto extraído'}]`
+}).join('\n\n')}
 ` : ''}
 
 ---
@@ -537,8 +543,14 @@ ${context.tom_voz || 'Não especificado'}
 ${context.contexto_adicional || 'Não especificado'}
 
 ${context.files && context.files.length > 0 ? `
-**Arquivos Anexados:**
-${context.files.map((f: any) => `- ${f.name} (${f.type})`).join('\n')}
+**Documentos Anexados:**
+${context.files.map((f: any) => {
+  const header = `### ${f.name} (${f.type})`
+  if (f.extractionStatus === 'completed' && f.extractedText) {
+    return `${header}\n${f.extractedText.slice(0, 3000)}${f.extractedText.length > 3000 ? '\n[... conteúdo truncado ...]' : ''}`
+  }
+  return `${header}\n[Texto não disponível: ${f.extractionError || 'arquivo sem texto extraído'}]`
+}).join('\n\n')}
 ` : ''}
 
 ---

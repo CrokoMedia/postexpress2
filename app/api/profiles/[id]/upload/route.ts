@@ -3,6 +3,7 @@ import { getServerSupabase } from '@/lib/supabase'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 import { existsSync } from 'fs'
+import { extractTextFromDocument } from '@/lib/document-extractor'
 
 export async function POST(
   request: NextRequest,
@@ -81,7 +82,28 @@ export async function POST(
     // URL relativa para servir o arquivo
     const fileUrl = `/uploads/profile-context/${id}/${fileName}`
 
-    // Retornar metadata
+    // Extrair texto do documento
+    let extractedText: string | null = null
+    let extractionStatus = 'failed'
+    let extractionError: string | null = null
+    let wordCount: number | undefined
+    let pages: number | undefined
+
+    try {
+      const extraction = await extractTextFromDocument(buffer, file.type)
+      if (extraction.success && extraction.text) {
+        extractedText = extraction.text
+        extractionStatus = 'completed'
+        wordCount = extraction.wordCount
+        pages = extraction.pages
+      } else {
+        extractionError = extraction.error || 'Texto não extraível'
+      }
+    } catch (err: any) {
+      extractionError = err.message
+    }
+
+    // Retornar metadata + texto extraído
     return NextResponse.json({
       success: true,
       file: {
@@ -89,7 +111,12 @@ export async function POST(
         url: fileUrl,
         type: file.type,
         size: file.size,
-        uploadedAt: new Date().toISOString()
+        uploadedAt: new Date().toISOString(),
+        extractedText,
+        extractionStatus,
+        extractionError,
+        wordCount,
+        pages
       }
     })
 

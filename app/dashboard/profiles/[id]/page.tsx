@@ -481,30 +481,39 @@ export default function ProfilePage() {
                   <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-2">
                     Arquivos Anexados ({contextData.files.length})
                   </p>
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {contextData.files.map((file: any, idx: number) => (
-                      <div
-                        key={idx}
-                        className="flex items-center gap-3 bg-neutral-800/60 rounded-lg px-3 py-2"
-                      >
-                        <FileText className="h-4 w-4 text-primary-400 shrink-0" />
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-neutral-200 truncate">
-                            {file.name}
-                          </p>
-                          <p className="text-xs text-neutral-500">
-                            {file.type} • {file.size ? `${(file.size / 1024).toFixed(1)} KB` : 'Tamanho desconhecido'}
-                          </p>
+                      <div key={idx} className="bg-neutral-800/60 rounded-lg px-3 py-3">
+                        <div className="flex items-center gap-3 mb-2">
+                          <FileText className="h-4 w-4 text-primary-400 shrink-0" />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-neutral-200 truncate">
+                              {file.name}
+                            </p>
+                            <p className="text-xs text-neutral-500">
+                              {file.type} • {file.size ? `${(file.size / 1024).toFixed(1)} KB` : ''}
+                              {file.wordCount ? ` • ${file.wordCount.toLocaleString()} palavras` : ''}
+                              {file.pages ? ` • ${file.pages} págs` : ''}
+                            </p>
+                          </div>
+                          <Badge
+                            variant={file.extractionStatus === 'completed' ? 'success' : file.extractionStatus === 'failed' ? 'error' : 'warning'}
+                            className="text-xs shrink-0"
+                          >
+                            {file.extractionStatus === 'completed' ? 'Texto extraído' : file.extractionStatus === 'failed' ? 'Falha' : 'Só metadados'}
+                          </Badge>
                         </div>
-                        <Badge variant="warning" className="text-xs shrink-0">
-                          Só metadados
-                        </Badge>
+                        {file.extractedText && (
+                          <p className="text-xs text-neutral-400 bg-neutral-900/50 rounded p-2 max-h-24 overflow-y-auto whitespace-pre-wrap">
+                            {file.extractedText.slice(0, 400)}{file.extractedText.length > 400 ? '...' : ''}
+                          </p>
+                        )}
+                        {file.extractionError && (
+                          <p className="text-xs text-error-400 mt-1">{file.extractionError}</p>
+                        )}
                       </div>
                     ))}
                   </div>
-                  <p className="text-xs text-warning-400 mt-2">
-                    ⚠️ Os arquivos estão salvos mas o texto ainda não é extraído. A extração de PDF/DOCX será implementada em breve.
-                  </p>
                 </div>
               )}
             </CardContent>

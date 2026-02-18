@@ -4,17 +4,20 @@
  * Extrai texto de documentos PDF, DOCX, TXT
  */
 
-import { createWorker } from 'tesseract.js'
+const pdfParse = require('pdf-parse') // eslint-disable-line
+const mammoth = require('mammoth') // eslint-disable-line
 
 export interface ExtractionResult {
   text: string
   success: boolean
   error?: string
   method: 'direct' | 'ocr' | 'unsupported'
+  pages?: number
+  wordCount?: number
 }
 
 /**
- * Extrai texto de arquivo TXT
+ * Extrai texto de arquivo TXT ou CSV
  */
 async function extractFromTxt(buffer: Buffer): Promise<ExtractionResult> {
   try {
@@ -22,7 +25,8 @@ async function extractFromTxt(buffer: Buffer): Promise<ExtractionResult> {
     return {
       text,
       success: true,
-      method: 'direct'
+      method: 'direct',
+      wordCount: text.split(/\s+/).filter(Boolean).length
     }
   } catch (error: any) {
     return {
@@ -35,49 +39,68 @@ async function extractFromTxt(buffer: Buffer): Promise<ExtractionResult> {
 }
 
 /**
- * Extrai texto de PDF usando OCR (Tesseract.js)
- * Nota: Para produção, considere usar bibliotecas como pdf-parse ou pdfjs-dist
+ * Extrai texto de PDF usando pdf-parse
  */
 async function extractFromPdf(buffer: Buffer): Promise<ExtractionResult> {
   try {
-    // Para simplificar, vamos retornar erro e sugerir usar biblioteca específica
-    // Em produção, use: npm install pdf-parse
+    const data = await pdfParse(buffer)
+    const text = data.text?.trim() || ''
+
+    if (!text) {
+      return {
+        text: '',
+        success: false,
+        error: 'PDF não contém texto extraível (pode ser um PDF escaneado/imagem)',
+        method: 'direct'
+      }
+    }
+
     return {
-      text: '',
-      success: false,
-      error: 'PDF extraction requires pdf-parse library. Install: npm install pdf-parse',
-      method: 'unsupported'
+      text,
+      success: true,
+      method: 'direct',
+      pages: data.numpages,
+      wordCount: text.split(/\s+/).filter(Boolean).length
     }
   } catch (error: any) {
     return {
       text: '',
       success: false,
-      error: error.message,
-      method: 'unsupported'
+      error: `Erro ao extrair PDF: ${error.message}`,
+      method: 'direct'
     }
   }
 }
 
 /**
- * Extrai texto de DOCX
- * Nota: Para produção, use biblioteca mammoth
+ * Extrai texto de DOCX usando mammoth
  */
 async function extractFromDocx(buffer: Buffer): Promise<ExtractionResult> {
   try {
-    // Para simplificar, vamos retornar erro e sugerir usar biblioteca específica
-    // Em produção, use: npm install mammoth
+    const result = await mammoth.extractRawText({ buffer })
+    const text = result.value?.trim() || ''
+
+    if (!text) {
+      return {
+        text: '',
+        success: false,
+        error: 'DOCX não contém texto extraível',
+        method: 'direct'
+      }
+    }
+
     return {
-      text: '',
-      success: false,
-      error: 'DOCX extraction requires mammoth library. Install: npm install mammoth',
-      method: 'unsupported'
+      text,
+      success: true,
+      method: 'direct',
+      wordCount: text.split(/\s+/).filter(Boolean).length
     }
   } catch (error: any) {
     return {
       text: '',
       success: false,
-      error: error.message,
-      method: 'unsupported'
+      error: `Erro ao extrair DOCX: ${error.message}`,
+      method: 'direct'
     }
   }
 }
@@ -90,7 +113,7 @@ export async function extractTextFromDocument(
   mimeType: string
 ): Promise<ExtractionResult> {
   // Detectar tipo do arquivo
-  if (mimeType === 'text/plain') {
+  if (mimeType === 'text/plain' || mimeType === 'text/csv') {
     return extractFromTxt(buffer)
   }
 
