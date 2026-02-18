@@ -137,11 +137,8 @@ export async function POST(
 
         // Aplicar Twemoji para emojis coloridos
         await page.evaluate(() => {
-          // @ts-ignore
-          if (typeof twemoji !== 'undefined') {
-            // @ts-ignore
-            twemoji.parse(document.body, { folder: 'svg', ext: '.svg' })
-          }
+          const tw = (window as unknown as Record<string, unknown>)['twemoji'] as { parse: (el: Element, opts: object) => void } | undefined
+          if (tw) tw.parse(document.body, { folder: 'svg', ext: '.svg' })
         })
 
         // Criar diretório temporário
