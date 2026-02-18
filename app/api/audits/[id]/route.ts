@@ -62,10 +62,18 @@ export async function GET(
       .is('deleted_at', null)
       .single()
 
-    if (error) throw error
+    if (error) {
+      if (error.code === 'PGRST116') {
+        return NextResponse.json(
+          { error: 'Auditoria não encontrada' },
+          { status: 404 }
+        )
+      }
+      throw error
+    }
     if (!audit) {
       return NextResponse.json(
-        { error: 'Audit not found' },
+        { error: 'Auditoria não encontrada' },
         { status: 404 }
       )
     }

@@ -276,18 +276,30 @@ export async function POST(
       .eq('audit_id', id)
       .single()
 
+    let contentSuggestionId: string
+
     if (existing) {
       // Atualizar existente
-      await supabase
+      const { error: updateError } = await supabase
         .from('content_suggestions')
         .update({
           content_json: contentResult,
           generated_at: new Date().toISOString()
         })
         .eq('audit_id', id)
+
+      if (updateError) {
+        console.error('❌ Erro ao atualizar conteúdo no banco:', updateError)
+        return NextResponse.json(
+          { error: 'Erro ao salvar conteúdo no banco', details: updateError.message },
+          { status: 500 }
+        )
+      }
+
+      contentSuggestionId = existing.id
     } else {
       // Criar novo
-      await supabase
+      const { data: newRecord, error: insertError } = await supabase
         .from('content_suggestions')
         .insert({
           audit_id: id,
@@ -295,7 +307,30 @@ export async function POST(
           content_json: contentResult,
           generated_at: new Date().toISOString()
         })
+        .select('id')
+        .single()
+
+      if (insertError || !newRecord) {
+        console.error('❌ Erro ao criar conteúdo no banco:', insertError)
+        return NextResponse.json(
+          { error: 'Erro ao salvar conteúdo no banco', details: insertError?.message },
+          { status: 500 }
+        )
+      }
+
+      contentSuggestionId = newRecord.id
     }
+
+    // Garantir que exista link em content_profile_links (para aparecer na página de perfil)
+    await supabase
+      .from('content_profile_links')
+      .upsert({
+        content_id: contentSuggestionId,
+        profile_id: audit.profile_id,
+        link_type: 'original',
+        linked_at: new Date().toISOString(),
+        deleted_at: null
+      }, { onConflict: 'content_id,profile_id', ignoreDuplicates: false })
 
     console.log('✅ Conteúdo salvo no banco')
 

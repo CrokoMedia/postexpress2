@@ -48,19 +48,31 @@ export async function GET(
     if (linkError) throw linkError
 
     // Formatar dados para estrutura consistente
-    const formattedContents = (linkedContent || []).map((link: any) => ({
-      id: link.content.id,
-      content_json: link.content.content_json,
-      slides_json: link.content.slides_json,
-      generated_at: link.content.generated_at,
-      audit: link.content.audit,
-      // Metadados de vinculação
-      link_type: link.link_type,
-      linked_at: link.linked_at,
-      link_notes: link.notes,
-      is_original: link.content.profile_id === id,
-      original_profile: link.content.original_profile
-    }))
+    // Filtrar conteúdos onde a auditoria foi deletada (soft delete) ou está ausente
+    const formattedContents = (linkedContent || [])
+      .filter((link: any) => {
+        const audit = link.content?.audit
+        // Supabase pode retornar audit como array (relação ambígua) ou objeto
+        if (Array.isArray(audit)) return audit.length > 0 && audit[0]?.id
+        return audit?.id
+      })
+      .map((link: any) => {
+        const rawAudit = link.content.audit
+        const audit = Array.isArray(rawAudit) ? rawAudit[0] : rawAudit
+        return {
+          id: link.content.id,
+          content_json: link.content.content_json,
+          slides_json: link.content.slides_json,
+          generated_at: link.content.generated_at,
+          audit,
+          // Metadados de vinculação
+          link_type: link.link_type,
+          linked_at: link.linked_at,
+          link_notes: link.notes,
+          is_original: link.content.profile_id === id,
+          original_profile: link.content.original_profile
+        }
+      })
 
     return NextResponse.json({
       contents: formattedContents,

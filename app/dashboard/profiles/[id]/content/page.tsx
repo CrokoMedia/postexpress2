@@ -187,7 +187,8 @@ export default function ProfileContentPage() {
                       <Button
                         variant="secondary"
                         size="sm"
-                        onClick={() => router.push(`/dashboard/audits/${audit.id}/create-content`)}
+                        onClick={() => audit?.id && router.push(`/dashboard/audits/${audit.id}/create-content`)}
+                        disabled={!audit?.id}
                       >
                         <ExternalLink className="w-4 h-4 mr-2" />
                         Ver Detalhes

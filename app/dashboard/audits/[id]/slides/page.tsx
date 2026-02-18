@@ -209,7 +209,7 @@ export default function SlidesPage() {
             </h3>
             <p className="text-neutral-500 max-w-md mx-auto">
               Aprove um carrossel na central de conteúdo e clique em
-              "Gerar Slides Visuais" ou "Gerar com IA (novo template)".
+              &quot;Gerar Slides Visuais&quot; ou &quot;Gerar com IA (novo template)&quot;.
             </p>
             <Button
               onClick={() => router.push(`/dashboard/audits/${id}/create-content`)}

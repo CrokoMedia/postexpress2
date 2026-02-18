@@ -18,40 +18,39 @@ Analise o texto abaixo (que vem de uma conversa com o Content Squad) e extraia o
 
 Se o texto já contém slides numerados ou estrutura de carrossel, extraia esses dados.
 Se o texto contém ideias, temas ou sugestões, transforme-os em um carrossel coerente.
+Se o texto for curto ou genérico, crie um carrossel de qualidade baseado no tema identificado.
 
 # OUTPUT ESPERADO
 
-Retorne um JSON com esta estrutura EXATA:
+Retorne SOMENTE o JSON abaixo, sem nenhum texto antes ou depois, sem blocos de código markdown, sem explicações:
 
-\`\`\`json
 {
   "titulo": "string (título do carrossel)",
-  "tipo": "educacional|vendas|autoridade|viral",
+  "tipo": "educacional",
   "objetivo": "string (objetivo do carrossel)",
   "baseado_em": "Sugestão do Content Squad (chat)",
   "slides": [
     {
       "numero": 1,
-      "tipo": "hook|conteudo|cta",
+      "tipo": "hook",
       "titulo": "string (título do slide)",
       "corpo": "string (texto do slide)",
       "notas_design": "string (sugestões visuais)"
     }
   ],
   "caption": "string (legenda do Instagram)",
-  "hashtags": ["string"],
+  "hashtags": ["hashtag1", "hashtag2"],
   "cta": "string (call to action)"
 }
-\`\`\`
 
-# REGRAS
-1. **Retorne APENAS o JSON** - sem texto adicional, sem markdown
-2. Crie entre 4 e 8 slides se não houver slides definidos no texto
-3. O primeiro slide deve ser sempre hook, o último sempre cta
-4. Se o texto não tiver conteúdo suficiente, crie um carrossel genérico de alta qualidade baseado no tema identificado
-5. tipo deve ser um de: educacional, vendas, autoridade, viral
+# REGRAS OBRIGATÓRIAS
+1. Responda SOMENTE com o JSON — zero texto adicional, zero markdown, zero explicações
+2. Crie entre 4 e 8 slides
+3. O primeiro slide deve ser tipo "hook", o último tipo "cta"
+4. tipo do carrossel deve ser exatamente um de: educacional, vendas, autoridade, viral
+5. tipo de cada slide deve ser exatamente um de: hook, conteudo, cta
 
-Texto do Content Squad para transformar em carrossel:`
+Texto para transformar em carrossel:`
 
 /**
  * POST /api/profiles/[id]/save-to-content
@@ -97,15 +96,35 @@ export async function POST(
 
     const rawText = response.content[0].type === 'text' ? response.content[0].text : ''
 
-    // Extrair JSON da resposta
+    // Extrair JSON da resposta com múltiplas tentativas
     let carousel: any
     try {
-      // Tentar extrair JSON de blocos de código markdown
-      const jsonMatch = rawText.match(/```(?:json)?\s*([\s\S]*?)\s*```/)
-      const jsonStr = jsonMatch ? jsonMatch[1] : rawText.trim()
-      carousel = JSON.parse(jsonStr)
+      let jsonText = rawText.trim()
+
+      // Tentar extrair de bloco de código markdown (múltiplos formatos)
+      const patterns = [
+        /```json\n([\s\S]*?)\n```/,
+        /```json([\s\S]*?)```/,
+        /```\n([\s\S]*?)\n```/,
+        /```([\s\S]*?)```/
+      ]
+
+      for (const pattern of patterns) {
+        const match = jsonText.match(pattern)
+        if (match) {
+          jsonText = match[1].trim()
+          break
+        }
+      }
+
+      // Limpar resíduos de markdown
+      jsonText = jsonText.replace(/^```json\s*/g, '').replace(/^```\s*/g, '').replace(/\s*```$/g, '')
+
+      console.log('📝 JSON extraído para carrossel (primeiros 300 chars):', jsonText.substring(0, 300))
+
+      carousel = JSON.parse(jsonText)
     } catch {
-      console.error('Falha ao parsear JSON do Claude:', rawText)
+      console.error('Falha ao parsear JSON do Claude. Resposta completa:', rawText.substring(0, 1000))
       return NextResponse.json(
         { error: 'Não foi possível estruturar o conteúdo como carrossel. Tente com um texto mais detalhado.' },
         { status: 422 }
@@ -123,6 +142,8 @@ export async function POST(
       .select('id, content_json')
       .eq('audit_id', audit_id)
       .single()
+
+    let contentSuggestionId: string
 
     if (existing) {
       // Adicionar o novo carrossel ao array existente
@@ -148,10 +169,11 @@ export async function POST(
         )
       }
 
+      contentSuggestionId = existing.id
       console.log(`✅ Carrossel adicionado ao content_suggestion existente (audit_id: ${audit_id})`)
     } else {
       // Criar novo content_suggestion
-      const { error: insertError } = await supabase
+      const { data: newRecord, error: insertError } = await supabase
         .from('content_suggestions')
         .insert({
           audit_id,
@@ -163,8 +185,10 @@ export async function POST(
           },
           generated_at: new Date().toISOString()
         })
+        .select('id')
+        .single()
 
-      if (insertError) {
+      if (insertError || !newRecord) {
         console.error('Erro ao criar content_suggestion:', insertError)
         return NextResponse.json(
           { error: 'Erro ao salvar conteúdo' },
@@ -172,8 +196,20 @@ export async function POST(
         )
       }
 
+      contentSuggestionId = newRecord.id
       console.log(`✅ Novo content_suggestion criado (audit_id: ${audit_id})`)
     }
+
+    // Garantir que exista link em content_profile_links (para aparecer na página de perfil)
+    await supabase
+      .from('content_profile_links')
+      .upsert({
+        content_id: contentSuggestionId,
+        profile_id: profileId,
+        link_type: 'original',
+        linked_at: new Date().toISOString(),
+        deleted_at: null
+      }, { onConflict: 'content_id,profile_id', ignoreDuplicates: false })
 
     return NextResponse.json({
       success: true,
