@@ -102,11 +102,6 @@ export async function POST(
         await page.setViewport({ width: 1080, height: 1350 })
         await page.setContent(html, { waitUntil: 'networkidle0' })
 
-        // Aplicar Twemoji para emojis coloridos
-        await page.evaluate(() => {
-          const tw = (window as unknown as Record<string, unknown>)['twemoji'] as { parse: (el: Element, opts: object) => void } | undefined
-          if (tw) tw.parse(document.body, { folder: 'svg', ext: '.svg' })
-        })
 
         // Criar diretório temporário
         const tempDir = path.join('/tmp', 'slides', id)
@@ -372,6 +367,11 @@ function generateSlideHTML({
       </div>
     </div>
   </div>
+  <script>
+    if (typeof twemoji !== 'undefined') {
+      twemoji.parse(document.body, { folder: 'svg', ext: '.svg' });
+    }
+  </script>
 </body>
 </html>`
 }
