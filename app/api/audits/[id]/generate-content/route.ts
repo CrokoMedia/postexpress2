@@ -84,7 +84,8 @@ Retorne um JSON com esta estrutura EXATA:
 3. **Mantenha autenticidade** - Respeite o tom do perfil auditado
 4. **Ação imediata** - Quick wins que pode publicar hoje
 5. **Retorne APENAS o JSON** - Sem texto adicional
-6. **imagem_prompt obrigatório** - Para cada slide, descreva em inglês a fotografia ou cena visual que melhor ilustra aquele slide específico. REGRAS do imagem_prompt:
+6. **Formatação de texto** - Use MAIÚSCULAS apenas para palavras ou frases curtas que devem ter ÊNFASE FORTE (serão convertidas automaticamente para negrito nos slides). Evite frases inteiras em CAPS. Exemplo correto: "A VERDADE sobre marketing" em vez de "A VERDADE SOBRE MARKETING DE CONTEÚDO É QUE VOCÊ PRECISA". Use capitalização normal para o resto do texto.
+7. **imagem_prompt obrigatório** - Para cada slide, descreva em inglês a fotografia ou cena visual que melhor ilustra aquele slide específico. REGRAS do imagem_prompt:
    - Sempre dentro do nicho/área de expertise do perfil auditado (ex: nutricionista → alimentos, academia; coach financeiro → dinheiro, gráficos, escritório)
    - Descreva a cena com detalhes concretos: o que aparece, ambiente, iluminação, ângulo
    - Nunca use texto genérico como "a professional image" ou "a person working"
