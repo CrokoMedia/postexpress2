@@ -369,14 +369,14 @@ async function generateSlideHTMLV2({
     }
 
     .name {
-      font-size: 30px;
+      font-size: 36px;
       font-weight: 700;
       color: #0f1419;
       line-height: 1.2;
     }
 
     .username {
-      font-size: 24px;
+      font-size: 30px;
       font-weight: 400;
       color: #536471;
       line-height: 1.2;

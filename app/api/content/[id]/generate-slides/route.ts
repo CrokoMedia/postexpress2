@@ -288,7 +288,7 @@ async function generateSlideHTML({
     .user-info { flex: 1; }
 
     .name {
-      font-size: 28px;
+      font-size: 36px;
       font-weight: 700;
       line-height: 1.2;
       color: #0f1419;
@@ -296,7 +296,7 @@ async function generateSlideHTML({
     }
 
     .username {
-      font-size: 24px;
+      font-size: 30px;
       font-weight: 400;
       color: #536471;
     }
