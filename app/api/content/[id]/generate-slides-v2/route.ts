@@ -313,8 +313,6 @@ async function generateSlideHTMLV2({
 <head>
   <meta charset="UTF-8">
   <title>Slide ${slideNumber}/${totalSlides} — @${username}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { margin: 0; padding: 0; background: #ffffff; }
@@ -323,7 +321,7 @@ async function generateSlideHTMLV2({
       width: 1080px;
       height: 1350px;
       background: #ffffff;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Emoji", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       color: #0f1419;
       display: flex;
       flex-direction: column;

@@ -252,17 +252,6 @@ async function generateSlideHTML({
   <meta charset="UTF-8">
   <title>Slide ${slideNumber}/${totalSlides} — @${username}</title>
   <style>
-    @font-face {
-      font-family: 'Chirp';
-      src: url('https://abs.twimg.com/fonts/chirp-regular-web.woff') format('woff');
-      font-weight: 400; font-style: normal; font-display: swap;
-    }
-    @font-face {
-      font-family: 'Chirp';
-      src: url('https://abs.twimg.com/fonts/chirp-bold-web.woff') format('woff');
-      font-weight: 700; font-style: normal; font-display: swap;
-    }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { margin: 0; padding: 0; }
 
@@ -270,7 +259,7 @@ async function generateSlideHTML({
       width: 1080px;
       height: 1350px;
       background: #ffffff;
-      font-family: 'Chirp', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Emoji", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       color: #0f1419;
       display: flex;
       justify-content: center;
