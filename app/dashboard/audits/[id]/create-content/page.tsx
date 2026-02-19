@@ -887,6 +887,46 @@ CTA: ${carousel.cta}
             </div>
           )}
 
+          {/* Botões de Geração de Slides (duplicados para conveniência) */}
+          {approvedCarouselsCount > 0 && selectedForSlides.size > 0 && (
+            <div className="flex gap-3 items-center justify-center p-4 bg-gradient-to-r from-primary-500/10 via-primary-500/5 to-primary-500/10 border border-primary-500/20 rounded-xl">
+              <Button
+                variant="primary"
+                onClick={handleGenerateSlides}
+                disabled={generatingSlides}
+              >
+                {generatingSlides ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Gerando Slides...
+                  </>
+                ) : (
+                  <>
+                    <ImageIcon className="w-4 h-4 mr-2" />
+                    Gerar Slides V1 ({selectedForSlides.size})
+                  </>
+                )}
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={handleGenerateSlidesV2}
+                disabled={generatingSlidesV2}
+              >
+                {generatingSlidesV2 ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Gerando com IA...
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-4 h-4 mr-2" />
+                    Gerar com IA V2 ({selectedForSlides.size})
+                  </>
+                )}
+              </Button>
+            </div>
+          )}
+
           {/* Estratégia Geral */}
           {content.estrategia_geral && (
             <Card>
