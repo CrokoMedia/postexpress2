@@ -85,13 +85,21 @@ Retorne um JSON com esta estrutura EXATA:
 4. **Ação imediata** - Quick wins que pode publicar hoje
 5. **Retorne APENAS o JSON** - Sem texto adicional
 6. **Formatação de texto** - Use MAIÚSCULAS apenas para palavras ou frases curtas que devem ter ÊNFASE FORTE (serão convertidas automaticamente para negrito nos slides). Evite frases inteiras em CAPS. Exemplo correto: "A VERDADE sobre marketing" em vez de "A VERDADE SOBRE MARKETING DE CONTEÚDO É QUE VOCÊ PRECISA". Use capitalização normal para o resto do texto.
-7. **imagem_prompt obrigatório** - Para cada slide, descreva em inglês a fotografia ou cena visual que melhor ilustra aquele slide específico. REGRAS do imagem_prompt:
-   - Sempre dentro do nicho/área de expertise do perfil auditado (ex: nutricionista → alimentos, academia; coach financeiro → dinheiro, gráficos, escritório)
-   - Descreva a cena com detalhes concretos: o que aparece, ambiente, iluminação, ângulo
-   - Nunca use texto genérico como "a professional image" ou "a person working"
-   - Nunca inclua texto, letras ou palavras na descrição da imagem
-   - Exemplo para perfil de marketing digital: "entrepreneur reviewing social media analytics dashboard on laptop in a modern office, natural window light, focused expression, clean desk"
-   - Exemplo para perfil de fitness: "personal trainer demonstrating proper squat form in a bright modern gym, athletic wear, mirrors in background, motivational energy"
+7. **imagem_prompt obrigatório** - Para cada slide, crie uma descrição DETALHADA em inglês da fotografia que ilustra o conteúdo. Use esta estrutura:
+
+   **ESTRUTURA OBRIGATÓRIA:** [sujeito principal], [ação/pose específica], [ambiente detalhado], [iluminação], [estilo visual], [detalhes adicionais]
+
+   **REGRAS CRÍTICAS:**
+   - SEMPRE relacionado ao nicho do perfil (nutricionista → comida saudável/cozinha; coach → escritório/pessoa trabalhando; fitness → academia/exercício)
+   - SEJA EXTREMAMENTE ESPECÍFICO: não use "a person", use "confident entrepreneur in professional attire" ou "athletic woman in sportswear"
+   - DESCREVA A CENA COMPLETA: o que está no fundo, objetos visíveis, cores dominantes, atmosfera
+   - NUNCA mencione texto, palavras, letras, números ou tipografia na imagem
+   - Use termos visuais concretos: "warm golden hour sunlight", "minimalist white desk", "vibrant fresh vegetables"
+
+   **EXEMPLOS CORRETOS:**
+   - Marketing digital: "focused entrepreneur analyzing data on multiple monitors in modern minimalist office, warm afternoon sunlight through large windows, sleek white desk with coffee cup, professional business casual attire, concentrated expression, contemporary corporate environment"
+   - Fitness: "athletic woman performing deadlift with perfect form in bright modern gym, natural light from large windows, mirrors reflecting determined expression, professional workout attire, motivational energy, clean industrial aesthetic with visible weights in background"
+   - Nutrição: "fresh colorful mediterranean salad bowl on rustic wooden table, vibrant greens, cherry tomatoes, grilled chicken, natural daylight from window, clean white plates, healthy lifestyle aesthetic, bright airy kitchen background"
 
 Agora analise a auditoria abaixo e crie as 3 sugestões de carrosséis:`
 

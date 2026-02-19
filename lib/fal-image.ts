@@ -18,8 +18,8 @@ export async function generateContentImage(prompt: string): Promise<string> {
         width: 956,
         height: 448,
       },
-      num_inference_steps: 28,
-      guidance_scale: 3.5,
+      num_inference_steps: 40, // Aumentado para melhor qualidade (era 28)
+      guidance_scale: 7.5, // Aumentado para seguir melhor o prompt (era 3.5)
       num_images: 1,
       enable_safety_checker: true,
     },

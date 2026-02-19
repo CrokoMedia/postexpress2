@@ -102,15 +102,21 @@ export async function POST(
         // Gerar imagem via fal.ai usando o prompt contextual + nicho do expert
         let contentImageUrl = ''
         try {
+          // Construir prompt estruturado para Flux (melhor qualidade)
           const fullPrompt = [
+            // Descrição principal (do Claude)
             imagemPrompt,
-            nicheContext ? `Context: ${nicheContext}` : '',
-            'Professional editorial photography, minimalist style, soft lighting, neutral background. No text, no letters, no words in the image. Ultra realistic.',
+            // Estilo fotográfico profissional
+            'professional photography, photorealistic, high quality, sharp focus',
+            // Iluminação e estética
+            'natural lighting, modern aesthetic, clean composition',
+            // Constraints críticos
+            'no text visible, no letters, no words, no typography in the image',
           ]
             .filter(Boolean)
-            .join('. ')
+            .join(', ')
 
-          console.log(`   🤖 Gerando imagem com fal.ai: "${fullPrompt.substring(0, 120)}..."`)
+          console.log(`   🤖 Gerando imagem com fal.ai: "${fullPrompt.substring(0, 150)}..."`)
           contentImageUrl = await generateContentImage(fullPrompt)
           console.log(`   ✅ Imagem fal.ai: ${contentImageUrl}`)
         } catch (falError: any) {
