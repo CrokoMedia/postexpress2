@@ -6,7 +6,7 @@ import { Button } from '@/components/atoms/button'
 import { Badge } from '@/components/atoms/badge'
 import { Input } from '@/components/atoms/input'
 import { toast } from 'sonner'
-import { Link2, Search, Check, X } from 'lucide-react'
+import { Link2, Search, Check, X, Lightbulb } from 'lucide-react'
 
 interface Profile {
   id: string
@@ -246,8 +246,9 @@ export function LinkContentModal({
         </div>
 
         {/* Footer Info */}
-        <div className="pt-4 border-t border-neutral-800 text-sm text-neutral-400">
-          <p>💡 <strong>Dica:</strong> Conteúdos vinculados aparecem na lista de conteúdos de ambos os perfis.</p>
+        <div className="pt-4 border-t border-neutral-800 text-sm text-neutral-400 flex items-start gap-2">
+          <Lightbulb className="w-4 h-4 text-warning-500 shrink-0 mt-0.5" />
+          <p><strong>Dica:</strong> Conteúdos vinculados aparecem na lista de conteúdos de ambos os perfis.</p>
         </div>
       </DialogContent>
     </Dialog>

@@ -1,9 +1,22 @@
 import { redirect } from 'next/navigation'
+import { headers } from 'next/headers'
 import { createServerSupabase } from '@/lib/supabase-server'
 import { getUserRole } from '@/lib/auth'
-import { DashboardLayout } from '@/components/templates/dashboard-layout'
+import { DashboardProviders } from './providers'
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
+  // Rotas públicas sinaladas pelo middleware não exigem auth
+  const headersList = await headers()
+  if (headersList.get('x-public-route') === 'true') {
+    return (
+      <div className="relative flex min-h-screen bg-neutral-50 dark:bg-neutral-950 transition-colors duration-300">
+        <main className="flex-1 p-8">
+          {children}
+        </main>
+      </div>
+    )
+  }
+
   const supabase = await createServerSupabase()
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -18,8 +31,8 @@ export default async function Layout({ children }: { children: React.ReactNode }
   }
 
   return (
-    <DashboardLayout role={roleData.role} profileIds={roleData.profile_ids}>
+    <DashboardProviders role={roleData.role} profileIds={roleData.profile_ids}>
       {children}
-    </DashboardLayout>
+    </DashboardProviders>
   )
 }

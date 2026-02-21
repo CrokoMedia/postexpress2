@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/atoms/card'
 import { Badge } from '@/components/atoms/badge'
-import { Brain, Pencil, DollarSign, BarChart3, AlertTriangle } from 'lucide-react'
+import { Brain, Pencil, DollarSign, BarChart3, AlertTriangle, AlertCircle, CheckCircle } from 'lucide-react'
 
 interface AuditorSectionProps {
   auditorName: string
@@ -118,7 +118,7 @@ export function AuditorSection({
             <ul className="space-y-1">
               {problems.map((problem, index) => (
                 <li key={index} className="text-sm text-neutral-400 flex gap-2">
-                  <span className="text-error-500 shrink-0">⚠</span>
+                  <AlertCircle className="w-4 h-4 text-error-500 shrink-0" />
                   <span>{safeString(problem)}</span>
                 </li>
               ))}
@@ -133,7 +133,7 @@ export function AuditorSection({
             <ul className="space-y-1">
               {recommendations.map((rec, index) => (
                 <li key={index} className="text-sm text-neutral-400 flex gap-2">
-                  <span className="text-success-500 shrink-0">✓</span>
+                  <CheckCircle className="w-4 h-4 text-success-500 shrink-0" />
                   <span>{safeString(rec)}</span>
                 </li>
               ))}

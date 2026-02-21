@@ -100,11 +100,11 @@ export default function ComparisonsPage() {
         />
         <Card className="mt-6">
           <CardContent className="flex flex-col items-center justify-center py-16 text-center">
-            <GitCompare className="h-12 w-12 text-neutral-600 mb-4" />
+            <GitCompare className="h-12 w-12 text-muted-foreground mb-4" />
             <h3 className="text-lg font-semibold text-neutral-300 mb-2">
               Nenhuma comparação ainda
             </h3>
-            <p className="text-neutral-500 max-w-md">
+            <p className="text-muted-foreground max-w-md">
               As comparações são criadas automaticamente quando você faz uma re-auditoria de um perfil.
               Vá até um perfil, adicione contexto e clique em &quot;Re-Auditar com Contexto&quot;.
             </p>
@@ -164,22 +164,22 @@ export default function ComparisonsPage() {
                     <div className="text-2xl font-bold text-neutral-300">
                       {comparison.audit_before?.score_overall ?? '—'}
                     </div>
-                    <div className="text-xs text-neutral-500">
+                    <div className="text-xs text-muted-foreground">
                       {formatDate(comparison.date_before)}
                     </div>
-                    <div className="text-xs text-neutral-500">v1.0</div>
+                    <div className="text-xs text-muted-foreground">v1.0</div>
                   </div>
 
-                  <ArrowRight className="h-5 w-5 text-neutral-600 flex-shrink-0" />
+                  <ArrowRight className="h-5 w-5 text-muted-foreground flex-shrink-0" />
 
                   <div className="text-center">
                     <div className={`text-2xl font-bold ${isPositive ? 'text-success-500' : isNeutral ? 'text-neutral-300' : 'text-error-500'}`}>
                       {comparison.audit_after?.score_overall ?? '—'}
                     </div>
-                    <div className="text-xs text-neutral-500">
+                    <div className="text-xs text-muted-foreground">
                       {formatDate(comparison.date_after)}
                     </div>
-                    <div className="text-xs text-neutral-500">v2.0</div>
+                    <div className="text-xs text-muted-foreground">v2.0</div>
                   </div>
 
                   <div className="flex-1 grid grid-cols-5 gap-2 ml-4">
@@ -194,7 +194,7 @@ export default function ComparisonsPage() {
                 {/* Footer */}
                 <div className="flex items-center justify-between pt-3 border-t border-neutral-800">
                   {comparison.growth_followers !== 0 && (
-                    <span className="text-xs text-neutral-500">
+                    <span className="text-xs text-muted-foreground">
                       Seguidores: {comparison.growth_followers > 0 ? '+' : ''}{comparison.growth_followers}
                       {comparison.growth_followers_pct !== 0 && (
                         <span className={comparison.growth_followers_pct > 0 ? 'text-success-500 ml-1' : 'text-error-500 ml-1'}>
@@ -258,7 +258,7 @@ function MiniScore({ label, value }: { label: string; value: number }) {
       <div className={`text-sm font-semibold ${color}`}>
         {value > 0 ? '+' : ''}{value}
       </div>
-      <div className="text-xs text-neutral-500 truncate">{label}</div>
+      <div className="text-xs text-muted-foreground truncate">{label}</div>
     </div>
   )
 }

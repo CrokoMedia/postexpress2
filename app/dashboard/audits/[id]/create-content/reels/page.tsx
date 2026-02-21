@@ -115,7 +115,7 @@ export default function ReelsPage() {
         if (!prev) return prev
         return { ...prev, reels: [...prev.reels, ...data.new_reels] }
       })
-      console.log(`✅ ${data.new_reels_count} reels + ${data.new_carousels_count} carrosséis gerados`)
+      console.log(`${data.new_reels_count} reels + ${data.new_carousels_count} carrosséis gerados`)
     } catch (err: any) {
       alert(`Erro ao gerar variações: ${err.message}`)
     } finally {
@@ -125,19 +125,19 @@ export default function ReelsPage() {
 
   const handleCopyBriefing = (reel: any, index: number) => {
     const text = [
-      `🎬 ${reel.titulo}`,
-      `⏱ Duração: ${reel.duracao_sugerida}`,
+      `${reel.titulo}`,
+      `Duração: ${reel.duracao_sugerida}`,
       ``,
-      `🎙 HOOK (primeira frase):`,
+      `HOOK (primeira frase):`,
       `"${reel.hook_verbal}"`,
       ``,
-      `📋 TÓPICOS:`,
+      `TÓPICOS:`,
       ...reel.topicos.map((t: string, i: number) => `${i + 1}. ${t}`),
       ``,
-      `✅ CTA FINAL:`,
+      `CTA FINAL:`,
       reel.cta_final,
       ``,
-      `💡 DICA DE GRAVAÇÃO:`,
+      `DICA DE GRAVAÇÃO:`,
       reel.dica_gravacao
     ].join('\n')
 
@@ -430,7 +430,6 @@ export default function ReelsPage() {
 
                   {/* Dica de Gravação */}
                   <div className="flex items-start gap-2 bg-warning-500/10 border border-warning-500/20 rounded-lg px-4 py-3">
-                    <span className="text-warning-400 text-lg">💡</span>
                     <div>
                       <span className="text-xs font-semibold text-warning-400 uppercase tracking-wide">Dica de Gravação</span>
                       <p className="text-neutral-300 text-sm mt-0.5">{reel.dica_gravacao}</p>

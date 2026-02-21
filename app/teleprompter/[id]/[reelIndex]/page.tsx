@@ -34,11 +34,11 @@ export default function TeleprompterPage() {
   const handleCopy = () => {
     if (!reel) return
     const text = [
-      `🎙 "${reel.hook_verbal}"`,
+      `"${reel.hook_verbal}"`,
       ``,
       ...reel.topicos.map((t: string, i: number) => `${i + 1}. ${t}`),
       ``,
-      `✅ ${reel.cta_final}`
+      `${reel.cta_final}`
     ].join('\n')
     navigator.clipboard.writeText(text)
     setCopied(true)
@@ -149,7 +149,7 @@ export default function TeleprompterPage() {
         {reel.dica_gravacao && (
           <div className="bg-neutral-950 border border-neutral-900 rounded-xl px-5 py-4">
             <p className="text-neutral-500 text-sm">
-              <span className="text-yellow-500 font-semibold">💡 Dica:</span>{' '}
+              <span className="text-warning-500 font-semibold">Dica:</span>{' '}
               {reel.dica_gravacao}
             </p>
           </div>

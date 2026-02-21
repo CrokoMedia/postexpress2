@@ -162,7 +162,7 @@ export default function SlidesPage() {
                 size="sm"
                 onClick={() => handleDeleteCarousel(template, idx)}
                 disabled={deletingCarousel !== null}
-                className="text-neutral-500 hover:text-red-400 h-8 w-8 p-0"
+                className="text-muted-foreground hover:text-red-400 h-8 w-8 p-0"
                 title="Excluir carrossel"
               >
                 {deletingCarousel?.template === template && deletingCarousel?.idx === idx ? (
@@ -273,11 +273,11 @@ export default function SlidesPage() {
       {!hasSlides && (
         <Card>
           <CardContent className="p-16 text-center space-y-4">
-            <ImageIcon className="w-16 h-16 mx-auto text-neutral-600" />
+            <ImageIcon className="w-16 h-16 mx-auto text-muted-foreground" />
             <h3 className="text-xl font-semibold text-neutral-300">
               Nenhum slide gerado ainda
             </h3>
-            <p className="text-neutral-500 max-w-md mx-auto">
+            <p className="text-muted-foreground max-w-md mx-auto">
               Aprove um carrossel na central de conteúdo e clique em
               &quot;Gerar Slides&quot; ou &quot;Gerar com IA&quot;.
             </p>
@@ -300,7 +300,7 @@ export default function SlidesPage() {
               <ImageIcon className="w-3 h-3" />
               Template Padrão
             </Badge>
-            <span className="text-sm text-neutral-500">
+            <span className="text-sm text-muted-foreground">
               {slidesV1.summary?.totalCarousels} carrossel{slidesV1.summary?.totalCarousels !== 1 ? 'is' : ''} ·{' '}
               {totalV1} slide{totalV1 !== 1 ? 's' : ''} · gerado em{' '}
               {new Date(slidesV1.generated_at).toLocaleString('pt-BR')}
@@ -320,7 +320,7 @@ export default function SlidesPage() {
               <Sparkles className="w-3 h-3" />
               Template com IA
             </Badge>
-            <span className="text-sm text-neutral-500">
+            <span className="text-sm text-muted-foreground">
               {slidesV2.summary?.totalCarousels} carrossel{slidesV2.summary?.totalCarousels !== 1 ? 'is' : ''} ·{' '}
               {totalV2} slide{totalV2 !== 1 ? 's' : ''} · gerado em{' '}
               {new Date(slidesV2.generated_at).toLocaleString('pt-BR')}

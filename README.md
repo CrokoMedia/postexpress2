@@ -27,6 +27,7 @@ COLETA DE DADOS → AUDITORIA → CRIAÇÃO → GERAÇÃO → APROVAÇÃO
 - **Geração de Imagens**: Cloudinary
 - **Transcrição**: OpenAI Whisper
 - **Web Search**: EXA
+- **Twitter Monitoring**: Twitter Filtered Stream API (tempo real) ⭐ NEW
 
 ## 🤖 Squads de IA
 

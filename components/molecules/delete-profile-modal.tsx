@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/atoms/dialog'
 import { Button } from '@/components/atoms/button'
 import { AlertTriangle, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
@@ -24,8 +25,6 @@ export function DeleteProfileModal({
   const router = useRouter()
   const [isDeleting, setIsDeleting] = useState(false)
   const [confirmText, setConfirmText] = useState('')
-
-  if (!isOpen) return null
 
   const handleDelete = async () => {
     if (confirmText !== username) {
@@ -66,22 +65,22 @@ export function DeleteProfileModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      <div className="bg-neutral-900 border border-neutral-700 rounded-xl shadow-2xl max-w-md w-full p-6 space-y-4">
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="bg-neutral-900 border-neutral-700 max-w-md">
         {/* Header */}
-        <div className="flex items-start gap-4">
+        <DialogHeader className="flex-row items-start gap-4 space-y-0">
           <div className="shrink-0 h-12 w-12 rounded-full bg-error-500/10 flex items-center justify-center">
             <AlertTriangle className="h-6 w-6 text-error-500" />
           </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-semibold text-neutral-100">
+          <div className="flex-1 space-y-1.5">
+            <DialogTitle className="text-xl text-neutral-100">
               Deletar Perfil
-            </h3>
-            <p className="text-sm text-neutral-400 mt-1">
+            </DialogTitle>
+            <DialogDescription className="text-neutral-400">
               Esta ação não pode ser desfeita
-            </p>
+            </DialogDescription>
           </div>
-        </div>
+        </DialogHeader>
 
         {/* Content */}
         <div className="space-y-4">
@@ -124,7 +123,7 @@ export function DeleteProfileModal({
               onChange={(e) => setConfirmText(e.target.value)}
               placeholder={username}
               disabled={isDeleting}
-              className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 placeholder:text-neutral-500"
+              className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
         </div>
@@ -150,7 +149,7 @@ export function DeleteProfileModal({
             Deletar Perfil
           </Button>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   )
 }

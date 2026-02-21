@@ -1,0 +1,22 @@
+{
+  "name": "twitter-stream-worker",
+  "version": "1.0.0",
+  "description": "Twitter Filtered Stream Worker (24/7)",
+  "type": "module",
+  "main": "twitter-stream-worker.js",
+  "scripts": {
+    "dev": "node --watch twitter-stream-worker.js",
+    "start": "node twitter-stream-worker.js",
+    "test": "node test-processor.js",
+    "test:slack": "node test-slack.js",
+    "build": "echo 'No build needed for Node.js'"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

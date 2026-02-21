@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPIC-001: Twitter Stream API - Dashboard de Progresso</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: #667eea;
+    }
+
+    .header .meta {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #667eea;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 10px;
+    }
+
+    .progress-bar {
+      background: #f0f0f0;
+      border-radius: 8px;
+      height: 30px;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .progress-fill {
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      transition: width 0.3s ease;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .stat-box {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+    }
+
+    .phase {
+      margin-bottom: 20px;
+    }
+
+    .phase-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .phase-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .phase-progress {
+      font-size: 14px;
+      color: #667eea;
+      font-weight: 600;
+    }
+
+    .story-list {
+      list-style: none;
+    }
+
+    .story-item {
+      background: #f8f9fa;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+
+    .story-item:hover {
+      background: #e9ecef;
+    }
+
+    .story-name {
+      flex: 1;
+      font-size: 14px;
+    }
+
+    .story-meta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .badge {
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge-done {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .badge-todo {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .badge-new {
+      background: #cfe2ff;
+      color: #084298;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e9ecef;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #667eea;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px #667eea;
+    }
+
+    .timeline-date {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 5px;
+    }
+
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .timeline-desc {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .alert {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .alert-success {
+      background: #d4edda;
+      border-left-color: #28a745;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #667eea;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: #5568d3;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header h1 {
+        font-size: 24px;
+      }
+    }
+
+    .emoji {
+      font-size: 20px;
+      margin-right: 5px;
+    }
+
+    .story-link {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .story-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: white;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>🐦 EPIC-001: Twitter Stream API Integration</h1>
+      <div class="meta">
+        <div class="meta-item">
+          <strong>Status:</strong> <span style="color: #ffc107;">🟡 In Progress</span>
+        </div>
+        <div class="meta-item">
+          <strong>Timeline:</strong> 19 Fev - 17 Mar 2026 (4 semanas)
+        </div>
+        <div class="meta-item">
+          <strong>Custo:</strong> $100-105/mês
+        </div>
+        <div class="meta-item">
+          <strong>Dev Time:</strong> 39 horas (~1 semana full-time)
+        </div>
+        <div class="meta-item">
+          <strong>Última atualização:</strong> 19 Fev 2026
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert Success -->
+    <div class="alert alert-success">
+      <strong>🚀 Story 3.1 Completa!</strong> Dashboard de Experts implementado com CRUD completo e sincronização Twitter API (7/12 = 58% done). Próximo: Gerenciamento de Regras!
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid">
+      <!-- Progresso Geral -->
+      <div class="card full-width">
+        <h2>📊 Progresso Geral</h2>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-value">58%</div>
+            <div class="stat-label">Implementação</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">100%</div>
+            <div class="stat-label">Documentação</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">7/12</div>
+            <div class="stat-label">Stories Completas</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">5/12</div>
+            <div class="stat-label">Stories Pendentes</div>
+          </div>
+        </div>
+        <div style="margin-top: 20px;">
+          <strong>Implementação:</strong>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 58%;">58%</div>
+          </div>
+          <strong>Documentação:</strong>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 100%;">100%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="card">
+        <h2>Phase 1: Setup & Infrastructure</h2>
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-title">Semana 1 (19-25 Fev)</span>
+            <span class="phase-progress">100% (3/3) ✅</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 100%;">100%</div>
+          </div>
+          <ul class="story-list">
+            <li class="story-item">
+              <span class="story-name">
+                <a href="../stories/STORY-1.1-twitter-setup-credentials.md" class="story-link">1.1 Setup Credenciais</a>
+              </span>
+              <div class="story-meta">
+                <span>1h → 5min</span>
+                <span class="badge badge-done">✅ DONE</span>
+              </div>
+            </li>
+            <li class="story-item">
+              <span class="story-name">
+                <a href="../stories/STORY-1.2-supabase-schema-twitter.md" class="story-link">1.2 Schema Supabase</a>
+              </span>
+              <div class="story-meta">
+                <span>2h → 15min</span>
+                <span class="badge badge-done">✅ DONE</span>
+              </div>
+            </li>
+            <li class="story-item">
+              <span class="story-name">
+                <a href="../stories/STORY-1.3-twitter-rules-library.md" class="story-link">1.3 Biblioteca de Regras</a>
+              </span>
+              <div class="story-meta">
+                <span>3h → 20min</span>
+                <span class="badge badge-done">✅ DONE</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="card">
+        <h2>Phase 2: Core Stream</h2>
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-title">Semana 2 (26 Fev - 3 Mar)</span>
+            <span class="phase-progress">100% (3/3) ✅</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 100%;">100%</div>
+          </div>
+          <ul class="story-list">
+            <li class="story-item">
+              <span class="story-name">
+                <a href="../stories/STORY-2.1-stream-worker-24-7.md" class="story-link">2.1 Worker Stream 24/7</a>
+              </span>
+              <div class="story-meta">
+                <span>5h → 30min</span>
+                <span class="badge badge-done">✅ DONE</span>
+              </div>
+            </li>
+            <li class="story-item">
+              <span class="story-name">
+                <a href="../stories/STORY-2.2-tweet-processing-optimization.md" class="story-link">2.2 Processamento de Tweets</a>
+              </span>
+              <div class="story-meta">
+                <span>3h → 25min</span>
+                <span class="badge badge-done">✅ DONE</span>
+              </div>
+            </li>
+            <li class="story-item">
+              <span class="story-name">
+                <a href="../stories/STORY-2.3-notification-system.md" class="story-link">2.3 Notificações Slack</a>
+              </span>
+              <div class="story-meta">
+                <span>2h → 15min</span>
+                <span class="badge badge-done">✅ DONE</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="card">
+        <h2>Phase 3: Admin Interface</h2>
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-title">Semana 3 (4-10 Mar)</span>
+            <span class="phase-progress">33% (1/3) 🚧</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 33%;">33%</div>
+          </div>
+          <ul class="story-list">
+            <li class="story-item">
+              <span class="story-name">
+                <a href="../stories/STORY-3.1-experts-dashboard.md" class="story-link">3.1 Dashboard Experts</a>
+              </span>
+              <div class="story-meta">
+                <span>4h → 20min</span>
+                <span class="badge badge-done">✅ DONE</span>
+              </div>
+            </li>
+            <li class="story-item">
+              <span class="story-name">
+                <a href="../stories/STORY-3.2-theme-configuration.md" class="story-link">3.2 Config Temas</a>
+              </span>
+              <div class="story-meta">
+                <span>3h</span>
+                <span class="badge badge-todo">📋 TO DO</span>
+                <span class="badge badge-new">⭐ NEW</span>
+              </div>
+            </li>
+            <li class="story-item">
+              <span class="story-name">
+                <a href="../stories/STORY-3.3-tweets-feed.md" class="story-link">3.3 Feed de Tweets</a>
+              </span>
+              <div class="story-meta">
+                <span>5h</span>
+                <span class="badge badge-todo">📋 TO DO</span>
+                <span class="badge badge-new">⭐ NEW</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="card">
+        <h2>Phase 4: Quality & Monitoring</h2>
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-title">Semana 4 (11-17 Mar)</span>
+            <span class="phase-progress">0% (0/3)</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%;">0%</div>
+          </div>
+          <ul class="story-list">
+            <li class="story-item">
+              <span class="story-name">
+                <a href="../stories/STORY-4.1-health-check-dashboard.md" class="story-link">4.1 Health Check</a>
+              </span>
+              <div class="story-meta">
+                <span>3h</span>
+                <span class="badge badge-todo">📋 TO DO</span>
+                <span class="badge badge-new">⭐ NEW</span>
+              </div>
+            </li>
+            <li class="story-item">
+              <span class="story-name">
+                <a href="../stories/STORY-4.2-metrics-dashboard.md" class="story-link">4.2 Métricas</a>
+              </span>
+              <div class="story-meta">
+                <span>4h</span>
+                <span class="badge badge-todo">📋 TO DO</span>
+                <span class="badge badge-new">⭐ NEW</span>
+              </div>
+            </li>
+            <li class="story-item">
+              <span class="story-name">
+                <a href="../stories/STORY-4.3-e2e-tests.md" class="story-link">4.3 Testes E2E</a>
+              </span>
+              <div class="story-meta">
+                <span>5h</span>
+                <span class="badge badge-todo">📋 TO DO</span>
+                <span class="badge badge-new">⭐ NEW</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="card full-width">
+        <h2>📅 Timeline de Execução</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">19-25 Fev 2026</div>
+            <div class="timeline-title">Sprint 1 - Semana 1: Setup & Infrastructure</div>
+            <div class="timeline-desc">
+              Setup de credenciais, schema Supabase, biblioteca de regras (6h total)
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">26 Fev - 3 Mar 2026</div>
+            <div class="timeline-title">Sprint 1 - Semana 2: Core Stream</div>
+            <div class="timeline-desc">
+              Worker 24/7, processamento de tweets, notificações Slack (10h total)
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">4-10 Mar 2026</div>
+            <div class="timeline-title">Sprint 2 - Semana 3: Admin Interface</div>
+            <div class="timeline-desc">
+              Dashboard de experts, configuração de temas, feed de tweets (12h total)
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">11-17 Mar 2026</div>
+            <div class="timeline-title">Sprint 2 - Semana 4: Quality & Monitoring</div>
+            <div class="timeline-desc">
+              Health check, métricas, testes E2E (12h total)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="card full-width">
+        <h2>🔗 Quick Links</h2>
+        <div class="links">
+          <a href="EPIC-001-twitter-stream-api.md" class="btn">📖 Epic Completa</a>
+          <a href="EPIC-001-CHECKLIST.md" class="btn">✅ Checklist Executivo</a>
+          <a href="../README.md" class="btn">📚 Docs Index</a>
+          <a href="../../CLAUDE.md" class="btn">🎯 CLAUDE.md</a>
+          <a href="https://developer.twitter.com/en/portal/dashboard" class="btn" target="_blank">🐦 Twitter Dev Portal</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>👑 EPIC-001 Dashboard | Created by Orion (AIOS Master) | 2026-02-19</p>
+      <p style="margin-top: 5px; font-size: 12px; opacity: 0.8;">
+        Orquestrando o sistema 🎯
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

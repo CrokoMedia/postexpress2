@@ -72,3 +72,4 @@ squad-auditores/output/
 
 # TypeScript build info
 *.tsbuildinfo
+.vercel

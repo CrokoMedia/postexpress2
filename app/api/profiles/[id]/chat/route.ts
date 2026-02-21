@@ -69,7 +69,11 @@ export async function POST(
 
     // Extrair dados do body
     const body = await request.json()
-    const { message, conversation_history } = body
+    const { message, conversation_history, contentMode = 'carousel' } = body as {
+      message: string
+      conversation_history: Array<{ role: string; content: string }>
+      contentMode?: 'carousel' | 'reel'
+    }
 
     // Validar inputs
     if (!message || typeof message !== 'string') {
@@ -79,9 +83,9 @@ export async function POST(
       )
     }
 
-    if (message.length > 2000) {
+    if (message.length > 10000) {
       return NextResponse.json(
-        { error: 'Mensagem muito longa (máximo 2000 caracteres)' },
+        { error: 'Mensagem muito longa (máximo 10.000 caracteres)' },
         { status: 400 }
       )
     }
@@ -179,7 +183,67 @@ ${quickWins}
 - Mantenha o tom profissional mas amigável
 - Foque em resultados e conversão
 - Quando sugerir carrosséis, estruture com número de slides, títulos e temas específicos
-- Se perguntarem sobre temas, sugira 3-5 opções relevantes baseadas nos problemas/forças identificados`
+- Se perguntarem sobre temas, sugira 3-5 opções relevantes baseadas nos problemas/forças identificados
+
+**INSTRUÇÕES PARA imagem_prompt EM CADA SLIDE:**
+Quando gerar imagem_prompt para cada slide:
+- Descreva uma CENA específica, não conceitos abstratos
+- Inclua: iluminação, ângulo, ambiente, emoção
+- Estilo: "cinematic photography, shallow depth of field, warm golden hour lighting"
+- Exemplos bons:
+  - "Close-up of hands typing on laptop in cozy home office, warm natural light, shallow depth of field"
+  - "Person celebrating with fist pump, sunrise background, silhouette, orange and pink sky"
+  - "Smartphone showing analytics dashboard with green growth charts, modern desk, soft bokeh"
+- Exemplos ruins:
+  - "engagement" (muito vago)
+  - "marketing digital" (conceito, não cena)
+  - "gráfico subindo" (sem contexto visual)
+${contentMode === 'reel' ? `
+**MODO REEL ATIVADO — Gere conteúdo otimizado para vídeo curto (15-30s)**
+
+ESTRUTURA OBRIGATÓRIA DO REEL:
+
+SLIDE 1 — HOOK (obrigatório):
+- Pergunta provocativa OU dado chocante OU afirmação contraintuitiva
+- Máximo 8-10 palavras no título
+- Corpo: vazio ou 1 frase curta de apoio
+- Objetivo: parar o scroll nos primeiros 2 segundos
+- imagem_prompt: close-up dramático, emoção forte, impacto visual
+
+SLIDES 2-6 — CONTEÚDO DE VALOR:
+- Título: 10-15 palavras máximo (frase curta e impactante)
+- Corpo: 1-2 frases CURTAS (máx 20 palavras total)
+- Cada slide = UM conceito/dica/insight apenas
+- A cada 2 slides, inserir "padrão de interrupção":
+  → Pergunta retórica ("Você sabia que...?")
+  → Dado chocante ("87% dos creators cometem esse erro")
+  → Chamada direta ("Presta atenção nisso")
+- imagem_prompt: cena que ilustra o conceito, estilo cinematográfico, warm tones
+
+SLIDE FINAL — CTA:
+- Título: CTA direto ("Salva esse reel pra não esquecer")
+- Corpo: ação específica ("Comenta 'EU QUERO' que te mando o checklist")
+- imagem_prompt: visual positivo, energia de conclusão, celebration
+
+REGRAS DO MODO REEL:
+- O texto será NARRADO em voz alta — escreva como fala natural, não texto escrito
+- Use contrações e linguagem coloquial (pt-BR falado, não formal)
+- Evite jargão técnico — explique como se fosse para um amigo
+- Use palavras de poder: "segredo", "erro fatal", "nunca", "sempre", "exatamente"
+- NÃO use negrito (**texto**) — a voz não consegue "negritar"
+- NÃO use listas com bullet points — a voz não lê listas bem
+- NÃO use CAPS excessivo — a voz não diferencia maiúsculas
+- Cada slide deve fluir naturalmente para o próximo quando narrado
+
+EXEMPLO DE REEL (7 slides, tema: engagement):
+1. HOOK: "Você está matando seu engajamento sem saber"
+2. "O maior erro que vejo creators cometendo é postar sem estratégia"
+3. "Sabe aquele post que você fez às 3 da tarde? Ninguém viu"
+4. INTERRUPÇÃO: "87% dos creators postam no horário errado"
+5. "O segredo é simples: descubra quando seu público está online"
+6. "Faça isso por 30 dias e me conta o resultado"
+7. CTA: "Salva esse reel e começa hoje — comenta 'ESTRATÉGIA' que te mando o guia"
+` : ''}`
 
     console.log('💬 Enviando mensagem para Content Squad (Claude API)...')
 

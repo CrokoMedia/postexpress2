@@ -37,13 +37,13 @@ export default function DashboardPage() {
         )}
 
         {isError && (
-          <div className="text-error-500 text-center py-12">
+          <div className="text-error-600 text-center py-12">
             Erro ao carregar perfis. Verifique sua conexão com o Supabase.
           </div>
         )}
 
         {!isLoading && !isError && profiles && profiles.length === 0 && (
-          <div className="text-neutral-400 text-center py-12">
+          <div className="text-muted-foreground text-center py-12">
             Nenhum perfil encontrado. Crie sua primeira análise!
           </div>
         )}

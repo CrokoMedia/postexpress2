@@ -77,13 +77,13 @@ function LoginForm() {
         <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg shadow-primary-500/20 mb-4">
           <span className="text-white font-bold text-lg">PE</span>
         </div>
-        <h1 className="text-2xl font-bold text-neutral-50">Post Express</h1>
-        <p className="text-neutral-400 text-sm mt-1">Faça login para continuar</p>
+        <h1 className="text-2xl font-bold text-neutral-900">Post Express</h1>
+        <p className="text-neutral-600 text-sm mt-1">Faça login para continuar</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-neutral-300 mb-1.5">
+          <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-1.5">
             Email
           </label>
           <input
@@ -93,13 +93,13 @@ function LoginForm() {
             onChange={e => setEmail(e.target.value)}
             required
             autoComplete="email"
-            className="w-full rounded-lg bg-neutral-800 border border-neutral-700 px-4 py-2.5 text-neutral-50 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition"
+            className="w-full rounded-lg bg-white border border-neutral-200 px-4 py-2.5 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition"
             placeholder="seu@email.com"
           />
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-neutral-300 mb-1.5">
+          <label htmlFor="password" className="block text-sm font-medium text-neutral-700 mb-1.5">
             Senha
           </label>
           <input
@@ -109,7 +109,7 @@ function LoginForm() {
             onChange={e => setPassword(e.target.value)}
             required
             autoComplete="current-password"
-            className="w-full rounded-lg bg-neutral-800 border border-neutral-700 px-4 py-2.5 text-neutral-50 placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition"
+            className="w-full rounded-lg bg-white border border-neutral-200 px-4 py-2.5 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition"
             placeholder="••••••••"
           />
         </div>
@@ -129,14 +129,14 @@ function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-lg bg-primary-500 hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed px-4 py-2.5 text-sm font-semibold text-white transition focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-neutral-950"
+          className="w-full rounded-lg bg-primary-500 hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed px-4 py-2.5 text-sm font-semibold text-white transition focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-white"
         >
           {loading ? 'Entrando...' : 'Entrar'}
         </button>
       </form>
 
       <div className="text-center mt-4">
-        <Link href="/login/forgot-password" className="text-sm text-neutral-500 hover:text-neutral-300 transition">
+        <Link href="/login/forgot-password" className="text-sm text-neutral-600 hover:text-neutral-700 transition">
           Esqueceu a senha?
         </Link>
       </div>

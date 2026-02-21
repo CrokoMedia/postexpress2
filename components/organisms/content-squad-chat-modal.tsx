@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from '@/components/atoms/button'
 import { Badge } from '@/components/atoms/badge'
 import { toast } from 'sonner'
-import { Sparkles, Send, Loader2, User, Bot, Copy, Check, Plus } from 'lucide-react'
+import { Sparkles, Send, Loader2, User, Bot, Copy, Check, Plus, LayoutGrid, Film, Hand, Rocket, XCircle } from 'lucide-react'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -35,6 +35,7 @@ export function ContentSquadChatModal({
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
   const [savingIndex, setSavingIndex] = useState<number | null>(null)
   const [savedIndex, setSavedIndex] = useState<number | null>(null)
+  const [contentMode, setContentMode] = useState<'carousel' | 'reel'>('carousel')
 
   const handleCopy = async (content: string, index: number) => {
     await navigator.clipboard.writeText(content)
@@ -102,7 +103,7 @@ export function ContentSquadChatModal({
     if (isOpen && messages.length === 0) {
       const welcomeMessage: Message = {
         role: 'assistant',
-        content: `Olá! 👋 Sou o Content Squad, formado por 5 mentes especializadas em criar conteúdo de alta conversão para Instagram.
+        content: `Olá! Sou o Content Squad, formado por 5 mentes especializadas em criar conteúdo de alta conversão para Instagram.
 
 **Contexto do seu perfil @${username}:**
 • Score Geral: ${latestAudit.score_overall}/100
@@ -116,7 +117,7 @@ export function ContentSquadChatModal({
 - Otimizar CTAs e captions
 - Estratégias baseadas na sua auditoria
 
-Digite sua solicitação ou pergunta! 🚀`
+Digite sua solicitação ou pergunta!`
       }
       setMessages([welcomeMessage])
     }
@@ -143,8 +144,8 @@ Digite sua solicitação ou pergunta! 🚀`
     if (!trimmedInput || loading) return
 
     // Validar tamanho
-    if (trimmedInput.length > 2000) {
-      toast.error('Mensagem muito longa (máximo 2000 caracteres)')
+    if (trimmedInput.length > 10000) {
+      toast.error('Mensagem muito longa (máximo 10.000 caracteres)')
       return
     }
 
@@ -161,7 +162,8 @@ Digite sua solicitação ou pergunta! 🚀`
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: trimmedInput,
-          conversation_history: messages
+          conversation_history: messages,
+          contentMode
         })
       })
 
@@ -186,7 +188,7 @@ Digite sua solicitação ou pergunta! 🚀`
       // Adicionar mensagem de erro
       const errorMessage: Message = {
         role: 'assistant',
-        content: '❌ Desculpe, ocorreu um erro. Por favor, tente novamente.'
+        content: 'Desculpe, ocorreu um erro. Por favor, tente novamente.'
       }
       setMessages(prev => [...prev, errorMessage])
     } finally {
@@ -207,13 +209,43 @@ Digite sua solicitação ou pergunta! 🚀`
       <DialogContent className="max-w-4xl h-[85vh] flex flex-col p-0 gap-0">
         {/* Header */}
         <DialogHeader className="px-6 py-4 border-b border-neutral-800 shrink-0">
-          <DialogTitle className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-primary-500" />
-            Conversar com Content Squad
-          </DialogTitle>
-          <DialogDescription>
-            Chat conversacional com 5 especialistas em criação de conteúdo
-          </DialogDescription>
+          <div className="flex items-center justify-between">
+            <div>
+              <DialogTitle className="flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-primary-500" />
+                Conversar com Content Squad
+              </DialogTitle>
+              <DialogDescription>
+                Chat conversacional com 5 especialistas em criação de conteúdo
+              </DialogDescription>
+            </div>
+
+            {/* Toggle Carrossel / Reel */}
+            <div className="flex items-center gap-1 bg-neutral-800 rounded-lg p-1">
+              <button
+                onClick={() => setContentMode('carousel')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                  contentMode === 'carousel'
+                    ? 'bg-primary-500 text-white shadow-sm'
+                    : 'text-neutral-400 hover:text-neutral-200'
+                }`}
+              >
+                <LayoutGrid className="w-3.5 h-3.5" />
+                Carrossel
+              </button>
+              <button
+                onClick={() => setContentMode('reel')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                  contentMode === 'reel'
+                    ? 'bg-primary-500 text-white shadow-sm'
+                    : 'text-neutral-400 hover:text-neutral-200'
+                }`}
+              >
+                <Film className="w-3.5 h-3.5" />
+                Reel
+              </button>
+            </div>
+          </div>
         </DialogHeader>
 
         {/* Messages Area */}
@@ -329,13 +361,13 @@ Digite sua solicitação ou pergunta! 🚀`
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Digite sua mensagem... (Enter para enviar, Shift+Enter para nova linha)"
-                maxLength={2000}
+                maxLength={10000}
                 rows={3}
                 disabled={loading}
                 className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none disabled:opacity-50 disabled:cursor-not-allowed"
               />
               <div className="absolute bottom-2 right-2 text-xs text-neutral-500 font-mono">
-                {input.length}/2000
+                {input.length}/10000
               </div>
             </div>
 
@@ -362,7 +394,15 @@ Digite sua solicitação ou pergunta! 🚀`
 
           {/* Info */}
           <div className="mt-2 flex justify-between items-center text-xs text-neutral-500">
-            <span>💡 Dica: Seja específico para obter melhores sugestões</span>
+            <div className="flex items-center gap-2">
+              {contentMode === 'reel' && (
+                <span className="inline-flex items-center gap-1 bg-primary-500/15 text-primary-400 px-2 py-0.5 rounded-full text-xs font-medium">
+                  <Film className="w-3 h-3" />
+                  Modo Reel
+                </span>
+              )}
+              <span>Seja especifico para obter melhores sugestoes</span>
+            </div>
             <span>{messages.filter(m => m.role === 'user').length} mensagens enviadas</span>
           </div>
         </form>

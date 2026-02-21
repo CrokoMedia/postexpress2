@@ -4,9 +4,16 @@ import { createServerClient } from '@supabase/ssr'
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Rotas de login são sempre públicas — sem redirect no middleware
-  if (pathname.startsWith('/login')) {
+  // Rotas públicas — sem redirect no middleware
+  if (pathname.startsWith('/login') || pathname.startsWith('/api/templates-pro')) {
     return NextResponse.next()
+  }
+
+  // Dashboard templatesPro é público — sinalizar para o layout não exigir auth
+  if (pathname.startsWith('/dashboard/templatesPro')) {
+    const requestHeaders = new Headers(request.headers)
+    requestHeaders.set('x-public-route', 'true')
+    return NextResponse.next({ request: { headers: requestHeaders } })
   }
 
   // Para rotas protegidas (/dashboard/* e /api/*), verificar autenticação

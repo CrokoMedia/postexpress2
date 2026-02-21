@@ -168,9 +168,15 @@ export async function runCompleteAnalysis(
  * Executa análise com os 5 auditores usando Claude API
  */
 export async function runAuditWithSquad(
-  username: string
+  username: string,
+  profileId?: string
 ): Promise<ScriptResult> {
   const args = [username]
+
+  // Passar profile_id como segundo argumento se disponível
+  if (profileId) {
+    args.push(profileId)
+  }
 
   return executeScript('scripts/audit-with-squad.js', args, {
     timeout: 300000 // 5 minutos

@@ -1,3 +1,4 @@
+// DEPRECATED: use generate-slides-v3 (Remotion renderStill)
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { generateContentImage } from '@/lib/fal-image'
@@ -35,7 +36,7 @@ function getSlideFields(slide: any): { titulo: string; corpo: string } {
 }
 
 /**
- * Endpoint POST para gerar slides com o template V2 (fal.ai + Puppeteer)
+ * @deprecated Use generate-slides-v3 (Remotion renderStill) instead
  */
 export async function POST(
   request: NextRequest,
@@ -44,7 +45,7 @@ export async function POST(
   try {
     const { id } = await params
     const body = await request.json()
-    const { carousels, profile } = body
+    const { carousels, profile, slideImageOptions } = body
 
     if (!carousels || carousels.length === 0) {
       return NextResponse.json(
@@ -99,29 +100,62 @@ export async function POST(
 
         console.log(`   🖼️  [V2] Gerando ${slideName}: "${titulo}"`)
 
-        // Gerar imagem via fal.ai usando o prompt contextual + nicho do expert
-        let contentImageUrl = ''
-        try {
-          // Construir prompt estruturado para Flux (melhor qualidade)
-          const fullPrompt = [
-            // Descrição principal (do Claude)
-            imagemPrompt,
-            // Estilo fotográfico profissional
-            'professional photography, photorealistic, high quality, sharp focus',
-            // Iluminação e estética
-            'natural lighting, modern aesthetic, clean composition',
-            // Constraints críticos
-            'no text visible, no letters, no words, no typography in the image',
-          ]
-            .filter(Boolean)
-            .join(', ')
+        // Verificar se existe configuração customizada para este slide
+        const slideConfig = slideImageOptions?.[originalIndex]?.[j]
 
-          console.log(`   🤖 Gerando imagem com fal.ai: "${fullPrompt.substring(0, 150)}..."`)
-          contentImageUrl = await generateContentImage(fullPrompt)
-          console.log(`   ✅ Imagem fal.ai: ${contentImageUrl}`)
-        } catch (falError: any) {
-          console.warn(`   ⚠️ fal.ai falhou (${falError.message}), usando placeholder`)
-          // Continuar sem imagem central se fal.ai falhar
+        // Gerar/obter imagem baseado na configuração
+        let contentImageUrl = ''
+
+        if (slideConfig?.mode === 'upload' && slideConfig.uploadUrl) {
+          // Opção 1: Usar imagem enviada pelo usuário
+          contentImageUrl = slideConfig.uploadUrl
+          console.log(`   📤 Usando imagem enviada: ${contentImageUrl}`)
+        } else if (slideConfig?.mode === 'custom_prompt' && slideConfig.customPrompt) {
+          // Opção 2: Usar prompt customizado do usuário
+          try {
+            const fullPrompt = [
+              // Prompt escrito pelo usuário
+              slideConfig.customPrompt,
+              // Estilo fotográfico profissional
+              'professional photography, photorealistic, high quality, sharp focus',
+              // Iluminação e estética
+              'natural lighting, modern aesthetic, clean composition',
+              // Constraints críticos
+              'no text visible, no letters, no words, no typography in the image',
+            ]
+              .filter(Boolean)
+              .join(', ')
+
+            console.log(`   ✍️  Gerando com prompt customizado: "${fullPrompt.substring(0, 150)}..."`)
+            contentImageUrl = await generateContentImage(fullPrompt)
+            console.log(`   ✅ Imagem gerada: ${contentImageUrl}`)
+          } catch (falError: any) {
+            console.warn(`   ⚠️ fal.ai falhou (${falError.message}), usando placeholder`)
+          }
+        } else {
+          // Opção 3: Gerar automaticamente (comportamento atual)
+          try {
+            // Construir prompt estruturado para Flux (melhor qualidade)
+            const fullPrompt = [
+              // Descrição principal (do Claude)
+              imagemPrompt,
+              // Estilo fotográfico profissional
+              'professional photography, photorealistic, high quality, sharp focus',
+              // Iluminação e estética
+              'natural lighting, modern aesthetic, clean composition',
+              // Constraints críticos
+              'no text visible, no letters, no words, no typography in the image',
+            ]
+              .filter(Boolean)
+              .join(', ')
+
+            console.log(`   🤖 Gerando imagem automática: "${fullPrompt.substring(0, 150)}..."`)
+            contentImageUrl = await generateContentImage(fullPrompt)
+            console.log(`   ✅ Imagem fal.ai: ${contentImageUrl}`)
+          } catch (falError: any) {
+            console.warn(`   ⚠️ fal.ai falhou (${falError.message}), usando placeholder`)
+            // Continuar sem imagem central se fal.ai falhar
+          }
         }
 
         // Gerar HTML V2 do slide
@@ -323,16 +357,44 @@ async function generateSlideHTMLV2({
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { margin: 0; padding: 0; background: #ffffff; }
 
+    @font-face {
+      font-family: 'Sofia Pro';
+      src: url('file:///Users/macbook-karla/postexpress2/public/fonts/sofia-pro/SofiaPro-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Sofia Pro';
+      src: url('file:///Users/macbook-karla/postexpress2/public/fonts/sofia-pro/SofiaPro-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Sofia Pro';
+      src: url('file:///Users/macbook-karla/postexpress2/public/fonts/sofia-pro/SofiaPro-SemiBold.otf') format('opentype');
+      font-weight: 600;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Sofia Pro';
+      src: url('file:///Users/macbook-karla/postexpress2/public/fonts/sofia-pro/SofiaPro-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+    }
+
     .slide {
       width: 1080px;
       height: 1350px;
       background: #ffffff;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: 'Sofia Pro', system-ui, -apple-system, sans-serif;
       color: #0f1419;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 40px 62px;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Header: avatar + nome + badge */

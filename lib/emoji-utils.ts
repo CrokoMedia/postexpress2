@@ -31,19 +31,25 @@ async function fetchEmojiBase64(codepoint: string): Promise<string | null> {
 
   try {
     const response = await fetch(url, { signal: AbortSignal.timeout(5000) })
-    if (!response.ok) return null
+    if (!response.ok) {
+      console.log(`⚠️  Emoji não encontrado: ${codepoint} (${url})`)
+      return null
+    }
 
     const buffer = await response.arrayBuffer()
     const b64 = Buffer.from(buffer).toString('base64')
     const dataUrl = `data:image/png;base64,${b64}`
     base64Cache.set(codepoint, dataUrl)
+    console.log(`✅ Emoji baixado: ${codepoint}`)
     return dataUrl
-  } catch {
+  } catch (error) {
+    console.error(`❌ Erro ao baixar emoji ${codepoint}:`, error)
     return null
   }
 }
 
 export async function replaceEmojisWithAppleImages(text: string): Promise<string> {
+  console.log(`🔄 Processando texto para emojis: "${text.substring(0, 100)}..."`)
   const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' })
   const segments = [...segmenter.segment(text)]
 
@@ -78,7 +84,7 @@ export async function replaceEmojisWithAppleImages(text: string): Promise<string
       if (dataUrl) {
         result.push(
           `<img src="${dataUrl}" alt="${segment}" ` +
-          `style="height:1.1em;width:1.1em;margin:0 0.05em 0 0.1em;vertical-align:-0.2em;display:inline-block;" />`
+          `style="height:1em;width:1em;margin:0 0.05em;vertical-align:-0.15em;display:inline;" />`
         )
       } else {
         // Fallback: mostra o caractere de texto (sistema renderiza com Apple/Noto)

@@ -10,9 +10,10 @@ import { DeleteProfileModal } from '@/components/molecules/delete-profile-modal'
 import { DeleteAuditModal } from '@/components/molecules/delete-audit-modal'
 import { ProfileContextModal } from '@/components/organisms/profile-context-modal'
 import { ContentSquadChatModal } from '@/components/organisms/content-squad-chat-modal'
+import { TwitterExpertsSection } from '@/components/twitter/twitter-experts-section'
 import { useProfile } from '@/hooks/use-profiles'
 import { formatNumber, formatDate, getScoreClassification } from '@/lib/format'
-import { CheckCircle, Users, FileText, Calendar, Trash2, Sparkles, Loader2, BookOpen, MessageSquare, TrendingUp, Image as ImageIcon, ChevronRight, PlusCircle, Eye, EyeOff, Pencil } from 'lucide-react'
+import { CheckCircle, Users, FileText, Calendar, Trash2, Sparkles, Loader2, BookOpen, MessageSquare, TrendingUp, Image as ImageIcon, ChevronRight, PlusCircle, Eye, EyeOff, Pencil, Factory, Video } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
@@ -131,7 +132,7 @@ export default function ProfilePage() {
         <CardContent className="p-6">
           <div className="flex items-start gap-6">
             {/* Avatar */}
-            <div className="relative h-24 w-24 rounded-full bg-neutral-700 shrink-0 overflow-hidden ring-4 ring-neutral-700">
+            <div className="relative h-24 w-24 rounded-full bg-neutral-200 dark:bg-neutral-700 shrink-0 overflow-hidden ring-4 ring-neutral-200 dark:ring-neutral-700">
               {profile.profile_pic_url_hd || profile.profile_pic_cloudinary_url ? (
                 <Image
                   src={profile.profile_pic_cloudinary_url || profile.profile_pic_url_hd || ''}
@@ -140,7 +141,7 @@ export default function ProfilePage() {
                   className="object-cover"
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-neutral-500 text-4xl font-bold">
+                <div className="w-full h-full flex items-center justify-center text-neutral-600 dark:text-neutral-300 text-4xl font-bold">
                   {profile.username[0].toUpperCase()}
                 </div>
               )}
@@ -149,28 +150,28 @@ export default function ProfilePage() {
             {/* Info */}
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-1">
-                <h2 className="text-2xl font-bold">{profile.full_name || profile.username}</h2>
+                <h2 className="text-2xl font-bold text-foreground">{profile.full_name || profile.username}</h2>
                 {profile.is_verified && <CheckCircle className="h-6 w-6 text-info-500" />}
               </div>
-              <p className="text-neutral-400 text-sm mb-3">@{profile.username}</p>
+              <p className="text-muted-foreground text-sm mb-3">@{profile.username}</p>
               {profile.biography && (
-                <p className="text-neutral-300 mb-4 text-sm">{profile.biography}</p>
+                <p className="text-foreground mb-4 text-sm">{profile.biography}</p>
               )}
               <div className="flex gap-6 text-sm">
                 <div className="flex items-center gap-2">
-                  <Users className="h-4 w-4 text-neutral-400" />
-                  <span className="text-neutral-300 font-medium">{formatNumber(profile.followers_count || 0)}</span>
-                  <span className="text-neutral-500">seguidores</span>
+                  <Users className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-foreground font-medium">{formatNumber(profile.followers_count || 0)}</span>
+                  <span className="text-muted-foreground">seguidores</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FileText className="h-4 w-4 text-neutral-400" />
-                  <span className="text-neutral-300 font-medium">{profile.posts_count || 0}</span>
-                  <span className="text-neutral-500">posts</span>
+                  <FileText className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-foreground font-medium">{profile.posts_count || 0}</span>
+                  <span className="text-muted-foreground">posts</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-neutral-400" />
-                  <span className="text-neutral-300 font-medium">{profile.total_audits}</span>
-                  <span className="text-neutral-500">auditorias</span>
+                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-foreground font-medium">{profile.total_audits}</span>
+                  <span className="text-muted-foreground">auditorias</span>
                 </div>
               </div>
             </div>
@@ -235,7 +236,7 @@ export default function ProfilePage() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowDeleteModal(true)}
-                className="text-error-500 hover:text-error-400 hover:bg-error-500/10 w-full"
+                className="text-error-500 hover:text-error-700 dark:hover:text-error-400 hover:bg-error-50 dark:hover:bg-error-900/30 w-full"
               >
                 <Trash2 className="h-4 w-4 mr-2" />
                 Deletar Perfil
@@ -247,28 +248,28 @@ export default function ProfilePage() {
 
       {/* Central de Conteúdo */}
       <div className="mb-6">
-        <h3 className="text-lg font-semibold text-neutral-300 mb-3">Central de Conteúdo</h3>
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
+        <h3 className="text-lg font-semibold text-foreground mb-3">Central de Conteúdo</h3>
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
 
           {/* Card: Criar Conteúdo */}
           {latestAudit ? (
             <Link href={`/dashboard/audits/${latestAudit.id}/create-content`}>
-              <div className="group relative rounded-xl border border-primary-500/30 bg-gradient-to-br from-primary-500/10 to-primary-500/5 p-5 hover:border-primary-500/60 hover:from-primary-500/15 hover:to-primary-500/10 transition-all cursor-pointer h-full flex flex-col">
+              <div className="group relative rounded-xl border border-primary-200 dark:border-primary-800 bg-gradient-to-br from-primary-50 to-white dark:from-primary-950/40 dark:to-neutral-800/50 p-5 hover:border-primary-300 dark:hover:border-primary-700 hover:from-primary-100 dark:hover:from-primary-950/60 transition-all cursor-pointer h-full flex flex-col">
                 <div className="flex items-center justify-between mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary-500/20 flex items-center justify-center">
-                    <Sparkles className="w-5 h-5 text-primary-400" />
+                  <div className="w-10 h-10 rounded-lg bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center">
+                    <Sparkles className="w-5 h-5 text-primary-600 dark:text-primary-400" />
                   </div>
-                  <ChevronRight className="w-4 h-4 text-neutral-500 group-hover:text-primary-400 transition-colors" />
+                  <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-semibold text-neutral-100 mb-1">Criar Conteúdo</h4>
-                  <p className="text-xs text-neutral-400 leading-relaxed">
+                  <h4 className="font-semibold text-foreground mb-1">Criar Conteúdo</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     Gere carrosséis com o Content Squad
                   </p>
                 </div>
                 {contentCount > 0 && (
-                  <div className="mt-3 pt-3 border-t border-primary-500/20">
-                    <span className="text-xs text-primary-400 font-medium">
+                  <div className="mt-3 pt-3 border-t border-primary-200 dark:border-primary-800">
+                    <span className="text-xs text-primary-700 dark:text-primary-400 font-medium">
                       {contentCount} carrossel{contentCount !== 1 ? 'is' : ''} gerado{contentCount !== 1 ? 's' : ''}
                     </span>
                   </div>
@@ -276,50 +277,37 @@ export default function ProfilePage() {
               </div>
             </Link>
           ) : (
-            <div className="rounded-xl border border-neutral-700/50 bg-neutral-800/30 p-5 opacity-50 flex flex-col h-full">
-              <div className="w-10 h-10 rounded-lg bg-neutral-700/50 flex items-center justify-center mb-3">
-                <Sparkles className="w-5 h-5 text-neutral-500" />
+            <div className="rounded-xl border-2 border-neutral-300 dark:border-neutral-600 bg-neutral-100 dark:bg-neutral-800 p-5 opacity-60 flex flex-col h-full">
+              <div className="w-10 h-10 rounded-lg bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center mb-3">
+                <Sparkles className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
               </div>
-              <h4 className="font-semibold text-neutral-400 mb-1">Criar Conteúdo</h4>
-              <p className="text-xs text-neutral-500">Faça uma auditoria primeiro</p>
+              <h4 className="font-semibold text-neutral-700 dark:text-neutral-300 mb-1">Criar Conteúdo</h4>
+              <p className="text-xs text-muted-foreground">Faça uma auditoria primeiro</p>
             </div>
           )}
 
-          {/* Card: Última Auditoria */}
-          {latestAudit ? (
-            <Link href={`/dashboard/audits/${latestAudit.id}`}>
-              <div className="group relative rounded-xl border border-info-500/30 bg-gradient-to-br from-info-500/10 to-info-500/5 p-5 hover:border-info-500/60 hover:from-info-500/15 hover:to-info-500/10 transition-all cursor-pointer h-full flex flex-col">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-info-500/20 flex items-center justify-center">
-                    <TrendingUp className="w-5 h-5 text-info-400" />
-                  </div>
-                  <div className={`text-2xl font-bold ${getScoreClassification(latestAudit.score_overall || 0).color}`}>
-                    {latestAudit.score_overall}
-                  </div>
+          {/* Card: Content Distillery */}
+          <Link href={`/dashboard/profiles/${id}/distillery`}>
+            <div className="group relative rounded-xl border border-warning-200 dark:border-warning-800 bg-gradient-to-br from-warning-50 to-white dark:from-warning-950/40 dark:to-neutral-800/50 p-5 hover:border-warning-300 dark:hover:border-warning-700 hover:from-warning-100 dark:hover:from-warning-950/60 transition-all cursor-pointer h-full flex flex-col">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-10 h-10 rounded-lg bg-warning-100 dark:bg-warning-900/50 flex items-center justify-center">
+                  <Factory className="w-5 h-5 text-warning-600 dark:text-warning-400" />
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-neutral-100 mb-1">Última Auditoria</h4>
-                  <p className="text-xs text-neutral-400">
-                    {formatDate(latestAudit.audit_date)}
-                  </p>
-                </div>
-                <div className="mt-3 pt-3 border-t border-info-500/20 flex items-center justify-between">
-                  <span className="text-xs text-info-400 font-medium">
-                    {getScoreClassification(latestAudit.score_overall || 0).label}
-                  </span>
-                  <ChevronRight className="w-4 h-4 text-neutral-500 group-hover:text-info-400 transition-colors" />
-                </div>
+                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-warning-600 dark:group-hover:text-warning-400 transition-colors" />
               </div>
-            </Link>
-          ) : (
-            <Link href={`/dashboard/new?username=${profile.username}`}>
-              <div className="group rounded-xl border border-dashed border-neutral-600 bg-neutral-800/20 p-5 hover:border-neutral-500 hover:bg-neutral-800/40 transition-all cursor-pointer h-full flex flex-col items-center justify-center text-center">
-                <PlusCircle className="w-8 h-8 text-neutral-500 mb-2 group-hover:text-neutral-400" />
-                <h4 className="font-semibold text-neutral-400 mb-1">Nova Auditoria</h4>
-                <p className="text-xs text-neutral-500">Analisar este perfil</p>
+              <div className="flex-1">
+                <h4 className="font-semibold text-foreground mb-1">Content Distillery</h4>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Extraia frameworks e gere 60+ peças de conteúdo
+                </p>
               </div>
-            </Link>
-          )}
+              <div className="mt-3 pt-3 border-t border-warning-200 dark:border-warning-800">
+                <span className="text-xs text-warning-700 dark:text-warning-400 font-medium">
+                  Pipeline de 6 fases - 9 agentes
+                </span>
+              </div>
+            </div>
+          </Link>
 
           {/* Card: Chat Content Squad */}
           <button
@@ -327,25 +315,25 @@ export default function ProfilePage() {
             disabled={!latestAudit}
             className={`group rounded-xl border text-left p-5 transition-all h-full flex flex-col w-full ${
               latestAudit
-                ? 'border-success-500/30 bg-gradient-to-br from-success-500/10 to-success-500/5 hover:border-success-500/60 hover:from-success-500/15 cursor-pointer'
-                : 'border-neutral-700/50 bg-neutral-800/30 opacity-50 cursor-not-allowed'
+                ? 'border-success-200 dark:border-success-800 bg-gradient-to-br from-success-50 to-white dark:from-success-950/40 dark:to-neutral-800/50 hover:border-success-300 dark:hover:border-success-700 hover:from-success-100 dark:hover:from-success-950/60 cursor-pointer'
+                : 'border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800/50 opacity-50 cursor-not-allowed'
             }`}
           >
             <div className="flex items-center justify-between mb-3">
               <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                latestAudit ? 'bg-success-500/20' : 'bg-neutral-700/50'
+                latestAudit ? 'bg-success-100 dark:bg-success-900/50' : 'bg-neutral-200 dark:bg-neutral-700'
               }`}>
-                <MessageSquare className={`w-5 h-5 ${latestAudit ? 'text-success-400' : 'text-neutral-500'}`} />
+                <MessageSquare className={`w-5 h-5 ${latestAudit ? 'text-success-600 dark:text-success-400' : 'text-neutral-600 dark:text-neutral-400'}`} />
               </div>
               {latestAudit && (
-                <ChevronRight className="w-4 h-4 text-neutral-500 group-hover:text-success-400 transition-colors" />
+                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-success-600 dark:group-hover:text-success-400 transition-colors" />
               )}
             </div>
             <div className="flex-1">
-              <h4 className={`font-semibold mb-1 ${latestAudit ? 'text-neutral-100' : 'text-neutral-400'}`}>
+              <h4 className={`font-semibold mb-1 ${latestAudit ? 'text-foreground' : 'text-neutral-600 dark:text-neutral-400'}`}>
                 Content Squad
               </h4>
-              <p className="text-xs text-neutral-400 leading-relaxed">
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 Chat com os 5 especialistas em conteúdo
               </p>
             </div>
@@ -354,28 +342,28 @@ export default function ProfilePage() {
           {/* Card: Contexto do Expert */}
           <button
             onClick={() => setShowContextModal(true)}
-            className="group rounded-xl border border-warning-500/30 bg-gradient-to-br from-warning-500/10 to-warning-500/5 p-5 hover:border-warning-500/60 hover:from-warning-500/15 transition-all cursor-pointer h-full flex flex-col text-left w-full"
+            className="group rounded-xl border border-warning-200 dark:border-warning-800 bg-gradient-to-br from-warning-50 to-white dark:from-warning-950/40 dark:to-neutral-800/50 p-5 hover:border-warning-300 dark:hover:border-warning-700 hover:from-warning-100 dark:hover:from-warning-950/60 transition-all cursor-pointer h-full flex flex-col text-left w-full"
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-10 h-10 rounded-lg bg-warning-500/20 flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-warning-400" />
+              <div className="w-10 h-10 rounded-lg bg-warning-100 dark:bg-warning-900/50 flex items-center justify-center">
+                <BookOpen className="w-5 h-5 text-warning-600 dark:text-warning-400" />
               </div>
-              <ChevronRight className="w-4 h-4 text-neutral-500 group-hover:text-warning-400 transition-colors" />
+              <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-warning-600 dark:group-hover:text-warning-400 transition-colors" />
             </div>
             <div className="flex-1">
-              <h4 className="font-semibold text-neutral-100 mb-1">Contexto do Expert</h4>
-              <p className="text-xs text-neutral-400 leading-relaxed">
+              <h4 className="font-semibold text-foreground mb-1">Contexto do Expert</h4>
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 Informações adicionais sobre o perfil
               </p>
             </div>
-            <div className="mt-3 pt-3 border-t border-warning-500/20">
+            <div className="mt-3 pt-3 border-t border-warning-200 dark:border-warning-800">
               {hasContext ? (
-                <span className="text-xs text-success-400 font-medium flex items-center gap-1">
+                <span className="text-xs text-success-700 dark:text-success-400 font-medium flex items-center gap-1">
                   <CheckCircle className="w-3 h-3" />
                   Contexto configurado
                 </span>
               ) : (
-                <span className="text-xs text-warning-400 font-medium">
+                <span className="text-xs text-warning-700 dark:text-warning-400 font-medium">
                   Clique para adicionar
                 </span>
               )}
@@ -384,34 +372,67 @@ export default function ProfilePage() {
 
           {/* Card: Ver Slides */}
           {latestAudit ? (
-            <Link href={`/dashboard/audits/${latestAudit.id}/slides`}>
-              <div className="group relative rounded-xl border border-neutral-600/40 bg-gradient-to-br from-neutral-800/60 to-neutral-900/40 p-5 hover:border-neutral-500/70 hover:from-neutral-800/80 transition-all cursor-pointer h-full flex flex-col">
+            <Link href={`/dashboard/profiles/${id}/slides`}>
+              <div className="group relative rounded-xl border border-neutral-200 dark:border-neutral-700 bg-gradient-to-br from-neutral-50 to-white dark:from-neutral-800/50 dark:to-neutral-800/30 p-5 hover:border-neutral-300 dark:hover:border-neutral-600 hover:from-neutral-100 dark:hover:from-neutral-800/70 transition-all cursor-pointer h-full flex flex-col">
                 <div className="flex items-center justify-between mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-neutral-700/60 flex items-center justify-center">
-                    <ImageIcon className="w-5 h-5 text-neutral-300" />
+                  <div className="w-10 h-10 rounded-lg bg-neutral-100 dark:bg-neutral-700 flex items-center justify-center">
+                    <ImageIcon className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
                   </div>
-                  <ChevronRight className="w-4 h-4 text-neutral-500 group-hover:text-neutral-300 transition-colors" />
+                  <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-neutral-700 dark:group-hover:text-neutral-300 transition-colors" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-semibold text-neutral-100 mb-1">Ver Slides</h4>
-                  <p className="text-xs text-neutral-400 leading-relaxed">
-                    Galeria de slides gerados
+                  <h4 className="font-semibold text-foreground mb-1">Ver Slides</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Todos os slides gerados
                   </p>
                 </div>
-                <div className="mt-3 pt-3 border-t border-neutral-700/50">
-                  <span className="text-xs text-neutral-400 font-medium">
+                <div className="mt-3 pt-3 border-t border-neutral-200 dark:border-neutral-700">
+                  <span className="text-xs text-muted-foreground font-medium">
                     Acesso rápido aos slides
                   </span>
                 </div>
               </div>
             </Link>
           ) : (
-            <div className="rounded-xl border border-neutral-700/50 bg-neutral-800/30 p-5 opacity-50 flex flex-col h-full">
-              <div className="w-10 h-10 rounded-lg bg-neutral-700/50 flex items-center justify-center mb-3">
-                <ImageIcon className="w-5 h-5 text-neutral-500" />
+            <div className="rounded-xl border-2 border-neutral-300 dark:border-neutral-600 bg-neutral-100 dark:bg-neutral-800 p-5 opacity-60 flex flex-col h-full">
+              <div className="w-10 h-10 rounded-lg bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center mb-3">
+                <ImageIcon className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
               </div>
-              <h4 className="font-semibold text-neutral-400 mb-1">Ver Slides</h4>
-              <p className="text-xs text-neutral-500">Faça uma auditoria primeiro</p>
+              <h4 className="font-semibold text-neutral-700 dark:text-neutral-300 mb-1">Ver Slides</h4>
+              <p className="text-xs text-muted-foreground">Faça uma auditoria primeiro</p>
+            </div>
+          )}
+
+          {/* Card: Reel Production Squad */}
+          {latestAudit ? (
+            <Link href={`/dashboard/profiles/${id}/reels`}>
+              <div className="group relative rounded-xl border border-info-200 dark:border-info-800 bg-gradient-to-br from-info-50 to-white dark:from-info-950/40 dark:to-neutral-800/50 p-5 hover:border-info-300 dark:hover:border-info-700 hover:from-info-100 dark:hover:from-info-950/60 transition-all cursor-pointer h-full flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-info-100 dark:bg-info-900/50 flex items-center justify-center">
+                    <Video className="w-5 h-5 text-info-600 dark:text-info-400" />
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-info-600 dark:group-hover:text-info-400 transition-colors" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-foreground mb-1">Reel Production</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Transforme carrosséis em vídeos profissionais
+                  </p>
+                </div>
+                <div className="mt-3 pt-3 border-t border-info-200 dark:border-info-800">
+                  <span className="text-xs text-info-700 dark:text-info-400 font-medium">
+                    4 agentes - Pipeline completo
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ) : (
+            <div className="rounded-xl border-2 border-neutral-300 dark:border-neutral-600 bg-neutral-100 dark:bg-neutral-800 p-5 opacity-60 flex flex-col h-full">
+              <div className="w-10 h-10 rounded-lg bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center mb-3">
+                <Video className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
+              </div>
+              <h4 className="font-semibold text-neutral-700 dark:text-neutral-300 mb-1">Reel Production</h4>
+              <p className="text-xs text-muted-foreground">Faça uma auditoria primeiro</p>
             </div>
           )}
 
@@ -424,14 +445,14 @@ export default function ProfilePage() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center gap-2 text-base">
-                <BookOpen className="h-4 w-4 text-warning-400" />
+                <BookOpen className="h-4 w-4 text-warning-600" />
                 Contexto Salvo
               </CardTitle>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowContextModal(true)}
-                className="text-neutral-400 text-xs"
+                className="text-muted-foreground text-xs"
               >
                 <Pencil className="h-3.5 w-3.5 mr-1" /> Editar
               </Button>
@@ -442,17 +463,17 @@ export default function ProfilePage() {
             {/* Arquivos com extração — sempre visível */}
             {contextData.files && contextData.files.length > 0 && (
               <div>
-                <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-2">
+                <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
                   Documentos ({contextData.files.length})
                 </p>
                 <div className="space-y-3">
                   {contextData.files.map((file: any, idx: number) => (
-                    <div key={idx} className="bg-neutral-800/60 rounded-lg px-3 py-3">
+                    <div key={idx} className="bg-card rounded-lg px-3 py-3 border-2 border-neutral-300 dark:border-neutral-600">
                       <div className="flex items-center gap-3 mb-2">
-                        <FileText className="h-4 w-4 text-primary-400 shrink-0" />
+                        <FileText className="h-4 w-4 text-primary-600 dark:text-primary-400 shrink-0" />
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-neutral-200 truncate">{file.name}</p>
-                          <p className="text-xs text-neutral-500">
+                          <p className="text-sm font-medium text-foreground truncate">{file.name}</p>
+                          <p className="text-xs text-muted-foreground">
                             {file.size ? `${(file.size / 1024).toFixed(1)} KB` : ''}
                             {file.wordCount ? ` • ${file.wordCount.toLocaleString()} palavras` : ''}
                             {file.pages ? ` • ${file.pages} págs` : ''}
@@ -466,13 +487,13 @@ export default function ProfilePage() {
                         </Badge>
                       </div>
                       {file.extractedText ? (
-                        <p className="text-xs text-neutral-400 bg-neutral-900/50 rounded p-2 max-h-32 overflow-y-auto whitespace-pre-wrap leading-relaxed">
+                        <p className="text-xs text-foreground bg-background rounded p-2 max-h-32 overflow-y-auto whitespace-pre-wrap leading-relaxed border border-neutral-300 dark:border-neutral-600">
                           {file.extractedText.slice(0, 600)}{file.extractedText.length > 600 ? '…' : ''}
                         </p>
                       ) : file.extractionError ? (
-                        <p className="text-xs text-error-400 bg-error-500/5 rounded p-2">{file.extractionError}</p>
+                        <p className="text-xs text-error-700 dark:text-error-400 bg-error-50 dark:bg-error-900/30 rounded p-2">{file.extractionError}</p>
                       ) : (
-                        <p className="text-xs text-neutral-500 italic">
+                        <p className="text-xs text-muted-foreground italic">
                           Texto não extraído — faça o upload novamente para extrair.
                         </p>
                       )}
@@ -499,7 +520,7 @@ export default function ProfilePage() {
                 <div>
                   <button
                     onClick={() => setShowContextViewer(!showContextViewer)}
-                    className="flex items-center gap-2 text-xs font-medium text-neutral-500 uppercase tracking-wide mb-2 hover:text-neutral-300 transition-colors w-full text-left"
+                    className="flex items-center gap-2 text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2 hover:text-foreground transition-colors w-full text-left"
                   >
                     {showContextViewer ? (
                       <EyeOff className="h-3 w-3" />
@@ -513,10 +534,10 @@ export default function ProfilePage() {
                     <div className="space-y-3">
                       {fields.map(({ label, value }) => (
                         <div key={label}>
-                          <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-1">
+                          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">
                             {label}
                           </p>
-                          <p className="text-sm text-neutral-200 bg-neutral-800/60 rounded-lg px-3 py-2 whitespace-pre-wrap">
+                          <p className="text-sm text-foreground bg-card rounded-lg px-3 py-2 whitespace-pre-wrap border-2 border-neutral-300 dark:border-neutral-600">
                             {value}
                           </p>
                         </div>
@@ -537,19 +558,19 @@ export default function ProfilePage() {
         </CardHeader>
         <CardContent>
           {sortedAudits.length === 0 ? (
-            <div className="text-neutral-400 text-center py-8">
+            <div className="text-muted-foreground text-center py-8">
               Nenhuma auditoria encontrada
             </div>
           ) : (
             <div className="space-y-3">
               {sortedAudits.map((audit: any) => (
-                <div key={audit.id} className="flex items-center justify-between p-4 rounded-lg border border-neutral-700 hover:border-neutral-600 transition-all group">
+                <div key={audit.id} className="flex items-center justify-between p-4 rounded-lg border-2 border-neutral-300 dark:border-neutral-600 hover:border-primary-400 dark:hover:border-primary-500 transition-all group bg-card">
                   <Link href={`/dashboard/audits/${audit.id}`} className="flex items-center gap-4 flex-1 min-w-0">
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-medium text-neutral-300">
+                      <div className="text-sm font-medium text-foreground">
                         {formatDate(audit.audit_date)}
                       </div>
-                      <div className="text-xs text-neutral-500">
+                      <div className="text-xs text-muted-foreground">
                         {audit.posts_analyzed} posts analisados
                       </div>
                     </div>
@@ -564,7 +585,7 @@ export default function ProfilePage() {
                   </Link>
                   <button
                     onClick={() => setAuditToDelete({ id: audit.id, date: audit.audit_date })}
-                    className="ml-3 p-2 rounded-lg text-neutral-600 hover:text-error-400 hover:bg-error-500/10 opacity-0 group-hover:opacity-100 transition-all"
+                    className="ml-3 p-2 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-error-700 dark:hover:text-error-400 hover:bg-error-50 dark:hover:bg-error-900/30 opacity-0 group-hover:opacity-100 transition-all"
                     title="Excluir auditoria"
                   >
                     <Trash2 className="h-4 w-4" />
@@ -575,6 +596,14 @@ export default function ProfilePage() {
           )}
         </CardContent>
       </Card>
+
+      {/* Twitter Monitoring */}
+      <div className="mt-6">
+        <TwitterExpertsSection
+          profileId={id}
+          profileUsername={profile.username}
+        />
+      </div>
 
       {/* Delete Profile Modal */}
       <DeleteProfileModal

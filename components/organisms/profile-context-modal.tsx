@@ -24,6 +24,8 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
   const [tomVoz, setTomVoz] = useState('')
   const [contextoAdicional, setContextoAdicional] = useState('')
   const [files, setFiles] = useState<any[]>([])
+  const [documents, setDocuments] = useState<any[]>([])
+  const [isDragging, setIsDragging] = useState(false)
 
   // Carregar contexto existente
   useEffect(() => {
@@ -43,6 +45,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
           setTomVoz(data.context.tom_voz || '')
           setContextoAdicional(data.context.contexto_adicional || '')
           setFiles(data.context.files || [])
+          setDocuments(data.context.documents || [])
         }
       }
     } catch (error) {
@@ -52,16 +55,13 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
     }
   }
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-
+  const handleFileUpload = async (file: File) => {
     setUploading(true)
     try {
       const formData = new FormData()
       formData.append('file', file)
 
-      const res = await fetch(`/api/profiles/${profileId}/upload`, {
+      const res = await fetch(`/api/profiles/${profileId}/context/upload`, {
         method: 'POST',
         body: formData
       })
@@ -72,7 +72,10 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
       }
 
       const data = await res.json()
-      setFiles([...files, data.file])
+      setDocuments([...documents, data.document])
+
+      // Recarregar contexto para pegar raw_text atualizado
+      await fetchContext()
     } catch (error: any) {
       alert(error.message)
     } finally {
@@ -80,8 +83,44 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
     }
   }
 
-  const handleRemoveFile = (index: number) => {
-    setFiles(files.filter((_, i) => i !== index))
+  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) handleFileUpload(file)
+  }
+
+  const handleRemoveDocument = async (docId: string) => {
+    if (!confirm('Remover este documento?')) return
+
+    try {
+      const res = await fetch(`/api/profiles/${profileId}/context/documents/${docId}`, {
+        method: 'DELETE'
+      })
+
+      if (!res.ok) throw new Error('Erro ao remover documento')
+
+      setDocuments(documents.filter(d => d.id !== docId))
+    } catch (error: any) {
+      alert(error.message)
+    }
+  }
+
+  // Drag & Drop handlers
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(true)
+  }
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(false)
+  }
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragging(false)
+
+    const file = e.dataTransfer.files[0]
+    if (file) handleFileUpload(file)
   }
 
   const handleSave = async () => {
@@ -228,18 +267,30 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
           {/* Upload de Arquivos */}
           <div>
             <label className="block text-sm font-medium mb-2">
-              Arquivos (PDFs, CSVs, DOCs)
+              Documentos (PDF, DOCX, TXT, MD)
             </label>
-            <div className="border-2 border-dashed border-neutral-700 rounded-lg p-6 text-center">
+            <div
+              className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
+                isDragging
+                  ? 'border-primary-500 bg-primary-500/10'
+                  : 'border-neutral-700'
+              }`}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+            >
               <Upload className="w-8 h-8 mx-auto mb-2 text-neutral-400" />
-              <p className="text-sm text-neutral-400 mb-3">
-                Adicione ebooks, materiais, planilhas, briefings
+              <p className="text-sm text-neutral-400 mb-1">
+                {isDragging ? 'Solte o arquivo aqui' : 'Arraste arquivos ou clique para escolher'}
+              </p>
+              <p className="text-xs text-neutral-500 mb-3">
+                Briefings, ebooks, materiais de referência
               </p>
               <input
                 type="file"
                 id="file-upload"
-                accept=".pdf,.csv,.txt,.doc,.docx"
-                onChange={handleFileUpload}
+                accept=".pdf,.txt,.md,.doc,.docx"
+                onChange={handleFileInput}
                 disabled={uploading}
                 className="hidden"
               />
@@ -248,7 +299,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                   {uploading ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                      Enviando...
+                      Extraindo texto...
                     </>
                   ) : (
                     <>
@@ -259,31 +310,32 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                 </span>
               </label>
               <p className="text-xs text-neutral-500 mt-2">
-                Max 10MB • PDF, CSV, TXT, DOCX, DOC
+                Max 10MB • Texto será extraído automaticamente
               </p>
             </div>
 
-            {/* Lista de Arquivos */}
-            {files.length > 0 && (
+            {/* Lista de Documentos */}
+            {documents.length > 0 && (
               <div className="mt-4 space-y-2">
-                {files.map((file, index) => (
+                {documents.map((doc) => (
                   <div
-                    key={index}
+                    key={doc.id}
                     className="flex items-center justify-between p-3 bg-neutral-800 rounded-lg"
                   >
-                    <div className="flex items-center gap-3">
-                      <FileText className="w-5 h-5 text-primary-500" />
-                      <div>
-                        <p className="text-sm font-medium">{file.name}</p>
+                    <div className="flex items-center gap-3 flex-1">
+                      <FileText className="w-5 h-5 text-primary-500 flex-shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate">{doc.filename}</p>
                         <p className="text-xs text-neutral-400">
-                          {(file.size / 1024).toFixed(1)} KB
+                          {(doc.size / 1024).toFixed(1)} KB • {doc.extracted_text_length || 0} caracteres extraídos
                         </p>
                       </div>
                     </div>
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => handleRemoveFile(index)}
+                      onClick={() => handleRemoveDocument(doc.id)}
+                      title="Remover documento"
                     >
                       <X className="w-4 h-4" />
                     </Button>
