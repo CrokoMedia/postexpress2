@@ -24,7 +24,7 @@ export async function POST(
     // Buscar brand kit para obter profile_id e logo atual
     const { data: brandKit, error: brandKitError } = await supabase
       .from('brand_kits')
-      .select('id, profile_id, logo_url, logo_cloudinary_public_id')
+      .select('id, profile_id, logo_url, logo_public_id')
       .eq('id', brandKitId)
       .is('deleted_at', null)
       .single()
@@ -65,10 +65,10 @@ export async function POST(
     }
 
     // Se já existe logo no Cloudinary, deletar o antigo
-    if (brandKit.logo_cloudinary_public_id) {
+    if (brandKit.logo_public_id) {
       try {
-        await cloudinary.v2.uploader.destroy(brandKit.logo_cloudinary_public_id)
-        console.log(`[Brand Kit ${brandKitId}] Logo antigo deletado do Cloudinary: ${brandKit.logo_cloudinary_public_id}`)
+        await cloudinary.v2.uploader.destroy(brandKit.logo_public_id)
+        console.log(`[Brand Kit ${brandKitId}] Logo antigo deletado do Cloudinary: ${brandKit.logo_public_id}`)
       } catch (deleteError) {
         console.error('[Brand Kit] Erro ao deletar logo antigo do Cloudinary:', deleteError)
         // Não bloquear o upload se falhar ao deletar o antigo
@@ -108,7 +108,7 @@ export async function POST(
       .from('brand_kits')
       .update({
         logo_url: logoUrl,
-        logo_cloudinary_public_id: logoPublicId,
+        logo_public_id: logoPublicId,
         updated_at: new Date().toISOString(),
       })
       .eq('id', brandKitId)
