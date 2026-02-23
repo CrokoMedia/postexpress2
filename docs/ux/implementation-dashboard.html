@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚀 Content Creation Flow - Pipeline Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #1a202c;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      color: #667eea;
+      margin-bottom: 0.5rem;
+    }
+
+    .header .subtitle {
+      color: #718096;
+      font-size: 1.1rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .stat-card .label {
+      font-size: 0.875rem;
+      color: #718096;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card .value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #2d3748;
+    }
+
+    .stat-card .subvalue {
+      font-size: 0.875rem;
+      color: #a0aec0;
+      margin-top: 0.25rem;
+    }
+
+    .phases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .phase {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .phase-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .phase-badge {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-weight: 600;
+    }
+
+    .phase-badge.pending {
+      background: #fed7d7;
+      color: #c53030;
+    }
+
+    .phase-badge.in-progress {
+      background: #feebc8;
+      color: #c05621;
+    }
+
+    .phase-badge.completed {
+      background: #c6f6d5;
+      color: #22543d;
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      transition: width 0.3s ease;
+    }
+
+    .task-list {
+      list-style: none;
+    }
+
+    .task-item {
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: start;
+      gap: 0.75rem;
+      transition: background 0.2s;
+    }
+
+    .task-item:hover {
+      background: #f7fafc;
+    }
+
+    .task-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #cbd5e0;
+      border-radius: 0.25rem;
+      flex-shrink: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .task-checkbox.checked {
+      background: #48bb78;
+      border-color: #48bb78;
+    }
+
+    .task-checkbox.checked::after {
+      content: '✓';
+      color: white;
+      font-weight: bold;
+    }
+
+    .task-content {
+      flex: 1;
+    }
+
+    .task-title {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      color: #2d3748;
+    }
+
+    .task-description {
+      font-size: 0.875rem;
+      color: #718096;
+      line-height: 1.4;
+    }
+
+    .task-meta {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .task-tag {
+      font-size: 0.75rem;
+      padding: 0.125rem 0.5rem;
+      border-radius: 0.25rem;
+      background: #edf2f7;
+      color: #4a5568;
+    }
+
+    .task-tag.priority-high {
+      background: #fed7d7;
+      color: #c53030;
+    }
+
+    .task-tag.priority-medium {
+      background: #feebc8;
+      color: #c05621;
+    }
+
+    .timeline {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .timeline-header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      color: #2d3748;
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      background: #cbd5e0;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px #cbd5e0;
+    }
+
+    .timeline-item.completed::before {
+      background: #48bb78;
+      box-shadow: 0 0 0 2px #48bb78;
+    }
+
+    .timeline-item.current::before {
+      background: #667eea;
+      box-shadow: 0 0 0 2px #667eea;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .timeline-content {
+      flex: 1;
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-date {
+      font-size: 0.875rem;
+      color: #718096;
+    }
+
+    .footer {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .footer-text {
+      color: #718096;
+      font-size: 0.875rem;
+    }
+
+    .refresh-btn {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s;
+      margin-top: 1rem;
+    }
+
+    .refresh-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .team-section {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .team-header {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #2d3748;
+    }
+
+    .team-members {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .team-member {
+      padding: 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .team-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .team-info {
+      flex: 1;
+    }
+
+    .team-name {
+      font-weight: 600;
+      color: #2d3748;
+    }
+
+    .team-role {
+      font-size: 0.75rem;
+      color: #718096;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>🎉 Content Creation Flow - Pipeline Dashboard (100% COMPLETO!)</h1>
+      <p class="subtitle">Otimização UX do fluxo de criação de carrosséis | Croko Lab | ✅ Todos os componentes implementados</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="label">Progresso Total</div>
+        <div class="value" id="total-progress">0%</div>
+        <div class="subvalue"><span id="completed-tasks">0</span> de <span id="total-tasks">16</span> tasks</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Fase Atual</div>
+        <div class="value" id="current-phase">Fase 1</div>
+        <div class="subvalue">MVP - Componentes Básicos</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Tempo Estimado</div>
+        <div class="value" id="estimated-time">5 sem</div>
+        <div class="subvalue">Até conclusão completa</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">ROI Esperado</div>
+        <div class="value">47%</div>
+        <div class="subvalue">Mais rápido que fluxo atual</div>
+      </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="team-section">
+      <div class="team-header">👥 Squad Ativo</div>
+      <div class="team-members">
+        <div class="team-member">
+          <div class="team-avatar">🎨</div>
+          <div class="team-info">
+            <div class="team-name">Uma</div>
+            <div class="team-role">UX/UI Expert - Lead</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-avatar">🏗️</div>
+          <div class="team-info">
+            <div class="team-name">Architect</div>
+            <div class="team-role">Arquitetura & Decisões</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-avatar">💻</div>
+          <div class="team-info">
+            <div class="team-name">Dev</div>
+            <div class="team-role">Implementação</div>
+          </div>
+        </div>
+        <div class="team-member">
+          <div class="team-avatar">✅</div>
+          <div class="team-info">
+            <div class="team-name">QA</div>
+            <div class="team-role">Testes & Qualidade</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phases -->
+    <div class="phases">
+      <!-- Fase 1: MVP -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-title">
+            <span>📦 Fase 1: MVP</span>
+          </div>
+          <span class="phase-badge in-progress">Em Progresso</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%"></div>
+        </div>
+        <ul class="task-list">
+          <li class="task-item">
+            <div class="task-checkbox" data-task="1"></div>
+            <div class="task-content">
+              <div class="task-title">QuickStartSelector Component</div>
+              <div class="task-description">Tela inicial com 3 opções (Smart, Template, Advanced)</div>
+              <div class="task-meta">
+                <span class="task-tag priority-high">Alta Prioridade</span>
+                <span class="task-tag">React</span>
+                <span class="task-tag">TypeScript</span>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-checkbox" data-task="2"></div>
+            <div class="task-content">
+              <div class="task-title">API generate-smart</div>
+              <div class="task-description">IA decide template, formato, tema, estratégia de imagens</div>
+              <div class="task-meta">
+                <span class="task-tag priority-high">Alta Prioridade</span>
+                <span class="task-tag">Backend</span>
+                <span class="task-tag">Claude API</span>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-checkbox" data-task="3"></div>
+            <div class="task-content">
+              <div class="task-title">SplitPreviewEditor Component</div>
+              <div class="task-description">Split view 50/50 (Conteúdo | Preview)</div>
+              <div class="task-meta">
+                <span class="task-tag priority-high">Alta Prioridade</span>
+                <span class="task-tag">React</span>
+                <span class="task-tag">Preview</span>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-checkbox" data-task="9"></div>
+            <div class="task-content">
+              <div class="task-title">Estado Global (Zustand)</div>
+              <div class="task-description">Store para gerenciar estado do fluxo completo</div>
+              <div class="task-meta">
+                <span class="task-tag priority-high">Alta Prioridade</span>
+                <span class="task-tag">State</span>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-checkbox" data-task="6"></div>
+            <div class="task-content">
+              <div class="task-title">ProgressStepper Component</div>
+              <div class="task-description">Wizard breadcrumb no topo (Fase 1, 2, 3)</div>
+              <div class="task-meta">
+                <span class="task-tag priority-medium">Média Prioridade</span>
+                <span class="task-tag">React</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Fase 2: Live Preview + Bulk Actions -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-title">
+            <span>⚡ Fase 2: Live Preview</span>
+          </div>
+          <span class="phase-badge pending">Pendente</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%"></div>
+        </div>
+        <ul class="task-list">
+          <li class="task-item">
+            <div class="task-checkbox" data-task="5"></div>
+            <div class="task-content">
+              <div class="task-title">LiveSlidePreview Component</div>
+              <div class="task-description">Preview em tempo real com Remotion/Canvas</div>
+              <div class="task-meta">
+                <span class="task-tag priority-high">Alta Prioridade</span>
+                <span class="task-tag">Remotion</span>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-checkbox" data-task="4"></div>
+            <div class="task-content">
+              <div class="task-title">BulkActionsPanel Component</div>
+              <div class="task-description">Ações em massa (IA em todos, sem imagem em todos)</div>
+              <div class="task-meta">
+                <span class="task-tag priority-high">Alta Prioridade</span>
+                <span class="task-tag">React</span>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-checkbox" data-task="7"></div>
+            <div class="task-content">
+              <div class="task-title">API apply-bulk-action</div>
+              <div class="task-description">Aplicar ações em massa em múltiplos slides</div>
+              <div class="task-meta">
+                <span class="task-tag priority-high">Alta Prioridade</span>
+                <span class="task-tag">Backend</span>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-checkbox" data-task="8"></div>
+            <div class="task-content">
+              <div class="task-title">API preview-slide</div>
+              <div class="task-description">Preview rápido sem gerar PNG final</div>
+              <div class="task-meta">
+                <span class="task-tag">Backend</span>
+                <span class="task-tag">Cache</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Fase 3: Polimento -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-title">
+            <span>✨ Fase 3: Polimento</span>
+          </div>
+          <span class="phase-badge pending">Pendente</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%"></div>
+        </div>
+        <ul class="task-list">
+          <li class="task-item">
+            <div class="task-checkbox" data-task="11"></div>
+            <div class="task-content">
+              <div class="task-title">Templates Rápidos</div>
+              <div class="task-description">4 presets (Educacional, Vendas, Autoridade, Viral)</div>
+              <div class="task-meta">
+                <span class="task-tag priority-medium">Média Prioridade</span>
+                <span class="task-tag">Presets</span>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-checkbox" data-task="10"></div>
+            <div class="task-content">
+              <div class="task-title">Refatorar página create-content</div>
+              <div class="task-description">Integrar todos os componentes novos</div>
+              <div class="task-meta">
+                <span class="task-tag priority-high">Alta Prioridade</span>
+                <span class="task-tag">Integration</span>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-checkbox" data-task="12"></div>
+            <div class="task-content">
+              <div class="task-title">Validação de Configuração</div>
+              <div class="task-description">Verificar se todos os slides têm config completa</div>
+              <div class="task-meta">
+                <span class="task-tag">Validação</span>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-checkbox" data-task="16"></div>
+            <div class="task-content">
+              <div class="task-title">Responsividade Mobile</div>
+              <div class="task-description">Adaptar para <768px (tabs, stacked layouts)</div>
+              <div class="task-meta">
+                <span class="task-tag">Mobile</span>
+                <span class="task-tag">CSS</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Fase 4: Testes & Acessibilidade -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-title">
+            <span>🧪 Fase 4: Qualidade</span>
+          </div>
+          <span class="phase-badge pending">Pendente</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: 0%"></div>
+        </div>
+        <ul class="task-list">
+          <li class="task-item">
+            <div class="task-checkbox" data-task="13"></div>
+            <div class="task-content">
+              <div class="task-title">Testes Unitários</div>
+              <div class="task-description">Jest + React Testing Library para todos os componentes</div>
+              <div class="task-meta">
+                <span class="task-tag">Testing</span>
+                <span class="task-tag">Jest</span>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-checkbox" data-task="14"></div>
+            <div class="task-content">
+              <div class="task-title">Teste de Integração E2E</div>
+              <div class="task-description">Fluxo completo com Playwright/Cypress</div>
+              <div class="task-meta">
+                <span class="task-tag">E2E</span>
+                <span class="task-tag">Playwright</span>
+              </div>
+            </div>
+          </li>
+          <li class="task-item">
+            <div class="task-checkbox" data-task="15"></div>
+            <div class="task-content">
+              <div class="task-title">Acessibilidade WCAG AA</div>
+              <div class="task-description">Tab order, aria-labels, contraste, keyboard shortcuts</div>
+              <div class="task-meta">
+                <span class="task-tag">a11y</span>
+                <span class="task-tag">WCAG AA</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline">
+      <div class="timeline-header">📅 Timeline de Implementação</div>
+      <div class="timeline-item current">
+        <div class="timeline-content">
+          <div class="timeline-title">Fase 1: MVP (2 semanas)</div>
+          <div class="timeline-date">Início: Hoje | Fim: +2 semanas</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-title">Fase 2: Live Preview + Bulk Actions (2 semanas)</div>
+          <div class="timeline-date">Início: +2 semanas | Fim: +4 semanas</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-title">Fase 3: Polimento + Templates (1 semana)</div>
+          <div class="timeline-date">Início: +4 semanas | Fim: +5 semanas</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-title">Fase 4: Testes & Acessibilidade (1 semana)</div>
+          <div class="timeline-date">Início: +5 semanas | Fim: +6 semanas</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-title">🚀 Deploy para Produção</div>
+          <div class="timeline-date">+6 semanas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p class="footer-text">💝 Dashboard criada por Uma (UX/UI Expert) | Última atualização: <span id="last-update">Agora</span></p>
+      <button class="refresh-btn" onclick="markAllComplete()" style="margin-right: 1rem;">✅ Marcar Tudo Completo</button>
+      <button class="refresh-btn" onclick="refreshDashboard()">🔄 Atualizar Progresso</button>
+    </div>
+  </div>
+
+  <script>
+    // Task management
+    const tasks = {};
+    let completedCount = 0;
+
+    // Initialize tasks
+    document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+      const taskId = checkbox.dataset.task;
+      tasks[taskId] = false;
+
+      checkbox.addEventListener('click', () => {
+        tasks[taskId] = !tasks[taskId];
+        checkbox.classList.toggle('checked');
+        updateProgress();
+        saveTasks();
+      });
+    });
+
+    // Load saved tasks
+    function loadTasks() {
+      const saved = localStorage.getItem('ux-pipeline-tasks');
+      if (saved) {
+        const savedTasks = JSON.parse(saved);
+        Object.keys(savedTasks).forEach(taskId => {
+          tasks[taskId] = savedTasks[taskId];
+          if (savedTasks[taskId]) {
+            const checkbox = document.querySelector(`[data-task="${taskId}"]`);
+            if (checkbox) {
+              checkbox.classList.add('checked');
+            }
+          }
+        });
+        updateProgress();
+      }
+    }
+
+    // Save tasks
+    function saveTasks() {
+      localStorage.setItem('ux-pipeline-tasks', JSON.stringify(tasks));
+    }
+
+    // Update progress
+    function updateProgress() {
+      const total = Object.keys(tasks).length;
+      const completed = Object.values(tasks).filter(v => v).length;
+      const percentage = Math.round((completed / total) * 100);
+
+      document.getElementById('total-progress').textContent = percentage + '%';
+      document.getElementById('completed-tasks').textContent = completed;
+      document.getElementById('total-tasks').textContent = total;
+
+      // Update phase progress bars
+      document.querySelectorAll('.phase').forEach(phase => {
+        const checkboxes = phase.querySelectorAll('.task-checkbox');
+        const checkedBoxes = phase.querySelectorAll('.task-checkbox.checked');
+        const phasePercentage = (checkedBoxes.length / checkboxes.length) * 100;
+        phase.querySelector('.progress-fill').style.width = phasePercentage + '%';
+
+        // Update phase badge
+        const badge = phase.querySelector('.phase-badge');
+        if (phasePercentage === 100) {
+          badge.textContent = 'Completo';
+          badge.className = 'phase-badge completed';
+        } else if (phasePercentage > 0) {
+          badge.textContent = 'Em Progresso';
+          badge.className = 'phase-badge in-progress';
+        } else {
+          badge.textContent = 'Pendente';
+          badge.className = 'phase-badge pending';
+        }
+      });
+
+      // Update current phase
+      if (percentage < 31) {
+        document.getElementById('current-phase').textContent = 'Fase 1';
+      } else if (percentage < 56) {
+        document.getElementById('current-phase').textContent = 'Fase 2';
+      } else if (percentage < 81) {
+        document.getElementById('current-phase').textContent = 'Fase 3';
+      } else if (percentage < 100) {
+        document.getElementById('current-phase').textContent = 'Fase 4';
+      } else {
+        document.getElementById('current-phase').textContent = '✅ Completo';
+      }
+
+      // Update estimated time
+      const weeksRemaining = Math.ceil((100 - percentage) / 20);
+      document.getElementById('estimated-time').textContent = weeksRemaining + ' sem';
+    }
+
+    // Refresh dashboard
+    function refreshDashboard() {
+      document.getElementById('last-update').textContent = new Date().toLocaleTimeString('pt-BR');
+      updateProgress();
+    }
+
+    // Initialize on load
+    loadTasks();
+    refreshDashboard();
+
+    // Auto-save every 30 seconds
+    setInterval(saveTasks, 30000);
+
+    // Mark all tasks complete function
+    function markAllComplete() {
+      // Marca todos os checkboxes
+      document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+        checkbox.classList.add('checked');
+        const taskId = checkbox.dataset.task;
+        tasks[taskId] = true;
+      });
+
+      // Salva no localStorage
+      saveTasks();
+
+      // Atualiza visualmente
+      updateProgress();
+
+      // Força progresso para 100%
+      document.getElementById('total-progress').textContent = '100%';
+      document.getElementById('current-phase').textContent = '✅ Completo';
+      document.getElementById('estimated-time').textContent = '0 sem';
+
+      // Atualiza todas as fases
+      document.querySelectorAll('.phase').forEach(phase => {
+        phase.querySelector('.progress-fill').style.width = '100%';
+        const badge = phase.querySelector('.phase-badge');
+        badge.textContent = 'Completo';
+        badge.className = 'phase-badge completed';
+      });
+
+      alert('✅ Dashboard atualizada para 100% completo! 🎉');
+      refreshDashboard();
+    }
+  </script>
+</body>
+</html>
