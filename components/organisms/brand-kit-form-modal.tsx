@@ -8,7 +8,7 @@ import { FontSelector } from '@/components/atoms/font-selector'
 import { TagInput } from '@/components/atoms/tag-input'
 import { X, Upload, ChevronDown, ChevronUp, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 
 // ============================================
 // TYPES (temporários até Task #2 finalizar)
