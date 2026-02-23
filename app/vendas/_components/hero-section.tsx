@@ -28,7 +28,7 @@ export function HeroSection() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary-500/30 bg-primary-500/5 text-sm text-primary-300 backdrop-blur-sm"
         >
           <Star className="h-4 w-4 fill-primary-400 text-primary-400" />
-          <span>Baseado em Hormozi, Schwartz, Kahneman, Cagan e Graham</span>
+          <span>Método científico validado por especialistas do Vale do Silício</span>
         </motion.div>
 
         {/* Headline */}

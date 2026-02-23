@@ -274,3 +274,120 @@ export interface ContentSuggestionWithRelations extends ContentSuggestion {
   audit: Audit
   profile: Profile
 }
+
+// ============================================
+// USER PROFILE CONTEXT (Estrutura Completa)
+// ============================================
+
+export interface UserProfileIdentity {
+  fullName?: string
+  displayName?: string
+  positioning?: string
+  niche?: string[]
+  avatar?: string
+  toneOfVoice?: string
+}
+
+export interface UserProfileCredibility {
+  experience?: string
+  achievements?: string[]
+  expertise?: string[]
+}
+
+export interface UserProfilePhilosophy {
+  values?: string[]
+  beliefs?: string
+  defends?: string
+  rejects?: string
+}
+
+export interface UserProfileContentLanguage {
+  formality?: string // 'formal' | 'casual' | 'técnico'
+  emojis?: boolean
+  storytelling?: string
+  termsToAvoid?: string[] // Termos técnicos, jargões, palavras em inglês que o público não entende
+}
+
+export interface UserProfileContentStyle {
+  preferredFormats?: string[]
+  structure?: string
+  language?: UserProfileContentLanguage
+}
+
+export interface UserProfileContentPillar {
+  name: string
+  subtopics: string[]
+}
+
+export interface UserProfileProduct {
+  name: string
+  price: string
+  target: string
+  cta: string
+}
+
+export interface UserProfileBusiness {
+  products?: UserProfileProduct[]
+}
+
+export interface UserProfileDNA {
+  energy?: string
+  uniqueVoice?: string
+  transformation?: string
+}
+
+export interface UserProfile {
+  // Identidade
+  identity?: UserProfileIdentity
+
+  // Credibilidade
+  credibility?: UserProfileCredibility
+
+  // Filosofia
+  philosophy?: UserProfilePhilosophy
+
+  // Estilo de Conteúdo
+  contentStyle?: UserProfileContentStyle
+
+  // Pilares de Conteúdo
+  contentPillars?: UserProfileContentPillar[]
+
+  // Negócio
+  business?: UserProfileBusiness
+
+  // DNA
+  dna?: UserProfileDNA
+}
+
+export interface ProfileContext {
+  id: string
+  profile_id: string
+
+  // Campos legados (manter compatibilidade)
+  nicho?: string | null
+  objetivos?: string | null
+  publico_alvo?: string | null
+  produtos_servicos?: string | null
+  tom_voz?: string | null
+  contexto_adicional?: string | null
+  files?: any[]
+  documents?: any[]
+  raw_text?: string | null
+
+  // Nova estrutura completa
+  identity?: UserProfileIdentity
+  credibility?: UserProfileCredibility
+  philosophy?: UserProfilePhilosophy
+  content_style?: UserProfileContentStyle
+  content_pillars?: UserProfileContentPillar[]
+  business?: UserProfileBusiness
+  dna?: UserProfileDNA
+
+  // Metadados
+  last_used_in_audit_at?: string | null
+  last_used_in_content_at?: string | null
+  usage_count?: number
+  deleted_at?: string | null
+  created_at: string
+  updated_at: string
+}

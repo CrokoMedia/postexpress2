@@ -74,13 +74,18 @@ Escreva:
 1. 5 opções de HOOK para slide 1 (baseado em awareness stage)
 2. Copy completo de cada slide (títulos + subtextos)
 3. Caption para a postagem
-4. 5-8 hashtags relevantes
 
 Princípios:
 - Especificidade > generalização
 - Benefício claro em cada slide
 - Progressão emocional → racional
-- CTA que reforça a mensagem"
+- CTA que reforça a mensagem
+
+**⚠️ RESTRIÇÃO CRÍTICA:**
+- Use APENAS números/casos fornecidos pelo usuário
+- Se precisar de número/case: use placeholder [INSERIR DADO REAL]
+- Marque claramente exemplos fictícios como [EXEMPLO TEMPLATE]
+- NUNCA invente métricas, resultados ou provas sociais"
 ```
 
 ### Passo 3: Otimização de Oferta (Alex Hormozi)
@@ -113,8 +118,7 @@ Ajuste:
 1. Referências culturais
 2. Exemplos locais
 3. Linguagem coloquial BR
-4. Gatilhos que funcionam no Brasil
-5. Hashtags BR relevantes"
+4. Gatilhos que funcionam no Brasil"
 ```
 
 ### Passo 5: Planejamento Visual
@@ -139,6 +143,8 @@ Para cada slide, especifique:
 - [ ] Legível em tela de celular?
 - [ ] Branding consistente?
 - [ ] Caption complementa (não duplica) o carrossel?
+- [ ] **⚠️ CRÍTICO: Todo número/case/métrica é REAL ou claramente marcado como [TEMPLATE]?**
+- [ ] **⚠️ Não inventei dados, resultados ou provas sociais?**
 
 ## Output Esperado
 
@@ -174,12 +180,6 @@ Total de slides: X
 
 ---
 
-## HASHTAGS
-
-#hashtag1 #hashtag2 #hashtag3 [...]
-
----
-
 ## NOTAS DE PRODUÇÃO
 
 - **Fonte sugerida**: [Nome]
@@ -189,12 +189,16 @@ Total de slides: X
 
 ---
 
-## MÉTRICAS ESPERADAS
+## MÉTRICAS ESPERADAS (Benchmarks de Mercado)
 
-Baseado em benchmarks:
-- **Reach**: [estimativa]
-- **Engagement**: [estimativa]
-- **Saves**: [estimativa]
+**IMPORTANTE**: Estes são BENCHMARKS GERAIS de mercado, NÃO resultados garantidos ou dados reais deste carrossel específico.
+
+Baseado em benchmarks da indústria:
+- **Reach**: [estimativa baseada em benchmarks gerais - NÃO dado real]
+- **Engagement**: [estimativa baseada em benchmarks gerais - NÃO dado real]
+- **Saves**: [estimativa baseada em benchmarks gerais - NÃO dado real]
+
+**Para dados reais**: Analise após publicação usando Instagram Insights.
 ```
 
 ## Exemplos de Estruturas
@@ -209,14 +213,19 @@ Baseado em benchmarks:
 7. Erro #5: Não usar prova social
 8. Resumo + CTA: "Salve para revisar seu copy"
 
-### Exemplo 2: Vendas (7 slides)
-1. Hook: "Como fazer R$ 50k/mês com infoprodutos"
+### Exemplo 2: Vendas (7 slides) - TEMPLATE
+
+**IMPORTANTE**: Este é um TEMPLATE. Substitua todos os placeholders por dados REAIS do seu negócio.
+
+1. Hook: "Como fazer [INSERIR VALOR REAL]/mês com [seu produto]"
 2. Problema: "Você já tentou lançar e não vendeu..."
 3. Causa: "O problema não é o produto"
-4. Solução: "Método [NOME]"
-5. Prova: Case real com números
-6. Oferta: "Acesso por [preço] (bônus inclusos)"
+4. Solução: "Método [NOME REAL]"
+5. Prova: [INSERIR CASE REAL com números VERDADEIROS do seu negócio ou clientes]
+6. Oferta: "Acesso por [PREÇO REAL] (bônus inclusos)"
 7. CTA: "Link na bio + DM 'QUERO'"
+
+**⚠️ NÃO invente números, cases ou resultados. Use APENAS dados reais.**
 
 ### Exemplo 3: Autoridade (6 slides)
 1. Hook: "O framework que usei para 10x meu negócio"

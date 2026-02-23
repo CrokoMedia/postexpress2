@@ -229,34 +229,35 @@ export default function ReelsPage() {
         </CardContent>
       </Card>
 
-      {/* Tema Personalizado + Botão Gerar */}
-      {!reels && (
-        <Card className="border-primary-500/30 bg-neutral-900/50">
-          <CardHeader>
-            <CardTitle className="text-lg">Tema Personalizado (Opcional)</CardTitle>
-            <CardDescription>
-              Defina um tema específico ou deixe vazio para gerar baseado na auditoria
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <textarea
-              value={customTheme}
-              onChange={(e) => setCustomTheme(e.target.value)}
-              placeholder="Ex: Reels sobre bastidores da minha rotina de criação de conteúdo..."
-              rows={3}
-              maxLength={500}
-              className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
-            />
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-neutral-500">{customTheme.length}/500</span>
+      {/* Tema Personalizado - SEMPRE VISÍVEL */}
+      <Card className="border-primary-500/30 bg-neutral-900/50">
+        <CardHeader>
+          <CardTitle className="text-lg">Tema Personalizado (Opcional)</CardTitle>
+          <CardDescription>
+            Defina um tema específico ou deixe vazio para gerar baseado na auditoria
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <textarea
+            value={customTheme}
+            onChange={(e) => setCustomTheme(e.target.value)}
+            placeholder="Ex: Reels sobre bastidores da minha rotina de criação de conteúdo..."
+            rows={3}
+            maxLength={500}
+            className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none"
+          />
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-neutral-500">{customTheme.length}/500</span>
+            {/* Botão só aparece antes da primeira geração */}
+            {!reels && (
               <Button onClick={handleGenerate} disabled={generating} size="lg">
                 <Sparkles className="w-5 h-5 mr-2" />
                 {generating ? 'Gerando...' : 'Gerar Ideias de Reels'}
               </Button>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+            )}
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Loading */}
       {generating && (

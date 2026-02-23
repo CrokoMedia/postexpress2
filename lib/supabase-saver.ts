@@ -103,11 +103,12 @@ export async function saveProfile(profileData: any) {
     cloudinaryUrl = await uploadProfilePicToCloudinary(picUrlForUpload, username)
   }
 
-  // Verificar se perfil já existe
+  // Verificar se perfil já existe (apenas não-deletados, por segurança)
   const { data: existing } = await supabase
     .from('profiles')
     .select('id')
     .eq('username', username)
+    .is('deleted_at', null)
     .single()
 
   const profilePayload: Record<string, any> = {
@@ -122,8 +123,7 @@ export async function saveProfile(profileData: any) {
     is_verified: verified || false,
     is_business_account: isBusinessAccount || false,
     business_category: businessCategoryName || null,
-    last_scraped_at: new Date().toISOString(),
-    deleted_at: null // Restaurar se estava soft-deletado
+    last_scraped_at: new Date().toISOString()
   }
 
   // Incluir URL do Cloudinary se upload bem sucedido
@@ -164,12 +164,37 @@ export async function saveProfile(profileData: any) {
     console.log(`✅ Profile @${username} updated successfully`)
     return data
   } else {
+    // Detectar gênero automaticamente para novo perfil
+    let genderData: { gender: string | null; gender_auto_detected: boolean; gender_confidence: number | null } = {
+      gender: null,
+      gender_auto_detected: false,
+      gender_confidence: null
+    }
+
+    try {
+      // Importar dinamicamente para evitar circular dependency
+      const { detectGender } = await import('./gender-detector')
+      const detection = await detectGender(fullName, biography, username)
+
+      genderData = {
+        gender: detection.gender,
+        gender_auto_detected: true,
+        gender_confidence: detection.confidence
+      }
+
+      console.log(`🎯 Gênero detectado: ${detection.gender} (${(detection.confidence * 100).toFixed(0)}% confiança)`)
+    } catch (error: any) {
+      console.warn(`⚠️  Falha ao detectar gênero: ${error.message}`)
+      // Continuar sem gênero - usuário pode definir manualmente depois
+    }
+
     // Criar novo
     const { data, error } = await supabase
       .from('profiles')
       .insert({
         username,
         ...profilePayload,
+        ...genderData,
         first_scraped_at: new Date().toISOString()
       })
       .select()

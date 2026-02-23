@@ -23,7 +23,7 @@ const stackItems = [
       '30 ideias de conteúdo validadas por dados',
       'Mix ideal de formatos (carrosséis, reels, stories)',
       'Hooks testados para o seu nicho específico',
-      'Sequência de awareness (Schwartz) aplicada',
+      'Sequência de awareness stages aplicada',
     ],
   },
   {
@@ -31,7 +31,7 @@ const stackItems = [
     value: 'R$ 3.000',
     items: [
       '10 templates de carrossel baseados nas estruturas campeãs',
-      'Scripts de CTA otimizados (framework Hormozi)',
+      'Scripts de CTA otimizados com value equation',
       'Banco de 100+ hooks que funcionam no seu mercado',
       'Estruturas de copy para cada nível de consciência',
     ],
@@ -50,7 +50,7 @@ const stackItems = [
     title: 'Acesso ao Sistema de Auditorias (12 meses)',
     value: 'R$ 3.564',
     items: [
-      '12 meses de acesso ao sistema Post Express Profissional',
+      '12 meses de acesso ao sistema Croko Lab Profissional',
       'Auditorias ilimitadas de qualquer perfil',
       'Atualização automática dos frameworks',
       'Novas funcionalidades incluídas',
@@ -209,7 +209,7 @@ export function PricingSection() {
 
           <p className="text-base italic text-neutral-500 max-w-md mx-auto">
             &ldquo;Faça às pessoas uma oferta tão boa que elas se sentiriam idiotas
-            dizendo não.&rdquo; — Alex Hormozi
+            dizendo não.&rdquo;
           </p>
         </motion.div>
 

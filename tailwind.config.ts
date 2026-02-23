@@ -10,18 +10,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Primary: Rosa/Magenta (adcreative.ai inspired)
+        // Primary: Teal Croko (identidade da marca)
         primary: {
-          50: '#fef2f7',
-          100: '#fde6ef',
-          200: '#fccfdf',
-          300: '#faa7c3',
-          400: '#f7749d',
-          500: '#ef2b70', // Base color from adcreative.ai
-          600: '#d91f5e',
-          700: '#b7164c',
-          800: '#981645',
-          900: '#80173e',
+          50: '#e6f7f8',
+          100: '#cceff1',
+          200: '#99dfe3',
+          300: '#66cfd5',
+          400: '#33bfc7',
+          500: '#0a6e75', // Base color - teal Croko
+          600: '#085862',
+          700: '#06424a',
+          800: '#042c31',
+          900: '#021619',
         },
         // Secondary: Roxo escuro (adcreative.ai)
         secondary: {
@@ -36,32 +36,34 @@ const config: Config = {
           800: '#5b21b6',
           900: '#1E1541', // Dark purple from adcreative.ai
         },
-        // Neutral: Light mode (brancos/cinzas claros)
+        // Neutral: Warm Neutral (clean, profissional)
         neutral: {
-          50: '#ffffff',
-          100: '#fafafa',
-          200: '#f5f5f5',
-          300: '#e5e5e5',
-          400: '#d4d4d4',
-          500: '#a3a3a3',
-          600: '#737373',
-          700: '#525252',
-          800: '#404040',
-          900: '#262626',
-          950: '#171717',
+          50: '#fafaf9',  // Background
+          100: '#f5f5f4', // Subtle background
+          200: '#e7e5e4', // Border padrão (mais evidente)
+          300: '#d6d3d1', // Border strong
+          400: '#a8a29e',
+          500: '#78716c', // Text muted
+          600: '#57534e', // Text secondary
+          700: '#44403c',
+          750: '#383838',
+          800: '#292524',
+          850: '#1c1917', // Text primary
+          900: '#1a1a1a', // Dark bg
+          950: '#0a0a0a',
         },
-        // Success: Green scale completa
+        // Success: Verde Croko
         success: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#10b981',
-          600: '#059669',
-          700: '#047857',
-          800: '#065f46',
-          900: '#064e3b',
+          50: '#f0fdf5',
+          100: '#e6f9ed',
+          200: '#c1e1c2', // Verde claro Croko
+          300: '#9dd9a3',
+          400: '#78d184',
+          500: '#57cc99', // Verde médio Croko
+          600: '#46a37a',
+          700: '#347a5c',
+          800: '#23513d',
+          900: '#11291f',
         },
         // Warning: Amber scale completa
         warning: {
@@ -108,16 +110,17 @@ const config: Config = {
         mono: ['var(--font-mono)', 'Menlo', 'monospace'],
       },
       borderRadius: {
-        card: '0.75rem',    // 12px - cards
-        button: '0.5rem',   // 8px - buttons
-        modal: '1rem',      // 16px - modals (adcreative.ai)
-        badge: '0.375rem',  // 6px - badges
-        input: '0.5rem',    // 8px - inputs
+        card: '0.5rem',     // 8px - cards (menos arredondado)
+        button: '0.375rem', // 6px - buttons (menos arredondado)
+        modal: '0.5rem',    // 8px - modals
+        badge: '0.25rem',   // 4px - badges
+        input: '0.375rem',  // 6px - inputs
       },
       boxShadow: {
-        glow: '0 0 20px rgb(239 43 112 / 0.2)', // Rosa/Magenta glow
-        card: '0 1px 2px 0 rgb(0 0 0 / 0.05)', // Suave e sutil
-        hover: '0 4px 8px 0 rgb(0 0 0 / 0.08)', // Hover suave
+        // Removido: glow colorido (não profissional)
+        card: '0 1px 2px 0 rgb(0 0 0 / 0.05)',  // Elevação suave
+        hover: '0 2px 8px 0 rgb(0 0 0 / 0.08)', // Hover sutil
+        lg: '0 8px 24px 0 rgb(0 0 0 / 0.12)',   // Elevação forte
       },
       keyframes: {
         gradient: {

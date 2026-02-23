@@ -1,18 +1,18 @@
-# CLAUDE.md - Post Express
+# CLAUDE.md - Croko Lab
 
 > Contexto completo do projeto para o Claude Code.
 > Leia este arquivo antes de qualquer tarefa no repositório.
 
 ---
 
-## 🎯 O QUE É O POST EXPRESS
+## 🎯 O QUE É O CROKO LAB
 
-**Post Express é um serviço de auditoria profissional de conteúdo para Instagram.**
+**Croko Lab é o laboratório de conteúdo científico da Agência Croko.**
 
 Não é um "app", não é "software", não é "SaaS", não é "ferramenta de IA". É um **serviço que transforma creators de achistas em estrategistas data-driven**.
 
 ### O que entregamos:
-1. **Auditoria Express** - Análise profunda de qualquer perfil do Instagram em 3 minutos
+1. **Croko Audit** - Análise profunda de qualquer perfil do Instagram em 3 minutos
 2. **Perguntas do público** - Exatamente o que a audiência pergunta nos comentários (= ideias infinitas de conteúdo)
 3. **Leitura dos slides** - Extraímos o texto completo de carrosséis dos concorrentes (ninguém mais faz isso)
 4. **5 frameworks científicos** - Hormozi, Schwartz, Kahneman, Cagan, Paul Graham aplicados ao conteúdo
@@ -22,7 +22,7 @@ Não é um "app", não é "software", não é "SaaS", não é "ferramenta de IA"
 - **DEPOIS:** "Tenho 20 ideias acionáveis em 3 minutos, baseadas no que meu público realmente quer"
 
 ### Desenvolvido por:
-**Pazos Media** | Versão 1.0 | Fevereiro 2026
+**Agência Croko** | Versão 1.0 | Fevereiro 2026
 
 ---
 
@@ -51,7 +51,7 @@ Não é um "app", não é "software", não é "SaaS", não é "ferramenta de IA"
 - "Mesma auditoria que consultores cobram R$ 2.000"
 
 ### 🎯 Frase de posicionamento
-> "Nunca mais fique sem saber o que postar. Descubra exatamente o que seu público pergunta, o que seus concorrentes fazem que funciona, e como replicar o sucesso deles — em 3 minutos."
+> "Croko Lab: Laboratório de conteúdo científico que transforma creators de achistas em estrategistas. Descubra exatamente o que seu público pergunta, o que seus concorrentes fazem que funciona, e como replicar o sucesso deles — em 3 minutos."
 
 ---
 
@@ -101,7 +101,7 @@ postexpress2/
 │   └── ocr-mistral-analyzer.js
 ├── squad-auditores/              # Sistema de auditoria
 │   ├── BRIEFING-TEMPLATE.md      # Template de briefing de clientes
-│   ├── briefing-postexpress.md   # Briefing do Post Express preenchido
+│   ├── briefing-croko-lab.md   # Briefing do Croko Lab preenchido
 │   ├── DNA-CONTEUDO-SPEC.md      # Especificação técnica do DNA
 │   ├── SQUAD-DNA-CONTEUDO.md     # Composição do squad
 │   ├── data/                     # JSONs de análises realizadas
@@ -303,7 +303,7 @@ node scripts/ocr-gemini-analyzer.js <username>
 | Arquivo | Conteúdo |
 |---------|----------|
 | `squad-auditores/BRIEFING-TEMPLATE.md` | Template para briefing de clientes |
-| `squad-auditores/briefing-postexpress.md` | Briefing completo do Post Express (produto) |
+| `squad-auditores/briefing-croko-lab.md` | Briefing completo do Croko Lab (produto) |
 | `squad-auditores/DNA-CONTEUDO-SPEC.md` | Especificação técnica do DNA de Conteúdo |
 | `README-APP.md` | Documentação técnica da aplicação |
 | `FLUXO-COMPLETO-SISTEMA.md` | Fluxo detalhado do sistema de análise |

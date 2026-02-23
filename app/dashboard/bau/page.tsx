@@ -52,8 +52,8 @@ export default function BauPage() {
           slides_json,
           slides_v2_json,
           generated_at,
-          profiles!inner(username, full_name),
-          audits!inner(classification)
+          profiles!left(username, full_name),
+          audits!left(classification)
         `)
         .order('generated_at', { ascending: false })
 
@@ -176,9 +176,11 @@ export default function BauPage() {
                         <CardTitle className="text-xl">
                           {item.profiles?.full_name || item.profiles?.username || 'Perfil desconhecido'}
                         </CardTitle>
-                        <Badge variant="neutral" className="text-xs">
-                          @{item.profiles?.username}
-                        </Badge>
+                        {item.profiles?.username && (
+                          <Badge variant="neutral" className="text-xs">
+                            @{item.profiles.username}
+                          </Badge>
+                        )}
                       </div>
 
                       <div className="flex flex-wrap gap-2 mt-3">

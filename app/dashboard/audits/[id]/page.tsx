@@ -231,46 +231,48 @@ export default function AuditPage() {
 
       {/* Overall Score & Stats */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <Card className="lg:col-span-2 bg-gradient-to-br from-primary-50 to-white border-primary-200">
-          <CardContent className="p-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-4xl font-bold mb-2">Score Geral</h2>
-                <div className="flex items-center gap-3">
-                  <Badge variant={
-                    (audit.score_overall || 0) >= 75 ? 'success' :
-                    (audit.score_overall || 0) >= 50 ? 'warning' :
-                    'error'
-                  }>
-                    {classification.label}
-                  </Badge>
-                </div>
+        <div className="lg:col-span-2 rounded-xl border-2 border-purple-300 dark:border-purple-700 bg-purple-50/80 dark:bg-purple-950/40 p-8 shadow-sm transition-all">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-xl bg-white dark:bg-purple-900/30 shadow-sm flex items-center justify-center border border-purple-200 dark:border-purple-800">
+                <TrendingUp className="w-8 h-8 text-purple-600 dark:text-purple-400" />
               </div>
-              <div className={`text-8xl font-bold ${classification.color}`}>
-                {audit.score_overall}
+              <div>
+                <h2 className="text-3xl font-semibold text-purple-900 dark:text-purple-100 mb-1">Score Geral</h2>
+                <Badge variant={
+                  (audit.score_overall || 0) >= 75 ? 'success' :
+                  (audit.score_overall || 0) >= 50 ? 'warning' :
+                  'error'
+                }>
+                  {classification.label}
+                </Badge>
               </div>
             </div>
-          </CardContent>
-        </Card>
+            <div className={`text-7xl font-bold ${classification.color}`}>
+              {audit.score_overall}
+            </div>
+          </div>
+        </div>
 
         {/* Posts Analyzed Card */}
-        <Card className="bg-gradient-to-br from-blue-50 to-white dark:from-blue-950/30 dark:to-neutral-800/50 border-blue-200 dark:border-blue-800">
-          <CardContent className="p-8 flex flex-col items-center justify-center h-full">
-            <div className="text-sm text-muted-foreground mb-2">Posts Analisados</div>
-            <div className="text-6xl font-bold text-blue-500 dark:text-blue-400 mb-2">
-              {audit.posts_analyzed}
-            </div>
-            <Badge variant={
-              (audit.posts_analyzed || 0) >= 10 ? 'success' :
-              (audit.posts_analyzed || 0) >= 5 ? 'warning' :
-              'error'
-            }>
-              {(audit.posts_analyzed || 0) >= 10 ? 'Amostra Ideal' :
-               (audit.posts_analyzed || 0) >= 5 ? 'Amostra Mínima' :
-               'Dados Insuficientes'}
-            </Badge>
-          </CardContent>
-        </Card>
+        <div className="rounded-xl border-2 border-blue-300 dark:border-blue-700 bg-blue-50/80 dark:bg-blue-950/40 p-8 shadow-sm transition-all flex flex-col items-center justify-center">
+          <div className="w-14 h-14 rounded-xl bg-white dark:bg-blue-900/30 shadow-sm flex items-center justify-center border border-blue-200 dark:border-blue-800 mb-3">
+            <BarChart3 className="w-7 h-7 text-blue-600 dark:text-blue-400" />
+          </div>
+          <div className="text-sm font-medium text-blue-700 dark:text-blue-300 mb-2">Posts Analisados</div>
+          <div className="text-5xl font-bold text-blue-600 dark:text-blue-400 mb-3">
+            {audit.posts_analyzed}
+          </div>
+          <Badge variant={
+            (audit.posts_analyzed || 0) >= 10 ? 'success' :
+            (audit.posts_analyzed || 0) >= 5 ? 'warning' :
+            'error'
+          }>
+            {(audit.posts_analyzed || 0) >= 10 ? 'Amostra Ideal' :
+             (audit.posts_analyzed || 0) >= 5 ? 'Amostra Mínima' :
+             'Dados Insuficientes'}
+          </Badge>
+        </div>
       </div>
 
       {/* Warning for insufficient data */}
@@ -334,73 +336,70 @@ export default function AuditPage() {
       </div>
 
       {/* Engagement Stats */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Estatísticas de Engajamento</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-4 gap-6">
-            <div>
-              <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                <TrendingUp className="h-4 w-4" />
-                <span className="text-sm">Taxa de Engajamento</span>
-              </div>
-              <div className="text-3xl font-bold text-primary-600">
-                {audit.engagement_rate?.toFixed(2)}%
-              </div>
+      <div className="rounded-xl border-2 border-emerald-300 dark:border-emerald-700 bg-emerald-50/80 dark:bg-emerald-950/40 p-6 shadow-sm transition-all">
+        <h3 className="text-lg font-semibold text-emerald-900 dark:text-emerald-100 mb-4">Estatísticas de Engajamento</h3>
+        <div className="grid grid-cols-4 gap-6">
+          <div className="flex flex-col items-center text-center">
+            <div className="w-12 h-12 rounded-xl bg-white dark:bg-emerald-900/30 shadow-sm flex items-center justify-center border border-emerald-200 dark:border-emerald-800 mb-3">
+              <TrendingUp className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
             </div>
-            <div>
-              <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                <Heart className="h-4 w-4" />
-                <span className="text-sm">Total de Likes</span>
-              </div>
-              <div className="text-3xl font-bold text-neutral-700">
-                {formatNumber(audit.total_likes || 0)}
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                <MessageCircle className="h-4 w-4" />
-                <span className="text-sm">Total de Comentários</span>
-              </div>
-              <div className="text-3xl font-bold text-neutral-700">
-                {formatNumber(audit.total_comments || 0)}
-              </div>
-            </div>
-            <div>
-              <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                <Users className="h-4 w-4" />
-                <span className="text-sm">Seguidores (snapshot)</span>
-              </div>
-              <div className="text-3xl font-bold text-neutral-700">
-                {formatNumber(audit.snapshot_followers || 0)}
-              </div>
+            <span className="text-xs font-medium text-emerald-700 dark:text-emerald-300 mb-2">Taxa de Engajamento</span>
+            <div className="text-2xl font-semibold text-emerald-900 dark:text-emerald-100">
+              {audit.engagement_rate?.toFixed(2)}%
             </div>
           </div>
-        </CardContent>
-      </Card>
+          <div className="flex flex-col items-center text-center">
+            <div className="w-12 h-12 rounded-xl bg-white dark:bg-emerald-900/30 shadow-sm flex items-center justify-center border border-emerald-200 dark:border-emerald-800 mb-3">
+              <Heart className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <span className="text-xs font-medium text-emerald-700 dark:text-emerald-300 mb-2">Total de Likes</span>
+            <div className="text-2xl font-semibold text-emerald-900 dark:text-emerald-100">
+              {formatNumber(audit.total_likes || 0)}
+            </div>
+          </div>
+          <div className="flex flex-col items-center text-center">
+            <div className="w-12 h-12 rounded-xl bg-white dark:bg-emerald-900/30 shadow-sm flex items-center justify-center border border-emerald-200 dark:border-emerald-800 mb-3">
+              <MessageCircle className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <span className="text-xs font-medium text-emerald-700 dark:text-emerald-300 mb-2">Total de Comentários</span>
+            <div className="text-2xl font-semibold text-emerald-900 dark:text-emerald-100">
+              {formatNumber(audit.total_comments || 0)}
+            </div>
+          </div>
+          <div className="flex flex-col items-center text-center">
+            <div className="w-12 h-12 rounded-xl bg-white dark:bg-emerald-900/30 shadow-sm flex items-center justify-center border border-emerald-200 dark:border-emerald-800 mb-3">
+              <Users className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+            </div>
+            <span className="text-xs font-medium text-emerald-700 dark:text-emerald-300 mb-2">Seguidores (snapshot)</span>
+            <div className="text-2xl font-semibold text-emerald-900 dark:text-emerald-100">
+              {formatNumber(audit.snapshot_followers || 0)}
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Top Strengths */}
       {audit.raw_json?.top_strengths && audit.raw_json.top_strengths.length > 0 && (
         <div>
-          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-success-500" />
+          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-foreground">
+            <TrendingUp className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
             Pontos Fortes
           </h3>
           <div className="grid gap-4">
             {audit.raw_json.top_strengths.map((strength: any, index: number) => (
-              <Card key={index} className="border-l-4 border-success-500 bg-success-500/5">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-3">
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-success-700 mb-1">
-                        #{strength.rank} {strength.title}
-                      </h4>
-                      <p className="text-sm text-neutral-700">{strength.description}</p>
-                    </div>
+              <div key={index} className="rounded-xl border-2 border-emerald-300 dark:border-emerald-700 bg-emerald-50/80 dark:bg-emerald-950/40 p-5 shadow-sm transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-white dark:bg-emerald-900/30 shadow-sm flex items-center justify-center border border-emerald-200 dark:border-emerald-800 shrink-0">
+                    <TrendingUp className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-emerald-900 dark:text-emerald-100 mb-1">
+                      #{strength.rank} {strength.title}
+                    </h4>
+                    <p className="text-sm text-emerald-700/80 dark:text-emerald-300/80 leading-relaxed">{strength.description}</p>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -409,31 +408,32 @@ export default function AuditPage() {
       {/* Critical Problems */}
       {audit.raw_json?.critical_problems && audit.raw_json.critical_problems.length > 0 && (
         <div>
-          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-            <AlertTriangle className="w-5 h-5 text-error-500" />
+          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-foreground">
+            <AlertTriangle className="w-5 h-5 text-red-600 dark:text-red-400" />
             Problemas Críticos
           </h3>
           <div className="grid gap-4">
             {audit.raw_json.critical_problems.map((problem: any, index: number) => (
-              <Card key={index} className="border-l-4 border-error-500 bg-error-500/5">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-3">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-semibold text-error-700">
-                          #{problem.rank} {problem.title}
-                        </h4>
-                        {problem.severity && (
-                          <Badge variant="error" className="text-xs">
-                            {problem.severity}
-                          </Badge>
-                        )}
-                      </div>
-                      <p className="text-sm text-neutral-700">{problem.description}</p>
-                    </div>
+              <div key={index} className="rounded-xl border-2 border-red-300 dark:border-red-700 bg-red-50/80 dark:bg-red-950/40 p-5 shadow-sm transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-xl bg-white dark:bg-red-900/30 shadow-sm flex items-center justify-center border border-red-200 dark:border-red-800 shrink-0">
+                    <AlertTriangle className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h4 className="font-semibold text-red-900 dark:text-red-100">
+                        #{problem.rank} {problem.title}
+                      </h4>
+                      {problem.severity && (
+                        <Badge variant="error" className="text-xs">
+                          {problem.severity}
+                        </Badge>
+                      )}
+                    </div>
+                    <p className="text-sm text-red-700/80 dark:text-red-300/80 leading-relaxed">{problem.description}</p>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -441,65 +441,58 @@ export default function AuditPage() {
 
       {/* Quick Wins */}
       {audit.raw_json?.quick_wins && audit.raw_json.quick_wins.length > 0 && (
-        <Card className="bg-gradient-to-br from-primary-50 to-white border-primary-200">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-primary-600" />
-              Quick Wins - Ações Rápidas
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              {audit.raw_json.quick_wins.map((win: any, index: number) => (
-                <li key={index} className="flex items-start gap-2 text-sm">
-                  <span className="text-primary-600 font-bold shrink-0">{index + 1}.</span>
-                  <span className="text-neutral-700">
-                    {typeof win === 'string' ? win : win?.title || win?.description || JSON.stringify(win)}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+        <div className="rounded-xl border-2 border-amber-300 dark:border-amber-700 bg-amber-50/80 dark:bg-amber-950/40 p-6 shadow-sm transition-all">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-11 h-11 rounded-xl bg-white dark:bg-amber-900/30 shadow-sm flex items-center justify-center border border-amber-200 dark:border-amber-800">
+              <Sparkles className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+            </div>
+            <h3 className="text-lg font-semibold text-amber-900 dark:text-amber-100">Quick Wins - Ações Rápidas</h3>
+          </div>
+          <ul className="space-y-3">
+            {audit.raw_json.quick_wins.map((win: any, index: number) => (
+              <li key={index} className="flex items-start gap-3 text-sm">
+                <span className="text-amber-700 dark:text-amber-300 font-semibold shrink-0 mt-0.5">{index + 1}.</span>
+                <span className="text-amber-800/80 dark:text-amber-200/80 leading-relaxed">
+                  {typeof win === 'string' ? win : win?.title || win?.description || JSON.stringify(win)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
 
       {/* Auditors Analysis */}
       <div>
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           <Brain className="w-5 h-5 text-primary-600" />
-          Análise Detalhada dos Auditores
+          Análise Detalhada por Dimensão
         </h3>
         <div className="space-y-4">
           <AuditorSection
-            auditorName="Daniel Kahneman"
             auditorType="behavior"
             score={audit.score_behavior || 0}
             insights={audit.raw_json?.auditors_analysis?.behavior?.key_findings || []}
             recommendations={audit.raw_json?.auditors_analysis?.behavior?.recommendations || []}
           />
           <AuditorSection
-            auditorName="Eugene Schwartz"
             auditorType="copy"
             score={audit.score_copy || 0}
             insights={audit.raw_json?.auditors_analysis?.copy?.key_findings || []}
             recommendations={audit.raw_json?.auditors_analysis?.copy?.recommendations || []}
           />
           <AuditorSection
-            auditorName="Alex Hormozi"
             auditorType="offers"
             score={audit.score_offers || 0}
             insights={audit.raw_json?.auditors_analysis?.offers?.key_findings || []}
             recommendations={audit.raw_json?.auditors_analysis?.offers?.recommendations || []}
           />
           <AuditorSection
-            auditorName="Marty Cagan"
             auditorType="metrics"
             score={audit.score_metrics || 0}
             insights={audit.raw_json?.auditors_analysis?.metrics?.key_findings || []}
             recommendations={audit.raw_json?.auditors_analysis?.metrics?.recommendations || []}
           />
           <AuditorSection
-            auditorName="Paul Graham"
             auditorType="anomalies"
             score={audit.score_anomalies || 0}
             insights={audit.raw_json?.auditors_analysis?.anomalies?.key_findings || []}

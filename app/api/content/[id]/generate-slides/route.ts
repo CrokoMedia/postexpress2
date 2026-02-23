@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { getBrowser } from '@/lib/browser'
 import { replaceEmojisWithAppleImages } from '@/lib/emoji-utils'
-import { generateContentImage } from '@/lib/fal-image'
+import { generateContentImage } from '@/lib/nano-banana'
 import cloudinary from 'cloudinary'
 import fs from 'fs'
 import path from 'path'
@@ -327,28 +327,28 @@ async function generateSlideHTML({
   <style>
     @font-face {
       font-family: 'Sofia Pro';
-      src: url('file:///Users/macbook-karla/postexpress2/public/fonts/sofia-pro/SofiaPro-Regular.otf') format('opentype');
+      src: url('file:///Users/macbook-karla/croko-lab/public/fonts/sofia-pro/SofiaPro-Regular.otf') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: block;
     }
     @font-face {
       font-family: 'Sofia Pro';
-      src: url('file:///Users/macbook-karla/postexpress2/public/fonts/sofia-pro/SofiaPro-Bold.otf') format('opentype');
+      src: url('file:///Users/macbook-karla/croko-lab/public/fonts/sofia-pro/SofiaPro-Bold.otf') format('opentype');
       font-weight: 700;
       font-style: normal;
       font-display: block;
     }
     @font-face {
       font-family: 'Sofia Pro';
-      src: url('file:///Users/macbook-karla/postexpress2/public/fonts/sofia-pro/SofiaPro-SemiBold.otf') format('opentype');
+      src: url('file:///Users/macbook-karla/croko-lab/public/fonts/sofia-pro/SofiaPro-SemiBold.otf') format('opentype');
       font-weight: 600;
       font-style: normal;
       font-display: block;
     }
     @font-face {
       font-family: 'Sofia Pro';
-      src: url('file:///Users/macbook-karla/postexpress2/public/fonts/sofia-pro/SofiaPro-Medium.otf') format('opentype');
+      src: url('file:///Users/macbook-karla/croko-lab/public/fonts/sofia-pro/SofiaPro-Medium.otf') format('opentype');
       font-weight: 500;
       font-style: normal;
       font-display: block;
@@ -505,28 +505,28 @@ async function generateSlideHTMLWithImage({
   <style>
     @font-face {
       font-family: 'Sofia Pro';
-      src: url('file:///Users/macbook-karla/postexpress2/public/fonts/sofia-pro/SofiaPro-Regular.otf') format('opentype');
+      src: url('file:///Users/macbook-karla/croko-lab/public/fonts/sofia-pro/SofiaPro-Regular.otf') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: block;
     }
     @font-face {
       font-family: 'Sofia Pro';
-      src: url('file:///Users/macbook-karla/postexpress2/public/fonts/sofia-pro/SofiaPro-Bold.otf') format('opentype');
+      src: url('file:///Users/macbook-karla/croko-lab/public/fonts/sofia-pro/SofiaPro-Bold.otf') format('opentype');
       font-weight: 700;
       font-style: normal;
       font-display: block;
     }
     @font-face {
       font-family: 'Sofia Pro';
-      src: url('file:///Users/macbook-karla/postexpress2/public/fonts/sofia-pro/SofiaPro-SemiBold.otf') format('opentype');
+      src: url('file:///Users/macbook-karla/croko-lab/public/fonts/sofia-pro/SofiaPro-SemiBold.otf') format('opentype');
       font-weight: 600;
       font-style: normal;
       font-display: block;
     }
     @font-face {
       font-family: 'Sofia Pro';
-      src: url('file:///Users/macbook-karla/postexpress2/public/fonts/sofia-pro/SofiaPro-Medium.otf') format('opentype');
+      src: url('file:///Users/macbook-karla/croko-lab/public/fonts/sofia-pro/SofiaPro-Medium.otf') format('opentype');
       font-weight: 500;
       font-style: normal;
       font-display: block;

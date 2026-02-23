@@ -42,4 +42,4 @@ export interface TemplateConfig {
   }
 }
 
-export type TemplateId = 'minimalist' | 'hormozi-dark' | 'editorial-magazine' | 'neon-social' | 'data-driven'
+export type TemplateId = 'minimalist' | 'minimalist-v2' | 'hormozi-dark' | 'editorial-magazine' | 'neon-social' | 'data-driven'

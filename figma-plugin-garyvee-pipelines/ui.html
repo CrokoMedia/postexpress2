@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    p {
+      font-size: 12px;
+      color: #a0a0a0;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 8px;
+      padding: 16px 20px;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    button.option-1 {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    button.option-2 {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    button.option-3 {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    button.option-4 {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+
+    button.option-all {
+      background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      margin-top: 8px;
+    }
+
+    .button-title {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .button-desc {
+      display: block;
+      font-size: 11px;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔥 GaryVee × Post Express</h1>
+  <p>Visualize os pipelines de integração do Gary Vaynerchuk no Post Express</p>
+
+  <div class="options">
+    <button class="option-1" id="option1">
+      <span class="button-title">Opção 1: 6º Auditor <span class="badge">Análise</span></span>
+      <span class="button-desc">Gary como auditor de atenção junto aos 5 auditores</span>
+    </button>
+
+    <button class="option-2" id="option2">
+      <span class="button-title">Opção 2: GaryVee Mode <span class="badge">Recomendado</span></span>
+      <span class="button-desc">Coach de execução com plano de 30 dias</span>
+    </button>
+
+    <button class="option-3" id="option3">
+      <span class="button-title">Opção 3: Personal Branding Squad <span class="badge">Premium</span></span>
+      <span class="button-desc">Sub-serviço separado com squad dedicado</span>
+    </button>
+
+    <button class="option-4" id="option4">
+      <span class="button-title">Opção 4: Gerador de Ideias <span class="badge">Feature</span></span>
+      <span class="button-desc">30 ideias de conteúdo baseadas em tendências</span>
+    </button>
+
+    <button class="option-all" id="optionAll">
+      <span class="button-title">🎨 Criar Todas as Opções</span>
+      <span class="button-desc">Gera os 4 pipelines lado a lado para comparação</span>
+    </button>
+  </div>
+
+  <script>
+    document.getElementById('option1').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'create-pipeline', option: 1 } }, '*');
+    };
+
+    document.getElementById('option2').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'create-pipeline', option: 2 } }, '*');
+    };
+
+    document.getElementById('option3').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'create-pipeline', option: 3 } }, '*');
+    };
+
+    document.getElementById('option4').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'create-pipeline', option: 4 } }, '*');
+    };
+
+    document.getElementById('optionAll').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'create-pipeline', option: 'all' } }, '*');
+    };
+  </script>
+</body>
+</html>

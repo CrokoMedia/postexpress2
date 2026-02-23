@@ -73,10 +73,10 @@ export function DeleteProfileModal({
             <AlertTriangle className="h-6 w-6 text-error-500" />
           </div>
           <div className="flex-1 space-y-1.5">
-            <DialogTitle className="text-xl text-neutral-100">
+            <DialogTitle className="text-xl text-neutral-900 dark:text-neutral-100">
               Deletar Perfil
             </DialogTitle>
-            <DialogDescription className="text-neutral-400">
+            <DialogDescription className="text-neutral-600 dark:text-neutral-400">
               Esta ação não pode ser desfeita
             </DialogDescription>
           </div>
@@ -84,18 +84,18 @@ export function DeleteProfileModal({
 
         {/* Content */}
         <div className="space-y-4">
-          <p className="text-neutral-300">
+          <p className="text-neutral-700 dark:text-neutral-300">
             Você está prestes a deletar o perfil{' '}
-            <span className="font-semibold text-neutral-100">@{username}</span>.
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">@{username}</span>.
             Todas as auditorias, posts e comentários associados serão mantidos,
             mas o perfil não aparecerá mais nas listagens.
           </p>
 
           <div className="bg-neutral-800/50 border border-neutral-700/50 rounded-lg p-4 space-y-2">
-            <h4 className="text-sm font-medium text-neutral-300">
+            <h4 className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
               O que será deletado:
             </h4>
-            <ul className="text-sm text-neutral-400 space-y-1 list-disc list-inside">
+            <ul className="text-sm text-neutral-600 dark:text-neutral-400 space-y-1 list-disc list-inside">
               <li>Perfil do Instagram</li>
               <li>Visibilidade nas listagens</li>
             </ul>
@@ -114,8 +114,8 @@ export function DeleteProfileModal({
 
           {/* Confirmação */}
           <div>
-            <label className="block text-sm font-medium text-neutral-300 mb-2">
-              Digite <span className="font-semibold text-neutral-100">{username}</span> para confirmar:
+            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              Digite <span className="font-semibold text-neutral-900 dark:text-neutral-100">{username}</span> para confirmar:
             </label>
             <input
               type="text"
@@ -123,7 +123,7 @@ export function DeleteProfileModal({
               onChange={(e) => setConfirmText(e.target.value)}
               placeholder={username}
               disabled={isDeleting}
-              className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
         </div>

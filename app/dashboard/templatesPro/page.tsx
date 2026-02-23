@@ -6,11 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/atoms/button'
 import { Input } from '@/components/atoms/input'
 import { Badge } from '@/components/atoms/badge'
-import { Sparkles, Upload, Download, Image as ImageIcon, Type, Loader2, Link2, Search, Layers, LayoutTemplate } from 'lucide-react'
+import { Sparkles, Upload, Download, Image as ImageIcon, Type, Loader2, Link2, Search, Layers, LayoutTemplate, Building2, Palette } from 'lucide-react'
 import Image from 'next/image'
 
 type TemplateType = 'editorial-cover' | 'editorial-content-title' | 'editorial-content-image' | 'editorial-cta'
-type ImageMode = 'compose' | 'search' | 'url' | 'upload' | 'auto' | 'custom_prompt'
+type ImageMode = 'compose' | 'search' | 'url' | 'upload' | 'auto' | 'custom_prompt' | 'company_url'
 
 interface TemplateOption {
   id: TemplateType
@@ -120,6 +120,7 @@ export default function TemplatesProPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [uploadUrl, setUploadUrl] = useState('')
   const [uploadFile, setUploadFile] = useState<File | null>(null)
+  const [companyUrl, setCompanyUrl] = useState('')
   const [referenceFiles, setReferenceFiles] = useState<File[]>([])
   const [referencePreviews, setReferencePreviews] = useState<string[]>([])
   const [generating, setGenerating] = useState(false)
@@ -187,6 +188,7 @@ export default function TemplatesProPage() {
         referenceImageUrls,
         searchQuery: imageMode === 'search' ? (searchQuery || titulo) : undefined,
         uploadUrl: (imageMode === 'url' || imageMode === 'upload') ? finalUploadUrl : undefined,
+        companyUrl: imageMode === 'company_url' ? companyUrl : undefined,
       }
       if (selectedTemplate === 'editorial-cover') {
         if (!titulo.trim()) { setError('Preencha o titulo'); setGenerating(false); return }
@@ -260,12 +262,14 @@ export default function TemplatesProPage() {
   const imageModes = selectedTemplate === 'editorial-cover'
     ? [
         { mode: 'compose' as const, label: 'Descricao Visual', icon: Layers },
+        { mode: 'company_url' as const, label: 'URL da Empresa', icon: Building2 },
         { mode: 'search' as const, label: 'Busca Foto', icon: Search },
         { mode: 'url' as const, label: 'URL da Imagem', icon: Link2 },
         { mode: 'upload' as const, label: 'Upload', icon: Upload },
         { mode: 'auto' as const, label: 'Gerar com IA', icon: Sparkles },
       ]
     : [
+        { mode: 'company_url' as const, label: 'URL da Empresa', icon: Building2 },
         { mode: 'search' as const, label: 'Busca Foto', icon: Search },
         { mode: 'url' as const, label: 'URL da Imagem', icon: Link2 },
         { mode: 'upload' as const, label: 'Upload', icon: Upload },
@@ -719,6 +723,31 @@ export default function TemplatesProPage() {
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-foreground mb-1.5">URL da imagem</label>
                   <Input placeholder="https://exemplo.com/foto.jpg" value={uploadUrl} onChange={(e) => setUploadUrl(e.target.value)} />
+                </div>
+              )}
+
+              {imageMode === 'company_url' && (
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">URL da Empresa</label>
+                    <Input
+                      placeholder="Ex: nike.com, cocacola.com, apple.com"
+                      value={companyUrl}
+                      onChange={(e) => setCompanyUrl(e.target.value)}
+                    />
+                  </div>
+                  <div className="bg-info-50 dark:bg-info-950/30 border border-info-200 dark:border-info-800 rounded-lg p-3">
+                    <p className="text-xs text-info-700 dark:text-info-400 leading-relaxed">
+                      <strong>Como funciona:</strong> A IA vai analisar o site da empresa e extrair automaticamente:
+                      paleta de cores, logo e estilo visual. O slide será gerado com a identidade da marca.
+                      {companyUrl && (
+                        <span className="block mt-2 font-medium flex items-center gap-2">
+                          <Palette className="w-4 h-4" />
+                          Analisando: <span className="font-mono">{companyUrl}</span>
+                        </span>
+                      )}
+                    </p>
+                  </div>
                 </div>
               )}
 

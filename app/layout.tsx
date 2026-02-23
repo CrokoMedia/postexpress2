@@ -12,7 +12,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Post Express - Instagram Audit Dashboard',
+  title: 'Croko Lab - Instagram Audit Dashboard',
   description: 'Sistema de auditoria de perfis do Instagram com 5 auditores especializados',
 }
 

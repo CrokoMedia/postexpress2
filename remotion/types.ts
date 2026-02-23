@@ -24,6 +24,7 @@ export const SlideSchema = z.object({
   slideNumber: z.number(),
   totalSlides: z.number(),
   backgroundVideoUrl: z.string().optional(),
+  theme: z.enum(['light', 'dark']).optional(),
 })
 
 export const SoundEffectUrlsSchema = z.object({
@@ -141,6 +142,7 @@ export const CarouselStillSchema = z.object({
   format: LayoutFormatSchema,
   slideNumber: z.number(),
   totalSlides: z.number(),
+  theme: z.enum(['light', 'dark']).optional(),
 })
 
 // Schema para video de resultado de auditoria

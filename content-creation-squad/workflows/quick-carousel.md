@@ -187,9 +187,6 @@ Use `templates/cta-library.md`:
 [1 parágrafo contexto - 2-3 linhas]
 
 [CTA + benefício]
-
----
-#hashtag1 #hashtag2 #hashtag3 #hashtag4 #hashtag5
 ```
 
 ### Exemplo Completo:
@@ -251,7 +248,7 @@ Se algum NO → Corrigir apenas aquilo (30 seg extras)
 [texto]
 
 ## CAPTION
-[caption completa com hashtags]
+[caption completa]
 
 ## NOTAS
 - Plataforma: [IG/LI]

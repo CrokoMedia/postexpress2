@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
 import { getServerSupabase } from '@/lib/supabase'
-import { generateContentImage } from '@/lib/fal-image'
+import { generateContentImage } from '@/lib/nano-banana'
 import { searchStockVideosForSlides } from '@/lib/stock-video'
 import { generateAndUploadVoiceover } from '@/lib/tts'
 import type { TTSVoice, TTSProvider } from '@/lib/tts'

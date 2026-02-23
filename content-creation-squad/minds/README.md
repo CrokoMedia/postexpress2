@@ -2,7 +2,7 @@
 
 ## ✅ Status: MENTES DUPLICADAS (Completas)
 
-As **5 mentes milionárias** agora estão **duplicadas localmente** neste squad com toda sua estrutura completa.
+As **6 mentes milionárias** agora estão **duplicadas localmente** neste squad com toda sua estrutura completa.
 
 ---
 
@@ -10,15 +10,15 @@ As **5 mentes milionárias** agora estão **duplicadas localmente** neste squad 
 
 | Métrica | Valor |
 |---------|-------|
-| **Mentes copiadas** | 5 |
-| **Total de arquivos** | 423 |
-| **Tamanho total** | 6.4 MB |
+| **Mentes copiadas** | 6 |
+| **Total de arquivos** | 500+ |
+| **Tamanho total** | ~8 MB |
 | **Origem** | `/minds/` (raiz do projeto) |
 | **Status** | ✅ Completas com toda estrutura |
 
 ---
 
-## 🎯 As 5 Mentes do Squad
+## 🎯 As 6 Mentes do Squad
 
 ### 1. 📝 Eugene Schwartz (Líder)
 **Expertise:** Copywriting científico, estruturação de mensagens
@@ -116,6 +116,28 @@ As **5 mentes milionárias** agora estão **duplicadas localmente** neste squad 
 
 ---
 
+### 6. 🚀 Gary Vaynerchuk (NOVO)
+**Expertise:** Day trading attention, autenticidade, volume de conteúdo
+
+**Estrutura completa:**
+- `artifacts/` - Frameworks de atenção e conteúdo
+- `system_prompts/` - COGNITIVE_OS completo
+- `kb/` - Knowledge base estruturada (881.578 palavras)
+- `sources/` - YouTube (25 vídeos, 91.954 palavras), Instagram (99 posts), TikTok (92 posts), livros
+- `docs/` - Biografia, plano de execução
+- `metadata/` - Metadata estruturado
+
+**Conteúdo chave:**
+- ✅ Day Trading Attention (arbitragem de atenção)
+- ✅ Document Don't Create (capturar vs criar)
+- ✅ Pirâmide Invertida de Conteúdo (1 pilar → 30+ peças)
+- ✅ Jab Jab Jab Right Hook (reciprocidade)
+- ✅ Macro Patience, Micro Speed (visão de longo prazo + execução rápida)
+- ✅ Autenticidade radical e linguagem direta
+- ✅ 25 vídeos YouTube + 99 Instagram + 92 TikTok transcritos
+
+---
+
 ## 📚 O Que Cada Mente Contém
 
 ### ✅ 1. Checklists de Validação
@@ -134,6 +156,7 @@ As **5 mentes milionárias** agora estão **duplicadas localmente** neste squad 
 - Eugene: 5 Stages of Awareness, Market Sophistication
 - Alex: Value Equation, Grand Slam Offer, CLOSER
 - Seth: Purple Cow, Tribes
+- Gary: Day Trading Attention, Pirâmide Invertida, Jab Jab Jab Right Hook
 - Frameworks documentados e prontos para uso
 
 ### ✅ 4. Tasks e TODOs
@@ -166,6 +189,9 @@ As **5 mentes milionárias** agora estão **duplicadas localmente** neste squad 
 
 @emulator alex_hormozi
 "Estruture uma oferta irresistível para [produto]"
+
+@emulator gary_vaynerchuk
+"Como criar 30 peças de conteúdo de 1 livestream?"
 ```
 
 ### Método 3: Consulta Durante Workflow
@@ -206,11 +232,19 @@ content-creation-squad/minds/
 │   ├── sources/
 │   └── docs/
 │
-└── adriano_de_marqui/
-    ├── artifacts/
-    ├── system_prompts/
-    ├── sources/
-    └── docs/
+├── adriano_de_marqui/
+│   ├── artifacts/
+│   ├── system_prompts/
+│   ├── sources/
+│   └── docs/
+│
+└── gary_vaynerchuk/        # NOVO
+    ├── artifacts/          # Frameworks de atenção
+    ├── system_prompts/     # COGNITIVE_OS
+    ├── kb/                 # Knowledge base (881k palavras)
+    ├── sources/            # YouTube, Instagram, TikTok, livros
+    ├── docs/               # Biografia, plano
+    └── metadata/           # Metadata estruturado
 ```
 
 ---
@@ -240,6 +274,14 @@ content-creation-squad/minds/
 - `artifacts/` - Frameworks de design visual
 - `system_prompts/` - Prompts de ativação
 
+### Gary Vaynerchuk (NOVO)
+- `system_prompts/COGNITIVE_OS.md` - Sistema operacional cognitivo completo
+- `kb/gary_vaynerchuk_kb.md` - Knowledge base (881.578 palavras de fontes primárias)
+- `sources/social/` - 99 Instagram + 92 TikTok posts
+- `sources/videos/youtube_main/` - 25 vídeos transcritos (91.954 palavras)
+- `sources/books/` - Crush It! (78k palavras)
+- `artifacts/` - Frameworks de atenção e conteúdo
+
 ---
 
 ## 🔄 Sincronização
@@ -251,8 +293,8 @@ content-creation-squad/minds/
 **Vantagens:**
 ✅ Squad auto-contido
 ✅ Não depende de mmos-squad
-✅ Todas as 5 mentes completas
-✅ 423 arquivos com dados ricos
+✅ Todas as 6 mentes completas
+✅ 500+ arquivos com dados ricos
 
 **Atualização:**
 Se houver updates nas mentes da raiz, copiar novamente:
@@ -262,6 +304,7 @@ cp -r ../minds/seth_godin ./minds/
 cp -r ../minds/alex_hormozi ./minds/
 cp -r ../minds/thiago_finch ./minds/
 cp -r ../minds/adriano_de_marqui ./minds/
+cp -r ../minds/gary_vaynerchuk ./minds/
 ```
 
 ---
@@ -270,13 +313,13 @@ cp -r ../minds/adriano_de_marqui ./minds/
 
 | Aspecto | Antes | Depois |
 |---------|-------|--------|
-| **Arquivos** | 3 (referências) | 423 (completas) |
-| **Tamanho** | 32 KB | 6.4 MB |
+| **Arquivos** | 3 (referências) | 500+ (completas) |
+| **Tamanho** | 32 KB | ~8 MB |
 | **Estrutura** | Guias de uso | Mentes completas |
 | **Dependência** | mmos-squad | Independente |
 | **Frameworks** | Referenciados | Incluídos |
 | **Validação** | Não incluída | Testes incluídos |
-| **Sources** | Não incluídas | Livros, podcasts, vídeos |
+| **Sources** | Não incluídas | Livros, podcasts, vídeos, social media |
 
 ---
 

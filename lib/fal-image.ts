@@ -11,6 +11,11 @@ fal.config({
  * @returns URL pública da imagem gerada
  */
 export async function generateContentImage(prompt: string): Promise<string> {
+  console.log(`🎨 fal.ai: Gerando imagem com Flux Dev...`)
+  console.log(`   Prompt: "${prompt.substring(0, 200)}..."`)
+
+  console.log(`   🎛️  Parâmetros: steps=50, guidance=7.5 (alta conformidade)`)
+
   const result = await fal.run('fal-ai/flux/dev', {
     input: {
       prompt,
@@ -18,12 +23,16 @@ export async function generateContentImage(prompt: string): Promise<string> {
         width: 956,
         height: 448,
       },
-      num_inference_steps: 40, // Aumentado para melhor qualidade (era 28)
-      guidance_scale: 7.5, // Aumentado para seguir melhor o prompt (era 3.5)
+      num_inference_steps: 50, // Máxima qualidade
+      guidance_scale: 7.5, // AUMENTADO para forçar seguir o prompt (era 3.5)
       num_images: 1,
       enable_safety_checker: true,
+      seed: Math.floor(Math.random() * 1000000),
     },
   })
+
+  console.log(`   ✅ Imagem gerada com sucesso`)
+
 
   const output = result as any
   const images = output?.images || output?.data?.images
@@ -46,14 +55,14 @@ export async function generateContentImage(prompt: string): Promise<string> {
  * @returns URL pública da imagem gerada
  */
 export async function generateEditorialBackground(prompt: string): Promise<string> {
-  const editorialPrompt = [
-    prompt,
-    'cinematic photography, editorial magazine cover style, dramatic lighting',
-    'dark moody atmosphere, professional photojournalism, high contrast',
-    'shallow depth of field, desaturated color palette',
-    'no text visible, no letters, no words, no typography in the image',
-    'no watermarks, no borders, no frames',
-  ].join(', ')
+  console.log(`🎬 fal.ai: Gerando background editorial...`)
+
+  // Editorial já vem enhanced, não precisa adicionar mais
+  const editorialPrompt = prompt
+
+  console.log(`   Prompt: "${editorialPrompt.substring(0, 200)}..."`)
+
+  console.log(`   🎛️  Parâmetros: steps=50, guidance=7.5 (alta conformidade)`)
 
   const result = await fal.run('fal-ai/flux/dev', {
     input: {
@@ -62,12 +71,16 @@ export async function generateEditorialBackground(prompt: string): Promise<strin
         width: 1080,
         height: 1350,
       },
-      num_inference_steps: 40,
-      guidance_scale: 7.5,
+      num_inference_steps: 50, // Máxima qualidade
+      guidance_scale: 7.5, // AUMENTADO para forçar seguir o prompt
       num_images: 1,
       enable_safety_checker: true,
+      seed: Math.floor(Math.random() * 1000000),
     },
   })
+
+  console.log(`   ✅ Background editorial gerado`)
+
 
   const output = result as any
   const images = output?.images || output?.data?.images

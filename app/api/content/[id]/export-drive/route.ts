@@ -8,7 +8,7 @@ import { getGoogleDriveClient, findOrCreateFolder, uploadFile } from '@/lib/goog
  * Envia os slides dos carrosséis aprovados para o Google Drive do cliente.
  *
  * Estrutura criada:
- *   Post Express (pasta raiz via GOOGLE_DRIVE_FOLDER_ID)
+ *   Croko Lab (pasta raiz via GOOGLE_DRIVE_FOLDER_ID)
  *     └── @username
  *           └── Carrossel-1-Titulo
  *                 ├── slide-1.png
@@ -82,7 +82,7 @@ export async function POST(
 
     const drive = getGoogleDriveClient()
 
-    // Criar/encontrar pasta do usuário dentro da pasta raiz "Post Express"
+    // Criar/encontrar pasta do usuário dentro da pasta raiz "Croko Lab"
     const userFolderId = await findOrCreateFolder(drive, `@${username}`, rootFolderId)
 
     const uploadedCarousels: Array<{

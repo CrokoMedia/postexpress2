@@ -1,4 +1,4 @@
-# 📋 BRIEFING DO EXPERT - Post Express
+# 📋 BRIEFING DO EXPERT - Croko Lab
 
 > **Auditoria Express: Descubra exatamente o que seu público quer ver (e o que seus concorrentes escondem)**
 > Data: 2026-02-17
@@ -8,7 +8,7 @@
 ## 🎯 SEÇÃO 1: Identidade & Contexto
 
 ### BÁSICO
-- **Nome do Expert:** Post Express - Auditoria Profissional de Conteúdo
+- **Nome do Expert:** Croko Lab - Auditoria Profissional de Conteúdo
 - **Nicho Principal:** Inteligência de Conteúdo para Creators e Agências / Auditoria de Instagram
 - **Tempo no Mercado:** Lançamento Fevereiro 2026
 - **Tamanho da Audiência Atual:** Pré-lançamento (primeiros 100 clientes sendo selecionados)
@@ -78,10 +78,10 @@
 **Awareness Principal da Audiência:** 3-4 (Solution Aware → Product Aware)
 
 **Breakdown:**
-- 30% da audiência está em nível 3 (Solution Aware): Sabem que precisam de dados de Instagram, não conhecem Post Express
+- 30% da audiência está em nível 3 (Solution Aware): Sabem que precisam de dados de Instagram, não conhecem Croko Lab
 - 50% da audiência está em nível 4 (Product Aware): Conhecem ferramentas de análise, avaliando opções
 - 15% está em nível 2 (Problem Aware): Sabem que precisam melhorar conteúdo, não sabem que precisam de dados
-- 5% está em nível 5 (Most Aware): Já viram Post Express, só precisam de gatilho pra comprar
+- 5% está em nível 5 (Most Aware): Já viram Croko Lab, só precisam de gatilho pra comprar
 
 **Implicação:** Copy precisa mostrar MECANISMO ÚNICO (OCR + 5 auditores) e não só promessa genérica
 
@@ -98,7 +98,7 @@
 1. **Nível 1-2:** Metricool, Iconosquare (só métricas básicas)
 2. **Nível 3:** Phlanx, HypeAuditor (mecanismo = "Engagement Rate real")
 3. **Nível 4:** Agências manuais (experiência = "auditoria humanizada")
-4. **Post Express:** Nível 4-5 (identidade = "Creator data-driven que usa IA")
+4. **Croko Lab:** Nível 4-5 (identidade = "Creator data-driven que usa IA")
 
 ### LINGUAGEM
 - **Vocabulário do Avatar:**
@@ -130,7 +130,7 @@
 ### MECANISMO ÚNICO
 - **Seu Mecanismo/Método:**
 
-**Nome:** Método Post Express™ de Auditoria Profunda
+**Nome:** Método Croko Lab™ de Auditoria Profunda
 
 **O que torna diferente (SEM falar de tecnologia):**
 
@@ -155,7 +155,7 @@
 
 **Por que funciona:**
 - Concorrentes te dão "alcance, impressões, curtidas" (métricas de vaidade)
-- Post Express te dá "o que postar, como estruturar, o que seu público quer" (ação real)
+- Croko Lab te dá "o que postar, como estruturar, o que seu público quer" (ação real)
 
 ---
 
@@ -227,7 +227,7 @@
   - "A cada 25 vendas, o preço sobe R$ 20 (modelo de escada)"
 
 - **Prova Social (Quando tiver):**
-  - **Meta:** "Agência X faturou R$ 15.000 extra/mês vendendo auditorias Post Express"
+  - **Meta:** "Agência X faturou R$ 15.000 extra/mês vendendo auditorias Croko Lab"
   - **Meta:** "Creator Y nunca mais travou - 6 meses postando todo dia com ideias da auditoria"
   - **Meta:** "Consultor Z cobrou R$ 2.000 numa auditoria que demorou 3 minutos"
   - **Estatística:** "Usuários economizam em média 12 horas/mês de análise manual"
@@ -247,7 +247,7 @@
 
 - **Tipos de CTA por Awareness:**
   - **Awareness 2-3 (não conhece):** "Descubra o que seu público tá pedindo → Link na bio"
-  - **Awareness 4 (avaliando):** "Post Express vs fazer manual: 3 min vs 4 horas. Testa grátis."
+  - **Awareness 4 (avaliando):** "Croko Lab vs fazer manual: 3 min vs 4 horas. Testa grátis."
   - **Awareness 5 (quase comprando):** "Últimas vagas. Preço de fundador acaba dia X."
 
 ---
@@ -346,7 +346,7 @@
 
 **Objetivo: Ter esses depoimentos nos primeiros 90 dias**
 
-- **Case Agência:** "Agência X faturou R$ 30k extra/mês vendendo auditorias Post Express aos clientes"
+- **Case Agência:** "Agência X faturou R$ 30k extra/mês vendendo auditorias Croko Lab aos clientes"
 
 - **Case Creator:** "Creator Y nunca mais travou - 6 meses postando consistente, cresceu de 5k pra 25k seguidores"
 
@@ -361,7 +361,7 @@
 **Baseado em Gigantes (Não Inventamos a Roda):**
 
 - **Alex Hormozi** - Método de análise de ofertas e CTAs baseado em "$100M Offers"
-  - Post Express usa a Value Equation dele pra analisar posts de venda
+  - Croko Lab usa a Value Equation dele pra analisar posts de venda
 
 - **Eugene Schwartz** - Framework de copy baseado em "Breakthrough Advertising" (bíblia do copywriting)
   - Analisamos awareness stages e sofisticação de mercado automaticamente
@@ -402,11 +402,11 @@
 
 **Endorsement Futuro:**
 - Meta: Ter criadores com 100k+ seguidores usando e recomendando
-- Meta: Agências conhecidas vendendo Post Express pros clientes delas
+- Meta: Agências conhecidas vendendo Croko Lab pros clientes delas
 
 ### O QUE SABEMOS FAZER (Sem Jargões)
 
-**Diferenciais do Método Post Express:**
+**Diferenciais do Método Croko Lab:**
 
 1. **Ler Texto Dentro dos Slides** - Conseguimos extrair TODO o texto dos carrosséis (título, bullets, CTA)
    - Concorrentes só olham a legenda. Nós lemos TUDO.
@@ -420,7 +420,7 @@
 4. **Entregar em 3 Minutos** - Otimizamos TUDO pra ser absurdamente rápido
    - Não é "rápido pra computador". É "mais rápido que você consegue ler o relatório".
 
-**Métodos Proprietários (O Que Só o Post Express Faz):**
+**Métodos Proprietários (O Que Só o Croko Lab Faz):**
 
 1. **Método de Leitura Completa** - Analisamos legenda + slides + comentários (ninguém faz os 3 juntos)
 
@@ -493,7 +493,7 @@
 
   1. **Cobramos 400x MENOS mas entregamos MAIS**
      - Consultores: R$ 200-2.000 por auditoria manual
-     - Post Express: Fração do preço, MESMA profundidade + leitura dos slides (que consultores NÃO fazem)
+     - Croko Lab: Fração do preço, MESMA profundidade + leitura dos slides (que consultores NÃO fazem)
 
   2. **Quanto mais barato, melhor entregamos**
      - Mercado acha: "Barato = ruim, caro = bom"
@@ -525,17 +525,17 @@
 1. **Apps de Métricas (Metricool, Iconosquare, etc.)**
    - **O que fazem:** Dashboard bonito com gráficos de alcance, impressões, curtidas
    - **Fraqueza FATAL:** Te mostram números mas não te dizem O QUE POSTAR
-   - **Post Express vence:** Mostramos AS PERGUNTAS DO SEU PÚBLICO (= ideias infinitas de conteúdo)
+   - **Croko Lab vence:** Mostramos AS PERGUNTAS DO SEU PÚBLICO (= ideias infinitas de conteúdo)
 
 2. **Consultores/Agências (Auditoria Manual)**
    - **O que fazem:** Análise "humanizada", relatório personalizado em PDF bonito
    - **Fraqueza FATAL:** Caro (R$ 200-2.000), lento (3-7 dias), não escala
-   - **Post Express vence:** Mesma profundidade, 3 minutos, fração do preço + você pode REVENDER
+   - **Croko Lab vence:** Mesma profundidade, 3 minutos, fração do preço + você pode REVENDER
 
 3. **Ferramentas de Influencer Marketing (Phlanx, HypeAuditor)**
    - **O que fazem:** Detectam bots, analisam autenticidade de seguidores
    - **Fraqueza FATAL:** Focam em "esse influencer é fake?" (não em estratégia de conteúdo)
-   - **Post Express vence:** Não analisamos SE é bom. Analisamos O QUE faz que funciona (pra você copiar)
+   - **Croko Lab vence:** Não analisamos SE é bom. Analisamos O QUE faz que funciona (pra você copiar)
 
 ### CONSENSO FALSO (O Que Todo Mundo Acredita Mas Está Errado)
 
@@ -545,7 +545,7 @@
 - "Só consultor humano entende meu nicho"
 - "Alcance e impressões são as métricas que importam"
 
-**Verdade Inconveniente (Post Express prova):**
+**Verdade Inconveniente (Croko Lab prova):**
 - "Você precisa de 3 respostas simples: (1) O que meu público quer? (2) O que funciona pro concorrente? (3) Como fazer igual?"
 - "Análise boa pode ser em 3 minutos se usar ciência certa"
 - "Frameworks universais (Hormozi, Schwartz) funcionam em QUALQUER nicho"
@@ -597,7 +597,7 @@
 ## 📦 COMO USAR ESTE BRIEFING
 
 ### Para o Squad Auditores:
-Este briefing tem TUDO que os auditores precisam saber sobre o Post Express:
+Este briefing tem TUDO que os auditores precisam saber sobre o Croko Lab:
 
 ✅ **Kahneman (Comportamento):** Seção 2 - dores em 3 níveis, gatilhos, objeções
 ✅ **Schwartz (Copy):** Seção 3 - awareness, linguagem, hooks
@@ -626,7 +626,7 @@ Cheque se o marketing tá alinhado:
 
 **Com este briefing em mãos, você pode:**
 
-1. ✅ **Ativar Squad Auditores** pra auditar o posicionamento do Post Express
+1. ✅ **Ativar Squad Auditores** pra auditar o posicionamento do Croko Lab
 2. ✅ **Criar conteúdo de lançamento** (carrosséis, posts, vídeos de demo)
 3. ✅ **Validar a oferta** usando Value Equation de Hormozi
 4. ✅ **Testar hooks** com awareness stage correto (Schwartz)
@@ -634,7 +634,7 @@ Cheque se o marketing tá alinhado:
 
 ---
 
-**Briefing criado por:** Post Express Team
+**Briefing criado por:** Croko Lab Team
 **Data:** 2026-02-17
 **Versão:** 2.0 (Transformação, não tecnologia)
 **Status:** ✅ Pronto para gerar auditoria e conteúdo de lançamento

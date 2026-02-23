@@ -14,6 +14,7 @@ export const CarouselStill: React.FC<CarouselStillProps> = ({
   format = 'feed',
   slideNumber,
   totalSlides,
+  theme,
 }) => {
   return (
     <AbsoluteFill>
@@ -29,6 +30,7 @@ export const CarouselStill: React.FC<CarouselStillProps> = ({
         templateId={templateId}
         layout={format}
         animated={false}
+        theme={theme}
       />
     </AbsoluteFill>
   )

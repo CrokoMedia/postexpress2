@@ -157,7 +157,7 @@ export async function POST(
     elevenLabsFormData.append('name', `${profile.username}-voice`)
     elevenLabsFormData.append(
       'description',
-      `Voz clonada do creator @${profile.username} - Post Express`
+      `Voz clonada do creator @${profile.username} - Croko Lab`
     )
 
     // ElevenLabs espera o arquivo como Blob

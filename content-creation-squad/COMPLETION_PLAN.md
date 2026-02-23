@@ -690,7 +690,6 @@ Prospect não sabe que tem o problema
 ### Passo 4: Caption + CTA (1 min)
 - Caption: Resumo em 2-3 linhas
 - CTA: Usar cta-library.md
-- Hashtags: 5 principais do nicho
 
 ### Passo 5: Review Express (30 seg)
 - Hook para scroll? ✓

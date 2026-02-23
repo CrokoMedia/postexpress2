@@ -18,7 +18,7 @@ export async function DELETE(
 
     const supabase = getServerSupabase()
 
-    // Buscar content_suggestions
+    // Buscar content_suggestions com conteúdo textual
     const { data: existing, error: fetchError } = await supabase
       .from('content_suggestions')
       .select('id, content_json')
@@ -41,10 +41,10 @@ export async function DELETE(
       )
     }
 
-    // Remover carrossel do array
+    // Remover carrossel textual do array
     const deletedCarousel = contentJson.carousels.splice(index, 1)[0]
 
-    // Atualizar no Supabase
+    // Atualizar content_json no Supabase
     const { error: updateError } = await supabase
       .from('content_suggestions')
       .update({
@@ -58,7 +58,7 @@ export async function DELETE(
       throw new Error('Erro ao atualizar banco de dados')
     }
 
-    console.log(`✅ Carrossel ${index} deletado: "${deletedCarousel.titulo}"`)
+    console.log(`✅ Carrossel textual ${index} deletado: "${deletedCarousel.titulo}"`)
 
     return NextResponse.json({
       success: true,

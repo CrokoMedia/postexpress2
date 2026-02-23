@@ -137,6 +137,52 @@ interface SlideFrameProps extends SlideProps {
   particleEffects?: boolean
   parallax?: boolean
   animatedMetrics?: boolean
+  theme?: 'light' | 'dark'
+}
+
+/**
+ * Aplica sobrescrita de cores baseado no tema (claro/escuro)
+ */
+function applyThemeOverride(template: TemplateConfig, theme?: 'light' | 'dark'): TemplateConfig {
+  if (!theme) return template
+
+  // Se o tema for 'dark', inverter cores para fundo escuro
+  if (theme === 'dark') {
+    return {
+      ...template,
+      colors: {
+        ...template.colors,
+        background: '#000000',
+        title: '#ffffff',
+        body: '#e7e9ea',
+        headerName: '#ffffff',
+        headerUsername: '#8b98a5',
+        headerBorder: '#2f3336',
+        footerText: '#8b98a5',
+        footerBorder: '#2f3336',
+      },
+    }
+  }
+
+  // Se o tema for 'light', garantir fundo claro
+  if (theme === 'light') {
+    return {
+      ...template,
+      colors: {
+        ...template.colors,
+        background: '#ffffff',
+        title: '#0f1419',
+        body: '#0f1419',
+        headerName: '#0f1419',
+        headerUsername: '#536471',
+        headerBorder: '#e1e4e8',
+        footerText: '#536471',
+        footerBorder: '#eff3f4',
+      },
+    }
+  }
+
+  return template
 }
 
 // Renderiza o titulo com efeito dinamico (apenas no modo animado)
@@ -546,25 +592,42 @@ function renderSlide(
           display: 'flex',
           flexDirection: 'column',
           overflow: anim.parallaxContentOffsetX !== undefined ? 'hidden' as const : undefined,
-          ...(isEditorial ? { justifyContent: 'space-between' } : {}),
+          // Editorial: space-between (header no topo, conteúdo no final)
+          // Com imagem: default (header → conteúdo → imagem → footer)
+          // Sem imagem: space-between para footer ir ao final
+          ...(isEditorial || !contentImageUrl
+            ? { justifyContent: 'space-between' }
+            : {}
+          ),
           ...(anim.parallaxContentOffsetX !== undefined ? {
             transform: `translateX(${anim.parallaxContentOffsetX}px)`,
           } : {}),
         }}
       >
-        {/* Header: avatar + name + verified badge */}
-        {t.layout.showHeader && (
-          <div
-            style={{
-              width: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 24,
-              marginBottom: isEditorial ? 0 : 40,
-              transform: `translateY(${anim.headerY}px)`,
-              opacity: anim.headerOpacity,
-            }}
-          >
+        {/* Wrapper para centralizar conteúdo quando não tem imagem */}
+        <div
+          style={{
+            // Quando não tem imagem: wrapper ocupa espaço flexível e centraliza o conteúdo
+            // Quando tem imagem: wrapper não afeta (sem flex)
+            ...(!contentImageUrl && !isEditorial
+              ? { flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }
+              : {}
+            ),
+          }}
+        >
+          {/* Header: avatar + name + verified badge */}
+          {t.layout.showHeader && (
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 24,
+                marginBottom: isEditorial ? 0 : 40,
+                transform: `translateY(${anim.headerY}px)`,
+                opacity: anim.headerOpacity,
+              }}
+            >
             {profilePicUrl ? (
               <SafeImg
                 src={profilePicUrl}
@@ -809,9 +872,11 @@ function renderSlide(
             </div>
           )}
         </div>
+        {/* Fecha wrapper de centralização */}
+        </div>
 
         {/* Content Image — only for 'bottom' position (minimalist) */}
-        {t.layout.showImage && t.layout.imagePosition === 'bottom' && (
+        {t.layout.showImage && t.layout.imagePosition === 'bottom' && contentImageUrl && (
           <div
             style={{
               width: effectiveImageWidth,
@@ -822,41 +887,23 @@ function renderSlide(
               borderRadius: 20,
             }}
           >
-            {contentImageUrl ? (
-              <SafeImg
-                src={contentImageUrl}
-                style={{
-                  width: effectiveImageWidth,
-                  height: effectiveImageHeight,
-                  objectFit: 'cover',
-                  display: 'block',
-                  // Ken Burns: zoom lento + pan sutil
-                  transform: anim.kenBurnsScale
-                    ? `scale(${anim.kenBurnsScale}) translateX(${anim.kenBurnsPan || 0}px)`
-                    : `scale(${anim.imageScale})`,
-                  // Neon Social: sombra colorida na imagem
-                  ...(isNeonSocial
-                    ? { boxShadow: '0 8px 32px rgba(236, 72, 153, 0.4), 0 4px 16px rgba(124, 58, 237, 0.3)' }
-                    : {}),
-                }}
-              />
-            ) : (
-              <div
-                style={{
-                  width: effectiveImageWidth,
-                  height: effectiveImageHeight,
-                  borderRadius: 20,
-                  background: t.colors.imagePlaceholderGradient,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <span style={{ color: 'white', fontSize: 24, opacity: 0.7 }}>
-                  ✦
-                </span>
-              </div>
-            )}
+            <SafeImg
+              src={contentImageUrl}
+              style={{
+                width: effectiveImageWidth,
+                height: effectiveImageHeight,
+                objectFit: 'cover',
+                display: 'block',
+                // Ken Burns: zoom lento + pan sutil
+                transform: anim.kenBurnsScale
+                  ? `scale(${anim.kenBurnsScale}) translateX(${anim.kenBurnsPan || 0}px)`
+                  : `scale(${anim.imageScale})`,
+                // Neon Social: sombra colorida na imagem
+                ...(isNeonSocial
+                  ? { boxShadow: '0 8px 32px rgba(236, 72, 153, 0.4), 0 4px 16px rgba(124, 58, 237, 0.3)' }
+                  : {}),
+              }}
+            />
           </div>
         )}
 
@@ -890,7 +937,14 @@ function renderSlide(
             color: t.colors.footerText,
             fontWeight: 500,
             opacity: anim.footerOpacity,
-            ...(isEditorial ? {} : { marginTop: (t.id === 'hormozi-dark' || isDataDriven) ? 12 : 0 }),
+            // Sem imagem: sem marginTop (space-between do container já posiciona)
+            // Com imagem: marginTop pequeno ou 0
+            ...(isEditorial
+              ? {}
+              : contentImageUrl
+                ? { marginTop: (t.id === 'hormozi-dark' || isDataDriven) ? 12 : 0 }
+                : {}
+            ),
           }}
         >
           {slideNumber}/{totalSlides}
@@ -901,10 +955,16 @@ function renderSlide(
 }
 
 export const SlideFrame: React.FC<SlideFrameProps> = (props) => {
-  const { animated = true, templateId = 'minimalist', layout = 'feed' } = props
+  const { animated = true, templateId = 'minimalist', layout = 'feed', theme } = props
   const frame = useCurrentFrame()
   const { fps } = useVideoConfig()
-  const template = getTemplate(templateId)
+  const baseTemplate = getTemplate(templateId)
+  const template = applyThemeOverride(baseTemplate, theme)
+
+  // Log para debug do tema
+  if (!animated && theme) {
+    console.log(`🎨 SlideFrame recebeu theme: ${theme}, background final: ${template.colors.background}`)
+  }
 
   const { motionEffects, totalDurationFrames } = props
 

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
-import { generateContentImage } from '@/lib/fal-image'
+import { generateContentImage } from '@/lib/nano-banana'
 import { generateAndUploadVoiceover } from '@/lib/tts'
 import type { TTSVoice, TTSProvider } from '@/lib/tts'
 import { getOrCreateSoundEffects } from '@/lib/sound-effects'

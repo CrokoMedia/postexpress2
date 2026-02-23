@@ -18,14 +18,14 @@ const phases = [
   },
   {
     number: 2,
-    title: '5 Frameworks',
+    title: '5 Frameworks Científicos',
     icon: Brain,
     items: [
-      'Kahneman (Nobel): comportamento e gatilhos emocionais',
-      'Schwartz: níveis de consciência e copy',
-      'Hormozi: CTAs, ofertas e value equation',
-      'Cagan: outcomes vs. outputs, métricas que importam',
-      'Graham: padrões contraintuitivos e anomalias',
+      'Análise comportamental: gatilhos emocionais e vieses cognitivos',
+      'Níveis de consciência e copy de alta conversão',
+      'CTAs otimizados, ofertas e value equation',
+      'Outcomes vs. outputs, métricas que realmente importam',
+      'Detecção de padrões contraintuitivos e anomalias',
     ],
   },
   {
@@ -42,11 +42,11 @@ const phases = [
 ]
 
 const frameworks = [
-  { icon: Brain, name: 'Kahneman', title: 'Nobel de Economia', desc: 'Comportamento, vieses, gatilhos' },
-  { icon: BookOpen, name: 'Schwartz', title: 'Breakthrough Advertising', desc: 'Copy, hooks, awareness' },
-  { icon: DollarSign, name: 'Hormozi', title: '$100M Offers', desc: 'CTAs, ofertas, value equation' },
-  { icon: BarChart3, name: 'Cagan', title: 'Inspired (SV)', desc: 'Outcomes vs. vanity metrics' },
-  { icon: Lightbulb, name: 'Graham', title: 'Y Combinator', desc: 'Padrões contraintuitivos' },
+  { icon: Brain, name: 'Comportamento', title: 'Psicologia Cognitiva', desc: 'Vieses, gatilhos emocionais' },
+  { icon: BookOpen, name: 'Copy', title: 'Awareness Stages', desc: 'Copy, hooks, awareness' },
+  { icon: DollarSign, name: 'Ofertas', title: 'Value Equation', desc: 'CTAs, ofertas, conversão' },
+  { icon: BarChart3, name: 'Métricas', title: 'Product Thinking', desc: 'Outcomes vs. vanity metrics' },
+  { icon: Lightbulb, name: 'Anomalias', title: 'Pattern Recognition', desc: 'Insights contraintuitivos' },
 ]
 
 const comparison = [
@@ -76,10 +76,10 @@ export function SolutionSection() {
           className="text-center space-y-4"
         >
           <p className="text-sm font-medium tracking-widest uppercase text-primary-400">
-            O Método Post Express
+            O Método Croko Lab
           </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-bold leading-[1.15] text-neutral-50">
-            Consultoria Post Express&trade;
+            Consultoria Croko Lab&trade;
           </h2>
           <p className="text-2xl sm:text-3xl lg:text-4xl font-medium text-neutral-400">
             Implementação Completa
@@ -197,7 +197,7 @@ export function SolutionSection() {
           <div className="flex items-center justify-center">
             <div className="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 lg:p-8 text-center space-y-2 max-w-sm shadow-[0_0_30px_rgba(168,85,247,0.06)]">
               <p className="text-sm text-neutral-500 uppercase tracking-wide">
-                Value Equation (Hormozi)
+                Value Equation
               </p>
               <div className="space-y-1">
                 <p className="text-lg font-semibold text-success-500">
@@ -218,7 +218,7 @@ export function SolutionSection() {
                 <tr className="border-b border-neutral-700 bg-neutral-900/50">
                   <th className="text-left py-3 px-4 text-sm text-neutral-500 font-medium" />
                   <th className="text-left py-3 px-4 text-sm font-medium text-primary-400">
-                    Post Express
+                    Croko Lab
                   </th>
                   <th className="text-left py-3 px-4 text-sm text-neutral-500 font-medium">
                     Consultoria Tradicional

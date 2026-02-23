@@ -130,7 +130,7 @@ export function ProofSection() {
                     Consultor Tradicional
                   </th>
                   <th className="text-left py-3 px-4 text-sm font-medium text-primary-400">
-                    Post Express
+                    Croko Lab
                   </th>
                 </tr>
               </thead>

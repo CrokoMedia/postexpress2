@@ -1,10 +1,10 @@
-# 🚀 Post Express
+# 🚀 Croko Lab
 
-Sistema de Criação de Conteúdo Automatizado da Pazos Media
+Laboratório de Conteúdo Científico da Agência Croko
 
 ## 📖 Visão Geral
 
-Post Express automatiza 80% do processo de criação de conteúdo, utilizando IA com metodologias comprovadas de marketing para gerar carrosséis de alta conversão em escala.
+Croko Lab é o laboratório de conteúdo científico que transforma creators de achistas em estrategistas, utilizando 6 frameworks científicos para auditar e criar conteúdo de alta conversão.
 
 ### 🎯 Proposta de Valor
 
@@ -124,15 +124,15 @@ _(Documentação em desenvolvimento)_
 
 ## 🤝 Contribuindo
 
-Este é um projeto interno da Pazos Media.
+Este é um projeto interno da Agência Croko.
 
 ## 📄 Licença
 
-Proprietary - Pazos Media © 2026
+Proprietary - Agência Croko © 2026
 
 ## 👥 Time
 
-Desenvolvido pela equipe Pazos Media
+Desenvolvido pela equipe Agência Croko
 
 ---
 

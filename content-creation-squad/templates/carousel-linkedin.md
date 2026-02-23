@@ -9,7 +9,6 @@ slides: 6-10
 file_format: PDF (preferencial) ou imagens JPG/PNG
 max_file_size: 100MB total (PDF) ou 10MB/imagem
 caption_limit: 3000 caracteres
-hashtags: 3-5 recomendado (menos que Instagram)
 ```
 
 ## Diferenças Críticas vs Instagram
@@ -263,9 +262,6 @@ Visual: Logo profissional, cores da marca
 [Espaço em branco]
 
 [Call-to-Action - O que fazer com essa informação]
-
----
-[Hashtags - Apenas 3-5, muito relevantes]
 ```
 
 ### Exemplo Completo
@@ -283,8 +279,6 @@ Qual dessas métricas você já rastreia? Compartilhe nos comentários.
 
 ---
 PS: Estou preparando um workshop sobre Revenue Operations. Quer participar? Comenta "WORKSHOP" que te aviso quando abrir.
-
-#SaaS #Metrics #B2BSales #RevenueOps #Startups
 ```
 
 **Diferenças do Instagram**:
@@ -292,7 +286,6 @@ PS: Estou preparando um workshop sobre Revenue Operations. Quer participar? Come
 - Parágrafos maiores (audiência lê mais)
 - Dados e estatísticas reforçam autoridade
 - Call-to-action mais sutil
-- Menos hashtags (3-5 vs 10+ do Instagram)
 
 ---
 
@@ -318,7 +311,6 @@ PS: Estou preparando um workshop sobre Revenue Operations. Quer participar? Come
 ### Otimização LinkedIn
 - [ ] Primeira linha da caption prende atenção (aparece no feed)
 - [ ] Tom apropriado para decisores/profissionais
-- [ ] Hashtags relevantes (3-5 máximo)
 - [ ] Sem emojis excessivos
 - [ ] Foco em valor/ROI, não entretenimento
 - [ ] Credibilidade estabelecida (dados, experiência)

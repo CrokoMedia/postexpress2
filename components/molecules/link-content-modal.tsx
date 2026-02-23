@@ -165,11 +165,11 @@ export function LinkContentModal({
         {/* Profile List */}
         <div className="space-y-2 max-h-96 overflow-y-auto">
           {loading ? (
-            <div className="text-center py-8 text-neutral-400">
+            <div className="text-center py-8 text-neutral-600 dark:text-neutral-400">
               Carregando perfis...
             </div>
           ) : filteredProfiles.length === 0 ? (
-            <div className="text-center py-8 text-neutral-400">
+            <div className="text-center py-8 text-neutral-600 dark:text-neutral-400">
               {searchQuery ? 'Nenhum perfil encontrado' : 'Nenhum outro perfil disponível'}
             </div>
           ) : (
@@ -200,7 +200,7 @@ export function LinkContentModal({
                     <div>
                       <div className="font-medium">@{profile.username}</div>
                       {profile.full_name && (
-                        <div className="text-sm text-neutral-400">
+                        <div className="text-sm text-neutral-600 dark:text-neutral-400">
                           {profile.full_name}
                         </div>
                       )}
@@ -246,7 +246,7 @@ export function LinkContentModal({
         </div>
 
         {/* Footer Info */}
-        <div className="pt-4 border-t border-neutral-800 text-sm text-neutral-400 flex items-start gap-2">
+        <div className="pt-4 border-t border-neutral-800 text-sm text-neutral-600 dark:text-neutral-400 flex items-start gap-2">
           <Lightbulb className="w-4 h-4 text-warning-500 shrink-0 mt-0.5" />
           <p><strong>Dica:</strong> Conteúdos vinculados aparecem na lista de conteúdos de ambos os perfis.</p>
         </div>

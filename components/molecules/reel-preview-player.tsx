@@ -117,7 +117,7 @@ export function ReelPreviewPlayer({
     <div className={`space-y-3 ${className}`}>
       {/* Controles do Player */}
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-neutral-300 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-neutral-700 dark:text-neutral-300 flex items-center gap-2">
           <Monitor className="w-4 h-4" />
           Preview Animado
         </h3>
@@ -129,7 +129,7 @@ export function ReelPreviewPlayer({
               className={`p-1.5 transition-colors ${
                 previewScale === 'desktop'
                   ? 'bg-primary-500/20 text-primary-400'
-                  : 'text-neutral-500 hover:text-neutral-300'
+                  : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-300'
               }`}
               title="Tamanho desktop"
             >
@@ -140,7 +140,7 @@ export function ReelPreviewPlayer({
               className={`p-1.5 transition-colors ${
                 previewScale === 'mobile'
                   ? 'bg-primary-500/20 text-primary-400'
-                  : 'text-neutral-500 hover:text-neutral-300'
+                  : 'text-neutral-500 hover:text-neutral-700 dark:text-neutral-300'
               }`}
               title="Tamanho mobile"
             >
@@ -153,7 +153,7 @@ export function ReelPreviewPlayer({
             variant="ghost"
             size="sm"
             onClick={() => setIsVisible(!isVisible)}
-            className="text-xs text-neutral-400 hover:text-neutral-200"
+            className="text-xs text-neutral-400 hover:text-neutral-800 dark:text-neutral-200"
           >
             {isVisible ? (
               <>

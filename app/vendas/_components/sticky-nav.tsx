@@ -22,7 +22,7 @@ export function StickyNav() {
       )}
     >
       <span className="text-lg font-bold text-neutral-50">
-        Post Express<span className="text-primary-400">&trade;</span>
+        Croko Lab<span className="text-primary-400">&trade;</span>
       </span>
       <a
         href="#pricing"

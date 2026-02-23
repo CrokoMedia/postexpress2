@@ -110,7 +110,7 @@ export default function AdminUsersPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-neutral-50">Gerenciar Usuários</h1>
-          <p className="text-neutral-400 text-sm mt-1">Crie e gerencie acessos ao Post Express</p>
+          <p className="text-neutral-400 text-sm mt-1">Crie e gerencie acessos ao Croko Lab</p>
         </div>
         <div className="flex gap-2">
           <button

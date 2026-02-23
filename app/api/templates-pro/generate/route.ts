@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { generateEditorialBackground, generateEditorialBackgroundWithReference } from '@/lib/fal-image'
+import { generateEditorialBackground, generateEditorialBackgroundWithReference } from '@/lib/nano-banana'
 import { searchEditorialImage } from '@/lib/image-search'
 import { generateEditorialCoverHTML } from '@/lib/slide-templates/editorial-cover'
 import { parseComposePrompt, resolveComposeElements, generateComposeHTML } from '@/lib/slide-templates/editorial-compose'
 import { generateEditorialContentTitleHTML } from '@/lib/slide-templates/editorial-content-title'
 import { generateEditorialContentImageHTML } from '@/lib/slide-templates/editorial-content-image'
 import { generateEditorialCtaHTML } from '@/lib/slide-templates/editorial-cta'
+import { analyzeCompanyBrand } from '@/lib/company-analyzer'
 import { getBrowser } from '@/lib/browser'
 import cloudinary from 'cloudinary'
 import fs from 'fs'
@@ -30,11 +31,12 @@ interface GenerateRequest {
   metaShape?: 'square' | 'rounded'
   metaFontSize?: number
   badgeText?: string
-  imageMode: 'auto' | 'search' | 'compose' | 'custom_prompt' | 'upload'
+  imageMode: 'auto' | 'search' | 'compose' | 'custom_prompt' | 'upload' | 'company_url'
   imagePrompt?: string
   referenceImageUrls?: string[]
   searchQuery?: string
   uploadUrl?: string
+  companyUrl?: string
   // Campos para content-title
   paragraph1?: string
   paragraph2?: string
@@ -53,11 +55,108 @@ interface GenerateRequest {
  */
 async function resolveBackgroundImage(
   imageMode: string,
-  opts: { uploadUrl?: string; searchQuery?: string; titulo?: string; imagePrompt?: string; referenceImageUrls?: string[] }
-): Promise<{ url: string; source: string }> {
+  opts: { uploadUrl?: string; searchQuery?: string; titulo?: string; imagePrompt?: string; referenceImageUrls?: string[]; companyUrl?: string }
+): Promise<{ url: string; source: string; brandData?: any }> {
   if (imageMode === 'upload' && opts.uploadUrl) {
     console.log(`   📤 Usando imagem enviada: ${opts.uploadUrl}`)
     return { url: opts.uploadUrl, source: 'upload' }
+  }
+
+  // Modo Company URL: analisa site da empresa e extrai identidade visual
+  if (imageMode === 'company_url' && opts.companyUrl) {
+    console.log(`   🏢 Analisando identidade visual de ${opts.companyUrl}...`)
+    try {
+      const brandData = await analyzeCompanyBrand(opts.companyUrl)
+      console.log(`   ✅ Marca analisada: ${brandData.name}`)
+      console.log(`   🎨 Paleta: ${brandData.color_palette.join(', ')}`)
+      console.log(`   🎭 Estilo: ${brandData.visual_style}`)
+      console.log(`   🖼️ Hero image: ${brandData.hero_image_url ? 'Sim' : 'Não'}`)
+      console.log(`   🏷️ Logo: ${brandData.logo_url ? 'Sim' : 'Não'}`)
+
+      // Tentar gerar imagem com Nano Banana (com contexto rico!)
+      let imageUrl: string | null = null
+
+      try {
+        // Montar prompt RICO para Nano Banana
+        const brandPrompt = `Professional editorial image for ${brandData.name} brand.
+
+Brand Identity:
+- Style: ${brandData.visual_style || 'modern professional'}
+- Industry: ${brandData.industry || 'business'}
+- Colors: ${brandData.color_palette.join(', ')}
+${brandData.logo_url ? `- Logo URL: ${brandData.logo_url}` : ''}
+${brandData.description ? `- Description: ${brandData.description}` : ''}
+
+Content: ${opts.titulo || 'professional editorial scene'}
+
+Requirements:
+- High quality editorial photography
+- Incorporate brand colors naturally
+${brandData.logo_url ? '- Include brand logo if relevant' : ''}
+- Professional, modern aesthetic
+- Suitable for Instagram/LinkedIn post`
+
+        console.log(`   🎨 Tentando gerar com Nano Banana...`)
+        console.log(`   📝 Prompt:`, brandPrompt.substring(0, 200) + '...')
+        console.log(`   🏷️ Logo disponível: ${!!brandData.logo_url}`)
+        console.log(`   🖼️ Hero image disponível: ${!!brandData.hero_image_url}`)
+
+        imageUrl = await generateEditorialBackground(brandPrompt)
+        console.log(`   ✅ Nano Banana gerou: ${imageUrl.substring(0, 100)}...`)
+      } catch (nanoError: any) {
+        console.error(`   ❌ Nano Banana FALHOU: ${nanoError.message}`)
+        console.error(`   Stack:`, nanoError.stack)
+
+        console.log(`   🔄 Iniciando fallback...`)
+        console.log(`   Dados disponíveis:`)
+        console.log(`      - Hero image: ${brandData.hero_image_url || 'NÃO'}`)
+        console.log(`      - Screenshot: ${brandData.screenshot_url || 'NÃO'}`)
+        console.log(`      - Imagens extraídas: ${brandData.extracted_images?.length || 0}`)
+
+        // FALLBACK 1: Usar hero image do site (melhor opção!)
+        if (brandData.hero_image_url) {
+          console.log(`   ✅ FALLBACK 1: Usando hero image do site`)
+          imageUrl = brandData.hero_image_url
+        }
+        // FALLBACK 2: Usar screenshot do site
+        else if (brandData.screenshot_url) {
+          console.log(`   ✅ FALLBACK 2: Usando screenshot do site`)
+          imageUrl = brandData.screenshot_url
+        }
+        // FALLBACK 3: Usar primeira imagem extraída
+        else if (brandData.extracted_images && brandData.extracted_images.length > 0) {
+          console.log(`   ✅ FALLBACK 3: Usando imagem extraída (#1 de ${brandData.extracted_images.length})`)
+          console.log(`   URL: ${brandData.extracted_images[0]}`)
+          imageUrl = brandData.extracted_images[0]
+        }
+        // FALLBACK 4: Gradiente com cores da marca
+        else {
+          console.log(`   ✅ FALLBACK 4: Gerando gradiente com cores`)
+          const primaryColor = brandData.primary_color || brandData.color_palette[0] || '#1a1a1a'
+          const secondaryColor = brandData.secondary_color || brandData.color_palette[1] || '#333333'
+          console.log(`   Cores: ${primaryColor} → ${secondaryColor}`)
+
+          const svgGradient = `data:image/svg+xml;base64,${Buffer.from(`
+            <svg width="1080" height="1350" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:${primaryColor};stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:${secondaryColor};stop-opacity:1" />
+                </linearGradient>
+              </defs>
+              <rect width="1080" height="1350" fill="url(#brandGradient)"/>
+            </svg>
+          `).toString('base64')}`
+
+          imageUrl = svgGradient
+        }
+      }
+
+      return { url: imageUrl, source: 'company-brand-apify', brandData }
+    } catch (error) {
+      console.error(`   ❌ Erro ao analisar empresa:`, error)
+      throw new Error(`Falha ao analisar identidade visual da empresa: ${error instanceof Error ? error.message : 'Erro desconhecido'}`)
+    }
   }
 
   if (imageMode === 'search' || imageMode === 'auto') {

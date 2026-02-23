@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
+import type { UserProfile } from '@/types/database'
 
 // GET - Buscar contexto do perfil
 export async function GET(
@@ -44,15 +45,8 @@ export async function POST(
     const supabase = getServerSupabase()
     const body = await request.json()
 
-    const {
-      nicho,
-      objetivos,
-      publico_alvo,
-      produtos_servicos,
-      tom_voz,
-      contexto_adicional,
-      files
-    } = body
+    // Detectar se é a nova estrutura UserProfile ou campos legados
+    const isNewStructure = body.identity || body.credibility || body.philosophy || body.contentStyle || body.contentPillars || body.business || body.dna
 
     // Verificar se perfil existe
     const { data: profile, error: profileError } = await supabase
@@ -78,44 +72,96 @@ export async function POST(
 
     let result
 
-    if (existing) {
-      // Atualizar
-      const { data, error } = await supabase
-        .from('profile_context')
-        .update({
-          nicho,
-          objetivos,
-          publico_alvo,
-          produtos_servicos,
-          tom_voz,
-          contexto_adicional,
-          files: files || []
-        })
-        .eq('id', existing.id)
-        .select()
-        .single()
+    if (isNewStructure) {
+      // Nova estrutura UserProfile
+      const userProfile: UserProfile = body
 
-      if (error) throw error
-      result = data
+      const contextData = {
+        identity: userProfile.identity,
+        credibility: userProfile.credibility,
+        philosophy: userProfile.philosophy,
+        content_style: userProfile.contentStyle,
+        content_pillars: userProfile.contentPillars,
+        business: userProfile.business,
+        dna: userProfile.dna
+      }
+
+      if (existing) {
+        // Atualizar
+        const { data, error } = await supabase
+          .from('profile_context')
+          .update(contextData)
+          .eq('id', existing.id)
+          .select()
+          .single()
+
+        if (error) throw error
+        result = data
+      } else {
+        // Criar novo
+        const { data, error } = await supabase
+          .from('profile_context')
+          .insert({
+            profile_id: id,
+            ...contextData
+          })
+          .select()
+          .single()
+
+        if (error) throw error
+        result = data
+      }
     } else {
-      // Criar novo
-      const { data, error } = await supabase
-        .from('profile_context')
-        .insert({
-          profile_id: id,
-          nicho,
-          objetivos,
-          publico_alvo,
-          produtos_servicos,
-          tom_voz,
-          contexto_adicional,
-          files: files || []
-        })
-        .select()
-        .single()
+      // Estrutura legada (manter retrocompatibilidade)
+      const {
+        nicho,
+        objetivos,
+        publico_alvo,
+        produtos_servicos,
+        tom_voz,
+        contexto_adicional,
+        files
+      } = body
 
-      if (error) throw error
-      result = data
+      if (existing) {
+        // Atualizar
+        const { data, error } = await supabase
+          .from('profile_context')
+          .update({
+            nicho,
+            objetivos,
+            publico_alvo,
+            produtos_servicos,
+            tom_voz,
+            contexto_adicional,
+            files: files || []
+          })
+          .eq('id', existing.id)
+          .select()
+          .single()
+
+        if (error) throw error
+        result = data
+      } else {
+        // Criar novo
+        const { data, error } = await supabase
+          .from('profile_context')
+          .insert({
+            profile_id: id,
+            nicho,
+            objetivos,
+            publico_alvo,
+            produtos_servicos,
+            tom_voz,
+            contexto_adicional,
+            files: files || []
+          })
+          .select()
+          .single()
+
+        if (error) throw error
+        result = data
+      }
     }
 
     return NextResponse.json({

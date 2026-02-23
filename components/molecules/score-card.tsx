@@ -32,11 +32,11 @@ export function ScoreCard({ title, score, icon, description, className }: ScoreC
 
       <CardHeader className="relative">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-base font-medium text-neutral-300">
+          <CardTitle className="text-base font-medium text-neutral-700 dark:text-neutral-300">
             {title}
           </CardTitle>
           {icon && (
-            <div className="text-neutral-400">
+            <div className="text-neutral-600 dark:text-neutral-400">
               {icon}
             </div>
           )}
@@ -47,7 +47,7 @@ export function ScoreCard({ title, score, icon, description, className }: ScoreC
           {score}
         </div>
         {description && (
-          <p className="text-sm text-neutral-400">{description}</p>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">{description}</p>
         )}
       </CardContent>
     </Card>

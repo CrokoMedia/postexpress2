@@ -1,0 +1,193 @@
+{
+  "_INSTRUCOES": "Preencha todos os campos abaixo. Campos com [] são arrays (lista de itens). Campos com {} são objetos. Delete esta linha antes de importar.",
+  "_PROFILE_ID": "OBRIGATORIO: Busque o UUID do perfil na tabela 'profiles' do Supabase antes de preencher",
+
+  "profile_id": "COLE_O_UUID_AQUI",
+
+  "identity": {
+    "_exemplo": "Identidade e posicionamento do creator/expert",
+    "fullName": "Nome Completo da Pessoa",
+    "displayName": "Nome de Exibição (como aparece nas redes)",
+    "positioning": "Frase de posicionamento clara (1-2 linhas): 'Ajudo [AVATAR] a [TRANSFORMAÇÃO] através de [MÉTODO]'",
+    "niche": [
+      "Nicho Principal",
+      "Sub-nicho 1",
+      "Sub-nicho 2"
+    ],
+    "avatar": "Descrição do público-alvo ideal (quem ele ajuda)",
+    "toneOfVoice": "Tom de voz característico (ex: direto, inspirador, técnico, irreverente)"
+  },
+
+  "credibility": {
+    "_exemplo": "Credenciais e autoridade",
+    "experience": "Resumo da experiência profissional (1-3 linhas)",
+    "achievements": [
+      "Conquista 1 (específica e mensurável se possível)",
+      "Conquista 2",
+      "Conquista 3",
+      "Conquista 4"
+    ],
+    "expertise": [
+      "Área de expertise 1",
+      "Área de expertise 2",
+      "Área de expertise 3"
+    ]
+  },
+
+  "philosophy": {
+    "_exemplo": "Valores, crenças e posicionamentos ideológicos",
+    "values": [
+      "Valor 1 > Oposto (ex: Autenticidade > Aparência)",
+      "Valor 2 > Oposto",
+      "Valor 3 > Oposto",
+      "Valor 4 > Oposto",
+      "Valor 5 > Oposto"
+    ],
+    "beliefs": "Principais crenças e princípios (2-3 linhas sobre o que acredita)",
+    "defends": "O que defende ativamente (causas, métodos, abordagens)",
+    "rejects": "O que rejeita ou critica (liste métodos/abordagens que vai contra)"
+  },
+
+  "content_style": {
+    "_exemplo": "Estilo de criação de conteúdo",
+    "preferredFormats": [
+      "Formato 1 (ex: Carrosséis educacionais)",
+      "Formato 2 (ex: Vídeos curtos)",
+      "Formato 3 (ex: Threads)"
+    ],
+    "structure": "Estrutura típica do conteúdo (ex: Hook → Contexto → 3 pontos → CTA)",
+    "language": {
+      "formality": "Formal | Informal profissional | Casual",
+      "person": "Primeira pessoa (eu) | Segunda pessoa (você) | Terceira pessoa",
+      "emojis": "Usa muito | Usa com moderação | Raramente usa | Nunca usa",
+      "caps": "Usa CAPS frequentemente | Só para ênfase | Raramente | Nunca",
+      "storytelling": "Como usa storytelling (ex: histórias pessoais longas, exemplos rápidos, metáforas)",
+      "regionalismo": "País/região (ex: Brasil, Portugal, EUA)",
+      "wordsMarca": [
+        "palavra-chave 1",
+        "palavra-chave 2",
+        "palavra-chave 3"
+      ]
+    },
+    "comprimentoIdeal": {
+      "carrossel": "Exemplo: 5-7 slides",
+      "postLinkedIn": "Exemplo: 800-1200 caracteres",
+      "threadX": "Exemplo: 5-8 tweets",
+      "reelScript": "Exemplo: 30-60 segundos"
+    },
+    "evitar": [
+      "Palavra/frase que nunca usa 1",
+      "Palavra/frase que nunca usa 2",
+      "Padrão de linguagem que evita 3"
+    ]
+  },
+
+  "content_pillars": [
+    {
+      "_exemplo": "Primeiro pilar de conteúdo (geralmente o mais importante)",
+      "name": "Nome do Pilar 1",
+      "weight": "40%",
+      "objetivo": "Objetivo deste pilar (qual transformação entrega)",
+      "subtopics": [
+        "Subtópico 1.1",
+        "Subtópico 1.2",
+        "Subtópico 1.3"
+      ],
+      "mensagensChave": [
+        "Mensagem-chave 1 (frase de impacto que repete)",
+        "Mensagem-chave 2"
+      ]
+    },
+    {
+      "name": "Nome do Pilar 2",
+      "weight": "30%",
+      "objetivo": "Objetivo deste pilar",
+      "subtopics": [
+        "Subtópico 2.1",
+        "Subtópico 2.2"
+      ],
+      "mensagensChave": [
+        "Mensagem-chave 1",
+        "Mensagem-chave 2"
+      ]
+    },
+    {
+      "name": "Nome do Pilar 3",
+      "weight": "20%",
+      "objetivo": "Objetivo deste pilar",
+      "subtopics": [
+        "Subtópico 3.1",
+        "Subtópico 3.2"
+      ],
+      "mensagensChave": [
+        "Mensagem-chave 1"
+      ]
+    },
+    {
+      "name": "Nome do Pilar 4",
+      "weight": "10%",
+      "objetivo": "Objetivo deste pilar",
+      "subtopics": [
+        "Subtópico 4.1"
+      ],
+      "mensagensChave": [
+        "Mensagem-chave 1"
+      ]
+    }
+  ],
+
+  "business": {
+    "_exemplo": "Produtos, ofertas e funil",
+    "products": [
+      {
+        "name": "Nome do Produto/Serviço 1",
+        "description": "Descrição breve do que é",
+        "price": "R$ XXX ou USD XXX",
+        "target": "Quem compra (avatar específico)",
+        "cta": "Call-to-action principal",
+        "includes": [
+          "O que inclui 1",
+          "O que inclui 2",
+          "O que inclui 3"
+        ]
+      },
+      {
+        "name": "Nome do Produto/Serviço 2",
+        "description": "Descrição",
+        "price": "Preço",
+        "target": "Avatar",
+        "cta": "CTA",
+        "includes": [
+          "Item 1",
+          "Item 2"
+        ]
+      }
+    ],
+    "leadMagnets": [
+      "Lead magnet 1 (material gratuito)",
+      "Lead magnet 2"
+    ],
+    "funilPrincipal": "Descrição do funil principal (Etapa 1 → Etapa 2 → Etapa 3 → Conversão)"
+  },
+
+  "dna": {
+    "_exemplo": "Essência única da pessoa - DNA comportamental",
+    "energy": "Como as pessoas percebem a energia dela (ex: calmo e analítico, alta energia e inspirador)",
+    "uniqueVoice": "O que torna a voz única (padrões de fala, maneirismos, características marcantes)",
+    "comoPessoasDescrevem": "Como pessoas próximas descrevem (baseado em feedbacks reais se possível)",
+    "transformation": "Jornada pessoal de transformação (de X para Y)",
+    "experienciasMarcantes": "Experiências que moldaram a visão de mundo (1-2 linhas)",
+    "frameworks": [
+      "Framework/Autor 1 que usa (ex: Alex Hormozi - Value Equation)",
+      "Framework/Autor 2",
+      "Framework/Autor 3"
+    ],
+    "perfilCompleto": {
+      "_opcional": "Resultados de assessments comportamentais (se tiver)",
+      "hamilton": "Wealth Dynamics profile (ex: Creator, Star, Mechanic)",
+      "hogshead": "Fascination Advantage archetype (ex: The Catalyst)",
+      "kolbe": "Kolbe A Index scores (ex: Quick Start 8, Follow Thru 3)",
+      "clifton": "CliftonStrengths Top 5 (ex: Ideation, Activator, Woo, Learner, Strategic)"
+    }
+  }
+}

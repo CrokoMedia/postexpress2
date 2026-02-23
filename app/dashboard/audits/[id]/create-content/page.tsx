@@ -8,8 +8,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/atoms/button'
 import { Skeleton } from '@/components/atoms/skeleton'
 import { Badge } from '@/components/atoms/badge'
-import { Sparkles, ArrowLeft, Download, Copy, Check, Image as ImageIcon, Loader2, CheckCircle, XCircle, Archive, FolderOpen, Pencil, RefreshCw, Save, X, Video, Repeat2, GalleryHorizontal } from 'lucide-react'
+import { Sparkles, ArrowLeft, Download, Copy, Check, Image as ImageIcon, Loader2, CheckCircle, XCircle, Archive, FolderOpen, Pencil, RefreshCw, Save, X, Video, Repeat2, GalleryHorizontal, Trash2, Calendar } from 'lucide-react'
 import Link from 'next/link'
+import { PublishInstagramButton } from '@/components/molecules/publish-instagram-button'
+import { ScheduleContentModal } from '@/components/molecules/schedule-content-modal'
+import { ScheduledContentList } from '@/components/molecules/scheduled-content-list'
+import { SafeScheduledListWrapper } from '@/components/molecules/safe-scheduled-list-wrapper'
 
 export default function CreateContentPage() {
   const params = useParams()
@@ -21,6 +25,8 @@ export default function CreateContentPage() {
   const [content, setContent] = useState<any>(null)
   const [error, setError] = useState<string | null>(null)
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+  const [copiedCaption, setCopiedCaption] = useState<number | null>(null)
+  const [copiedHashtags, setCopiedHashtags] = useState<number | null>(null)
   const [generatingSlides, setGeneratingSlides] = useState(false)
   const [slides, setSlides] = useState<any>(null) // V1 - template padrão
   const [slidesError, setSlidesError] = useState<string | null>(null)
@@ -32,6 +38,10 @@ export default function CreateContentPage() {
   const [sendingToDrive, setSendingToDrive] = useState(false)
   const [driveMessage, setDriveMessage] = useState<string | null>(null)
   const [driveError, setDriveError] = useState<string | null>(null)
+
+  // Download ZIP individual e exclusão de carrosséis
+  const [downloadingCarouselZip, setDownloadingCarouselZip] = useState<number | null>(null)
+  const [deletingCarousel, setDeletingCarousel] = useState<number | null>(null)
 
   const [generatingVariations, setGeneratingVariations] = useState<number | null>(null)
 
@@ -70,6 +80,10 @@ export default function CreateContentPage() {
   const [editedCarousel, setEditedCarousel] = useState<any>(null)
   const [refining, setRefining] = useState(false)
   const [saving, setSaving] = useState(false)
+
+  // Modal de agendamento
+  const [showScheduleModal, setShowScheduleModal] = useState(false)
+  const [schedulesRefreshKey, setSchedulesRefreshKey] = useState(0)
 
   // Carregar conteúdo e slides existentes ao abrir a página
   useEffect(() => {
@@ -114,6 +128,10 @@ export default function CreateContentPage() {
     try {
       const themeToUse = customTheme.trim() || null
 
+      console.log('🚀 Iniciando geração de conteúdo...')
+      console.log('🔗 URL:', `/api/audits/${id}/generate-content`)
+      console.log('📦 Body:', { custom_theme: themeToUse })
+
       const response = await fetch(`/api/audits/${id}/generate-content`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -122,19 +140,62 @@ export default function CreateContentPage() {
         })
       })
 
+      console.log('📡 Resposta recebida:', {
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+        headers: Object.fromEntries(response.headers.entries())
+      })
+
+      // Tentar ler o texto da resposta primeiro
+      const responseText = await response.text()
+      console.log('📄 Resposta raw (primeiros 500 chars):', responseText.substring(0, 500))
+
       if (!response.ok) {
-        const data = await response.json()
-        throw new Error(data.error || 'Erro ao gerar conteúdo')
+        let errorData
+        try {
+          errorData = JSON.parse(responseText)
+        } catch {
+          errorData = { error: responseText || 'Erro desconhecido' }
+        }
+        console.error('❌ Erro na resposta:', errorData)
+        throw new Error(errorData.error || `Erro ${response.status}: ${response.statusText}`)
       }
 
-      const data = await response.json()
+      // Parse do JSON
+      let data
+      try {
+        data = JSON.parse(responseText)
+      } catch (parseError) {
+        console.error('❌ Erro ao fazer parse do JSON:', parseError)
+        console.error('📄 Texto recebido:', responseText)
+        throw new Error('Resposta da API não é um JSON válido')
+      }
+
+      console.log('✅ Dados parseados:', {
+        success: data.success,
+        hasContent: !!data.content,
+        contentKeys: data.content ? Object.keys(data.content) : [],
+        carouselsCount: data.content?.carousels?.length
+      })
+
+      if (!data.content) {
+        throw new Error('Resposta da API não contém conteúdo')
+      }
+
+      if (!data.content.carousels || data.content.carousels.length === 0) {
+        throw new Error('Nenhum carrossel foi gerado')
+      }
+
       setContent(data.content)
       setUsedTheme(themeToUse)
+      console.log('✅ Conteúdo setado no estado React')
     } catch (err: any) {
-      console.error('Erro:', err)
+      console.error('❌ Erro ao gerar conteúdo:', err)
       setError(err.message)
     } finally {
       setGenerating(false)
+      console.log('🏁 Processo finalizado')
     }
   }
 
@@ -161,6 +222,19 @@ CTA: ${carousel.cta}
     navigator.clipboard.writeText(text)
     setCopiedIndex(index)
     setTimeout(() => setCopiedIndex(null), 2000)
+  }
+
+  const handleCopyCaption = (carousel: any, index: number) => {
+    navigator.clipboard.writeText(carousel.caption)
+    setCopiedCaption(index)
+    setTimeout(() => setCopiedCaption(null), 2000)
+  }
+
+  const handleCopyHashtags = (carousel: any, index: number) => {
+    const hashtagsText = carousel.hashtags.map((tag: string) => `#${tag}`).join(' ')
+    navigator.clipboard.writeText(hashtagsText)
+    setCopiedHashtags(index)
+    setTimeout(() => setCopiedHashtags(null), 2000)
   }
 
   const handleDownloadJSON = () => {
@@ -287,6 +361,75 @@ CTA: ${carousel.cta}
     }
   }
 
+  // Toggle individual de slide
+  const handleToggleSlide = (carouselIndex: number, slideIndex: number) => {
+    setSelectedSlides(prev => {
+      const next = new Map(prev)
+      const carouselSet = next.get(carouselIndex) || new Set()
+      const newSet = new Set(carouselSet)
+
+      if (newSet.has(slideIndex)) {
+        newSet.delete(slideIndex)
+      } else {
+        newSet.add(slideIndex)
+      }
+
+      next.set(carouselIndex, newSet)
+      return next
+    })
+  }
+
+  // Selecionar/Desselecionar todos os slides de um carrossel
+  const handleToggleAllSlides = (carouselIndex: number) => {
+    const carousel = content?.carousels?.[carouselIndex]
+    if (!carousel) return
+
+    setSelectedSlides(prev => {
+      const next = new Map(prev)
+      const currentSet = next.get(carouselIndex) || new Set()
+
+      // Se todos estão selecionados, desseleciona todos
+      // Senão, seleciona todos
+      if (currentSet.size === carousel.slides.length) {
+        next.set(carouselIndex, new Set())
+      } else {
+        next.set(carouselIndex, new Set(carousel.slides.map((_: any, i: number) => i)))
+      }
+
+      return next
+    })
+  }
+
+  // Selecionar/Desselecionar TODOS os slides de TODOS os carrosséis aprovados
+  const handleToggleAllSlidesGlobal = () => {
+    if (!content?.carousels) return
+
+    // Verificar se TODOS os slides de TODOS os carrosséis aprovados estão selecionados
+    const allSelected = content.carousels.every((carousel: any, index: number) => {
+      if (!carousel.approved) return true // ignora não aprovados
+      const slideSel = selectedSlides.get(index)
+      return slideSel && slideSel.size === carousel.slides.length
+    })
+
+    setSelectedSlides(prev => {
+      const next = new Map(prev)
+
+      content.carousels.forEach((carousel: any, index: number) => {
+        if (!carousel.approved) return // só afeta aprovados
+
+        if (allSelected) {
+          // Desselecionar todos
+          next.set(index, new Set())
+        } else {
+          // Selecionar todos
+          next.set(index, new Set(carousel.slides.map((_: any, i: number) => i)))
+        }
+      })
+
+      return next
+    })
+  }
+
   const handleGenerateSlides = async () => {
     if (!content || !content.carousels) {
       setSlidesError('Gere as sugestões de conteúdo primeiro')
@@ -296,6 +439,15 @@ CTA: ${carousel.cta}
     if (selectedForSlides.size === 0) {
       setSlidesError('Selecione pelo menos um carrossel para gerar slides')
       return
+    }
+
+    // Validar se há pelo menos 1 slide selecionado em cada carrossel aprovado
+    for (const carouselIndex of selectedForSlides) {
+      const slideSel = selectedSlides.get(carouselIndex)
+      if (!slideSel || slideSel.size === 0) {
+        setSlidesError(`Selecione pelo menos 1 slide no Carrossel ${carouselIndex + 1}`)
+        return
+      }
     }
 
     setGeneratingSlides(true)
@@ -345,6 +497,15 @@ CTA: ${carousel.cta}
     if (selectedForSlides.size === 0) {
       setSlidesV2Error('Selecione pelo menos um carrossel para gerar slides')
       return
+    }
+
+    // Validar se há pelo menos 1 slide selecionado em cada carrossel aprovado
+    for (const carouselIndex of selectedForSlides) {
+      const slideSel = selectedSlides.get(carouselIndex)
+      if (!slideSel || slideSel.size === 0) {
+        setSlidesV2Error(`Selecione pelo menos 1 slide no Carrossel ${carouselIndex + 1}`)
+        return
+      }
     }
 
     setGeneratingSlidesV2(true)
@@ -725,6 +886,126 @@ CTA: ${carousel.cta}
     }
   }
 
+  // Download ZIP de um carrossel específico
+  const handleDownloadCarouselZip = async (carouselIndex: number, carouselTitle: string) => {
+    setDownloadingCarouselZip(carouselIndex)
+    try {
+      const response = await fetch(`/api/content/${id}/carousels/${carouselIndex}/export-zip`, {
+        method: 'POST',
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Erro ao gerar ZIP')
+      }
+
+      const blob = await response.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `${slugify(carouselTitle)}.zip`
+      a.click()
+      URL.revokeObjectURL(url)
+    } catch (err: any) {
+      console.error('Erro ao baixar ZIP do carrossel:', err)
+      alert(`Erro: ${err.message}`)
+    } finally {
+      setDownloadingCarouselZip(null)
+    }
+  }
+
+  // Deletar carrossel TEXTUAL (conteúdo reprovado)
+  const handleDeleteCarousel = async (carouselIndex: number, carouselTitle: string) => {
+    if (!confirm(`Tem certeza que deseja excluir o carrossel "${carouselTitle}"?\n\nEsta ação não pode ser desfeita.`)) {
+      return
+    }
+
+    setDeletingCarousel(carouselIndex)
+    try {
+      const response = await fetch(`/api/content/${id}/carousels/${carouselIndex}`, {
+        method: 'DELETE',
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Erro ao deletar carrossel')
+      }
+
+      const data = await response.json()
+
+      // Atualizar estado local removendo o carrossel TEXTUAL
+      setContent((prev: any) => {
+        if (!prev) return prev
+        const newContent = { ...prev }
+        newContent.carousels.splice(carouselIndex, 1)
+        return newContent
+      })
+
+      console.log(`✅ ${data.message}`)
+      alert(`Carrossel deletado com sucesso!\n\nCarrosséis restantes: ${data.remainingCarousels}`)
+    } catch (err: any) {
+      console.error('Erro ao deletar carrossel:', err)
+      alert(`Erro: ${err.message}`)
+    } finally {
+      setDeletingCarousel(null)
+    }
+  }
+
+  // Deletar slides VISUAIS gerados
+  const handleDeleteSlideCarousel = async (carouselIndex: number, carouselTitle: string) => {
+    if (!confirm(`Tem certeza que deseja excluir os slides visuais do carrossel "${carouselTitle}"?\n\nIsso irá deletar as imagens do Cloudinary. Esta ação não pode ser desfeita.`)) {
+      return
+    }
+
+    setDeletingCarousel(carouselIndex)
+    try {
+      const response = await fetch(`/api/content/${id}/slides/${carouselIndex}`, {
+        method: 'DELETE',
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Erro ao deletar slides')
+      }
+
+      const data = await response.json()
+
+      // Atualizar estado local removendo os SLIDES
+      setSlides((prev: any) => {
+        if (!prev) return prev
+        const newSlides = { ...prev }
+        newSlides.carousels = newSlides.carousels.filter(
+          (c: any) => c.carouselIndex !== carouselIndex
+        )
+        // Atualizar summary
+        newSlides.summary = {
+          totalCarousels: newSlides.carousels.length,
+          totalSlides: newSlides.carousels.reduce((acc: number, c: any) => acc + c.slides.length, 0)
+        }
+        return newSlides
+      })
+
+      console.log(`✅ Slides deletados: ${data.deletedImages} imagens`)
+      alert(`Slides deletados com sucesso!\n\nImagens deletadas do Cloudinary: ${data.cloudinaryDeleted}/${data.deletedImages}`)
+    } catch (err: any) {
+      console.error('Erro ao deletar slides:', err)
+      alert(`Erro: ${err.message}`)
+    } finally {
+      setDeletingCarousel(null)
+    }
+  }
+
+  // Helper para slugify (mesmo usado na API)
+  const slugify = (text: string): string => {
+    return text
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-zA-Z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+      .substring(0, 50)
+  }
+
   // Contar carrosséis aprovados
   const approvedCarouselsCount = content?.carousels?.filter((c: any) => c.approved === true).length || 0
   const totalCarouselsCount = content?.carousels?.length || 0
@@ -783,15 +1064,26 @@ CTA: ${carousel.cta}
             </Button>
           )}
           {!content && (
-            <Button
-              onClick={handleGenerateContent}
-              disabled={generating}
-              size="lg"
-              className="flex items-center gap-2"
-            >
-              <Sparkles className="w-5 h-5" />
-              {generating ? 'Gerando...' : 'Gerar Sugestões'}
-            </Button>
+            <>
+              <Button
+                variant="secondary"
+                onClick={() => setShowScheduleModal(true)}
+                size="lg"
+                className="flex items-center gap-2 border-primary-300 text-primary-700 hover:bg-primary-50"
+              >
+                <Calendar className="w-5 h-5" />
+                Agendar Geração
+              </Button>
+              <Button
+                onClick={handleGenerateContent}
+                disabled={generating}
+                size="lg"
+                className="flex items-center gap-2"
+              >
+                <Sparkles className="w-5 h-5" />
+                {generating ? 'Gerando...' : 'Gerar Agora'}
+              </Button>
+            </>
           )}
         </div>
       </div>
@@ -811,69 +1103,48 @@ CTA: ${carousel.cta}
         </Link>
       </div>
 
-      {/* Resumo da Auditoria */}
-      <Card className="bg-gradient-to-br from-primary-50 to-white dark:from-primary-950/30 dark:to-neutral-800/50 border-primary-200">
-        <CardContent className="p-6">
-          <div className="grid grid-cols-5 gap-4 text-center">
-            <div>
-              <div className="text-sm text-muted-foreground mb-1">Score Geral</div>
-              <div className="text-3xl font-bold text-primary-600">{audit.score_overall}</div>
-            </div>
-            <div>
-              <div className="text-sm text-muted-foreground mb-1">Comportamento</div>
-              <div className="text-2xl font-bold">{audit.score_behavior}</div>
-            </div>
-            <div>
-              <div className="text-sm text-muted-foreground mb-1">Copy</div>
-              <div className="text-2xl font-bold">{audit.score_copy}</div>
-            </div>
-            <div>
-              <div className="text-sm text-muted-foreground mb-1">Ofertas</div>
-              <div className="text-2xl font-bold">{audit.score_offers}</div>
-            </div>
-            <div>
-              <div className="text-sm text-muted-foreground mb-1">Métricas</div>
-              <div className="text-2xl font-bold">{audit.score_metrics}</div>
-            </div>
+      {/* Lista de Agendamentos (com proteção contra erros) */}
+      <SafeScheduledListWrapper>
+        <ScheduledContentList
+          key={schedulesRefreshKey}
+          auditId={id}
+          onRefresh={() => setSchedulesRefreshKey(prev => prev + 1)}
+        />
+      </SafeScheduledListWrapper>
+
+      {/* Campo de Tema Personalizado - SEMPRE VISÍVEL */}
+      <Card className="border-primary-200 bg-card/50">
+        <CardHeader>
+          <CardTitle className="text-lg">Tema Personalizado (Opcional)</CardTitle>
+          <CardDescription>
+            Defina um tema específico para os carrosséis ou deixe vazio para gerar baseado apenas na auditoria
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <textarea
+            value={customTheme}
+            onChange={(e) => setCustomTheme(e.target.value)}
+            placeholder="Ex: Carrosséis sobre como aumentar vendas com Reels no Instagram..."
+            rows={4}
+            maxLength={500}
+            className="w-full bg-white dark:bg-neutral-800 border-2 border-neutral-300 dark:border-neutral-700 rounded-lg px-3 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
+          />
+          <div className="flex justify-between items-center text-xs">
+            <span className="text-muted-foreground">Quanto mais específico, melhor será o resultado</span>
+            <span className={`font-mono ${
+              customTheme.length > 450 ? 'text-warning-500' : 'text-muted-foreground'
+            }`}>
+              {customTheme.length}/500
+            </span>
           </div>
+          {customTheme.trim() && (
+            <div className="flex items-center gap-2 text-sm">
+              <Badge variant="info">Tema Definido</Badge>
+              <span className="text-muted-foreground">Os carrosséis serão criados focados neste tema</span>
+            </div>
+          )}
         </CardContent>
       </Card>
-
-      {/* Campo de Tema Personalizado */}
-      {!content && (
-        <Card className="border-primary-200 bg-card/50">
-          <CardHeader>
-            <CardTitle className="text-lg">Tema Personalizado (Opcional)</CardTitle>
-            <CardDescription>
-              Defina um tema específico para os carrosséis ou deixe vazio para gerar baseado apenas na auditoria
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <textarea
-              value={customTheme}
-              onChange={(e) => setCustomTheme(e.target.value)}
-              placeholder="Ex: Carrosséis sobre como aumentar vendas com Reels no Instagram..."
-              rows={4}
-              maxLength={500}
-              className="w-full bg-white dark:bg-neutral-800 border-2 border-neutral-300 dark:border-neutral-700 rounded-lg px-3 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none"
-            />
-            <div className="flex justify-between items-center text-xs">
-              <span className="text-muted-foreground">Quanto mais específico, melhor será o resultado</span>
-              <span className={`font-mono ${
-                customTheme.length > 450 ? 'text-warning-500' : 'text-muted-foreground'
-              }`}>
-                {customTheme.length}/500
-              </span>
-            </div>
-            {customTheme.trim() && (
-              <div className="flex items-center gap-2 text-sm">
-                <Badge variant="info">Tema Definido</Badge>
-                <span className="text-muted-foreground">Os carrosséis serão criados focados neste tema</span>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      )}
 
       {/* Loading State */}
       {generating && (
@@ -927,7 +1198,11 @@ CTA: ${carousel.cta}
                 <>
                   <Button
                     variant="primary"
-                    onClick={() => router.push(`/dashboard/audits/${id}/create-content/slides`)}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      console.log('🔄 Navegando para configurar slides...')
+                      router.push(`/dashboard/audits/${id}/create-content/slides`)
+                    }}
                     className="flex items-center gap-2"
                   >
                     <Sparkles className="w-4 h-4" />
@@ -1026,175 +1301,6 @@ CTA: ${carousel.cta}
             </Card>
           )}
 
-          {/* Slides Results */}
-          {(slides || slidesV2) && (
-            <Card className="bg-gradient-to-br from-success-50 to-white dark:from-success-950/30 dark:to-neutral-800/50 border-success-500/20">
-              <CardHeader>
-                <div className="flex items-center justify-between flex-wrap gap-3">
-                  <CardTitle className="flex items-center gap-2">
-                    <ImageIcon className="w-5 h-5" />
-                    Slides Visuais Gerados ({(slides?.summary?.totalSlides || 0) + (slidesV2?.summary?.totalSlides || 0)} imagens)
-                  </CardTitle>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={handleDownloadZip}
-                      disabled={downloadingZip}
-                    >
-                      {downloadingZip ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Gerando ZIP...
-                        </>
-                      ) : (
-                        <>
-                          <Archive className="w-4 h-4 mr-2" />
-                          Baixar ZIP
-                        </>
-                      )}
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={handleSendToDrive}
-                      disabled={sendingToDrive}
-                    >
-                      {sendingToDrive ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Enviando...
-                        </>
-                      ) : (
-                        <>
-                          <FolderOpen className="w-4 h-4 mr-2" />
-                          Enviar para Drive
-                        </>
-                      )}
-                    </Button>
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={handleGenerateReel}
-                      disabled={generatingReel}
-                      className="border-warning-500/40 text-warning-700 hover:bg-warning-500/10"
-                    >
-                      {generatingReel ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Gerando Reel...
-                        </>
-                      ) : (
-                        <>
-                          <Video className="w-4 h-4 mr-2" />
-                          Gerar Reel (MP4)
-                        </>
-                      )}
-                    </Button>
-                  </div>
-                </div>
-                {driveMessage && (
-                  <p className="text-success-700 text-sm mt-2 flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4" />
-                    {driveMessage}
-                  </p>
-                )}
-                {driveError && (
-                  <p className="text-error-700 text-sm mt-2">{driveError}</p>
-                )}
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-8">
-                  {/* Template Padrão V1 */}
-                  {slides && (
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-2">
-                        <Badge variant="neutral" className="flex items-center gap-1 text-xs">
-                          <ImageIcon className="w-3 h-3" />
-                          Template Padrão
-                        </Badge>
-                        <span className="text-xs text-muted-foreground">{slides.summary?.totalSlides} slides</span>
-                      </div>
-                      {slides.carousels.map((carousel: any, idx: number) => (
-                        <div key={idx}>
-                          <h4 className="font-semibold mb-3 text-sm text-foreground">{carousel.title}</h4>
-                          <div className="grid grid-cols-3 gap-3">
-                            {carousel.slides.map((slide: any) => (
-                              <a
-                                key={slide.slideNumber}
-                                href={slide.cloudinaryUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block group"
-                              >
-                                <div className="relative aspect-[4/5] rounded-lg overflow-hidden border-2 border-neutral-300 dark:border-neutral-600 hover:border-primary-500 transition-all">
-                                  <img
-                                    src={slide.cloudinaryUrl}
-                                    alt={`Slide ${slide.slideNumber}`}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                                  />
-                                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <span className="text-white text-xs font-semibold">Ver tamanho real</span>
-                                  </div>
-                                  <div className="absolute top-2 right-2 bg-primary-500 text-white px-2 py-1 rounded text-xs font-semibold">
-                                    {slide.slideNumber}/{carousel.slides.length}
-                                  </div>
-                                </div>
-                              </a>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Template com IA V2 */}
-                  {slidesV2 && (
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-2">
-                        <Badge variant="info" className="flex items-center gap-1 text-xs">
-                          <Sparkles className="w-3 h-3" />
-                          Template com IA
-                        </Badge>
-                        <span className="text-xs text-neutral-600">{slidesV2.summary?.totalSlides} slides</span>
-                      </div>
-                      {slidesV2.carousels.map((carousel: any, idx: number) => (
-                        <div key={idx}>
-                          <h4 className="font-semibold mb-3 text-sm text-foreground">{carousel.title}</h4>
-                          <div className="grid grid-cols-3 gap-3">
-                            {carousel.slides.map((slide: any) => (
-                              <a
-                                key={slide.slideNumber}
-                                href={slide.cloudinaryUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block group"
-                              >
-                                <div className="relative aspect-[4/5] rounded-lg overflow-hidden border-2 border-neutral-300 dark:border-neutral-600 hover:border-info-500 transition-all">
-                                  <img
-                                    src={slide.cloudinaryUrl}
-                                    alt={`Slide ${slide.slideNumber}`}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                                  />
-                                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <span className="text-white text-xs font-semibold">Ver tamanho real</span>
-                                  </div>
-                                  <div className="absolute top-2 right-2 bg-info-500 text-white px-2 py-1 rounded text-xs font-semibold">
-                                    {slide.slideNumber}/{carousel.slides.length}
-                                  </div>
-                                </div>
-                              </a>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
           {/* Call to Action para Configurar Slides */}
           {approvedCarouselsCount > 0 && (
             <Card className="bg-gradient-to-r from-primary-50 via-primary-500/5 to-primary-500/10 border-primary-200">
@@ -1207,7 +1313,11 @@ CTA: ${carousel.cta}
                 <Button
                   variant="primary"
                   size="lg"
-                  onClick={() => router.push(`/dashboard/audits/${id}/create-content/slides`)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    console.log('🔄 Navegando para configurar slides...')
+                    router.push(`/dashboard/audits/${id}/create-content/slides`)
+                  }}
                   className="flex items-center gap-2 mx-auto"
                 >
                   <Sparkles className="w-5 h-5" />
@@ -1225,6 +1335,57 @@ CTA: ${carousel.cta}
               </CardHeader>
               <CardContent>
                 <p className="text-neutral-700">{content.estrategia_geral}</p>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Controle Global de Seleção de Slides */}
+          {approvedCarouselsCount > 0 && (
+            <Card className="bg-primary-50/50 border-primary-200">
+              <CardContent className="p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-semibold text-sm">Seleção de Slides</h4>
+                    <p className="text-xs text-neutral-600 mt-1">
+                      {(() => {
+                        let totalSelected = 0
+                        let totalSlides = 0
+                        content.carousels?.forEach((carousel: any, idx: number) => {
+                          if (carousel.approved) {
+                            totalSlides += carousel.slides.length
+                            totalSelected += selectedSlides.get(idx)?.size || 0
+                          }
+                        })
+                        return `${totalSelected} de ${totalSlides} slides selecionados`
+                      })()}
+                    </p>
+                  </div>
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={handleToggleAllSlidesGlobal}
+                    className="flex items-center gap-2"
+                  >
+                    {(() => {
+                      const allSelected = content.carousels?.every((carousel: any, index: number) => {
+                        if (!carousel.approved) return true
+                        const slideSel = selectedSlides.get(index)
+                        return slideSel && slideSel.size === carousel.slides.length
+                      })
+                      return (
+                        <>
+                          <input
+                            type="checkbox"
+                            checked={allSelected}
+                            onChange={() => {}}
+                            className="pointer-events-none"
+                          />
+                          {allSelected ? 'Desselecionar Todos' : 'Selecionar Todos'}
+                        </>
+                      )
+                    })()}
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           )}
@@ -1261,6 +1422,21 @@ CTA: ${carousel.cta}
                             )}
                             Aprovar
                           </Button>
+                          {carousel.approved === true && (
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              onClick={(e) => {
+                                e.preventDefault()
+                                console.log('🔄 Navegando para configurar slides...')
+                                router.push(`/dashboard/audits/${id}/create-content/slides`)
+                              }}
+                              className="flex items-center gap-2 bg-primary-600 hover:bg-primary-700 animate-pulse"
+                            >
+                              <Sparkles className="w-4 h-4" />
+                              Gerar Slides
+                            </Button>
+                          )}
                           <Button
                             variant={carousel.approved === false ? 'danger' : 'secondary'}
                             size="sm"
@@ -1275,6 +1451,22 @@ CTA: ${carousel.cta}
                             )}
                             Rejeitar
                           </Button>
+                          {carousel.approved === false && (
+                            <Button
+                              variant="danger"
+                              size="sm"
+                              onClick={() => handleDeleteCarousel(index, carousel.titulo)}
+                              disabled={deletingCarousel === index}
+                              className="flex items-center gap-2"
+                            >
+                              {deletingCarousel === index ? (
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                              ) : (
+                                <Trash2 className="w-4 h-4" />
+                              )}
+                              Apagar
+                            </Button>
+                          )}
                           <Button
                             variant="secondary"
                             size="sm"
@@ -1300,6 +1492,18 @@ CTA: ${carousel.cta}
                             </Button>
                           )}
                         </div>
+
+                        {/* Publicar no Instagram - só aparece se aprovado */}
+                        {carousel.approved === true && (
+                          <div className="mt-3 pt-3 border-t border-neutral-200">
+                            <PublishInstagramButton
+                              auditId={id}
+                              carouselIndex={index}
+                              carouselTitle={carousel.titulo}
+                              hasSlides={slidesV2?.[index]?.length > 0 || slides?.[index]?.length > 0}
+                            />
+                          </div>
+                        )}
 
                     {/* Título e Badges - AGORA ABAIXO DOS BOTÕES */}
                     <div>
@@ -1371,10 +1575,10 @@ CTA: ${carousel.cta}
 
                 {/* Painel de Edição Inline */}
                 {editingIndex === index && editedCarousel && (
-                  <div className="mx-6 mb-4 rounded-xl border border-primary-500/40 bg-neutral-50/80 overflow-hidden">
+                  <div className="mx-6 mb-4 rounded-xl border-2 border-primary-500/30 bg-white dark:bg-neutral-900 shadow-lg overflow-hidden">
                     {/* Header do painel */}
-                    <div className="flex items-center justify-between px-4 py-3 bg-primary-500/10 border-b border-primary-200">
-                      <h4 className="font-semibold text-primary-600 flex items-center gap-2">
+                    <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-primary-100 to-primary-50 dark:from-primary-900/40 dark:to-primary-800/20 border-b border-primary-200 dark:border-primary-700">
+                      <h4 className="font-semibold text-primary-700 dark:text-primary-300 flex items-center gap-2">
                         <Pencil className="w-4 h-4" />
                         Editando: {editedCarousel.titulo}
                       </h4>
@@ -1386,35 +1590,35 @@ CTA: ${carousel.cta}
                     <div className="p-4 space-y-4">
                       {/* Instruções para IA */}
                       <div>
-                        <label className="block text-sm font-medium text-neutral-700 mb-1">
-                          Instruções para regenerar com IA <span className="text-neutral-600">(opcional)</span>
+                        <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-100 mb-1">
+                          Instruções para regenerar com IA <span className="text-neutral-500 dark:text-neutral-400">(opcional)</span>
                         </label>
                         <textarea
                           value={editInstructions}
                           onChange={(e) => setEditInstructions(e.target.value)}
                           placeholder="Ex: Adicione dados específicos sobre X, mude o tom para mais descontraído, foque em pequenas empresas, adicione estatísticas sobre Y..."
                           rows={3}
-                          className="w-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-600 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none text-sm"
+                          className="w-full bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg px-3 py-2 text-neutral-900 dark:text-neutral-100 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none text-sm"
                         />
                       </div>
 
                       {/* Título */}
                       <div>
-                        <label className="block text-sm font-medium text-neutral-700 mb-1">Título do Carrossel</label>
+                        <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-100 mb-1">Título do Carrossel</label>
                         <input
                           type="text"
                           value={editedCarousel.titulo}
                           onChange={(e) => setEditedCarousel((p: any) => ({ ...p, titulo: e.target.value }))}
-                          className="w-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
+                          className="w-full bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg px-3 py-2 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
                         />
                       </div>
 
                       {/* Slides */}
                       <div>
-                        <label className="block text-sm font-medium text-neutral-700 mb-2">Slides</label>
+                        <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-100 mb-2">Slides</label>
                         <div className="space-y-3">
                           {editedCarousel.slides?.map((slide: any, si: number) => (
-                            <div key={si} className="bg-white/60 dark:bg-neutral-800/60 rounded-lg p-3 space-y-2">
+                            <div key={si} className="bg-neutral-50 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-3 space-y-2">
                               <div className="flex items-center gap-2 mb-1">
                                 <span className="bg-primary-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold flex-shrink-0">
                                   {slide.numero}
@@ -1428,7 +1632,7 @@ CTA: ${carousel.cta}
                                     return { ...p, slides }
                                   })}
                                   placeholder="Título do slide"
-                                  className="flex-1 bg-neutral-700 border border-neutral-300 rounded px-2 py-1 text-neutral-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500"
+                                  className="flex-1 bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-600 rounded px-2 py-1 text-neutral-900 dark:text-neutral-100 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500"
                                 />
                               </div>
                               <textarea
@@ -1440,7 +1644,7 @@ CTA: ${carousel.cta}
                                 })}
                                 placeholder="Corpo do slide"
                                 rows={2}
-                                className="w-full bg-neutral-700 border border-neutral-300 rounded px-2 py-1 text-neutral-900 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 resize-none"
+                                className="w-full bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-600 rounded px-2 py-1 text-neutral-900 dark:text-neutral-100 text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 resize-none"
                               />
                             </div>
                           ))}
@@ -1449,28 +1653,28 @@ CTA: ${carousel.cta}
 
                       {/* Caption */}
                       <div>
-                        <label className="block text-sm font-medium text-neutral-700 mb-1">Caption</label>
+                        <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-100 mb-1">Caption</label>
                         <textarea
                           value={editedCarousel.caption}
                           onChange={(e) => setEditedCarousel((p: any) => ({ ...p, caption: e.target.value }))}
                           rows={4}
-                          className="w-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none text-sm"
+                          className="w-full bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg px-3 py-2 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-none text-sm"
                         />
                       </div>
 
                       {/* CTA */}
                       <div>
-                        <label className="block text-sm font-medium text-neutral-700 mb-1">Call to Action</label>
+                        <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-100 mb-1">Call to Action</label>
                         <input
                           type="text"
                           value={editedCarousel.cta}
                           onChange={(e) => setEditedCarousel((p: any) => ({ ...p, cta: e.target.value }))}
-                          className="w-full bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
+                          className="w-full bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg px-3 py-2 text-neutral-900 dark:text-neutral-100 focus:outline-none focus:ring-2 focus:ring-primary-500 text-sm"
                         />
                       </div>
 
                       {/* Botões de ação */}
-                      <div className="flex justify-end gap-2 pt-2 border-t border-neutral-200">
+                      <div className="flex justify-end gap-2 pt-2 border-t border-neutral-200 dark:border-neutral-700">
                         <Button variant="ghost" size="sm" onClick={handleCloseEdit}>
                           Cancelar
                         </Button>
@@ -1507,12 +1711,40 @@ CTA: ${carousel.cta}
                 <CardContent className="space-y-4">
                   {/* Slides */}
                   <div>
-                    <h4 className="font-semibold mb-3">Slides ({carousel.slides.length})</h4>
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-semibold">Slides ({carousel.slides.length})</h4>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleToggleAllSlides(index)}
+                        className="text-xs"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={(selectedSlides.get(index)?.size || 0) === carousel.slides.length}
+                          onChange={() => {}}
+                          className="mr-2"
+                        />
+                        {(selectedSlides.get(index)?.size || 0) === carousel.slides.length
+                          ? 'Desselecionar Todos'
+                          : 'Selecionar Todos'}
+                      </Button>
+                    </div>
                     <div className="space-y-3">
-                      {carousel.slides.map((slide: any, slideIndex: number) => (
-                          <Card key={slide.numero} className="bg-white/50 dark:bg-neutral-800/50">
+                      {carousel.slides.map((slide: any, slideIndex: number) => {
+                        const isSelected = selectedSlides.get(index)?.has(slideIndex) ?? false
+                        return (
+                          <Card key={slide.numero} className={`bg-white/50 dark:bg-neutral-800/50 transition-all ${
+                            isSelected ? 'ring-2 ring-primary-500' : 'opacity-60'
+                          }`}>
                             <CardContent className="p-4">
                               <div className="flex items-start gap-4">
+                                <input
+                                  type="checkbox"
+                                  checked={isSelected}
+                                  onChange={() => handleToggleSlide(index, slideIndex)}
+                                  className="mt-1 w-5 h-5 rounded border-neutral-300 text-primary-600 focus:ring-primary-500 cursor-pointer"
+                                />
                                 <div className="bg-primary-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">
                                   {slide.numero}
                                 </div>
@@ -1529,13 +1761,34 @@ CTA: ${carousel.cta}
                               </div>
                             </CardContent>
                           </Card>
-                      ))}
+                        )
+                      })}
                     </div>
                   </div>
 
                   {/* Caption */}
                   <div>
-                    <h4 className="font-semibold mb-2">Caption</h4>
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="font-semibold">Caption</h4>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleCopyCaption(carousel, index)}
+                        className="flex items-center gap-1"
+                      >
+                        {copiedCaption === index ? (
+                          <>
+                            <Check className="w-4 h-4 text-success-600" />
+                            <span className="text-success-600 text-xs">Copiado!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-4 h-4" />
+                            <span className="text-xs">Copiar</span>
+                          </>
+                        )}
+                      </Button>
+                    </div>
                     <Card className="bg-white/50 dark:bg-neutral-800/50">
                       <CardContent className="p-4">
                         <p className="text-neutral-700 whitespace-pre-wrap">{carousel.caption}</p>
@@ -1545,7 +1798,27 @@ CTA: ${carousel.cta}
 
                   {/* Hashtags */}
                   <div>
-                    <h4 className="font-semibold mb-2">Hashtags</h4>
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="font-semibold">Hashtags</h4>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleCopyHashtags(carousel, index)}
+                        className="flex items-center gap-1"
+                      >
+                        {copiedHashtags === index ? (
+                          <>
+                            <Check className="w-4 h-4 text-success-600" />
+                            <span className="text-success-600 text-xs">Copiado!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-4 h-4" />
+                            <span className="text-xs">Copiar</span>
+                          </>
+                        )}
+                      </Button>
+                    </div>
                     <div className="flex flex-wrap gap-2">
                       {carousel.hashtags.map((tag: string, i: number) => (
                         <Badge key={i} variant="neutral">#{tag}</Badge>
@@ -1586,6 +1859,18 @@ CTA: ${carousel.cta}
             </Card>
           )}
         </>
+      )}
+
+      {/* Modal de Agendamento */}
+      {showScheduleModal && audit?.profile?.id && (
+        <ScheduleContentModal
+          auditId={id}
+          profileId={audit.profile.id}
+          onClose={() => setShowScheduleModal(false)}
+          onSuccess={() => {
+            setSchedulesRefreshKey(prev => prev + 1)
+          }}
+        />
       )}
     </div>
   )

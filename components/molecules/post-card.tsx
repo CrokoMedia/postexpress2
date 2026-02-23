@@ -39,13 +39,13 @@ export function PostCard({ post, onClick }: PostCardProps) {
 
         {/* Caption */}
         {post.caption && (
-          <p className="text-sm text-neutral-300 line-clamp-3">
+          <p className="text-sm text-neutral-700 dark:text-neutral-300 line-clamp-3">
             {post.caption}
           </p>
         )}
 
         {/* Metrics */}
-        <div className="flex items-center gap-4 text-sm text-neutral-400">
+        <div className="flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
           <div className="flex items-center gap-1">
             <Heart className="h-4 w-4" />
             <span>{formatNumber(post.likes_count || 0)}</span>

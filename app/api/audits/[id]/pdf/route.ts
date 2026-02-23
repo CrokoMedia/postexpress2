@@ -166,11 +166,11 @@ function generateAuditHTML(audit: any): string {
   })
 
   const dimensions = [
-    { name: 'Comportamento', icon: '🧠', auditor: 'Daniel Kahneman',  score: audit.score_behavior  || 0, key: 'behavior'  },
-    { name: 'Copy',          icon: '✍️', auditor: 'Eugene Schwartz',  score: audit.score_copy      || 0, key: 'copy'      },
-    { name: 'Ofertas',       icon: '💰', auditor: 'Alex Hormozi',     score: audit.score_offers    || 0, key: 'offers'    },
-    { name: 'Métricas',      icon: '📊', auditor: 'Marty Cagan',      score: audit.score_metrics   || 0, key: 'metrics'   },
-    { name: 'Anomalias',     icon: '🔍', auditor: 'Paul Graham',      score: audit.score_anomalies || 0, key: 'anomalies' },
+    { name: 'Comportamento', icon: '🧠', score: audit.score_behavior  || 0, key: 'behavior'  },
+    { name: 'Copy',          icon: '✍️', score: audit.score_copy      || 0, key: 'copy'      },
+    { name: 'Ofertas',       icon: '💰', score: audit.score_offers    || 0, key: 'offers'    },
+    { name: 'Métricas',      icon: '📊', score: audit.score_metrics   || 0, key: 'metrics'   },
+    { name: 'Anomalias',     icon: '🔍', score: audit.score_anomalies || 0, key: 'anomalies' },
   ]
 
   const auditorSections = dimensions.map(dim => {
@@ -181,12 +181,12 @@ function generateAuditHTML(audit: any): string {
 
     return `
     <div style="margin-bottom:16px;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;">
-      <!-- Cabeçalho do auditor -->
+      <!-- Cabeçalho da dimensão -->
       <div style="background:linear-gradient(135deg,#4f46e5 0%,#6366f1 100%);padding:12px 20px;display:flex;align-items:center;gap:16px;">
         <div style="font-size:32px;line-height:1;">${dim.icon}</div>
         <div>
-          <h3 style="margin:0;color:#fff;font-size:18px;font-weight:700;">${dim.auditor}</h3>
-          <p  style="margin:0;color:rgba(255,255,255,.7);font-size:13px;">${dim.name}</p>
+          <h3 style="margin:0;color:#fff;font-size:18px;font-weight:700;">${dim.name}</h3>
+          <p  style="margin:0;color:rgba(255,255,255,.7);font-size:13px;">Análise de ${dim.name}</p>
         </div>
         <div style="margin-left:auto;background:rgba(255,255,255,.15);border-radius:12px;padding:8px 16px;text-align:center;">
           <div style="font-size:28px;font-weight:900;color:#fff;">${dim.score}</div>
@@ -234,7 +234,7 @@ function generateAuditHTML(audit: any): string {
     <!-- Logo -->
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
       <div style="width:36px;height:36px;background:rgba(255,255,255,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;">⚡</div>
-      <span style="font-size:15px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;opacity:.9;">Post Express</span>
+      <span style="font-size:15px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;opacity:.9;">Croko Lab</span>
       <span style="margin-left:auto;font-size:13px;opacity:.6;">${dateStr}</span>
     </div>
 
@@ -301,8 +301,8 @@ function generateAuditHTML(audit: any): string {
 
   <!-- Rodapé -->
   <div style="padding:10px 52px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;">
-    <span style="font-size:12px;color:#9ca3af;">Pazos Media © ${new Date().getFullYear()}</span>
-    <span style="font-size:12px;color:#9ca3af;">Post Express</span>
+    <span style="font-size:12px;color:#9ca3af;">Agência Croko © ${new Date().getFullYear()}</span>
+    <span style="font-size:12px;color:#9ca3af;">Croko Lab</span>
   </div>
 </div>
 
@@ -315,18 +315,18 @@ function generateAuditHTML(audit: any): string {
   <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid #e5e7eb;">
     <div style="width:6px;height:28px;background:linear-gradient(180deg,#4f46e5,#7c3aed);border-radius:3px;"></div>
     <div>
-      <h2 style="font-size:20px;font-weight:800;color:#111827;">Análise Detalhada dos Auditores</h2>
+      <h2 style="font-size:20px;font-weight:800;color:#111827;">Análise Detalhada por Dimensão</h2>
       <p style="font-size:13px;color:#9ca3af;">@${escapeHtml(username)} · ${dateStr}</p>
     </div>
   </div>
 
-  <!-- Seções de auditores -->
+  <!-- Seções de dimensões -->
   ${auditorSections}
 
   <!-- Rodapé -->
   <div style="margin-top:16px;padding-top:12px;border-top:1px solid #e5e7eb;display:flex;justify-content:space-between;align-items:center;">
-    <span style="font-size:12px;color:#9ca3af;">Pazos Media © ${new Date().getFullYear()}</span>
-    <span style="font-size:12px;color:#9ca3af;">Post Express — Auditoria @${escapeHtml(username)}</span>
+    <span style="font-size:12px;color:#9ca3af;">Agência Croko © ${new Date().getFullYear()}</span>
+    <span style="font-size:12px;color:#9ca3af;">Croko Lab — Auditoria @${escapeHtml(username)}</span>
   </div>
 </div>
 

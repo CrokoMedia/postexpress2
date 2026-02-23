@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { Home, Plus, BarChart3, GitCompare, Settings, ListChecks, Users, LogOut, Layers, Archive, Factory, Twitter, Palette, Video } from 'lucide-react'
+import { Home, Plus, BarChart3, GitCompare, Settings, ListChecks, Users, LogOut, Layers, Archive, Factory, Twitter, Palette, Video, Calendar } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { UserRole } from '@/lib/auth'
 import { ThemeToggle } from '@/components/atoms/theme-toggle'
@@ -11,6 +11,7 @@ const adminNavigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
   { name: 'Nova Análise', href: '/dashboard/new', icon: Plus },
   { name: 'Fila de Análises', href: '/dashboard/queue', icon: ListChecks },
+  { name: 'Calendário', href: '/dashboard/calendar', icon: Calendar },
   { name: 'Baú', href: '/dashboard/bau', icon: Archive },
   { name: 'Perfis', href: '/dashboard/profiles', icon: BarChart3 },
   { name: 'Comparações', href: '/dashboard/comparisons', icon: GitCompare },
@@ -51,9 +52,9 @@ export function Sidebar({ role, profileIds }: SidebarProps) {
       <div className="flex h-16 items-center border-b border-neutral-200 dark:border-neutral-800 px-6">
         <Link href="/dashboard" className="flex items-center gap-2">
           <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg shadow-primary-500/20">
-            <span className="text-white font-bold text-sm">PE</span>
+            <span className="text-white font-bold text-sm">CL</span>
           </div>
-          <span className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">Post Express</span>
+          <span className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">Croko Lab</span>
         </Link>
       </div>
 
@@ -97,7 +98,7 @@ export function Sidebar({ role, profileIds }: SidebarProps) {
           </button>
         </div>
         <div className="text-xs text-neutral-600 dark:text-neutral-500 text-center">
-          v1.0.0 · Pazos Media
+          v1.0.0 · Agência Croko
         </div>
       </div>
     </aside>

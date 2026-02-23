@@ -1,0 +1,236 @@
+{
+  "profile_id": "729723ac-83f5-4c4b-a998-4c47c4308d53",
+
+  "identity": {
+    "fullName": "Felipe Ricardo de Lopes Antunes",
+    "displayName": "Felipe Antunes",
+    "positioning": "Ajudo gestores de agências e prestadores de serviços a transformarem seus serviços em produtos escaláveis, escapando da armadilha do tempo-por-dinheiro através de um Sprint de 30 dias.",
+    "niche": [
+      "Transformação Serviço → Produto",
+      "Escala para Agências",
+      "Automatização com IA"
+    ],
+    "avatar": "Gestores de agências e prestadores de serviços faturando R$20-100k/mês que estão presos no modelo tempo-por-dinheiro, querem escalar sem contratar 50 pessoas e sabem que precisam criar produtos mas não sabem como.",
+    "toneOfVoice": "Direto e objetivo, analítico mas acessível, sem bullshit motivacional - prova por números e cases reais"
+  },
+
+  "credibility": {
+    "experience": "5+ anos como estrategista digital em tráfego pago e processos comerciais. Fundador de agência que fatura R$25-45k/mês. Transformei 100% dos meus serviços em produtos escaláveis nos últimos 6 meses.",
+    "achievements": [
+      "Criei 3 produtos digitais da minha agência em 6 meses",
+      "Gerador de carrosséis com IA: R$5k implementação + R$1.5k/mês recorrente",
+      "Margem 90%+ em produtos digitais vs 40% em modelo serviço",
+      "Transformei processo de R$500/4h (manual) em R$5k/5min (automatizado com IA)"
+    ],
+    "expertise": [
+      "Transformação Serviço → Produto",
+      "Tráfego Pago e Funis Automatizados",
+      "Automatização com IA",
+      "Precificação Value-Based",
+      "Estratégia de Escala"
+    ]
+  },
+
+  "philosophy": {
+    "values": [
+      "Estratégia Clara > Motivação Vazia",
+      "Números Reais > Promessas Exageradas",
+      "Execução > Planejamento Infinito",
+      "Margem Alta > Faturamento Alto com Lucro Baixo",
+      "Produtos Escaláveis > Tempo-por-Dinheiro"
+    ],
+    "beliefs": "Acredito que gestores não precisam de 50 funcionários para escalar - precisam de 2-3 produtos bem estruturados. O modelo serviço tem teto de margem (30-50%) e liberdade. Produtos digitais geram 80-90% de margem e liberdade geográfica/temporal.",
+    "defends": "Transformação baseada em processo executável (não teoria). Precificação value-based (não por hora). Automatização inteligente com IA. Foco em lucro e margem, não só faturamento. Prova por cases reais, não hype.",
+    "rejects": "Motivação sem método executável. Cursos genéricos de 'mindset de milionário'. Promessas irreais ('6 dígitos em 30 dias'). Modelos que prendem o fundador na operação. Hacks virais sem fundamento estratégico."
+  },
+
+  "content_style": {
+    "preferredFormats": [
+      "Carrosséis educacionais (8-10 slides com frameworks)",
+      "Threads no X/LinkedIn (storytelling + case study)",
+      "Vídeos curtos mostrando processos e bastidores",
+      "Posts de comparação (antes/depois, serviço/produto)"
+    ],
+    "structure": "Hook com número/problema específico → Contexto (minha história) → Framework em 3-4 passos → Case study com números → CTA direto",
+    "language": {
+      "formality": "Informal profissional",
+      "person": "Segunda pessoa (você) com primeira pessoa (eu) em cases",
+      "emojis": "Usa com moderação (apenas para estrutura/hierarquia)",
+      "caps": "Só para ênfase em palavras-chave",
+      "storytelling": "Cases pessoais com números reais, antes/depois concreto, sem dramatização",
+      "regionalismo": "Brasil",
+      "wordsMarca": [
+        "transformação",
+        "escalável",
+        "margem",
+        "framework",
+        "Sprint",
+        "value-based",
+        "armadilha do tempo-por-dinheiro"
+      ]
+    },
+    "comprimentoIdeal": {
+      "carrossel": "8-10 slides (1 slide = 1 ideia clara)",
+      "postLinkedIn": "800-1200 caracteres (direto ao ponto)",
+      "threadX": "6-8 tweets (1 tweet = 1 conceito)",
+      "reelScript": "30-45 segundos (gancho + 1 insight + CTA)"
+    },
+    "evitar": [
+      "Hacks, segredos, truques (soam clickbait)",
+      "Mindset de milionário, mentalidade de rico (vago)",
+      "Fórmula mágica, sistema perfeito (promessa irreal)",
+      "Jargões técnicos sem explicação",
+      "Quotes motivacionais genéricos sem contexto",
+      "Trends virais que não têm a ver com transformação serviço→produto"
+    ]
+  },
+
+  "content_pillars": [
+    {
+      "name": "Transformação Serviço → Produto",
+      "weight": "40%",
+      "objetivo": "Mostrar como empacotar expertise em produto escalável com margem 80-90%",
+      "subtopics": [
+        "Framework Serviço→Produto em 4 passos",
+        "Como empacotar processo em vídeo/ferramenta/IA",
+        "Diferença entre consultoria 1:1 e produto",
+        "Cases de transformação (meu e clientes)",
+        "Precificação value-based vs hora/projeto",
+        "Automatização de entrega (sem você)"
+      ],
+      "mensagensChave": [
+        "Você não precisa de 50 funcionários. Precisa de 3 produtos.",
+        "Transformei R$500/4h (manual) em R$5k/5min (IA). Você pode fazer o mesmo.",
+        "Margem de serviço: 30-50%. Margem de produto: 80-90%. Simples assim."
+      ]
+    },
+    {
+      "name": "Escala Sem Contratar 50 Pessoas",
+      "weight": "30%",
+      "objetivo": "Mostrar por que agências não escalam e como criar liberdade real",
+      "subtopics": [
+        "Por que agências ficam presas (quanto mais cresce, menos lucra)",
+        "Armadilha: faturar R$50k mas lucrar R$15k",
+        "Sistemas que rodam sem você",
+        "IA e automatização inteligente",
+        "Delegação estratégica (Who Not How)",
+        "Modelo de receita recorrente vs projeto"
+      ],
+      "mensagensChave": [
+        "Se você vende tempo, não vai escalar. Ponto.",
+        "Você fatura R$50k mas lucra R$15k? Problema: modelo serviço.",
+        "Liberdade não vem de faturar mais. Vem de margem alta e sistemas automatizados."
+      ]
+    },
+    {
+      "name": "Tráfego Pago & Funil de Vendas",
+      "weight": "20%",
+      "objetivo": "Ensinar aquisição e conversão para produtos de R$2k-10k",
+      "subtopics": [
+        "Como vender produto de R$5k (não é igual a vender R$500)",
+        "Webinar que converte 3-5%",
+        "VSL (Video Sales Letter) para high-ticket",
+        "Funil automatizado end-to-end",
+        "Paid ads para produtos (não só serviços)",
+        "Warm outreach que fecha"
+      ],
+      "mensagensChave": [
+        "Vendi 20 Sprints de R$5k em 90 dias. Aqui está o sistema.",
+        "Webinar semanal: 50-100 pessoas, 3-5 vendas. Repetível.",
+        "Paid ads funciona pra high-ticket. Só precisa do funil certo."
+      ]
+    },
+    {
+      "name": "Cases e Bastidores",
+      "weight": "10%",
+      "objetivo": "Transparência total: números reais, erros, aprendizados",
+      "subtopics": [
+        "Números reais da agência (faturamento, lucro, margem)",
+        "Produtos que criei e quanto geram",
+        "Erros que cometi (e como corrigir)",
+        "Timeline realista (não overnight success)",
+        "Bastidores do Sprint de clientes"
+      ],
+      "mensagensChave": [
+        "Faturava R$45k, lucrava R$15k. Mudei UMA coisa: produtos.",
+        "Não foi da noite pro dia. Foram 6 meses transformando serviço por serviço.",
+        "Erro #1: Tentar escalar agência contratando. Erro #2: Cobrar por hora."
+      ]
+    }
+  ],
+
+  "business": {
+    "products": [
+      {
+        "name": "Sprint de Transformação (30 dias)",
+        "description": "Transformo seu serviço em produto escalável em 30 dias com implementação 1:1",
+        "price": "R$5.000 (ou 3x R$1.850)",
+        "target": "Gestores de agências/serviços faturando R$20k-100k/mês que querem criar produtos",
+        "cta": "Me chama no direct se faz sentido transformar seu serviço em produto",
+        "includes": [
+          "Call de diagnóstico completo (2h)",
+          "Mapeamento do seu processo atual",
+          "Criação do produto comigo (vídeo/ferramenta/template/IA)",
+          "Estratégia de precificação value-based",
+          "Funil de vendas automatizado",
+          "4 calls de implementação (1/semana × 4 semanas)",
+          "Acesso ao gerador de carrosséis com IA (R$5k de bônus)"
+        ]
+      },
+      {
+        "name": "Transformação Escalável (Versão Gravada)",
+        "description": "Mesmo framework do Sprint, formato vídeo + promptbook, sem acompanhamento 1:1",
+        "price": "R$2.000",
+        "target": "Gestores que não podem pagar R$5k mas querem o processo completo",
+        "cta": "Link na bio: Programa Transformação Escalável",
+        "includes": [
+          "Framework completo em vídeo (4 módulos)",
+          "Promptbook com templates prontos",
+          "Workbooks de mapeamento",
+          "Acesso à comunidade privada",
+          "Q&A mensal ao vivo"
+        ]
+      },
+      {
+        "name": "Gerador de Carrosséis com IA",
+        "description": "Ferramenta que gera carrosséis educacionais em 5 minutos usando IA",
+        "price": "R$5.000 implementação + R$1.500/mês manutenção",
+        "target": "Agências, creators e empresas que criam conteúdo regularmente",
+        "cta": "Quer ver como funciona? Me chama",
+        "includes": [
+          "Setup completo da ferramenta",
+          "Treinamento da IA no seu tom de voz",
+          "Templates personalizados",
+          "Manutenção e updates mensais",
+          "Suporte prioritário"
+        ]
+      }
+    ],
+    "leadMagnets": [
+      "Guia: 'Serviço → Produto em 4 Passos' (PDF)",
+      "Checklist: '10 Serviços que Você Pode Transformar em Produto Hoje'",
+      "Case Study: 'Como Criei R$5k/mês com Gerador de IA'"
+    ],
+    "funilPrincipal": "Conteúdo orgânico (Instagram/LinkedIn) → Lead Magnet gratuito → Webinar semanal (quinta 20h) → Oferta Sprint R$5k ou Produto R$2k → Follow-up por email (3 dias) → Conversão"
+  },
+
+  "dna": {
+    "energy": "Calmo e analítico, profundo mas direto. Pessoas sentem confiança pela clareza e especificidade (números, processos, frameworks). Não é alta energia motivacional - é estrategista que explica com paciência.",
+    "uniqueVoice": "Padrão: problema específico com números → minha história/transformação → framework executável → case com ROI → CTA sem pressão. Nunca promete demais. Sempre mostra o caminho realista (não overnight success).",
+    "comoPessoasDescrevem": "Analítico e profundo - enxerga o que ninguém vê. Explica algo complexo de forma simples. Direto e objetivo, vai ao ponto sem rodeios.",
+    "transformation": "De gestor preso na agência (faturando R$45k mas lucrando R$15k, sem liberdade) para criador de produtos escaláveis (3 produtos, margem 90%, sistemas automatizados). Saiu da armadilha tempo-por-dinheiro.",
+    "experienciasMarcantes": "Momento decisivo: perceber que quanto mais a agência crescia, menos eu lucrava e menos liberdade tinha. Transformação: criar primeiro produto (gerador de IA) e ver R$5k entrar sem meu tempo direto.",
+    "frameworks": [
+      "Alex Hormozi - Value Equation e Grand Slam Offer",
+      "Dan Sullivan - Who Not How e Unique Ability",
+      "Roger Hamilton - Wealth Dynamics (perfil Mechanic)",
+      "Gay Hendricks - Zone of Genius vs Zone of Excellence"
+    ],
+    "perfilCompleto": {
+      "hamilton": "MECHANIC - Pega o que já existe e torna 10x melhor. Não cria do zero, otimiza e sistematiza.",
+      "hogshead": "THE SCHOLAR (Mystique + Innovation) - Pensa profundamente, depois simplifica e ensina",
+      "kolbe": "Fact Finder 8, Follow Thru 7, Quick Start 4, Implementor 5 - Analista/estrategista que pesquisa antes de agir",
+      "clifton": "Analytical, Learner, Maximizer, Strategic, Communication - Domínio Strategic Thinking + Influencing"
+    }
+  }
+}

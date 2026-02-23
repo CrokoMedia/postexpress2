@@ -62,7 +62,7 @@ export function ContextUsageBadge({ profileId, showDetails = false }: ContextUsa
           Contexto Usado
         </Badge>
         {showDetails && (
-          <span className="text-xs text-neutral-400">
+          <span className="text-xs text-neutral-600 dark:text-neutral-400">
             {fieldsCount} campos • {docsCount} docs
           </span>
         )}

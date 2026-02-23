@@ -77,7 +77,7 @@ function LoginForm() {
         <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg shadow-primary-500/20 mb-4">
           <span className="text-white font-bold text-lg">PE</span>
         </div>
-        <h1 className="text-2xl font-bold text-neutral-900">Post Express</h1>
+        <h1 className="text-2xl font-bold text-neutral-900">Croko Lab</h1>
         <p className="text-neutral-600 text-sm mt-1">Faça login para continuar</p>
       </div>
 
@@ -142,7 +142,7 @@ function LoginForm() {
       </div>
 
       <p className="text-center text-xs text-neutral-600 mt-4">
-        Pazos Media · Post Express v1.0
+        Agência Croko · Croko Lab v1.0
       </p>
     </div>
   )

@@ -2,9 +2,9 @@
 
 > Squad especializado em criação de carrosséis de alta conversão para Instagram e LinkedIn
 
-## 🧠 As 5 Mentes Milionárias
+## 🧠 As 6 Mentes Milionárias
 
-Este squad combina o conhecimento de 5 especialistas mundiais:
+Este squad combina o conhecimento de 6 especialistas mundiais:
 
 ### 1. **Eugene Schwartz** (Líder) - Copywriting Científico
 - **Papel**: Estruturar copy que converte
@@ -26,11 +26,17 @@ Este squad combina o conhecimento de 5 especialistas mundiais:
 - **Expertise**: Funis, gatilhos mentais, linguagem coloquial BR
 - **Quando ativar**: Adaptar para audiência brasileira
 
-### 5. **Adriano De Marqui** (NOVO) - Design Visual & Branding
+### 5. **Adriano De Marqui** - Design Visual & Branding
 - **Papel**: Diretor de design visual e identidade de marca
 - **Expertise**: Design gráfico para redes sociais, branding, paletas brasileiras
 - **Quando ativar**: Criar design de carrosséis, definir identidade visual
 - **Fidelidade**: 96% | **Tier**: 4
+
+### 6. **Gary Vaynerchuk** (NOVO) - Atenção & Autenticidade
+- **Papel**: Estratégia de atenção e conteúdo autêntico
+- **Expertise**: Day trading attention, document don't create, pirâmide invertida de conteúdo
+- **Quando ativar**: Estratégia de distribuição, volume de conteúdo, autenticidade
+- **Frameworks**: Arbitragem de atenção, Jab Jab Jab Right Hook, Macro patience/Micro speed
 
 ---
 
@@ -97,7 +103,8 @@ content-creation-squad/
 │   ├── seth_godin.md
 │   ├── alex_hormozi.md
 │   ├── thiago_finch.md
-│   └── adriano_de_marqui.md       # NOVO - Design visual
+│   ├── adriano_de_marqui.md       # Design visual & branding
+│   └── gary_vaynerchuk.md         # Atenção & autenticidade
 │
 └── scripts/                       # Utilitários
     └── activate-mind.js
@@ -142,6 +149,23 @@ content-creation-squad/
 **Estrutura**: Hook → Insight → Framework → Aplicação → CTA
 **Comando**: `@content-lead *create` (selecionar "Construir autoridade")
 
+### 4. Carrossel de Volume Orgânico
+**Objetivo**: Criar alto volume de conteúdo autêntico para crescimento orgânico
+
+**Mente Líder**: Gary Vaynerchuk
+**Estrutura**: Document Don't Create → Pirâmide Invertida → Múltiplas Peças
+**Comando**: `@content-lead *create` (selecionar "Volume orgânico")
+
+**Exemplo**:
+- Conteúdo pilar: 1 keynote de 60 minutos
+- Derivação: 30+ peças de conteúdo
+  - 10 clips curtos (TikTok/Reels)
+  - 10 posts de texto (LinkedIn/Twitter)
+  - 5 carrosséis educacionais
+  - 5 quotes visuais
+- Estratégia: Document, don't create - capturar o que já está acontecendo
+- Distribuição: Arbitragem de atenção - onde o público está mas ainda não saturou
+
 **Exemplo**:
 - Slide 1: "O método [NOME] para [resultado]"
 - Slide 2: Visão geral do framework
@@ -161,6 +185,24 @@ content-creation-squad/
 - Slides 2-5: Argumentação + evidências
 - Slide 6: Conclusão provocativa
 - Slide 7: "Concorda ou discorda? Comenta 👇"
+
+### 5. Produção em Volume (Alto Tráfego)
+**Objetivo**: Criar 15-30 carrosséis/mês de forma sustentável
+
+**Mente Líder**: Gary Vaynerchuk
+**Estrutura**: Conteúdo Pilar → Pirâmide Invertida → Múltiplos Carrosséis
+**Comando**: `@content-lead *create` + `@emulator gary_vaynerchuk`
+
+**Exemplo**:
+- **Pilar**: Livestream de 60 min sobre "Estratégias de Conteúdo 2026"
+- **Extração**:
+  - 10 clips de 30-60s (insights-chave)
+  - 5 carrosséis (frameworks mencionados)
+  - 15 posts de texto (quotes + contexto)
+  - 20 stories (bastidores + quick tips)
+- **Resultado**: 50+ peças de conteúdo de 1 evento
+
+**Princípio Gary**: "Document, don't create" - capturar vs inventar do zero
 
 ---
 
@@ -235,6 +277,7 @@ Acessar: `data/hooks-database.json`
 @emulator seth_godin         # Ativar Seth Godin
 @emulator alex_hormozi       # Ativar Alex Hormozi
 @emulator thiago_finch       # Ativar Thiago Finch
+@emulator gary_vaynerchuk    # Ativar Gary Vaynerchuk
 ```
 
 ---
@@ -281,7 +324,6 @@ Antes de publicar qualquer carrossel:
 
 **Otimização**:
 - [ ] Caption complementa (não duplica)?
-- [ ] 5-10 hashtags relevantes?
 - [ ] Slide 10 incentiva interação?
 - [ ] Horário ideal de postagem?
 - [ ] Alt text para acessibilidade?
@@ -315,6 +357,14 @@ Este squad usa princípios comprovados:
 - Linguagem coloquial brasileira
 - Referências culturais relevantes
 - Timing de mercado BR
+
+### De Gary Vaynerchuk (Atenção & Execução)
+- Day trading attention (ir onde a atenção está subvalorizada)
+- Document, don't create (capturar vs criar do zero)
+- Pirâmide invertida de conteúdo (1 pilar → 30 peças)
+- Macro patience, micro speed (visão de longo prazo, execução rápida)
+- Jab, Jab, Jab, Right Hook (dar valor antes de pedir)
+- Autenticidade radical (sem filtro, sem fabricação)
 
 ---
 

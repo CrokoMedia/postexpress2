@@ -61,10 +61,10 @@ export function DeleteAuditModal({
             <AlertTriangle className="h-6 w-6 text-error-500" />
           </div>
           <div className="flex-1 space-y-1.5">
-            <DialogTitle className="text-xl text-neutral-100">
+            <DialogTitle className="text-xl text-neutral-900 dark:text-neutral-100">
               Excluir Auditoria
             </DialogTitle>
-            <DialogDescription className="text-neutral-400">
+            <DialogDescription className="text-neutral-600 dark:text-neutral-400">
               Esta ação não pode ser desfeita
             </DialogDescription>
           </div>
@@ -72,17 +72,17 @@ export function DeleteAuditModal({
 
         {/* Content */}
         <div className="space-y-4">
-          <p className="text-neutral-300">
+          <p className="text-neutral-700 dark:text-neutral-300">
             Você está prestes a excluir a auditoria de{' '}
-            <span className="font-semibold text-neutral-100">{formatDate(auditDate)}</span>.
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">{formatDate(auditDate)}</span>.
             Os dados dos posts analisados serão mantidos, mas a auditoria não aparecerá mais no histórico.
           </p>
 
           <div className="bg-neutral-800/50 border border-neutral-700/50 rounded-lg p-4 space-y-2">
-            <h4 className="text-sm font-medium text-neutral-300">
+            <h4 className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
               O que será excluído:
             </h4>
-            <ul className="text-sm text-neutral-400 space-y-1 list-disc list-inside">
+            <ul className="text-sm text-neutral-600 dark:text-neutral-400 space-y-1 list-disc list-inside">
               <li>Resultados e scores da auditoria</li>
               <li>Relatório e recomendações gerados</li>
               <li>Visibilidade no histórico do perfil</li>

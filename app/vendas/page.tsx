@@ -11,13 +11,13 @@ import { CTASection } from './_components/cta-section'
 import { FooterSection } from './_components/footer-section'
 
 export const metadata: Metadata = {
-  title: 'Post Express\u2122 \u2014 Consultoria + Implementa\u00e7\u00e3o | R$ 8.888',
+  title: 'Croko Lab\u2122 \u2014 Consultoria + Implementa\u00e7\u00e3o | R$ 8.888',
   description:
     'Descubra o m\u00e9todo que transforma creators travados em estrategistas que nunca mais ficam sem ideia de conte\u00fado. Consultoria + Implementa\u00e7\u00e3o completa com 5 frameworks cient\u00edficos.',
   openGraph: {
-    title: 'Post Express\u2122 \u2014 Consultoria + Implementa\u00e7\u00e3o',
+    title: 'Croko Lab\u2122 \u2014 Consultoria + Implementa\u00e7\u00e3o',
     description:
-      'De achista inseguro para estrategista data-driven em 30 dias. Baseado em Hormozi, Schwartz, Kahneman, Cagan e Graham.',
+      'De achista inseguro para estrategista data-driven em 30 dias. Método científico validado por especialistas do Vale do Silício.',
     type: 'website',
   },
 }

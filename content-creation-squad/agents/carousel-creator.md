@@ -84,7 +84,6 @@ principles:
 - **Slides**: 6-10 ideal
 - **Texto por slide**: 15-25 palavras
 - **Caption**: Até 2.200 caracteres
-- **Hashtags**: 5-10 relevantes
 - **Fonte mínima**: 40pt
 
 ### LinkedIn
@@ -105,7 +104,6 @@ Antes de publicar, verificar:
 - [ ] Texto legível em mobile?
 - [ ] CTA específico e claro?
 - [ ] Slide 10 incentiva interação?
-- [ ] Hashtags relevantes?
 - [ ] Caption complementa o carrossel?
 - [ ] Zero typos?
 - [ ] Branding consistente?

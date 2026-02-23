@@ -9,17 +9,17 @@ const faqItems = [
   {
     question: 'Funciona no meu nicho?',
     answer:
-      'Testamos em mais de 10 nichos diferentes: fitness, finanças pessoais, marketing digital, relacionamentos, espiritualidade, gastronomia, moda, tecnologia, jurídico e saúde. Os frameworks são universais. Kahneman ganhou o Nobel estudando como todo ser humano toma decisões. A ciência não muda por nicho — os dados mudam, e nós coletamos os dados do SEU nicho.',
+      'Testamos em mais de 10 nichos diferentes: fitness, finanças pessoais, marketing digital, relacionamentos, espiritualidade, gastronomia, moda, tecnologia, jurídico e saúde. Os frameworks são universais e baseados em psicologia cognitiva e ciências comportamentais. A ciência não muda por nicho — os dados mudam, e nós coletamos os dados do SEU nicho.',
   },
   {
     question: 'Já uso Metricool / outra ferramenta de métricas',
     answer:
-      'Perfeito. Continue usando. Metricool te mostra o que já aconteceu (alcance, impressões, curtidas). O Post Express te mostra o que fazer agora (quais perguntas seu público faz, quais estruturas de carrossel funcionam, o que seus concorrentes escrevem dentro dos slides). É como a diferença entre um termômetro (mede temperatura) e um médico (diagnostica e trata). Você precisa dos dois. Mas só um resolve o problema.',
+      'Perfeito. Continue usando. Metricool te mostra o que já aconteceu (alcance, impressões, curtidas). O Croko Lab te mostra o que fazer agora (quais perguntas seu público faz, quais estruturas de carrossel funcionam, o que seus concorrentes escrevem dentro dos slides). É como a diferença entre um termômetro (mede temperatura) e um médico (diagnostica e trata). Você precisa dos dois. Mas só um resolve o problema.',
   },
   {
     question: 'Posso fazer isso manualmente de graça',
     answer:
-      'Pode. Da mesma forma que pode ir a pé de São Paulo ao Rio de Janeiro. Analisar 1 concorrente manualmente: 4 horas. Ler texto de dentro dos slides: impossível sem método. Categorizar milhares de comentários: dias. Aplicar 5 frameworks: precisa conhecer os 5 livros. Ou você usa o Post Express e tem tudo em 3 minutos. A pergunta não é "posso fazer de graça?" É: "Quanto vale meu tempo?"',
+      'Pode. Da mesma forma que pode ir a pé de São Paulo ao Rio de Janeiro. Analisar 1 concorrente manualmente: 4 horas. Ler texto de dentro dos slides: impossível sem método. Categorizar milhares de comentários: dias. Aplicar 5 frameworks: precisa conhecer os 5 livros. Ou você usa o Croko Lab e tem tudo em 3 minutos. A pergunta não é "posso fazer de graça?" É: "Quanto vale meu tempo?"',
   },
   {
     question: 'R$ 8.888 é muito caro',

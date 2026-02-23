@@ -1,11 +1,11 @@
 {
-  "name": "postexpress2",
+  "name": "croko-lab",
   "version": "1.0.0",
-  "description": "Post Express - Sistema de análise e criação de conteúdo para Instagram",
+  "description": "Croko Lab - Laboratório de conteúdo científico da Agência Croko",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -78,7 +78,7 @@
     "uuid": "^13.0.0",
     "youtube-transcript": "^1.2.1",
     "youtubei.js": "^16.0.1",
-    "zod": "^3.22.3"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",

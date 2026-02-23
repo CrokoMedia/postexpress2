@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
-import { generateContentImage, generateEditorialBackground } from '@/lib/fal-image'
+import { generateImageSmart, generateEditorialBackgroundSmart } from '@/lib/smart-image-generator'
+import { createContextualImagePrompt } from '@/lib/contextual-image-prompt'
+import { enhancePrompt, cleanPrompt } from '@/lib/prompt-enhancer'
+import { breakdownComplexPrompt, buildFocusedPrompt } from '@/lib/prompt-weighting'
 import { bundle } from '@remotion/bundler'
 import { renderStill, selectComposition } from '@remotion/renderer'
 import cloudinary from 'cloudinary'
@@ -78,7 +81,7 @@ export async function POST(
   try {
     const { id } = await params
     const body = await request.json()
-    const { carousels, profile, slideImageOptions, templateId = 'minimalist', format = 'feed' } = body
+    const { carousels, profile, slideImageOptions, templateId = 'minimalist', format = 'feed', theme = 'light' } = body
 
     // Mapear formato para composição Still e dimensões
     const FORMAT_TO_STILL: Record<string, { compositionId: string; width: number; height: number }> = {
@@ -107,7 +110,7 @@ export async function POST(
     // Template editorial usa imagens full-bleed (1080x1350) como background
     const isEditorial = templateId === 'editorial-magazine'
 
-    console.log(`🎨 [V3/Remotion] Gerando slides (${format} ${formatConfig.width}x${formatConfig.height}) para ${approvedCarousels.length} carrosséis (template: ${templateId})...`)
+    console.log(`🎨 [V3/Remotion] Gerando slides (${format} ${formatConfig.width}x${formatConfig.height}) para ${approvedCarousels.length} carrosséis (template: ${templateId}, theme: ${theme})...`)
 
     // 1. Criar bundle (cacheado)
     const bundleLocation = await getBundle()
@@ -124,8 +127,13 @@ export async function POST(
     const results = []
 
     // Mapear índices originais dos carrosséis aprovados
+    // Usar _originalIndex enviado pelo frontend para lookup correto em slideImageOptions
     const approvedIndices = carousels
-      .map((c: any, idx: number) => ({ carousel: c, originalIndex: idx }))
+      .map((c: any, idx: number) => ({
+        carousel: c,
+        originalIndex: c._originalIndex !== undefined ? c._originalIndex : idx, // Usar índice original do frontend
+        arrayIndex: idx, // Manter índice do array recebido para referência
+      }))
       .filter(({ carousel }: { carousel: any }) => carousel.approved === true)
 
     // Criar diretório temporário
@@ -140,6 +148,17 @@ export async function POST(
 
       console.log(`📝 [V3] Processando ${carouselName} (${carousel.slides.length} slides)...`)
 
+      // Contexto do carrossel completo para geração de imagens
+      const carouselContext = [
+        carousel.titulo ? `Carrossel: "${carousel.titulo}"` : null,
+        carousel.objetivo ? `Objetivo: ${carousel.objetivo}` : null,
+        carousel.tipo ? `Tipo: ${carousel.tipo}` : null,
+      ]
+        .filter(Boolean)
+        .join('. ')
+
+      console.log(`   📋 Contexto do carrossel: ${carouselContext}`)
+
       const slideImages = []
 
       for (let j = 0; j < carousel.slides.length; j++) {
@@ -152,54 +171,103 @@ export async function POST(
 
         const slideConfig = slideImageOptions?.[originalIndex]?.[j]
 
-        // 2. Gerar/obter imagem via fal.ai
+        // 2. Gerar/obter imagem via Nano Banana
         let contentImageUrl = ''
         const falStart = Date.now()
+
+        console.log(`   🔍 slideConfig para ${slideName}:`, JSON.stringify(slideConfig || 'undefined'))
 
         if (slideConfig?.mode === 'upload' && slideConfig.uploadUrl) {
           contentImageUrl = slideConfig.uploadUrl
           console.log(`   📤 Usando imagem enviada`)
         } else if (slideConfig?.mode === 'custom_prompt' && slideConfig.customPrompt) {
           try {
-            const fullPrompt = [
-              slideConfig.customPrompt,
-              'professional photography, photorealistic, high quality, sharp focus',
-              'natural lighting, modern aesthetic, clean composition',
-              'no text visible, no letters, no words, no typography in the image',
-            ]
-              .filter(Boolean)
-              .join(', ')
+            let basePrompt: string
+            const isDetailedCustomPrompt = slideConfig.customPrompt.length > 50
 
-            contentImageUrl = await generateContentImage(fullPrompt)
+            if (isDetailedCustomPrompt) {
+              // Prompt customizado já é detalhado, usar direto
+              console.log(`   ✨ Usando prompt customizado detalhado (${slideConfig.customPrompt.length} chars)`)
+              basePrompt = slideConfig.customPrompt
+            } else {
+              // Prompt customizado curto, adicionar contexto
+              console.log(`   🧠 Expandindo prompt customizado com contexto...`)
+              basePrompt = createContextualImagePrompt(
+                { titulo, corpo, imagemPrompt: slideConfig.customPrompt },
+                { titulo: carousel.titulo, objetivo: carousel.objetivo, tipo: carousel.tipo },
+                { nicho: nicheContext }
+              )
+            }
+
+            // 🎨 ENHANCEMENT: Adicionar quality modifiers
+            const enhanced = enhancePrompt(basePrompt, {
+              carouselType: carousel.tipo as 'educacional' | 'vendas' | 'autoridade' | 'viral',
+            })
+
+            const finalPrompt = cleanPrompt(enhanced.enhancedPrompt)
+
+            console.log(`   📝 Prompt custom: "${basePrompt.substring(0, 100)}..."`)
+            console.log(`   ✨ Prompt enhanced: "${finalPrompt.substring(0, 100)}..."`)
+
+            contentImageUrl = await generateImageSmart(finalPrompt)
             console.log(`   ✅ Imagem customizada gerada (${Date.now() - falStart}ms)`)
-          } catch (falError: unknown) {
-            const msg = falError instanceof Error ? falError.message : String(falError)
-            console.warn(`   ⚠️ fal.ai falhou (${msg}), sem imagem`)
+          } catch (nanoBananaError: unknown) {
+            const msg = nanoBananaError instanceof Error ? nanoBananaError.message : String(nanoBananaError)
+            console.warn(`   ⚠️ Nano Banana falhou (${msg}), sem imagem`)
           }
         } else if (slideConfig?.mode !== 'no_image') {
+          console.log(`   🚀 Iniciando geração de imagem (mode: ${slideConfig?.mode || 'auto'})...`)
           try {
-            if (isEditorial) {
-              // Template editorial: imagem full-bleed como background (1080x1350)
-              contentImageUrl = await generateEditorialBackground(imagemPrompt)
-            } else {
-              // Templates padrão: imagem de conteúdo menor (956x448)
-              const fullPrompt = [
-                nicheContext ? `Context: ${nicheContext}.` : null,
-                `Topic: ${imagemPrompt}`,
-                'professional photography, photorealistic, high quality, sharp focus',
-                'natural lighting, modern aesthetic, clean composition',
-                'no text visible, no letters, no words, no typography in the image',
-              ]
-                .filter(Boolean)
-                .join(', ')
+            let basePrompt: string
 
-              contentImageUrl = await generateContentImage(fullPrompt)
+            // ✅ FIX: Se imagemPrompt já está detalhado (gerado pelo Content Squad), usar DIRETO
+            // Só usar createContextualImagePrompt se imagemPrompt estiver vazio/genérico
+            const isDetailedPrompt = imagemPrompt && imagemPrompt.length > 50
+
+            if (isDetailedPrompt) {
+              // Usar prompt detalhado do Content Squad DIRETAMENTE
+              console.log(`   ✨ Usando prompt detalhado do Content Squad (${imagemPrompt.length} chars)`)
+              basePrompt = imagemPrompt
+            } else {
+              // Gerar prompt INTELIGENTE baseado no conteúdo (fallback)
+              console.log(`   🧠 Gerando prompt contextual inteligente...`)
+              basePrompt = createContextualImagePrompt(
+                { titulo, corpo, imagemPrompt },
+                { titulo: carousel.titulo, objetivo: carousel.objetivo, tipo: carousel.tipo },
+                { nicho: nicheContext }
+              )
             }
-            console.log(`   ✅ Imagem auto gerada (${Date.now() - falStart}ms)`)
-          } catch (falError: unknown) {
-            const msg = falError instanceof Error ? falError.message : String(falError)
-            console.warn(`   ⚠️ fal.ai falhou (${msg}), sem imagem`)
+
+            // 🎯 SOLUÇÃO: Usar prompt contextual DIRETO sem modificadores excessivos
+            // O prompt já vem detalhado e relevante, não precisa de 20+ modificadores genéricos
+            console.log(`   📝 Prompt contextual: "${basePrompt.substring(0, 150)}..."`)
+
+            // Adicionar APENAS qualidade mínima (sem poluir o prompt)
+            const finalPrompt = `${basePrompt}, photorealistic, professional photography, high quality, sharp focus`
+            console.log(`   ✨ Prompt final (simplificado): "${finalPrompt.substring(0, 150)}..."`)
+
+            // 🚫 REMOVIDO: enhancePrompt (adicionava 20+ modificadores genéricos)
+            // 🚫 REMOVIDO: breakdown/focused prompt (estava gerando imagens genéricas)
+            // ✅ AGORA: Prompt contextual direto = imagens relevantes ao conteúdo!
+
+            if (isEditorial) {
+              // Template editorial: imagem full-bleed como background
+              console.log(`   📸 Gerando imagem editorial...`)
+              contentImageUrl = await generateEditorialBackgroundSmart(finalPrompt)
+            } else {
+              // Templates padrão: imagem de conteúdo
+              console.log(`   📸 Gerando imagem de conteúdo...`)
+              contentImageUrl = await generateImageSmart(finalPrompt)
+            }
+            console.log(`   ✅ Imagem contextual gerada (${Date.now() - falStart}ms)`)
+            console.log(`   🔗 URL da imagem: ${contentImageUrl.substring(0, 100)}...`)
+          } catch (imageError: unknown) {
+            const msg = imageError instanceof Error ? imageError.message : String(imageError)
+            console.error(`   ❌ ERRO ao gerar imagem: ${msg}`)
+            console.error(`   Stack:`, imageError)
           }
+        } else {
+          console.log(`   ⏭️  Pulando geração de imagem (mode: ${slideConfig?.mode})`)
         }
 
         // 3. renderStill() → PNG
@@ -216,6 +284,7 @@ export async function POST(
           fullName: profile?.full_name || '',
           templateId,
           format,
+          theme,
           slideNumber: j + 1,
           totalSlides: carousel.slides.length,
         }

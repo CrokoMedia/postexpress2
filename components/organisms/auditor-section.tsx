@@ -3,7 +3,6 @@ import { Badge } from '@/components/atoms/badge'
 import { Brain, Pencil, DollarSign, BarChart3, AlertTriangle, AlertCircle, CheckCircle } from 'lucide-react'
 
 interface AuditorSectionProps {
-  auditorName: string
   auditorType: 'behavior' | 'copy' | 'offers' | 'metrics' | 'anomalies'
   score: number
   insights: string[]
@@ -17,6 +16,7 @@ const auditorConfig = {
     color: 'text-purple-500',
     bg: 'bg-purple-500/10',
     border: 'border-purple-500/20',
+    title: 'Comportamento',
     description: 'Análise comportamental da audiência',
   },
   copy: {
@@ -24,6 +24,7 @@ const auditorConfig = {
     color: 'text-blue-500',
     bg: 'bg-blue-500/10',
     border: 'border-blue-500/20',
+    title: 'Copy',
     description: 'Avaliação de copywriting e awareness',
   },
   offers: {
@@ -31,6 +32,7 @@ const auditorConfig = {
     color: 'text-green-500',
     bg: 'bg-green-500/10',
     border: 'border-green-500/20',
+    title: 'Ofertas',
     description: 'Força das ofertas e value equation',
   },
   metrics: {
@@ -38,6 +40,7 @@ const auditorConfig = {
     color: 'text-orange-500',
     bg: 'bg-orange-500/10',
     border: 'border-orange-500/20',
+    title: 'Métricas',
     description: 'Análise de métricas e outcomes',
   },
   anomalies: {
@@ -45,6 +48,7 @@ const auditorConfig = {
     color: 'text-red-500',
     bg: 'bg-red-500/10',
     border: 'border-red-500/20',
+    title: 'Anomalias',
     description: 'Detecção de anomalias e oportunidades',
   },
 }
@@ -58,7 +62,6 @@ function safeString(item: any): string {
 }
 
 export function AuditorSection({
-  auditorName,
   auditorType,
   score,
   insights,
@@ -85,7 +88,7 @@ export function AuditorSection({
               <Icon className={`h-5 w-5 ${config.color}`} />
             </div>
             <div>
-              <CardTitle className="text-lg">{auditorName}</CardTitle>
+              <CardTitle className="text-lg">{config.title}</CardTitle>
               <CardDescription>{config.description}</CardDescription>
             </div>
           </div>
