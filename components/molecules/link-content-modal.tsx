@@ -180,7 +180,7 @@ export function LinkContentModal({
               return (
                 <div
                   key={profile.id}
-                  className="flex items-center justify-between p-4 bg-neutral-800/50 rounded-lg border border-neutral-700 hover:border-neutral-600 transition-all"
+                  className="flex items-center justify-between p-4 bg-neutral-50 dark:bg-neutral-800/50 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 transition-all"
                 >
                   <div className="flex items-center gap-3">
                     {profile.profile_pic_url_hd ? (
@@ -190,8 +190,8 @@ export function LinkContentModal({
                         className="w-10 h-10 rounded-full object-cover"
                       />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-neutral-700 flex items-center justify-center">
-                        <span className="text-sm font-medium">
+                      <div className="w-10 h-10 rounded-full bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center">
+                        <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
                           {profile.username.charAt(0).toUpperCase()}
                         </span>
                       </div>
@@ -246,7 +246,7 @@ export function LinkContentModal({
         </div>
 
         {/* Footer Info */}
-        <div className="pt-4 border-t border-neutral-800 text-sm text-neutral-600 dark:text-neutral-400 flex items-start gap-2">
+        <div className="pt-4 border-t border-neutral-200 dark:border-neutral-800 text-sm text-neutral-600 dark:text-neutral-400 flex items-start gap-2">
           <Lightbulb className="w-4 h-4 text-warning-500 shrink-0 mt-0.5" />
           <p><strong>Dica:</strong> Conteúdos vinculados aparecem na lista de conteúdos de ambos os perfis.</p>
         </div>

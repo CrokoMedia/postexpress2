@@ -66,7 +66,7 @@ export function DeleteProfileModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="bg-neutral-900 border-neutral-700 max-w-md">
+      <DialogContent className="bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 max-w-md">
         {/* Header */}
         <DialogHeader className="flex-row items-start gap-4 space-y-0">
           <div className="shrink-0 h-12 w-12 rounded-full bg-error-500/10 flex items-center justify-center">
@@ -91,11 +91,11 @@ export function DeleteProfileModal({
             mas o perfil não aparecerá mais nas listagens.
           </p>
 
-          <div className="bg-neutral-800/50 border border-neutral-700/50 rounded-lg p-4 space-y-2">
-            <h4 className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          <div className="bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-300 dark:border-neutral-700/50 rounded-lg p-4 space-y-2">
+            <h4 className="text-sm font-medium text-neutral-900 dark:text-neutral-300">
               O que será deletado:
             </h4>
-            <ul className="text-sm text-neutral-600 dark:text-neutral-400 space-y-1 list-disc list-inside">
+            <ul className="text-sm text-neutral-700 dark:text-neutral-400 space-y-1 list-disc list-inside">
               <li>Perfil do Instagram</li>
               <li>Visibilidade nas listagens</li>
             </ul>
@@ -123,7 +123,7 @@ export function DeleteProfileModal({
               onChange={(e) => setConfirmText(e.target.value)}
               placeholder={username}
               disabled={isDeleting}
-              className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg px-3 py-2 text-neutral-900 dark:text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
         </div>

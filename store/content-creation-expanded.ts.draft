@@ -1,0 +1,1082 @@
+// DRAFT - Versão expandida do store content-creation.ts
+// Este arquivo será usado para substituir store/content-creation.ts quando Task #11 for executada
+
+import { create } from 'zustand'
+import { devtools, persist } from 'zustand/middleware'
+import type {
+  QuickStartMode,
+  TemplateId,
+  LayoutFormat,
+  ThemeMode,
+  Carousel,
+  SlideImageConfig,
+} from '@/types/content-creation'
+
+export interface ContentCreationState {
+  // ===================
+  // NAVEGAÇÃO
+  // ===================
+  currentPhase: 1 | 2 | 3
+
+  // ===================
+  // FASE 1: CRIAR
+  // ===================
+  quickStartMode: QuickStartMode | null
+  selectedTemplate: TemplateId | null
+  selectedFormat: LayoutFormat
+  selectedTheme: ThemeMode
+  customTheme: string
+
+  // Geração de conteúdo
+  content: any | null
+  generating: boolean
+  error: string | null
+  loadingExisting: boolean
+  usedTheme: string | null
+
+  // ===================
+  // FASE 2: REFINAR
+  // ===================
+  carousels: Carousel[]
+  currentCarouselIndex: number
+  approvedCarousels: Set<number>
+
+  // Configurações de imagens
+  slideImageConfigs: Map<number, Map<number, SlideImageConfig>>
+  uploadingImage: { carouselIndex: number; slideIndex: number } | null
+
+  // Seleção de slides
+  selectedForSlides: Set<number>
+  selectedSlides: Map<number, Set<number>>
+
+  // Edição de carrosséis
+  editingIndex: number | null
+  editInstructions: string
+  editedCarousel: any | null
+  refining: boolean
+  saving: boolean
+
+  // Exclusão e variações
+  deletingCarousel: number | null
+  generatingVariations: number | null
+
+  // ===================
+  // FASE 3: EXPORTAR
+  // ===================
+  // Slides V1 (template padrão)
+  slides: any | null
+  generatingSlides: boolean
+  slidesError: string | null
+  generatingSingleV1: number | null
+
+  // Slides V2 (fal.ai)
+  slidesV2: any | null
+  generatingSlidesV2: boolean
+  slidesV2Error: string | null
+  generatingSingleV2: number | null
+
+  // Reels (Remotion MP4)
+  reelVideos: any[] | null
+  generatingReel: boolean
+  reelError: string | null
+
+  // Copy/Download/Export
+  copiedIndex: number | null
+  copiedCaption: number | null
+  copiedHashtags: number | null
+  downloadingZip: boolean
+  downloadingCarouselZip: number | null
+  sendingToDrive: boolean
+  driveMessage: string | null
+  driveError: string | null
+
+  // Agendamento
+  showScheduleModal: boolean
+  schedulesRefreshKey: number
+
+  // ===================
+  // COMPUTED VALUES
+  // ===================
+  computed: {
+    hasContent: boolean
+    approvedCount: number
+    totalCarousels: number
+    canProceedToPhase2: boolean
+    canProceedToPhase3: boolean
+    selectedSlidesCount: number
+  }
+
+  // ===================
+  // ACTIONS - NAVEGAÇÃO
+  // ===================
+  goToPhase: (phase: 1 | 2 | 3) => void
+  nextPhase: () => void
+  previousPhase: () => void
+
+  // ===================
+  // ACTIONS - FASE 1
+  // ===================
+  setQuickStartMode: (mode: QuickStartMode | null) => void
+  setTemplate: (template: TemplateId | null) => void
+  setFormat: (format: LayoutFormat) => void
+  setTheme: (theme: ThemeMode) => void
+  setCustomTheme: (theme: string) => void
+  generateContent: (auditId: string, customTheme?: string) => Promise<void>
+  loadExistingContent: (auditId: string) => Promise<void>
+
+  // ===================
+  // ACTIONS - FASE 2
+  // ===================
+  setCarousels: (carousels: Carousel[]) => void
+  setCurrentCarouselIndex: (index: number) => void
+  updateCarousel: (index: number, changes: Partial<Carousel>) => void
+  approveCarousel: (auditId: string, index: number) => Promise<void>
+  rejectCarousel: (auditId: string, index: number) => Promise<void>
+
+  // Configurações de imagens
+  updateSlideImageConfig: (
+    carouselIndex: number,
+    slideIndex: number,
+    config: SlideImageConfig
+  ) => void
+  uploadSlideImage: (
+    auditId: string,
+    carouselIndex: number,
+    slideIndex: number,
+    file: File
+  ) => Promise<void>
+
+  // Seleção de slides
+  toggleSlide: (carouselIndex: number, slideIndex: number) => void
+  toggleAllSlides: (carouselIndex: number) => void
+  selectCarouselForSlides: (carouselIndex: number) => void
+  deselectCarouselForSlides: (carouselIndex: number) => void
+
+  // Edição
+  startEditing: (carouselIndex: number) => void
+  cancelEditing: () => void
+  setEditInstructions: (instructions: string) => void
+  refineCarousel: (
+    auditId: string,
+    carouselIndex: number,
+    instructions: string
+  ) => Promise<void>
+  saveEditedCarousel: (auditId: string, carouselIndex: number) => Promise<void>
+
+  // Exclusão e variações
+  deleteCarousel: (auditId: string, carouselIndex: number) => Promise<void>
+  generateVariations: (auditId: string, carouselIndex: number) => Promise<void>
+
+  // ===================
+  // ACTIONS - FASE 3
+  // ===================
+  // Slides V1
+  generateSlidesV1: (auditId: string, carouselIndices?: number[]) => Promise<void>
+  generateSingleSlideV1: (auditId: string, carouselIndex: number) => Promise<void>
+
+  // Slides V2
+  generateSlidesV2: (auditId: string, carouselIndices?: number[]) => Promise<void>
+  generateSingleSlideV2: (auditId: string, carouselIndex: number) => Promise<void>
+
+  // Reels
+  generateReels: (auditId: string) => Promise<void>
+
+  // Copy/Download/Export
+  copyCarousel: (carouselIndex: number) => void
+  copyCaption: (carouselIndex: number) => void
+  copyHashtags: (carouselIndex: number) => void
+  downloadJSON: (username: string) => void
+  downloadAllZip: (auditId: string) => Promise<void>
+  downloadCarouselZip: (auditId: string, carouselIndex: number) => Promise<void>
+  exportToDrive: (auditId: string) => Promise<void>
+
+  // Agendamento
+  openScheduleModal: () => void
+  closeScheduleModal: () => void
+  refreshSchedules: () => void
+
+  // ===================
+  // ACTIONS - GERAL
+  // ===================
+  reset: () => void
+}
+
+const initialState = {
+  // Navegação
+  currentPhase: 1 as 1 | 2 | 3,
+
+  // Fase 1: Criar
+  quickStartMode: null,
+  selectedTemplate: null,
+  selectedFormat: 'feed' as LayoutFormat,
+  selectedTheme: 'light' as ThemeMode,
+  customTheme: '',
+  content: null,
+  generating: false,
+  error: null,
+  loadingExisting: true,
+  usedTheme: null,
+
+  // Fase 2: Refinar
+  carousels: [],
+  currentCarouselIndex: 0,
+  approvedCarousels: new Set<number>(),
+  slideImageConfigs: new Map(),
+  uploadingImage: null,
+  selectedForSlides: new Set<number>(),
+  selectedSlides: new Map(),
+  editingIndex: null,
+  editInstructions: '',
+  editedCarousel: null,
+  refining: false,
+  saving: false,
+  deletingCarousel: null,
+  generatingVariations: null,
+
+  // Fase 3: Exportar
+  slides: null,
+  generatingSlides: false,
+  slidesError: null,
+  generatingSingleV1: null,
+  slidesV2: null,
+  generatingSlidesV2: false,
+  slidesV2Error: null,
+  generatingSingleV2: null,
+  reelVideos: null,
+  generatingReel: false,
+  reelError: null,
+  copiedIndex: null,
+  copiedCaption: null,
+  copiedHashtags: null,
+  downloadingZip: false,
+  downloadingCarouselZip: null,
+  sendingToDrive: false,
+  driveMessage: null,
+  driveError: null,
+  showScheduleModal: false,
+  schedulesRefreshKey: 0,
+}
+
+export const useContentCreation = create<ContentCreationState>()(
+  devtools(
+    persist(
+      (set, get) => ({
+        ...initialState,
+
+        // Computed values (getter)
+        get computed() {
+          const state = get()
+          return {
+            hasContent: !!state.content,
+            approvedCount: state.approvedCarousels.size,
+            totalCarousels: state.carousels.length,
+            canProceedToPhase2: state.carousels.length > 0,
+            canProceedToPhase3: state.approvedCarousels.size > 0,
+            selectedSlidesCount: Array.from(state.selectedSlides.values()).reduce(
+              (sum, slideSet) => sum + slideSet.size,
+              0
+            ),
+          }
+        },
+
+        // ===================
+        // NAVEGAÇÃO
+        // ===================
+        goToPhase: (phase) => set({ currentPhase: phase }),
+
+        nextPhase: () =>
+          set((state) => {
+            const nextPhase = Math.min(3, state.currentPhase + 1) as 1 | 2 | 3
+            return { currentPhase: nextPhase }
+          }),
+
+        previousPhase: () =>
+          set((state) => {
+            const prevPhase = Math.max(1, state.currentPhase - 1) as 1 | 2 | 3
+            return { currentPhase: prevPhase }
+          }),
+
+        // ===================
+        // FASE 1: CRIAR
+        // ===================
+        setQuickStartMode: (mode) => set({ quickStartMode: mode }),
+        setTemplate: (template) => set({ selectedTemplate: template }),
+        setFormat: (format) => set({ selectedFormat: format }),
+        setTheme: (theme) => set({ selectedTheme: theme }),
+        setCustomTheme: (theme) => set({ customTheme: theme }),
+
+        generateContent: async (auditId: string, customTheme?: string) => {
+          set({ generating: true, error: null })
+
+          try {
+            const response = await fetch(`/api/audits/${auditId}/generate-content`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ custom_theme: customTheme || null }),
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || `Erro ${response.status}`)
+            }
+
+            const data = await response.json()
+
+            if (!data.content?.carousels?.length) {
+              throw new Error('Nenhum carrossel foi gerado')
+            }
+
+            set({
+              content: data.content,
+              carousels: data.content.carousels,
+              usedTheme: customTheme || null,
+            })
+          } catch (error: any) {
+            set({ error: error.message })
+            console.error('Erro ao gerar conteúdo:', error)
+          } finally {
+            set({ generating: false })
+          }
+        },
+
+        loadExistingContent: async (auditId: string) => {
+          set({ loadingExisting: true })
+
+          try {
+            const response = await fetch(`/api/audits/${auditId}/content`)
+
+            if (response.ok) {
+              const data = await response.json()
+
+              set({
+                content: data.content || null,
+                carousels: data.content?.carousels || [],
+                slides: data.slides || null,
+                slidesV2: data.slides_v2 || null,
+                reelVideos: data.reel_videos?.videos || null,
+              })
+
+              console.log('✅ Conteúdo existente carregado')
+            }
+          } catch (error) {
+            console.error('Erro ao carregar conteúdo existente:', error)
+          } finally {
+            set({ loadingExisting: false })
+          }
+        },
+
+        // ===================
+        // FASE 2: REFINAR
+        // ===================
+        setCarousels: (carousels) => set({ carousels }),
+
+        setCurrentCarouselIndex: (index) => set({ currentCarouselIndex: index }),
+
+        updateCarousel: (index, changes) =>
+          set((state) => {
+            const newCarousels = [...state.carousels]
+            newCarousels[index] = { ...newCarousels[index], ...changes }
+            return { carousels: newCarousels }
+          }),
+
+        approveCarousel: async (auditId: string, index: number) => {
+          try {
+            const response = await fetch(`/api/content/${auditId}/approve`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ carouselIndex: index, approved: true }),
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao aprovar')
+            }
+
+            set((state) => {
+              const newApproved = new Set(state.approvedCarousels)
+              newApproved.add(index)
+
+              const newCarousels = [...state.carousels]
+              if (newCarousels[index]) {
+                newCarousels[index] = { ...newCarousels[index], approved: true }
+              }
+
+              // Auto-selecionar para slides
+              const newSelectedForSlides = new Set(state.selectedForSlides)
+              newSelectedForSlides.add(index)
+
+              // Auto-selecionar todos os slides do carrossel
+              const newSelectedSlides = new Map(state.selectedSlides)
+              const carousel = newCarousels[index]
+              if (carousel) {
+                newSelectedSlides.set(
+                  index,
+                  new Set(carousel.slides.map((_: any, i: number) => i))
+                )
+              }
+
+              return {
+                approvedCarousels: newApproved,
+                carousels: newCarousels,
+                selectedForSlides: newSelectedForSlides,
+                selectedSlides: newSelectedSlides,
+              }
+            })
+
+            console.log(`✅ Carrossel ${index} aprovado`)
+          } catch (error: any) {
+            console.error('Erro ao aprovar:', error)
+            set({ error: error.message })
+          }
+        },
+
+        rejectCarousel: async (auditId: string, index: number) => {
+          try {
+            const response = await fetch(`/api/content/${auditId}/approve`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ carouselIndex: index, approved: false }),
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao rejeitar')
+            }
+
+            set((state) => {
+              const newApproved = new Set(state.approvedCarousels)
+              newApproved.delete(index)
+
+              const newCarousels = [...state.carousels]
+              if (newCarousels[index]) {
+                newCarousels[index] = { ...newCarousels[index], approved: false }
+              }
+
+              // Remover da seleção de slides
+              const newSelectedForSlides = new Set(state.selectedForSlides)
+              newSelectedForSlides.delete(index)
+
+              const newSelectedSlides = new Map(state.selectedSlides)
+              newSelectedSlides.delete(index)
+
+              return {
+                approvedCarousels: newApproved,
+                carousels: newCarousels,
+                selectedForSlides: newSelectedForSlides,
+                selectedSlides: newSelectedSlides,
+              }
+            })
+
+            console.log(`✅ Carrossel ${index} rejeitado`)
+          } catch (error: any) {
+            console.error('Erro ao rejeitar:', error)
+            set({ error: error.message })
+          }
+        },
+
+        // Configurações de imagens
+        updateSlideImageConfig: (carouselIndex, slideIndex, config) =>
+          set((state) => {
+            const newConfigs = new Map(state.slideImageConfigs)
+            if (!newConfigs.has(carouselIndex)) {
+              newConfigs.set(carouselIndex, new Map())
+            }
+            const carouselMap = new Map(newConfigs.get(carouselIndex)!)
+            carouselMap.set(slideIndex, config)
+            newConfigs.set(carouselIndex, carouselMap)
+            return { slideImageConfigs: newConfigs }
+          }),
+
+        uploadSlideImage: async (auditId, carouselIndex, slideIndex, file) => {
+          set({ uploadingImage: { carouselIndex, slideIndex } })
+
+          try {
+            const formData = new FormData()
+            formData.append('file', file)
+            formData.append('carouselIndex', carouselIndex.toString())
+            formData.append('slideIndex', slideIndex.toString())
+
+            const response = await fetch(`/api/content/${auditId}/upload-slide-image`, {
+              method: 'POST',
+              body: formData,
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao fazer upload')
+            }
+
+            const data = await response.json()
+
+            // Atualizar configuração com URL da imagem
+            get().updateSlideImageConfig(carouselIndex, slideIndex, {
+              mode: 'upload',
+              uploadUrl: data.url,
+            })
+
+            console.log(`✅ Imagem enviada: ${data.url}`)
+          } catch (error: any) {
+            console.error('Erro ao enviar imagem:', error)
+            set({ error: error.message })
+          } finally {
+            set({ uploadingImage: null })
+          }
+        },
+
+        // Seleção de slides
+        toggleSlide: (carouselIndex, slideIndex) =>
+          set((state) => {
+            const newSelectedSlides = new Map(state.selectedSlides)
+            const carouselSet = newSelectedSlides.get(carouselIndex) || new Set()
+            const newSet = new Set(carouselSet)
+
+            if (newSet.has(slideIndex)) {
+              newSet.delete(slideIndex)
+            } else {
+              newSet.add(slideIndex)
+            }
+
+            newSelectedSlides.set(carouselIndex, newSet)
+            return { selectedSlides: newSelectedSlides }
+          }),
+
+        toggleAllSlides: (carouselIndex) =>
+          set((state) => {
+            const carousel = state.carousels[carouselIndex]
+            if (!carousel) return state
+
+            const newSelectedSlides = new Map(state.selectedSlides)
+            const currentSet = newSelectedSlides.get(carouselIndex) || new Set()
+
+            // Se todos estão selecionados, desseleciona todos. Senão, seleciona todos.
+            if (currentSet.size === carousel.slides.length) {
+              newSelectedSlides.set(carouselIndex, new Set())
+            } else {
+              newSelectedSlides.set(
+                carouselIndex,
+                new Set(carousel.slides.map((_: any, i: number) => i))
+              )
+            }
+
+            return { selectedSlides: newSelectedSlides }
+          }),
+
+        selectCarouselForSlides: (carouselIndex) =>
+          set((state) => {
+            const newSet = new Set(state.selectedForSlides)
+            newSet.add(carouselIndex)
+            return { selectedForSlides: newSet }
+          }),
+
+        deselectCarouselForSlides: (carouselIndex) =>
+          set((state) => {
+            const newSet = new Set(state.selectedForSlides)
+            newSet.delete(carouselIndex)
+            return { selectedForSlides: newSet }
+          }),
+
+        // Edição
+        startEditing: (carouselIndex) =>
+          set((state) => ({
+            editingIndex: carouselIndex,
+            editedCarousel: state.carousels[carouselIndex],
+          })),
+
+        cancelEditing: () =>
+          set({
+            editingIndex: null,
+            editInstructions: '',
+            editedCarousel: null,
+          }),
+
+        setEditInstructions: (instructions) => set({ editInstructions: instructions }),
+
+        refineCarousel: async (auditId, carouselIndex, instructions) => {
+          set({ refining: true })
+
+          try {
+            const response = await fetch(`/api/content/${auditId}/refine`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ carouselIndex, instructions }),
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao refinar')
+            }
+
+            const data = await response.json()
+
+            set({
+              editedCarousel: data.refinedCarousel,
+            })
+
+            console.log('✅ Carrossel refinado')
+          } catch (error: any) {
+            console.error('Erro ao refinar:', error)
+            set({ error: error.message })
+          } finally {
+            set({ refining: false })
+          }
+        },
+
+        saveEditedCarousel: async (auditId, carouselIndex) => {
+          const { editedCarousel } = get()
+          if (!editedCarousel) return
+
+          set({ saving: true })
+
+          try {
+            const response = await fetch(`/api/content/${auditId}/update-carousel`, {
+              method: 'PUT',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                carouselIndex,
+                carousel: editedCarousel,
+              }),
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao salvar')
+            }
+
+            // Atualizar carrossel no estado
+            set((state) => {
+              const newCarousels = [...state.carousels]
+              newCarousels[carouselIndex] = editedCarousel
+              return {
+                carousels: newCarousels,
+                editingIndex: null,
+                editInstructions: '',
+                editedCarousel: null,
+              }
+            })
+
+            console.log('✅ Carrossel salvo')
+          } catch (error: any) {
+            console.error('Erro ao salvar:', error)
+            set({ error: error.message })
+          } finally {
+            set({ saving: false })
+          }
+        },
+
+        // Exclusão e variações
+        deleteCarousel: async (auditId, carouselIndex) => {
+          set({ deletingCarousel: carouselIndex })
+
+          try {
+            const response = await fetch(`/api/content/${auditId}/delete-carousel`, {
+              method: 'DELETE',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ carouselIndex }),
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao deletar')
+            }
+
+            // Remover do estado
+            set((state) => {
+              const newCarousels = state.carousels.filter((_, i) => i !== carouselIndex)
+              const newApproved = new Set(state.approvedCarousels)
+              newApproved.delete(carouselIndex)
+
+              return {
+                carousels: newCarousels,
+                approvedCarousels: newApproved,
+              }
+            })
+
+            console.log('✅ Carrossel deletado')
+          } catch (error: any) {
+            console.error('Erro ao deletar:', error)
+            set({ error: error.message })
+          } finally {
+            set({ deletingCarousel: null })
+          }
+        },
+
+        generateVariations: async (auditId, carouselIndex) => {
+          set({ generatingVariations: carouselIndex })
+
+          try {
+            const response = await fetch(`/api/content/${auditId}/variations`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ carouselIndex }),
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao gerar variações')
+            }
+
+            const data = await response.json()
+
+            // Adicionar variações aos carrosséis
+            set((state) => ({
+              carousels: [...state.carousels, ...data.variations],
+            }))
+
+            console.log('✅ Variações geradas')
+          } catch (error: any) {
+            console.error('Erro ao gerar variações:', error)
+            set({ error: error.message })
+          } finally {
+            set({ generatingVariations: null })
+          }
+        },
+
+        // ===================
+        // FASE 3: EXPORTAR
+        // ===================
+        generateSlidesV1: async (auditId, carouselIndices) => {
+          set({ generatingSlides: true, slidesError: null })
+
+          try {
+            const response = await fetch(`/api/content/${auditId}/generate-slides`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ version: 'v1', carouselIndices }),
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao gerar slides V1')
+            }
+
+            const data = await response.json()
+            set({ slides: data.slides })
+
+            console.log('✅ Slides V1 gerados')
+          } catch (error: any) {
+            set({ slidesError: error.message })
+            console.error('Erro ao gerar slides V1:', error)
+          } finally {
+            set({ generatingSlides: false })
+          }
+        },
+
+        generateSingleSlideV1: async (auditId, carouselIndex) => {
+          set({ generatingSingleV1: carouselIndex })
+
+          try {
+            const response = await fetch(`/api/content/${auditId}/generate-slides`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                version: 'v1',
+                carouselIndices: [carouselIndex],
+              }),
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao gerar slide V1')
+            }
+
+            const data = await response.json()
+            set({ slides: data.slides })
+
+            console.log(`✅ Slide V1 do carrossel ${carouselIndex} gerado`)
+          } catch (error: any) {
+            set({ slidesError: error.message })
+            console.error('Erro ao gerar slide V1:', error)
+          } finally {
+            set({ generatingSingleV1: null })
+          }
+        },
+
+        generateSlidesV2: async (auditId, carouselIndices) => {
+          set({ generatingSlidesV2: true, slidesV2Error: null })
+
+          try {
+            const response = await fetch(`/api/content/${auditId}/generate-slides`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ version: 'v2', carouselIndices }),
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao gerar slides V2')
+            }
+
+            const data = await response.json()
+            set({ slidesV2: data.slides })
+
+            console.log('✅ Slides V2 gerados')
+          } catch (error: any) {
+            set({ slidesV2Error: error.message })
+            console.error('Erro ao gerar slides V2:', error)
+          } finally {
+            set({ generatingSlidesV2: false })
+          }
+        },
+
+        generateSingleSlideV2: async (auditId, carouselIndex) => {
+          set({ generatingSingleV2: carouselIndex })
+
+          try {
+            const response = await fetch(`/api/content/${auditId}/generate-slides`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                version: 'v2',
+                carouselIndices: [carouselIndex],
+              }),
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao gerar slide V2')
+            }
+
+            const data = await response.json()
+            set({ slidesV2: data.slides })
+
+            console.log(`✅ Slide V2 do carrossel ${carouselIndex} gerado`)
+          } catch (error: any) {
+            set({ slidesV2Error: error.message })
+            console.error('Erro ao gerar slide V2:', error)
+          } finally {
+            set({ generatingSingleV2: null })
+          }
+        },
+
+        generateReels: async (auditId) => {
+          set({ generatingReel: true, reelError: null })
+
+          try {
+            const response = await fetch(`/api/content/${auditId}/generate-reels`, {
+              method: 'POST',
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao gerar reels')
+            }
+
+            const data = await response.json()
+            set({ reelVideos: data.videos })
+
+            console.log('✅ Reels gerados')
+          } catch (error: any) {
+            set({ reelError: error.message })
+            console.error('Erro ao gerar reels:', error)
+          } finally {
+            set({ generatingReel: false })
+          }
+        },
+
+        // Copy/Download/Export
+        copyCarousel: (carouselIndex) => {
+          const { carousels } = get()
+          const carousel = carousels[carouselIndex]
+          if (!carousel) return
+
+          const text = `
+${carousel.titulo}
+${carousel.tipo.toUpperCase()} | ${carousel.objetivo}
+
+${carousel.slides
+  .map(
+    (slide: any) => `
+SLIDE ${slide.numero}:
+${slide.titulo}
+${slide.corpo}
+`
+  )
+  .join('\n')}
+
+CAPTION:
+${carousel.caption}
+
+HASHTAGS:
+${carousel.hashtags.join(' ')}
+
+CTA: ${carousel.cta}
+          `.trim()
+
+          navigator.clipboard.writeText(text)
+          set({ copiedIndex: carouselIndex })
+          setTimeout(() => set({ copiedIndex: null }), 2000)
+        },
+
+        copyCaption: (carouselIndex) => {
+          const { carousels } = get()
+          const carousel = carousels[carouselIndex]
+          if (!carousel) return
+
+          navigator.clipboard.writeText(carousel.caption)
+          set({ copiedCaption: carouselIndex })
+          setTimeout(() => set({ copiedCaption: null }), 2000)
+        },
+
+        copyHashtags: (carouselIndex) => {
+          const { carousels } = get()
+          const carousel = carousels[carouselIndex]
+          if (!carousel) return
+
+          const hashtagsText = carousel.hashtags.map((tag: string) => `#${tag}`).join(' ')
+          navigator.clipboard.writeText(hashtagsText)
+          set({ copiedHashtags: carouselIndex })
+          setTimeout(() => set({ copiedHashtags: null }), 2000)
+        },
+
+        downloadJSON: (username) => {
+          const { content } = get()
+          if (!content) return
+
+          const dataStr = JSON.stringify(content, null, 2)
+          const dataUri =
+            'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr)
+          const exportFileDefaultName = `content-suggestions-${username}-${
+            new Date().toISOString().split('T')[0]
+          }.json`
+
+          const linkElement = document.createElement('a')
+          linkElement.setAttribute('href', dataUri)
+          linkElement.setAttribute('download', exportFileDefaultName)
+          linkElement.click()
+        },
+
+        downloadAllZip: async (auditId) => {
+          set({ downloadingZip: true })
+
+          try {
+            const response = await fetch(`/api/content/${auditId}/export-zip`, {
+              method: 'POST',
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao gerar ZIP')
+            }
+
+            const blob = await response.blob()
+            const url = URL.createObjectURL(blob)
+            const a = document.createElement('a')
+            a.href = url
+            a.download = `carousel-slides-${auditId}.zip`
+            a.click()
+            URL.revokeObjectURL(url)
+
+            console.log('✅ ZIP baixado')
+          } catch (error: any) {
+            console.error('Erro ao baixar ZIP:', error)
+            set({ error: error.message })
+          } finally {
+            set({ downloadingZip: false })
+          }
+        },
+
+        downloadCarouselZip: async (auditId, carouselIndex) => {
+          set({ downloadingCarouselZip: carouselIndex })
+
+          try {
+            const response = await fetch(`/api/content/${auditId}/export-zip`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ carouselIndex }),
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao gerar ZIP')
+            }
+
+            const blob = await response.blob()
+            const url = URL.createObjectURL(blob)
+            const a = document.createElement('a')
+            a.href = url
+            a.download = `carousel-${carouselIndex}-slides.zip`
+            a.click()
+            URL.revokeObjectURL(url)
+
+            console.log(`✅ ZIP do carrossel ${carouselIndex} baixado`)
+          } catch (error: any) {
+            console.error('Erro ao baixar ZIP:', error)
+            set({ error: error.message })
+          } finally {
+            set({ downloadingCarouselZip: null })
+          }
+        },
+
+        exportToDrive: async (auditId) => {
+          set({ sendingToDrive: true, driveError: null, driveMessage: null })
+
+          try {
+            const response = await fetch(`/api/content/${auditId}/export-drive`, {
+              method: 'POST',
+            })
+
+            if (!response.ok) {
+              const data = await response.json()
+              throw new Error(data.error || 'Erro ao enviar para Drive')
+            }
+
+            const data = await response.json()
+            set({ driveMessage: data.message })
+
+            console.log('✅ Enviado para Google Drive')
+          } catch (error: any) {
+            set({ driveError: error.message })
+            console.error('Erro ao enviar para Drive:', error)
+          } finally {
+            set({ sendingToDrive: false })
+          }
+        },
+
+        // Agendamento
+        openScheduleModal: () => set({ showScheduleModal: true }),
+        closeScheduleModal: () => set({ showScheduleModal: false }),
+        refreshSchedules: () =>
+          set((state) => ({
+            schedulesRefreshKey: state.schedulesRefreshKey + 1,
+          })),
+
+        // ===================
+        // GERAL
+        // ===================
+        reset: () => set(initialState),
+      }),
+      {
+        name: 'content-creation-storage',
+        partialize: (state) => ({
+          // Persist apenas estados essenciais (não loadings/errors)
+          currentPhase: state.currentPhase,
+          quickStartMode: state.quickStartMode,
+          selectedTemplate: state.selectedTemplate,
+          selectedFormat: state.selectedFormat,
+          selectedTheme: state.selectedTheme,
+          customTheme: state.customTheme,
+        }),
+      }
+    ),
+    { name: 'ContentCreationStore' }
+  )
+)
+
+// ===================
+// SELECTORS OTIMIZADOS
+// ===================
+export const useCurrentPhase = () => useContentCreation((state) => state.currentPhase)
+export const useCarousels = () => useContentCreation((state) => state.carousels)
+export const useCurrentCarousel = () => {
+  const carousels = useCarousels()
+  const currentIndex = useContentCreation((state) => state.currentCarouselIndex)
+  return carousels[currentIndex]
+}
+export const useApprovedCarousels = () => {
+  const carousels = useCarousels()
+  const approvedSet = useContentCreation((state) => state.approvedCarousels)
+  return carousels.filter((_, index) => approvedSet.has(index))
+}
+export const useIsCarouselApproved = (index: number) =>
+  useContentCreation((state) => state.approvedCarousels.has(index))
+export const useComputedValues = () => useContentCreation((state) => state.computed)

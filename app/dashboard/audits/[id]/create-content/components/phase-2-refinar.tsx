@@ -136,6 +136,20 @@ export function Phase2Refinar({ auditId }: Phase2RefinarProps) {
     })
   }, [slideImageConfigs, carousels, currentCarouselIndex, updateSlideImageConfig])
 
+  const handleApprove = useCallback(
+    async (index: number) => {
+      await approveCarousel(auditId, index)
+    },
+    [auditId, approveCarousel]
+  )
+
+  const handleReject = useCallback(
+    async (index: number) => {
+      await rejectCarousel(auditId, index)
+    },
+    [auditId, rejectCarousel]
+  )
+
   const handleGenerateSlides = useCallback(async () => {
     // Navegar para Fase 3 (Exportar)
     nextPhase()
@@ -254,8 +268,8 @@ export function Phase2Refinar({ auditId }: Phase2RefinarProps) {
           approvedCarousels={approvedCarousels}
           onNavigate={handleNavigate}
           onGoToCarousel={handleGoToCarousel}
-          onApprove={approveCarousel}
-          onReject={rejectCarousel}
+          onApprove={handleApprove}
+          onReject={handleReject}
           onEdit={handleEditSlide}
           onUpdateImageConfig={handleUpdateImageConfig}
           onApplyBulkAction={handleApplyBulkAction}

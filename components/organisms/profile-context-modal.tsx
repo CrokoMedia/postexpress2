@@ -338,11 +338,11 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
     <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
       <div className="w-full max-w-3xl max-h-[90vh] overflow-y-auto">
         <Card className="w-full">
-          <CardHeader className="sticky top-0 bg-neutral-900 z-10 border-b border-neutral-800">
+          <CardHeader className="sticky top-0 bg-white dark:bg-neutral-900 z-10 border-b border-neutral-200 dark:border-neutral-800">
             <div className="flex items-center justify-between">
               <div>
                 <CardTitle className="text-2xl">Adicionar Contexto</CardTitle>
-                <p className="text-sm text-neutral-400 mt-1">@{username}</p>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">@{username}</p>
               </div>
               <Button variant="ghost" size="sm" onClick={onClose}>
                 <X className="w-5 h-5" />
@@ -351,11 +351,11 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
           </CardHeader>
           <CardContent className="space-y-3 p-6">
             {/* ===== 1. IDENTITY ===== */}
-            <div className="border border-neutral-700 rounded-lg">
+            <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <button
                 type="button"
                 onClick={() => toggleSection('identity')}
-                className="w-full flex items-center justify-between p-4 hover:bg-neutral-800/50 transition-colors"
+                className="w-full flex items-center justify-between p-4 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 transition-colors"
               >
                 <h3 className="text-lg font-semibold">1. Identidade</h3>
                 {expandedSections.identity ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
@@ -369,7 +369,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="Ex: Gary Vaynerchuk"
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -379,7 +379,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
                       placeholder="Ex: GaryVee"
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -389,7 +389,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       onChange={(e) => setPositioning(e.target.value)}
                       placeholder="Ex: Empreendedor serial e especialista em marketing digital"
                       rows={2}
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -407,7 +407,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                           }
                         }}
                         placeholder="Ex: Marketing Digital"
-                        className="flex-1 px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                        className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                       />
                       <Button
                         type="button"
@@ -442,7 +442,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       value={toneOfVoice}
                       onChange={(e) => setToneOfVoice(e.target.value)}
                       placeholder="Ex: Direto, enérgico, motivacional"
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                 </div>
@@ -450,11 +450,11 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
             </div>
 
             {/* ===== 2. CREDIBILITY ===== */}
-            <div className="border border-neutral-700 rounded-lg">
+            <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <button
                 type="button"
                 onClick={() => toggleSection('credibility')}
-                className="w-full flex items-center justify-between p-4 hover:bg-neutral-800/50 transition-colors"
+                className="w-full flex items-center justify-between p-4 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 transition-colors"
               >
                 <h3 className="text-lg font-semibold">2. Credibilidade</h3>
                 {expandedSections.credibility ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
@@ -468,7 +468,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       onChange={(e) => setExperience(e.target.value)}
                       placeholder="Ex: 30+ anos em marketing e empreendedorismo"
                       rows={2}
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -486,7 +486,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                           }
                         }}
                         placeholder="Ex: Fundador da VaynerMedia"
-                        className="flex-1 px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                        className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                       />
                       <Button
                         type="button"
@@ -529,7 +529,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                           }
                         }}
                         placeholder="Ex: Marketing Digital"
-                        className="flex-1 px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                        className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                       />
                       <Button
                         type="button"
@@ -562,11 +562,11 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
             </div>
 
             {/* ===== 3. PHILOSOPHY ===== */}
-            <div className="border border-neutral-700 rounded-lg">
+            <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <button
                 type="button"
                 onClick={() => toggleSection('philosophy')}
-                className="w-full flex items-center justify-between p-4 hover:bg-neutral-800/50 transition-colors"
+                className="w-full flex items-center justify-between p-4 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 transition-colors"
               >
                 <h3 className="text-lg font-semibold">3. Filosofia</h3>
                 {expandedSections.philosophy ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
@@ -588,7 +588,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                           }
                         }}
                         placeholder="Ex: Autenticidade"
-                        className="flex-1 px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                        className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                       />
                       <Button
                         type="button"
@@ -623,7 +623,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       onChange={(e) => setBeliefs(e.target.value)}
                       placeholder="Ex: Marketing é sobre contar histórias e agregar valor"
                       rows={2}
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -633,7 +633,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       onChange={(e) => setDefends(e.target.value)}
                       placeholder="Ex: Produção massiva de conteúdo e documentação da jornada"
                       rows={2}
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -643,7 +643,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       onChange={(e) => setRejects(e.target.value)}
                       placeholder="Ex: Atalhos, fórmulas mágicas, falta de autenticidade"
                       rows={2}
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                 </div>
@@ -651,11 +651,11 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
             </div>
 
             {/* ===== 4. CONTENT STYLE ===== */}
-            <div className="border border-neutral-700 rounded-lg">
+            <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <button
                 type="button"
                 onClick={() => toggleSection('contentStyle')}
-                className="w-full flex items-center justify-between p-4 hover:bg-neutral-800/50 transition-colors"
+                className="w-full flex items-center justify-between p-4 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 transition-colors"
               >
                 <h3 className="text-lg font-semibold">4. Estilo de Conteúdo</h3>
                 {expandedSections.contentStyle ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
@@ -677,7 +677,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                           }
                         }}
                         placeholder="Ex: Vídeo curto"
-                        className="flex-1 px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                        className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                       />
                       <Button
                         type="button"
@@ -712,7 +712,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       onChange={(e) => setStructure(e.target.value)}
                       placeholder="Ex: Hook forte → Contexto → 3-5 pontos práticos → CTA claro"
                       rows={2}
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -720,7 +720,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                     <select
                       value={formality}
                       onChange={(e) => setFormality(e.target.value)}
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     >
                       <option value="casual">Casual</option>
                       <option value="formal">Formal</option>
@@ -745,7 +745,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       value={storytelling}
                       onChange={(e) => setStorytelling(e.target.value)}
                       placeholder="Ex: Pessoal e vulnerável"
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -766,7 +766,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                           }
                         }}
                         placeholder="Ex: ROI, funil, CTR, engagement"
-                        className="flex-1 px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                        className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                       />
                       <Button
                         type="button"
@@ -805,11 +805,11 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
             </div>
 
             {/* ===== 5. CONTENT PILLARS ===== */}
-            <div className="border border-neutral-700 rounded-lg">
+            <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <button
                 type="button"
                 onClick={() => toggleSection('contentPillars')}
-                className="w-full flex items-center justify-between p-4 hover:bg-neutral-800/50 transition-colors"
+                className="w-full flex items-center justify-between p-4 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 transition-colors"
               >
                 <h3 className="text-lg font-semibold">5. Pilares de Conteúdo</h3>
                 {expandedSections.contentPillars ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
@@ -822,14 +822,14 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       value={pillarNameInput}
                       onChange={(e) => setPillarNameInput(e.target.value)}
                       placeholder="Nome do Pilar (Ex: Marketing Digital)"
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                     <input
                       type="text"
                       value={pillarSubtopicsInput}
                       onChange={(e) => setPillarSubtopicsInput(e.target.value)}
                       placeholder="Subtópicos separados por vírgula (Ex: social media, paid ads, organic reach)"
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                     <Button type="button" size="sm" onClick={addContentPillar}>
                       <Plus className="w-4 h-4 mr-1" /> Adicionar Pilar
@@ -837,9 +837,9 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                   </div>
                   <div className="space-y-2">
                     {contentPillars.map((pillar, idx) => (
-                      <div key={idx} className="p-3 bg-neutral-800 rounded-lg">
+                      <div key={idx} className="p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
                         <div className="flex items-start justify-between mb-2">
-                          <h4 className="font-semibold">{pillar.name}</h4>
+                          <h4 className="font-semibold text-neutral-900 dark:text-neutral-100">{pillar.name}</h4>
                           <button
                             type="button"
                             onClick={() => removeContentPillar(idx)}
@@ -863,11 +863,11 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
             </div>
 
             {/* ===== 6. BUSINESS ===== */}
-            <div className="border border-neutral-700 rounded-lg">
+            <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <button
                 type="button"
                 onClick={() => toggleSection('business')}
-                className="w-full flex items-center justify-between p-4 hover:bg-neutral-800/50 transition-colors"
+                className="w-full flex items-center justify-between p-4 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 transition-colors"
               >
                 <h3 className="text-lg font-semibold">6. Negócio</h3>
                 {expandedSections.business ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
@@ -880,28 +880,28 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       value={productNameInput}
                       onChange={(e) => setProductNameInput(e.target.value)}
                       placeholder="Nome do Produto"
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                     <input
                       type="text"
                       value={productPriceInput}
                       onChange={(e) => setProductPriceInput(e.target.value)}
                       placeholder="Preço (Ex: R$ 497)"
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                     <input
                       type="text"
                       value={productTargetInput}
                       onChange={(e) => setProductTargetInput(e.target.value)}
                       placeholder="Público-alvo (Ex: Empreendedores iniciantes)"
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                     <input
                       type="text"
                       value={productCtaInput}
                       onChange={(e) => setProductCtaInput(e.target.value)}
                       placeholder="CTA (Ex: Link na bio)"
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                     <Button type="button" size="sm" onClick={addProduct}>
                       <Plus className="w-4 h-4 mr-1" /> Adicionar Produto
@@ -909,11 +909,11 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                   </div>
                   <div className="space-y-2">
                     {products.map((product, idx) => (
-                      <div key={idx} className="p-3 bg-neutral-800 rounded-lg">
+                      <div key={idx} className="p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
                         <div className="flex items-start justify-between mb-1">
                           <div>
-                            <h4 className="font-semibold">{product.name}</h4>
-                            <p className="text-sm text-neutral-400">{product.price}</p>
+                            <h4 className="font-semibold text-neutral-900 dark:text-neutral-100">{product.name}</h4>
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400">{product.price}</p>
                           </div>
                           <button
                             type="button"
@@ -923,8 +923,8 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                             <Trash2 className="w-4 h-4" />
                           </button>
                         </div>
-                        <p className="text-xs text-neutral-400">Público: {product.target}</p>
-                        <p className="text-xs text-neutral-400">CTA: {product.cta}</p>
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">Público: {product.target}</p>
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">CTA: {product.cta}</p>
                       </div>
                     ))}
                   </div>
@@ -933,11 +933,11 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
             </div>
 
             {/* ===== 7. DNA ===== */}
-            <div className="border border-neutral-700 rounded-lg">
+            <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <button
                 type="button"
                 onClick={() => toggleSection('dna')}
-                className="w-full flex items-center justify-between p-4 hover:bg-neutral-800/50 transition-colors"
+                className="w-full flex items-center justify-between p-4 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 transition-colors"
               >
                 <h3 className="text-lg font-semibold">7. DNA</h3>
                 {expandedSections.dna ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
@@ -951,7 +951,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       onChange={(e) => setEnergy(e.target.value)}
                       placeholder="Ex: Alta energia, movimento constante, senso de urgência"
                       rows={2}
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -961,7 +961,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       onChange={(e) => setUniqueVoice(e.target.value)}
                       placeholder="Ex: Xinga, fala rápido, usa muitas metáforas de esportes"
                       rows={2}
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -971,7 +971,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                       onChange={(e) => setTransformation(e.target.value)}
                       placeholder="Ex: De 'travado sem saber o que postar' para 'máquina de conteúdo'"
                       rows={2}
-                      className="w-full px-3 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-primary-500"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg text-sm text-neutral-900 dark:text-neutral-100 focus:outline-none focus:border-primary-500"
                     />
                   </div>
                 </div>
@@ -979,11 +979,11 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
             </div>
 
             {/* ===== 8. DOCUMENTS ===== */}
-            <div className="border border-neutral-700 rounded-lg">
+            <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg">
               <button
                 type="button"
                 onClick={() => toggleSection('documents')}
-                className="w-full flex items-center justify-between p-4 hover:bg-neutral-800/50 transition-colors"
+                className="w-full flex items-center justify-between p-4 hover:bg-neutral-100 dark:hover:bg-neutral-800/50 transition-colors"
               >
                 <h3 className="text-lg font-semibold">8. Documentos</h3>
                 {expandedSections.documents ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
@@ -998,17 +998,17 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
               className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
                 isDragging
                   ? 'border-primary-500 bg-primary-500/10'
-                  : 'border-neutral-700'
+                  : 'border-neutral-300 dark:border-neutral-700'
               }`}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
             >
-              <Upload className="w-8 h-8 mx-auto mb-2 text-neutral-400" />
-              <p className="text-sm text-neutral-400 mb-1">
+              <Upload className="w-8 h-8 mx-auto mb-2 text-neutral-500 dark:text-neutral-400" />
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">
                 {isDragging ? 'Solte o arquivo aqui' : 'Arraste arquivos ou clique para escolher'}
               </p>
-              <p className="text-xs text-neutral-500 mb-3">
+              <p className="text-xs text-neutral-600 dark:text-neutral-500 mb-3">
                 Briefings, ebooks, materiais de referência
               </p>
               <input
@@ -1020,7 +1020,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                 className="hidden"
               />
               <label htmlFor="file-upload" className="inline-block">
-                <span className="inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-all cursor-pointer bg-neutral-800 text-neutral-50 border border-neutral-600 hover:bg-neutral-700 h-8 px-3 text-xs disabled:pointer-events-none disabled:opacity-50">
+                <span className="inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-all cursor-pointer bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-50 border border-neutral-300 dark:border-neutral-600 hover:bg-neutral-200 dark:hover:bg-neutral-700 h-8 px-3 text-xs disabled:pointer-events-none disabled:opacity-50">
                   {uploading ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -1034,7 +1034,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                   )}
                 </span>
               </label>
-              <p className="text-xs text-neutral-500 mt-2">
+              <p className="text-xs text-neutral-600 dark:text-neutral-500 mt-2">
                 Max 10MB • Texto será extraído automaticamente
               </p>
             </div>
@@ -1045,13 +1045,13 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
                 {documents.map((doc) => (
                   <div
                     key={doc.id}
-                    className="flex items-center justify-between p-3 bg-neutral-800 rounded-lg"
+                    className="flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg"
                   >
                     <div className="flex items-center gap-3 flex-1">
                       <FileText className="w-5 h-5 text-primary-500 flex-shrink-0" />
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium truncate">{doc.filename}</p>
-                        <p className="text-xs text-neutral-400">
+                        <p className="text-sm font-medium text-neutral-900 dark:text-neutral-100 truncate">{doc.filename}</p>
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
                           {(doc.size / 1024).toFixed(1)} KB • {doc.extracted_text_length || 0} caracteres extraídos
                         </p>
                       </div>
@@ -1074,7 +1074,7 @@ export function ProfileContextModal({ profileId, username, onClose, onSave }: Pr
             </div>
 
           {/* Actions */}
-          <div className="flex gap-3 pt-4 sticky bottom-0 bg-neutral-900 pb-6 -mb-6 border-t border-neutral-800 mt-6 pt-6">
+          <div className="flex gap-3 pt-4 sticky bottom-0 bg-white dark:bg-neutral-900 pb-6 -mb-6 border-t border-neutral-200 dark:border-neutral-800 mt-6 pt-6">
             <Button
               onClick={handleSave}
               disabled={loading}

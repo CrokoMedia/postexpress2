@@ -54,7 +54,7 @@ export function DeleteAuditModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="bg-neutral-900 border-neutral-700 max-w-md">
+      <DialogContent className="bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 max-w-md">
         {/* Header */}
         <DialogHeader className="flex-row items-start gap-4 space-y-0">
           <div className="shrink-0 h-12 w-12 rounded-full bg-error-500/10 flex items-center justify-center">
@@ -78,11 +78,11 @@ export function DeleteAuditModal({
             Os dados dos posts analisados serão mantidos, mas a auditoria não aparecerá mais no histórico.
           </p>
 
-          <div className="bg-neutral-800/50 border border-neutral-700/50 rounded-lg p-4 space-y-2">
-            <h4 className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+          <div className="bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-300 dark:border-neutral-700/50 rounded-lg p-4 space-y-2">
+            <h4 className="text-sm font-medium text-neutral-900 dark:text-neutral-300">
               O que será excluído:
             </h4>
-            <ul className="text-sm text-neutral-600 dark:text-neutral-400 space-y-1 list-disc list-inside">
+            <ul className="text-sm text-neutral-700 dark:text-neutral-400 space-y-1 list-disc list-inside">
               <li>Resultados e scores da auditoria</li>
               <li>Relatório e recomendações gerados</li>
               <li>Visibilidade no histórico do perfil</li>

@@ -208,7 +208,7 @@ Digite sua solicitação ou pergunta!`
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="max-w-4xl h-[85vh] flex flex-col p-0 gap-0">
         {/* Header */}
-        <DialogHeader className="px-6 py-4 border-b border-neutral-800 shrink-0">
+        <DialogHeader className="px-6 py-4 border-b border-neutral-200 dark:border-neutral-800 shrink-0">
           <div className="flex items-center justify-between">
             <div>
               <DialogTitle className="flex items-center gap-2">
@@ -221,13 +221,13 @@ Digite sua solicitação ou pergunta!`
             </div>
 
             {/* Toggle Carrossel / Reel */}
-            <div className="flex items-center gap-1 bg-neutral-800 rounded-lg p-1">
+            <div className="flex items-center gap-1 bg-neutral-100 dark:bg-neutral-800 rounded-lg p-1">
               <button
                 onClick={() => setContentMode('carousel')}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                   contentMode === 'carousel'
                     ? 'bg-primary-500 text-white shadow-sm'
-                    : 'text-neutral-400 hover:text-neutral-200'
+                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200'
                 }`}
               >
                 <LayoutGrid className="w-3.5 h-3.5" />
@@ -238,7 +238,7 @@ Digite sua solicitação ou pergunta!`
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                   contentMode === 'reel'
                     ? 'bg-primary-500 text-white shadow-sm'
-                    : 'text-neutral-400 hover:text-neutral-200'
+                    : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200'
                 }`}
               >
                 <Film className="w-3.5 h-3.5" />
@@ -268,7 +268,7 @@ Digite sua solicitação ou pergunta!`
                   className={`rounded-lg p-4 ${
                     message.role === 'user'
                       ? 'bg-primary-500 text-white'
-                      : 'bg-neutral-800 text-neutral-200'
+                      : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-200'
                   }`}
                 >
                   <div className="whitespace-pre-wrap break-words text-sm leading-relaxed">
@@ -280,7 +280,7 @@ Digite sua solicitação ou pergunta!`
                   <div className="self-start flex items-center gap-2">
                     <button
                       onClick={() => handleCopy(message.content, index)}
-                      className="flex items-center gap-1.5 text-xs text-neutral-500 hover:text-neutral-300 transition-colors px-1 py-0.5"
+                      className="flex items-center gap-1.5 text-xs text-neutral-600 dark:text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300 transition-colors px-1 py-0.5"
                       title="Copiar resposta"
                     >
                       {copiedIndex === index ? (
@@ -327,8 +327,8 @@ Digite sua solicitação ou pergunta!`
               </div>
 
               {message.role === 'user' && (
-                <div className="shrink-0 w-8 h-8 rounded-full bg-neutral-700 flex items-center justify-center">
-                  <User className="w-5 h-5 text-neutral-300" />
+                <div className="shrink-0 w-8 h-8 rounded-full bg-neutral-200 dark:bg-neutral-700 flex items-center justify-center">
+                  <User className="w-5 h-5 text-neutral-600 dark:text-neutral-300" />
                 </div>
               )}
             </div>
@@ -339,8 +339,8 @@ Digite sua solicitação ou pergunta!`
               <div className="shrink-0 w-8 h-8 rounded-full bg-primary-500/20 flex items-center justify-center">
                 <Bot className="w-5 h-5 text-primary-500" />
               </div>
-              <div className="bg-neutral-800 rounded-lg p-4">
-                <div className="flex items-center gap-2 text-neutral-400">
+              <div className="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-4">
+                <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
                   <Loader2 className="w-4 h-4 animate-spin" />
                   <span className="text-sm">Content Squad está digitando...</span>
                 </div>
@@ -352,7 +352,7 @@ Digite sua solicitação ou pergunta!`
         </div>
 
         {/* Input Area */}
-        <form onSubmit={handleSubmit} className="border-t border-neutral-800 p-4 shrink-0">
+        <form onSubmit={handleSubmit} className="border-t border-neutral-200 dark:border-neutral-800 p-4 shrink-0">
           <div className="flex gap-3 items-end">
             <div className="flex-1 relative">
               <textarea
@@ -364,9 +364,9 @@ Digite sua solicitação ou pergunta!`
                 maxLength={10000}
                 rows={3}
                 disabled={loading}
-                className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg px-3 py-2 text-neutral-900 dark:text-neutral-200 placeholder:text-neutral-500 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none disabled:opacity-50 disabled:cursor-not-allowed"
               />
-              <div className="absolute bottom-2 right-2 text-xs text-neutral-500 font-mono">
+              <div className="absolute bottom-2 right-2 text-xs text-neutral-600 dark:text-neutral-500 font-mono">
                 {input.length}/10000
               </div>
             </div>
@@ -393,7 +393,7 @@ Digite sua solicitação ou pergunta!`
           </div>
 
           {/* Info */}
-          <div className="mt-2 flex justify-between items-center text-xs text-neutral-500">
+          <div className="mt-2 flex justify-between items-center text-xs text-neutral-600 dark:text-neutral-500">
             <div className="flex items-center gap-2">
               {contentMode === 'reel' && (
                 <span className="inline-flex items-center gap-1 bg-primary-500/15 text-primary-400 px-2 py-0.5 rounded-full text-xs font-medium">

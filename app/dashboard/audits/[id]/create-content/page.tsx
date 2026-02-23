@@ -10,7 +10,6 @@ import { Skeleton } from '@/components/atoms/skeleton'
 import { Badge } from '@/components/atoms/badge'
 import { Sparkles, ArrowLeft, Download, Copy, Check, Image as ImageIcon, Loader2, CheckCircle, XCircle, Archive, FolderOpen, Pencil, RefreshCw, Save, X, Video, Repeat2, GalleryHorizontal, Trash2, Calendar } from 'lucide-react'
 import Link from 'next/link'
-import { PublishInstagramButton } from '@/components/molecules/publish-instagram-button'
 import { ScheduleContentModal } from '@/components/molecules/schedule-content-modal'
 import { ScheduledContentList } from '@/components/molecules/scheduled-content-list'
 import { SafeScheduledListWrapper } from '@/components/molecules/safe-scheduled-list-wrapper'
@@ -1190,43 +1189,19 @@ CTA: ${carousel.cta}
               )}
             </div>
             <div className="flex gap-2">
-              <Button variant="secondary" onClick={handleDownloadJSON}>
-                <Download className="w-4 h-4 mr-2" />
-                Download JSON
-              </Button>
               {approvedCarouselsCount > 0 && (
-                <>
-                  <Button
-                    variant="primary"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      console.log('🔄 Navegando para configurar slides...')
-                      router.push(`/dashboard/audits/${id}/create-content/slides`)
-                    }}
-                    className="flex items-center gap-2"
-                  >
-                    <Sparkles className="w-4 h-4" />
-                    Configurar e Gerar Slides ({approvedCarouselsCount})
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    onClick={handleGenerateReel}
-                    disabled={generatingReel}
-                    className="flex items-center gap-2 border-warning-500/40 text-warning-700 hover:bg-warning-500/10"
-                  >
-                    {generatingReel ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Gerando Reel... (2-3 min)
-                      </>
-                    ) : (
-                      <>
-                        <Video className="w-4 h-4" />
-                        Gerar Reel (MP4)
-                      </>
-                    )}
-                  </Button>
-                </>
+                <Button
+                  variant="primary"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    console.log('🔄 Navegando para configurar slides...')
+                    router.push(`/dashboard/audits/${id}/create-content/slides`)
+                  }}
+                  className="flex items-center gap-2"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  Configurar e Gerar Slides ({approvedCarouselsCount})
+                </Button>
               )}
               <Button onClick={handleGenerateContent}>
                 <Sparkles className="w-4 h-4 mr-2" />
@@ -1301,31 +1276,6 @@ CTA: ${carousel.cta}
             </Card>
           )}
 
-          {/* Call to Action para Configurar Slides */}
-          {approvedCarouselsCount > 0 && (
-            <Card className="bg-gradient-to-r from-primary-50 via-primary-500/5 to-primary-500/10 border-primary-200">
-              <CardContent className="p-6 text-center">
-                <h3 className="text-lg font-semibold mb-2">Próximo Passo: Configurar Imagens dos Slides</h3>
-                <p className="text-neutral-600 text-sm mb-4">
-                  Você tem {approvedCarouselsCount} carrossel{approvedCarouselsCount !== 1 ? 'éis' : ''} aprovado{approvedCarouselsCount !== 1 ? 's' : ''}.
-                  Configure as imagens de cada slide e gere os visuais finais.
-                </p>
-                <Button
-                  variant="primary"
-                  size="lg"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    console.log('🔄 Navegando para configurar slides...')
-                    router.push(`/dashboard/audits/${id}/create-content/slides`)
-                  }}
-                  className="flex items-center gap-2 mx-auto"
-                >
-                  <Sparkles className="w-5 h-5" />
-                  Ir para Configuração de Slides
-                </Button>
-              </CardContent>
-            </Card>
-          )}
 
           {/* Estratégia Geral */}
           {content.estrategia_geral && (
@@ -1397,7 +1347,7 @@ CTA: ${carousel.cta}
                 carousel.approved === true
                   ? 'border-success-2000 bg-success-500/5'
                   : carousel.approved === false
-                  ? 'border-error-200 bg-error-500/5 opacity-60'
+                  ? 'border-error-200 bg-error-500/5'
                   : 'border-primary-200'
               }`}>
                 <CardHeader>
@@ -1411,8 +1361,8 @@ CTA: ${carousel.cta}
                             disabled={approvingCarousel === index || carousel.approved === true}
                             className={`flex items-center gap-2 ${
                               carousel.approved === true
-                                ? 'bg-success-500 hover:bg-success-600'
-                                : ''
+                                ? 'bg-success-600 hover:bg-success-700 text-white border-success-600'
+                                : 'bg-success-50 hover:bg-success-100 text-success-700 border-success-300 font-semibold'
                             }`}
                           >
                             {approvingCarousel === index ? (
@@ -1431,7 +1381,7 @@ CTA: ${carousel.cta}
                                 console.log('🔄 Navegando para configurar slides...')
                                 router.push(`/dashboard/audits/${id}/create-content/slides`)
                               }}
-                              className="flex items-center gap-2 bg-primary-600 hover:bg-primary-700 animate-pulse"
+                              className="flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-bold shadow-lg shadow-primary-500/50"
                             >
                               <Sparkles className="w-4 h-4" />
                               Gerar Slides
@@ -1442,7 +1392,11 @@ CTA: ${carousel.cta}
                             size="sm"
                             onClick={() => handleApproveCarousel(index, false)}
                             disabled={approvingCarousel === index || carousel.approved === false}
-                            className="flex items-center gap-2"
+                            className={`flex items-center gap-2 ${
+                              carousel.approved === false
+                                ? 'bg-error-600 hover:bg-error-700 text-white border-error-600'
+                                : 'bg-error-50 hover:bg-error-100 text-error-700 border-error-300 font-semibold'
+                            }`}
                           >
                             {approvingCarousel === index ? (
                               <Loader2 className="w-4 h-4 animate-spin" />
@@ -1471,7 +1425,7 @@ CTA: ${carousel.cta}
                             variant="secondary"
                             size="sm"
                             onClick={() => handleOpenEdit(index, carousel)}
-                            className="flex items-center gap-2"
+                            className="flex items-center gap-2 bg-primary-50 hover:bg-primary-100 text-primary-700 border-primary-300 font-semibold"
                           >
                             <Pencil className="w-4 h-4" />
                             Editar
@@ -1492,18 +1446,6 @@ CTA: ${carousel.cta}
                             </Button>
                           )}
                         </div>
-
-                        {/* Publicar no Instagram - só aparece se aprovado */}
-                        {carousel.approved === true && (
-                          <div className="mt-3 pt-3 border-t border-neutral-200">
-                            <PublishInstagramButton
-                              auditId={id}
-                              carouselIndex={index}
-                              carouselTitle={carousel.titulo}
-                              hasSlides={slidesV2?.[index]?.length > 0 || slides?.[index]?.length > 0}
-                            />
-                          </div>
-                        )}
 
                     {/* Título e Badges - AGORA ABAIXO DOS BOTÕES */}
                     <div>
@@ -1735,7 +1677,7 @@ CTA: ${carousel.cta}
                         const isSelected = selectedSlides.get(index)?.has(slideIndex) ?? false
                         return (
                           <Card key={slide.numero} className={`bg-white/50 dark:bg-neutral-800/50 transition-all ${
-                            isSelected ? 'ring-2 ring-primary-500' : 'opacity-60'
+                            isSelected ? 'ring-2 ring-primary-500 border-primary-300' : 'border-neutral-200'
                           }`}>
                             <CardContent className="p-4">
                               <div className="flex items-start gap-4">

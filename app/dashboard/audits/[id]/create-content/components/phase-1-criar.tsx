@@ -15,15 +15,22 @@ interface Phase1CriarProps {
 }
 
 export function Phase1Criar({ auditId }: Phase1CriarProps) {
+  // View é UI local (qual tela mostrar)
   const [view, setView] = useState<'selector' | 'template-gallery' | 'advanced-form'>('selector')
-  const [isLoading, setIsLoading] = useState(false)
 
-  const { setQuickStartMode, setCarousels, nextPhase, setTemplate } = useContentCreation()
+  const {
+    generating,
+    setGenerating,
+    setQuickStartMode,
+    setCarousels,
+    nextPhase,
+    setTemplate,
+  } = useContentCreation()
 
   // Handler: Smart Generation (One-Click)
   const handleSmartGeneration = async () => {
     setQuickStartMode('smart')
-    setIsLoading(true)
+    setGenerating(true)
 
     try {
       console.log('🚀 [Phase1] Iniciando Smart Generation para audit:', auditId)
@@ -57,7 +64,7 @@ export function Phase1Criar({ auditId }: Phase1CriarProps) {
         description: error.message || 'Tente novamente ou escolha outro modo',
       })
     } finally {
-      setIsLoading(false)
+      setGenerating(false)
     }
   }
 
@@ -78,7 +85,7 @@ export function Phase1Criar({ auditId }: Phase1CriarProps) {
   }
 
   const handleGenerateWithTemplate = async (templateId: TemplateId) => {
-    setIsLoading(true)
+    setGenerating(true)
 
     try {
       // Gerar conteúdo usando a API smart
@@ -100,14 +107,14 @@ export function Phase1Criar({ auditId }: Phase1CriarProps) {
         description: error.message,
       })
     } finally {
-      setIsLoading(false)
+      setGenerating(false)
     }
   }
 
   // Handler: Advanced Mode
   const handleAdvancedSubmit = async (config: any) => {
     setQuickStartMode('advanced')
-    setIsLoading(true)
+    setGenerating(true)
 
     try {
       console.log('⚙️ [Phase1] Modo Avançado - Config:', config)
@@ -131,12 +138,12 @@ export function Phase1Criar({ auditId }: Phase1CriarProps) {
         description: error.message,
       })
     } finally {
-      setIsLoading(false)
+      setGenerating(false)
     }
   }
 
   // Renderizar loading state
-  if (isLoading) {
+  if (generating) {
     return (
       <Card className="p-12">
         <CardContent>

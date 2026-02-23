@@ -391,3 +391,98 @@ export interface ProfileContext {
   created_at: string
   updated_at: string
 }
+
+// ============================================
+// BRAND KITS - Identidade Visual
+// ============================================
+
+export interface ColorPaletteItem {
+  name: string
+  hex: string
+  usage: string
+}
+
+export interface TypographyFont {
+  family: string
+  weight: string
+  size: string
+}
+
+export interface Typography {
+  heading: TypographyFont
+  body: TypographyFont
+  accent: TypographyFont
+}
+
+export interface BrandLinks {
+  website?: string | null
+  instagram?: string | null
+  linktree?: string | null
+  youtube?: string | null
+  tiktok?: string | null
+  linkedin?: string | null
+}
+
+export interface ToneOfVoice {
+  characteristics?: string[]
+  examples?: string[]
+  avoid?: string[]
+}
+
+export interface BrandKit {
+  id: string
+  profile_id: string
+  brand_name: string
+  is_default: boolean
+
+  // Cores (formato HEX: #RRGGBB)
+  primary_color: string | null
+  secondary_color: string | null
+  accent_color: string | null
+  background_color: string | null
+  text_color: string | null
+
+  // Logo (Cloudinary)
+  logo_url: string | null
+  logo_public_id: string | null
+
+  // Tipografia
+  primary_font: string | null
+  secondary_font: string | null
+
+  // Tom de voz (JSONB)
+  tone_of_voice: ToneOfVoice | null
+
+  // Soft delete
+  deleted_at: string | null
+
+  // Timestamps
+  created_at: string
+  updated_at: string
+}
+
+export interface CreateBrandKitPayload {
+  profile_id: string
+  brand_name: string
+  is_default?: boolean
+
+  // Cores
+  primary_color?: string | null
+  secondary_color?: string | null
+  accent_color?: string | null
+  background_color?: string | null
+  text_color?: string | null
+
+  // Logo
+  logo_url?: string | null
+  logo_public_id?: string | null
+
+  // Tipografia
+  primary_font?: string | null
+  secondary_font?: string | null
+
+  // Tom de voz
+  tone_of_voice?: ToneOfVoice | null
+}
+
+export interface UpdateBrandKitPayload extends Partial<CreateBrandKitPayload> {}

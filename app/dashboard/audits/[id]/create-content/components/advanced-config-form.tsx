@@ -171,6 +171,33 @@ export function AdvancedConfigForm({ auditId, onSubmit, onBack }: AdvancedConfig
           </CardContent>
         </Card>
 
+        {/* Tema Personalizado (Opcional) */}
+        <Card>
+          <CardHeader>
+            <CardTitle>4. Tema Personalizado (Opcional)</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <p className="text-sm text-muted-foreground">
+                Descreva um tema específico para o conteúdo. Exemplo: "Startups de tecnologia", "Fitness e bem-estar", "Marketing digital"
+              </p>
+              <textarea
+                value={config.customTheme || ''}
+                onChange={(e) => setConfig({ ...config, customTheme: e.target.value })}
+                placeholder="Digite um tema personalizado (opcional)"
+                rows={3}
+                className="w-full px-4 py-3 rounded-lg border-2 border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
+              />
+              {config.customTheme && (
+                <div className="flex items-center gap-2 text-sm text-success-600 dark:text-success-400">
+                  <Sparkles className="w-4 h-4" />
+                  <span>Tema personalizado será usado na geração</span>
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Resumo da Configuração */}
         <Card className="bg-info-50 dark:bg-info-900/20 border-info-200 dark:border-info-800">
           <CardContent className="pt-6">
@@ -195,6 +222,11 @@ export function AdvancedConfigForm({ auditId, onSubmit, onBack }: AdvancedConfig
                   <li>
                     <strong>Tema:</strong> {themes.find((t) => t.id === config.theme)?.name}
                   </li>
+                  {config.customTheme && (
+                    <li>
+                      <strong>Tema Personalizado:</strong> {config.customTheme}
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>

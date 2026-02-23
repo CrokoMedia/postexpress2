@@ -103,7 +103,7 @@ Se profile_context estiver presente no JSON, você DEVE:
 3. **PRIORIDADE**: profile_context > auditoria. Se houver conflito entre o que a auditoria sugere e o que o contexto define, SIGA O CONTEXTO.
 
 4. **🚫 TERMOS A EVITAR - REGRA CRÍTICA**:
-   - Se `profile_context.content_style.language.termsToAvoid` existir, você NUNCA DEVE usar essas palavras no conteúdo
+   - Se profile_context.content_style.language.termsToAvoid existir, você NUNCA DEVE usar essas palavras no conteúdo
    - Esses são jargões técnicos, termos em inglês ou palavras complexas que o público-alvo NÃO entende
    - Sempre substitua por sinônimos simples em português
    - Exemplos de substituição:

@@ -18,6 +18,7 @@ const adminNavigation = [
   { name: 'Comparações', href: '/dashboard/comparisons', icon: GitCompare },
   { name: 'Twitter Experts', href: '/dashboard/twitter/experts', icon: Twitter },
   { name: 'Templates Pro', href: '/dashboard/templatesPro', icon: Palette },
+  { name: 'Brand Kits', href: '/dashboard/brand-kits', icon: Palette },
   { name: 'Reel Production', href: '/dashboard/reels', icon: Video },
   { name: 'Configurações', href: '/dashboard/settings', icon: Settings },
   { name: 'Gerenciar Usuários', href: '/dashboard/admin/users', icon: Users },
