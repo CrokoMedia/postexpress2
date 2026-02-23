@@ -17,21 +17,28 @@ export default async function Layout({ children }: { children: React.ReactNode }
     )
   }
 
-  const supabase = await createServerSupabase()
-  const { data: { user } } = await supabase.auth.getUser()
+  // TEMPORÁRIO: Autenticação desabilitada para testes
+  // const supabase = await createServerSupabase()
+  // const { data: { user } } = await supabase.auth.getUser()
 
-  if (!user) {
-    redirect('/login')
-  }
+  // if (!user) {
+  //   redirect('/login')
+  // }
 
-  const roleData = await getUserRole(user.id)
+  // const roleData = await getUserRole(user.id)
 
-  if (!roleData) {
-    redirect('/login')
+  // if (!roleData) {
+  //   redirect('/login')
+  // }
+
+  // Mock de dados para testes (sem autenticação)
+  const mockRoleData = {
+    role: 'admin' as const,
+    profile_ids: []
   }
 
   return (
-    <DashboardProviders role={roleData.role} profileIds={roleData.profile_ids}>
+    <DashboardProviders role={mockRoleData.role} profileIds={mockRoleData.profile_ids}>
       {children}
     </DashboardProviders>
   )
