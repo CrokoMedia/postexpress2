@@ -396,6 +396,17 @@ export default function ProfilePage() {
                 </Button>
               )}
 
+              {/* Brand Kit Button */}
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => router.push(`/dashboard/profiles/${id}/brand-kit`)}
+                className="w-full"
+              >
+                <Palette className="h-4 w-4 mr-2" />
+                Brand Kit
+              </Button>
+
               {/* Edit Profile Button */}
               <Button
                 variant="secondary"
