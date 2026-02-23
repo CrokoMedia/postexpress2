@@ -5,7 +5,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { removeRule } from '@/lib/twitter-rules';
-import { createClient } from '@/lib/supabase';
+import { getServerSupabase } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 
     // Opção 2: Remover por expertId (busca regra ativa)
     if (expertId) {
-      const supabase = createClient();
+      const supabase = getServerSupabase();
       const { data: rule, error } = await supabase
         .from('twitter_stream_rules')
         .select('id')

@@ -111,22 +111,22 @@ export default function ContentCalendar() {
 
   if (error) {
     return (
-      <div className="bg-neutral-800 rounded-xl shadow-xl border border-neutral-700 p-8 text-center">
-        <p className="text-red-400">Erro ao carregar agendamentos: {error.message}</p>
+      <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-xl border border-neutral-200 dark:border-neutral-700 p-8 text-center">
+        <p className="text-error-600 dark:text-error-400">Erro ao carregar agendamentos: {error.message}</p>
       </div>
     )
   }
 
   if (isLoading) {
     return (
-      <div className="bg-neutral-800 rounded-xl shadow-xl border border-neutral-700 p-8">
+      <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-xl border border-neutral-200 dark:border-neutral-700 p-8">
         <Skeleton className="h-96 w-full" />
       </div>
     )
   }
 
   return (
-    <div className="bg-neutral-800 rounded-xl shadow-2xl border border-neutral-700 overflow-hidden">
+    <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-2xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
       {/* Header com navegação e filtros */}
       <CalendarHeader
         currentDate={currentDate}
@@ -139,13 +139,13 @@ export default function ContentCalendar() {
       />
 
       {/* Grid do calendário */}
-      <div className="p-6 bg-neutral-850">
+      <div className="p-6 bg-neutral-50 dark:bg-neutral-900">
         {/* Dias da semana */}
         <div className="grid grid-cols-7 gap-3 mb-3">
           {weekDays.map((day) => (
             <div
               key={day}
-              className="text-center text-sm font-bold text-neutral-400 py-2 uppercase tracking-wide"
+              className="text-center text-sm font-bold text-neutral-600 dark:text-neutral-400 py-2 uppercase tracking-wide"
             >
               {day}
             </div>
@@ -167,28 +167,28 @@ export default function ContentCalendar() {
       </div>
 
       {/* Legenda de status */}
-      <div className="border-t border-neutral-700 bg-neutral-800 px-6 py-4">
+      <div className="border-t border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 px-6 py-4">
         <div className="flex flex-wrap items-center gap-4 text-sm">
-          <span className="font-semibold text-neutral-300">Legenda:</span>
+          <span className="font-semibold text-neutral-700 dark:text-neutral-300">Legenda:</span>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-yellow-500 shadow-lg shadow-yellow-500/30"></div>
-            <span className="text-neutral-400">Pendente</span>
+            <span className="text-neutral-600 dark:text-neutral-400">Pendente</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-blue-500 shadow-lg shadow-blue-500/30"></div>
-            <span className="text-neutral-400">Processando</span>
+            <span className="text-neutral-600 dark:text-neutral-400">Processando</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-green-500 shadow-lg shadow-green-500/30"></div>
-            <span className="text-neutral-400">Concluído</span>
+            <span className="text-neutral-600 dark:text-neutral-400">Concluído</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-red-500 shadow-lg shadow-red-500/30"></div>
-            <span className="text-neutral-400">Falhou</span>
+            <span className="text-neutral-600 dark:text-neutral-400">Falhou</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-neutral-500"></div>
-            <span className="text-neutral-400">Cancelado</span>
+            <span className="text-neutral-600 dark:text-neutral-400">Cancelado</span>
           </div>
         </div>
       </div>

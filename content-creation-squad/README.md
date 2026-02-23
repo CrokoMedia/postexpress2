@@ -2,41 +2,39 @@
 
 > Squad especializado em criação de carrosséis de alta conversão para Instagram e LinkedIn
 
-## 🧠 As 6 Mentes Milionárias
+## 🧠 Os 6 Frameworks Científicos
 
-Este squad combina o conhecimento de 6 especialistas mundiais:
+Este squad combina 6 frameworks comprovados de criação de conteúdo:
 
-### 1. **Eugene Schwartz** (Líder) - Copywriting Científico
-- **Papel**: Estruturar copy que converte
-- **Expertise**: Breakthrough Advertising, awareness stages, emotional triggers
-- **Quando ativar**: Escrever hooks, estruturar mensagens, otimizar copy
+### 1. **Framework de Copy Científico** (Principal)
+- **Papel**: Estruturar copy que converte baseado em ciência comportamental
+- **Expertise**: Awareness stages, emotional triggers, persuasão científica
+- **Quando usar**: Escrever hooks, estruturar mensagens, otimizar copy
 
-### 2. **Seth Godin** - Branding & Narrativas
-- **Papel**: Criar conteúdo remarkable e viral
-- **Expertise**: Marketing de permissão, tribos, storytelling
-- **Quando ativar**: Estratégia de conteúdo, posicionamento, viralização
+### 2. **Framework de Posicionamento & Viralidade**
+- **Papel**: Criar conteúdo memorable e compartilhável
+- **Expertise**: Marketing de permissão, tribos, storytelling estratégico
+- **Quando usar**: Estratégia de conteúdo, posicionamento único, viralização
 
-### 3. **Alex Hormozi** - Ofertas Irresistíveis
-- **Papel**: Otimizar carrosséis de vendas
-- **Expertise**: $100M Offers, value stack, pricing
-- **Quando ativar**: Carrosséis de venda, lançamentos, promoções
+### 3. **Framework de Ofertas & Value Stack**
+- **Papel**: Otimizar carrosséis de vendas e conversão
+- **Expertise**: Value equation, pricing strategy, construção de ofertas
+- **Quando usar**: Carrosséis de venda, lançamentos, promoções
 
-### 4. **Thiago Finch** - Marketing Digital BR
+### 4. **Framework de Adaptação Cultural BR**
 - **Papel**: Localização para mercado brasileiro
-- **Expertise**: Funis, gatilhos mentais, linguagem coloquial BR
-- **Quando ativar**: Adaptar para audiência brasileira
+- **Expertise**: Funis brasileiros, gatilhos culturais, linguagem coloquial BR
+- **Quando usar**: Adaptar para audiência brasileira
 
-### 5. **Adriano De Marqui** - Design Visual & Branding
-- **Papel**: Diretor de design visual e identidade de marca
-- **Expertise**: Design gráfico para redes sociais, branding, paletas brasileiras
-- **Quando ativar**: Criar design de carrosséis, definir identidade visual
-- **Fidelidade**: 96% | **Tier**: 4
+### 5. **Framework de Design & Branding**
+- **Papel**: Direção visual e identidade de marca
+- **Expertise**: Design gráfico para redes sociais, branding, paletas de cores
+- **Quando usar**: Criar design de carrosséis, definir identidade visual
 
-### 6. **Gary Vaynerchuk** (NOVO) - Atenção & Autenticidade
-- **Papel**: Estratégia de atenção e conteúdo autêntico
-- **Expertise**: Day trading attention, document don't create, pirâmide invertida de conteúdo
-- **Quando ativar**: Estratégia de distribuição, volume de conteúdo, autenticidade
-- **Frameworks**: Arbitragem de atenção, Jab Jab Jab Right Hook, Macro patience/Micro speed
+### 6. **Framework de Atenção & Autenticidade**
+- **Papel**: Estratégia de distribuição e conteúdo autêntico
+- **Expertise**: Arbitragem de atenção, document don't create, volume estratégico
+- **Quando usar**: Estratégia de distribuição, volume de conteúdo, autenticidade
 
 ---
 
@@ -54,9 +52,9 @@ Workflow guiado completo (10-15 min)
 ```
 Aplica estrutura pronta
 
-### Opção 3: Consultar Mente Específica
+### Opção 3: Aplicar Framework Específico
 ```bash
-@emulator eugene_schwartz "Como escrever hook para [seu tema]?"
+@content-lead *apply-framework copy "Como escrever hook para [seu tema]?"
 ```
 
 ---
@@ -69,11 +67,11 @@ content-creation-squad/
 ├── README.md                      # Este arquivo
 │
 ├── agents/                        # Agentes especializados
-│   ├── content-lead.md           # 🎯 Orquestrador (Eugene Schwartz)
+│   ├── content-lead.md           # 🎯 Orquestrador principal
 │   ├── carousel-creator.md       # 🎨 Criador de carrosséis
-│   ├── copy-optimizer.md         # ✍️ Otimizador de copy
+│   ├── copy-optimizer.md         # ✍️ Otimizador de copy científico
 │   ├── visual-planner.md         # 📐 Planejador visual técnico
-│   └── design-lead.md            # 🎨 Design & Branding (Adriano De Marqui)
+│   └── design-lead.md            # 🎨 Design & Branding visual
 │
 ├── tasks/                         # Tarefas executáveis
 │   ├── create-carousel.md        # Criar carrossel completo

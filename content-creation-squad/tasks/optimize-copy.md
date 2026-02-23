@@ -58,7 +58,7 @@ Checklist de problemas comuns:
 ```
 
 ### Passo 2: Identificar Problemas Específicos
-**Ativa**: eugene_schwartz
+**Framework**: Análise de Copy Científica
 
 ```
 Prompt:
@@ -81,24 +81,28 @@ Identifique:
 5. Diagnóstico final"
 ```
 
-### Passo 3: Consultar Mentes Apropriadas
-**Ação**: Selecionar mente baseado no objetivo
+### Passo 3: Aplicar Framework Apropriado
+**Ação**: Selecionar framework baseado no objetivo
 
 **Se objetivo = Conversão/Vendas**:
-- Ativa: alex_hormozi
+- Framework: Value Stack & Ofertas
 - Foco: Value stack, urgência, garantia, price anchoring
 
 **Se objetivo = Engagement/Viral**:
-- Ativa: seth_godin
-- Foco: Remarkable, shareability, storytelling
+- Framework: Posicionamento & Viralidade
+- Foco: Memorable, shareability, storytelling
 
 **Se objetivo = Saves/Educacional**:
-- Ativa: eugene_schwartz
+- Framework: Copy Científico
 - Foco: Especificidade, acionabilidade, estrutura clara
 
 **Se audiência brasileira**:
-- Ativa também: thiago_finch
+- Framework adicional: Adaptação Cultural
 - Foco: Localização, referências culturais
+
+**Se objetivo = Volume Orgânico/Autenticidade**:
+- Framework: Conteúdo Orgânico
+- Foco: Document don't create, autenticidade, arbitragem de atenção
 
 ### Passo 4: Gerar Versões Otimizadas
 **Ação**: Criar versão(ões) melhorada(s)
@@ -204,7 +208,7 @@ Gere:
 ### 1. Hook (Slide 1)
 **ANTES**: "Dicas para vender mais"
 **DEPOIS**: "7 erros que custaram R$ 300k (e como evitá-los)"
-**Princípio**: Especificidade + Stakes altos (Eugene Schwartz)
+**Princípio**: Especificidade + Stakes altos (copywriting científico)
 **Impacto esperado**: +80% scroll stop rate
 
 ### 2. Especificidade (Slides 2-8)
@@ -265,7 +269,7 @@ Baseado em otimizações similares:
 
 ## RECURSOS UTILIZADOS
 
-- Princípios: Eugene Schwartz (Breakthrough Advertising)
+- Princípios: Copywriting científico e psicologia comportamental
 - Hook Templates: data/hooks-database.json
 - Fórmulas: data/carousel-formulas.json
 - Benchmarks: data/performance-benchmarks.json

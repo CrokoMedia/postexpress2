@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { Home, Plus, BarChart3, GitCompare, Settings, ListChecks, Users, LogOut, Layers, Archive, Factory, Twitter, Palette, Video, Calendar } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -50,9 +51,16 @@ export function Sidebar({ role, profileIds }: SidebarProps) {
     <aside className="fixed left-0 top-0 z-40 h-screen w-64 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 flex flex-col shadow-sm transition-colors duration-300">
       {/* Logo */}
       <div className="flex h-16 items-center border-b border-neutral-200 dark:border-neutral-800 px-6">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg shadow-primary-500/20">
-            <span className="text-white font-bold text-sm">CL</span>
+        <Link href="/dashboard" className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg shadow-primary-500/20 p-1.5">
+            <Image
+              src="/croko-icon.png"
+              alt="Croko Lab"
+              width={32}
+              height={32}
+              className="object-contain"
+              priority
+            />
           </div>
           <span className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">Croko Lab</span>
         </Link>

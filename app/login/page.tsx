@@ -3,6 +3,7 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { createClientSupabase } from '@/lib/supabase'
 
 function LoginForm() {
@@ -74,8 +75,15 @@ function LoginForm() {
   return (
     <div className="w-full max-w-sm px-4">
       <div className="flex flex-col items-center mb-8">
-        <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg shadow-primary-500/20 mb-4">
-          <span className="text-white font-bold text-lg">PE</span>
+        <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-xl shadow-primary-500/30 mb-4 p-3">
+          <Image
+            src="/croko-icon.png"
+            alt="Croko Lab"
+            width={64}
+            height={64}
+            className="object-contain"
+            priority
+          />
         </div>
         <h1 className="text-2xl font-bold text-neutral-900">Croko Lab</h1>
         <p className="text-neutral-600 text-sm mt-1">Faça login para continuar</p>

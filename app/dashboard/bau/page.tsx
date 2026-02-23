@@ -114,7 +114,7 @@ export default function BauPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-neutral-950 text-neutral-100 p-6">
+      <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 p-6">
         <PageHeader
           title="Baú de Conteúdos"
           description="Todos os conteúdos gerados e aprovados"
@@ -130,7 +130,7 @@ export default function BauPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-neutral-950 text-neutral-100 p-6">
+      <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 p-6">
         <PageHeader
           title="Baú de Conteúdos"
           description="Todos os conteúdos gerados e aprovados"
@@ -145,7 +145,7 @@ export default function BauPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 p-6">
+    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 p-6">
       <PageHeader
         title="Baú de Conteúdos"
         description={`${contents.length} conteúdo${contents.length !== 1 ? 's' : ''} gerado${contents.length !== 1 ? 's' : ''}`}
@@ -155,7 +155,7 @@ export default function BauPage() {
         <Card className="mt-6">
           <CardContent className="p-12 text-center">
             <Archive className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-            <p className="text-neutral-400 text-lg mb-2">Nenhum conteúdo encontrado</p>
+            <p className="text-neutral-600 dark:text-neutral-400 text-lg mb-2">Nenhum conteúdo encontrado</p>
             <p className="text-muted-foreground text-sm">Os conteúdos gerados aparecerão aqui</p>
           </CardContent>
         </Card>
@@ -167,7 +167,7 @@ export default function BauPage() {
             const hasVisualSlides = hasSlides(item)
 
             return (
-              <Card key={item.id} className="border-neutral-800 hover:border-neutral-700 transition-colors">
+              <Card key={item.id} className="border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
                 <CardHeader>
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
@@ -253,7 +253,7 @@ export default function BauPage() {
                               ? 'border-success-500/50 bg-success-500/5'
                               : carousel.approved === false
                               ? 'border-error-500/30 bg-error-500/5'
-                              : 'border-neutral-800 bg-neutral-900/50'
+                              : 'border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-900/50'
                           }`}
                         >
                           <div className="flex items-start justify-between mb-2">

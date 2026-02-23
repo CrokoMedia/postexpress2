@@ -119,7 +119,7 @@
   - "Perguntas que seu público faz" (benefício tangível)
   - "Texto dos slides dos concorrentes" (segredo revelado)
   - "Nunca mais fique sem ideia" (alívio de dor)
-  - "Baseado em Hormozi" (autoridade emprestada)
+  - "Baseado em ciência comportamental" (autoridade científica)
 
 - **Hooks que Funcionam (Hipóteses testáveis):**
   - "Analisamos 1.000 carrosséis do seu nicho. O padrão que descobrimos vai te chocar."
@@ -144,8 +144,8 @@
    - Categorizamos: perguntas, dúvidas, elogios, experiências
    - Você tem fonte INFINITA de caixinhas de perguntas
 
-3. **5 Frameworks de Autoridades Mundiais**
-   - Analisamos com método de Hormozi (ofertas), Schwartz (copy), Kahneman (comportamento)
+3. **5 Frameworks Científicos Comprovados**
+   - Analisamos com método científico: ofertas, copy, comportamento, métricas, anomalias
    - Não é "opinião de consultor". É ciência aplicada.
    - 20 páginas de insights acionáveis (não métricas vazias)
 

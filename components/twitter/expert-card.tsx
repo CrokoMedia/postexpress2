@@ -6,7 +6,6 @@ import { Badge } from '@/components/atoms/badge';
 import { Button } from '@/components/atoms/button';
 import { Switch } from '@/components/atoms/switch';
 import { EditThemesModal } from './edit-themes-modal';
-import { createClient } from '@/lib/supabase';
 
 interface ExpertCardProps {
   expert: {
@@ -25,22 +24,28 @@ export function ExpertCard({ expert, onUpdate }: ExpertCardProps) {
   const [showEditModal, setShowEditModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const supabase = createClient();
-
   async function handleToggleActive() {
     setLoading(true);
 
     try {
-      // 1. Atualizar no Supabase
-      const { error } = await supabase
-        .from('twitter_experts')
-        .update({ is_active: !isActive })
-        .eq('id', expert.id);
+      const newIsActive = !isActive;
 
-      if (error) throw error;
+      // Atualizar via API (usa service_role - bypass RLS)
+      const updateResponse = await fetch(`/api/twitter/experts/${expert.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          is_active: newIsActive
+        })
+      });
 
-      // 2. Sincronizar com Twitter API
-      if (!isActive) {
+      if (!updateResponse.ok) {
+        const data = await updateResponse.json();
+        throw new Error(data.error || data.details || 'Falha ao atualizar expert');
+      }
+
+      // Sincronizar com Twitter API
+      if (newIsActive) {
         // Ativando - criar regra
         await fetch('/api/twitter/rules/add', {
           method: 'POST',
@@ -59,7 +64,7 @@ export function ExpertCard({ expert, onUpdate }: ExpertCardProps) {
         });
       }
 
-      setIsActive(!isActive);
+      setIsActive(newIsActive);
       onUpdate();
 
     } catch (error) {

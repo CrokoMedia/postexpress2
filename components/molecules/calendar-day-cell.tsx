@@ -44,16 +44,16 @@ export default function CalendarDayCell({
       <div
         className={`min-h-[110px] border rounded-xl p-3 transition-all duration-200 ${
           isCurrentMonth
-            ? 'bg-neutral-750 border-neutral-600 hover:border-primary-500 hover:shadow-lg hover:shadow-primary-500/10'
-            : 'bg-neutral-800/50 border-neutral-700'
-        } ${isToday ? 'ring-2 ring-primary-500 ring-offset-2 ring-offset-neutral-850 shadow-xl shadow-primary-500/20' : ''}`}
+            ? 'bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-600 hover:border-primary-500 hover:shadow-lg hover:shadow-primary-500/10'
+            : 'bg-neutral-100 dark:bg-neutral-800/50 border-neutral-200 dark:border-neutral-700'
+        } ${isToday ? 'ring-2 ring-primary-500 ring-offset-2 ring-offset-neutral-50 dark:ring-offset-neutral-900 shadow-xl shadow-primary-500/20' : ''}`}
       >
         {/* Número do dia */}
         <div className="flex items-center justify-between mb-2">
           <div
             className={`text-sm font-bold ${
-              isCurrentMonth ? 'text-neutral-900 dark:text-neutral-100' : 'text-neutral-500'
-            } ${isToday ? 'text-primary-400' : ''}`}
+              isCurrentMonth ? 'text-neutral-900 dark:text-neutral-100' : 'text-neutral-500 dark:text-neutral-600'
+            } ${isToday ? 'text-primary-600 dark:text-primary-400' : ''}`}
           >
             {dayNumber}
           </div>

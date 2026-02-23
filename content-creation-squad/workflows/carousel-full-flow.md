@@ -1,21 +1,21 @@
 # Workflow: Criação Completa de Carrossel
 
 **Duração estimada**: 10-15 minutos
-**Mentes envolvidas**: Eugene Schwartz (lead), Seth Godin, Alex Hormozi, Thiago Finch, Gary Vaynerchuk
+**Frameworks aplicados**: Copy Científico (principal), Posicionamento, Value Stack, Adaptação Cultural, Atenção
 **Output**: Carrossel completo pronto para produção visual
 
 ---
 
 ## ⚠️ RESTRIÇÃO CRÍTICA PARA TODO O WORKFLOW
 
-**Durante TODAS as fases, as mentes devem:**
+**Durante TODAS as fases, o sistema deve:**
 - ❌ NUNCA inventar números, métricas, cases ou resultados fictícios
 - ❌ NUNCA criar "provas sociais" ou testemunhos sem dados reais do usuário
 - ✅ Usar APENAS dados que o usuário fornecer explicitamente
 - ✅ Marcar claramente exemplos como [TEMPLATE] ou [EXEMPLO DIDÁTICO]
 - ✅ Deixar placeholders [INSERIR DADO REAL] quando faltar informação
 
-**Se uma mente precisar de um número/case que não foi fornecido:**
+**Se o sistema precisar de um número/case que não foi fornecido:**
 → Deve PARAR e pedir explicitamente ao usuário: "Preciso que você forneça [X dado real]"
 → NÃO deve continuar inventando dados
 

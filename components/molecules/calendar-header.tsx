@@ -80,7 +80,7 @@ export default function CalendarHeader({
   }
 
   return (
-    <div className="border-b border-neutral-700 bg-neutral-800 px-6 py-5">
+    <div className="border-b border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 px-6 py-5">
       <div className="flex flex-col gap-4">
         {/* Primeira linha: Navegação do mês + Botão de Processar */}
         <div className="flex items-center justify-between">
@@ -90,12 +90,11 @@ export default function CalendarHeader({
               size="sm"
               onClick={onPreviousMonth}
               aria-label="Mês anterior"
-              className="hover:bg-neutral-700"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
 
-            <h2 className="text-2xl font-bold text-white capitalize min-w-[220px] text-center">
+            <h2 className="text-2xl font-bold text-neutral-900 dark:text-white capitalize min-w-[220px] text-center">
               {monthYear}
             </h2>
 
@@ -104,7 +103,6 @@ export default function CalendarHeader({
               size="sm"
               onClick={onNextMonth}
               aria-label="Próximo mês"
-              className="hover:bg-neutral-700"
             >
               <ChevronRight className="w-5 h-5" />
             </Button>
@@ -143,7 +141,7 @@ export default function CalendarHeader({
               className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${
                 selectedStatus === option.value
                   ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/30'
-                  : 'bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-600'
+                  : 'bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-300 dark:hover:bg-neutral-600'
               }`}
             >
               {option.label}

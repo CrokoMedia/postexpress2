@@ -5,7 +5,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from '@/components/atoms/button';
 import { Input } from '@/components/atoms/input';
 import { Badge } from '@/components/atoms/badge';
-import { createClient } from '@/lib/supabase';
 
 interface AddExpertModalProps {
   profileId?: string; // Opcional - se não fornecido, expert é global
@@ -21,8 +20,6 @@ export function AddExpertModal({ profileId, isOpen, onClose, onSuccess }: AddExp
   const [themeInput, setThemeInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
-  const supabase = createClient();
 
   function handleAddTheme() {
     const trimmed = themeInput.trim().toLowerCase();
@@ -75,39 +72,27 @@ export function AddExpertModal({ profileId, isOpen, onClose, onSuccess }: AddExp
     setLoading(true);
 
     try {
-      // 1. Verificar se expert já existe (para este perfil, se profileId fornecido)
-      let existingQuery = supabase
-        .from('twitter_experts')
-        .select('id')
-        .eq('twitter_username', cleanUsername);
-
-      if (profileId) {
-        existingQuery = existingQuery.eq('profile_id', profileId);
-      }
-
-      const { data: existing } = await existingQuery.maybeSingle();
-
-      if (existing) {
-        throw new Error(`Expert @${cleanUsername} já está sendo monitorado${profileId ? ' para este perfil' : ''}`);
-      }
-
-      // 2. Criar expert no Supabase
-      const { data: expert, error: insertError } = await supabase
-        .from('twitter_experts')
-        .insert({
+      // 1. Criar expert via API (usa service_role - bypass RLS)
+      const createResponse = await fetch('/api/twitter/experts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           twitter_username: cleanUsername,
           display_name: displayName.trim() || null,
           themes,
-          is_active: true,
           profile_id: profileId || null
         })
-        .select()
-        .single();
+      });
 
-      if (insertError) throw insertError;
+      if (!createResponse.ok) {
+        const data = await createResponse.json();
+        throw new Error(data.error || 'Falha ao criar expert');
+      }
 
-      // 3. Criar regra no Twitter API
-      const response = await fetch('/api/twitter/rules/add', {
+      const { expert } = await createResponse.json();
+
+      // 2. Criar regra no Twitter API
+      const rulesResponse = await fetch('/api/twitter/rules/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -116,8 +101,8 @@ export function AddExpertModal({ profileId, isOpen, onClose, onSuccess }: AddExp
         })
       });
 
-      if (!response.ok) {
-        const data = await response.json();
+      if (!rulesResponse.ok) {
+        const data = await rulesResponse.json();
         throw new Error(data.error || 'Falha ao criar regra no Twitter');
       }
 

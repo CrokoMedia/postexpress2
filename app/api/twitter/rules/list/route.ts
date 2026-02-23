@@ -5,7 +5,7 @@
 
 import { NextResponse } from 'next/server';
 import { listRules, getRuleCount } from '@/lib/twitter-rules';
-import { createClient } from '@/lib/supabase';
+import { getServerSupabase } from '@/lib/supabase';
 
 export async function GET() {
   try {
@@ -13,7 +13,7 @@ export async function GET() {
     const twitterRules = await listRules();
 
     // 2. Buscar regras do Supabase para enriquecer dados
-    const supabase = createClient();
+    const supabase = getServerSupabase();
     const { data: supabaseRules } = await supabase
       .from('twitter_stream_rules')
       .select('*, twitter_experts(twitter_username, display_name)')

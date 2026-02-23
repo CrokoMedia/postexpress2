@@ -5,7 +5,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from '@/components/atoms/button';
 import { Input } from '@/components/atoms/input';
 import { Badge } from '@/components/atoms/badge';
-import { createClient } from '@/lib/supabase';
 
 interface EditThemesModalProps {
   expert: {
@@ -23,8 +22,6 @@ export function EditThemesModal({ expert, isOpen, onClose, onSuccess }: EditThem
   const [themeInput, setThemeInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
-  const supabase = createClient();
 
   function handleAddTheme() {
     const trimmed = themeInput.trim().toLowerCase();
@@ -72,27 +69,18 @@ export function EditThemesModal({ expert, isOpen, onClose, onSuccess }: EditThem
     setLoading(true);
 
     try {
-      // 1. Atualizar temas no Supabase
-      const { error: updateError } = await supabase
-        .from('twitter_experts')
-        .update({ themes })
-        .eq('id', expert.id);
-
-      if (updateError) throw updateError;
-
-      // 2. Atualizar regra no Twitter API (remove antiga e cria nova)
-      const response = await fetch('/api/twitter/rules/update', {
-        method: 'POST',
+      // Atualizar via API (usa service_role - bypass RLS)
+      const response = await fetch(`/api/twitter/experts/${expert.id}`, {
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          expertId: expert.id,
           themes
         })
       });
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.error || 'Falha ao atualizar regra no Twitter');
+        throw new Error(data.error || data.details || 'Falha ao atualizar temas');
       }
 
       onSuccess();

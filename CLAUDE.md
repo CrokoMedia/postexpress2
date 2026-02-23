@@ -47,7 +47,8 @@ Não é um "app", não é "software", não é "SaaS", não é "ferramenta de IA"
 - "Texto dos slides dos concorrentes"
 - "Nunca mais fique sem ideia"
 - "De achista para estrategista"
-- "Baseado em Hormozi / Kahneman"
+- "Baseado em ciência comportamental"
+- "Método científico comprovado"
 - "Mesma auditoria que consultores cobram R$ 2.000"
 
 ### 🎯 Frase de posicionamento
@@ -65,15 +66,15 @@ Não é um "app", não é "software", não é "SaaS", não é "ferramenta de IA"
 
 ---
 
-## 🏆 OS 5 AUDITORES (frameworks do sistema)
+## 🏆 OS 5 FRAMEWORKS (sistema de auditoria)
 
-| Auditor | Base | O que analisa |
-|---------|------|--------------|
-| **Kahneman** | Thinking Fast and Slow (Nobel Economia) | Comportamento da audiência, vieses, gatilhos emocionais |
-| **Schwartz** | Breakthrough Advertising | Copy, hooks, awareness stages, linguagem |
-| **Hormozi** | $100M Offers / $100M Leads | CTAs, ofertas, value equation |
-| **Cagan** | Inspired (Silicon Valley) | Métricas que importam vs vanity metrics |
-| **Paul Graham** | Y Combinator Essays | Padrões contraintuitivos, anomalias, insights escondidos |
+| Framework | Área | O que analisa |
+|-----------|------|--------------|
+| **Framework Comportamental** | Psicologia & Economia Comportamental | Comportamento da audiência, vieses cognitivos, gatilhos emocionais |
+| **Framework de Copy** | Copywriting Científico | Copy, hooks, awareness stages, linguagem persuasiva |
+| **Framework de Ofertas** | Construção de Valor | CTAs, ofertas, value equation, conversão |
+| **Framework de Métricas** | Product Management | Métricas que importam vs vanity metrics, outcomes vs outputs |
+| **Framework de Anomalias** | Análise Contraintuitiva | Padrões contraintuitivos, anomalias, insights escondidos |
 
 ---
 

@@ -6,10 +6,8 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase';
+import { getServerSupabase } from '@/lib/supabase';
 import { updateExpertThemes } from '@/lib/twitter-rules';
-
-const supabase = createClient();
 
 // GET: Obter detalhes do expert
 export async function GET(
@@ -17,6 +15,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const supabase = getServerSupabase();
     const { id } = await params
     const { data, error } = await supabase
       .from('twitter_experts')
@@ -54,6 +53,7 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const supabase = getServerSupabase();
     const { id } = await params
     const body = await request.json();
     const { themes, display_name, is_active } = body;
@@ -110,6 +110,7 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const supabase = getServerSupabase();
     const { id } = await params
     // Marcar como inativo
     const { error } = await supabase

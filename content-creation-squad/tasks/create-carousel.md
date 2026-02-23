@@ -45,8 +45,8 @@ elicit:
 
 ## Workflow Executivo
 
-### Passo 1: Estratégia (Seth Godin)
-**Ativa**: seth_godin
+### Passo 1: Estratégia
+**Framework**: Posicionamento & Viralidade
 
 ```
 Prompt:
@@ -59,23 +59,23 @@ Defina:
 1. Ângulo estratégico (qual perspectiva única tomar?)
 2. Tom de voz (educacional/provocativo/inspirador?)
 3. Estrutura ideal (quantos slides, qual progressão?)
-4. Como tornar isso remarkable (memorável/compartilhável)?"
+4. Como tornar isso memorable e compartilhável?"
 ```
 
-### Passo 2: Copywriting (Eugene Schwartz)
-**Ativa**: eugene_schwartz
+### Passo 2: Copywriting Científico
+**Framework**: Copy Persuasivo
 
 ```
 Prompt:
 "Usando a estratégia definida:
-[copiar resposta do Seth]
+[copiar resposta anterior]
 
 Escreva:
-1. 5 opções de HOOK para slide 1 (baseado em awareness stage)
+1. 5 opções de HOOK para slide 1 (baseado em awareness stage da audiência)
 2. Copy completo de cada slide (títulos + subtextos)
 3. Caption para a postagem
 
-Princípios:
+Princípios científicos de copy:
 - Especificidade > generalização
 - Benefício claro em cada slide
 - Progressão emocional → racional
@@ -88,14 +88,14 @@ Princípios:
 - NUNCA invente métricas, resultados ou provas sociais"
 ```
 
-### Passo 3: Otimização de Oferta (Alex Hormozi)
-**Ativa**: alex_hormozi
+### Passo 3: Otimização de Oferta
+**Framework**: Value Stack & Conversão
 **Condicional**: Apenas se objetivo = Vender
 
 ```
 Prompt:
 "Revise o carrossel de vendas:
-[copiar copy do Eugene]
+[copiar copy anterior]
 
 Otimize para:
 1. Value Stack - O que está incluído na oferta?
@@ -105,8 +105,8 @@ Otimize para:
 5. Bonus Stack - O que adicionar para aumentar valor?"
 ```
 
-### Passo 4: Localização BR (Thiago Finch)
-**Ativa**: thiago_finch
+### Passo 4: Localização BR
+**Framework**: Adaptação Cultural
 **Condicional**: Se audiência brasileira
 
 ```
