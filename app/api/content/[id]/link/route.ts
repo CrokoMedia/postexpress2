@@ -42,9 +42,9 @@ export async function POST(
       )
     }
 
-    // Verificar se perfil destino existe
+    // Verificar se perfil do Instagram destino existe
     const { data: profile, error: profileError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('id, username')
       .eq('id', profile_id)
       .single()

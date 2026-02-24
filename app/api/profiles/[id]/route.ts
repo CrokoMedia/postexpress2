@@ -11,9 +11,9 @@ export async function GET(
     const supabase = getServerSupabase()
     const { id } = await params
 
-    // Buscar perfil com todas as auditorias
+    // Buscar perfil do Instagram com todas as auditorias
     const { data: profile, error } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select(`
         *,
         audits:audits(*)
@@ -87,9 +87,9 @@ export async function PATCH(
       )
     }
 
-    // Atualizar perfil
+    // Atualizar perfil do Instagram
     const { data: profile, error } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .update(updates)
       .eq('id', id)
       .select()
@@ -130,7 +130,7 @@ export async function DELETE(
 
     // Verificar se perfil existe
     const { data: profile, error: fetchError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('id, username')
       .eq('id', id)
       .single()
@@ -144,7 +144,7 @@ export async function DELETE(
 
     // Hard delete: apagar fisicamente (CASCADE vai deletar audits, posts, comments, etc.)
     const { error: deleteError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .delete()
       .eq('id', id)
 

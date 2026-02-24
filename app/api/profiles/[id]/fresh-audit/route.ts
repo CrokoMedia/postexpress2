@@ -48,9 +48,9 @@ export async function POST(
 
     const supabase = getServerSupabase()
 
-    // 1. Buscar perfil
+    // 1. Buscar perfil do Instagram
     const { data: profile, error: profileError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('*')
       .eq('id', id)
       .single()
@@ -86,7 +86,7 @@ export async function POST(
     // Atualizar dados do perfil no Supabase (seguidores, bio, etc podem ter mudado)
     if (profileData) {
       await supabase
-        .from('profiles')
+        .from('instagram_profiles')
         .update({
           full_name: profileData.fullName,
           biography: profileData.biography,

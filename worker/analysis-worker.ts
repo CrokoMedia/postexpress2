@@ -170,7 +170,7 @@ async function processAnalysis(item: QueueItem): Promise<void> {
 
     // Buscar profile_id para carregar contexto
     const { data: profileData } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('id')
       .eq('username', username)
       .maybeSingle()

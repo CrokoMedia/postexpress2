@@ -68,9 +68,9 @@ export async function POST(request: NextRequest) {
 
       console.log('[Distillery API] Auditoria encontrada:', audit.id)
 
-      // Buscar perfil separadamente
+      // Buscar perfil do Instagram separadamente
       const { data: profile, error: profileError } = await supabase
-        .from('profiles')
+        .from('instagram_profiles')
         .select('id, username, full_name, biography, followers_count, following_count')
         .eq('id', audit.profile_id)
         .single()

@@ -62,9 +62,9 @@ export async function POST(
       )
     }
 
-    // Buscar username do perfil
+    // Buscar username do perfil do Instagram
     const { data: profileData, error: profileError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('username')
       .eq('id', contentData.profile_id)
       .single()

@@ -87,9 +87,9 @@ export async function GET(
 
     console.log('✅ [Preview] Slide found:', { titulo: slide.titulo || 'N/A' })
 
-    // Buscar profile para foto e username
+    // Buscar perfil do Instagram para foto e username
     const { data: profile } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('username, full_name, profile_pic_cloudinary_url, profile_pic_url_hd')
       .eq('id', contentSuggestion.profile_id)
       .single()
