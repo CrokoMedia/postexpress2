@@ -211,7 +211,7 @@ export function SplitPreviewEditor({
                     Slide {slideIndex + 1}
                   </Badge>
                   <span className="text-left truncate">{slide.titulo}</span>
-                  <Badge variant="secondary" className="ml-auto">
+                  <Badge variant="neutral" className="ml-auto">
                     {slide.tipo}
                   </Badge>
                 </div>
