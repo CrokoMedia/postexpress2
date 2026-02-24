@@ -83,7 +83,7 @@ export function DeleteProfileButton({
           Sim, deletar
         </Button>
         <Button
-          variant="outline"
+          variant="secondary"
           size="sm"
           onClick={handleCancel}
           disabled={isDeleting}

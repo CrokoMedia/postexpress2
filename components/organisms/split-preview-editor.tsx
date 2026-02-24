@@ -156,7 +156,7 @@ export function SplitPreviewEditor({
           <CardContent className="flex flex-wrap gap-2">
             <Button
               size="sm"
-              variant="outline"
+              variant="secondary"
               onClick={() => onApplyBulkAction(currentIndex, 'auto')}
               className="gap-2"
             >
@@ -165,7 +165,7 @@ export function SplitPreviewEditor({
             </Button>
             <Button
               size="sm"
-              variant="outline"
+              variant="secondary"
               onClick={() => onApplyBulkAction(currentIndex, 'no_image')}
               className="gap-2"
             >
@@ -174,7 +174,7 @@ export function SplitPreviewEditor({
             </Button>
             <Button
               size="sm"
-              variant="outline"
+              variant="secondary"
               onClick={() => onApplyBulkAction(currentIndex, 'upload')}
               className="gap-2"
             >
@@ -211,7 +211,7 @@ export function SplitPreviewEditor({
                     Slide {slideIndex + 1}
                   </Badge>
                   <span className="text-left truncate">{slide.titulo}</span>
-                  <Badge variant="outline" className="ml-auto">
+                  <Badge variant="secondary" className="ml-auto">
                     {slide.tipo}
                   </Badge>
                 </div>
@@ -328,7 +328,7 @@ export function SplitPreviewEditor({
                         </Button>
                         <Button
                           size="sm"
-                          variant="outline"
+                          variant="secondary"
                           onClick={cancelEditing}
                           className="gap-2"
                         >
@@ -339,7 +339,7 @@ export function SplitPreviewEditor({
                     ) : (
                       <Button
                         size="sm"
-                        variant="outline"
+                        variant="secondary"
                         onClick={() => startEditing(slideIndex)}
                         className="gap-2"
                       >
@@ -440,7 +440,7 @@ export function SplitPreviewEditor({
         <div className="flex gap-2 mt-4">
           {approvedCarousels.has(currentIndex) ? (
             <Button
-              variant="outline"
+              variant="secondary"
               onClick={() => onReject(currentIndex)}
               className="gap-2"
             >
@@ -457,7 +457,7 @@ export function SplitPreviewEditor({
                 Aprovar Carrossel
               </Button>
               <Button
-                variant="outline"
+                variant="secondary"
                 onClick={() => onReject(currentIndex)}
                 className="gap-2"
               >

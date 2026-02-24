@@ -145,7 +145,7 @@ export function BulkActionsPanel({
         <CardContent className="flex flex-wrap gap-2">
           <Button
             size="sm"
-            variant="outline"
+            variant="secondary"
             onClick={() => handleActionClick('auto')}
             disabled={applying}
             className="gap-2"
@@ -156,7 +156,7 @@ export function BulkActionsPanel({
 
           <Button
             size="sm"
-            variant="outline"
+            variant="secondary"
             onClick={() => handleActionClick('no_image')}
             disabled={applying}
             className="gap-2"
@@ -167,7 +167,7 @@ export function BulkActionsPanel({
 
           <Button
             size="sm"
-            variant="outline"
+            variant="secondary"
             onClick={() => handleActionClick('custom_prompt')}
             disabled={applying}
             className="gap-2"
@@ -178,7 +178,7 @@ export function BulkActionsPanel({
 
           <Button
             size="sm"
-            variant="outline"
+            variant="secondary"
             onClick={() => handleActionClick('upload')}
             disabled={applying}
             className="gap-2"
@@ -190,7 +190,7 @@ export function BulkActionsPanel({
           {totalCarousels > 1 && (
             <Button
               size="sm"
-              variant="outline"
+              variant="secondary"
               onClick={() => handleActionClick('copy_from')}
               disabled={applying}
               className="gap-2"
@@ -279,7 +279,7 @@ export function BulkActionsPanel({
           </div>
 
           <DialogFooter>
-            <Button variant="outline" onClick={handleCancel} disabled={applying}>
+            <Button variant="secondary" onClick={handleCancel} disabled={applying}>
               Cancelar
             </Button>
             <Button onClick={handleConfirm} disabled={applying}>

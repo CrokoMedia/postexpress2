@@ -44,7 +44,7 @@ export function CarouselNavigator({
       {/* Navigation buttons */}
       <div className="flex items-center gap-2">
         <Button
-          variant="outline"
+          variant="secondary"
           size="sm"
           onClick={() => onNavigate('prev')}
           disabled={currentIndex === 0}
@@ -80,7 +80,7 @@ export function CarouselNavigator({
         </div>
 
         <Button
-          variant="outline"
+          variant="secondary"
           size="sm"
           onClick={() => onNavigate('next')}
           disabled={currentIndex === total - 1}

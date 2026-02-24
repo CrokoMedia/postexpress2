@@ -684,7 +684,7 @@ export function BrandKitFormModal({
 
         {/* Footer */}
         <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-neutral-200 dark:border-neutral-800">
-          <Button variant="outline" onClick={onClose} disabled={isSaving}>
+          <Button variant="secondary" onClick={onClose} disabled={isSaving}>
             Cancelar
           </Button>
           <Button onClick={handleSubmit} disabled={isSaving}>
