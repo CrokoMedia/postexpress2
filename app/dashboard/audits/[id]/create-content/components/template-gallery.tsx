@@ -128,7 +128,7 @@ export function TemplateGallery({ onSelect, onBack }: TemplateGalleryProps) {
 
               {/* Objective */}
               <div className="mb-4">
-                <Badge variant="secondary" className="w-full justify-center">
+                <Badge variant="neutral" className="w-full justify-center">
                   {template.objective}
                 </Badge>
               </div>

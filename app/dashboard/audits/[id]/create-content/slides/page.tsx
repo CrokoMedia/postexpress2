@@ -139,7 +139,7 @@ export default function ConfigureSlidesPage() {
   // Selecionar automaticamente todos os carrosséis disponíveis quando a lista mudar
   useEffect(() => {
     if (carouselsToConfig.length > 0) {
-      const allIndices = new Set(carouselsToConfig.map(item => item.originalIndex))
+      const allIndices = new Set<number>(carouselsToConfig.map((item: { originalIndex: number }) => item.originalIndex))
       setSelectedCarousels(allIndices)
     }
   }, [carouselsToConfig])
@@ -243,7 +243,7 @@ export default function ConfigureSlidesPage() {
       setSelectedCarousels(new Set())
     } else {
       // Senão, seleciona todos
-      const allIndices = new Set(carouselsToConfig.map(item => item.originalIndex))
+      const allIndices = new Set<number>(carouselsToConfig.map((item: { originalIndex: number }) => item.originalIndex))
       setSelectedCarousels(allIndices)
     }
   }
@@ -290,7 +290,7 @@ export default function ConfigureSlidesPage() {
 
     try {
       // Filtrar apenas os carrosséis selecionados
-      const selectedItems = carouselsToConfig.filter(item => selectedCarousels.has(item.originalIndex))
+      const selectedItems = carouselsToConfig.filter((item: { originalIndex: number }) => selectedCarousels.has(item.originalIndex))
 
       // Converter Map<number, Map<number, config>> para objeto simples
       const slideImageOptionsObj: Record<number, Record<number, any>> = {}
@@ -1078,7 +1078,7 @@ export default function ConfigureSlidesPage() {
         const validation = validateSlideConfigurations()
         const totalSlides = carouselsToConfig
           .filter((item: any) => selectedCarousels.has(item.originalIndex))
-          .reduce((acc, item) => acc + item.carousel.slides.length, 0)
+          .reduce((acc: number, item: any) => acc + item.carousel.slides.length, 0)
         const configuredSlides = totalSlides - validation.unconfiguredCount
 
         return (
@@ -1158,7 +1158,7 @@ export default function ConfigureSlidesPage() {
               {/* ✅ Aviso se algum carrossel selecionado já tem slides */}
               {(() => {
                 const selectedWithSlides = carouselsToConfig
-                  .filter(item => selectedCarousels.has(item.originalIndex) && item.hasSlides)
+                  .filter((item: { originalIndex: number; hasSlides: boolean }) => selectedCarousels.has(item.originalIndex) && item.hasSlides)
                 if (selectedWithSlides.length > 0) {
                   return (
                     <p className="text-xs text-warning-600 dark:text-warning-400 mt-2 flex items-center gap-2">

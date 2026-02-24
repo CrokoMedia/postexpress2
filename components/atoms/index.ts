@@ -2,7 +2,7 @@
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './accordion'
 export { Badge, badgeVariants, type BadgeProps } from './badge'
 export { Button, buttonVariants, type ButtonProps } from './button'
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, type CardProps } from './card'
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './card'
 export { ColorPicker, type ColorPickerProps } from './color-picker'
 export {
   Dialog,
