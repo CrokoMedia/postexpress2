@@ -3,8 +3,8 @@
  * Tenta múltiplas APIs em ordem de preferência
  */
 
-import { generateContentImage as generateWithNanoBanana } from './nano-banana.ts'
-import { generateContentImage as generateWithFal } from './fal-image.ts'
+import { generateContentImage as generateWithNanoBanana } from './nano-banana'
+import { generateContentImage as generateWithFal } from './fal-image'
 
 /**
  * Gera imagem tentando múltiplas APIs em ordem de preferência
