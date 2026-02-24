@@ -12,9 +12,10 @@ import { ProfileContextModal } from '@/components/organisms/profile-context-moda
 import { ContentSquadChatModal } from '@/components/organisms/content-squad-chat-modal'
 import { TwitterExpertsSection } from '@/components/twitter/twitter-experts-section'
 import { EditProfileModal } from '@/components/molecules/edit-profile-modal'
+import { LinkWhatsAppModal } from '@/components/molecules/link-whatsapp-modal'
 import { useProfile } from '@/hooks/use-profiles'
 import { formatNumber, formatDate, getScoreClassification } from '@/lib/format'
-import { CheckCircle, Users, FileText, Calendar, Trash2, Sparkles, Loader2, BookOpen, MessageSquare, TrendingUp, Image as ImageIcon, ChevronRight, PlusCircle, Eye, EyeOff, Pencil, Factory, Video, ChevronDown, RefreshCw, Palette } from 'lucide-react'
+import { CheckCircle, Users, FileText, Calendar, Trash2, Sparkles, Loader2, BookOpen, MessageSquare, TrendingUp, Image as ImageIcon, ChevronRight, PlusCircle, Eye, EyeOff, Pencil, Factory, Video, ChevronDown, RefreshCw, Palette, Phone } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
@@ -29,6 +30,7 @@ export default function ProfilePage() {
   const [showContextModal, setShowContextModal] = useState(false)
   const [showChatModal, setShowChatModal] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
+  const [showWhatsAppModal, setShowWhatsAppModal] = useState(false)
   const [hasContext, setHasContext] = useState(false)
   const [contextData, setContextData] = useState<any>(null)
   const [showContextViewer, setShowContextViewer] = useState(false)
@@ -268,6 +270,32 @@ export default function ProfilePage() {
                   tokenExpiresAt={profile.instagram_token_expires_at || null}
                 />
               </div>
+
+              {/* WhatsApp vinculado */}
+              {currentProfile.whatsapp_phone ? (
+                <div className="mb-4 flex items-center gap-2 text-sm">
+                  <div className="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 rounded-lg px-3 py-1.5">
+                    <Phone className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                    <span className="text-emerald-700 dark:text-emerald-300 font-medium">
+                      WhatsApp: {currentProfile.whatsapp_phone}
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => setShowWhatsAppModal(true)}
+                    className="text-xs text-muted-foreground hover:text-foreground underline"
+                  >
+                    editar
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={() => setShowWhatsAppModal(true)}
+                  className="mb-4 flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+                >
+                  <Phone className="h-4 w-4 group-hover:text-emerald-600" />
+                  <span className="underline">Vincular WhatsApp</span>
+                </button>
+              )}
 
               <div className="flex gap-6 text-sm">
                 <div className="flex items-center gap-2">
@@ -857,6 +885,21 @@ export default function ProfilePage() {
           isOpen={showEditModal}
           onClose={() => setShowEditModal(false)}
           onSave={handleProfileUpdated}
+        />
+      )}
+
+      {/* Link WhatsApp Modal */}
+      {showWhatsAppModal && (
+        <LinkWhatsAppModal
+          profileId={id}
+          profileUsername={currentProfile.username}
+          currentPhone={currentProfile.whatsapp_phone}
+          isOpen={showWhatsAppModal}
+          onClose={() => setShowWhatsAppModal(false)}
+          onSuccess={(phone) => {
+            setLocalProfile({ ...currentProfile, whatsapp_phone: phone || null })
+            handleProfileUpdated()
+          }}
         />
       )}
     </div>

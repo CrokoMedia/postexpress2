@@ -13,7 +13,7 @@ async function checkFelipeReAudit() {
   const felipeId = '729723ac-83f5-4c4b-a998-4c47c4308d53';
 
   const { data: profile, error: profileError } = await supabase
-    .from('profiles')
+    .from('instagram_profiles')
     .select('id, username, full_name')
     .eq('id', felipeId)
     .single();

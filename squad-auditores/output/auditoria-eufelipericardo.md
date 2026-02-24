@@ -1,6 +1,6 @@
 # 📊 Auditoria Completa - @eufelipericardo
 
-**Data:** 16/02/2026
+**Data:** 24/02/2026
 
 ---
 
@@ -8,25 +8,26 @@
 
 - **Nome:** Felipe Ricardo
 - **Username:** @eufelipericardo
-- **Seguidores:** 8.696
-- **Seguindo:** 191
-- **Total de posts:** 7
+- **Seguidores:** 8.694
+- **Seguindo:** 195
+- **Total de posts:** 8
 - ✅ **Perfil Verificado**
 
 **Biografia:**
-> empresário, nômade
+> Empresário nômade
+Sistemas, tráfego e IA
 
 ---
 
 ## 📈 Métricas de Engajamento
 
-- **Posts analisados:** 7
-- **Total de likes:** 397
-- **Média de likes/post:** 57
-- **Total de comentários:** 36
+- **Posts analisados:** 8
+- **Total de likes:** 435
+- **Média de likes/post:** 54
+- **Total de comentários:** 44
 - **Média de comentários/post:** 8
-- **Taxa de engajamento:** 0.74%
-- **Comentários relevantes:** 29
+- **Taxa de engajamento:** 0.71%
+- **Comentários relevantes:** 34
 - **Perguntas identificadas:** 0
 
 ---
@@ -40,9 +41,26 @@
 
 ### Post 1: Video
 
+- **URL:** https://www.instagram.com/p/DVJb005CHVg/
+- **Data:** 24/02/2026
+- **Likes:** 32
+- **Comentários:** 8
+
+**Legenda:**
+> Qual foi a última vez? Vale a pena refletir sobre isso....
+
+**Texto extraído (OCR):**
+
+Slide 1:
+> qual foi a última vez que tu tomou uma decisão que te deixou com frio na barriga?
+
+---
+
+### Post 2: Video
+
 - **URL:** https://www.instagram.com/p/DUwUuMqCAdh/
 - **Data:** 15/02/2026
-- **Likes:** 20
+- **Likes:** 25
 - **Comentários:** 4
 
 **Legenda:**
@@ -55,11 +73,11 @@ Slide 1:
 
 ---
 
-### Post 2: Sidecar
+### Post 3: Sidecar
 
 - **URL:** https://www.instagram.com/p/DT5-K7YE_c3/
 - **Data:** 24/01/2026
-- **Likes:** 46
+- **Likes:** 47
 - **Comentários:** 9
 
 **Legenda:**
@@ -69,7 +87,7 @@ Slide 1:
 
 ---
 
-### Post 3: Image
+### Post 4: Image
 
 - **URL:** https://www.instagram.com/p/DSiRbQsE7hx/
 - **Data:** 21/12/2025
@@ -83,11 +101,11 @@ Slide 1:
 
 ---
 
-### Post 4: Sidecar
+### Post 5: Sidecar
 
 - **URL:** https://www.instagram.com/p/DQFWvjkiMU1/
 - **Data:** 21/10/2025
-- **Likes:** 43
+- **Likes:** 44
 - **Comentários:** 2
 
 **Legenda:**
@@ -97,11 +115,11 @@ Slide 1:
 
 ---
 
-### Post 5: Sidecar
+### Post 6: Sidecar
 
 - **URL:** https://www.instagram.com/p/DOyxccICFdy/
 - **Data:** 19/09/2025
-- **Likes:** 58
+- **Likes:** 57
 - **Comentários:** 4
 
 **Legenda:**
@@ -111,7 +129,7 @@ Slide 1:
 
 ---
 
-### Post 6: Sidecar
+### Post 7: Sidecar
 
 - **URL:** https://www.instagram.com/p/DOmH-hCiMp4/
 - **Data:** 15/09/2025
@@ -129,7 +147,7 @@ E assim como Roma, a minha jornada também não. Alguns anos atrás estar aqui e
 
 ---
 
-### Post 7: Image
+### Post 8: Image
 
 - **URL:** https://www.instagram.com/p/CSYC1qtMsSZ/
 - **Data:** 10/08/2021

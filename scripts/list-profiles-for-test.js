@@ -13,7 +13,7 @@ async function listProfiles() {
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
 
   const { data: profiles, error } = await supabase
-    .from('profiles')
+    .from('instagram_profiles')
     .select('id, username, full_name, followers_count')
     .is('deleted_at', null)
     .order('created_at', { ascending: false })

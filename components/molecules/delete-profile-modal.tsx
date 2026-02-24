@@ -85,31 +85,30 @@ export function DeleteProfileModal({
         {/* Content */}
         <div className="space-y-4">
           <p className="text-neutral-700 dark:text-neutral-300">
-            Você está prestes a deletar o perfil{' '}
-            <span className="font-semibold text-neutral-900 dark:text-neutral-100">@{username}</span>.
-            Todas as auditorias, posts e comentários associados serão mantidos,
-            mas o perfil não aparecerá mais nas listagens.
+            Você está prestes a deletar <span className="font-semibold text-error-600 dark:text-error-400">PERMANENTEMENTE</span> o perfil{' '}
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">@{username}</span>{' '}
+            e <span className="font-semibold">TODOS os dados associados</span>.
           </p>
 
-          <div className="bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-300 dark:border-neutral-700/50 rounded-lg p-4 space-y-2">
-            <h4 className="text-sm font-medium text-neutral-900 dark:text-neutral-300">
-              O que será deletado:
+          <div className="bg-error-50 dark:bg-error-900/20 border-2 border-error-500/30 rounded-lg p-4 space-y-2">
+            <h4 className="text-sm font-semibold text-error-600 dark:text-error-400 flex items-center gap-2">
+              <AlertTriangle className="h-4 w-4" />
+              Será deletado permanentemente:
             </h4>
-            <ul className="text-sm text-neutral-700 dark:text-neutral-400 space-y-1 list-disc list-inside">
-              <li>Perfil do Instagram</li>
-              <li>Visibilidade nas listagens</li>
+            <ul className="text-sm text-error-700 dark:text-error-300 space-y-1 list-disc list-inside ml-2">
+              <li><strong>Perfil do Instagram</strong> (@{username})</li>
+              <li><strong>TODAS as auditorias</strong> deste perfil</li>
+              <li><strong>TODOS os posts</strong> dessas auditorias</li>
+              <li><strong>TODOS os comentários</strong> desses posts</li>
+              <li><strong>TODAS as comparações</strong> deste perfil</li>
+              <li><strong>Contexto e documentos</strong> (se houver)</li>
             </ul>
           </div>
 
-          <div className="bg-warning-500/10 border border-warning-500/20 rounded-lg p-4 space-y-2">
-            <h4 className="text-sm font-medium text-warning-500">
-              O que será mantido:
-            </h4>
-            <ul className="text-sm text-warning-400 space-y-1 list-disc list-inside">
-              <li>Auditorias (histórico)</li>
-              <li>Posts e comentários (dados)</li>
-              <li>Documentos uploadados</li>
-            </ul>
+          <div className="bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-300 dark:border-neutral-700/50 rounded-lg p-3">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400">
+              ⚠️ <strong>Esta ação NÃO pode ser desfeita.</strong> Todos os dados serão apagados permanentemente do banco de dados.
+            </p>
           </div>
 
           {/* Confirmação */}

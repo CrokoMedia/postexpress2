@@ -80,7 +80,7 @@ async function processOAuthCode(code, profileId) {
     expiresAt.setDate(expiresAt.getDate() + 60) // 60 dias
 
     const { error: updateError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .update({
         instagram_account_id: instagramUserId,
         instagram_access_token: accessToken,

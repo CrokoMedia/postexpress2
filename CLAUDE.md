@@ -16,6 +16,7 @@ Não é um "app", não é "software", não é "SaaS", não é "ferramenta de IA"
 2. **Perguntas do público** - Exatamente o que a audiência pergunta nos comentários (= ideias infinitas de conteúdo)
 3. **Leitura dos slides** - Extraímos o texto completo de carrosséis dos concorrentes (ninguém mais faz isso)
 4. **5 frameworks científicos** - Hormozi, Schwartz, Kahneman, Cagan, Paul Graham aplicados ao conteúdo
+5. **📱 Tudo via WhatsApp** - Da ideia aos slides prontos, sem sair do celular (diferencial único)
 
 ### Transformação entregue:
 - **ANTES:** "Não sei o que postar, fico 4 horas travado sem ideia"
@@ -83,7 +84,14 @@ Não é um "app", não é "software", não é "SaaS", não é "ferramenta de IA"
 ```
 postexpress2/
 ├── app/                          # Next.js 15 App Router
-│   ├── api/                      # API Routes (profiles, audits, analysis, queue)
+│   ├── api/                      # API Routes
+│   │   ├── whatsapp/             # Integração WhatsApp (UAZapi)
+│   │   │   ├── webhook/          # Webhook para receber mensagens
+│   │   │   └── send/             # Enviar mensagens e mídias
+│   │   ├── profiles/             # CRUD de perfis
+│   │   ├── audits/               # CRUD de auditorias
+│   │   ├── analysis/             # Processar análises
+│   │   └── queue/                # Fila de processamento
 │   └── dashboard/                # Interface do usuário
 │       ├── page.tsx              # Home - lista de perfis
 │       ├── new/                  # Nova análise
@@ -132,6 +140,7 @@ postexpress2/
 ### Backend / Database
 - **BaaS:** Supabase (PostgreSQL)
 - **Imagens:** Cloudinary (upload e CDN)
+- **WhatsApp:** UAZapi (integração completa)
 
 ### Scripts de Análise (Node.js)
 - **Scraping:** Apify Client (Instagram Profile Scraper)
@@ -153,6 +162,9 @@ GOOGLE_AI_API_KEY=
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
 CLOUDINARY_API_SECRET=
+UAZAPI_INSTANCE_ID=
+UAZAPI_TOKEN=
+UAZAPI_WEBHOOK_URL=
 ```
 
 ---
@@ -181,6 +193,111 @@ Redireciona para /dashboard/audits/[id]
 **Tempo total:** ~3 minutos para 10 posts com OCR
 
 **Custo por análise:** ~R$ 0,55 (Apify + APIs)
+
+---
+
+## 📱 INTEGRAÇÃO WHATSAPP
+
+**API usada:** [UAZapi](https://docs.uazapi.com/) - WhatsApp Business API não oficial
+
+### Fluxo completo via WhatsApp
+
+```
+Cliente envia ideia via WhatsApp
+        ↓
+Webhook recebe mensagem → /api/whatsapp/webhook
+        ↓
+Sistema identifica tipo de mensagem:
+  - "criar conteúdo sobre X" → Aciona Content Creation Squad
+  - "analisar @perfil" → Aciona Squad Auditores
+  - "/aprovar" → Aprova conteúdo pendente
+  - "/rejeitar [motivo]" → Rejeita e solicita ajustes
+        ↓
+Squad processa a solicitação:
+  1. Content Squad gera ideias de carrossel
+  2. Envia proposta via WhatsApp para aprovação
+        ↓
+Cliente aprova via WhatsApp ("/aprovar")
+        ↓
+Sistema gera slides visuais:
+  1. Puppeteer renderiza os slides
+  2. Upload para Cloudinary
+  3. Processa imagens
+        ↓
+Entrega final via WhatsApp:
+  - 📎 Imagens dos slides (compactadas)
+  - ✍️ Legenda pronta para copiar/colar
+  - 📊 Métricas e recomendações
+```
+
+### Funcionalidades implementadas
+
+| Comando | Ação |
+|---------|------|
+| **Texto livre** | Gera ideia de conteúdo baseada no tema |
+| `/aprovar` | Aprova sugestão e inicia geração de slides |
+| `/rejeitar [motivo]` | Rejeita e solicita nova versão |
+| `/status` | Consulta status da criação em andamento |
+| `/historico` | Lista últimos 5 conteúdos criados |
+| `@perfil` | Aciona auditoria de perfil do Instagram |
+
+### Vantagens da integração WhatsApp
+
+1. **Zero fricção** - Cliente não precisa abrir dashboard
+2. **Aprovação rápida** - Responde direto no WhatsApp
+3. **Entrega direta** - Recebe slides prontos no celular
+4. **Notificações automáticas** - Sabe quando conteúdo está pronto
+5. **Mobile-first** - 90% dos creators trabalham pelo celular
+
+### Estrutura de webhooks
+
+**Endpoint:** `/api/whatsapp/webhook` (POST)
+
+**Eventos tratados:**
+- `message.text` → Processa comando ou ideia de conteúdo
+- `message.image` → Recebe referências visuais do cliente
+- `message.document` → Recebe briefings ou materiais
+- `status.sent` → Confirma entrega da mensagem
+- `status.read` → Confirma leitura pelo cliente
+
+### APIs UAZapi utilizadas
+
+```typescript
+// Enviar mensagem de texto
+POST /message/text
+{
+  "phone": "5511999999999",
+  "message": "Sua legenda está pronta!"
+}
+
+// Enviar imagem
+POST /message/image
+{
+  "phone": "5511999999999",
+  "image": "https://cloudinary.com/...",
+  "caption": "Slide 1 de 10"
+}
+
+// Enviar documento (ZIP com todos os slides)
+POST /message/document
+{
+  "phone": "5511999999999",
+  "document": "https://cloudinary.com/slides.zip",
+  "filename": "carrossel-completo.zip"
+}
+```
+
+### Custo operacional
+
+- **UAZapi:** R$ 0,01 por mensagem enviada
+- **Webhook:** Grátis (recebimento de mensagens)
+- **Custo total por conteúdo:** ~R$ 0,10 (10 mensagens média)
+
+### Diferencial competitivo
+
+> **"Único serviço de análise de conteúdo que entrega tudo via WhatsApp. Do briefing aos slides prontos, sem sair do celular."**
+
+Isso elimina a principal barreira de uso: **creators odeiam dashboards complexos**.
 
 ---
 
@@ -250,11 +367,28 @@ node scripts/ocr-gemini-analyzer.js <username>
 
 ## 🤖 SQUADS & AGENTES DISPONÍVEIS
 
+### 📱 Integração Squads + WhatsApp
+
+**Todos os squads podem ser acionados via WhatsApp:**
+
+```
+Cliente (WhatsApp) → UAZapi Webhook → API Router → Squad Processor → UAZapi Send
+```
+
+**Fluxo técnico:**
+1. Mensagem chega no webhook `/api/whatsapp/webhook`
+2. Parser identifica intenção e aciona squad correspondente
+3. Squad processa (análise ou criação de conteúdo)
+4. Resultado é formatado para WhatsApp
+5. Enviado via `/api/whatsapp/send` usando UAZapi
+
 ### Squad Auditores (`/squad-auditores`)
 **Quando usar:** Auditar perfis do Instagram, analisar concorrentes, gerar auditorias
+**Via WhatsApp:** Enviar `@perfil` ou `analisar @perfil`
 
 ### Content Creation Squad (`/content-creation-squad`)
 **Quando usar:** Criar carrosséis, posts, copy de vendas, conteúdo de lançamento
+**Via WhatsApp:** Enviar ideia de conteúdo em texto livre
 
 ### Content Distillery Squad (`/content-distillery`)
 **Quando usar:** Transformar livestreams longos do YouTube em frameworks, modelos mentais e 60+ peças de conteúdo multiplataforma
@@ -279,7 +413,7 @@ node scripts/ocr-gemini-analyzer.js <username>
 
 ## ✅ TAREFAS PENDENTES (Estado Atual do MVP)
 
-### Implementado (90%):
+### Implementado (95%):
 - [x] Next.js 15 + TypeScript + Tailwind
 - [x] Supabase client e types
 - [x] Design system completo (Atomic Design)
@@ -289,6 +423,12 @@ node scripts/ocr-gemini-analyzer.js <username>
 - [x] Scripts de análise (scraping + comentários + OCR)
 - [x] Integração Cloudinary para fotos de perfil
 - [x] Upload de documentos e soft delete
+- [x] **Integração WhatsApp completa (UAZapi)**
+  - [x] Webhook para receber mensagens
+  - [x] Envio de ideias de conteúdo
+  - [x] Aprovação de conteúdo via WhatsApp
+  - [x] Geração de slides e entrega via WhatsApp
+  - [x] Comandos interativos (/aprovar, /rejeitar, /status)
 
 ### Pendente:
 - [ ] Worker de processamento (`worker/analysis-worker.ts`)
@@ -343,5 +483,5 @@ node scripts/ocr-gemini-analyzer.js <username>
 
 ---
 
-*Última atualização: 2026-02-17*
-*Versão: 1.0*
+*Última atualização: 2026-02-24*
+*Versão: 1.1 - Integração WhatsApp (UAZapi)*

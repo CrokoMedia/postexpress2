@@ -1,6 +1,6 @@
 # 📊 Auditoria Completa - @karlapazos
 
-**Data:** 16/02/2026
+**Data:** 24/02/2026
 
 ---
 
@@ -8,26 +8,25 @@
 
 - **Nome:** Karla Pazos
 - **Username:** @karlapazos
-- **Seguidores:** 14.114
-- **Seguindo:** 768
+- **Seguidores:** 14.092
+- **Seguindo:** 684
 - **Total de posts:** 6
 
 **Biografia:**
 > 2026 é NOSSO 🤍💚
-No risk, no story. ✨🧠
-@crokomedia @ge.onepercent @convertte.ai 
-🇧🇷🇨🇱🇪🇸🇦🇩🇫🇷🇲🇨🇮🇹🇶🇦🇹🇭🇨🇳🇦🇪
+Marketing & IA
+11 países | 📍Dubai
 
 ---
 
 ## 📈 Métricas de Engajamento
 
 - **Posts analisados:** 6
-- **Total de likes:** 471
+- **Total de likes:** 475
 - **Média de likes/post:** 79
-- **Total de comentários:** 38
+- **Total de comentários:** 40
 - **Média de comentários/post:** 8
-- **Taxa de engajamento:** 0.61%
+- **Taxa de engajamento:** 0.62%
 - **Comentários relevantes:** 27
 - **Perguntas identificadas:** 0
 
@@ -44,8 +43,8 @@ No risk, no story. ✨🧠
 
 - **URL:** https://www.instagram.com/p/DUwR-JlCA8f/
 - **Data:** 15/02/2026
-- **Likes:** 71
-- **Comentários:** 12
+- **Likes:** 75
+- **Comentários:** 14
 
 **Legenda:**
 > Hoje faz 6 meses que queimamos o barco.

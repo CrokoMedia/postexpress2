@@ -25,7 +25,7 @@ async function testContextUsage(username, profileId) {
   // 1. Buscar perfil
   console.log('1️⃣  Buscando perfil no Supabase...')
   const { data: profile, error: profileError } = await supabase
-    .from('profiles')
+    .from('instagram_profiles')
     .select('*')
     .eq('id', profileId)
     .single()
