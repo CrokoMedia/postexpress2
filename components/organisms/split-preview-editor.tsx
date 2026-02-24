@@ -265,7 +265,7 @@ export function SplitPreviewEditor({
                     <div className="flex gap-2">
                       <Button
                         size="sm"
-                        variant={imageConfig.mode === 'auto' ? 'default' : 'outline'}
+                        variant={imageConfig.mode === 'auto' ? 'primary' : 'secondary'}
                         onClick={() => updateImageConfig(slideIndex, 'auto')}
                         className="gap-2"
                       >
@@ -274,7 +274,7 @@ export function SplitPreviewEditor({
                       </Button>
                       <Button
                         size="sm"
-                        variant={imageConfig.mode === 'custom_prompt' ? 'default' : 'outline'}
+                        variant={imageConfig.mode === 'custom_prompt' ? 'primary' : 'secondary'}
                         onClick={() => updateImageConfig(slideIndex, 'custom_prompt')}
                         className="gap-2"
                       >
@@ -283,7 +283,7 @@ export function SplitPreviewEditor({
                       </Button>
                       <Button
                         size="sm"
-                        variant={imageConfig.mode === 'upload' ? 'default' : 'outline'}
+                        variant={imageConfig.mode === 'upload' ? 'primary' : 'secondary'}
                         onClick={() => updateImageConfig(slideIndex, 'upload')}
                         className="gap-2"
                       >
@@ -292,7 +292,7 @@ export function SplitPreviewEditor({
                       </Button>
                       <Button
                         size="sm"
-                        variant={imageConfig.mode === 'no_image' ? 'default' : 'outline'}
+                        variant={imageConfig.mode === 'no_image' ? 'primary' : 'secondary'}
                         onClick={() => updateImageConfig(slideIndex, 'no_image')}
                         className="gap-2"
                       >
