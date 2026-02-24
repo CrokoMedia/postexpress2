@@ -294,4 +294,4 @@ Finalizar e disponibilizar o vídeo.
 
 ---
 
-*Pipeline v1.0 | Reel Production Squad | Post Express*
+*Pipeline v1.0 | Reel Production Squad | Croko Labs*

@@ -79,7 +79,7 @@ ${carousel.cta}
 ` : ''}
 
 ═══════════════════════════════════════════════
-Gerado por Post Express | ${new Date().toLocaleDateString('pt-BR')}
+Gerado por Croko Labs | ${new Date().toLocaleDateString('pt-BR')}
 ═══════════════════════════════════════════════
 `.trim()
 

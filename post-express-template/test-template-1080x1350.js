@@ -1,5 +1,5 @@
 /**
- * Post Express - Teste Template 1080x1350
+ * Croko Labs - Teste Template 1080x1350
  *
  * Versão otimizada com espaçamentos ajustados
  */

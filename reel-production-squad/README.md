@@ -91,4 +91,4 @@ reel-production-squad/
 
 ---
 
-*Reel Production Squad v1.0 | Post Express | Pazos Media*
+*Reel Production Squad v1.0 | Croko Labs | Pazos Media*

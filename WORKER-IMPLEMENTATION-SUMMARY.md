@@ -283,7 +283,7 @@ pm2 startup
 
 ```ini
 [Unit]
-Description=Post Express Worker
+Description=Croko Labs Worker
 After=network.target
 
 [Service]

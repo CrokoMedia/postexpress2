@@ -275,4 +275,4 @@ Use este checklist para validar cada perfil:
 
 ---
 
-**Desenvolvido para Post Express | Fevereiro 2026**
+**Desenvolvido para Croko Labs | Fevereiro 2026**

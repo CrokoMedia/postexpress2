@@ -136,4 +136,4 @@ worker/
 ---
 
 **Desenvolvido para EPIC-001 (Story 2.1)**
-Post Express | Twitter Stream Integration
+Croko Labs | Twitter Stream Integration

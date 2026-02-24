@@ -1,6 +1,6 @@
-# Arquitetura - Post Express
+# Arquitetura - Croko Labs
 
-Documentação técnica e arquitetural do sistema Post Express.
+Documentação técnica e arquitetural do sistema Croko Labs.
 
 ---
 

@@ -1,5 +1,5 @@
 /**
- * Post Express - Gerador de Carrosséis
+ * Croko Labs - Gerador de Carrosséis
  * 
  * Este script:
  * 1. Recebe dados do cliente e conteúdo

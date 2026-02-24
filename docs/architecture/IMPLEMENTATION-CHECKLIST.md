@@ -1,7 +1,7 @@
 # Checklist de Implementação - Refatoração Content Creation
 
 **Baseado em:** `BROWNFIELD-CONTENT-CREATION-REFACTOR.md`
-**Projeto:** Post Express
+**Projeto:** Croko Labs
 **Data Início:** 2026-02-21
 
 ---

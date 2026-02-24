@@ -2,7 +2,7 @@
 
 ## 📋 Visão Geral
 
-O Post Express agora detecta automaticamente o gênero de perfis do Instagram para personalizar a linguagem do conteúdo gerado (ex: "ele" vs "ela", "empreendedor" vs "empreendedora").
+O Croko Labs agora detecta automaticamente o gênero de perfis do Instagram para personalizar a linguagem do conteúdo gerado (ex: "ele" vs "ela", "empreendedor" vs "empreendedora").
 
 ## 🎯 Por Que Isso Importa?
 

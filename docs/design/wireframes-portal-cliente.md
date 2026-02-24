@@ -21,7 +21,7 @@ Interface web onde clientes:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
-│  POST EXPRESS — Portal do Cliente                                                   │
+│  CROKO LABS — Portal do Cliente                                                   │
 │                                                                                      │
 │  🏠 Dashboard   📄 Meus Conteúdos   📊 Métricas   ⚙️ Configurações        [👤 Carlos▼]│
 ├─────────────────────────────────────────────────────────────────────────────────────┤
@@ -130,7 +130,7 @@ Interface web onde clientes:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
-│  POST EXPRESS — Meus Conteúdos                                                      │
+│  CROKO LABS — Meus Conteúdos                                                      │
 │                                                                                      │
 │  🏠 Dashboard   📄 Meus Conteúdos   📊 Métricas   ⚙️ Configurações        [👤 Carlos▼]│
 ├─────────────────────────────────────────────────────────────────────────────────────┤
@@ -401,7 +401,7 @@ Interface web onde clientes:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
-│  POST EXPRESS — Métricas                                                             │
+│  CROKO LABS — Métricas                                                             │
 │                                                                                      │
 │  🏠 Dashboard   📄 Meus Conteúdos   📊 Métricas   ⚙️ Configurações        [👤 Carlos▼]│
 ├─────────────────────────────────────────────────────────────────────────────────────┤
@@ -458,7 +458,7 @@ Interface web onde clientes:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
-│  POST EXPRESS — Configurações                                                        │
+│  CROKO LABS — Configurações                                                        │
 │                                                                                      │
 │  🏠 Dashboard   📄 Meus Conteúdos   📊 Métricas   ⚙️ Configurações        [👤 Carlos▼]│
 ├─────────────────────────────────────────────────────────────────────────────────────┤

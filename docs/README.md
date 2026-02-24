@@ -1,6 +1,6 @@
-# 📚 Post Express - Documentação de Desenvolvimento
+# 📚 Croko Labs - Documentação de Desenvolvimento
 
-Bem-vindo à documentação técnica do Post Express! Aqui você encontra epics, stories e guias de desenvolvimento.
+Bem-vindo à documentação técnica do Croko Labs! Aqui você encontra epics, stories e guias de desenvolvimento.
 
 ---
 
@@ -274,4 +274,4 @@ Phase 4: Quality & Monitoring      ░░░░░░░░░░   0% (0/3)
 ---
 
 **Última atualização:** 2026-02-19
-**Mantenedores:** Equipe de Desenvolvimento Post Express
+**Mantenedores:** Equipe de Desenvolvimento Croko Labs

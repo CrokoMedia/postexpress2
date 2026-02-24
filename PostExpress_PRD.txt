@@ -1,5 +1,5 @@
 ================================================================================
-                              POST EXPRESS
+                              CROKO LABS
            Sistema de Criação de Conteúdo Automatizado
                     Product Requirements Document (PRD)
                               Pazos Media
@@ -25,7 +25,7 @@ Infoprodutores, experts e empresas enfrentam desafios críticos na criação de 
 
 1.2 SOLUÇÃO
 -----------
-Post Express é um sistema interno da Pazos Media que automatiza 80% do processo 
+Croko Labs é um sistema interno da Pazos Media que automatiza 80% do processo 
 de criação de conteúdo, utilizando IA com metodologias comprovadas de marketing 
 para gerar carrosséis de alta conversão em escala.
 
@@ -404,5 +404,5 @@ FASE 5: OTIMIZAÇÃO
 
 
 ================================================================================
-                    Post Express — Pazos Media © 2026
+                    Croko Labs — Pazos Media © 2026
 ================================================================================

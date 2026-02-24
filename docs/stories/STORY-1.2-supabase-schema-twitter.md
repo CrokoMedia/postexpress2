@@ -351,7 +351,7 @@ TOTAL: ~2 MB/mês (desprezível - free tier Supabase = 500 MB)
 
 - Supabase SQL Editor: https://supabase.com/docs/guides/database/overview
 - RLS Guide: https://supabase.com/docs/guides/auth/row-level-security
-- Post Express Schema: `/database/optimized-schema.sql`
+- Croko Labs Schema: `/database/optimized-schema.sql`
 
 ---
 

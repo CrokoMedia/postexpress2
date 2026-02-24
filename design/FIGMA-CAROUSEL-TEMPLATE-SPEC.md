@@ -1,4 +1,4 @@
-# 🎨 Post Express - Carousel Template Specification
+# 🎨 Croko Labs - Carousel Template Specification
 
 > Template profissional de carrosséis para Instagram/LinkedIn
 > Otimizado para Figma MCP + Code Connect
@@ -8,7 +8,7 @@
 ## 📐 Canvas Setup
 
 ### Artboard Principal
-- **Nome:** `Post Express Carousel Templates`
+- **Nome:** `Croko Labs Carousel Templates`
 - **Frame size:** 1080x1080px (formato Instagram padrão)
 - **Background:** #FFFFFF
 - **Grid:** 8px grid system
@@ -117,7 +117,7 @@ Corner Radius: 0
 Children (Auto Layout Vertical):
 ├─ Header (Auto Layout Horizontal)
 │  ├─ Logo Badge (40x40px, --color-primary-500)
-│  └─ Brand Text "Post Express" (--text-sm, --font-semibold)
+│  └─ Brand Text "Croko Labs" (--text-sm, --font-semibold)
 │
 ├─ Content Area (Flex: 1, varies by type)
 │
@@ -351,7 +351,7 @@ figma.connect(
 - Patterns (texturas sutis para backgrounds)
 
 ### Logo
-- Post Express logo (SVG)
+- Croko Labs logo (SVG)
 - Badge variant (apenas símbolo, 40x40px)
 
 ---
@@ -361,7 +361,7 @@ figma.connect(
 ### 1. Setup Inicial (10 min)
 
 ```
-1. Criar novo arquivo "Post Express - Carousel Templates"
+1. Criar novo arquivo "Croko Labs - Carousel Templates"
 2. Criar página "Design Tokens"
    └─ Adicionar Color Styles (todas as cores acima)
    └─ Adicionar Text Styles (todas as tipografias)
@@ -508,7 +508,7 @@ Antes de marcar como "ready to dev":
 
 ---
 
-## 🔄 Workflow Post Express + Figma
+## 🔄 Workflow Croko Labs + Figma
 
 ```
 Designer atualiza template no Figma
@@ -558,4 +558,4 @@ Cliente baixa carrossel
 **Versão:** 1.0
 **Data:** 2026-02-20
 **Autor:** Pazos Media
-**Licença:** Uso interno Post Express
+**Licença:** Uso interno Croko Labs

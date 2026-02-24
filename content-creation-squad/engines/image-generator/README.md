@@ -1,6 +1,6 @@
 # 🎨 Image Generator Engine
 
-**Engine de geração automática de imagens para o Post Express**
+**Engine de geração automática de imagens para o Croko Labs**
 
 Converte conteúdo estruturado em imagens PNG de alta qualidade prontas para Instagram, LinkedIn e outras redes sociais.
 
@@ -340,7 +340,7 @@ await generator.generateCarousel(carousel, {
 - [ ] Suporte a imagens nos slides
 - [ ] Templates customizáveis via JSON
 - [ ] Mais estilos pré-configurados
-- [ ] Integração com API do Post Express
+- [ ] Integração com API do Croko Labs
 - [ ] Geração de GIFs/vídeos animados
 - [ ] Suporte a outros formatos (LinkedIn, Twitter, etc.)
 
@@ -352,4 +352,4 @@ MIT
 
 ---
 
-**Criado por Post Express Team**
+**Criado por Croko Labs Team**

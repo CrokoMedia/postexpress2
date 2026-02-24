@@ -1,5 +1,5 @@
 /**
- * Post Express - Teste Local
+ * Croko Labs - Teste Local
  * 
  * Gera slides localmente SEM precisar do Cloudinary
  * Útil pra testar e ajustar o template

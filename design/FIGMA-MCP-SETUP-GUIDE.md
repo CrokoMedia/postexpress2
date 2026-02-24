@@ -1,4 +1,4 @@
-# 🔧 Post Express - Guia de Setup Figma MCP
+# 🔧 Croko Labs - Guia de Setup Figma MCP
 
 > Configuração completa do Figma MCP + Code Connect para sincronização automática de templates
 
@@ -9,7 +9,7 @@
 - [x] Claude Code instalado
 - [x] Conta Figma (Free ou Pro)
 - [x] Node.js 18+ instalado
-- [x] Projeto Post Express configurado
+- [x] Projeto Croko Labs configurado
 
 ---
 
@@ -27,7 +27,7 @@
 ### 1.2 Configurar Token
 
 ```
-Token name: "Post Express - Claude Code MCP"
+Token name: "Croko Labs - Claude Code MCP"
 Scopes:
   ☑ File content
   ☑ Variables
@@ -42,7 +42,7 @@ Expiration: 90 days (recomendado) ou Never
 ### 1.3 Salvar Token Seguro
 
 ```bash
-# No arquivo .env.local do Post Express
+# No arquivo .env.local do Croko Labs
 echo "FIGMA_ACCESS_TOKEN=figd_seu_token_aqui" >> .env.local
 
 # Verificar que .env.local está no .gitignore
@@ -104,7 +104,7 @@ claude
 
 ```
 1. Figma → New design file
-2. Rename: "Post Express - Carousel Templates"
+2. Rename: "Croko Labs - Carousel Templates"
 3. Copiar File ID da URL:
    https://figma.com/file/ABC123DEF456/Post-Express...
                          ^^^^^^^^^^^^
@@ -114,7 +114,7 @@ claude
 ### 3.2 Estruturar Páginas
 
 ```
-📄 Post Express - Carousel Templates
+📄 Croko Labs - Carousel Templates
 ├─ 📑 Design Tokens (cores, tipografia, spacing)
 ├─ 📑 Components (SlideBase e variantes)
 ├─ 📑 Examples (carrosséis completos)
@@ -177,7 +177,7 @@ claude
 4. Adicionar layers:
    ├─ Header (Auto Layout Horizontal, gap 12px)
    │  ├─ Logo Badge (40x40 circle, Primary/500)
-   │  └─ Brand Text "Post Express" (Body/Small, semibold)
+   │  └─ Brand Text "Croko Labs" (Body/Small, semibold)
    │
    ├─ Content Area (Flex: 1)
    │  └─ [Placeholder frame]
@@ -248,7 +248,7 @@ export const CarouselSlide: React.FC<CarouselSlideProps> = ({
       {/* Header */}
       <div className="flex items-center gap-3 mb-10">
         <div className="w-10 h-10 rounded-full bg-primary-500" />
-        <span className="text-sm font-semibold">Post Express</span>
+        <span className="text-sm font-semibold">Croko Labs</span>
       </div>
 
       {/* Content Area */}

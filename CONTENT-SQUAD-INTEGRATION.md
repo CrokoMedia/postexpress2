@@ -574,5 +574,5 @@ NEXT_PUBLIC_CRON_SECRET=dev-secret-change-in-production
 
 **Versão:** 1.0
 **Data:** 23/02/2026
-**Desenvolvido por:** Pazos Media | Post Express
+**Desenvolvido por:** Pazos Media | Croko Labs
 **Powered by:** Content Creation Squad + 6 Mentes Milionárias 🧠

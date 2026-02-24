@@ -6,7 +6,7 @@
  * Integração do Image Generator Engine com Content Creation Squad
  * Gera automaticamente todas as imagens dos carrosséis
  *
- * @author Post Express Team
+ * @author Croko Labs Team
  */
 
 import { ImageGenerator, FORMATS, STYLES } from './engines/image-generator/index.js';

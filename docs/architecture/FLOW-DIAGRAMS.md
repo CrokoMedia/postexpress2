@@ -1,6 +1,6 @@
 # Diagramas de Fluxo - Refatoração Content Creation
 
-**Projeto:** Post Express
+**Projeto:** Croko Labs
 **Data:** 2026-02-21
 
 ---

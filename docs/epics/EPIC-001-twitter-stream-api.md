@@ -10,14 +10,14 @@
 
 ## 📋 Visão Geral
 
-Implementar monitoramento em tempo real de experts do Twitter usando a **Twitter Filtered Stream API**, permitindo que o Post Express detecte instantaneamente quando experts publicam conteúdo relevante sobre temas específicos.
+Implementar monitoramento em tempo real de experts do Twitter usando a **Twitter Filtered Stream API**, permitindo que o Croko Labs detecte instantaneamente quando experts publicam conteúdo relevante sobre temas específicos.
 
 ---
 
 ## 🎯 Objetivos de Negócio
 
 ### Problema
-Atualmente, o Post Express só monitora Instagram. Experts também compartilham insights valiosos no Twitter/X, mas não temos forma de capturar esse conteúdo em tempo real.
+Atualmente, o Croko Labs só monitora Instagram. Experts também compartilham insights valiosos no Twitter/X, mas não temos forma de capturar esse conteúdo em tempo real.
 
 ### Solução
 Integrar Twitter Filtered Stream API para:
@@ -189,7 +189,7 @@ Semana 4 (11-17 Mar):
 
 - Twitter Filtered Stream Docs: https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/introduction
 - Twitter API Pricing: https://developer.twitter.com/en/products/twitter-api
-- Post Express CLAUDE.md: `/CLAUDE.md`
+- Croko Labs CLAUDE.md: `/CLAUDE.md`
 - Supabase Schema: `/database/optimized-schema.sql`
 
 ---

@@ -12,7 +12,7 @@
 
 ## Descrição
 
-Gerar um vídeo de 15-30 segundos com os resultados da auditoria animados: gráfico radar dos 5 scores, destaques em texto animado e CTA do Post Express. O creator posta o resultado → marketing viral orgânico.
+Gerar um vídeo de 15-30 segundos com os resultados da auditoria animados: gráfico radar dos 5 scores, destaques em texto animado e CTA do Croko Labs. O creator posta o resultado → marketing viral orgânico.
 
 ---
 
@@ -22,7 +22,7 @@ Gerar um vídeo de 15-30 segundos com os resultados da auditoria animados: gráf
 - [ ] Gráfico radar animado com os 5 scores dos auditores
 - [ ] Scores animados com contagem crescente
 - [ ] Top 3 insights exibidos em texto animado
-- [ ] CTA final com branding Post Express
+- [ ] CTA final com branding Croko Labs
 - [ ] Vídeo de 15-30s renderizado via Remotion
 - [ ] Upload automático para Cloudinary
 - [ ] Botão "Gerar Vídeo da Auditoria" na página de resultado
@@ -57,7 +57,7 @@ Gerar um vídeo de 15-30 segundos com os resultados da auditoria animados: gráf
 
 | Seção | Duração | Frames | Conteúdo |
 |-------|---------|--------|----------|
-| Intro | 2s | 0-60 | Logo Post Express + "Auditoria de @username" |
+| Intro | 2s | 0-60 | Logo Croko Labs + "Auditoria de @username" |
 | Radar | 8s | 60-300 | RadarChart animado + ScoreBars |
 | Insights | 5s | 300-450 | Top 3 insights com typewriter |
 | CTA | 3s | 450-540 | "Faça sua auditoria em postexpress.com" |

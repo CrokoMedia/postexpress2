@@ -14,7 +14,7 @@ import { TwitterExpertsSection } from '@/components/twitter/twitter-experts-sect
 import { EditProfileModal } from '@/components/molecules/edit-profile-modal'
 import { useProfile } from '@/hooks/use-profiles'
 import { formatNumber, formatDate, getScoreClassification } from '@/lib/format'
-import { CheckCircle, Users, FileText, Calendar, Trash2, Sparkles, Loader2, BookOpen, MessageSquare, TrendingUp, Image as ImageIcon, ChevronRight, PlusCircle, Eye, EyeOff, Pencil, Factory, Video, ChevronDown, RefreshCw } from 'lucide-react'
+import { CheckCircle, Users, FileText, Calendar, Trash2, Sparkles, Loader2, BookOpen, MessageSquare, TrendingUp, Image as ImageIcon, ChevronRight, PlusCircle, Eye, EyeOff, Pencil, Factory, Video, ChevronDown, RefreshCw, Palette } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'

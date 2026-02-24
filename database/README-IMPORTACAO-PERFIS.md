@@ -1,12 +1,12 @@
 # Sistema de Importação de Contexto de Perfis
 
-> Como adicionar contexto completo de qualquer perfil no Post Express
+> Como adicionar contexto completo de qualquer perfil no Croko Labs
 
 ---
 
 ## 📋 Visão Geral
 
-O Post Express usa um sistema de **contexto rico** para gerar conteúdo personalizado. Cada perfil tem 7 categorias de contexto:
+O Croko Labs usa um sistema de **contexto rico** para gerar conteúdo personalizado. Cada perfil tem 7 categorias de contexto:
 
 | Categoria | O que contém |
 |-----------|--------------|
@@ -125,7 +125,7 @@ Nome: GaryVee
    - Produtos: 2
    - Frameworks: 8
 
-✨ Perfil completo atualizado no Post Express!
+✨ Perfil completo atualizado no Croko Labs!
 ```
 
 ---
@@ -183,7 +183,7 @@ Antes de importar, verifique:
 
 Depois de importar o contexto:
 
-1. **Teste a geração de conteúdo** no Post Express
+1. **Teste a geração de conteúdo** no Croko Labs
 2. **Valide o tom de voz** - veja se o sistema está gerando conteúdo autêntico
 3. **Ajuste se necessário** - você pode re-importar quantas vezes quiser (upsert atualiza)
 

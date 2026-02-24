@@ -95,7 +95,7 @@ const Header: React.FC<HeaderProps> = ({ variant }) => {
 
       {/* Brand Text */}
       <span className={cn('text-sm font-semibold', textColor)}>
-        Post Express
+        Croko Labs
       </span>
     </div>
   );

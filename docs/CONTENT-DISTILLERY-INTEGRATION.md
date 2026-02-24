@@ -1,6 +1,6 @@
 # Content Distillery - Integração Completa
 
-> Documentação da integração do Content Distillery Squad no Post Express
+> Documentação da integração do Content Distillery Squad no Croko Labs
 
 **Versão:** 1.0
 **Data:** 2026-02-17

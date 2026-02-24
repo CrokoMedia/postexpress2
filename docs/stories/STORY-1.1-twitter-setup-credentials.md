@@ -36,7 +36,7 @@ Configurar conta de desenvolvedor do Twitter, criar aplicativo, obter credenciai
 
 ### 2. Criar Projeto e App
 - [x] Dashboard → Create Project
-  - Nome: "Post Express Monitor"
+  - Nome: "Croko Labs Monitor"
   - Use case: "Exploring the API"
 - [x] Criar App dentro do projeto
   - Nome: "postexpress-monitor" (único globalmente)

@@ -2,7 +2,7 @@
 
 ## 🎯 Visão Geral
 
-O Post Express possui um sistema completo de agendamento automático de geração de conteúdo. Você agenda quando quer que os carrosséis sejam gerados, e o sistema processa automaticamente no horário programado.
+O Croko Labs possui um sistema completo de agendamento automático de geração de conteúdo. Você agenda quando quer que os carrosséis sejam gerados, e o sistema processa automaticamente no horário programado.
 
 ---
 
@@ -311,4 +311,4 @@ ORDER BY scheduled_at ASC;
 
 **Versão:** 1.0
 **Data:** 23/02/2026
-**Desenvolvido por:** Pazos Media | Post Express
+**Desenvolvido por:** Pazos Media | Croko Labs

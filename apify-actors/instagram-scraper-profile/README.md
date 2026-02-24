@@ -1,4 +1,4 @@
-# 📸 Instagram Profile Scraper - Post Express
+# 📸 Instagram Profile Scraper - Croko Labs
 
 ## 🎯 O Que Este Actor Faz
 
@@ -129,7 +129,7 @@ Cada post retornado terá a seguinte estrutura:
 }
 ```
 
-### ✅ Este Scraper (Post Express Custom)
+### ✅ Este Scraper (Croko Labs Custom)
 ```json
 {
   "ownerFullName": "Frank Costa | INTELIGÊNCIA ARTIFICIAL...",
@@ -231,5 +231,5 @@ Em caso de problemas, verifique:
 ---
 
 **✨ Versão**: 1.0.0
-**🏢 Desenvolvido por**: Post Express Team
+**🏢 Desenvolvido por**: Croko Labs Team
 **📅 Última atualização**: Fevereiro 2026

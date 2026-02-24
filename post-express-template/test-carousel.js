@@ -1,5 +1,5 @@
 /**
- * Post Express - Teste com Carrossel Real
+ * Croko Labs - Teste com Carrossel Real
  *
  * Gera imagens do Carrossel #7 "Framework de 1 Sentença"
  * Baseado na auditoria do @frankcosta

@@ -1,4 +1,4 @@
-🚀 REDESIGN POST EXPRESS - LIVE STATUS
+🚀 REDESIGN CROKO LABS - LIVE STATUS
 =======================================
 Atualizado: $(date +"%H:%M:%S")
 

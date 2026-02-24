@@ -79,7 +79,7 @@ TÍTULO DO CARROSSEL
 [Texto do CTA]
 
 ═══════════════════════════════════════════════
-Gerado por Post Express | 24/02/2026
+Gerado por Croko Labs | 24/02/2026
 ═══════════════════════════════════════════════
 ```
 

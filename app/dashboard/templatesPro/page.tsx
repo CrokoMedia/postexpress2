@@ -98,9 +98,9 @@ function FontSizeSlider({ label, value, onChange, min = 10, max = 120, autoValue
 
 export default function TemplatesProPage() {
   const [selectedTemplate, setSelectedTemplate] = useState<TemplateType>('editorial-cover')
-  const [metaLeft, setMetaLeft] = useState('ESTUDO DE CASO')
-  const [metaCenter, setMetaCenter] = useState('POST EXPRESS')
-  const [metaRight, setMetaRight] = useState('\u00a9COPYRIGHT 2025')
+  const [metaLeft, setMetaLeft] = useState('')
+  const [metaCenter, setMetaCenter] = useState('')
+  const [metaRight, setMetaRight] = useState('')
   const [metaBgColor, setMetaBgColor] = useState('')
   const [metaShape, setMetaShape] = useState<'square' | 'rounded'>('square')
   const [metaFontSize, setMetaFontSize] = useState(13)
@@ -634,7 +634,7 @@ export default function TemplatesProPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1.5">Centro</label>
-                  <Input placeholder="Ex: POST EXPRESS" value={metaCenter} onChange={(e) => setMetaCenter(e.target.value)} />
+                  <Input placeholder="Ex: CROKO LABS" value={metaCenter} onChange={(e) => setMetaCenter(e.target.value)} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1.5">Direita</label>

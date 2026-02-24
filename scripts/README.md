@@ -1,4 +1,4 @@
-# 📸 Instagram Scraper Scripts - Post Express
+# 📸 Instagram Scraper Scripts - Croko Labs
 
 Scripts para extrair dados de perfis do Instagram usando Apify.
 

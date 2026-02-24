@@ -1,4 +1,4 @@
-# Página de Vendas — Post Express Consultoria + Implementação | R$ 8.888
+# Página de Vendas — Croko Labs Consultoria + Implementação | R$ 8.888
 
 > **Squad Copys Milionárias** | 7 Mentes: Hormozi × Schwartz × Gary Vee × Paul Graham × Seth Godin × Thiago Finch × Napoleon Hill
 > Gerado em: 2026-02-20
@@ -151,16 +151,16 @@ Quando você sabe o que ninguém mais sabe sobre o seu público... quando você 
 
 ---
 
-## BLOCO 4: A SOLUÇÃO — O MÉTODO POST EXPRESS
+## BLOCO 4: A SOLUÇÃO — O MÉTODO CROKO LABS
 *[Mente: Alex Hormozi — Value Equation + Grand Slam Offer]*
 
 ---
 
-### Apresentando: Consultoria Post Express™ — Implementação Completa
+### Apresentando: Consultoria Croko Labs™ — Implementação Completa
 
 **Uma auditoria profissional que seria impossível fazer na mão.**
 
-O Método Post Express™ não é um curso. Não é uma mentoria genérica. Não é mais um dashboard.
+O Método Croko Labs™ não é um curso. Não é uma mentoria genérica. Não é mais um dashboard.
 
 É **a implementação completa de um sistema de inteligência de conteúdo no seu negócio** — feita POR VOCÊ, COM VOCÊ, PARA VOCÊ.
 
@@ -218,7 +218,7 @@ Valor = ────────────────────────
              Tempo de Espera × Esforço Necessário
 ```
 
-| Variável | Post Express | Consultoria Tradicional |
+| Variável | Croko Labs | Consultoria Tradicional |
 |----------|-------------|------------------------|
 | **Resultado** | De "achista travado" para "estrategista data-driven" com 90 dias de conteúdo planejado | Relatório PDF com "sugestões" genéricas |
 | **Probabilidade** | Baseado em ciência (5 frameworks + dados reais) | Baseado em opinião (1 pessoa, 1 perspectiva) |
@@ -259,7 +259,7 @@ Então aqui estão os fatos:
 
 **O que consultores cobram vs. o que você recebe:**
 
-| Item | Consultor Tradicional | Post Express |
+| Item | Consultor Tradicional | Croko Labs |
 |------|----------------------|-------------|
 | Auditoria de perfil | R$ 500-2.000 (1 análise) | Ilimitadas |
 | Leitura dos slides | ❌ Não faz | ✅ Todo o texto extraído |
@@ -272,10 +272,10 @@ Então aqui estão os fatos:
 
 **A diferença na prática:**
 
-> **ANTES do Post Express:**
+> **ANTES do Croko Labs:**
 > "Acordo, abro o Instagram, fico 4 horas olhando concorrentes sem saber o que fazer. Posto algo morno. Zero engajamento. Repito amanhã."
 
-> **DEPOIS do Post Express:**
+> **DEPOIS do Croko Labs:**
 > "Abro meu calendário. Já sei o que postar. A estrutura do carrossel está pronta. O hook já foi testado no meu nicho. Posto em 30 minutos. Engajamento real. Crescimento consistente."
 
 ---
@@ -285,7 +285,7 @@ Então aqui estão os fatos:
 
 ---
 
-### O Que Você Recebe na Consultoria Post Express™ (R$ 8.888)
+### O Que Você Recebe na Consultoria Croko Labs™ (R$ 8.888)
 
 Hormozi ensina que a pergunta na mente do prospect deve mudar de *"Posso pagar?"* para *"Quero comprar R$ 100.000 por apenas R$ 8.888?"*
 
@@ -338,7 +338,7 @@ Veja o stack completo:
 **COMPONENTE 5: Acesso ao Sistema de Auditorias**
 *Valor de mercado: R$ 3.564 (R$ 297/mês × 12 meses)*
 
-- 12 meses de acesso ao sistema Post Express Profissional
+- 12 meses de acesso ao sistema Croko Labs Profissional
 - Auditorias ilimitadas de qualquer perfil
 - Atualização automática dos frameworks
 - Novas funcionalidades incluídas
@@ -349,7 +349,7 @@ Veja o stack completo:
 *Valor: R$ 2.000*
 
 - Aula completa de 90 minutos
-- Como transformar sua consultoria usando o Post Express
+- Como transformar sua consultoria usando o Croko Labs
 - Scripts de venda prontos
 - Template de proposta comercial
 
@@ -406,7 +406,7 @@ Veja o stack completo:
 ### A Matemática Que Prova Que É Óbvio
 
 Se você é **consultor ou agência** e cobra R$ 500 por auditoria:
-- Com o Post Express, cada auditoria custa centavos e leva 3 minutos
+- Com o Croko Labs, cada auditoria custa centavos e leva 3 minutos
 - **2 auditorias vendidas por mês** = R$ 1.000/mês = **R$ 12.000/ano**
 - Seu investimento de R$ 8.888 se paga em **menos de 9 meses** — e o restante é lucro puro
 
@@ -437,7 +437,7 @@ A ciência não muda por nicho. **Os dados mudam — e nós coletamos os dados d
 
 Perfeito. Continue usando.
 
-Metricool te mostra **o que já aconteceu** (alcance, impressões, curtidas). O Post Express te mostra **o que fazer agora** (quais perguntas seu público faz, quais estruturas de carrossel funcionam, o que seus concorrentes escrevem dentro dos slides).
+Metricool te mostra **o que já aconteceu** (alcance, impressões, curtidas). O Croko Labs te mostra **o que fazer agora** (quais perguntas seu público faz, quais estruturas de carrossel funcionam, o que seus concorrentes escrevem dentro dos slides).
 
 É como a diferença entre um **termômetro** (mede temperatura) e um **médico** (diagnostica e trata).
 
@@ -455,7 +455,7 @@ Vamos à matemática:
 - Categorizar milhares de comentários: **dias**
 - Aplicar 5 frameworks científicos: **precisa conhecer os 5 livros**
 
-Ou você usa o Post Express e tem tudo em **3 minutos**.
+Ou você usa o Croko Labs e tem tudo em **3 minutos**.
 
 A pergunta não é "posso fazer de graça?" É: **"Quanto vale meu tempo?"**
 
@@ -595,7 +595,7 @@ Após as primeiras 100 implementações (e os cases de sucesso que vão gerar), 
 
 ---
 
-**Post Express™** | Consultoria + Implementação
+**Croko Labs™** | Consultoria + Implementação
 Desenvolvido por Pazos Media | Método baseado em Hormozi, Schwartz, Kahneman, Cagan e Graham
 
 ---

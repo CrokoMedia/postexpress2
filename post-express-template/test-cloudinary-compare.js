@@ -1,5 +1,5 @@
 /**
- * Post Express - Teste Cloudinary Comparação
+ * Croko Labs - Teste Cloudinary Comparação
  *
  * Upload de 2 versões para comparar espaçamento
  */

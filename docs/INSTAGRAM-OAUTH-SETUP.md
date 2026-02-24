@@ -27,7 +27,7 @@ Este guia mostra como configurar o Facebook App para permitir publicação autom
 3. Selecione **"Business"** como tipo de app
 
 4. Preencha:
-   - **App Name:** Post Express (ou o nome que preferir)
+   - **App Name:** Croko Labs (ou o nome que preferir)
    - **App Contact Email:** seu@email.com
    - **Business Account:** Criar novo ou selecionar existente
 
@@ -245,4 +245,4 @@ Os campos de OAuth são protegidos por RLS:
 
 ---
 
-**Pronto!** 🎉 Agora você pode publicar carrosséis direto do Post Express para o Instagram!
+**Pronto!** 🎉 Agora você pode publicar carrosséis direto do Croko Labs para o Instagram!

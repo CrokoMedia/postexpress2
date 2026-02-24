@@ -1,4 +1,4 @@
-# 🎨 Post Express - Exemplos Visuais de Slides
+# 🎨 Croko Labs - Exemplos Visuais de Slides
 
 > Mockups ASCII dos templates para referência rápida
 
@@ -10,7 +10,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  [●]  Post Express                            80px     │
+│  [●]  Croko Labs                            80px     │
 │                                                         │
 │                                                         │
 │                    [gradient orb]                       │
@@ -43,7 +43,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│█ [●]  Post Express                                    █│
+│█ [●]  Croko Labs                                    █│
 │█                                                      █│
 │█                                                      █│
 │█                  [white orb glow]                    █│
@@ -71,7 +71,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│▓▓ [●]  Post Express                                  ▓▓│
+│▓▓ [●]  Croko Labs                                  ▓▓│
 │▓▓                                                    ▓▓│
 │▓▓                                                    ▓▓│
 │▓▓               ★  RESULTADO REAL  ★                ▓▓│
@@ -101,7 +101,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  [●]  Post Express                                     │
+│  [●]  Croko Labs                                     │
 │                                                         │
 │  3 Gatilhos que Fazem Seu Público                      │
 │  Parar de Scrollar                                      │
@@ -141,7 +141,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  [●]  Post Express                                     │
+│  [●]  Croko Labs                                     │
 │                                                         │
 │  O Que Muda Quando Você Para de Adivinhar              │
 │                                                         │
@@ -178,7 +178,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  [●]  Post Express                                     │
+│  [●]  Croko Labs                                     │
 │                                                         │
 │                                                         │
 │                                                         │
@@ -216,7 +216,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  [●]  Post Express                                     │
+│  [●]  Croko Labs                                     │
 │                                                         │
 │           Resultados Reais em 30 Dias                   │
 │                                                         │
@@ -252,7 +252,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  [●]  Post Express                                     │
+│  [●]  Croko Labs                                     │
 │                                                         │
 │                                                         │
 │                                                         │
@@ -283,7 +283,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  [●]  Post Express                                     │
+│  [●]  Croko Labs                                     │
 │                                                         │
 │  Evolução de Alcance (últimos 4 meses)                 │
 │                                                         │
@@ -319,7 +319,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  [●]  Post Express                                     │
+│  [●]  Croko Labs                                     │
 │                                                         │
 │                                                         │
 │                                                         │
@@ -360,7 +360,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  [●]  Post Express                                     │
+│  [●]  Croko Labs                                     │
 │                                                         │
 │                                                         │
 │                                                         │
@@ -393,7 +393,7 @@
 
 ```
 ┌────────────────────────────────────────────────────────┐
-│  [●]  Post Express                                     │
+│  [●]  Croko Labs                                     │
 │                                                         │
 │                                                         │
 │       Aponte a Câmera e Comece Agora                    │

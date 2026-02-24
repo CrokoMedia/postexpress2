@@ -87,7 +87,7 @@ A pagina DEVE seguir esta sequencia (baseada nos 5 niveis de Schwartz):
 
 ## Contexto do Produto
 
-- Produto: Post Express — Consultoria + Implementacao
+- Produto: Croko Labs — Consultoria + Implementacao
 - Preco: R$ 8.888
 - Briefing completo: `squad-auditores/briefing-postexpress.md`
 - CLAUDE.md do projeto tem linguagem/posicionamento/avatares/palavras proibidas

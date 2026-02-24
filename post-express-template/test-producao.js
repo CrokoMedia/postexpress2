@@ -1,5 +1,5 @@
 /**
- * Post Express - Teste Templates de PRODUÇÃO
+ * Croko Labs - Teste Templates de PRODUÇÃO
  *
  * Template A: Só texto (33px)
  * Template B: Texto + Imagem (31px)

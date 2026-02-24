@@ -1,6 +1,6 @@
 # Arquitetura Brownfield: Refatoração do Sistema de Criação de Conteúdo
 
-**Projeto:** Post Express
+**Projeto:** Croko Labs
 **Módulo:** Content Creation System
 **Tipo:** Refatoração Brownfield (Sistema Existente)
 **Versão:** 2.0

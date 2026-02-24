@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Script para atualizar carrosséis com branding correto
- * Post Express → Croko Lab
+ * Croko Labs → Croko Lab
  * Auditoria Express → Croko Audit
  */
 
@@ -20,7 +20,7 @@ function updateBranding(text) {
   if (!text) return text;
 
   return text
-    .replace(/Post Express/g, 'Croko Lab')
+    .replace(/Croko Labs/g, 'Croko Lab')
     .replace(/post express/g, 'croko lab')
     .replace(/postexpress/g, 'crokolab')
     .replace(/Auditoria Express/g, 'Croko Audit')
@@ -95,7 +95,7 @@ async function fixBrandCarousels() {
 
   console.log('\n✅ Branding atualizado com sucesso!');
   console.log('\n📋 Substituições realizadas:');
-  console.log('  • Post Express → Croko Lab');
+  console.log('  • Croko Labs → Croko Lab');
   console.log('  • Auditoria Express → Croko Audit');
   console.log('  • @karlapazos.ai → @karlapazos');
   console.log(`\n🎯 ${indicesToUpdate.length} carrosséis atualizados`);

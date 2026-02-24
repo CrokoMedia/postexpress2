@@ -35,7 +35,7 @@ VALUES (
     "achievements": [
       "Faturei milhões com operação digital",
       "Especialista em IA Avançada (construo automações)",
-      "Criadora do Post Express (ferramenta de auditoria + criação de conteúdo)",
+      "Criadora do Croko Labs (ferramenta de auditoria + criação de conteúdo)",
       "Mentora de IA para empreendedores (R$ 8.888/mês)"
     ],
     "expertise": [
@@ -142,10 +142,10 @@ VALUES (
         "Como treinar IA com seu DNA de conteúdo",
         "Automação de criação sem perder autenticidade",
         "Ferramentas de IA que experts usam (vs amadores)",
-        "Post Express: 12 elite minds analisando seu conteúdo"
+        "Croko Labs: 12 elite minds analisando seu conteúdo"
       ],
       "mensagensChave": [
-        "ChatGPT gera conteúdo genérico. Post Express gera conteúdo com SEU DNA + 12 frameworks científicos.",
+        "ChatGPT gera conteúdo genérico. Croko Labs gera conteúdo com SEU DNA + 12 frameworks científicos.",
         "IA não substitui estratégia. Potencializa. Estratégia errada + IA = escalar o erro.",
         "Sua genialidade: criar expertise e inspirar. Automatize o resto."
       ]
@@ -172,13 +172,13 @@ VALUES (
   '{
     "products": [
       {
-        "name": "Post Express Self-Service (Tier 1)",
+        "name": "Croko Labs Self-Service (Tier 1)",
         "description": "Ferramenta de auditoria + criação de conteúdo com IA",
         "price": "R$ 497/mês",
         "target": "Expert iniciante (0-5k seguidores) e Creator travado (5k-100k, baixa conversão)",
         "cta": "Teste 7 dias grátis",
         "includes": [
-          "Acesso completo ao Post Express",
+          "Acesso completo ao Croko Labs",
           "Auditorias ilimitadas (Instagram, LinkedIn, TikTok)",
           "Geração ilimitada de carrosséis (AI)",
           "12 frameworks de análise",
@@ -187,7 +187,7 @@ VALUES (
         ]
       },
       {
-        "name": "Post Express Growth (Tier 2)",
+        "name": "Croko Labs Growth (Tier 2)",
         "description": "Ferramenta + 1 call mensal de estratégia",
         "price": "R$ 1.997/mês",
         "target": "Creator travado (conversão baixa) e Expert escalando (50k+, quer automatizar)",

@@ -1,4 +1,4 @@
-# 🎨 Design System Audit Report - Post Express
+# 🎨 Design System Audit Report - Croko Labs
 **Data:** 2026-02-20
 **Auditor:** Uma (UX-Design Expert)
 **Metodologia:** Brad Frost Pattern Consolidation + Sally UX Principles
@@ -344,7 +344,7 @@ etc.
 
 **Status Geral:** ✅ **BOM** (7,5/10)
 
-O Post Express já tem um **design system funcional e bem estruturado** seguindo Atomic Design. Os principais problemas são **pontuais e fáceis de resolver**:
+O Croko Labs já tem um **design system funcional e bem estruturado** seguindo Atomic Design. Os principais problemas são **pontuais e fáceis de resolver**:
 
 ✅ **Pontos Fortes:**
 - Atomic Design aplicado corretamente

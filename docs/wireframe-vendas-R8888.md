@@ -1,4 +1,4 @@
-# Wireframe + Spec Visual — Landing Page Post Express R$ 8.888
+# Wireframe + Spec Visual — Landing Page Croko Labs R$ 8.888
 
 > **Agente:** Uma (UX Design Expert)
 > **Referência:** superhuman.com (premium, minimalista, whitespace generoso)
@@ -12,7 +12,7 @@
 
 Inspiração Superhuman adaptada para high-ticket BR:
 
-| Aspecto | Superhuman | Post Express Vendas |
+| Aspecto | Superhuman | Croko Labs Vendas |
 |---------|-----------|-------------------|
 | Fundo | Light + dark sections | **Dark dominant** (neutral-950) com seções alternando dark/darker |
 | Tipografia | Custom "Super Sans" | **Sofia Pro** (já no projeto) + system-ui fallback |
@@ -66,7 +66,7 @@ Price struck:      32px / 1.0 / font-normal   (mobile: 24px)
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                    STICKY NAV (fixed)                     │
-│  [Logo Post Express]              [Garantir Minha Vaga]  │
+│  [Logo Croko Labs]              [Garantir Minha Vaga]  │
 │  bg: neutral-950/80 backdrop-blur-xl                     │
 │  height: 64px | z-50 | border-b border-neutral-800/50   │
 └─────────────────────────────────────────────────────────┘
@@ -251,10 +251,10 @@ Gap entre seções: py-24 (mobile) → py-32 (desktop)
 ┌─────────────────────────────────────────────────────────┐
 │                     py-32                                 │
 │                                                          │
-│  O MÉTODO POST EXPRESS                                   │
+│  O MÉTODO CROKO LABS                                   │
 │  caption / primary-400                                   │
 │                                                          │
-│  Consultoria Post Express™                              │
+│  Consultoria Croko Labs™                              │
 │  Implementação Completa                                  │
 │  48px / bold / neutral-50 / text-center                  │
 │                                                          │
@@ -308,7 +308,7 @@ Gap entre seções: py-24 (mobile) → py-32 (desktop)
 │  │  └──────────────────┘                           │      │
 │  │                                                  │      │
 │  │  Comparison table (2 colunas):                  │      │
-│  │  Post Express | Consultoria Tradicional          │      │
+│  │  Croko Labs | Consultoria Tradicional          │      │
 │  │  bg alternado neutral-800 / neutral-850          │      │
 │  │                                                  │      │
 │  └──────────────────────────────────────────────────┘      │
@@ -357,11 +357,11 @@ Gap entre seções: py-24 (mobile) → py-32 (desktop)
 │                                                          │
 │  ┌─ Comparison Table ─────────────────────────────┐      │
 │  │                                                  │      │
-│  │  Header: Consultor Tradicional | Post Express    │      │
+│  │  Header: Consultor Tradicional | Croko Labs    │      │
 │  │                                                  │      │
 │  │  Rows com ❌ / ✅ side-by-side                   │      │
 │  │  bg alternado                                    │      │
-│  │  Post Express col highlighted (primary-500/5)    │      │
+│  │  Croko Labs col highlighted (primary-500/5)    │      │
 │  │                                                  │      │
 │  └──────────────────────────────────────────────────┘      │
 │                                                          │
@@ -630,7 +630,7 @@ Gap entre seções: py-24 (mobile) → py-32 (desktop)
 ┌─────────────────────────────────────────────────────────┐
 │                     py-16                                 │
 │                                                          │
-│  Post Express™ | Consultoria + Implementação            │
+│  Croko Labs™ | Consultoria + Implementação            │
 │  Desenvolvido por Pazos Media                           │
 │  Método baseado em Hormozi, Schwartz, Kahneman,         │
 │  Cagan e Graham                                         │

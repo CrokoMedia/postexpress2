@@ -568,7 +568,7 @@ Geração final de PNGs + Distribuição.
 │  │  ────────────────      │  ────────────────────          │   │
 │  │  • ZIP completo        │  • Enviar para pasta           │   │
 │  │    (todos os slides)   │    organizada                  │   │
-│  │                        │    Post Express/               │   │
+│  │                        │    Croko Labs/               │   │
 │  │  • ZIPs por carrossel  │    @username/                 │   │
 │  │    (individual)        │    Carrossel-1/               │   │
 │  │                        │                                │   │

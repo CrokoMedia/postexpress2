@@ -37,13 +37,13 @@ async function verifyBrandFix() {
     console.log(`\n📊 Carrossel ${carouselNum}: "${carousel.titulo}"`);
 
     // Verificar caption
-    const hasPostExpress = carousel.caption.includes('Post Express') ||
+    const hasPostExpress = carousel.caption.includes('Croko Labs') ||
                           carousel.caption.includes('post express');
     const hasCrokoLab = carousel.caption.includes('Croko Lab') ||
                        carousel.caption.includes('croko lab');
 
     if (hasPostExpress) {
-      console.log('  ❌ Ainda contém "Post Express" na caption');
+      console.log('  ❌ Ainda contém "Croko Labs" na caption');
     } else if (hasCrokoLab) {
       console.log('  ✅ Caption atualizada com "Croko Lab"');
     } else {
@@ -53,8 +53,8 @@ async function verifyBrandFix() {
     // Verificar slides
     carousel.slides.forEach((slide, slideIndex) => {
       const slideText = `${slide.titulo} ${slide.corpo} ${slide.subtitulo || ''}`;
-      if (slideText.includes('Post Express')) {
-        console.log(`  ❌ Slide ${slideIndex + 1} ainda contém "Post Express"`);
+      if (slideText.includes('Croko Labs')) {
+        console.log(`  ❌ Slide ${slideIndex + 1} ainda contém "Croko Labs"`);
       }
     });
   });

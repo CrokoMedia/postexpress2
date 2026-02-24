@@ -12,7 +12,7 @@
 
 ## Descrição
 
-Expandir a biblioteca de templates com 2 templates adicionais: "Neon Social" (gradientes vibrantes, glow effects) e "Data Driven" (números animados, barras). Com isso, o Post Express oferece 5 templates visuais distintos.
+Expandir a biblioteca de templates com 2 templates adicionais: "Neon Social" (gradientes vibrantes, glow effects) e "Data Driven" (números animados, barras). Com isso, o Croko Labs oferece 5 templates visuais distintos.
 
 ---
 

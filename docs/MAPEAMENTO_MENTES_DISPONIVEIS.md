@@ -1,6 +1,6 @@
 # 🧠 Mapeamento Completo: 28 Mentes Disponíveis
 
-**Projeto**: Post Express - Sistema de Criação de Conteúdo Automatizado
+**Projeto**: Croko Labs - Sistema de Criação de Conteúdo Automatizado
 **Data**: 2026-02-16
 **Analista**: Atlas (@analyst)
 
@@ -9,7 +9,7 @@
 ## 📊 VISÃO GERAL
 
 **Total de Mentes Mapeadas**: 28
-**Já em Uso no Post Express**: 7
+**Já em Uso no Croko Labs**: 7
 **Recomendadas para Adicionar**: 5
 **Disponíveis para Futuro**: 16
 
@@ -28,7 +28,7 @@
   - Core frameworks (5 awareness, market sophistication, assembly method)
   - Specialists (critique, research, headline)
 - **Fidelidade**: 95%+
-- **Uso no Post Express**: Fase COPY (escrever hooks, títulos, copy de cada slide)
+- **Uso no Croko Labs**: Fase COPY (escrever hooks, títulos, copy de cada slide)
 
 #### 2. **Seth Godin** 📖
 - **Papel**: Branding & Narrativas / Marketing de Permissão
@@ -39,7 +39,7 @@
   - Datasets: metáforas, catchphrases, paradoxos, Q&A (português)
   - Manual de uso validado
 - **Fidelidade**: 92%
-- **Uso no Post Express**: Fase ESTRATÉGIA (ângulo estratégico, tom, estrutura)
+- **Uso no Croko Labs**: Fase ESTRATÉGIA (ângulo estratégico, tom, estrutura)
 
 #### 3. **Alex Hormozi** 💰
 - **Papel**: Ofertas Irresistíveis / Value Stacking
@@ -47,7 +47,7 @@
 - **Status**: ⚠️ Parcialmente mapeado (básico disponível)
 - **Artefatos**: Estrutura básica (precisa expansão)
 - **Fidelidade**: ~70% (estimado)
-- **Uso no Post Express**: Fase OTIMIZAÇÃO (carrosséis de vendas, value stack)
+- **Uso no Croko Labs**: Fase OTIMIZAÇÃO (carrosséis de vendas, value stack)
 
 #### 4. **Thiago Finch** 🇧🇷
 - **Papel**: Marketing Digital BR / Localização
@@ -55,7 +55,7 @@
 - **Status**: ⚠️ Conceitual (sem mapeamento profundo)
 - **Artefatos**: Definição básica (precisa construção)
 - **Fidelidade**: ~60% (estimado - persona construída)
-- **Uso no Post Express**: Fase LOCALIZAÇÃO (adaptar para audiência BR)
+- **Uso no Croko Labs**: Fase LOCALIZAÇÃO (adaptar para audiência BR)
 
 #### 5. **Adriano De Marqui** 🎨
 - **Papel**: Design Visual & Branding / Didática Executável
@@ -68,7 +68,7 @@
   - Sources: cursos Didática Lendária + Dominando Obsidian (transcrições)
   - 3 Pillars: Serviço / Prática antes Teoria / Autenticidade
 - **Fidelidade**: 96% ⭐
-- **Uso no Post Express**: Fase VISUAL (layout, cores, branding, identidade visual)
+- **Uso no Croko Labs**: Fase VISUAL (layout, cores, branding, identidade visual)
 
 ### 🔍 SQUAD AUDITORES
 
@@ -82,7 +82,7 @@
   - Sources: "Rápido e Devagar" (PDF) + Prospect Theory paper
   - Artifacts: contradictions, mental models, values hierarchy
 - **Fidelidade**: 90%+
-- **Uso no Post Express**: Auditoria de comportamento da audiência (vieses, padrões)
+- **Uso no Croko Labs**: Auditoria de comportamento da audiência (vieses, padrões)
 
 #### 7. **Paul Graham** 🔍
 - **Papel**: Anomaly Detector / Startup Thinking
@@ -94,7 +94,7 @@
   - Deep cognitive profile
   - Análise psicométrica profunda
 - **Fidelidade**: 93%
-- **Uso no Post Express**: Detectar anomalias e oportunidades nos dados
+- **Uso no Croko Labs**: Detectar anomalias e oportunidades nos dados
 
 ---
 
@@ -110,7 +110,7 @@
   - Auditar métricas de conteúdo (outcomes vs outputs)
   - Diferenciar métricas de vaidade de métricas reais
   - Framework INSPIRED para validação de conteúdo
-- **Uso no Post Express**: Analisar métricas dos posts (reach, engagement, conversão)
+- **Uso no Croko Labs**: Analisar métricas dos posts (reach, engagement, conversão)
 - **Prioridade**: 🔴 Alta (completa Squad Auditores)
 
 ### Para Expandir Capacidades:
@@ -123,7 +123,7 @@
   - Validar usabilidade visual dos carrosséis
   - Princípios de legibilidade e clareza
   - Design centrado no usuário (mobile-first)
-- **Uso no Post Express**: Review de UX dos carrosséis (legibilidade, hierarquia visual)
+- **Uso no Croko Labs**: Review de UX dos carrosséis (legibilidade, hierarquia visual)
 - **Prioridade**: 🟡 Média
 
 #### 10. **Brad Frost** 🎨 [ADICIONAR]
@@ -134,7 +134,7 @@
   - Criar sistema de design consistente para carrosséis
   - Templates modulares (atomic: atoms → molecules → organisms)
   - Escalabilidade visual
-- **Uso no Post Express**: Construir design system dos templates visuais
+- **Uso no Croko Labs**: Construir design system dos templates visuais
 - **Prioridade**: 🟡 Média
 
 #### 11. **Napoleon Hill** 💭 [ADICIONAR]
@@ -145,7 +145,7 @@
   - Criar conteúdo motivacional/inspiracional
   - Carrosséis de mindset e mentalidade vencedora
   - Storytelling de transformação pessoal
-- **Uso no Post Express**: Gerar carrosséis motivacionais para coaches/infoprodutores
+- **Uso no Croko Labs**: Gerar carrosséis motivacionais para coaches/infoprodutores
 - **Prioridade**: 🟢 Baixa (nicho específico)
 
 #### 12. **Sam Altman** 🚀 [ADICIONAR]
@@ -156,7 +156,7 @@
   - Conteúdo sobre IA e futuro
   - Estratégia de crescimento para startups
   - Visão de longo prazo
-- **Uso no Post Express**: Carrosséis sobre IA, inovação, tech trends
+- **Uso no Croko Labs**: Carrosséis sobre IA, inovação, tech trends
 - **Prioridade**: 🟢 Baixa (nicho tech)
 
 ---

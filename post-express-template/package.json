@@ -1,7 +1,7 @@
 {
   "name": "post-express-generator",
   "version": "1.0.0",
-  "description": "Gerador de carrosséis estilo Tweet para Post Express",
+  "description": "Gerador de carrosséis estilo Tweet para Croko Labs",
   "main": "generator.js",
   "scripts": {
     "generate": "node generator.js",

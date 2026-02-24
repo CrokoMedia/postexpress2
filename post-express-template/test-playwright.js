@@ -1,5 +1,5 @@
 /**
- * Post Express - Teste com Playwright
+ * Croko Labs - Teste com Playwright
  *
  * Gera imagens do Carrossel #7 usando Playwright
  * Mais estável no macOS do que Puppeteer

@@ -1,8 +1,8 @@
 {
   "actorSpecification": 1,
   "name": "instagram-scraper-profile",
-  "title": "Instagram Profile Scraper - Post Express (Com Foto de Perfil)",
-  "description": "Extrai dados completos de perfis do Instagram, incluindo nome, username, ID, FOTO DE PERFIL, posts, métricas e comentários. Versão customizada do Post Express.",
+  "title": "Instagram Profile Scraper - Croko Labs (Com Foto de Perfil)",
+  "description": "Extrai dados completos de perfis do Instagram, incluindo nome, username, ID, FOTO DE PERFIL, posts, métricas e comentários. Versão customizada do Croko Labs.",
   "version": "1.0.0",
   "meta": {
     "templateId": "instagram-scraper-profile"

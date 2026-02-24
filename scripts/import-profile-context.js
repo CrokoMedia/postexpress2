@@ -122,7 +122,7 @@ async function importProfileContext() {
       if (verificacao.dna?.frameworks) {
         console.log(`   - Frameworks: ${verificacao.dna.frameworks.length}`);
       }
-      console.log('\n✨ Perfil completo atualizado no Post Express!');
+      console.log('\n✨ Perfil completo atualizado no Croko Labs!');
     }
 
   } catch (err) {

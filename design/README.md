@@ -1,4 +1,4 @@
-# 🎨 Post Express - Design System & Figma Integration
+# 🎨 Croko Labs - Design System & Figma Integration
 
 > Templates profissionais de carrosséis sincronizados via Figma MCP
 
@@ -316,4 +316,4 @@ Consultar: `carousel-slide-example.tsx`
 **Versão:** 1.0
 **Última atualização:** 2026-02-20
 **Autor:** Pazos Media
-**Licença:** Uso interno Post Express
+**Licença:** Uso interno Croko Labs

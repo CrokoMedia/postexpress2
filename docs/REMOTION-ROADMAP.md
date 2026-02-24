@@ -1,13 +1,13 @@
-# Remotion Roadmap — Post Express
+# Remotion Roadmap — Croko Labs
 
-> Plano de expansão do Remotion no Post Express.
+> Plano de expansão do Remotion no Croko Labs.
 > De "gerador de carrosséis" para "fábrica de conteúdo multiplataforma".
 
 ---
 
 ## Status Atual
 
-O Remotion já está integrado ao Post Express com a feature base:
+O Remotion já está integrado ao Croko Labs com a feature base:
 
 - **Reels animados (MP4)** a partir de carrosséis aprovados
 - Template V2 replicado em React (SlideFrame.tsx)
@@ -257,7 +257,7 @@ O resultado da auditoria é texto + números. O creator quer compartilhar o resu
 Gerar um vídeo de 15-30s com os resultados da auditoria animados.
 
 ### Conteúdo do vídeo
-1. **Intro (2s):** Logo Post Express + "Auditoria Express de @username"
+1. **Intro (2s):** Logo Croko Labs + "Auditoria Express de @username"
 2. **Scores (8s):** Gráfico radar animado com os 5 scores
    - Kahneman (comportamento)
    - Schwartz (copy)
@@ -268,7 +268,7 @@ Gerar um vídeo de 15-30s com os resultados da auditoria animados.
 4. **CTA (3s):** "Faça sua auditoria grátis em postexpress.com"
 
 ### Impacto
-- Creator posta o resultado → marketing viral orgânico para o Post Express
+- Creator posta o resultado → marketing viral orgânico para o Croko Labs
 - Cada auditoria gera conteúdo postável automaticamente
 - Formato único — nenhum concorrente faz isso
 
@@ -319,7 +319,7 @@ npm install @remotion/captions --legacy-peer-deps
 ### Licença Remotion
 - **Uso pessoal/educacional:** gratuito
 - **Uso comercial:** a partir de ~$450/ano (Company License)
-- Necessário quando Post Express cobrar pelo serviço
+- Necessário quando Croko Labs cobrar pelo serviço
 
 ---
 

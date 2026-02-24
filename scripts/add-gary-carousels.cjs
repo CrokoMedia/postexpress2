@@ -41,11 +41,11 @@ const garyCarousels = [
       {numero: 1, tipo: 'hook', titulo: 'ChatGPT gera conteúdo genérico.', corpo: 'A diferença? Frameworks científicos + contexto profundo.', subtitulo: 'Eu gero conteúdo com DNA.'},
       {numero: 2, tipo: 'conteudo', titulo: 'O problema do ChatGPT:', corpo: 'Resultado:\n• Copy sem personalidade\n• Hooks fracos\n• Zero autenticidade\n\nSeu conteúdo vira commodity.', subtitulo: 'Todo mundo usa o mesmo prompt'},
       {numero: 3, tipo: 'conteudo', titulo: 'Minha abordagem:', corpo: '• Hormozi (Value Equation)\n• Schwartz (Awareness Stages)\n• Kahneman (Gatilhos Mentais)\n• +9 mentes milionárias\n\n= Conteúdo estratégico, não genérico.', subtitulo: 'IA + 12 Frameworks Científicos'},
-      {numero: 4, tipo: 'conteudo', titulo: 'Exemplo prático:', corpo: 'ChatGPT:\n\"5 dicas de marketing\"\n\nPost Express:\n\"5 erros de copy que custaram R$ 127k (dados reais da auditoria)\"\n\nVê a diferença?', subtitulo: 'Hook de carrossel'},
-      {numero: 5, tipo: 'conteudo', titulo: 'Como funciona o Post Express:', corpo: '1. Analisa SEU perfil (não template)\n2. 12 mentes avaliam SEU conteúdo\n3. Gera copy com SEU DNA\n4. Frameworks científicos aplicados\n\nAutenticidade + Estratégia.'},
+      {numero: 4, tipo: 'conteudo', titulo: 'Exemplo prático:', corpo: 'ChatGPT:\n\"5 dicas de marketing\"\n\nCroko Labs:\n\"5 erros de copy que custaram R$ 127k (dados reais da auditoria)\"\n\nVê a diferença?', subtitulo: 'Hook de carrossel'},
+      {numero: 5, tipo: 'conteudo', titulo: 'Como funciona o Croko Labs:', corpo: '1. Analisa SEU perfil (não template)\n2. 12 mentes avaliam SEU conteúdo\n3. Gera copy com SEU DNA\n4. Frameworks científicos aplicados\n\nAutenticidade + Estratégia.'},
       {numero: 6, tipo: 'conteudo', titulo: 'Resultado:', corpo: 'Não como todo mundo.\n\nIA potencializa sua voz.\nNão substitui.\n\nDocument, don\'t create.', subtitulo: 'Conteúdo que soa como VOCÊ'},
       {numero: 7, tipo: 'conteudo', titulo: 'A fórmula completa:', corpo: 'Seu DNA de conteúdo\n+\n12 Frameworks científicos\n+\nIA contextual\n=\nPosicionamento de autoridade'},
-      {numero: 8, tipo: 'cta', titulo: 'Quer testar?', corpo: 'Auditoria gratuita do seu perfil.\n\n12 mentes analisam seu conteúdo.\n\nDescubra o que está funcionando (e o que não está).', subtitulo: 'Link na bio → Post Express'}
+      {numero: 8, tipo: 'cta', titulo: 'Quer testar?', corpo: 'Auditoria gratuita do seu perfil.\n\n12 mentes analisam seu conteúdo.\n\nDescubra o que está funcionando (e o que não está).', subtitulo: 'Link na bio → Croko Labs'}
     ],
     caption: 'IA sem estratégia = escalar o erro.\n\nIA + Frameworks científicos + SEU DNA = autenticidade escalável.\n\n12 mentes milionárias analisam SEU conteúdo e geram copy com SEU DNA.\n\nAutenticidade > Cópia.\nEstratégia científica > Achismo.',
     hashtags: ['ia', 'chatgpt', 'marketingdigital', 'conteudoestratégico'],
@@ -62,14 +62,14 @@ const garyCarousels = [
       {numero: 2, tipo: 'conteudo', titulo: 'A DOR:', corpo: 'Mas seu perfil parece amador.\n\nResultados reais na vida.\nPerfil genérico no Instagram.\n\nAudiência não vê seu valor.', subtitulo: 'Você sabe que é foda'},
       {numero: 3, tipo: 'conteudo', titulo: 'Por que acontece:', corpo: '1. Conteúdo achista (não data-driven)\n2. Sem posicionamento claro\n3. Copy fraco (não usa frameworks)\n\nExpertise invisível.', subtitulo: '3 motivos'},
       {numero: 4, tipo: 'conteudo', titulo: 'O custo de NÃO resolver:', corpo: '• Clientes vão pra concorrentes menos qualificados\n• Cobrar menos que vale\n• Esforço sem conversão\n\nQuanto você perde por mês?'},
-      {numero: 5, tipo: 'conteudo', titulo: 'A solução:', corpo: 'Post Express:\n\n✅ Analisa seu perfil em 3 min\n✅ 5 frameworks científicos\n✅ Identifica o que falta\n✅ Gera copy estratégico', subtitulo: 'Auditoria profissional + Estratégia'},
+      {numero: 5, tipo: 'conteudo', titulo: 'A solução:', corpo: 'Croko Labs:\n\n✅ Analisa seu perfil em 3 min\n✅ 5 frameworks científicos\n✅ Identifica o que falta\n✅ Gera copy estratégico', subtitulo: 'Auditoria profissional + Estratégia'},
       {numero: 6, tipo: 'conteudo', titulo: 'Como funciona:', corpo: '1. Cole @ do seu perfil\n2. IA analisa 10 últimos posts\n3. 12 mentes avaliam (Hormozi, Schwartz...)\n4. Recebe auditoria + plano de ação\n\n3 minutos. Dados reais.'},
       {numero: 7, tipo: 'conteudo', titulo: 'Transformação entregue:', corpo: 'ANTES:\n\"Não sei o que postar\"\n\nDEPOIS:\n\"20 ideias acionáveis baseadas no que meu público QUER\"\n\nDe achista pra estrategista.'},
-      {numero: 8, tipo: 'conteudo', titulo: 'Oferta:', corpo: '3 auditorias grátis pra testar.\n\nSem cartão. Sem enrolação.\n\nLink na bio → Post Express', subtitulo: 'Auditoria GRATUITA'},
+      {numero: 8, tipo: 'conteudo', titulo: 'Oferta:', corpo: '3 auditorias grátis pra testar.\n\nSem cartão. Sem enrolação.\n\nLink na bio → Croko Labs', subtitulo: 'Auditoria GRATUITA'},
       {numero: 9, tipo: 'conteudo', titulo: 'Por que confiar em mim?', corpo: '16 anos empreendendo.\nFaturei milhões (e encerrei operação por valores).\n\nAgora aplico IA + ciência pra ajudar experts.\n\nSem promessa vazia.'},
       {numero: 10, tipo: 'cta', titulo: 'Qual você escolhe?', corpo: 'Opção A: Continuar postando no achismo\n\nOpção B: Virar estrategista data-driven em 3 minutos\n\nComenta A ou B 👇'}
     ],
-    caption: 'Você É expert. Seu Instagram que não mostra isso.\n\nQuanto isso custa por mês?\n\nConstruí o Post Express pra resolver EXATAMENTE isso.\n\n5 frameworks científicos analisam seu perfil em 3 minutos.\n\nDe achista pra estrategista.\n\n👉 3 auditorias GRÁTIS. Link na bio.',
+    caption: 'Você É expert. Seu Instagram que não mostra isso.\n\nQuanto isso custa por mês?\n\nConstruí o Croko Labs pra resolver EXATAMENTE isso.\n\n5 frameworks científicos analisam seu perfil em 3 minutos.\n\nDe achista pra estrategista.\n\n👉 3 auditorias GRÁTIS. Link na bio.',
     hashtags: ['posicionamento', 'expertdigital', 'marketingdigital', 'auditoria'],
     cta: 'Comenta A ou B'
   },

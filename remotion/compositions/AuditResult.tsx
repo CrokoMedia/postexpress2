@@ -33,7 +33,7 @@ const CTA_START = 450
 const CTA_END = 540 // 3s
 
 /**
- * Secao Intro: logo Post Express + "Auditoria de @username"
+ * Secao Intro: logo Croko Labs + "Auditoria de @username"
  */
 const IntroSection: React.FC<{ username: string; profileImageUrl?: string }> = ({
   username,
@@ -110,7 +110,7 @@ const IntroSection: React.FC<{ username: string; profileImageUrl?: string }> = (
         </div>
       )}
 
-      {/* Titulo Post Express */}
+      {/* Titulo Croko Labs */}
       <div
         style={{
           transform: `translateY(${titleY}px)`,
@@ -122,7 +122,7 @@ const IntroSection: React.FC<{ username: string; profileImageUrl?: string }> = (
           letterSpacing: -1,
         }}
       >
-        Post Express
+        Croko Labs
       </div>
 
       {/* Subtitulo com username */}
@@ -497,7 +497,7 @@ const CTASection: React.FC = () => {
           letterSpacing: -1,
         }}
       >
-        Post Express
+        Croko Labs
       </div>
 
       {/* CTA principal */}
