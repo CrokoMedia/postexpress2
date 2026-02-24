@@ -42,7 +42,16 @@ export async function POST(
 ) {
   try {
     const { id } = await params
-    const body = await request.json()
+
+    // Parse body (pode ser vazio)
+    let body: any = {}
+    try {
+      body = await request.json()
+    } catch {
+      // Body vazio ou inválido, usar defaults
+      body = {}
+    }
+
     const postsLimit = body.postsLimit || 20
     const includeComments = body.includeComments !== false
 
@@ -355,13 +364,27 @@ function buildAuditPrompt(profileData: any, posts: any[], context: any): string 
   const business = context?.business || {}
   const dna = context?.dna || {}
 
-  return `Você é o líder do **Squad Auditores**, composto por 5 especialistas que trabalham em harmonia para analisar perfis de experts no Instagram:
+  return `Você é o líder do **Squad Auditores Croko Lab**, composto por 5 especialistas que trabalham em harmonia para analisar perfis de experts no Instagram usando os 5 Frameworks Científicos:
 
-1. **Eugene Schwartz** - Copywriting científico e níveis de awareness (líder)
-2. **Seth Godin** - Branding, narrativas e conexão emocional
-3. **Alex Hormozi** - Ofertas irresistíveis e mecânicas de conversão
-4. **Thiago Finch** - Marketing digital brasileiro e adaptação cultural
-5. **Adriano De Marqui** - Design visual, estética e identidade
+1. **Daniel Kahneman** - Framework Comportamental (Psicologia & Economia Comportamental)
+   - Analisa comportamento da audiência, vieses cognitivos, gatilhos emocionais
+   - System 1 vs System 2, heurísticas de decisão
+
+2. **Eugene Schwartz** - Framework de Copy (Copywriting Científico)
+   - Copy, hooks, awareness stages (1-5), linguagem persuasiva
+   - Market sophistication, mecanismos únicos
+
+3. **Alex Hormozi** - Framework de Ofertas (Construção de Valor)
+   - CTAs, ofertas, value equation, conversão
+   - Grand Slam Offers, proof stacking
+
+4. **Marty Cagan** - Framework de Métricas (Product Management)
+   - Métricas que importam vs vanity metrics
+   - Outcomes vs outputs, discovery de produto
+
+5. **Paul Graham** - Framework de Anomalias (Análise Contraintuitiva)
+   - Padrões contraintuitivos, anomalias, insights escondidos
+   - Identificação de oportunidades não-óbvias
 
 ---
 
@@ -422,6 +445,18 @@ ${hasContext ? `Esta auditoria tem acesso ao CONTEXTO COMPLETO do expert. Use es
 3. Dar recomendações PERSONALIZADAS baseadas no nicho e público-alvo
 4. Avaliar se as ofertas/produtos estão sendo promovidos adequadamente` :
 `Analise este perfil profissionalmente com base nos posts e dados públicos disponíveis.`}
+
+### COMO CADA AUDITOR DEVE TRABALHAR:
+
+**Kahneman (Behavior):** Analise vieses cognitivos nos hooks, gatilhos System 1/System 2, heurísticas de decisão da audiência. Identifique padrões de comportamento e como o conteúdo influencia decisões.
+
+**Schwartz (Copy):** Avalie awareness stage do público (1-5), sofisticação do mercado, força dos hooks e mecanismos únicos. Identifique se a copy está no nível certo de awareness.
+
+**Hormozi (Offers):** Examine CTAs, value equation (Dream Outcome × Likelihood / Time × Effort), proof stacking e urgência. Avalie se as ofertas são "grand slam" ou fracas.
+
+**Cagan (Metrics):** Separe vanity metrics (curtidas, alcance) de outcomes reais (conversões, engajamento qualificado). Identifique se o perfil está medindo o que importa ou se iludindo com métricas vazias.
+
+**Paul Graham (Anomalies):** Busque padrões contraintuitivos, anomalias positivas ou negativas, oportunidades escondidas. O que está funcionando CONTRA o senso comum? O que ninguém mais percebeu?
 
 ---
 

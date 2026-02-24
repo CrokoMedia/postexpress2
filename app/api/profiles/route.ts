@@ -8,9 +8,9 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get('limit') || '20')
     const offset = parseInt(searchParams.get('offset') || '0')
 
-    // Buscar perfis com última auditoria
+    // Buscar perfis do Instagram com última auditoria
     const { data: profiles, error } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select(`
         id,
         username,
@@ -27,7 +27,19 @@ export async function GET(request: NextRequest) {
         business_category,
         last_scraped_at,
         created_at,
-        audits:audits(*)
+        audits (
+          id,
+          audit_date,
+          audit_type,
+          posts_analyzed,
+          score_overall,
+          score_behavior,
+          score_copy,
+          score_offers,
+          score_metrics,
+          score_anomalies,
+          deleted_at
+        )
       `)
       .is('deleted_at', null)
       .order('last_scraped_at', { ascending: false })

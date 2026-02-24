@@ -55,7 +55,7 @@ export async function POST(
 
     // Verificar se perfil existe
     const { data: profile, error: profileError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('id, username, cloned_voice_id')
       .eq('id', profileId)
       .single()
@@ -188,7 +188,7 @@ export async function POST(
 
     // 3. Salvar voice_id no Supabase
     const { error: updateError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .update({ cloned_voice_id: voiceId })
       .eq('id', profileId)
 
@@ -243,7 +243,7 @@ export async function DELETE(
 
     // Buscar perfil com voice_id
     const { data: profile, error: profileError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('id, username, cloned_voice_id')
       .eq('id', profileId)
       .single()
@@ -283,7 +283,7 @@ export async function DELETE(
 
     // 2. Limpar campo no Supabase
     const { error: updateError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .update({ cloned_voice_id: null })
       .eq('id', profileId)
 

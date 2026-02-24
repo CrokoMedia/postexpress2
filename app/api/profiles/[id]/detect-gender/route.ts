@@ -16,7 +16,7 @@ export async function POST(
 
     // Buscar perfil
     const { data: profile, error: fetchError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('id, username, full_name, biography')
       .eq('id', id)
       .single()
@@ -37,7 +37,7 @@ export async function POST(
 
     // Atualizar perfil com detecção
     const { data: updatedProfile, error: updateError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .update({
         gender: detection.gender,
         gender_auto_detected: true,

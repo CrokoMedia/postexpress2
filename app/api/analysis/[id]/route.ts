@@ -31,7 +31,7 @@ export async function GET(
         .from('audits')
         .select(`
           *,
-          profile:profiles(*)
+          profile:instagram_profiles(*)
         `)
         .eq('id', queueItem.audit_id)
         .single()

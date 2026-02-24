@@ -170,7 +170,7 @@ export async function GET(
         link_type,
         linked_at,
         notes,
-        profile:profiles (
+        profile:instagram_profiles (
           id,
           username,
           full_name,

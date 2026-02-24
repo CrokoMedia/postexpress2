@@ -99,7 +99,7 @@ export async function POST(
 
     // Buscar perfil
     const { data: profile, error: profileError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('*')
       .eq('id', profileId)
       .single()

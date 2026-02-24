@@ -237,7 +237,7 @@ export async function POST(
       .from('audits')
       .select(`
         *,
-        profile:profiles(*)
+        profile:instagram_profiles(*)
       `)
       .eq('id', id)
       .single()

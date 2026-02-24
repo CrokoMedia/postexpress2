@@ -134,7 +134,7 @@ export async function POST(
 
     const { data: audit } = await supabase
       .from('audits')
-      .select('profile:profiles(username, biography), score_overall, score_copy')
+      .select('profile:instagram_profiles(username, biography), score_overall, score_copy')
       .eq('id', id)
       .single()
 

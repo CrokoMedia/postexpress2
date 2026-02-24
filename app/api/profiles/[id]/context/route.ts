@@ -50,7 +50,7 @@ export async function POST(
 
     // Verificar se perfil existe
     const { data: profile, error: profileError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('id')
       .eq('id', id)
       .single()

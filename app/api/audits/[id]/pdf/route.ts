@@ -14,7 +14,7 @@ export async function GET(
 
     const { data: audit, error } = await supabase
       .from('audits')
-      .select(`*, profile:profiles(*)`)
+      .select(`*, profile:instagram_profiles(*)`)
       .eq('id', id)
       .single()
 
