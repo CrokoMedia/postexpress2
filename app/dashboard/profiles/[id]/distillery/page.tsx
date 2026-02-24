@@ -48,11 +48,18 @@ export default function DistilleryPage() {
           .limit(20)
 
         if (error) throw error
-        setAudits(data || [])
+
+        const auditsData = (data || []) as Array<{
+          id: string
+          created_at: string
+          score_overall: number
+        }>
+
+        setAudits(auditsData)
 
         // Auto-selecionar a auditoria mais recente
-        if (data && data.length > 0) {
-          setSelectedAuditId(data[0].id)
+        if (auditsData.length > 0) {
+          setSelectedAuditId(auditsData[0].id)
         }
       } catch (err: any) {
         console.error('Erro ao carregar auditorias:', err)
