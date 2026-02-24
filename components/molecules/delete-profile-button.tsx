@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 interface DeleteProfileButtonProps {
   profileId: string
   username: string
-  variant?: 'danger' | 'outline'
+  variant?: 'danger' | 'secondary' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
   showLabel?: boolean
 }
