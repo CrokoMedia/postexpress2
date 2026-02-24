@@ -53,7 +53,7 @@ function validateBulkActionRequest(body: any): { valid: boolean; error?: string 
       return { valid: false, error: 'targetSlides array não pode estar vazio' }
     }
 
-    if (!body.targetSlides.every((s) => typeof s === 'number' && s >= 0)) {
+    if (!body.targetSlides.every((s: any) => typeof s === 'number' && s >= 0)) {
       return { valid: false, error: 'targetSlides deve conter apenas números >= 0' }
     }
   }

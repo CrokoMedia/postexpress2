@@ -7,10 +7,10 @@ import { createServerSupabase } from '@/lib/supabase-server'
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string; carouselIndex: string } }
+  { params }: { params: Promise<{ id: string; carouselIndex: string }> }
 ) {
   try {
-    const { id: auditId, carouselIndex: carouselIndexStr } = params
+    const { id: auditId, carouselIndex: carouselIndexStr } = await params
     const carouselIndex = parseInt(carouselIndexStr, 10)
 
     if (isNaN(carouselIndex)) {

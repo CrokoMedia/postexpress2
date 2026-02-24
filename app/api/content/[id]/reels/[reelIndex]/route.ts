@@ -10,10 +10,10 @@ cloudinary.config({
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string; reelIndex: string } }
+  { params }: { params: Promise<{ id: string; reelIndex: string }> }
 ) {
   try {
-    const { id: audit_id, reelIndex } = params
+    const { id: audit_id, reelIndex } = await params
     const index = parseInt(reelIndex, 10)
 
     if (isNaN(index)) {

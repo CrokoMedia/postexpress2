@@ -53,7 +53,7 @@ export async function POST(
 
     // Preparar instrução de termos a evitar
     const termsWarning = termsToAvoid.length > 0
-      ? `\n\n## 🚫 TERMOS PROIBIDOS - NUNCA USE:\n${termsToAvoid.map(t => `- ${t}`).join('\n')}\n\nSempre substitua por sinônimos simples que o público entende.`
+      ? `\n\n## 🚫 TERMOS PROIBIDOS - NUNCA USE:\n${termsToAvoid.map((t: string) => `- ${t}`).join('\n')}\n\nSempre substitua por sinônimos simples que o público entende.`
       : ''
 
     // Chamar Claude para refinar o carrossel

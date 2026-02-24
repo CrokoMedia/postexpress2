@@ -307,7 +307,7 @@ export async function POST(
     // Adicionar instrução explícita de termos a evitar (se houver)
     const termsToAvoid = profileContext?.content_style?.language?.termsToAvoid
     const termsInstruction = (termsToAvoid && termsToAvoid.length > 0)
-      ? `\n\n## 🚫 TERMOS PROIBIDOS - NUNCA USE ESSAS PALAVRAS\n\nO expert configurou que seu público-alvo NÃO entende estes termos técnicos/jargões:\n\n${termsToAvoid.map(term => `- **${term}**`).join('\n')}\n\n**REGRA CRÍTICA:**\n- NUNCA use essas palavras em NENHUM slide, título, corpo, caption ou hashtag\n- Sempre substitua por sinônimos simples que o público entende\n- Revise TODO o conteúdo antes de retornar para garantir que nenhum desses termos foi usado\n- Se não souber um sinônimo, descreva o conceito de forma simples\n\n**Exemplos de substituição:**\n- Termos em inglês → equivalente em português\n- Jargões técnicos → explicação simples\n- Siglas → nome completo + explicação\n`
+      ? `\n\n## 🚫 TERMOS PROIBIDOS - NUNCA USE ESSAS PALAVRAS\n\nO expert configurou que seu público-alvo NÃO entende estes termos técnicos/jargões:\n\n${termsToAvoid.map((term: string) => `- **${term}**`).join('\n')}\n\n**REGRA CRÍTICA:**\n- NUNCA use essas palavras em NENHUM slide, título, corpo, caption ou hashtag\n- Sempre substitua por sinônimos simples que o público entende\n- Revise TODO o conteúdo antes de retornar para garantir que nenhum desses termos foi usado\n- Se não souber um sinônimo, descreva o conceito de forma simples\n\n**Exemplos de substituição:**\n- Termos em inglês → equivalente em português\n- Jargões técnicos → explicação simples\n- Siglas → nome completo + explicação\n`
       : ''
 
     console.log('🎨 Enviando para Content Squad (Claude API)...')

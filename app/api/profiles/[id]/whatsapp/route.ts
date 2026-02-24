@@ -7,9 +7,10 @@ import { getServerSupabase } from '@/lib/supabase-server'
  */
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const supabase = getServerSupabase()
     const { phone, name } = await request.json()
 
@@ -33,7 +34,7 @@ export async function POST(
     const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('id, username, whatsapp_phone')
-      .eq('id', params.id)
+      .eq('id', id)
       .single()
 
     if (profileError || !profile) {
@@ -48,7 +49,7 @@ export async function POST(
       .from('profiles')
       .select('id, username')
       .eq('whatsapp_phone', cleanPhone)
-      .neq('id', params.id)
+      .neq('id', id)
       .single()
 
     if (existingProfile) {
@@ -64,7 +65,7 @@ export async function POST(
       .upsert({
         phone: cleanPhone,
         name: name,
-        active_profile_id: params.id,
+        active_profile_id: id,
         authorized: true,
       }, {
         onConflict: 'phone'
@@ -82,7 +83,7 @@ export async function POST(
     const { error: updateError } = await supabase
       .from('profiles')
       .update({ whatsapp_phone: cleanPhone })
-      .eq('id', params.id)
+      .eq('id', id)
 
     if (updateError) {
       console.error('Erro ao vincular WhatsApp:', updateError)
@@ -113,16 +114,17 @@ export async function POST(
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const supabase = getServerSupabase()
 
     // Buscar perfil atual
     const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('id, username, whatsapp_phone')
-      .eq('id', params.id)
+      .eq('id', id)
       .single()
 
     if (profileError || !profile) {
@@ -149,7 +151,7 @@ export async function DELETE(
     const { error: updateError } = await supabase
       .from('profiles')
       .update({ whatsapp_phone: null })
-      .eq('id', params.id)
+      .eq('id', id)
 
     if (updateError) {
       console.error('Erro ao desvincular WhatsApp:', updateError)

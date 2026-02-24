@@ -3,10 +3,10 @@ import { getServerSupabase } from '@/lib/supabase'
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string; carouselIndex: string } }
+  { params }: { params: Promise<{ id: string; carouselIndex: string }> }
 ) {
   try {
-    const { id: audit_id, carouselIndex } = params
+    const { id: audit_id, carouselIndex } = await params
     const index = parseInt(carouselIndex, 10)
 
     if (isNaN(index)) {

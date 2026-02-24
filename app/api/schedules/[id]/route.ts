@@ -2,14 +2,15 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 
 type Params = {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 // GET /api/schedules/[id] - Buscar agendamento específico
 export async function GET(req: NextRequest, { params }: Params) {
   try {
+    const { id } = await params
     const supabase = getServerSupabase()
 
     const { data, error } = await supabase
@@ -20,7 +21,7 @@ export async function GET(req: NextRequest, { params }: Params) {
         audits:audit_id (audit_date, score_overall),
         content_suggestions:content_suggestion_id (*)
       `)
-      .eq('id', params.id)
+      .eq('id', id)
       .single()
 
     if (error) {
@@ -42,6 +43,7 @@ export async function GET(req: NextRequest, { params }: Params) {
 // PATCH /api/schedules/[id] - Atualizar agendamento
 export async function PATCH(req: NextRequest, { params }: Params) {
   try {
+    const { id } = await params
     const body = await req.json()
     const { scheduledAt, quantity, customTheme, status } = body
 
@@ -51,7 +53,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
     const { data: current, error: fetchError } = await supabase
       .from('content_generation_schedules')
       .select('*')
-      .eq('id', params.id)
+      .eq('id', id)
       .single()
 
     if (fetchError || !current) {
@@ -106,7 +108,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
     const { data, error } = await supabase
       .from('content_generation_schedules')
       .update(updateData)
-      .eq('id', params.id)
+      .eq('id', id)
       .select(`
         *,
         profiles:profile_id (username, full_name),
@@ -119,7 +121,7 @@ export async function PATCH(req: NextRequest, { params }: Params) {
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
-    console.log('✅ Agendamento atualizado:', params.id)
+    console.log('✅ Agendamento atualizado:', id)
 
     return NextResponse.json({ schedule: data })
   } catch (err: any) {
@@ -131,13 +133,14 @@ export async function PATCH(req: NextRequest, { params }: Params) {
 // DELETE /api/schedules/[id] - Cancelar agendamento
 export async function DELETE(req: NextRequest, { params }: Params) {
   try {
+    const { id } = await params
     const supabase = getServerSupabase()
 
     // Buscar agendamento atual
     const { data: current, error: fetchError } = await supabase
       .from('content_generation_schedules')
       .select('*')
-      .eq('id', params.id)
+      .eq('id', id)
       .single()
 
     if (fetchError || !current) {
@@ -159,14 +162,14 @@ export async function DELETE(req: NextRequest, { params }: Params) {
     const { error } = await supabase
       .from('content_generation_schedules')
       .update({ status: 'cancelled' })
-      .eq('id', params.id)
+      .eq('id', id)
 
     if (error) {
       console.error('Erro ao cancelar agendamento:', error)
       return NextResponse.json({ error: error.message }, { status: 500 })
     }
 
-    console.log('✅ Agendamento cancelado:', params.id)
+    console.log('✅ Agendamento cancelado:', id)
 
     return NextResponse.json({ message: 'Agendamento cancelado com sucesso' })
   } catch (err: any) {
