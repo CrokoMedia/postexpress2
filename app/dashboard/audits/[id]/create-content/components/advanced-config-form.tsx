@@ -179,7 +179,7 @@ export function AdvancedConfigForm({ auditId, onSubmit, onBack }: AdvancedConfig
           <CardContent>
             <div className="space-y-3">
               <p className="text-sm text-muted-foreground">
-                Descreva um tema específico para o conteúdo. Exemplo: "Startups de tecnologia", "Fitness e bem-estar", "Marketing digital"
+                Descreva um tema específico para o conteúdo. Exemplo: &quot;Startups de tecnologia&quot;, &quot;Fitness e bem-estar&quot;, &quot;Marketing digital&quot;
               </p>
               <textarea
                 value={config.customTheme || ''}

@@ -227,7 +227,7 @@ export function BulkActionsPanel({
           className="text-xs text-muted-foreground bg-info-50 dark:bg-info-900/20 rounded-button px-3 py-2 border border-info-200 dark:border-info-800"
           role="note"
         >
-          💡 <strong>Dica:</strong> Use "IA em todos" para acelerar se estiver satisfeito com a estratégia automática.
+          💡 <strong>Dica:</strong> Use &quot;IA em todos&quot; para acelerar se estiver satisfeito com a estratégia automática.
           Você pode ajustar slides individuais depois.
         </div>
       </div>

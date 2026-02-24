@@ -35,7 +35,7 @@ export default function BrandKitsPage() {
           <ol className="text-sm text-neutral-400 space-y-1 list-decimal list-inside">
             <li>Vá para o Dashboard</li>
             <li>Clique em um perfil auditado</li>
-            <li>Clique no botão <strong>"Brand Kit"</strong></li>
+            <li>Clique no botão <strong>&quot;Brand Kit&quot;</strong></li>
           </ol>
         </div>
 

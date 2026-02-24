@@ -192,7 +192,7 @@ export function EditProfileModal({
           <div className="bg-neutral-100 dark:bg-neutral-800/50 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
             <p className="text-xs text-muted-foreground leading-relaxed">
               <strong className="text-foreground">Por que isso importa?</strong><br />
-              O gênero é usado para personalizar a linguagem do conteúdo gerado (ex: "ele" vs "ela", "empreendedor" vs "empreendedora").
+              O gênero é usado para personalizar a linguagem do conteúdo gerado (ex: &quot;ele&quot; vs &quot;ela&quot;, &quot;empreendedor&quot; vs &quot;empreendedora&quot;).
             </p>
           </div>
         </div>
