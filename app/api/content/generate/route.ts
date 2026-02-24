@@ -17,6 +17,7 @@ interface GenerateRequest {
   idea: string;
   phone?: string;
   userId?: string;
+  profileId?: string;
 }
 
 export async function POST(request: NextRequest) {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getServerSupabase } from '@/lib/supabase-server'
+import { createServerSupabase } from '@/lib/supabase-server'
 
 /**
  * POST /api/profiles/[id]/whatsapp
@@ -11,7 +11,7 @@ export async function POST(
 ) {
   try {
     const { id } = await params
-    const supabase = getServerSupabase()
+    const supabase = await createServerSupabase()
     const { phone, name } = await request.json()
 
     if (!phone || !name) {
@@ -118,7 +118,7 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params
-    const supabase = getServerSupabase()
+    const supabase = await createServerSupabase()
 
     // Buscar perfil atual
     const { data: profile, error: profileError } = await supabase

@@ -96,7 +96,7 @@ async function handleNewMessage(payload: UAZapiWebhook) {
 
   // Comandos especiais
   if (command.startsWith('/')) {
-    return await handleCommand(phone, command, senderName, userProfile);
+    return await handleCommand(phone, command, senderName);
   }
 
   // Menção de perfil Instagram

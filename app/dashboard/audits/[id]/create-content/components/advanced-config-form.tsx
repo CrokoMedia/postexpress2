@@ -121,7 +121,7 @@ export function AdvancedConfigForm({ auditId, onSubmit, onBack }: AdvancedConfig
                     <div>
                       <div className="flex items-center gap-2">
                         <p className="font-semibold text-foreground">{format.name}</p>
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="neutral" className="text-xs">
                           {format.ratio}
                         </Badge>
                       </div>

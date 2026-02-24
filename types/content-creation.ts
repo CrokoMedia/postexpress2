@@ -22,9 +22,11 @@ export interface Slide {
 
 export type SlideType = 'hook' | 'conteudo' | 'contexto' | 'ponto' | 'aplicacao' | 'cta' | 'closer'
 
+export type CarouselType = 'educacional' | 'vendas' | 'autoridade' | 'viral'
+
 export interface Carousel {
   titulo: string
-  tipo: string
+  tipo: CarouselType
   objetivo: string
   baseado_em: string
   slides: Slide[]
@@ -32,6 +34,8 @@ export interface Carousel {
   hashtags: string[]
   cta: string
   approved?: boolean
+  is_variation?: boolean
+  variation_source?: string
 }
 
 export interface QuickStartOption {

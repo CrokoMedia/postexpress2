@@ -155,7 +155,7 @@ export function TemplateGallery({ onSelect, onBack }: TemplateGalleryProps) {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {template.colors.map((color, idx) => (
-                    <Badge key={idx} variant="outline" className="text-xs">
+                    <Badge key={idx} variant="neutral" className="text-xs">
                       {color}
                     </Badge>
                   ))}

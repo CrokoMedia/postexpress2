@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { generateEditorialBackground, generateEditorialBackgroundWithReference } from '@/lib/nano-banana'
+import { generateEditorialBackground } from '@/lib/nano-banana'
+import { generateEditorialBackgroundWithReference } from '@/lib/fal-image'
 import { searchEditorialImage } from '@/lib/image-search'
 import { generateEditorialCoverHTML } from '@/lib/slide-templates/editorial-cover'
 import { parseComposePrompt, resolveComposeElements, generateComposeHTML } from '@/lib/slide-templates/editorial-compose'

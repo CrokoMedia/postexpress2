@@ -106,8 +106,9 @@ export function Phase2Refinar({ auditId }: Phase2RefinarProps) {
     updateSlideImageConfig(carouselIndex, slideIndex, config)
   }, [updateSlideImageConfig])
 
-  const handleApplyBulkAction = useCallback((
-    mode: SlideImageConfig['mode'],
+  // Para BulkActionsPanel
+  const handleApplyToAll = useCallback((
+    action: SlideImageConfig['mode'],
     data?: Partial<SlideImageConfig>
   ) => {
     const carousel = carousels[currentCarouselIndex]
@@ -115,11 +116,26 @@ export function Phase2Refinar({ auditId }: Phase2RefinarProps) {
     // Aplicar a config em todos os slides do carrossel atual
     carousel.slides.forEach((_, slideIndex) => {
       updateSlideImageConfig(currentCarouselIndex, slideIndex, {
-        mode,
+        mode: action,
         ...data,
       })
     })
   }, [carousels, currentCarouselIndex, updateSlideImageConfig])
+
+  // Para SplitPreviewEditor
+  const handleApplyBulkAction = useCallback((
+    carouselIndex: number,
+    action: 'auto' | 'no_image' | 'custom_prompt' | 'upload'
+  ) => {
+    const carousel = carousels[carouselIndex]
+
+    // Aplicar a config em todos os slides do carrossel atual
+    carousel.slides.forEach((_, slideIndex) => {
+      updateSlideImageConfig(carouselIndex, slideIndex, {
+        mode: action,
+      })
+    })
+  }, [carousels, updateSlideImageConfig])
 
   const handleCopyFrom = useCallback((sourceCarouselIndex: number) => {
     const sourceConfigs = slideImageConfigs.get(sourceCarouselIndex)
@@ -249,7 +265,7 @@ export function Phase2Refinar({ auditId }: Phase2RefinarProps) {
         <BulkActionsPanel
           carouselIndex={currentCarouselIndex}
           totalSlides={carousels[currentCarouselIndex]?.slides.length || 0}
-          onApplyToAll={handleApplyBulkAction}
+          onApplyToAll={handleApplyToAll}
           onCopyFrom={carousels.length > 1 ? handleCopyFrom : undefined}
           availableCarousels={Array.from({ length: carousels.length }, (_, i) => i)}
         />
