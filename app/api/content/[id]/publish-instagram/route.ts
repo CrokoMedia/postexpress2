@@ -76,9 +76,9 @@ export async function POST(
     // Extrair URLs do Cloudinary
     const slideUrls = generatedCarousel.slides.map((slide: any) => slide.cloudinaryUrl)
 
-    // 2. Buscar credenciais do Instagram
+    // 2. Buscar credenciais OAuth do Instagram (tabela instagram_profiles)
     const { data: profile, error: profileError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('instagram_account_id, instagram_access_token, instagram_token_expires_at, instagram_connected, username')
       .eq('id', content.profile_id)
       .single()

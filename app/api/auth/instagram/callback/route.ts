@@ -53,11 +53,11 @@ export async function GET(request: NextRequest) {
     const instagramAccountId = accountInfo.instagram_business_account.id
     const facebookPageId = accountInfo.id
 
-    // 4. Salvar no Supabase
+    // 4. Salvar no Supabase (tabela instagram_profiles)
     const expiresAt = calculateTokenExpiration()
 
     const { error: updateError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .update({
         instagram_account_id: instagramAccountId,
         instagram_access_token: accessToken,
