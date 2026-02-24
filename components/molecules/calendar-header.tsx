@@ -120,7 +120,7 @@ export default function CalendarHeader({
 
           {/* Botão de Processar Agendamentos */}
           <Button
-            variant="success"
+            variant="primary"
             size="sm"
             onClick={handleProcessSchedules}
             disabled={isProcessing}
