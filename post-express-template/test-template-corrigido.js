@@ -1,5 +1,5 @@
 /**
- * Post Express - Teste com Template Corrigido
+ * Croko Labs - Teste com Template Corrigido
  *
  * Usa o Post_Express_Template_Corrigido.html
  * Fonte Chirp + Texto alinhado à esquerda

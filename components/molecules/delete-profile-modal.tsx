@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/atoms/dialog'
 import { Button } from '@/components/atoms/button'
 import { AlertTriangle, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
@@ -24,8 +25,6 @@ export function DeleteProfileModal({
   const router = useRouter()
   const [isDeleting, setIsDeleting] = useState(false)
   const [confirmText, setConfirmText] = useState('')
-
-  if (!isOpen) return null
 
   const handleDelete = async () => {
     if (confirmText !== username) {
@@ -66,57 +65,56 @@ export function DeleteProfileModal({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      <div className="bg-neutral-900 border border-neutral-700 rounded-xl shadow-2xl max-w-md w-full p-6 space-y-4">
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700 max-w-md">
         {/* Header */}
-        <div className="flex items-start gap-4">
+        <DialogHeader className="flex-row items-start gap-4 space-y-0">
           <div className="shrink-0 h-12 w-12 rounded-full bg-error-500/10 flex items-center justify-center">
             <AlertTriangle className="h-6 w-6 text-error-500" />
           </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-semibold text-neutral-100">
+          <div className="flex-1 space-y-1.5">
+            <DialogTitle className="text-xl text-neutral-900 dark:text-neutral-100">
               Deletar Perfil
-            </h3>
-            <p className="text-sm text-neutral-400 mt-1">
+            </DialogTitle>
+            <DialogDescription className="text-neutral-600 dark:text-neutral-400">
               Esta ação não pode ser desfeita
-            </p>
+            </DialogDescription>
           </div>
-        </div>
+        </DialogHeader>
 
         {/* Content */}
         <div className="space-y-4">
-          <p className="text-neutral-300">
-            Você está prestes a deletar o perfil{' '}
-            <span className="font-semibold text-neutral-100">@{username}</span>.
-            Todas as auditorias, posts e comentários associados serão mantidos,
-            mas o perfil não aparecerá mais nas listagens.
+          <p className="text-neutral-700 dark:text-neutral-300">
+            Você está prestes a deletar <span className="font-semibold text-error-600 dark:text-error-400">PERMANENTEMENTE</span> o perfil{' '}
+            <span className="font-semibold text-neutral-900 dark:text-neutral-100">@{username}</span>{' '}
+            e <span className="font-semibold">TODOS os dados associados</span>.
           </p>
 
-          <div className="bg-neutral-800/50 border border-neutral-700/50 rounded-lg p-4 space-y-2">
-            <h4 className="text-sm font-medium text-neutral-300">
-              O que será deletado:
+          <div className="bg-error-50 dark:bg-error-900/20 border-2 border-error-500/30 rounded-lg p-4 space-y-2">
+            <h4 className="text-sm font-semibold text-error-600 dark:text-error-400 flex items-center gap-2">
+              <AlertTriangle className="h-4 w-4" />
+              Será deletado permanentemente:
             </h4>
-            <ul className="text-sm text-neutral-400 space-y-1 list-disc list-inside">
-              <li>Perfil do Instagram</li>
-              <li>Visibilidade nas listagens</li>
+            <ul className="text-sm text-error-700 dark:text-error-300 space-y-1 list-disc list-inside ml-2">
+              <li><strong>Perfil do Instagram</strong> (@{username})</li>
+              <li><strong>TODAS as auditorias</strong> deste perfil</li>
+              <li><strong>TODOS os posts</strong> dessas auditorias</li>
+              <li><strong>TODOS os comentários</strong> desses posts</li>
+              <li><strong>TODAS as comparações</strong> deste perfil</li>
+              <li><strong>Contexto e documentos</strong> (se houver)</li>
             </ul>
           </div>
 
-          <div className="bg-warning-500/10 border border-warning-500/20 rounded-lg p-4 space-y-2">
-            <h4 className="text-sm font-medium text-warning-500">
-              O que será mantido:
-            </h4>
-            <ul className="text-sm text-warning-400 space-y-1 list-disc list-inside">
-              <li>Auditorias (histórico)</li>
-              <li>Posts e comentários (dados)</li>
-              <li>Documentos uploadados</li>
-            </ul>
+          <div className="bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-300 dark:border-neutral-700/50 rounded-lg p-3">
+            <p className="text-xs text-neutral-600 dark:text-neutral-400">
+              ⚠️ <strong>Esta ação NÃO pode ser desfeita.</strong> Todos os dados serão apagados permanentemente do banco de dados.
+            </p>
           </div>
 
           {/* Confirmação */}
           <div>
-            <label className="block text-sm font-medium text-neutral-300 mb-2">
-              Digite <span className="font-semibold text-neutral-100">{username}</span> para confirmar:
+            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              Digite <span className="font-semibold text-neutral-900 dark:text-neutral-100">{username}</span> para confirmar:
             </label>
             <input
               type="text"
@@ -124,7 +122,7 @@ export function DeleteProfileModal({
               onChange={(e) => setConfirmText(e.target.value)}
               placeholder={username}
               disabled={isDeleting}
-              className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 placeholder:text-neutral-500"
+              className="w-full bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg px-3 py-2 text-neutral-900 dark:text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
         </div>
@@ -150,7 +148,7 @@ export function DeleteProfileModal({
             Deletar Perfil
           </Button>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   )
 }

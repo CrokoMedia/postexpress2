@@ -30,7 +30,7 @@ export async function POST(
     // Buscar content_suggestion existente
     const { data: contentSuggestion, error: fetchError } = await supabase
       .from('content_suggestions')
-      .select('id, content_json')
+      .select('id, content_json, slides_json, profile_id')
       .eq('audit_id', id)
       .single()
 
@@ -40,6 +40,21 @@ export async function POST(
         { status: 404 }
       )
     }
+
+    // Buscar contexto do perfil para obter termos a evitar
+    const { data: profileContext } = await supabase
+      .from('profile_context')
+      .select('content_style')
+      .eq('profile_id', contentSuggestion.profile_id)
+      .is('deleted_at', null)
+      .single()
+
+    const termsToAvoid = profileContext?.content_style?.language?.termsToAvoid || []
+
+    // Preparar instrução de termos a evitar
+    const termsWarning = termsToAvoid.length > 0
+      ? `\n\n## 🚫 TERMOS PROIBIDOS - NUNCA USE:\n${termsToAvoid.map((t: string) => `- ${t}`).join('\n')}\n\nSempre substitua por sinônimos simples que o público entende.`
+      : ''
 
     // Chamar Claude para refinar o carrossel
     const carouselJson = JSON.stringify(carousel, null, 2)
@@ -59,6 +74,7 @@ ${carouselJson}
 
 ## Instruções do Usuário:
 ${instructions}
+${termsWarning}
 
 ## Regras:
 1. Retorne APENAS o JSON do carrossel atualizado, sem explicações
@@ -68,6 +84,7 @@ ${instructions}
 5. Aplique as instruções do usuário mantendo a qualidade e coerência do conteúdo
 6. Se o usuário pedir para adicionar informações específicas, integre naturalmente ao conteúdo
 7. Não invente dados que o usuário não forneceu
+8. ${termsToAvoid.length > 0 ? 'NUNCA use os termos proibidos listados acima. Sempre substitua por linguagem simples.' : 'Mantenha linguagem simples e acessível.'}
 
 Retorne apenas o JSON válido, sem markdown, sem explicações.`
         }
@@ -98,9 +115,22 @@ Retorne apenas o JSON válido, sem markdown, sem explicações.`
     const contentJson = contentSuggestion.content_json as any
     contentJson.carousels[carouselIndex] = refinedCarousel
 
+    // IMPORTANTE: Limpar slides gerados do carrossel editado para forçar regeneração
+    let slidesJson = contentSuggestion.slides_json as any
+    if (slidesJson?.carousels) {
+      // Remover slides do carrossel editado baseado no título
+      slidesJson.carousels = slidesJson.carousels.filter((c: any) =>
+        c.title !== carousel.titulo && c.title !== refinedCarousel.titulo
+      )
+      console.log(`🔄 Slides do carrossel "${refinedCarousel.titulo}" removidos para forçar regeneração`)
+    }
+
     const { error: updateError } = await supabase
       .from('content_suggestions')
-      .update({ content_json: contentJson })
+      .update({
+        content_json: contentJson,
+        slides_json: slidesJson
+      })
       .eq('id', contentSuggestion.id)
 
     if (updateError) {
@@ -150,7 +180,7 @@ export async function PUT(
 
     const { data: contentSuggestion, error: fetchError } = await supabase
       .from('content_suggestions')
-      .select('id, content_json')
+      .select('id, content_json, slides_json')
       .eq('audit_id', id)
       .single()
 
@@ -159,11 +189,25 @@ export async function PUT(
     }
 
     const contentJson = contentSuggestion.content_json as any
+    const originalCarousel = contentJson.carousels[carouselIndex]
     contentJson.carousels[carouselIndex] = carousel
+
+    // IMPORTANTE: Limpar slides gerados do carrossel editado para forçar regeneração
+    let slidesJson = contentSuggestion.slides_json as any
+    if (slidesJson?.carousels) {
+      // Remover slides do carrossel editado baseado no título
+      slidesJson.carousels = slidesJson.carousels.filter((c: any) =>
+        c.title !== originalCarousel?.titulo && c.title !== carousel.titulo
+      )
+      console.log(`🔄 Slides do carrossel "${carousel.titulo}" removidos para forçar regeneração`)
+    }
 
     const { error: updateError } = await supabase
       .from('content_suggestions')
-      .update({ content_json: contentJson })
+      .update({
+        content_json: contentJson,
+        slides_json: slidesJson
+      })
       .eq('id', contentSuggestion.id)
 
     if (updateError) {

@@ -1,6 +1,6 @@
 # 🚀 Worker Quick Start Guide
 
-Guia rápido para iniciar o sistema de workers do Post Express.
+Guia rápido para iniciar o sistema de workers do Croko Labs.
 
 ## ✅ Pré-requisitos
 

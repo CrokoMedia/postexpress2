@@ -180,7 +180,7 @@ Semana -1: Produção em lote
 Semana 0: Revisão e Agendamento
 - Review final
 - Agendar todos os posts
-- Preparar captions/hashtags
+- Preparar captions
 
 Semanas 1-N: Publicação e Análise
 - Posts publicam automaticamente
@@ -803,7 +803,6 @@ Obrigado pela confiança + roadmap do que vem
 ### Copywriting
 - [ ] Todos os 12 carrosséis escritos (usar workflow/batch-production.md)
 - [ ] Captions finalizadas
-- [ ] Hashtags por post
 
 ### Recursos Técnicos
 - [ ] Ferramenta de agendamento (Later, Planoly, Creator Studio)
@@ -841,7 +840,6 @@ Obrigado pela confiança + roadmap do que vem
 ### Semana 0 (Mar 1-2): REVISÃO
 - [ ] Review final de todos os 12
 - [ ] Ajustes de copy/design
-- [ ] Preparar hashtags
 - [ ] Agendar posts 1-6
 - [ ] Testar automação de DMs (se usar)
 

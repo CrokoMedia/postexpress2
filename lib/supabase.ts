@@ -41,3 +41,6 @@ export function createClientSupabase() {
     (process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY)!
   )
 }
+
+// Alias para compatibilidade
+export { createClientSupabase as createClient }

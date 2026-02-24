@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPIC-011: Visual Effects Pro - Dashboard de Progresso</title>
+  <style>
+    :root {
+      --bg-1: #0f0f1a;
+      --bg-2: #161625;
+      --card: rgba(255,255,255,0.04);
+      --card-hover: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.07);
+      --accent: #06b6d4;
+      --accent-l: #22d3ee;
+      --secondary: #3b82f6;
+      --secondary-l: #60a5fa;
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --dim: #64748b;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(160deg, var(--bg-1), var(--bg-2));
+      color: var(--text);
+      padding: 20px;
+      min-height: 100vh;
+    }
+    .container { max-width:1480px; margin:0 auto; }
+
+    /* Header */
+    .header {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background: linear-gradient(90deg, var(--accent), var(--secondary), var(--accent));
+    }
+    .header-row { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; }
+    .header h1 {
+      font-size:26px; font-weight:800;
+      background: linear-gradient(135deg, var(--accent-l), var(--secondary-l));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .header .sub { font-size:14px; color:var(--muted); margin-top:4px; }
+    .hbadge {
+      padding:5px 14px; border-radius:20px; font-size:12px; font-weight:700;
+      background:rgba(6,182,212,.12); border:1px solid rgba(6,182,212,.3); color:var(--accent-l);
+    }
+    .meta-row {
+      display:flex; gap:20px; flex-wrap:wrap; margin-top:14px; font-size:12px; color:var(--muted);
+    }
+    .meta-row strong { color:var(--text); }
+
+    /* Overall progress bar in header */
+    .header-progress { margin-top:16px; }
+    .header-progress .pl { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:4px; }
+    .header-progress .pb { background:rgba(255,255,255,.05); border-radius:7px; height:22px; overflow:hidden; }
+    .header-progress .pf {
+      height:100%; display:flex; align-items:center; justify-content:center;
+      font-size:11px; font-weight:700; color:#fff; border-radius:7px;
+      background:linear-gradient(90deg, var(--accent), var(--secondary));
+      transition:width .8s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* Stats */
+    .stats { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:20px; }
+    .st {
+      background:var(--card); border:1px solid var(--border); border-radius:12px;
+      padding:18px 12px; text-align:center; transition:transform .2s, border-color .2s;
+    }
+    .st:hover { transform:translateY(-2px); border-color:var(--accent); }
+    .st-icon { font-size:22px; margin-bottom:6px; }
+    .st-val {
+      font-size:30px; font-weight:800;
+      background:linear-gradient(135deg,var(--accent-l),var(--secondary-l));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    .st-lbl { font-size:10px; text-transform:uppercase; letter-spacing:.5px; color:var(--dim); margin-top:3px; }
+
+    /* Grid */
+    .g2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:20px; }
+    .g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; margin-bottom:20px; }
+    .fw { grid-column:1/-1; }
+
+    /* Card */
+    .card {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:12px; padding:22px; transition:border-color .2s;
+    }
+    .card:hover { border-color:rgba(255,255,255,.1); }
+    .card h2 {
+      font-size:15px; font-weight:600; margin-bottom:14px;
+      display:flex; align-items:center; gap:8px;
+    }
+
+    /* Progress bars */
+    .pb { background:rgba(255,255,255,.05); border-radius:7px; height:26px; overflow:hidden; margin-bottom:6px; }
+    .pf {
+      height:100%; display:flex; align-items:center; justify-content:center;
+      font-size:11px; font-weight:700; color:#fff; border-radius:7px;
+      transition:width .8s cubic-bezier(.4,0,.2,1);
+    }
+    .pf.cyan { background:linear-gradient(90deg,#0891b2,var(--accent)); }
+    .pf.blue { background:linear-gradient(90deg,#2563eb,var(--secondary)); }
+    .pf.green { background:linear-gradient(90deg,#059669,var(--green)); }
+    .pl { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:4px; }
+
+    /* Story items */
+    .slist { list-style:none; }
+    .si {
+      background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.04);
+      padding:12px 14px; border-radius:9px; margin-bottom:7px;
+      display:flex; justify-content:space-between; align-items:center; transition:all .2s;
+    }
+    .si:hover { background:rgba(255,255,255,.05); border-color:rgba(6,182,212,.2); }
+    .si-l { display:flex; align-items:center; gap:10px; flex:1; }
+    .si-id {
+      font-size:10px; font-weight:700; color:var(--accent-l);
+      background:rgba(6,182,212,.12); padding:2px 7px; border-radius:5px;
+    }
+    .si-name { font-size:13px; }
+    .si-r { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+    .si-tasks { font-size:10px; color:var(--dim); }
+    .mini-bar { width:50px; height:5px; background:rgba(255,255,255,.07); border-radius:3px; overflow:hidden; }
+    .mini-fill { height:100%; border-radius:3px; transition:width .6s; }
+
+    /* Badges */
+    .b {
+      padding:2px 8px; border-radius:5px; font-size:10px; font-weight:700;
+      text-transform:uppercase; letter-spacing:.3px; white-space:nowrap;
+    }
+    .b-plan { background:rgba(100,116,139,.15); color:#94a3b8; border:1px solid rgba(100,116,139,.25); }
+    .b-wip { background:rgba(245,158,11,.12); color:#fbbf24; border:1px solid rgba(245,158,11,.25); }
+    .b-done { background:rgba(16,185,129,.12); color:#34d399; border:1px solid rgba(16,185,129,.25); }
+    .b-wave { padding:3px 10px; border-radius:6px; font-size:11px; font-weight:700; }
+    .b-w1 { background:rgba(6,182,212,.12); color:var(--accent-l); border:1px solid rgba(6,182,212,.25); }
+    .b-w2 { background:rgba(59,130,246,.12); color:var(--secondary-l); border:1px solid rgba(59,130,246,.25); }
+    .b-w3 { background:rgba(16,185,129,.12); color:#34d399; border:1px solid rgba(16,185,129,.25); }
+
+    /* Heatmap */
+    .hm-section { margin-bottom:14px; }
+    .hm-title { font-size:12px; font-weight:600; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+    .hm-grid { display:flex; gap:3px; flex-wrap:wrap; }
+    .hm-box {
+      width:16px; height:16px; border-radius:3px;
+      border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03);
+      transition:all .2s;
+    }
+    .hm-box.done { background:var(--green); border-color:var(--green); }
+    .hm-box.wip { background:var(--yellow); border-color:var(--yellow); animation:pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:.6} 50%{opacity:1} }
+
+    /* Story details expand */
+    .story-details { display:none; margin-top:10px; padding:12px; background:rgba(255,255,255,.02); border-radius:8px; border-left:3px solid var(--accent); }
+    .story-details.open { display:block; }
+    .chk { display:flex; align-items:center; gap:8px; padding:5px 0; font-size:12px; color:var(--muted); border-bottom:1px solid rgba(255,255,255,.03); }
+    .chk:last-child { border-bottom:none; }
+    .chk-icon { width:16px; height:16px; border-radius:3px; flex-shrink:0; border:1.5px solid rgba(255,255,255,.15); background:rgba(255,255,255,.03); }
+    .chk-icon.done { background:var(--green); border-color:var(--green); }
+    .toggle-btn {
+      background:none; border:1px solid rgba(255,255,255,.1); padding:2px 8px;
+      border-radius:4px; cursor:pointer; font-size:10px; color:var(--dim); transition:all .2s;
+    }
+    .toggle-btn:hover { background:rgba(255,255,255,.05); color:var(--text); }
+
+    /* Dependency graph */
+    .dep { display:flex; flex-direction:column; gap:14px; }
+    .dr { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .dn {
+      padding:9px 14px; border-radius:9px; font-size:12px; font-weight:600;
+      min-width:110px; text-align:center; border:1px solid;
+    }
+    .dn.dw1 { background:rgba(6,182,212,.08); border-color:rgba(6,182,212,.25); color:var(--accent-l); }
+    .dn.dw2 { background:rgba(59,130,246,.08); border-color:rgba(59,130,246,.25); color:var(--secondary-l); }
+    .dn.dw3 { background:rgba(16,185,129,.08); border-color:rgba(16,185,129,.25); color:#34d399; }
+    .darr { color:var(--dim); font-size:16px; flex-shrink:0; }
+
+    /* Footer */
+    footer { text-align:center; padding:20px; color:var(--dim); font-size:12px; }
+    footer .sig { background:linear-gradient(135deg,var(--accent-l),var(--secondary-l)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; font-weight:700; }
+
+    /* Responsive */
+    @media(max-width:1100px) { .stats{grid-template-columns:repeat(3,1fr);} .g2,.g3{grid-template-columns:1fr;} }
+    @media(max-width:600px) { .stats{grid-template-columns:repeat(2,1fr);} }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-row">
+      <div>
+        <h1>EPIC-011: Visual Effects Pro</h1>
+        <div class="sub">De "slides simples" para "animações, transições e efeitos visuais profissionais"</div>
+      </div>
+      <span class="hbadge" id="epic-status">Planejado</span>
+    </div>
+    <div class="meta-row">
+      <span><strong>Duracao:</strong> 3 Waves</span>
+      <span><strong>Stories:</strong> 8</span>
+      <span><strong>Checkboxes:</strong> <span id="total-checks">56</span></span>
+      <span><strong>Owner:</strong> @dev + @architect</span>
+      <span><strong>Criado:</strong> 20 Fev 2026</span>
+    </div>
+    <div class="header-progress">
+      <div class="pl"><span>Progresso Geral</span><span id="header-pct">0%</span></div>
+      <div class="pb"><div class="pf" id="header-bar" style="width:0%;"></div></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="st"><div class="st-icon">📊</div><div class="st-val" id="pct-all">0%</div><div class="st-lbl">Progresso Geral</div></div>
+    <div class="st"><div class="st-icon">📋</div><div class="st-val" id="stories-done">0/8</div><div class="st-lbl">Stories Completas</div></div>
+    <div class="st"><div class="st-icon">✅</div><div class="st-val" id="checks-done">0/56</div><div class="st-lbl">Tarefas Concluidas</div></div>
+    <div class="st"><div class="st-icon">🌊</div><div class="st-val" id="waves-done">0/3</div><div class="st-lbl">Waves Completas</div></div>
+    <div class="st"><div class="st-icon">✨</div><div class="st-val">8</div><div class="st-lbl">Efeitos Visuais</div></div>
+  </div>
+
+  <!-- WAVE PROGRESS BARS -->
+  <div class="card fw" style="margin-bottom:20px;">
+    <h2>🌊 Progresso por Wave</h2>
+    <div class="pl"><span>Wave 1 — Core Visual Upgrade (Transições + Glitch + Backgrounds)</span><span id="w1-l">0%</span></div>
+    <div class="pb"><div class="pf cyan" id="w1-b" style="width:0%;"></div></div>
+    <div class="pl" style="margin-top:10px;"><span>Wave 2 — Premium Polish (Typography + Particles + Captions)</span><span id="w2-l">0%</span></div>
+    <div class="pb"><div class="pf blue" id="w2-b" style="width:0%;"></div></div>
+    <div class="pl" style="margin-top:10px;"><span>Wave 3 — Differentiators (Metrics Animation + Parallax)</span><span id="w3-l">0%</span></div>
+    <div class="pb"><div class="pf green" id="w3-b" style="width:0%;"></div></div>
+  </div>
+
+  <!-- WAVE CARDS -->
+  <div class="g3">
+    <!-- Wave 1 -->
+    <div class="card">
+      <h2>Wave 1 — Core Visual Upgrade <span class="b b-wave b-w1" style="margin-left:auto;">Transitions</span></h2>
+      <ul class="slist">
+        <li class="si" data-s="111">
+          <div class="si-l"><span class="si-id">111</span><span class="si-name">Transições Pro</span></div>
+          <div class="si-r">
+            <span class="si-tasks" data-count="111"></span>
+            <div class="mini-bar"><div class="mini-fill" data-bar="111" style="width:0%;background:linear-gradient(90deg,#0891b2,#06b6d4);"></div></div>
+            <span class="b b-plan" data-status="111">Planejado</span>
+            <button class="toggle-btn" onclick="tog('d111')">▼</button>
+          </div>
+        </li>
+        <div id="d111" class="story-details">
+          <div class="chk"><span class="chk-icon"></span>Transição Fade com easing customizado</div>
+          <div class="chk"><span class="chk-icon"></span>Transição Slide (4 direções)</div>
+          <div class="chk"><span class="chk-icon"></span>Transição Zoom in/out</div>
+          <div class="chk"><span class="chk-icon"></span>Transição Rotate com parallax</div>
+          <div class="chk"><span class="chk-icon"></span>Blend mode transitions (multiply, screen)</div>
+          <div class="chk"><span class="chk-icon"></span>Duration e delay configuráveis</div>
+          <div class="chk"><span class="chk-icon"></span>Integracao com Remotion</div>
+          <div class="chk"><span class="chk-icon"></span>Testes: render + timing</div>
+          <div class="chk"><span class="chk-icon"></span>Documentação visual com exemplos</div>
+          <div class="chk"><span class="chk-icon"></span>Performance: 60fps em desktop</div>
+          <div class="chk"><span class="chk-icon"></span>Mobile: fallback simples</div>
+          <div class="chk"><span class="chk-icon"></span>A/B testing de transições</div>
+        </div>
+        <li class="si" data-s="112">
+          <div class="si-l"><span class="si-id">112</span><span class="si-name">Glitch Text Hook</span></div>
+          <div class="si-r">
+            <span class="si-tasks" data-count="112"></span>
+            <div class="mini-bar"><div class="mini-fill" data-bar="112" style="width:0%;background:linear-gradient(90deg,#0891b2,#06b6d4);"></div></div>
+            <span class="b b-plan" data-status="112">Planejado</span>
+            <button class="toggle-btn" onclick="tog('d112')">▼</button>
+          </div>
+        </li>
+        <div id="d112" class="story-details">
+          <div class="chk"><span class="chk-icon"></span>Efeito glitch classic (RGB split)</div>
+          <div class="chk"><span class="chk-icon"></span>Glitch com distorcao digital</div>
+          <div class="chk"><span class="chk-icon"></span>Sincronizacao com som (beat)</div>
+          <div class="chk"><span class="chk-icon"></span>Variações randomizadas</div>
+          <div class="chk"><span class="chk-icon"></span>Intensidade controlável</div>
+          <div class="chk"><span class="chk-icon"></span>UI: seletor de intensidade</div>
+          <div class="chk"><span class="chk-icon"></span>Testes: render + qualidade visual</div>
+          <div class="chk"><span class="chk-icon"></span>Documentação com uso cases</div>
+        </div>
+        <li class="si" data-s="113">
+          <div class="si-l"><span class="si-id">113</span><span class="si-name">Animated Backgrounds</span></div>
+          <div class="si-r">
+            <span class="si-tasks" data-count="113"></span>
+            <div class="mini-bar"><div class="mini-fill" data-bar="113" style="width:0%;background:linear-gradient(90deg,#0891b2,#06b6d4);"></div></div>
+            <span class="b b-plan" data-status="113">Planejado</span>
+            <button class="toggle-btn" onclick="tog('d113')">▼</button>
+          </div>
+        </li>
+        <div id="d113" class="story-details">
+          <div class="chk"><span class="chk-icon"></span>Animated gradient backgrounds</div>
+          <div class="chk"><span class="chk-icon"></span>Moving particles/noise</div>
+          <div class="chk"><span class="chk-icon"></span>Flowing shapes (SVG animations)</div>
+          <div class="chk"><span class="chk-icon"></span>Light leak efeitos</div>
+          <div class="chk"><span class="chk-icon"></span>Pulsing/breathing efeitos</div>
+          <div class="chk"><span class="chk-icon"></span>Biblioteca de 10+ backgrounds</div>
+          <div class="chk"><span class="chk-icon"></span>Performance otimizada (WebGL)</div>
+          <div class="chk"><span class="chk-icon"></span>Customizacao de cores</div>
+          <div class="chk"><span class="chk-icon"></span>Testes: render + performance</div>
+          <div class="chk"><span class="chk-icon"></span>Preview no painel de preview</div>
+        </div>
+      </ul>
+      <div style="margin-top:10px;font-size:11px;color:var(--dim);">Upgrade visual fundamental: transições + glitch + backgrounds animados</div>
+    </div>
+
+    <!-- Wave 2 -->
+    <div class="card">
+      <h2>Wave 2 — Premium Polish <span class="b b-wave b-w2" style="margin-left:auto;">Polish</span></h2>
+      <ul class="slist">
+        <li class="si" data-s="114">
+          <div class="si-l"><span class="si-id">114</span><span class="si-name">Typography Motion</span></div>
+          <div class="si-r">
+            <span class="si-tasks" data-count="114"></span>
+            <div class="mini-bar"><div class="mini-fill" data-bar="114" style="width:0%;background:linear-gradient(90deg,#2563eb,#3b82f6);"></div></div>
+            <span class="b b-plan" data-status="114">Planejado</span>
+            <button class="toggle-btn" onclick="tog('d114')">▼</button>
+          </div>
+        </li>
+        <div id="d114" class="story-details">
+          <div class="chk"><span class="chk-icon"></span>Typography scale animation</div>
+          <div class="chk"><span class="chk-icon"></span>Letter spacing animation</div>
+          <div class="chk"><span class="chk-icon"></span>Weight morphing (100 a 900)</div>
+          <div class="chk"><span class="chk-icon"></span>Skew e rotation texto</div>
+          <div class="chk"><span class="chk-icon"></span>Testes: render + qualidade</div>
+          <div class="chk"><span class="chk-icon"></span>Sincronizacao com audio</div>
+          <div class="chk"><span class="chk-icon"></span>Biblioteca de presets</div>
+          <div class="chk"><span class="chk-icon"></span>Documentacao completa</div>
+        </div>
+        <li class="si" data-s="115">
+          <div class="si-l"><span class="si-id">115</span><span class="si-name">Particle Effects</span></div>
+          <div class="si-r">
+            <span class="si-tasks" data-count="115"></span>
+            <div class="mini-bar"><div class="mini-fill" data-bar="115" style="width:0%;background:linear-gradient(90deg,#2563eb,#3b82f6);"></div></div>
+            <span class="b b-plan" data-status="115">Planejado</span>
+            <button class="toggle-btn" onclick="tog('d115')">▼</button>
+          </div>
+        </li>
+        <div id="d115" class="story-details">
+          <div class="chk"><span class="chk-icon"></span>Particle system component</div>
+          <div class="chk"><span class="chk-icon"></span>Confetti explosions</div>
+          <div class="chk"><span class="chk-icon"></span>Floating particles</div>
+          <div class="chk"><span class="chk-icon"></span>Rain/snow efeitos</div>
+          <div class="chk"><span class="chk-icon"></span>Emitter configurável</div>
+          <div class="chk"><span class="chk-icon"></span>Physics (gravidade, vento)</div>
+          <div class="chk"><span class="chk-icon"></span>Testes: render + performance</div>
+          <div class="chk"><span class="chk-icon"></span>Exemplos de uso</div>
+        </div>
+        <li class="si" data-s="116">
+          <div class="si-l"><span class="si-id">116</span><span class="si-name">Floating Captions</span></div>
+          <div class="si-r">
+            <span class="si-tasks" data-count="116"></span>
+            <div class="mini-bar"><div class="mini-fill" data-bar="116" style="width:0%;background:linear-gradient(90deg,#2563eb,#3b82f6);"></div></div>
+            <span class="b b-plan" data-status="116">Planejado</span>
+            <button class="toggle-btn" onclick="tog('d116')">▼</button>
+          </div>
+        </li>
+        <div id="d116" class="story-details">
+          <div class="chk"><span class="chk-icon"></span>Captions com movimento suave</div>
+          <div class="chk"><span class="chk-icon"></span>Floating animation predefinida</div>
+          <div class="chk"><span class="chk-icon"></span>Background com blur/semitransparente</div>
+          <div class="chk"><span class="chk-icon"></span>Entrada e saida animadas</div>
+          <div class="chk"><span class="chk-icon"></span>Posicionamento flexivel</div>
+          <div class="chk"><span class="chk-icon"></span>Sincronizacao com audio</div>
+          <div class="chk"><span class="chk-icon"></span>Testes: render + timing</div>
+        </div>
+      </ul>
+      <div style="margin-top:10px;font-size:11px;color:var(--dim);">Polish profissional: tipografia animada + particles + captions flutuantes</div>
+    </div>
+
+    <!-- Wave 3 -->
+    <div class="card">
+      <h2>Wave 3 — Differentiators <span class="b b-wave b-w3" style="margin-left:auto;">Advanced</span></h2>
+      <ul class="slist">
+        <li class="si" data-s="117">
+          <div class="si-l"><span class="si-id">117</span><span class="si-name">Animated Metrics</span></div>
+          <div class="si-r">
+            <span class="si-tasks" data-count="117"></span>
+            <div class="mini-bar"><div class="mini-fill" data-bar="117" style="width:0%;background:linear-gradient(90deg,#059669,#10b981);"></div></div>
+            <span class="b b-plan" data-status="117">Planejado</span>
+            <button class="toggle-btn" onclick="tog('d117')">▼</button>
+          </div>
+        </li>
+        <div id="d117" class="story-details">
+          <div class="chk"><span class="chk-icon"></span>Counter animation (0 a X)</div>
+          <div class="chk"><span class="chk-icon"></span>Progress bar animation</div>
+          <div class="chk"><span class="chk-icon"></span>Gauge/speedometer animation</div>
+          <div class="chk"><span class="chk-icon"></span>Pie chart animation</div>
+          <div class="chk"><span class="chk-icon"></span>Linha de tendencia (growth animation)</div>
+          <div class="chk"><span class="chk-icon"></span>Easing customizavel</div>
+          <div class="chk"><span class="chk-icon"></span>Testes: render + numeros exatos</div>
+          <div class="chk"><span class="chk-icon"></span>Documentacao completa</div>
+        </div>
+        <li class="si" data-s="118">
+          <div class="si-l"><span class="si-id">118</span><span class="si-name">Parallax Depth</span></div>
+          <div class="si-r">
+            <span class="si-tasks" data-count="118"></span>
+            <div class="mini-bar"><div class="mini-fill" data-bar="118" style="width:0%;background:linear-gradient(90deg,#059669,#10b981);"></div></div>
+            <span class="b b-plan" data-status="118">Planejado</span>
+            <button class="toggle-btn" onclick="tog('d118')">▼</button>
+          </div>
+        </li>
+        <div id="d118" class="story-details">
+          <div class="chk"><span class="chk-icon"></span>Multi-layer parallax</div>
+          <div class="chk"><span class="chk-icon"></span>Depth effect com blur</div>
+          <div class="chk"><span class="chk-icon"></span>3D perspective transform</div>
+          <div class="chk"><span class="chk-icon"></span>Scrolling parallax efeito</div>
+          <div class="chk"><span class="chk-icon"></span>Configuracao de profundidade</div>
+          <div class="chk"><span class="chk-icon"></span>Testes: render + perspective</div>
+          <div class="chk"><span class="chk-icon"></span>Exemplos de depth layout</div>
+        </div>
+      </ul>
+      <div style="margin-top:10px;font-size:11px;color:var(--dim);">Diferenciais premium: animacao de metricas + profundidade parallax</div>
+    </div>
+  </div>
+
+  <!-- DEPENDENCY + HEATMAP -->
+  <div class="g2">
+    <div class="card">
+      <h2>🔗 Grafo de Dependencias</h2>
+      <div class="dep">
+        <div class="dr"><div class="dn dw1">111 Transições</div><span class="darr">→</span><div class="dn dw2">114 Typography</div></div>
+        <div class="dr"><div class="dn dw1">112 Glitch</div><span class="darr">→</span><div class="dn dw2">115 Particles</div></div>
+        <div class="dr"><div class="dn dw1">113 Backgrounds</div><span class="darr">→</span><div class="dn dw2">116 Captions</div></div>
+        <div class="dr"><div class="dn dw2">114-115</div><span class="darr">→</span><div class="dn dw3">117 Metrics</div></div>
+        <div class="dr"><div class="dn dw1" style="opacity:.4;">111-113</div><span class="darr">→</span><div class="dn dw3">118 Parallax</div></div>
+      </div>
+      <div style="margin-top:14px;padding-top:10px;border-top:1px solid rgba(255,255,255,.05);display:flex;gap:10px;flex-wrap:wrap;">
+        <span class="b b-wave b-w1">Wave 1</span><span class="b b-wave b-w2">Wave 2</span><span class="b b-wave b-w3">Wave 3</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>✅ Checklist Heatmap</h2>
+      <p style="font-size:11px;color:var(--dim);margin-bottom:14px;">Cada quadrado = 1 tarefa. Verde = feito / Amarelo = em progresso / Cinza = pendente</p>
+      <div class="hm-section"><div class="hm-title"><span>111 Transições Pro (12)</span><span id="hc111">0/12</span></div><div class="hm-grid" id="hg111"></div></div>
+      <div class="hm-section"><div class="hm-title"><span>112 Glitch Text Hook (8)</span><span id="hc112">0/8</span></div><div class="hm-grid" id="hg112"></div></div>
+      <div class="hm-section"><div class="hm-title"><span>113 Animated Backgrounds (10)</span><span id="hc113">0/10</span></div><div class="hm-grid" id="hg113"></div></div>
+      <div class="hm-section"><div class="hm-title"><span>114 Typography Motion (8)</span><span id="hc114">0/8</span></div><div class="hm-grid" id="hg114"></div></div>
+      <div class="hm-section"><div class="hm-title"><span>115 Particle Effects (8)</span><span id="hc115">0/8</span></div><div class="hm-grid" id="hg115"></div></div>
+      <div class="hm-section"><div class="hm-title"><span>116 Floating Captions (6)</span><span id="hc116">0/6</span></div><div class="hm-grid" id="hg116"></div></div>
+      <div class="hm-section"><div class="hm-title"><span>117 Animated Metrics (8)</span><span id="hc117">0/8</span></div><div class="hm-grid" id="hg117"></div></div>
+      <div class="hm-section"><div class="hm-title"><span>118 Parallax Depth (6)</span><span id="hc118">0/6</span></div><div class="hm-grid" id="hg118"></div></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p><span class="sig">EPIC-011 Dashboard</span> | Created by Orion (AIOS Master) | 2026-02-20</p>
+  <p style="margin-top:5px;font-size:11px;opacity:.5;">Visual Effects Pro — De "slides simples" para "animações, transições e efeitos visuais profissionais"</p>
+</footer>
+
+<script>
+  // ══════════════════════════════════════════════
+  // DATA — Update these numbers as work progresses
+  // ══════════════════════════════════════════════
+  // t = total de tarefas, d = tarefas concluidas, s = status ('plan'|'wip'|'done')
+  const S = {
+    111:{t:12,d:12,s:'done'}, 112:{t:8,d:8,s:'done'},
+    113:{t:10,d:10,s:'done'}, 114:{t:8,d:8,s:'done'}, 115:{t:8,d:8,s:'done'},
+    116:{t:6,d:6,s:'done'}, 117:{t:8,d:8,s:'done'}, 118:{t:6,d:6,s:'done'}
+  };
+  const waves = { 1:['111','112','113'], 2:['114','115','116'], 3:['117','118'] };
+
+  const N = {
+    111:'Transições Pro', 112:'Glitch Text Hook',
+    113:'Animated Backgrounds', 114:'Typography Motion', 115:'Particle Effects',
+    116:'Floating Captions', 117:'Animated Metrics', 118:'Parallax Depth'
+  };
+
+  // Toggle details
+  function tog(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('open');
+  }
+
+  // Build heatmap
+  Object.entries(S).forEach(([k,v]) => {
+    const g = document.getElementById('hg'+k);
+    if (!g) return;
+    for (let i = 0; i < v.t; i++) {
+      const b = document.createElement('div');
+      b.className = 'hm-box' + (i < v.d ? ' done' : (v.s === 'wip' && i === v.d ? ' wip' : ''));
+      g.appendChild(b);
+    }
+    const c = document.getElementById('hc'+k);
+    if (c) c.textContent = v.d + '/' + v.t;
+  });
+
+  // Wave progress bars
+  Object.entries(waves).forEach(([n,ids]) => {
+    const tot = ids.reduce((s,id) => s + S[id].t, 0);
+    const don = ids.reduce((s,id) => s + S[id].d, 0);
+    const pct = tot ? Math.round(don/tot*100) : 0;
+    const bar = document.getElementById('w'+n+'-b');
+    const lbl = document.getElementById('w'+n+'-l');
+    if (bar) { bar.style.width = pct+'%'; bar.textContent = pct > 0 ? pct+'%' : ''; }
+    if (lbl) lbl.textContent = pct+'%';
+  });
+
+  // Global stats
+  const totAll = Object.values(S).reduce((s,v) => s+v.t, 0);
+  const donAll = Object.values(S).reduce((s,v) => s+v.d, 0);
+  const pctAll = totAll ? Math.round(donAll/totAll*100) : 0;
+  const storiesDone = Object.values(S).filter(v => v.d === v.t && v.t > 0).length;
+  const wavesDone = Object.entries(waves).filter(([n,ids]) => ids.every(id => S[id].d === S[id].t && S[id].t > 0)).length;
+
+  document.getElementById('pct-all').textContent = pctAll+'%';
+  document.getElementById('stories-done').textContent = storiesDone+'/8';
+  document.getElementById('checks-done').textContent = donAll+'/'+totAll;
+  document.getElementById('total-checks').textContent = totAll;
+  document.getElementById('waves-done').textContent = wavesDone+'/3';
+  document.getElementById('header-pct').textContent = pctAll+'%';
+  const headerBar = document.getElementById('header-bar');
+  if (headerBar) { headerBar.style.width = pctAll+'%'; headerBar.textContent = pctAll > 0 ? pctAll+'%' : ''; }
+
+  // Story task counts + mini bars
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const k = el.dataset.count;
+    if (S[k]) el.textContent = S[k].d+'/'+S[k].t;
+  });
+  document.querySelectorAll('[data-bar]').forEach(el => {
+    const k = el.dataset.bar;
+    if (S[k]) el.style.width = (S[k].t ? Math.round(S[k].d/S[k].t*100) : 0)+'%';
+  });
+
+  // Story status badges
+  const statusMap = {
+    plan: { text:'Planejado', cls:'b-plan' },
+    wip:  { text:'Em Progresso', cls:'b-wip' },
+    done: { text:'Concluido', cls:'b-done' }
+  };
+  document.querySelectorAll('[data-status]').forEach(el => {
+    const k = el.dataset.status;
+    if (!S[k]) return;
+    const st = S[k].d === S[k].t && S[k].t > 0 ? 'done' : (S[k].s || 'plan');
+    const info = statusMap[st] || statusMap.plan;
+    el.textContent = info.text;
+    el.className = 'b ' + info.cls;
+  });
+
+  // Checklist done icons inside story details
+  Object.entries(S).forEach(([k, v]) => {
+    const det = document.getElementById('d' + k);
+    if (!det) return;
+    const icons = det.querySelectorAll('.chk-icon');
+    icons.forEach((icon, i) => { if (i < v.d) icon.classList.add('done'); });
+  });
+
+  // Update epic status badge
+  const hasWip = Object.values(S).some(v => v.s === 'wip');
+  if (pctAll === 100) {
+    const el = document.getElementById('epic-status');
+    el.textContent = 'Completo';
+    el.style.background='rgba(16,185,129,.12)';
+    el.style.borderColor='rgba(16,185,129,.3)';
+    el.style.color='#34d399';
+  } else if (hasWip || pctAll > 0) {
+    const el = document.getElementById('epic-status');
+    el.textContent = 'Em Progresso';
+    el.style.background='rgba(245,158,11,.12)';
+    el.style.borderColor='rgba(245,158,11,.3)';
+    el.style.color='#fbbf24';
+  }
+</script>
+</body>
+</html>

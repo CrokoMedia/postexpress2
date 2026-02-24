@@ -126,5 +126,5 @@ Agora você tem tudo que precisa para criar Stories profissionais em minutos.
 
 ---
 
-**Post Express** 🚀
+**Croko Labs** 🚀
 *Content Creation Squad - Adriano De Marqui (Design) + Eugene Schwartz (Copy)*

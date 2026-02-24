@@ -104,6 +104,16 @@ async function syncMind(mindId) {
     mindData = { ...mindData, ...parseSourceInventory(inv, mindId) };
   }
 
+  // Sempre complementa/sobrescreve com contagem real do disco
+  const diskCount = countSourcesFromDisk(mindDir);
+  if (diskCount && diskCount.collected > 0) {
+    mindData.collected_sources = diskCount.collected;
+    mindData.total_words = diskCount.totalWords;
+    mindData.sources_by_type = diskCount.byType;
+    if (diskCount.totalSources > 0) mindData.total_sources = diskCount.totalSources;
+    if (mindData.status === 'pending') mindData.status = 'collecting';
+  }
+
   // Parsear metadata.yaml se existir
   if (fs.existsSync(metadataPath)) {
     const meta = fs.readFileSync(metadataPath, 'utf8');
@@ -247,6 +257,135 @@ function parseSourceInventory(content, mindId) {
   return result;
 }
 
+// ─── Count sources from disk ──────────────────────────────
+// Conta pastas/arquivos reais em disco, independente do inventory
+
+function countSourcesFromDisk(mindDir) {
+  const sourcesDir = path.join(mindDir, 'sources');
+  if (!fs.existsSync(sourcesDir)) return null;
+
+  let collected = 0;
+  let totalWords = 0;
+  const byType = {};
+
+  // Conta subpastas que contêm um arquivo específico
+  function countDirs(dir, checkFile) {
+    if (!fs.existsSync(dir)) return [];
+    return fs.readdirSync(dir).filter(f => {
+      try {
+        const fp = path.join(dir, f);
+        return fs.statSync(fp).isDirectory() && fs.existsSync(path.join(fp, checkFile));
+      } catch (_) { return false; }
+    });
+  }
+
+  // Soma palavras de todos os arquivos de texto em subpastas de um dir
+  function sumWords(dir, filename) {
+    if (!fs.existsSync(dir)) return 0;
+    let words = 0;
+    fs.readdirSync(dir).forEach(f => {
+      try {
+        const fp = path.join(dir, f);
+        if (!fs.statSync(fp).isDirectory()) return;
+        const textFile = path.join(fp, filename);
+        if (fs.existsSync(textFile)) {
+          words += fs.readFileSync(textFile, 'utf8').split(/\s+/).length;
+        }
+      } catch (_) {}
+    });
+    return words;
+  }
+
+  // Livros: sources/books/{slug}/text.md
+  const booksDir = path.join(sourcesDir, 'books');
+  const books = countDirs(booksDir, 'text.md');
+  if (books.length > 0) {
+    byType.pdf = books.length;
+    collected += books.length;
+    totalWords += sumWords(booksDir, 'text.md');
+  }
+
+  // YouTube: sources/videos/{subtype}/{slug}/transcript.md
+  const videosDir = path.join(sourcesDir, 'videos');
+  if (fs.existsSync(videosDir)) {
+    fs.readdirSync(videosDir).forEach(subtype => {
+      try {
+        const subtypeDir = path.join(videosDir, subtype);
+        if (!fs.statSync(subtypeDir).isDirectory()) return;
+        const vids = countDirs(subtypeDir, 'transcript.md');
+        if (vids.length > 0) {
+          byType.youtube = (byType.youtube || 0) + vids.length;
+          collected += vids.length;
+          totalWords += sumWords(subtypeDir, 'transcript.md');
+        }
+      } catch (_) {}
+    });
+  }
+
+  // Artigos: sources/articles/{slug}/article.md
+  const articlesDir = path.join(sourcesDir, 'articles');
+  const articles = countDirs(articlesDir, 'article.md');
+  if (articles.length > 0) {
+    byType.article = articles.length;
+    collected += articles.length;
+    totalWords += sumWords(articlesDir, 'article.md');
+  }
+
+  // Podcasts: sources/podcasts/{subtype}/{slug}/transcript.md
+  const podcastsDir = path.join(sourcesDir, 'podcasts');
+  if (fs.existsSync(podcastsDir)) {
+    fs.readdirSync(podcastsDir).forEach(subtype => {
+      try {
+        const subtypeDir = path.join(podcastsDir, subtype);
+        if (!fs.statSync(subtypeDir).isDirectory()) return;
+        const eps = countDirs(subtypeDir, 'transcript.md');
+        if (eps.length > 0) {
+          byType.podcast = (byType.podcast || 0) + eps.length;
+          collected += eps.length;
+          totalWords += sumWords(subtypeDir, 'transcript.md');
+        }
+      } catch (_) {}
+    });
+  }
+
+  // Social: sources/social/{platform}/*.md
+  // Conta cada plataforma como 1 fonte (igual ao batch), mas soma todas as palavras
+  const socialDir = path.join(sourcesDir, 'social');
+  if (fs.existsSync(socialDir)) {
+    fs.readdirSync(socialDir).forEach(platform => {
+      try {
+        const platformDir = path.join(socialDir, platform);
+        if (!fs.statSync(platformDir).isDirectory()) return;
+        const posts = fs.readdirSync(platformDir).filter(f =>
+          f.endsWith('.md') && f !== 'README.md' && f !== 'index.md'
+        );
+        if (posts.length > 0) {
+          byType[platform] = posts.length; // guarda count real para info
+          collected += 1;                   // 1 fonte por plataforma (= 1 batch entry)
+          posts.forEach(p => {
+            try {
+              totalWords += fs.readFileSync(path.join(platformDir, p), 'utf8').split(/\s+/).length;
+            } catch (_) {}
+          });
+        }
+      } catch (_) {}
+    });
+  }
+
+  // Lê total_sources do tier1_batch.yaml se existir
+  let totalSources = 0;
+  const batchPath = path.join(sourcesDir, 'tier1_batch.yaml');
+  if (fs.existsSync(batchPath)) {
+    try {
+      const yaml = require('js-yaml');
+      const batch = yaml.load(fs.readFileSync(batchPath, 'utf8'));
+      totalSources = (batch.sources || []).length;
+    } catch (_) {}
+  }
+
+  return { collected, totalWords, byType, totalSources };
+}
+
 // ─── Sync usage AssemblyAI ────────────────────────────────
 
 async function syncAssemblyAIUsage() {
@@ -287,6 +426,17 @@ async function syncCollectionLog() {
   const rows = logSection[1].split('\n').filter(l => l.startsWith('|') && !l.includes('—'));
   if (rows.length === 0) return;
 
+  // Normaliza status do inventory para valores esperados pelo dashboard
+  function normalizeStatus(raw) {
+    if (!raw) return null;
+    const s = raw.toLowerCase().replace(/[✓✗⚠️]/g, '').trim();
+    if (s.includes('coletado') || s.includes('success') || s.includes('ok')) return 'success';
+    if (s.includes('falh') || s.includes('erro') || s.includes('fail')) return 'failed';
+    if (s.includes('pulado') || s.includes('skip')) return 'skipped';
+    if (s.includes('parcial') || s.includes('partial')) return 'partial';
+    return 'success'; // default: se tem entrada no log, foi coletado
+  }
+
   const entries = rows.map(row => {
     const cols = row.split('|').map(c => c.trim()).filter(Boolean);
     if (cols.length < 7) return null;
@@ -298,7 +448,7 @@ async function syncCollectionLog() {
       duration_or_size: cols[4] || null,
       api_used: cols[5] || null,
       plan: cols[6] || 'free',
-      status: cols[7] || null,
+      status: normalizeStatus(cols[7]),
     };
   }).filter(Boolean);
 

@@ -21,9 +21,9 @@
     "stories",
     "ai",
     "automation",
-    "post-express"
+    "croko-labs"
   ],
-  "author": "Post Express Team - Content Creation Squad",
+  "author": "Croko Labs Team - Content Creation Squad",
   "license": "MIT",
   "dependencies": {
     "archiver": "^7.0.1",

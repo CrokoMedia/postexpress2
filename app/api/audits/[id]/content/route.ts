@@ -15,7 +15,7 @@ export async function GET(
     // Buscar conteúdo salvo (incluindo slides de ambos os templates)
     const { data, error } = await supabase
       .from('content_suggestions')
-      .select('content_json, slides_json, slides_v2_json, reels_json, generated_at')
+      .select('content_json, slides_json, slides_v2_json, reels_json, reel_videos_json, generated_at')
       .eq('audit_id', id)
       .single()
 
@@ -38,6 +38,7 @@ export async function GET(
       slides: data.slides_json,
       slides_v2: data.slides_v2_json,
       reels: data.reels_json,
+      reel_videos: data.reel_videos_json,
       generated_at: data.generated_at
     })
 

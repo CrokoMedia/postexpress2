@@ -1,4 +1,4 @@
-# Setup Guide - Post Express Web App
+# Setup Guide - Croko Labs Web App
 
 Guia passo a passo para colocar a aplicação Next.js rodando do zero.
 

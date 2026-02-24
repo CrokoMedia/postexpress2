@@ -1,5 +1,5 @@
 /**
- * Post Express - Teste Template Agora Vai
+ * Croko Labs - Teste Template Agora Vai
  *
  * Template otimizado com elementos menores
  */

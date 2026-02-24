@@ -19,12 +19,22 @@
  */
 
 import Anthropic from '@anthropic-ai/sdk'
+import { createClient } from '@supabase/supabase-js'
 import fs from 'fs'
 import 'dotenv/config'
 
 const client = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 })
+
+// Cliente Supabase para buscar contexto
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_SERVICE_ROLE_KEY,
+  {
+    auth: { persistSession: false, autoRefreshToken: false }
+  }
+)
 
 // ============================================
 // PROMPT DOS 5 AUDITORES
@@ -252,10 +262,44 @@ function sanitizeDeep(value) {
 }
 
 // ============================================
+// CARREGAR CONTEXTO DO PERFIL
+// ============================================
+
+async function loadProfileContext(profileId) {
+  if (!profileId) return null
+
+  try {
+    const { data, error } = await supabase
+      .from('profile_context')
+      .select('*')
+      .eq('profile_id', profileId)
+      .is('deleted_at', null)
+      .maybeSingle()
+
+    if (error || !data) return null
+
+    // Incrementar usage_count (auditoria)
+    try {
+      await supabase.rpc('increment_context_usage', {
+        p_profile_id: profileId,
+        p_usage_type: 'audit'
+      })
+    } catch (e) {
+      // Ignorar erro se função não existir
+    }
+
+    return data
+  } catch (error) {
+    console.error('⚠️  Erro ao carregar contexto:', error.message)
+    return null
+  }
+}
+
+// ============================================
 // FUNÇÃO PRINCIPAL
 // ============================================
 
-async function auditWithSquad(username) {
+async function auditWithSquad(username, profileId = null) {
   console.log('╔════════════════════════════════════════════════╗')
   console.log('║   🔬 AUDIT WITH SQUAD                          ║')
   console.log('║   Análise com 5 Auditores Especializados      ║')
@@ -267,6 +311,40 @@ async function auditWithSquad(username) {
   const startTime = Date.now()
 
   try {
+    // Carregar contexto do perfil (se profileId fornecido)
+    let profileContext = null
+    if (profileId) {
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+      console.log('📚 CARREGANDO CONTEXTO DO PERFIL')
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+      profileContext = await loadProfileContext(profileId)
+
+      if (profileContext) {
+        console.log('')
+        console.log('✅ CONTEXTO ENCONTRADO - ANÁLISE SERÁ PERSONALIZADA!')
+        console.log('')
+        console.log('📋 Dados do contexto:')
+        console.log(`   Nicho: ${profileContext.nicho || '❌ não definido'}`)
+        console.log(`   Objetivos: ${profileContext.objetivos || '❌ não definido'}`)
+        console.log(`   Público-alvo: ${profileContext.publico_alvo || '❌ não definido'}`)
+        console.log(`   Produtos/Serviços: ${profileContext.produtos_servicos || '❌ não definido'}`)
+        console.log(`   Tom de voz: ${profileContext.tom_voz || '❌ não definido'}`)
+        console.log(`   Documentos anexados: ${(profileContext.documents || []).length}`)
+        console.log(`   Texto extraído: ${(profileContext.raw_text || '').length} caracteres`)
+        console.log('')
+        console.log('🎯 O Claude receberá este contexto no prompt!')
+        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+        console.log('')
+      } else {
+        console.log('')
+        console.log('⚠️  NENHUM CONTEXTO ENCONTRADO')
+        console.log('   Análise será GENÉRICA (sem personalização)')
+        console.log('   Adicione contexto via dashboard para análise personalizada')
+        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+        console.log('')
+      }
+    }
+
     // Ler arquivo de análise completa
     const dataFile = `squad-auditores/data/${username}-complete-analysis.json`
 
@@ -300,13 +378,47 @@ async function auditWithSquad(username) {
     // Sanitizar dados antes de enviar (remove surrogates Unicode inválidos do conteúdo scrapeado)
     const sanitizedData = sanitizeDeep(analysisData)
 
+    // Construir prompt com contexto adicional (se disponível)
+    let fullPrompt = AUDIT_PROMPT + '\n\n'
+
+    if (profileContext) {
+      fullPrompt += `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CONTEXTO ADICIONAL DO PERFIL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**IMPORTANTE:** Use este contexto para fazer uma análise ULTRA-PERSONALIZADA.
+Compare o conteúdo do Instagram com o que o perfil DEVERIA estar fazendo baseado neste contexto.
+
+${profileContext.nicho ? `**Nicho:** ${profileContext.nicho}\n` : ''}
+${profileContext.objetivos ? `**Objetivos:** ${profileContext.objetivos}\n` : ''}
+${profileContext.publico_alvo ? `**Público-Alvo:** ${profileContext.publico_alvo}\n` : ''}
+${profileContext.produtos_servicos ? `**Produtos/Serviços:** ${profileContext.produtos_servicos}\n` : ''}
+${profileContext.tom_voz ? `**Tom de Voz Desejado:** ${profileContext.tom_voz}\n` : ''}
+${profileContext.contexto_adicional ? `**Contexto Adicional:** ${profileContext.contexto_adicional}\n` : ''}
+
+${profileContext.raw_text ? `**Documentos de Referência:**\n${profileContext.raw_text.substring(0, 8000)}\n` : ''}
+
+**ATENÇÃO:**
+- Avalie se o conteúdo do Instagram está alinhado com estes objetivos e público-alvo
+- Identifique gaps entre o que o perfil faz e o que DEVERIA fazer
+- Recomendações devem ser baseadas neste contexto específico
+- Use informações dos documentos para embasar suas análises
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+`
+    }
+
+    fullPrompt += '**DADOS DO INSTAGRAM:**\n```json\n' + JSON.stringify(sanitizedData, null, 2) + '\n```'
+
     const message = await client.messages.create({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 4096,
       messages: [
         {
           role: 'user',
-          content: AUDIT_PROMPT + '\n\n```json\n' + JSON.stringify(sanitizedData, null, 2) + '\n```'
+          content: fullPrompt
         }
       ]
     })
@@ -372,10 +484,11 @@ async function auditWithSquad(username) {
 // CLI
 const args = process.argv.slice(2)
 const username = args[0]
+const profileId = args[1] || null // Opcional
 
 if (!username) {
-  console.error('❌ Uso: node scripts/audit-with-squad.js <username>')
+  console.error('❌ Uso: node scripts/audit-with-squad.js <username> [profile_id]')
   process.exit(1)
 }
 
-auditWithSquad(username)
+auditWithSquad(username, profileId)

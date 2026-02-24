@@ -166,7 +166,7 @@ export default function CompareAuditsPage() {
               <div className={`text-6xl font-bold ${getScoreClassification(auditV1.score_overall).color}`}>
                 {auditV1.score_overall}
               </div>
-              <div className="text-xs text-neutral-500 mt-2">
+              <div className="text-xs text-muted-foreground mt-2">
                 {formatDate(auditV1.audit_date)}
               </div>
             </div>
@@ -182,7 +182,7 @@ export default function CompareAuditsPage() {
               <div className={`text-6xl font-bold ${getScoreClassification(auditV2.score_overall).color}`}>
                 {auditV2.score_overall}
               </div>
-              <div className="text-xs text-neutral-500 mt-2">
+              <div className="text-xs text-muted-foreground mt-2">
                 {formatDate(auditV2.audit_date)}
               </div>
             </div>
@@ -398,7 +398,7 @@ function DimensionComparison({ label, v1, v2 }: { label: string; v1: number; v2:
       <div className="grid grid-cols-2 gap-2">
         <div className="h-2 bg-neutral-700 rounded-full overflow-hidden">
           <div
-            className="h-full bg-neutral-500"
+            className="h-full bg-card0"
             style={{ width: `${v1}%` }}
           />
         </div>
@@ -447,12 +447,12 @@ function AnalysisSection({
         {items.length > 0 ? (
           items.map((item, idx) => (
             <li key={idx} className="flex items-start gap-2">
-              <span className="text-neutral-500">•</span>
+              <span className="text-muted-foreground">•</span>
               <span>{itemToString(item)}</span>
             </li>
           ))
         ) : (
-          <li className="text-neutral-500">Nenhum item encontrado</li>
+          <li className="text-muted-foreground">Nenhum item encontrado</li>
         )}
       </ul>
     </div>

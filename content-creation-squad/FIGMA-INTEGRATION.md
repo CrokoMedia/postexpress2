@@ -1,4 +1,4 @@
-# 🎨 Integração Figma - Post Express
+# 🎨 Integração Figma - Croko Labs
 
 ## ✅ Status da Integração
 
@@ -312,4 +312,4 @@ https://github.com/your-repo/issues
 **Criado pelo Content Creation Squad**
 *Adriano De Marqui (Design) + Eugene Schwartz (Copy)*
 
-🎨 **Post Express** - Crie conteúdo viral em segundos
+🎨 **Croko Labs** - Crie conteúdo viral em segundos

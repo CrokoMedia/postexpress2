@@ -1,0 +1,109 @@
+# Reel Production Squad
+# Transforma carrosséis aprovados em vídeos profissionais (Reels/Stories/Shorts)
+
+name: reel-production-squad
+version: 1.0.0
+description: |
+  Squad de produção de vídeo que transforma carrosséis aprovados em Reels profissionais.
+  Pipeline: Roteiro → Direção Visual → Art Direction → Edição/QA.
+  Gera spec técnico JSON compatível com o pipeline Remotion existente.
+author: Pazos Media
+license: MIT
+
+aios:
+  minVersion: "2.1.0"
+  type: squad
+
+slashPrefix: reelProduction
+pattern_prefix: RP
+
+documentation: README.md
+
+# Agentes do Squad
+agents:
+  orchestrator:
+    - screenwriter          # 📝 Roteirista — ponto de entrada
+
+  pipeline:
+    - screenwriter          # 📝 Carrossel → Roteiro cinematográfico
+    - art-director          # 🎨 Perfil + conteúdo → Identidade visual (paralelo com screenwriter)
+    - creative-director     # 🎬 Roteiro + Visual → Spec técnico cena-a-cena
+    - editor                # 🔧 Vídeo renderizado → Revisão + aprovação/ajustes
+
+# Componentes
+components:
+  agents:
+    - screenwriter.md
+    - creative-director.md
+    - art-director.md
+    - editor.md
+  tasks:
+    - write-screenplay.md
+    - direct-scenes.md
+    - define-visual-identity.md
+    - review-video.md
+  workflows:
+    - reel-production-pipeline.md
+  data:
+    - remotion-catalog.md
+
+# Dependências
+dependencies:
+  squads:
+    - content-creation-squad    # Carrosséis aprovados vêm daqui
+  external:
+    - remotion                  # Engine de renderização
+    - fal-ai                    # Geração de imagens
+    - openai-tts                # Text-to-speech
+    - elevenlabs                # TTS alternativo + SFX
+    - pexels                    # Stock video (B-Roll)
+    - cloudinary                # CDN de mídia
+
+# Fluxo do Pipeline
+workflow:
+  states:
+    - name: ROTEIRO
+      description: "Carrossel aprovado → Roteiro cinematográfico"
+      agent: screenwriter
+      parallel_with: IDENTIDADE_VISUAL
+      next: DIRECAO
+
+    - name: IDENTIDADE_VISUAL
+      description: "Perfil + tipo de conteúdo → Guia visual completo"
+      agent: art-director
+      parallel_with: ROTEIRO
+      next: DIRECAO
+
+    - name: DIRECAO
+      description: "Roteiro + Visual → Spec técnico JSON cena-a-cena"
+      agent: creative-director
+      requires: [ROTEIRO, IDENTIDADE_VISUAL]
+      next: RENDER
+
+    - name: RENDER
+      description: "Spec → Renderização Remotion (automático, não é agente)"
+      type: automated
+      next: REVISAO
+
+    - name: REVISAO
+      description: "Vídeo V1 → QA, ajustes, aprovação final"
+      agent: editor
+      next: ENTREGA
+      loop_target: DIRECAO   # Se precisar de ajustes
+
+    - name: ENTREGA
+      description: "Vídeo final → Upload Cloudinary + save no Supabase"
+      type: automated
+
+# Output esperado
+output:
+  format: json
+  schema: CarouselReelProps   # Compatível com remotion/types.ts
+  destination: /api/content/[id]/generate-reel
+
+tags:
+  - video
+  - reels
+  - remotion
+  - production
+  - instagram

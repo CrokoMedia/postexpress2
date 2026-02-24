@@ -39,7 +39,7 @@ export async function POST(
       .from('audits')
       .select(`
         *,
-        profile:profiles(*)
+        profile:instagram_profiles(*)
       `)
       .eq('id', id)
       .single()
@@ -82,9 +82,15 @@ export async function POST(
 
     console.log('Re-auditando com contexto...')
     console.log('Posts:', posts.length, contextOnly ? '(auditoria por contexto puro)' : '')
-    console.log('Contexto:', {
-      nicho: context.nicho,
-      objetivos: context.objetivos
+    console.log('Contexto rico:', {
+      identity: !!context.identity,
+      content_pillars: context.content_pillars?.length || 0,
+      business: context.business?.products?.length || 0,
+      dna: context.dna?.frameworks?.length || 0,
+      legacy_fields: {
+        nicho: context.nicho || 'N/A',
+        objetivos: context.objetivos || 'N/A'
+      }
     })
 
     // 5. Enviar para Claude com Squad Auditores + Contexto
@@ -142,12 +148,23 @@ export async function POST(
           ...analysis,
           posts,
           context_used: {
-            nicho: context.nicho,
-            objetivos: context.objetivos,
-            publico_alvo: context.publico_alvo,
-            produtos_servicos: context.produtos_servicos,
-            tom_voz: context.tom_voz,
-            contexto_adicional: context.contexto_adicional,
+            // Nova estrutura JSONB (7 campos)
+            identity: context.identity || {},
+            credibility: context.credibility || {},
+            philosophy: context.philosophy || {},
+            content_style: context.content_style || {},
+            content_pillars: context.content_pillars || [],
+            business: context.business || {},
+            dna: context.dna || {},
+            // Campos legados (para compatibilidade)
+            legacy: {
+              nicho: context.nicho,
+              objetivos: context.objetivos,
+              publico_alvo: context.publico_alvo,
+              produtos_servicos: context.produtos_servicos,
+              tom_voz: context.tom_voz,
+              contexto_adicional: context.contexto_adicional
+            },
             files: context.files
           },
           original_audit_id: id,
@@ -211,12 +228,50 @@ function generateAuditMarkdown(analysis: any, profile: any, posts: any[], contex
   md += `---\n\n`
 
   // Contexto utilizado
-  md += `## 🎯 Contexto Adicional Utilizado\n\n`
-  if (context.nicho) md += `- **Nicho:** ${context.nicho}\n`
-  if (context.objetivos) md += `- **Objetivos:** ${context.objetivos}\n`
-  if (context.publico_alvo) md += `- **Público-Alvo:** ${context.publico_alvo}\n`
-  if (context.produtos_servicos) md += `- **Produtos/Serviços:** ${context.produtos_servicos}\n`
-  if (context.tom_voz) md += `- **Tom de Voz:** ${context.tom_voz}\n`
+  md += `## 🎯 Contexto Completo Utilizado\n\n`
+
+  const identity = context.identity || {}
+  const credibility = context.credibility || {}
+  const philosophy = context.philosophy || {}
+  const contentStyle = context.content_style || {}
+  const contentPillars = context.content_pillars || []
+  const business = context.business || {}
+  const dna = context.dna || {}
+
+  if (identity.positioning) md += `### 🎯 Posicionamento\n${identity.positioning}\n\n`
+  if (identity.niche?.length) md += `**Nicho:** ${identity.niche.join(', ')}\n`
+  if (identity.avatar) md += `**Público-Alvo:** ${identity.avatar}\n`
+  if (identity.toneOfVoice || contentStyle.language?.toneOfVoice) md += `**Tom de Voz:** ${identity.toneOfVoice || contentStyle.language?.toneOfVoice}\n\n`
+
+  if (credibility.experience) md += `### 💼 Experiência\n${credibility.experience}\n\n`
+
+  if (contentPillars.length) {
+    md += `### 🎨 Pilares de Conteúdo\n\n`
+    contentPillars.forEach((pilar: any) => {
+      md += `- **${pilar.name}** (${pilar.weight}): ${pilar.objetivo}\n`
+    })
+    md += `\n`
+  }
+
+  if (business.products?.length) {
+    md += `### 💰 Produtos\n\n`
+    business.products.forEach((p: any) => {
+      md += `- **${p.name}** (${p.price}): ${p.target}\n`
+    })
+    md += `\n`
+  }
+
+  if (dna.frameworks?.length) {
+    md += `### 🧬 Frameworks Utilizados\n${dna.frameworks.join(', ')}\n\n`
+  }
+
+  // Fallback para campos legados (se nova estrutura estiver vazia)
+  if (!identity.positioning && context.nicho) md += `- **Nicho:** ${context.nicho}\n`
+  if (!identity.positioning && context.objetivos) md += `- **Objetivos:** ${context.objetivos}\n`
+  if (!identity.avatar && context.publico_alvo) md += `- **Público-Alvo:** ${context.publico_alvo}\n`
+  if (!business.products?.length && context.produtos_servicos) md += `- **Produtos/Serviços:** ${context.produtos_servicos}\n`
+  if (!identity.toneOfVoice && context.tom_voz) md += `- **Tom de Voz:** ${context.tom_voz}\n`
+
   md += `\n---\n\n`
 
   // Dados do perfil
@@ -354,6 +409,15 @@ function generateAuditMarkdown(analysis: any, profile: any, posts: any[], contex
  * Constrói prompt para auditoria baseada APENAS em contexto (sem posts)
  */
 function buildContextOnlyPrompt(audit: any, context: any): string {
+  // Extrair dados da nova estrutura JSONB ou fallback para campos legados
+  const identity = context.identity || {}
+  const credibility = context.credibility || {}
+  const philosophy = context.philosophy || {}
+  const contentStyle = context.content_style || {}
+  const contentPillars = context.content_pillars || []
+  const business = context.business || {}
+  const dna = context.dna || {}
+
   return `Você é o líder do **Squad Auditores**, composto por 5 especialistas que trabalham em harmonia para analisar perfis de experts no Instagram:
 
 1. **Eugene Schwartz** - Copywriting científico e níveis de awareness (líder)
@@ -364,27 +428,56 @@ function buildContextOnlyPrompt(audit: any, context: any): string {
 
 ---
 
-## CONTEXTO DO EXPERT
+## CONTEXTO COMPLETO DO EXPERT
 
-Este expert ainda não possui posts analisados. A auditoria será feita com base no contexto estratégico fornecido pelo próprio cliente.
+Este expert ainda não possui posts analisados. A auditoria será feita com base no contexto estratégico completo fornecido.
 
-**Nicho / Área de Atuação:**
-${context.nicho || 'Não especificado'}
+### 🎯 IDENTIDADE & POSICIONAMENTO
+**Nome Completo:** ${identity.fullName || audit.profile?.full_name || 'Não especificado'}
+**Nome de Exibição:** ${identity.displayName || 'Não especificado'}
+**Posicionamento:** ${identity.positioning || context.nicho || 'Não especificado'}
+**Nicho:** ${identity.niche?.join(', ') || context.nicho || 'Não especificado'}
+**Público-Alvo (Avatar):** ${identity.avatar || context.publico_alvo || 'Não especificado'}
+**Tom de Voz:** ${identity.toneOfVoice || contentStyle.language?.toneOfVoice || context.tom_voz || 'Não especificado'}
 
-**Objetivos:**
-${context.objetivos || 'Não especificado'}
+### 💼 CREDIBILIDADE & AUTORIDADE
+**Experiência:** ${credibility.experience || 'Não especificado'}
+${credibility.achievements?.length ? `**Conquistas:**\n${credibility.achievements.map((a: string) => `- ${a}`).join('\n')}` : ''}
+${credibility.expertise?.length ? `**Áreas de Expertise:**\n${credibility.expertise.map((e: string) => `- ${e}`).join('\n')}` : ''}
 
-**Público-Alvo:**
-${context.publico_alvo || 'Não especificado'}
+### 🧭 FILOSOFIA & VALORES
+${philosophy.values?.length ? `**Valores:**\n${philosophy.values.map((v: string) => `- ${v}`).join('\n')}` : ''}
+**Crenças:** ${philosophy.beliefs || 'Não especificado'}
+**Defende:** ${philosophy.defends || 'Não especificado'}
+**Rejeita:** ${philosophy.rejects || 'Não especificado'}
 
-**Produtos / Serviços:**
-${context.produtos_servicos || 'Não especificado'}
+### 📝 ESTILO DE CONTEÚDO
+${contentStyle.preferredFormats?.length ? `**Formatos Preferidos:** ${contentStyle.preferredFormats.join(', ')}` : ''}
+**Estrutura:** ${contentStyle.structure || 'Não especificado'}
+${contentStyle.language ? `**Linguagem:** ${contentStyle.language.formality}, ${contentStyle.language.person}, emojis: ${contentStyle.language.emojis}` : ''}
+${contentStyle.evitar?.length ? `**Palavras/Frases a Evitar:**\n${contentStyle.evitar.map((e: string) => `- ${e}`).join('\n')}` : ''}
 
-**Tom de Voz Desejado:**
-${context.tom_voz || 'Não especificado'}
+### 🎨 PILARES DE CONTEÚDO
+${contentPillars.length ? contentPillars.map((pilar: any) => `
+**${pilar.name}** (${pilar.weight})
+- Objetivo: ${pilar.objetivo}
+- Subtópicos: ${pilar.subtopics?.join(', ') || 'N/A'}
+- Mensagens-chave: ${pilar.mensagensChave?.join(' | ') || 'N/A'}
+`).join('\n') : 'Não especificado'}
 
-**Contexto Adicional:**
-${context.contexto_adicional || 'Não especificado'}
+### 💰 PRODUTOS & OFERTAS
+${business.products?.length ? business.products.map((p: any) => `
+**${p.name}** - ${p.price}
+- Público: ${p.target}
+- CTA: ${p.cta}
+`).join('\n') : context.produtos_servicos || 'Não especificado'}
+${business.leadMagnets?.length ? `**Lead Magnets:** ${business.leadMagnets.join(', ')}` : ''}
+
+### 🧬 DNA ÚNICO
+**Energia:** ${dna.energy || 'Não especificado'}
+**Voz Única:** ${dna.uniqueVoice || 'Não especificado'}
+**Transformação:** ${dna.transformation || 'Não especificado'}
+${dna.frameworks?.length ? `**Frameworks Utilizados:**\n${dna.frameworks.map((f: string) => `- ${f}`).join('\n')}` : ''}
 
 ${context.files && context.files.length > 0 ? `
 **Documentos Anexados:**
@@ -510,6 +603,15 @@ Retorne a análise em JSON com a SEGUINTE ESTRUTURA EXATA:
  * Constrói prompt para re-auditoria com contexto adicional
  */
 function buildReAuditPrompt(audit: any, context: any, posts: any[]): string {
+  // Extrair dados da nova estrutura JSONB ou fallback para campos legados
+  const identity = context.identity || {}
+  const credibility = context.credibility || {}
+  const philosophy = context.philosophy || {}
+  const contentStyle = context.content_style || {}
+  const contentPillars = context.content_pillars || []
+  const business = context.business || {}
+  const dna = context.dna || {}
+
   return `Você é o líder do **Squad Auditores**, composto por 5 especialistas que trabalham em harmonia para analisar perfis de experts no Instagram:
 
 1. **Eugene Schwartz** - Copywriting científico e níveis de awareness (líder)
@@ -520,27 +622,60 @@ function buildReAuditPrompt(audit: any, context: any, posts: any[]): string {
 
 ---
 
-## CONTEXTO ADICIONAL DO EXPERT
+## CONTEXTO COMPLETO DO EXPERT
 
-Agora você tem acesso a informações detalhadas sobre o expert, fornecidas pelo próprio cliente:
+Você tem acesso ao perfil COMPLETO do expert, incluindo identidade, credibilidade, filosofia, estilo de conteúdo, pilares, produtos e DNA único.
 
-**Nicho / Área de Atuação:**
-${context.nicho || 'Não especificado'}
+### 🎯 IDENTIDADE & POSICIONAMENTO
+**Nome Completo:** ${identity.fullName || audit.profile?.full_name || 'Não especificado'}
+**Nome de Exibição:** ${identity.displayName || 'Não especificado'}
+**Posicionamento:** ${identity.positioning || context.nicho || 'Não especificado'}
+**Nicho:** ${identity.niche?.join(', ') || context.nicho || 'Não especificado'}
+**Público-Alvo (Avatar):** ${identity.avatar || context.publico_alvo || 'Não especificado'}
+**Tom de Voz:** ${identity.toneOfVoice || contentStyle.language?.toneOfVoice || context.tom_voz || 'Não especificado'}
 
-**Objetivos do Expert:**
-${context.objetivos || 'Não especificado'}
+### 💼 CREDIBILIDADE & AUTORIDADE
+**Experiência:** ${credibility.experience || 'Não especificado'}
+${credibility.achievements?.length ? `**Conquistas:**\n${credibility.achievements.map((a: string) => `- ${a}`).join('\n')}` : ''}
+${credibility.expertise?.length ? `**Áreas de Expertise:**\n${credibility.expertise.map((e: string) => `- ${e}`).join('\n')}` : ''}
 
-**Público-Alvo:**
-${context.publico_alvo || 'Não especificado'}
+### 🧭 FILOSOFIA & VALORES
+${philosophy.values?.length ? `**Valores:**\n${philosophy.values.map((v: string) => `- ${v}`).join('\n')}` : ''}
+**Crenças:** ${philosophy.beliefs || 'Não especificado'}
+**Defende:** ${philosophy.defends || 'Não especificado'}
+**Rejeita:** ${philosophy.rejects || 'Não especificado'}
 
-**Produtos / Serviços:**
-${context.produtos_servicos || 'Não especificado'}
+### 📝 ESTILO DE CONTEÚDO
+${contentStyle.preferredFormats?.length ? `**Formatos Preferidos:** ${contentStyle.preferredFormats.join(', ')}` : ''}
+**Estrutura:** ${contentStyle.structure || 'Não especificado'}
+${contentStyle.language ? `**Linguagem:** ${contentStyle.language.formality}, ${contentStyle.language.person}, emojis: ${contentStyle.language.emojis}` : ''}
+${contentStyle.language?.wordsMarca?.length ? `**Palavras-Marca:** ${contentStyle.language.wordsMarca.join(', ')}` : ''}
+${contentStyle.evitar?.length ? `**Palavras/Frases a Evitar:**\n${contentStyle.evitar.map((e: string) => `- ${e}`).join('\n')}` : ''}
 
-**Tom de Voz Desejado:**
-${context.tom_voz || 'Não especificado'}
+### 🎨 PILARES DE CONTEÚDO
+${contentPillars.length ? contentPillars.map((pilar: any) => `
+**${pilar.name}** (${pilar.weight})
+- Objetivo: ${pilar.objetivo}
+- Subtópicos: ${pilar.subtopics?.join(', ') || 'N/A'}
+- Mensagens-chave: ${pilar.mensagensChave?.join(' | ') || 'N/A'}
+`).join('\n') : 'Não especificado'}
 
-**Contexto Adicional:**
-${context.contexto_adicional || 'Não especificado'}
+### 💰 PRODUTOS & OFERTAS
+${business.products?.length ? business.products.map((p: any) => `
+**${p.name}** - ${p.price}
+- Público: ${p.target}
+- CTA: ${p.cta}
+${p.includes?.length ? `- Inclui: ${p.includes.join(', ')}` : ''}
+`).join('\n') : context.produtos_servicos || 'Não especificado'}
+${business.leadMagnets?.length ? `**Lead Magnets:** ${business.leadMagnets.join(', ')}` : ''}
+${business.funilPrincipal ? `**Funil Principal:** ${business.funilPrincipal}` : ''}
+
+### 🧬 DNA ÚNICO
+**Energia:** ${dna.energy || 'Não especificado'}
+**Voz Única:** ${dna.uniqueVoice || 'Não especificado'}
+**Transformação:** ${dna.transformation || 'Não especificado'}
+${dna.frameworks?.length ? `**Frameworks Utilizados:**\n${dna.frameworks.map((f: string) => `- ${f}`).join('\n')}` : ''}
+${dna.perfilCompleto ? `**Perfil Comportamental:** Hamilton: ${dna.perfilCompleto.hamilton || 'N/A'}, Hogshead: ${dna.perfilCompleto.hogshead || 'N/A'}` : ''}
 
 ${context.files && context.files.length > 0 ? `
 **Documentos Anexados:**

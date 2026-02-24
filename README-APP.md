@@ -1,4 +1,4 @@
-# Post Express - Web Application
+# Croko Labs - Web Application
 
 Aplicação Next.js 15 completa para o sistema de auditoria de perfis do Instagram.
 

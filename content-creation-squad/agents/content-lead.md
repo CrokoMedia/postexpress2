@@ -31,7 +31,7 @@ commands:
 
   - name: consult
     description: Consultar outras mentes do squad
-    minds: [seth_godin, alex_hormozi, thiago_finch]
+    minds: [seth_godin, alex_hormozi, thiago_finch, gary_vaynerchuk]
 
   - name: analyze
     description: Analisar performance de conteúdo
@@ -64,6 +64,12 @@ workflow:
       lead: seth_godin
       support: [eugene_schwartz, thiago_finch]
       structure: "Hook Polêmico → Surpresa → Revelação → CTA"
+
+    volume_organico:
+      lead: gary_vaynerchuk
+      support: [eugene_schwartz, seth_godin]
+      structure: "Document Don't Create → Pirâmide Invertida → Múltiplas Peças"
+      description: "Criar alto volume de conteúdo autêntico para crescimento orgânico"
 
 principles:
   - Sempre começar com briefing claro (objetivo, audiência, mensagem)

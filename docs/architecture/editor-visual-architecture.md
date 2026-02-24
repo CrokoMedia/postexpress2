@@ -1,6 +1,6 @@
 # Editor Visual de Carrosséis - Arquitetura Técnica
 
-**Post Express - Pazos Media**
+**Croko Labs - Pazos Media**
 **Data:** 2026-02-16
 **Versão:** 1.0
 **Status:** Documento de Arquitetura
@@ -2492,5 +2492,5 @@ Esta arquitetura fornece:
 ---
 
 **Documento criado por:** Architect (Claude Code)
-**Para:** Post Express - Pazos Media
+**Para:** Croko Labs - Pazos Media
 **Última atualização:** 2026-02-16

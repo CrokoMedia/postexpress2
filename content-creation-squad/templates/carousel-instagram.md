@@ -9,7 +9,6 @@ slides: 6-10
 file_format: JPG ou PNG
 max_file_size: 30MB total
 caption_limit: 2200 caracteres
-hashtags: 5-10 recomendado
 ```
 
 ## Estrutura Padrão (8 slides)
@@ -176,9 +175,7 @@ Visual: Sua logo ou CTA visual
 [Parágrafo 3: Aplicação prática ou call-to-action]
 
 ---
-[CTA final + hashtags]
-
-#hashtag1 #hashtag2 #hashtag3 #hashtag4 #hashtag5
+[CTA final]
 ```
 
 ### Exemplo Completo
@@ -196,8 +193,6 @@ Salva este post e me conta: qual desses erros você está cometendo agora?
 
 ---
 Para mais conteúdo sobre crescimento lucrativo, me segue @seu_usuario
-
-#empreendedorismo #metricasdenegocio #gestaofinanceira #lucroreal #negociosdigitais
 ```
 
 ## Checklist Pré-Publicação
@@ -218,7 +213,6 @@ Para mais conteúdo sobre crescimento lucrativo, me segue @seu_usuario
 - [ ] Caption complementa (não repete)
 
 ### Otimização
-- [ ] Hashtags relevantes (5-10)
 - [ ] Localização (se aplicável)
 - [ ] Horário ideal de postagem
 - [ ] Alt text acessível

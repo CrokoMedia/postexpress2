@@ -2,35 +2,39 @@
 
 > Squad especializado em criação de carrosséis de alta conversão para Instagram e LinkedIn
 
-## 🧠 As 5 Mentes Milionárias
+## 🧠 Os 6 Frameworks Científicos
 
-Este squad combina o conhecimento de 5 especialistas mundiais:
+Este squad combina 6 frameworks comprovados de criação de conteúdo:
 
-### 1. **Eugene Schwartz** (Líder) - Copywriting Científico
-- **Papel**: Estruturar copy que converte
-- **Expertise**: Breakthrough Advertising, awareness stages, emotional triggers
-- **Quando ativar**: Escrever hooks, estruturar mensagens, otimizar copy
+### 1. **Framework de Copy Científico** (Principal)
+- **Papel**: Estruturar copy que converte baseado em ciência comportamental
+- **Expertise**: Awareness stages, emotional triggers, persuasão científica
+- **Quando usar**: Escrever hooks, estruturar mensagens, otimizar copy
 
-### 2. **Seth Godin** - Branding & Narrativas
-- **Papel**: Criar conteúdo remarkable e viral
-- **Expertise**: Marketing de permissão, tribos, storytelling
-- **Quando ativar**: Estratégia de conteúdo, posicionamento, viralização
+### 2. **Framework de Posicionamento & Viralidade**
+- **Papel**: Criar conteúdo memorable e compartilhável
+- **Expertise**: Marketing de permissão, tribos, storytelling estratégico
+- **Quando usar**: Estratégia de conteúdo, posicionamento único, viralização
 
-### 3. **Alex Hormozi** - Ofertas Irresistíveis
-- **Papel**: Otimizar carrosséis de vendas
-- **Expertise**: $100M Offers, value stack, pricing
-- **Quando ativar**: Carrosséis de venda, lançamentos, promoções
+### 3. **Framework de Ofertas & Value Stack**
+- **Papel**: Otimizar carrosséis de vendas e conversão
+- **Expertise**: Value equation, pricing strategy, construção de ofertas
+- **Quando usar**: Carrosséis de venda, lançamentos, promoções
 
-### 4. **Thiago Finch** - Marketing Digital BR
+### 4. **Framework de Adaptação Cultural BR**
 - **Papel**: Localização para mercado brasileiro
-- **Expertise**: Funis, gatilhos mentais, linguagem coloquial BR
-- **Quando ativar**: Adaptar para audiência brasileira
+- **Expertise**: Funis brasileiros, gatilhos culturais, linguagem coloquial BR
+- **Quando usar**: Adaptar para audiência brasileira
 
-### 5. **Adriano De Marqui** (NOVO) - Design Visual & Branding
-- **Papel**: Diretor de design visual e identidade de marca
-- **Expertise**: Design gráfico para redes sociais, branding, paletas brasileiras
-- **Quando ativar**: Criar design de carrosséis, definir identidade visual
-- **Fidelidade**: 96% | **Tier**: 4
+### 5. **Framework de Design & Branding**
+- **Papel**: Direção visual e identidade de marca
+- **Expertise**: Design gráfico para redes sociais, branding, paletas de cores
+- **Quando usar**: Criar design de carrosséis, definir identidade visual
+
+### 6. **Framework de Atenção & Autenticidade**
+- **Papel**: Estratégia de distribuição e conteúdo autêntico
+- **Expertise**: Arbitragem de atenção, document don't create, volume estratégico
+- **Quando usar**: Estratégia de distribuição, volume de conteúdo, autenticidade
 
 ---
 
@@ -48,9 +52,9 @@ Workflow guiado completo (10-15 min)
 ```
 Aplica estrutura pronta
 
-### Opção 3: Consultar Mente Específica
+### Opção 3: Aplicar Framework Específico
 ```bash
-@emulator eugene_schwartz "Como escrever hook para [seu tema]?"
+@content-lead *apply-framework copy "Como escrever hook para [seu tema]?"
 ```
 
 ---
@@ -63,11 +67,11 @@ content-creation-squad/
 ├── README.md                      # Este arquivo
 │
 ├── agents/                        # Agentes especializados
-│   ├── content-lead.md           # 🎯 Orquestrador (Eugene Schwartz)
+│   ├── content-lead.md           # 🎯 Orquestrador principal
 │   ├── carousel-creator.md       # 🎨 Criador de carrosséis
-│   ├── copy-optimizer.md         # ✍️ Otimizador de copy
+│   ├── copy-optimizer.md         # ✍️ Otimizador de copy científico
 │   ├── visual-planner.md         # 📐 Planejador visual técnico
-│   └── design-lead.md            # 🎨 Design & Branding (Adriano De Marqui)
+│   └── design-lead.md            # 🎨 Design & Branding visual
 │
 ├── tasks/                         # Tarefas executáveis
 │   ├── create-carousel.md        # Criar carrossel completo
@@ -97,7 +101,8 @@ content-creation-squad/
 │   ├── seth_godin.md
 │   ├── alex_hormozi.md
 │   ├── thiago_finch.md
-│   └── adriano_de_marqui.md       # NOVO - Design visual
+│   ├── adriano_de_marqui.md       # Design visual & branding
+│   └── gary_vaynerchuk.md         # Atenção & autenticidade
 │
 └── scripts/                       # Utilitários
     └── activate-mind.js
@@ -142,6 +147,23 @@ content-creation-squad/
 **Estrutura**: Hook → Insight → Framework → Aplicação → CTA
 **Comando**: `@content-lead *create` (selecionar "Construir autoridade")
 
+### 4. Carrossel de Volume Orgânico
+**Objetivo**: Criar alto volume de conteúdo autêntico para crescimento orgânico
+
+**Mente Líder**: Gary Vaynerchuk
+**Estrutura**: Document Don't Create → Pirâmide Invertida → Múltiplas Peças
+**Comando**: `@content-lead *create` (selecionar "Volume orgânico")
+
+**Exemplo**:
+- Conteúdo pilar: 1 keynote de 60 minutos
+- Derivação: 30+ peças de conteúdo
+  - 10 clips curtos (TikTok/Reels)
+  - 10 posts de texto (LinkedIn/Twitter)
+  - 5 carrosséis educacionais
+  - 5 quotes visuais
+- Estratégia: Document, don't create - capturar o que já está acontecendo
+- Distribuição: Arbitragem de atenção - onde o público está mas ainda não saturou
+
 **Exemplo**:
 - Slide 1: "O método [NOME] para [resultado]"
 - Slide 2: Visão geral do framework
@@ -161,6 +183,24 @@ content-creation-squad/
 - Slides 2-5: Argumentação + evidências
 - Slide 6: Conclusão provocativa
 - Slide 7: "Concorda ou discorda? Comenta 👇"
+
+### 5. Produção em Volume (Alto Tráfego)
+**Objetivo**: Criar 15-30 carrosséis/mês de forma sustentável
+
+**Mente Líder**: Gary Vaynerchuk
+**Estrutura**: Conteúdo Pilar → Pirâmide Invertida → Múltiplos Carrosséis
+**Comando**: `@content-lead *create` + `@emulator gary_vaynerchuk`
+
+**Exemplo**:
+- **Pilar**: Livestream de 60 min sobre "Estratégias de Conteúdo 2026"
+- **Extração**:
+  - 10 clips de 30-60s (insights-chave)
+  - 5 carrosséis (frameworks mencionados)
+  - 15 posts de texto (quotes + contexto)
+  - 20 stories (bastidores + quick tips)
+- **Resultado**: 50+ peças de conteúdo de 1 evento
+
+**Princípio Gary**: "Document, don't create" - capturar vs inventar do zero
 
 ---
 
@@ -235,6 +275,7 @@ Acessar: `data/hooks-database.json`
 @emulator seth_godin         # Ativar Seth Godin
 @emulator alex_hormozi       # Ativar Alex Hormozi
 @emulator thiago_finch       # Ativar Thiago Finch
+@emulator gary_vaynerchuk    # Ativar Gary Vaynerchuk
 ```
 
 ---
@@ -281,7 +322,6 @@ Antes de publicar qualquer carrossel:
 
 **Otimização**:
 - [ ] Caption complementa (não duplica)?
-- [ ] 5-10 hashtags relevantes?
 - [ ] Slide 10 incentiva interação?
 - [ ] Horário ideal de postagem?
 - [ ] Alt text para acessibilidade?
@@ -315,6 +355,14 @@ Este squad usa princípios comprovados:
 - Linguagem coloquial brasileira
 - Referências culturais relevantes
 - Timing de mercado BR
+
+### De Gary Vaynerchuk (Atenção & Execução)
+- Day trading attention (ir onde a atenção está subvalorizada)
+- Document, don't create (capturar vs criar do zero)
+- Pirâmide invertida de conteúdo (1 pilar → 30 peças)
+- Macro patience, micro speed (visão de longo prazo, execução rápida)
+- Jab, Jab, Jab, Right Hook (dar valor antes de pedir)
+- Autenticidade radical (sem filtro, sem fabricação)
 
 ---
 

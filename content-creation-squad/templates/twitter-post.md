@@ -278,10 +278,9 @@ Concorda?
 
 ### Para Instagram/LinkedIn
 1. Caption adicional explicando contexto
-2. Hashtags relevantes
-3. Postar em horário de pico
-4. Engajar nos primeiros comentários
-5. Repostar stories (aumenta alcance)
+2. Postar em horário de pico
+3. Engajar nos primeiros comentários
+4. Repostar stories (aumenta alcance)
 
 ## Benchmarks
 

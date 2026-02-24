@@ -65,7 +65,7 @@ Requisitos:
 - Máximo 280 caracteres total (ideal)
 - Hook matador na primeira linha
 - 2-4 quebras de linha estratégicas
-- Números específicos (não vagos)
+- Números específicos (não vagos) - **MAS APENAS SE REAIS**
 - CTA claro e fácil de executar
 - 1-2 emojis no máximo
 - Conversacional (não formal)
@@ -75,6 +75,11 @@ Princípios:
 - Identificar nível de awareness da audiência
 - Amplificar desejo existente
 - Criar gap de curiosidade
+
+**⚠️ RESTRIÇÃO CRÍTICA:**
+- Use APENAS números fornecidos pelo usuário
+- Se precisar de número: use placeholder [INSERIR NÚMERO REAL]
+- NUNCA invente métricas ou resultados
 
 IMPORTANTE: Não mencione processos internos, nomes de copywriters ou termos técnicos de marketing. Foque no BENEFÍCIO para o leitor."
 ```
@@ -203,15 +208,17 @@ Gerar preview visual automático para visualizar antes de produzir no Canva.
 
 [Caption explicando contexto do post, se necessário]
 
-**Hashtags**: #[tag1] #[tag2] #[tag3]
-
 ---
 
-## MÉTRICAS ESPERADAS
+## MÉTRICAS ESPERADAS (Benchmarks de Mercado)
 
-- **Engajamento**: [%]
-- **Comentários**: [estimativa]
-- **Compartilhamentos**: [estimativa]
+**IMPORTANTE**: Estes são BENCHMARKS GERAIS, NÃO resultados garantidos deste post.
+
+- **Engajamento**: [estimativa de mercado - NÃO dado real]
+- **Comentários**: [estimativa de mercado - NÃO dado real]
+- **Compartilhamentos**: [estimativa de mercado - NÃO dado real]
+
+**Para dados reais**: Analise após publicação via analytics da plataforma.
 
 ---
 

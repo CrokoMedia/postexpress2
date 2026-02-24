@@ -44,8 +44,8 @@ Exemplo para cada Actor:
 {
   "actorSpecification": 1,
   "name": "instagram-scraper",
-  "title": "Instagram Scraper - Post Express",
-  "description": "Scraper de Instagram para o Post Express",
+  "title": "Instagram Scraper - Croko Labs",
+  "description": "Scraper de Instagram para o Croko Labs",
   "version": "1.0",
   "storages": {
     "dataset": {
@@ -100,7 +100,7 @@ jobs:
 Para usar Actors já existentes no Apify Store:
 
 ```javascript
-// No código do Post Express
+// No código do Croko Labs
 import { ApifyClient } from 'apify-client';
 
 const client = new ApifyClient({

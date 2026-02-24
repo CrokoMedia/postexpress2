@@ -18,7 +18,7 @@
     "design",
     "content-creation"
   ],
-  "author": "Content Creation Squad - Post Express",
+  "author": "Content Creation Squad - Croko Labs",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.0",

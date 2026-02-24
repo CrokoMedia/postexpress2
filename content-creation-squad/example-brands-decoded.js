@@ -6,7 +6,7 @@
  * Demonstra como usar o template BrandsDecoded (do Figma) com o Image Generator
  * Template criado manualmente baseado no design original do Figma
  *
- * @author Post Express Team
+ * @author Croko Labs Team
  */
 
 import { ImageGenerator, FORMATS, STYLES } from './engines/image-generator/index.js';
@@ -22,7 +22,7 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const THREAD_ALEX_HORMOZI = {
   id: 'alex-hormozi-brands-decoded',
   title: 'Thread Alex Hormozi - BrandsDecoded Template',
-  author: 'Post Express Team',
+  author: 'Croko Labs Team',
   created: new Date().toISOString(),
   slides: [
     {

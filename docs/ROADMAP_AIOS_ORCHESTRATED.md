@@ -1,7 +1,7 @@
-# 🚀 Roadmap de Desenvolvimento: Post Express
+# 🚀 Roadmap de Desenvolvimento: Croko Labs
 ## Orquestrado pelos Agentes AIOS
 
-**Projeto**: Post Express - Sistema de Criação de Conteúdo Automatizado
+**Projeto**: Croko Labs - Sistema de Criação de Conteúdo Automatizado
 **Metodologia**: AIOS-Driven Development
 **Data**: 2026-02-16
 **Analista**: Atlas (@analyst)
@@ -60,7 +60,7 @@
 **Atividade**:
 ```bash
 @architect
-"Crie a estrutura de pastas do Post Express seguindo padrão AIOS-Core:
+"Crie a estrutura de pastas do Croko Labs seguindo padrão AIOS-Core:
 - squads/ (auditores, criacao)
 - docs/ (epics, stories, architecture)
 - src/ (código fonte)
@@ -621,7 +621,7 @@ graph TD
 ### **Ação 1: Kickoff com @pm**
 ```bash
 @pm *create-epic
-"Criar épicos para Post Express baseado neste roadmap"
+"Criar épicos para Croko Labs baseado neste roadmap"
 ```
 
 **Output esperado**:

@@ -168,7 +168,20 @@ async function processAnalysis(item: QueueItem): Promise<void> {
       progress: calculateProgress('audit')
     })
 
-    const auditResult = await runAuditWithSquad(username)
+    // Buscar profile_id para carregar contexto
+    const { data: profileData } = await supabase
+      .from('instagram_profiles')
+      .select('id')
+      .eq('username', username)
+      .maybeSingle()
+
+    const profileId = profileData?.id
+
+    if (profileId) {
+      console.log('📚 Profile ID encontrado, contexto será carregado pelo audit script')
+    }
+
+    const auditResult = await runAuditWithSquad(username, profileId)
 
     if (!auditResult.success) {
       throw new Error(`Auditoria com squad falhou: ${auditResult.error}`)

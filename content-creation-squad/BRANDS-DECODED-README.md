@@ -363,7 +363,7 @@ npx playwright install chromium
 
 ---
 
-**Criado por Aria (Architect) - Post Express Team**
+**Criado por Aria (Architect) - Croko Labs Team**
 *Template 100% gratuito, sem custos de plugins*
 
 🚀 **Crie. Gere. Baixe. Poste.**

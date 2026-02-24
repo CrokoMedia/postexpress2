@@ -1,10 +1,11 @@
 name: content-creation-squad
-version: 1.0.0
+version: 1.1.0
 description: |
   Squad especializado em criação de conteúdo para Instagram e LinkedIn.
-  Combina 5 mentes milionárias: Eugene Schwartz (Copy), Seth Godin (Branding),
-  Alex Hormozi (Ofertas), Thiago Finch (Marketing BR) e Adriano De Marqui (Design)
-  para produzir carrosséis de alta conversão com identidade visual impactante.
+  Combina 6 mentes milionárias: Eugene Schwartz (Copy), Seth Godin (Branding),
+  Alex Hormozi (Ofertas), Thiago Finch (Marketing BR), Adriano De Marqui (Design)
+  e Gary Vaynerchuk (Atenção & Autenticidade) para produzir carrosséis de alta
+  conversão com identidade visual impactante e estratégia de atenção.
 author: MentesMilionarias
 license: MIT
 slashPrefix: content
@@ -16,7 +17,7 @@ aios:
 
 # Mentes Milionárias do Squad
 mindsLocation: minds/
-mindsCount: 5
+mindsCount: 6
 minds:
   lead: eugene_schwartz
   members:
@@ -25,6 +26,7 @@ minds:
     - alex_hormozi       # Ofertas irresistíveis
     - thiago_finch       # Marketing BR
     - adriano_de_marqui  # Design visual & identidade (96%, Tier 4)
+    - gary_vaynerchuk    # Atenção, autenticidade & document don't create
 
 components:
   agents:

@@ -1,17 +1,25 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { Home, Plus, BarChart3, GitCompare, Settings, ListChecks, Users, LogOut, Layers } from 'lucide-react'
+import { Home, Plus, BarChart3, GitCompare, Settings, ListChecks, Users, LogOut, Layers, Archive, Factory, Twitter, Palette, Video, Calendar } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { UserRole } from '@/lib/auth'
+import { ThemeToggle } from '@/components/atoms/theme-toggle'
 
 const adminNavigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
   { name: 'Nova Análise', href: '/dashboard/new', icon: Plus },
   { name: 'Fila de Análises', href: '/dashboard/queue', icon: ListChecks },
+  { name: 'Calendário', href: '/dashboard/calendar', icon: Calendar },
+  { name: 'Baú', href: '/dashboard/bau', icon: Archive },
   { name: 'Perfis', href: '/dashboard/profiles', icon: BarChart3 },
   { name: 'Comparações', href: '/dashboard/comparisons', icon: GitCompare },
+  { name: 'Twitter Experts', href: '/dashboard/twitter/experts', icon: Twitter },
+  { name: 'Templates Pro', href: '/dashboard/templatesPro', icon: Palette },
+  { name: 'Brand Kits', href: '/dashboard/brand-kits', icon: Palette },
+  { name: 'Reel Production', href: '/dashboard/reels', icon: Video },
   { name: 'Configurações', href: '/dashboard/settings', icon: Settings },
   { name: 'Gerenciar Usuários', href: '/dashboard/admin/users', icon: Users },
 ]
@@ -41,14 +49,21 @@ export function Sidebar({ role, profileIds }: SidebarProps) {
   }
 
   return (
-    <aside className="fixed left-0 top-0 z-40 h-screen w-64 bg-neutral-900 border-r border-neutral-800 flex flex-col">
+    <aside className="fixed left-0 top-0 z-40 h-screen w-64 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 flex flex-col shadow-sm transition-colors duration-300">
       {/* Logo */}
-      <div className="flex h-16 items-center border-b border-neutral-800 px-6">
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg shadow-primary-500/20">
-            <span className="text-white font-bold text-sm">PE</span>
+      <div className="flex h-16 items-center border-b border-neutral-200 dark:border-neutral-800 px-6">
+        <Link href="/dashboard" className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg shadow-primary-500/20 p-1.5">
+            <Image
+              src="/croko-icon.png"
+              alt="Croko Lab"
+              width={32}
+              height={32}
+              className="object-contain"
+              priority
+            />
           </div>
-          <span className="text-lg font-semibold text-neutral-50">Post Express</span>
+          <span className="text-lg font-semibold text-neutral-900 dark:text-neutral-50">Croko Lab</span>
         </Link>
       </div>
 
@@ -63,10 +78,10 @@ export function Sidebar({ role, profileIds }: SidebarProps) {
               key={item.name}
               href={item.href}
               className={cn(
-                'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all',
+                'flex items-center gap-3 rounded-button px-3 py-2.5 text-sm font-medium transition-all duration-400',
                 isActive
-                  ? 'bg-primary-500/10 text-primary-500 border-l-2 border-primary-500 pl-[10px]'
-                  : 'text-neutral-400 hover:bg-neutral-800 hover:text-neutral-50'
+                  ? 'bg-primary-50 dark:bg-primary-950/30 text-primary-600 dark:text-primary-400 border-l-2 border-primary-500 pl-[10px]'
+                  : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-neutral-100'
               )}
             >
               <Icon className="h-5 w-5 shrink-0" />
@@ -77,19 +92,22 @@ export function Sidebar({ role, profileIds }: SidebarProps) {
       </nav>
 
       {/* Footer */}
-      <div className="border-t border-neutral-800 p-4 space-y-3">
+      <div className="border-t border-neutral-200 dark:border-neutral-800 p-4 space-y-3">
         {role === 'admin' && (
-          <div className="text-xs text-primary-500/70 font-medium px-1">Admin</div>
+          <div className="text-xs text-primary-600 dark:text-primary-400 font-medium px-1">Admin</div>
         )}
-        <button
-          onClick={handleSignOut}
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-400 hover:bg-neutral-800 hover:text-neutral-50 transition-all"
-        >
-          <LogOut className="h-5 w-5 shrink-0" />
-          <span>Sair</span>
-        </button>
-        <div className="text-xs text-neutral-500 text-center">
-          v1.0.0 · Pazos Media
+        <div className="flex items-center justify-between gap-2">
+          <ThemeToggle />
+          <button
+            onClick={handleSignOut}
+            className="flex flex-1 items-center gap-3 rounded-button px-3 py-2.5 text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-neutral-100 transition-all duration-400"
+          >
+            <LogOut className="h-5 w-5 shrink-0" />
+            <span>Sair</span>
+          </button>
+        </div>
+        <div className="text-xs text-neutral-600 dark:text-neutral-500 text-center">
+          v1.0.0 · Agência Croko
         </div>
       </div>
     </aside>

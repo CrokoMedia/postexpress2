@@ -30,7 +30,7 @@ async function testProfilePics() {
   try {
     // Buscar todos os perfis
     const { data: profiles, error } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('username, profile_pic_url, profile_pic_url_hd, profile_pic_cloudinary_url')
       .is('deleted_at', null)
       .order('last_scraped_at', { ascending: false })

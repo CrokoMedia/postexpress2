@@ -88,7 +88,7 @@ async function baixarImagem(url, destino) {
 
 async function gerarSlide(username) {
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log('🎨 GERADOR DE SLIDES - POST EXPRESS');
+  console.log('🎨 GERADOR DE SLIDES - CROKO LABS');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
   console.log(`🎯 Perfil: @${username}\n`);

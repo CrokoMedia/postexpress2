@@ -186,5 +186,5 @@ O template do Figma foi testado com sucesso usando conteúdo real do Content Cre
 
 ---
 
-**Post Express** 🚀
+**Croko Labs** 🚀
 *Content Creation Squad - Teste realizado em 13/02/2026*

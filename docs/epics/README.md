@@ -1,6 +1,6 @@
-# 📋 Épicos do Post Express
+# 📋 Épicos do Croko Labs
 
-**Projeto**: Post Express - Sistema de Criação de Conteúdo Automatizado
+**Projeto**: Croko Labs - Sistema de Criação de Conteúdo Automatizado
 **Product Manager**: @pm (Morgan)
 **Data de Criação**: 2026-02-16
 **Timeline Total**: 10 semanas (2.5 meses)
@@ -9,7 +9,7 @@
 
 ## 🎯 VISÃO GERAL
 
-Este documento lista todos os épicos do projeto Post Express em ordem de execução.
+Este documento lista todos os épicos do projeto Croko Labs em ordem de execução.
 
 **Total de Épicos**: 8
 **Status Geral**: ⏳ Pendente (aguardando início)

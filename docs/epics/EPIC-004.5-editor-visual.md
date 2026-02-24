@@ -10,7 +10,7 @@
 ## 📋 Overview
 
 ### O Problema
-Atualmente o fluxo do Post Express gera custos desnecessários:
+Atualmente o fluxo do Croko Labs gera custos desnecessários:
 ```
 IA cria copy → Cloudinary renderiza → Cliente aprova/rejeita → Re-renderizar
 ```
@@ -1281,4 +1281,4 @@ Para dúvidas ou sugestões, abrir issue no GitHub ou entrar em contato via Slac
 
 ---
 
-*Este épico foi criado como parte do roadmap do Post Express. Para contexto completo, ver `docs/ROADMAP_AIOS_ORCHESTRATED.md`.*
+*Este épico foi criado como parte do roadmap do Croko Labs. Para contexto completo, ver `docs/ROADMAP_AIOS_ORCHESTRATED.md`.*

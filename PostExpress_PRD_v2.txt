@@ -1,5 +1,5 @@
 ================================================================================
-                              POST EXPRESS
+                              CROKO LABS
            Sistema de Criação de Conteúdo Automatizado
                     Product Requirements Document (PRD)
                               Pazos Media
@@ -27,7 +27,7 @@ Infoprodutores, experts e empresas enfrentam desafios críticos na criação de 
 
 1.2 SOLUÇÃO
 -----------
-Post Express é um sistema interno da Pazos Media que automatiza 80% do processo
+Croko Labs é um sistema interno da Pazos Media que automatiza 80% do processo
 de criação de conteúdo, utilizando IA com metodologias comprovadas de marketing
 para gerar carrosséis de alta conversão em escala.
 
@@ -414,7 +414,7 @@ PRODUTIVIDADE:
 ------------------------
 
 ┌─────────────────────────────────────────────────────────────┐
-│  EDITOR VISUAL POST EXPRESS                                 │
+│  EDITOR VISUAL CROKO LABS                                 │
 ├──────────────────┬──────────────────────┬───────────────────┤
 │                  │                      │                   │
 │  SIDEBAR ESQ     │   CANVAS CENTRAL     │  SIDEBAR DIR      │
@@ -837,7 +837,7 @@ Agora inclui o Editor Visual integrado.
 -----------------------
 
 ┌─────────────────────────────────────────────────────────────┐
-│  POST EXPRESS — Portal do Cliente                           │
+│  CROKO LABS — Portal do Cliente                           │
 │  Olá, Nome Cliente! (@usuario)                   [🔔] [👤]  │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
@@ -1119,6 +1119,6 @@ Além disso:
 
 
 ================================================================================
-                    Post Express v2.0 — Pazos Media © 2026
+                    Croko Labs v2.0 — Pazos Media © 2026
                   "Automatize 80% da criação com 75% menos custo"
 ================================================================================

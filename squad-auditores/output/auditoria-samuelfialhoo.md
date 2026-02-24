@@ -1,6 +1,6 @@
 # 📊 Auditoria Completa - @samuelfialhoo
 
-**Data:** 17/02/2026
+**Data:** 21/02/2026
 
 ---
 
@@ -8,8 +8,8 @@
 
 - **Nome:** Samuel Fialho
 - **Username:** @samuelfialhoo
-- **Seguidores:** 60.374
-- **Seguindo:** 263
+- **Seguidores:** 60.349
+- **Seguindo:** 245
 - **Total de posts:** 463
 - ✅ **Perfil Verificado**
 
@@ -21,13 +21,13 @@ Clique abaixo 👇🏼
 
 ## 📈 Métricas de Engajamento
 
-- **Posts analisados:** 10
-- **Total de likes:** 638
-- **Média de likes/post:** 64
-- **Total de comentários:** 99
-- **Média de comentários/post:** 13
-- **Taxa de engajamento:** 0.13%
-- **Comentários relevantes:** 95
+- **Posts analisados:** 12
+- **Total de likes:** 865
+- **Média de likes/post:** 72
+- **Total de comentários:** 134
+- **Média de comentários/post:** 12
+- **Taxa de engajamento:** 0.14%
+- **Comentários relevantes:** 128
 - **Perguntas identificadas:** 0
 
 ---
@@ -59,16 +59,13 @@ Clique abaixo 👇🏼
 
 - **URL:** https://www.instagram.com/p/DTxasWiDhUq/
 - **Data:** 21/01/2026
-- **Likes:** 38
-- **Comentários:** 36
+- **Likes:** 40
+- **Comentários:** 38
 
 **Texto extraído (OCR):**
 
 Slide 1:
 > Hoje é um dia mediano em minha operação... Tráfego subiu nos últimos dias o que impactou diretamente a geração de demanda. Continuamos...
-
-Slide 2:
-> Se você vende serviços ou mentorias high ticket via reuniões de vendas E quer plugar um sistema que gera de 50 a 100 reuniões por mês Comente “funil” Você vai copiar e colar exatamente o que me permite escalar pra 700-800 calls/mês, Beirando os 7 dígitos de faturamento.
 
 ---
 
@@ -76,8 +73,8 @@ Slide 2:
 
 - **URL:** https://www.instagram.com/p/DTvQov1DoOx/
 - **Data:** 20/01/2026
-- **Likes:** 51
-- **Comentários:** 25
+- **Likes:** 53
+- **Comentários:** 50
 
 **Texto extraído (OCR):**
 
@@ -86,6 +83,9 @@ Slide 1:
 
 Slide 2:
 > Agora vou adicionar um novo elemento: Todos os 5 posts por dia terão CTA no carrossel. Os melhores conteúdos serão turbinados: Para ganhar seguidores • Gerar leads • E agendamentos via social selling. Vou investir R$1.000 por dia só nesse novo funil, impulsionando dezenas de posts por mês, com foco em gerar uma avalanche de leads orgânicos.
+
+Slide 3:
+> Isso é um teste. Daqui 30 dias eu volto com os resultados. Enquanto isso... Comente “funil” se quiser copiar e colar a estrutura que gera mais de 700 reuniões por mês em meu negócio
 
 ---
 
@@ -111,7 +111,7 @@ Slide 2:
 - **URL:** https://www.instagram.com/p/DTvC0-pjnrE/
 - **Data:** 20/01/2026
 - **Likes:** 32
-- **Comentários:** 7
+- **Comentários:** 8
 
 **Texto extraído (OCR):**
 
@@ -171,7 +171,7 @@ Slide 3:
 
 - **URL:** https://www.instagram.com/p/DTsR-HnDkI9/
 - **Data:** 19/01/2026
-- **Likes:** 59
+- **Likes:** 60
 - **Comentários:** 5
 
 **Texto extraído (OCR):**
@@ -182,8 +182,33 @@ Slide 1:
 Slide 2:
 > 1.Escolheria um nicho. Criaria uma oferta que só eu tenho no mercado. Uma oferta forte, agressiva, com um mecanismo único que gere curiosidade imediata no lead.
 
+Slide 3:
+> 2.Criaria conteúdo em massa sobre essa oferta. Cenários práticos. Resultados reais. Exemplo do processo funcionando. O lead precisa ver o caminho antes de clicar.
+
 Slide 4:
 > 3.Rodaria um único funil, 100% voltado para público frio. Foco: geração de demanda e leads consistentes dentro do processo.
+
+---
+
+### Post 11: Sidecar
+
+- **URL:** https://www.instagram.com/p/DTpyc-KDnW7/
+- **Data:** 18/01/2026
+- **Likes:** 169
+- **Comentários:** 6
+
+**Texto extraído (OCR):**
+
+---
+
+### Post 12: Image
+
+- **URL:** https://www.instagram.com/p/DTn4ec6DtAF/
+- **Data:** 17/01/2026
+- **Likes:** 53
+- **Comentários:** 1
+
+**Texto extraído (OCR):**
 
 ---
 

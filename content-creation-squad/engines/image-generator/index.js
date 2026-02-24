@@ -6,7 +6,7 @@
  * Gera automaticamente imagens PNG de alta qualidade para carrosséis
  * Suporta múltiplos formatos (Post, Stories) e estilos (Figma, Gradient)
  *
- * @author Post Express Team
+ * @author Croko Labs Team
  * @version 1.0.0
  */
 
@@ -233,7 +233,7 @@ export { FORMATS, STYLES, OUTPUT };
 
 // CLI
 if (import.meta.url === `file://${process.argv[1]}`) {
-  console.log('🎨 Post Express - Image Generator Engine\n');
+  console.log('🎨 Croko Labs - Image Generator Engine\n');
   console.log('Use: import { ImageGenerator } from "./index.js"\n');
   console.log('Ou veja: demo.js para exemplos de uso\n');
 }

@@ -74,7 +74,7 @@ async function uploadAllProfilePics() {
   try {
     // Buscar perfis que têm foto mas não têm Cloudinary URL
     const { data: profiles, error } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('id, username, profile_pic_url_hd, profile_pic_cloudinary_url')
       .not('profile_pic_url_hd', 'is', null)
       .is('profile_pic_cloudinary_url', null)
@@ -105,7 +105,7 @@ async function uploadAllProfilePics() {
       if (result.success) {
         // Atualizar banco com URL do Cloudinary
         const { error: updateError } = await supabase
-          .from('profiles')
+          .from('instagram_profiles')
           .update({ profile_pic_cloudinary_url: result.url })
           .eq('id', profile.id)
 

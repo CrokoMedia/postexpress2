@@ -1,5 +1,5 @@
 /**
- * Post Express - Teste Template A (Só Texto)
+ * Croko Labs - Teste Template A (Só Texto)
  *
  * Template mais simples e limpo
  * Header compacto (32px) + Texto à esquerda

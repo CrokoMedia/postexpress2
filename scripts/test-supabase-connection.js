@@ -30,7 +30,7 @@ async function testConnection() {
   console.log('1️⃣  Testando conexão...')
   try {
     const { data, error } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('count')
       .limit(1)
 
@@ -62,7 +62,7 @@ async function testConnection() {
       `
     }).catch(async () => {
       // Fallback: tentar query direta (pode não funcionar com RLS)
-      const tables = ['profiles', 'audits', 'posts', 'comments', 'comparisons', 'analysis_queue']
+      const tables = ['instagram_profiles', 'audits', 'posts', 'comments', 'comparisons', 'analysis_queue']
       const results = []
 
       for (const table of tables) {

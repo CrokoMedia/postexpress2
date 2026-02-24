@@ -70,6 +70,7 @@ export interface AnalysisData {
 
 /**
  * Salva ou atualiza perfil do Instagram
+ * IMPORTANTE: Usa tabela 'instagram_profiles' (não 'profiles' que é para creators)
  */
 export async function saveProfile(profileData: any) {
   // Suporta camelCase (Apify) e snake_case (Claude/audit JSON)
@@ -103,11 +104,12 @@ export async function saveProfile(profileData: any) {
     cloudinaryUrl = await uploadProfilePicToCloudinary(picUrlForUpload, username)
   }
 
-  // Verificar se perfil já existe
+  // Verificar se perfil já existe (apenas não-deletados, por segurança)
   const { data: existing } = await supabase
-    .from('profiles')
+    .from('instagram_profiles')
     .select('id')
     .eq('username', username)
+    .is('deleted_at', null)
     .single()
 
   const profilePayload: Record<string, any> = {
@@ -122,8 +124,7 @@ export async function saveProfile(profileData: any) {
     is_verified: verified || false,
     is_business_account: isBusinessAccount || false,
     business_category: businessCategoryName || null,
-    last_scraped_at: new Date().toISOString(),
-    deleted_at: null // Restaurar se estava soft-deletado
+    last_scraped_at: new Date().toISOString()
   }
 
   // Incluir URL do Cloudinary se upload bem sucedido
@@ -134,7 +135,7 @@ export async function saveProfile(profileData: any) {
   if (existing) {
     // Atualizar (não sobrescrever foto se nova estiver vazia e antiga existir)
     const { data: currentData } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('profile_pic_url, profile_pic_url_hd, profile_pic_cloudinary_url')
       .eq('id', existing.id)
       .single()
@@ -154,29 +155,55 @@ export async function saveProfile(profileData: any) {
     }
 
     const { data, error } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .update(profilePayload)
       .eq('id', existing.id)
       .select()
       .single()
 
     if (error) throw error
-    console.log(`✅ Profile @${username} updated successfully`)
+    console.log(`✅ Instagram profile @${username} updated successfully`)
     return data
   } else {
+    // TODO: Descomentar após adicionar colunas gender no banco (database/add-gender-columns.sql)
+    // Detectar gênero automaticamente para novo perfil
+    // let genderData: { gender: string | null; gender_auto_detected: boolean; gender_confidence: number | null } = {
+    //   gender: null,
+    //   gender_auto_detected: false,
+    //   gender_confidence: null
+    // }
+
+    // try {
+    //   // Importar dinamicamente para evitar circular dependency
+    //   const { detectGender } = await import('./gender-detector')
+    //   const detection = await detectGender(fullName, biography, username)
+
+    //   genderData = {
+    //     gender: detection.gender,
+    //     gender_auto_detected: true,
+    //     gender_confidence: detection.confidence
+    //   }
+
+    //   console.log(`🎯 Gênero detectado: ${detection.gender} (${(detection.confidence * 100).toFixed(0)}% confiança)`)
+    // } catch (error: any) {
+    //   console.warn(`⚠️  Falha ao detectar gênero: ${error.message}`)
+    //   // Continuar sem gênero - usuário pode definir manualmente depois
+    // }
+
     // Criar novo
     const { data, error } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .insert({
         username,
         ...profilePayload,
+        // ...genderData, // Comentado temporariamente
         first_scraped_at: new Date().toISOString()
       })
       .select()
       .single()
 
     if (error) throw error
-    console.log(`✅ Profile @${username} created successfully`)
+    console.log(`✅ Instagram profile @${username} created successfully`)
     return data
   }
 }
@@ -238,6 +265,12 @@ export async function saveAudit(profileId: string, auditData: any, rawData: any)
  * Salva posts individuais
  */
 export async function savePosts(auditId: string, posts: any[]) {
+  // Se não há posts, retornar array vazio (perfis sem posts são válidos)
+  if (!posts || posts.length === 0) {
+    console.log('⚠️  Nenhum post para salvar (perfil sem posts públicos ou privado)')
+    return []
+  }
+
   const postsToInsert = posts.map(post => ({
     audit_id: auditId,
     post_id: post.id,
@@ -268,9 +301,19 @@ export async function savePosts(auditId: string, posts: any[]) {
   const { data, error } = await supabase
     .from('posts')
     .insert(postsToInsert)
-    .select()
+    .select('*')  // Selecionar explicitamente todos os campos incluindo id
 
   if (error) throw error
+
+  // Garantir que os posts retornados têm id
+  if (!data || data.length === 0) {
+    throw new Error('No posts were saved')
+  }
+
+  if (!data[0].id) {
+    throw new Error('Saved posts do not have id field')
+  }
+
   return data
 }
 
@@ -278,24 +321,36 @@ export async function savePosts(auditId: string, posts: any[]) {
  * Salva comentários individuais
  */
 export async function saveComments(posts: any[]) {
+  // Se não há posts, não há comentários para salvar
+  if (!posts || posts.length === 0) {
+    console.log('⚠️  Nenhum comentário para salvar (sem posts)')
+    return []
+  }
+
   const commentsToInsert: any[] = []
 
   for (const post of posts) {
+    // Validar que o post tem id (deve ter sido salvo antes)
+    if (!post.id) {
+      console.error('Post sem id:', post)
+      throw new Error('Post must be saved before saving comments (missing id field)')
+    }
+
     const postId = post.id // ID do Supabase, não do Instagram
 
-    const rawComments = post.comments?.raw || []
+    const rawComments = post.comments_raw || post.comments?.raw || []
 
     for (const comment of rawComments) {
       commentsToInsert.push({
         post_id: postId,
         comment_id: comment.id,
         text: comment.text,
-        owner_username: comment.ownerUsername,
-        owner_id: comment.owner?.id,
-        likes_count: comment.likesCount || 0,
+        owner_username: comment.ownerUsername || comment.owner_username,
+        owner_id: comment.owner?.id || comment.owner_id,
+        likes_count: comment.likesCount || comment.likes_count || 0,
         category: categorizeComment(comment.text),
         is_relevant: isRelevantComment(comment.text),
-        comment_timestamp: comment.timestamp
+        comment_timestamp: comment.timestamp || comment.comment_timestamp
       })
     }
   }

@@ -19,7 +19,7 @@ const client = new ApifyClient({
 
 async function testInstagramScraper(username) {
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  console.log('📸 TESTE DO INSTAGRAM SCRAPER - POST EXPRESS');
+  console.log('📸 TESTE DO INSTAGRAM SCRAPER - CROKO LABS');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 
   console.log(`🎯 Perfil alvo: @${username}\n`);

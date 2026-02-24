@@ -84,5 +84,5 @@ CREATE POLICY "etl_api_usage_service_write" ON etl_api_usage
 
 -- Inserir gary_vaynerchuk como primeira mente
 INSERT INTO etl_minds (id, display_name, status, purpose)
-VALUES ('gary_vaynerchuk', 'Gary Vaynerchuk', 'pending', 'Post Express — Consultor de conteúdo')
+VALUES ('gary_vaynerchuk', 'Gary Vaynerchuk', 'pending', 'Croko Labs — Consultor de conteúdo')
 ON CONFLICT (id) DO NOTHING;

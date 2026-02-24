@@ -36,6 +36,9 @@ Thumbs.db
 # Testing
 coverage/
 .nyc_output/
+test-results/
+playwright-report/
+playwright/.cache/
 
 # Temporary files
 tmp/
@@ -72,3 +75,4 @@ squad-auditores/output/
 
 # TypeScript build info
 *.tsbuildinfo
+.vercel

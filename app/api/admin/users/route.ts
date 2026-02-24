@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
     })),
     supabase
       .from('user_profiles')
-      .select('user_id, profile_id, profile:profiles(id, username)')
+      .select('user_id, profile_id, profile:instagram_profiles(id, username)')
       .in('user_id', userIds.length > 0 ? userIds : ['00000000-0000-0000-0000-000000000000']),
   ])
 
@@ -105,8 +105,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: linkError.message }, { status: 500 })
     }
 
-    // Vincular user_id nos perfis (para o primeiro perfil)
-    await supabase.from('profiles').update({ user_id: userId }).eq('id', profile_ids[0])
+    // Vincular user_id nos perfis do Instagram (para o primeiro perfil)
+    await supabase.from('instagram_profiles').update({ user_id: userId }).eq('id', profile_ids[0])
   }
 
   return NextResponse.json({
@@ -159,8 +159,8 @@ export async function DELETE(request: NextRequest) {
 
   const supabase = getServerSupabase()
 
-  // Desvincular user_id dos perfis
-  await supabase.from('profiles').update({ user_id: null }).eq('user_id', userId)
+  // Desvincular user_id dos perfis do Instagram
+  await supabase.from('instagram_profiles').update({ user_id: null }).eq('user_id', userId)
 
   // Deletar da auth (cascade deleta user_roles e user_profiles)
   const { error } = await supabase.auth.admin.deleteUser(userId)

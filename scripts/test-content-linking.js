@@ -63,7 +63,7 @@ async function testContentLinking() {
   // 3. Buscar perfis disponíveis
   console.log('3️⃣  Buscando perfis disponíveis...')
   const { data: profiles, error: profilesError } = await supabase
-    .from('profiles')
+    .from('instagram_profiles')
     .select('id, username')
     .limit(5)
 
@@ -139,7 +139,7 @@ async function testContentLinking() {
       id,
       link_type,
       linked_at,
-      profile:profiles (username),
+      profile:instagram_profiles (username),
       content:content_suggestions (id)
     `)
     .is('deleted_at', null)

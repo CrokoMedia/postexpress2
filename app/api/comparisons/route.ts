@@ -96,7 +96,7 @@ export async function GET(request: NextRequest) {
       .from('comparisons')
       .select(`
         *,
-        profile:profiles(*),
+        profile:instagram_profiles(*),
         audit_before:audits!audit_before_id(*),
         audit_after:audits!audit_after_id(*)
       `)

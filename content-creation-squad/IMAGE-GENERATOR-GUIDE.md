@@ -1,4 +1,4 @@
-# 🎨 Post Express - Image Generator
+# 🎨 Croko Labs - Image Generator
 
 **Sistema 100% Integrado de Geração Automática de Imagens para Redes Sociais**
 
@@ -438,7 +438,7 @@ npm run generate  # Gera tudo
 
 ---
 
-**Criado por Post Express Team**
+**Criado por Croko Labs Team**
 *Sistema 100% automatizado. Zero dependências externas. Máxima qualidade.*
 
 🚀 **Crie. Gere. Baixe. Poste.**

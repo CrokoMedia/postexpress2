@@ -1,5 +1,5 @@
 /**
- * Post Express - Teste Cloudinary
+ * Croko Labs - Teste Cloudinary
  *
  * Testa upload de 1 imagem no Cloudinary
  */

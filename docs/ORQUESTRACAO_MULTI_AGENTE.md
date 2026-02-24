@@ -1,4 +1,4 @@
-# 🎭 Orquestração Multi-Agente no Post Express
+# 🎭 Orquestração Multi-Agente no Croko Labs
 
 **Análise**: Pastas `/squads`, `/mmos-squad` e capacidades AIOS
 **Data**: 2026-02-16
@@ -228,7 +228,7 @@ class BobOrchestrator {
 
 ---
 
-## 🎯 QUAL USAR PARA O POST EXPRESS?
+## 🎯 QUAL USAR PARA O CROKO LABS?
 
 ### **Recomendação por Épico**:
 

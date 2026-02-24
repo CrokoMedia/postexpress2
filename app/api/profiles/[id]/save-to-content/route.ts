@@ -96,6 +96,8 @@ export async function POST(
 
     const rawText = response.content[0].type === 'text' ? response.content[0].text : ''
 
+    console.log('🤖 Resposta do Claude (primeiros 500 chars):', rawText.substring(0, 500))
+
     // Extrair JSON da resposta com múltiplas tentativas
     let carousel: any
     try {
@@ -103,30 +105,57 @@ export async function POST(
 
       // Tentar extrair de bloco de código markdown (múltiplos formatos)
       const patterns = [
-        /```json\n([\s\S]*?)\n```/,
-        /```json([\s\S]*?)```/,
-        /```\n([\s\S]*?)\n```/,
-        /```([\s\S]*?)```/
+        /```json\s*([\s\S]*?)\s*```/,
+        /```\s*([\s\S]*?)\s*```/,
+        /\{[\s\S]*\}/  // Encontrar primeiro objeto JSON válido
       ]
 
       for (const pattern of patterns) {
         const match = jsonText.match(pattern)
         if (match) {
-          jsonText = match[1].trim()
+          jsonText = match[1] || match[0]
+          jsonText = jsonText.trim()
           break
         }
       }
 
-      // Limpar resíduos de markdown
-      jsonText = jsonText.replace(/^```json\s*/g, '').replace(/^```\s*/g, '').replace(/\s*```$/g, '')
+      // Limpar resíduos de markdown e texto adicional
+      jsonText = jsonText.replace(/^```json\s*/gm, '')
+      jsonText = jsonText.replace(/^```\s*/gm, '')
+      jsonText = jsonText.replace(/\s*```$/gm, '')
 
-      console.log('📝 JSON extraído para carrossel (primeiros 300 chars):', jsonText.substring(0, 300))
+      // Remover texto antes do primeiro {
+      const firstBrace = jsonText.indexOf('{')
+      if (firstBrace > 0) {
+        jsonText = jsonText.substring(firstBrace)
+      }
+
+      // Remover texto depois do último }
+      const lastBrace = jsonText.lastIndexOf('}')
+      if (lastBrace !== -1 && lastBrace < jsonText.length - 1) {
+        jsonText = jsonText.substring(0, lastBrace + 1)
+      }
+
+      console.log('📝 JSON extraído para carrossel (primeiros 500 chars):', jsonText.substring(0, 500))
 
       carousel = JSON.parse(jsonText)
-    } catch {
-      console.error('Falha ao parsear JSON do Claude. Resposta completa:', rawText.substring(0, 1000))
+
+      // Validar estrutura mínima
+      if (!carousel.titulo || !carousel.slides || !Array.isArray(carousel.slides)) {
+        throw new Error('JSON inválido: falta titulo ou slides')
+      }
+
+      console.log('✅ Carrossel parseado com sucesso:', carousel.titulo, `(${carousel.slides.length} slides)`)
+
+    } catch (parseError: any) {
+      console.error('❌ Falha ao parsear JSON do Claude')
+      console.error('   Erro:', parseError.message)
+      console.error('   Resposta completa:', rawText)
       return NextResponse.json(
-        { error: 'Não foi possível estruturar o conteúdo como carrossel. Tente com um texto mais detalhado.' },
+        {
+          error: 'Não foi possível estruturar o conteúdo como carrossel. Tente com um texto mais detalhado.',
+          debug: process.env.NODE_ENV === 'development' ? { rawText: rawText.substring(0, 1000), parseError: parseError.message } : undefined
+        },
         { status: 422 }
       )
     }

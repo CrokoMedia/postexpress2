@@ -9,13 +9,13 @@
 
 ## 🎯 OBJETIVO
 
-Configurar ambiente de desenvolvimento completo e estrutura base do projeto Post Express seguindo padrão AIOS-Core.
+Configurar ambiente de desenvolvimento completo e estrutura base do projeto Croko Labs seguindo padrão AIOS-Core.
 
 ---
 
 ## 📊 CONTEXTO
 
-Este é o **primeiro épico** do projeto Post Express. Estabelece a fundação técnica sobre a qual todos os outros componentes serão construídos.
+Este é o **primeiro épico** do projeto Croko Labs. Estabelece a fundação técnica sobre a qual todos os outros componentes serão construídos.
 
 **Dependências**:
 - Nenhuma (épico inicial)
@@ -72,7 +72,7 @@ Criar estrutura de pastas seguindo padrão AIOS-Core para brownfield projects.
 
 **Prompt para @architect**:
 ```
-Crie a estrutura de pastas do Post Express seguindo padrão AIOS-Core:
+Crie a estrutura de pastas do Croko Labs seguindo padrão AIOS-Core:
 
 Estrutura necessária:
 - squads/

@@ -1,0 +1,26 @@
+# ============================================
+# Render.com Configuration
+# ============================================
+# Instruções de deploy:
+# 1. Criar conta no Render.com
+# 2. Conectar repositório GitHub
+# 3. Adicionar variáveis de ambiente:
+#    - TWITTER_BEARER_TOKEN
+#    - SUPABASE_URL
+#    - SUPABASE_SERVICE_ROLE_KEY
+# 4. Deploy automático a cada push
+
+services:
+  - type: worker
+    name: twitter-stream-worker
+    env: docker
+    dockerfilePath: ./worker/Dockerfile
+    dockerContext: ./worker
+    plan: starter
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+    healthCheckPath: /health

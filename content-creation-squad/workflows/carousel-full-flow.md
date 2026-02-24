@@ -1,8 +1,23 @@
 # Workflow: Criação Completa de Carrossel
 
 **Duração estimada**: 10-15 minutos
-**Mentes envolvidas**: Eugene Schwartz (lead), Seth Godin, Alex Hormozi, Thiago Finch
+**Frameworks aplicados**: Copy Científico (principal), Posicionamento, Value Stack, Adaptação Cultural, Atenção
 **Output**: Carrossel completo pronto para produção visual
+
+---
+
+## ⚠️ RESTRIÇÃO CRÍTICA PARA TODO O WORKFLOW
+
+**Durante TODAS as fases, o sistema deve:**
+- ❌ NUNCA inventar números, métricas, cases ou resultados fictícios
+- ❌ NUNCA criar "provas sociais" ou testemunhos sem dados reais do usuário
+- ✅ Usar APENAS dados que o usuário fornecer explicitamente
+- ✅ Marcar claramente exemplos como [TEMPLATE] ou [EXEMPLO DIDÁTICO]
+- ✅ Deixar placeholders [INSERIR DADO REAL] quando faltar informação
+
+**Se o sistema precisar de um número/case que não foi fornecido:**
+→ Deve PARAR e pedir explicitamente ao usuário: "Preciso que você forneça [X dado real]"
+→ NÃO deve continuar inventando dados
 
 ---
 
@@ -148,7 +163,6 @@ Escreva:
    - Hook expandido (primeira frase)
    - Desenvolvimento (2-3 parágrafos)
    - CTA final
-   - Hashtags (5-8)
 
 Princípios a seguir:
 - Especificidade > generalização
@@ -161,7 +175,7 @@ Princípios a seguir:
 ### Output Esperado:
 - 5 opções de hook testadas
 - Copy completo slides 1-10
-- Caption com hashtags
+- Caption
 
 ---
 
@@ -250,12 +264,7 @@ Ajustes necessários:
    - Urgência/escassez: como apresentar?
    - Prova social: formato preferido no BR?
 
-4. **Hashtags BR**
-   - Substituir hashtags por versões BR relevantes
-   - Adicionar hashtags locais se aplicável
-   - Priorizar volume de busca BR
-
-5. **Tom e Contexto**
+4. **Tom e Contexto**
    - Ajustar para mercado brasileiro
    - Considerar diferenças culturais
    - Manter autenticidade
@@ -265,7 +274,6 @@ Reescreva copy localizado.
 
 ### Output Esperado:
 - Copy adaptado para BR
-- Hashtags brasileiras
 - Exemplos/referências locais
 
 ---
@@ -342,7 +350,6 @@ Para cada slide, definir:
 - [ ] Hierarquia visual clara?
 
 **Otimização**:
-- [ ] Hashtags relevantes (5-10)?
 - [ ] Alt text planejado?
 - [ ] Horário de postagem definido?
 - [ ] Métricas de acompanhamento definidas?
@@ -378,12 +385,6 @@ Para cada slide, definir:
 ## CAPTION
 
 [Caption completa]
-
----
-
-## HASHTAGS
-
-#tag1 #tag2 #tag3 #tag4 #tag5 #tag6 #tag7 #tag8
 
 ---
 

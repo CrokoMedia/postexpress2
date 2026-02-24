@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Croko Labs - Re-branding Clean v2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Sofia Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #F5F5F4;
+      padding: 40px 20px;
+      line-height: 1.6;
+      color: #1C1917;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1C1917;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 18px;
+      color: #78716C;
+      margin-bottom: 16px;
+    }
+
+    .important-note {
+      background: #EFF6FF;
+      border: 1px solid #DBEAFE;
+      border-radius: 8px;
+      padding: 16px 24px;
+      margin: 0 auto 48px;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .important-note strong {
+      color: #2563EB;
+      font-weight: 600;
+    }
+
+    .comparison-section {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid #E7E5E4;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1C1917;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #E7E5E4;
+    }
+
+    .split-view {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .column {
+      position: relative;
+    }
+
+    .column-label {
+      position: absolute;
+      top: -28px;
+      left: 0;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 4px 12px;
+      border-radius: 4px;
+    }
+
+    .before-label {
+      background: #FEF2F2;
+      color: #DC2626;
+    }
+
+    .after-label {
+      background: #ECFDF5;
+      color: #10B981;
+    }
+
+    /* ========================================
+       PALETA DE CORES
+       ======================================== */
+    .color-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .color-swatch {
+      text-align: center;
+    }
+
+    .color-box {
+      width: 100%;
+      height: 80px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .color-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1C1917;
+      margin-bottom: 4px;
+    }
+
+    .color-value {
+      font-size: 11px;
+      color: #78716C;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-before-primary {
+      background: #EF2B70;
+      color: white;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .btn-before-primary:hover {
+      background: #D91F5E;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    }
+
+    .btn-after-primary {
+      background: #2563EB;
+      color: white;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      border-radius: 6px;
+    }
+
+    .btn-after-primary:hover {
+      background: #1D4ED8;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+    }
+
+    .btn-before-secondary {
+      background: white;
+      color: #262626;
+      border: 2px solid #D4D4D4;
+    }
+
+    .btn-before-secondary:hover {
+      background: #FAFAFA;
+    }
+
+    .btn-after-secondary {
+      background: white;
+      color: #1C1917;
+      border: 1px solid #D6D3D1;
+      border-radius: 6px;
+    }
+
+    .btn-after-secondary:hover {
+      background: #FAFAF9;
+      border-color: #A8A29E;
+    }
+
+    /* ========================================
+       SCORE CARDS (Audit Page)
+       ======================================== */
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .score-card {
+      padding: 24px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .score-card-before-purple {
+      background: rgba(233, 213, 255, 0.5);
+      border: 2px solid #D8B4FE;
+    }
+
+    .score-card-before-blue {
+      background: rgba(191, 219, 254, 0.5);
+      border: 2px solid #93C5FD;
+    }
+
+    .score-card-after {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: 8px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .score-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .score-icon-before {
+      background: white;
+      border: 1px solid #D8B4FE;
+    }
+
+    .score-icon-after {
+      background: #EFF6FF;
+      border-radius: 6px;
+    }
+
+    .score-value {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .score-card-before-purple .score-value {
+      color: #9333EA;
+    }
+
+    .score-card-after .score-value {
+      color: #1C1917;
+    }
+
+    .score-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .score-card-before-purple .score-label {
+      color: #7C3AED;
+    }
+
+    .score-card-after .score-label {
+      color: #78716C;
+    }
+
+    /* ========================================
+       ÍCONES
+       ======================================== */
+    .icon-showcase {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .icon-item {
+      text-align: center;
+    }
+
+    .icon-box {
+      width: 56px;
+      height: 56px;
+      background: #EFF6FF;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px;
+    }
+
+    .icon-name {
+      font-size: 11px;
+      color: #78716C;
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ========================================
+       TOGGLE DARK MODE PREVIEW
+       ======================================== */
+    .toggle-container {
+      text-align: center;
+      margin-top: 32px;
+      padding: 24px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid #E7E5E4;
+    }
+
+    .toggle-btn {
+      background: #2563EB;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .toggle-btn:hover {
+      background: #1D4ED8;
+    }
+
+    /* Dark mode */
+    body.dark {
+      background: #1A1A1A;
+    }
+
+    body.dark .comparison-section,
+    body.dark .toggle-container {
+      background: #262626;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      border-color: #404040;
+    }
+
+    body.dark h1 {
+      color: #FAFAFA;
+    }
+
+    body.dark .subtitle {
+      color: #A8A29E;
+    }
+
+    body.dark .section-title {
+      color: #FAFAFA;
+      border-color: #404040;
+    }
+
+    body.dark .score-card-after {
+      background: #262626;
+      border-color: #404040;
+    }
+
+    body.dark .score-card-after .score-value {
+      color: #FAFAFA;
+    }
+
+    body.dark .important-note {
+      background: rgba(37, 99, 235, 0.1);
+      border-color: rgba(37, 99, 235, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Croko Labs - Re-branding Clean</h1>
+    <p class="subtitle">Paleta Clean + Azul Profissional + Sofia Pro + Ícones SVG</p>
+
+    <div class="important-note">
+      <strong>✅ Mantém Sofia Pro</strong> (tipografia atual) + <strong>✅ Sem emojis</strong> (apenas ícones SVG Lucide)
+    </div>
+
+    <!-- PALETA DE CORES -->
+    <div class="comparison-section">
+      <h2 class="section-title">Nova Paleta de Cores</h2>
+      <div class="color-palette">
+        <div class="color-swatch">
+          <div class="color-box" style="background: #FAFAF9;"></div>
+          <div class="color-name">Background</div>
+          <div class="color-value">#FAFAF9</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #FFFFFF; border: 2px solid #E7E5E4;"></div>
+          <div class="color-name">Surface</div>
+          <div class="color-value">#FFFFFF</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #E7E5E4;"></div>
+          <div class="color-name">Border</div>
+          <div class="color-value">#E7E5E4</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #D6D3D1;"></div>
+          <div class="color-name">Border Strong</div>
+          <div class="color-value">#D6D3D1</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #1C1917;"></div>
+          <div class="color-name">Text Primary</div>
+          <div class="color-value">#1C1917</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #57534E;"></div>
+          <div class="color-name">Text Secondary</div>
+          <div class="color-value">#57534E</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #78716C;"></div>
+          <div class="color-name">Text Muted</div>
+          <div class="color-value">#78716C</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #2563EB;"></div>
+          <div class="color-name">Accent 600</div>
+          <div class="color-value">#2563EB</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #3B82F6;"></div>
+          <div class="color-name">Accent 500</div>
+          <div class="color-value">#3B82F6</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #EFF6FF;"></div>
+          <div class="color-name">Accent 50</div>
+          <div class="color-value">#EFF6FF</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #10B981;"></div>
+          <div class="color-name">Success</div>
+          <div class="color-value">#10B981</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #F59E0B;"></div>
+          <div class="color-name">Warning</div>
+          <div class="color-value">#F59E0B</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-box" style="background: #EF4444;"></div>
+          <div class="color-name">Error</div>
+          <div class="color-value">#EF4444</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÍCONES (SEM EMOJIS) -->
+    <div class="comparison-section">
+      <h2 class="section-title">✅ Ícones SVG (Lucide React) - Sem Emojis</h2>
+      <p style="color: #78716C; margin-bottom: 16px;">
+        Todos os emojis do sistema serão substituídos por ícones SVG profissionais da biblioteca <strong>Lucide React</strong>
+      </p>
+      <div class="icon-showcase">
+        <div class="icon-item">
+          <div class="icon-box">
+            <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+            </svg>
+          </div>
+          <div class="icon-name">TrendingUp</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box">
+            <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+          </div>
+          <div class="icon-name">BarChart3</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box">
+            <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+          </div>
+          <div class="icon-name">Users</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box">
+            <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+            </svg>
+          </div>
+          <div class="icon-name">Heart</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box">
+            <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+            </svg>
+          </div>
+          <div class="icon-name">MessageCircle</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box">
+            <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="icon-name">DollarSign</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box">
+            <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+          <div class="icon-name">Lightbulb</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box">
+            <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+            </svg>
+          </div>
+          <div class="icon-name">Star</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box">
+            <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+          </div>
+          <div class="icon-name">AlertTriangle</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box">
+            <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+          <div class="icon-name">Sparkles</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box">
+            <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+            </svg>
+          </div>
+          <div class="icon-name">Pencil</div>
+        </div>
+        <div class="icon-item">
+          <div class="icon-box">
+            <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <div class="icon-name">Monitor</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="comparison-section">
+      <h2 class="section-title">Botões</h2>
+      <div class="split-view">
+        <div class="column">
+          <div class="column-label before-label">Antes (Rosa)</div>
+          <div class="button-grid">
+            <button class="btn btn-before-primary">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+              Nova Análise
+            </button>
+            <button class="btn btn-before-secondary">Ver Perfil →</button>
+            <button class="btn btn-before-primary">Criar Conteúdo</button>
+            <button class="btn btn-before-secondary">Baixar PDF</button>
+          </div>
+        </div>
+        <div class="column">
+          <div class="column-label after-label">Depois (Azul Clean)</div>
+          <div class="button-grid">
+            <button class="btn btn-after-primary">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+              Nova Análise
+            </button>
+            <button class="btn btn-after-secondary">Ver Perfil →</button>
+            <button class="btn btn-after-primary">Criar Conteúdo</button>
+            <button class="btn btn-after-secondary">Baixar PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCORE CARDS -->
+    <div class="comparison-section">
+      <h2 class="section-title">Score Cards (Página de Auditoria)</h2>
+      <div class="split-view">
+        <div class="column">
+          <div class="column-label before-label">Antes (Cores Vibrantes)</div>
+          <div class="score-grid">
+            <div class="score-card score-card-before-purple">
+              <div class="score-icon score-icon-before">
+                <svg width="24" height="24" fill="none" stroke="#9333EA" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+              </div>
+              <div class="score-value">78</div>
+              <div class="score-label">Score Geral</div>
+            </div>
+            <div class="score-card score-card-before-blue">
+              <div class="score-icon score-icon-before">
+                <svg width="24" height="24" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+              </div>
+              <div class="score-value">10</div>
+              <div class="score-label">Posts Analisados</div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="column-label after-label">Depois (Neutral + Ícone Colorido)</div>
+          <div class="score-grid">
+            <div class="score-card score-card-after">
+              <div class="score-icon score-icon-after">
+                <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                </svg>
+              </div>
+              <div class="score-value">78</div>
+              <div class="score-label">Score Geral</div>
+            </div>
+            <div class="score-card score-card-after">
+              <div class="score-icon score-icon-after">
+                <svg width="24" height="24" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+              </div>
+              <div class="score-value">10</div>
+              <div class="score-label">Posts Analisados</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESUMO DAS MUDANÇAS -->
+    <div class="comparison-section">
+      <h2 class="section-title">📋 Resumo das Mudanças</h2>
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="background: #FAFAF9; border-bottom: 2px solid #E7E5E4;">
+            <th style="padding: 12px; text-align: left; font-size: 14px; color: #57534E;">Elemento</th>
+            <th style="padding: 12px; text-align: left; font-size: 14px; color: #57534E;">Antes</th>
+            <th style="padding: 12px; text-align: left; font-size: 14px; color: #57534E;">Depois</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #E7E5E4;">
+            <td style="padding: 12px; font-weight: 600;">Cor Primary</td>
+            <td style="padding: 12px; color: #EF2B70;">Rosa #EF2B70</td>
+            <td style="padding: 12px; color: #2563EB;">Azul #2563EB</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E7E5E4;">
+            <td style="padding: 12px; font-weight: 600;">Tipografia</td>
+            <td style="padding: 12px;">Sofia Pro ✅</td>
+            <td style="padding: 12px;">Sofia Pro ✅ (mantém)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E7E5E4;">
+            <td style="padding: 12px; font-weight: 600;">Emojis</td>
+            <td style="padding: 12px;">📊 📈 💡 ⭐</td>
+            <td style="padding: 12px;">❌ Removidos → Ícones SVG</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E7E5E4;">
+            <td style="padding: 12px; font-weight: 600;">Borders</td>
+            <td style="padding: 12px;">#E5E5E5 (muito sutil)</td>
+            <td style="padding: 12px;">#E7E5E4 (mais evidente)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E7E5E4;">
+            <td style="padding: 12px; font-weight: 600;">Border-radius</td>
+            <td style="padding: 12px;">8-12px</td>
+            <td style="padding: 12px;">6-8px (menos arredondado)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #E7E5E4;">
+            <td style="padding: 12px; font-weight: 600;">Score Cards</td>
+            <td style="padding: 12px;">Borders coloridos vibrantes</td>
+            <td style="padding: 12px;">Neutral + ícone azul</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px; font-weight: 600;">Sombras coloridas</td>
+            <td style="padding: 12px;">Glow rosa decorativo</td>
+            <td style="padding: 12px;">❌ Removido</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- TOGGLE DARK MODE -->
+    <div class="toggle-container">
+      <p style="margin-bottom: 16px; color: #78716C; font-size: 14px;">
+        Visualize o design clean em dark mode
+      </p>
+      <button class="toggle-btn" onclick="document.body.classList.toggle('dark')">
+        Alternar Dark Mode
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    console.log('✅ Croko Labs Re-branding Clean v2 carregado!');
+    console.log('📋 Mudanças aplicadas:');
+    console.log('1. Rosa #EF2B70 → Azul #2563EB');
+    console.log('2. Borders mais evidentes (#E7E5E4)');
+    console.log('3. Border-radius reduzido (12px → 6-8px)');
+    console.log('4. Score cards: cores vibrantes → neutral + ícone colorido');
+    console.log('5. ✅ Mantém Sofia Pro (não muda para Inter)');
+    console.log('6. ❌ Remove TODOS os emojis → Ícones SVG (Lucide React)');
+  </script>
+</body>
+</html>

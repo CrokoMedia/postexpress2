@@ -1,4 +1,4 @@
-# 🎨 Post Express - Gerador de Carrosséis
+# 🎨 Croko Labs - Gerador de Carrosséis
 
 Gera carrosséis estilo Tweet para Instagram/LinkedIn usando HTML + Puppeteer + Cloudinary.
 
@@ -68,7 +68,7 @@ npm run generate
 - **Fonte:** Inter (Google Fonts)
 - **Formato:** PNG
 
-## 🔧 Integração com Post Express
+## 🔧 Integração com Croko Labs
 
 ```javascript
 const { generateCarousel } = require('./generator');

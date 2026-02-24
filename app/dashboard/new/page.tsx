@@ -80,7 +80,7 @@ export default function NewAnalysisPage() {
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium text-neutral-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Username do Instagram
                   </label>
                   <Input
@@ -92,13 +92,13 @@ export default function NewAnalysisPage() {
                     pattern="[a-zA-Z0-9._]+"
                     disabled={isSubmitting}
                   />
-                  <p className="text-xs text-neutral-500 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     Apenas o username, sem @
                   </p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-neutral-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Quantidade de Posts ({postLimit})
                   </label>
                   <input
@@ -107,10 +107,10 @@ export default function NewAnalysisPage() {
                     max="50"
                     value={postLimit}
                     onChange={(e) => setPostLimit(parseInt(e.target.value))}
-                    className="w-full"
+                    className="w-full accent-primary-500"
                     disabled={isSubmitting}
                   />
-                  <p className="text-xs text-neutral-500 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     Quanto mais posts, mais precisa a análise (5-50)
                   </p>
                 </div>
@@ -124,7 +124,7 @@ export default function NewAnalysisPage() {
                     className="rounded"
                     disabled={isSubmitting}
                   />
-                  <label htmlFor="skip-ocr" className="text-sm text-neutral-300">
+                  <label htmlFor="skip-ocr" className="text-sm text-foreground">
                     Pular OCR (mais rápido, mas sem análise de texto em imagens)
                   </label>
                 </div>
@@ -143,7 +143,7 @@ export default function NewAnalysisPage() {
                 <button
                   type="button"
                   onClick={() => setShowDocUploader(!showDocUploader)}
-                  className="w-full text-sm text-primary-500 hover:text-primary-400 transition-colors flex items-center justify-center gap-2 py-2"
+                  className="w-full text-sm text-primary-600 hover:text-primary-600 transition-colors flex items-center justify-center gap-2 py-2"
                 >
                   <FileText className="h-4 w-4" />
                   {showDocUploader ? 'Ocultar' : 'Mostrar'} Upload de Documentos
@@ -178,13 +178,13 @@ export default function NewAnalysisPage() {
               <Progress value={progress || 0} max={100} showLabel />
 
               {currentPhase && (
-                <div className="text-sm text-neutral-400">
-                  Fase atual: <span className="text-neutral-300 font-medium">{currentPhase}</span>
+                <div className="text-sm text-muted-foreground">
+                  Fase atual: <span className="text-foreground font-medium">{currentPhase}</span>
                 </div>
               )}
 
               {analysisError && (
-                <div className="text-sm text-error-500 bg-error-500/10 border border-error-500/20 rounded-lg p-3">
+                <div className="text-sm text-error-500 bg-error-50 border border-error-500/20 rounded-lg p-3">
                   {analysisError}
                 </div>
               )}

@@ -117,7 +117,7 @@ export function DocumentUploader({ username, onUploadComplete }: DocumentUploade
       <CardContent className="space-y-4">
         {/* Seleção de arquivo */}
         <div>
-          <label className="block text-sm font-medium text-neutral-300 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
             Arquivo
           </label>
           <div className="flex items-center gap-2">
@@ -145,7 +145,7 @@ export function DocumentUploader({ username, onUploadComplete }: DocumentUploade
             <button
               onClick={removeFile}
               disabled={isUploading}
-              className="text-neutral-400 hover:text-error-500 transition-colors"
+              className="text-neutral-600 dark:text-neutral-400 hover:text-error-500 transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
@@ -154,14 +154,14 @@ export function DocumentUploader({ username, onUploadComplete }: DocumentUploade
 
         {/* Categoria */}
         <div>
-          <label className="block text-sm font-medium text-neutral-300 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
             Categoria
           </label>
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             disabled={isUploading}
-            className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200"
+            className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-800 dark:text-neutral-200"
           >
             <option value="posicionamento">Posicionamento</option>
             <option value="conteudo">Conteúdo</option>
@@ -172,7 +172,7 @@ export function DocumentUploader({ username, onUploadComplete }: DocumentUploade
 
         {/* Descrição */}
         <div>
-          <label className="block text-sm font-medium text-neutral-300 mb-2">
+          <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
             Descrição (opcional)
           </label>
           <textarea
@@ -181,7 +181,7 @@ export function DocumentUploader({ username, onUploadComplete }: DocumentUploade
             disabled={isUploading}
             placeholder="Descreva o conteúdo deste documento..."
             rows={3}
-            className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-200 resize-none"
+            className="w-full bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-neutral-800 dark:text-neutral-200 resize-none"
           />
         </div>
 
@@ -200,7 +200,7 @@ export function DocumentUploader({ username, onUploadComplete }: DocumentUploade
         {/* Lista de documentos enviados */}
         {uploadedDocs.length > 0 && (
           <div className="mt-6">
-            <h4 className="text-sm font-medium text-neutral-300 mb-3">
+            <h4 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">
               Documentos Enviados ({uploadedDocs.length})
             </h4>
             <div className="space-y-2">

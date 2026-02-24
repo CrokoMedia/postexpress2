@@ -59,7 +59,7 @@ export async function GET(
       .from('audits')
       .select(`
         *,
-        profile:profiles(*),
+        profile:instagram_profiles(*),
         posts:posts(*)
       `)
       .eq('id', id)

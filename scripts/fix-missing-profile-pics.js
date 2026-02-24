@@ -34,7 +34,7 @@ async function fixMissingProfilePics() {
   try {
     // 1. Buscar perfis sem foto
     const { data: profilesWithoutPic, error: queryError } = await supabase
-      .from('profiles')
+      .from('instagram_profiles')
       .select('id, username')
       .is('profile_pic_url_hd', null)
       .is('deleted_at', null)
@@ -78,7 +78,7 @@ async function fixMissingProfilePics() {
 
       // Atualizar no banco
       const { error: updateError } = await supabase
-        .from('profiles')
+        .from('instagram_profiles')
         .update({
           profile_pic_url: profileData.profilePicUrl || null,
           profile_pic_url_hd: profileData.profilePicUrlHD || null,

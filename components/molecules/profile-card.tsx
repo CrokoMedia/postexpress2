@@ -28,7 +28,7 @@ export function ProfileCard({ profile, lastAudit, onClick }: ProfileCardProps) {
 
   // Debug: Log para verificar dados da foto
   if (typeof window !== 'undefined' && !profilePicUrl) {
-    console.log(`⚠️ @${profile.username} - sem foto:`, {
+    console.log(`[WARN] @${profile.username} - sem foto:`, {
       cloudinary: profile.profile_pic_cloudinary_url,
       hd: profile.profile_pic_url_hd,
       normal: profile.profile_pic_url
@@ -37,12 +37,12 @@ export function ProfileCard({ profile, lastAudit, onClick }: ProfileCardProps) {
 
   return (
     <Card
-      className="p-6 hover:shadow-lg hover:border-primary-500/50 transition-all cursor-pointer group"
+      className="p-6 cursor-pointer group"
       onClick={onClick}
     >
       <div className="flex items-center gap-4">
         {/* Avatar */}
-        <div className="relative h-16 w-16 rounded-full bg-neutral-700 shrink-0 overflow-hidden ring-2 ring-neutral-700 group-hover:ring-primary-500/50 transition-all">
+        <div className="relative h-16 w-16 rounded-full bg-neutral-100 dark:bg-neutral-700 shrink-0 overflow-hidden border-2 border-neutral-200 dark:border-neutral-600 group-hover:border-primary-500 transition-all duration-400">
           {hasProfilePic ? (
             <Image
               src={profilePicUrl}
@@ -50,13 +50,13 @@ export function ProfileCard({ profile, lastAudit, onClick }: ProfileCardProps) {
               fill
               className="object-cover"
               onError={(e) => {
-                console.error(`❌ Erro ao carregar imagem de @${profile.username}:`, profilePicUrl)
+                console.error(`[ERROR] Erro ao carregar imagem de @${profile.username}:`, profilePicUrl)
                 setImageError(true)
               }}
               unoptimized
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-neutral-400 text-2xl font-bold bg-gradient-to-br from-neutral-700 to-neutral-800">
+            <div className="w-full h-full flex items-center justify-center text-neutral-600 dark:text-neutral-300 text-2xl font-bold bg-neutral-100 dark:bg-neutral-700">
               {profile.username[0]?.toUpperCase() || '?'}
             </div>
           )}
@@ -65,11 +65,11 @@ export function ProfileCard({ profile, lastAudit, onClick }: ProfileCardProps) {
         {/* Info */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className="text-base font-semibold truncate">{profile.full_name || profile.username}</h3>
-            {profile.is_verified && <CheckCircle className="h-4 w-4 text-info-500 shrink-0" />}
+            <h3 className="text-base font-semibold truncate text-foreground">{profile.full_name || profile.username}</h3>
+            {profile.is_verified && <CheckCircle className="h-4 w-4 text-info-600 dark:text-info-400 shrink-0" />}
           </div>
-          <p className="text-sm text-neutral-400">@{profile.username}</p>
-          <p className="text-xs text-neutral-500 mt-0.5">
+          <p className="text-sm text-muted-foreground">@{profile.username}</p>
+          <p className="text-xs text-muted-foreground mt-0.5">
             {formatNumber(profile.followers_count || 0)} seguidores
           </p>
         </div>
@@ -89,7 +89,7 @@ export function ProfileCard({ profile, lastAudit, onClick }: ProfileCardProps) {
             >
               {classification.label}
             </Badge>
-            <div className="text-xs text-neutral-500">
+            <div className="text-xs text-muted-foreground">
               {new Date(lastAudit.audit_date).toLocaleDateString('pt-BR')}
             </div>
           </div>
