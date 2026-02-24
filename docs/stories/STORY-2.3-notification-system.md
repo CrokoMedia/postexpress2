@@ -35,7 +35,7 @@ Implementar sistema de notificações via Slack Webhook para alertar a equipe qu
 
 ```bash
 # .env
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR_WORKSPACE/YOUR_CHANNEL/YOUR_TOKEN
 SLACK_NOTIFICATIONS_ENABLED=true
 NOTIFICATION_RATE_LIMIT_PER_HOUR=10
 ```
