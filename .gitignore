@@ -2,6 +2,9 @@
 .env
 .env.local
 .env.*.local
+SECRETS-PRODUCTION.txt
+env-production.txt
+secrets.txt
 
 # Dependencies
 node_modules/
