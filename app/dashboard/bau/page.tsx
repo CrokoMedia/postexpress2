@@ -43,30 +43,14 @@ export default function BauPage() {
       const supabase = createClientSupabase()
 
       const { data, error: fetchError } = await supabase
-        .from('content_suggestions')
-        .select(`
-          id,
-          audit_id,
-          profile_id,
-          content_json,
-          slides_json,
-          slides_v2_json,
-          generated_at,
-          instagram_profiles!left(username, full_name),
-          audits!left(classification)
-        `)
+        .from('content_suggestions_with_profile')
+        .select('*')
         .order('generated_at', { ascending: false })
 
       if (fetchError) throw fetchError
 
-      // Processar dados para formato correto
-      const processedData = (data || []).map((item: any) => ({
-        ...item,
-        instagram_profiles: Array.isArray(item.instagram_profiles) ? item.instagram_profiles[0] : item.instagram_profiles,
-        audits: Array.isArray(item.audits) ? item.audits[0] : item.audits,
-      }))
-
-      setContents(processedData)
+      // View já retorna dados no formato correto
+      setContents(data || [])
     } catch (err: any) {
       setError(err.message)
     } finally {
