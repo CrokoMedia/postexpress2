@@ -1,123 +1,106 @@
-# Twitter Stream Worker (24/7)
+# 🤖 Post Express Workers
 
-Worker Node.js para monitoramento em tempo real do Twitter Filtered Stream API.
+Este diretório contém 2 workers 24/7 para processamento assíncrono:
 
----
-
-## 📋 Requisitos
-
-- Node.js 18+
-- Credenciais Twitter API (Bearer Token)
-- Credenciais Supabase (URL + Service Role Key)
-- Railway.app ou Render.com (para deploy 24/7)
+1. **Analysis Worker** → Processa análises de Instagram (principal)
+2. **Twitter Stream Worker** → Monitora Twitter em tempo real
 
 ---
 
-## 🚀 Deploy Rápido
+## 🎯 Analysis Worker (Principal)
 
-### Opção 1: Railway.app (Recomendado)
+Worker que processa análises de perfis do Instagram automaticamente.
 
-```bash
-# 1. Instalar Railway CLI
-npm install -g @railway/cli
+### O que faz
 
-# 2. Login
-railway login
+1. Monitora fila (`analysis_queue`) a cada 5 segundos
+2. Processa análises pendentes em ordem de prioridade
+3. Pipeline completo:
+   - Scraping de posts + comentários (Apify)
+   - OCR de slides (Gemini Vision)
+   - Análise completa (extração de dados)
+   - Auditoria com 5 frameworks (Claude)
+   - Salvar no Supabase
+4. Retry automático até 3 tentativas
+5. Recuperação de análises travadas (>10 min)
 
-# 3. Deploy
-railway up
-
-# 4. Adicionar variáveis de ambiente no painel
-# https://railway.app/dashboard
-```
-
-### Opção 2: Render.com
-
-```bash
-# 1. Push para GitHub
-git push origin main
-
-# 2. Criar novo Worker no Render.com
-# https://dashboard.render.com/select-repo
-
-# 3. Selecionar repositório e configurar:
-# - Type: Background Worker
-# - Dockerfile Path: worker/Dockerfile
-# - Docker Context: worker/
-
-# 4. Adicionar variáveis de ambiente no painel
-```
-
----
-
-## 🔑 Variáveis de Ambiente
-
-Adicionar no painel do Railway/Render:
-
-```env
-TWITTER_BEARER_TOKEN=AAAAAAAAAAAAAAAAAAAAAC...
-SUPABASE_URL=https://seu-projeto.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiI...
-PORT=3001
-NODE_ENV=production
-```
-
----
-
-## 🧪 Teste Local
+### Quick Start Local
 
 ```bash
 # 1. Instalar dependências
 npm install
 
-# 2. Configurar .env na raiz do projeto
-cp ../.env.example ../.env
-# Editar .env com credenciais reais
+# 2. Configurar environment
+cp .env.example .env
+# Editar .env com suas credenciais
 
 # 3. Rodar worker
 npm run dev
+```
 
-# 4. Verificar health check em outro terminal
-curl http://localhost:3001/health
+### Deploy em Produção
 
-# 5. Verificar stats
-curl http://localhost:3001/stats
+Ver **[DEPLOY.md](./DEPLOY.md)** para guia completo de deploy em:
+- Railway (recomendado)
+- Render
+- Fly.io
+
+### Logs
+
+```
+🤖 Analysis Worker iniciado
+📊 Monitorando fila a cada 5s...
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔄 PROCESSANDO ANÁLISE: @username
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📸 FASE 1/3: Scraping...
+✅ Scraping concluído!
+
+🔍 FASE 2/3: OCR...
+✅ OCR concluído!
+
+📊 FASE 3/4: Análise...
+✅ Análise completa gerada!
+
+🔬 FASE 4/4: Auditoria...
+✅ Auditoria concluída!
+
+💾 FASE 5/5: Salvando...
+✅ Dados salvos no Supabase!
+
+✅ ANÁLISE CONCLUÍDA
 ```
 
 ---
 
-## 📊 Monitoramento
+## 🐦 Twitter Stream Worker
 
-### Health Check
+Worker para monitoramento em tempo real do Twitter Filtered Stream API.
+
+### O que faz
+
+1. Conecta ao Twitter Filtered Stream API
+2. Processa tweets em tempo real
+3. Salva em `twitter_content_updates`
+4. Auto-reconnect com backoff exponencial
+
+### Quick Start Local
+
 ```bash
-GET http://localhost:3001/health
-
-Response:
-{
-  "status": "healthy",
-  "connected": true,
-  "uptime": 3600,
-  "stats": {
-    "tweetsProcessed": 42,
-    "errors": 0,
-    "reconnects": 0,
-    "lastTweetAt": "2024-02-19T10:30:00Z"
-  }
-}
+# Rodar Twitter Worker
+npm run twitter:dev
 ```
 
----
+### Variáveis de Ambiente
 
-## 🔄 Funcionamento
-
-1. **Conexão ao Stream:** Worker se conecta ao Twitter Filtered Stream API usando Bearer Token
-2. **Processamento:** Para cada tweet recebido:
-   - Busca expert no Supabase (por username)
-   - Salva tweet em `twitter_content_updates`
-   - Marca expert_id se encontrado
-   - Loga evento em `twitter_monitoring_log`
-3. **Auto-Reconnect:** Se desconectar, reconecta automaticamente com backoff exponencial (max 10 tentativas)
-4. **Graceful Shutdown:** Responde a SIGTERM/SIGINT salvando estado antes de desligar
+```env
+TWITTER_BEARER_TOKEN=...
+SUPABASE_URL=...
+SUPABASE_SERVICE_ROLE_KEY=...
+PORT=3001
+```
 
 ---
 
@@ -125,15 +108,81 @@ Response:
 
 ```
 worker/
-├── twitter-stream-worker.js  # Worker principal
-├── package.json               # Dependências
-├── Dockerfile                 # Container Docker
-├── railway.toml               # Config Railway
-├── render.yaml                # Config Render
-└── README.md                  # Esta documentação
+├── analysis-worker.ts        # Analysis Worker (principal)
+├── twitter-stream-worker.js  # Twitter Worker
+├── package.json              # Dependências
+├── Dockerfile.analysis       # Docker para Analysis
+├── Dockerfile                # Docker para Twitter
+├── railway-analysis.toml     # Config Railway (Analysis)
+├── railway.toml              # Config Railway (Twitter)
+├── .env.example              # Template de variáveis
+├── DEPLOY.md                 # Guia completo de deploy
+└── README.md                 # Esta documentação
 ```
 
 ---
 
-**Desenvolvido para EPIC-001 (Story 2.1)**
-Croko Labs | Twitter Stream Integration
+## 🚀 Deploy
+
+### Analysis Worker (Recomendado)
+
+```bash
+# Railway CLI
+railway init
+railway up
+
+# Ou ver DEPLOY.md para Render/Fly.io
+```
+
+### Twitter Worker
+
+```bash
+# Railway CLI
+railway init
+railway up
+
+# Configurar variáveis do Twitter
+```
+
+---
+
+## 🔄 Fluxo Completo (Analysis)
+
+```
+Frontend → POST /api/analysis
+              ↓
+        analysis_queue (pending)
+              ↓
+        Worker detecta nova entrada
+              ↓
+        Processa pipeline completo (~3 min)
+              ↓
+        Salva em audits + posts
+              ↓
+        Atualiza queue (completed)
+              ↓
+        Frontend detecta via polling
+              ↓
+        Redireciona para /dashboard/audits/[id]
+```
+
+---
+
+## 💰 Custo por Análise
+
+- Apify: R$ 0,10 - R$ 0,30
+- Gemini OCR: R$ 0,05 - R$ 0,15
+- Claude Audit: R$ 0,10 - R$ 0,20
+- **Total:** ~R$ 0,30 - R$ 0,65
+
+---
+
+## 🆘 Suporte
+
+- **Documentação:** Ver [DEPLOY.md](./DEPLOY.md)
+- **Logs:** Sempre verificar logs primeiro
+- **Supabase:** Verificar `analysis_queue` e `audits`
+
+---
+
+*Desenvolvido por Croko Labs - Motor de Conteúdo Autônomo™*

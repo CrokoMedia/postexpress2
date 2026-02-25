@@ -1,20 +1,24 @@
 {
-  "name": "twitter-stream-worker",
-  "version": "1.0.0",
-  "description": "Twitter Filtered Stream Worker (24/7)",
+  "name": "postexpress-workers",
+  "version": "2.0.0",
+  "description": "Post Express Workers: Analysis (Instagram) + Twitter Stream (24/7)",
   "type": "module",
-  "main": "twitter-stream-worker.js",
+  "main": "analysis-worker.ts",
   "scripts": {
-    "dev": "node --watch twitter-stream-worker.js",
-    "start": "node twitter-stream-worker.js",
+    "dev": "tsx watch analysis-worker.ts",
+    "start": "tsx analysis-worker.ts",
+    "twitter:dev": "node --watch twitter-stream-worker.js",
+    "twitter:start": "node twitter-stream-worker.js",
     "test": "node test-processor.js",
     "test:slack": "node test-slack.js",
-    "build": "echo 'No build needed for Node.js'"
+    "build": "tsc --noEmit"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
     "dotenv": "^16.4.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">=18.0.0"

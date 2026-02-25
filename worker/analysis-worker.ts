@@ -17,8 +17,8 @@ import {
   runAuditWithSquad,
   readAnalysisResult,
   calculateProgress
-} from '../lib/worker-utils.js'
-import { saveCompleteAnalysis } from '../lib/supabase-saver.js'
+} from '../lib/worker-utils'
+import { saveCompleteAnalysis } from '../lib/supabase-saver'
 import 'dotenv/config'
 
 const supabaseUrl = process.env.SUPABASE_URL!

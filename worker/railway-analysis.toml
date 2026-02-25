@@ -1,0 +1,65 @@
+# ============================================
+# Railway.app Configuration - Analysis Worker
+# ============================================
+# Deploy do Worker de Análise de Instagram (24/7)
+#
+# INSTRUÇÕES DE DEPLOY:
+# 1. Criar projeto no Railway.app
+# 2. Conectar repositório GitHub
+# 3. Selecionar "Deploy from monorepo" → pasta worker/
+# 4. Adicionar variáveis de ambiente (ver seção abaixo)
+# 5. Deploy automático a cada push no branch main
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "worker/Dockerfile.analysis"
+
+[deploy]
+startCommand = "npx tsx analysis-worker.ts"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+
+# Health check (Railway monitora se worker está ativo)
+healthcheckPath = "/"
+healthcheckTimeout = 30
+
+# ============================================
+# VARIÁVEIS DE AMBIENTE NECESSÁRIAS
+# ============================================
+# Adicione estas variáveis no Railway Dashboard:
+#
+# SUPABASE (obrigatório)
+#   SUPABASE_URL=https://seu-projeto.supabase.co
+#   SUPABASE_SERVICE_ROLE_KEY=eyJhbG...
+#
+# APIFY (obrigatório)
+#   APIFY_API_TOKEN=apify_api_...
+#
+# ANTHROPIC CLAUDE (obrigatório)
+#   ANTHROPIC_API_KEY=sk-ant-...
+#
+# GOOGLE GEMINI (para OCR, opcional)
+#   GOOGLE_AI_API_KEY=AIza...
+#
+# MISTRAL (OCR alternativo, opcional)
+#   MISTRAL_API_KEY=...
+#
+# CLOUDINARY (para fotos de perfil, opcional)
+#   CLOUDINARY_CLOUD_NAME=...
+#   CLOUDINARY_API_KEY=...
+#   CLOUDINARY_API_SECRET=...
+
+# ============================================
+# LOGS & MONITORAMENTO
+# ============================================
+# Ver logs:
+#   railway logs --follow
+#
+# Ver status:
+#   railway status
+#
+# Restart manual:
+#   railway restart
+
+[[services]]
+name = "analysis-worker-24-7"
