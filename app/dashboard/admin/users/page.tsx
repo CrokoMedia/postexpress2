@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { Plus, Trash2, UserCheck, RefreshCw, Pencil, X, Check } from 'lucide-react'
+import { Plus, Trash2, UserCheck, RefreshCw, Pencil, X, Check, Settings } from 'lucide-react'
+import Link from 'next/link'
 
 interface UserRow {
   user_id: string
@@ -311,16 +312,25 @@ export default function AdminUsersPage() {
                       ) : (
                         <>
                           {user.role === 'client' && (
-                            <button
-                              onClick={() => {
-                                setEditingUserId(user.user_id)
-                                setEditingProfileIds(user.profiles.map(p => p.id))
-                              }}
-                              className="rounded p-1.5 text-neutral-500 hover:text-neutral-200 hover:bg-neutral-700 transition"
-                              title="Editar perfis"
-                            >
-                              <Pencil className="h-4 w-4" />
-                            </button>
+                            <>
+                              <Link
+                                href={`/dashboard/admin/users/${user.user_id}/profiles`}
+                                className="rounded p-1.5 text-neutral-500 hover:text-primary-400 hover:bg-primary-500/10 transition"
+                                title="Gerenciar perfis"
+                              >
+                                <Settings className="h-4 w-4" />
+                              </Link>
+                              <button
+                                onClick={() => {
+                                  setEditingUserId(user.user_id)
+                                  setEditingProfileIds(user.profiles.map(p => p.id))
+                                }}
+                                className="rounded p-1.5 text-neutral-500 hover:text-neutral-200 hover:bg-neutral-700 transition"
+                                title="Editar perfis inline"
+                              >
+                                <Pencil className="h-4 w-4" />
+                              </button>
+                            </>
                           )}
                           <button
                             onClick={() => handleDelete(user.user_id)}

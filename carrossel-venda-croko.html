@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Croko Labs — Carrossel de Venda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rosa:    #ef2b70;
+      --roxo:    #1E1541;
+      --roxo-mid: #2d2060;
+      --branco:  #ffffff;
+      --cinza:   #f0f0f4;
+      --texto:   #0f0a2e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 40px;
+    }
+
+    .label {
+      color: #888;
+      font-size: 14px;
+      font-family: monospace;
+      margin-bottom: -30px;
+      align-self: flex-start;
+      margin-left: calc(50% - 540px);
+    }
+
+    /* =======================================
+       SLIDE BASE
+    ======================================= */
+    .slide {
+      width: 1080px;
+      height: 1350px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    /* =======================================
+       SLIDE 1 — CAPA (dark + gradiente)
+    ======================================= */
+    .slide-1 {
+      background: var(--roxo);
+      padding: 80px;
+      justify-content: space-between;
+    }
+
+    .slide-1::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(239,43,112,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .slide-1::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(239,43,112,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(239,43,112,0.18);
+      border: 1px solid rgba(239,43,112,0.4);
+      color: var(--rosa);
+      font-size: 22px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+      width: fit-content;
+    }
+
+    .tag-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--rosa);
+      border-radius: 50%;
+    }
+
+    .slide-1 .headline {
+      font-size: 88px;
+      font-weight: 900;
+      color: var(--branco);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      z-index: 1;
+    }
+
+    .slide-1 .headline em {
+      font-style: normal;
+      color: var(--rosa);
+    }
+
+    .slide-1 .sub {
+      font-size: 32px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+      max-width: 880px;
+      z-index: 1;
+    }
+
+    .slide-1 .bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1;
+    }
+
+    .brand {
+      font-size: 26px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .slide-counter {
+      font-size: 24px;
+      color: rgba(255,255,255,0.3);
+      font-weight: 500;
+    }
+
+    /* =======================================
+       SLIDES 2–4 — CONTEÚDO (branco limpo)
+    ======================================= */
+    .slide-content {
+      background: var(--branco);
+      padding: 80px;
+      justify-content: space-between;
+    }
+
+    .slide-content .top {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .slide-num-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      background: var(--rosa);
+      border-radius: 50%;
+      color: white;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .slide-content .title {
+      font-size: 62px;
+      font-weight: 800;
+      color: var(--texto);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .slide-content .title em {
+      font-style: normal;
+      color: var(--rosa);
+    }
+
+    .divider {
+      width: 80px;
+      height: 5px;
+      background: var(--rosa);
+      border-radius: 3px;
+    }
+
+    .slide-content .body {
+      font-size: 38px;
+      color: #3a3560;
+      line-height: 1.55;
+      font-weight: 400;
+    }
+
+    .slide-content .body strong {
+      color: var(--texto);
+      font-weight: 700;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      font-size: 36px;
+      color: #3a3560;
+      line-height: 1.4;
+    }
+
+    .list-item .icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      background: var(--rosa);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    .list-item .icon svg {
+      width: 22px;
+      height: 22px;
+      fill: white;
+    }
+
+    .list-item.negative .icon {
+      background: #e8e8f0;
+    }
+
+    .list-item.negative .icon svg {
+      fill: #aaa;
+    }
+
+    .list-item.negative {
+      color: #9090b0;
+    }
+
+    .bottom-brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #eee;
+      padding-top: 40px;
+    }
+
+    .bottom-brand .brand-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--roxo);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .bottom-brand .slide-counter {
+      font-size: 22px;
+      color: #bbb;
+    }
+
+    /* =======================================
+       SLIDE 5 — CTA (dark + rosa)
+    ======================================= */
+    .slide-cta {
+      background: linear-gradient(160deg, var(--roxo) 0%, #0f0a2e 100%);
+      padding: 80px;
+      justify-content: space-between;
+    }
+
+    .slide-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(239,43,112,0.25) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .slide-cta .cta-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(239,43,112,0.15);
+      border: 1px solid rgba(239,43,112,0.4);
+      color: var(--rosa);
+      font-size: 22px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 100px;
+      width: fit-content;
+    }
+
+    .slide-cta .headline {
+      font-size: 80px;
+      font-weight: 900;
+      color: var(--branco);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      z-index: 1;
+    }
+
+    .slide-cta .headline em {
+      font-style: normal;
+      color: var(--rosa);
+    }
+
+    .cta-box {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 24px;
+      padding: 50px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      z-index: 1;
+    }
+
+    .cta-box .cta-title {
+      font-size: 30px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .cta-box .cta-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cta-step {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 28px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      background: var(--rosa);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .cta-button {
+      background: var(--rosa);
+      color: white;
+      font-size: 32px;
+      font-weight: 800;
+      padding: 28px 48px;
+      border-radius: 16px;
+      text-align: center;
+      letter-spacing: 0.02em;
+      z-index: 1;
+    }
+
+    .slide-cta .bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1;
+    }
+
+    .slide-cta .brand {
+      font-size: 26px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .slide-cta .slide-counter {
+      font-size: 24px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* Highlight box */
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(239,43,112,0.1) 0%, rgba(30,21,65,0.05) 100%);
+      border: 1.5px solid rgba(239,43,112,0.3);
+      border-radius: 20px;
+      padding: 40px 48px;
+      font-size: 38px;
+      color: var(--texto);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    .highlight-box strong {
+      color: var(--rosa);
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- SLIDE 1 — CAPA                              -->
+  <!-- ============================================ -->
+  <p class="label">SLIDE 1 / 5 — Capa</p>
+  <div class="slide slide-1">
+
+    <div class="tag">
+      <span class="tag-dot"></span>
+      Croko Labs
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:40px; z-index:1;">
+      <h1 class="headline">
+        Você fatura alto.<br>
+        Mas seu conteúdo<br>
+        ainda depende<br>
+        <em>da sua cabeça.</em>
+      </h1>
+      <p class="sub">
+        A máquina que coloca seu Instagram no automático — sem perder sua voz, sua essência, sua autoridade.
+      </p>
+    </div>
+
+    <div class="bottom-bar">
+      <span class="brand">CROKO LABS</span>
+      <span class="slide-counter">1 / 5</span>
+    </div>
+
+  </div>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 2 — DIAGNÓSTICO                       -->
+  <!-- ============================================ -->
+  <p class="label">SLIDE 2 / 5 — Diagnóstico</p>
+  <div class="slide slide-content">
+
+    <div class="top">
+      <div class="slide-num-badge">2</div>
+
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <h2 class="title">Você não tem<br>problema de <em>dinheiro.</em></h2>
+        <div class="divider"></div>
+      </div>
+
+      <p class="body">
+        Você tem problema de <strong>infraestrutura.</strong>
+      </p>
+
+      <div class="list">
+        <div class="list-item negative">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </div>
+          Frequência cai quando você está ocupado
+        </div>
+        <div class="list-item negative">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </div>
+          Todo briefing ainda passa por você
+        </div>
+        <div class="list-item negative">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </div>
+          Se você parar de produzir, a autoridade some
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:40px;">
+      <div class="highlight-box">
+        <strong>"Eu deveria estar mais estruturado."</strong><br>
+        Essa frase que você repete há meses? Ela tem solução.
+      </div>
+
+      <div class="bottom-brand">
+        <span class="brand-name">Croko Labs</span>
+        <span class="slide-counter">2 / 5</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 3 — O PROBLEMA REAL                   -->
+  <!-- ============================================ -->
+  <p class="label">SLIDE 3 / 5 — Problema Real</p>
+  <div class="slide slide-content">
+
+    <div class="top">
+      <div class="slide-num-badge">3</div>
+
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <h2 class="title">Seu marketing<br>depende de <em>energia,</em><br>não de sistema.</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="list">
+        <div class="list-item negative">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </div>
+          Quando você está bem → conteúdo sai
+        </div>
+        <div class="list-item negative">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </div>
+          Quando está ocupado → trava
+        </div>
+        <div class="list-item negative">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </div>
+          Designer atrasa → tudo para
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:40px;">
+      <div class="highlight-box">
+        Você não tem empresa.<br>
+        Você tem um <strong>castelo de cartas.</strong><br>
+        E você sabe disso.
+      </div>
+
+      <div class="bottom-brand">
+        <span class="brand-name">Croko Labs</span>
+        <span class="slide-counter">3 / 5</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 4 — A SOLUÇÃO                         -->
+  <!-- ============================================ -->
+  <p class="label">SLIDE 4 / 5 — Solução</p>
+  <div class="slide slide-content">
+
+    <div class="top">
+      <div class="slide-num-badge">4</div>
+
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <h2 class="title">Croko Labs<br>instala a <em>máquina.</em></h2>
+        <div class="divider"></div>
+      </div>
+
+      <p class="body">
+        Não é ferramenta. Não é curso.<br>
+        É <strong>infraestrutura implantada</strong> na sua operação.
+      </p>
+
+      <div class="list">
+        <div class="list-item">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          5 mentes de IA calibradas no seu estilo
+        </div>
+        <div class="list-item">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          Carrosséis prontos semanalmente para aprovar
+        </div>
+        <div class="list-item">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          Frequência garantida sem depender do seu humor
+        </div>
+        <div class="list-item">
+          <div class="icon">
+            <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          Você só aparece para aprovar
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-brand">
+      <span class="brand-name">Croko Labs</span>
+      <span class="slide-counter">4 / 5</span>
+    </div>
+
+  </div>
+
+
+  <!-- ============================================ -->
+  <!-- SLIDE 5 — CTA                               -->
+  <!-- ============================================ -->
+  <p class="label">SLIDE 5 / 5 — CTA</p>
+  <div class="slide slide-cta">
+
+    <div class="cta-tag">
+      <span class="tag-dot"></span>
+      Implantação Boutique
+    </div>
+
+    <h2 class="headline">
+      Seus concorrentes<br>
+      ainda estão<br>
+      <em>pensando<br>
+      em postar.</em>
+    </h2>
+
+    <div class="cta-box">
+      <p class="cta-title">Próximo passo — diagnóstico gratuito:</p>
+      <div class="cta-steps">
+        <div class="cta-step">
+          <span class="step-num">1</span>
+          30 minutos de conversa estratégica
+        </div>
+        <div class="cta-step">
+          <span class="step-num">2</span>
+          Mapeamos seu gargalo de conteúdo
+        </div>
+        <div class="cta-step">
+          <span class="step-num">3</span>
+          Você decide com clareza
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-button">
+      Link na bio → Agendar diagnóstico
+    </div>
+
+    <div class="bottom-bar">
+      <span class="brand">CROKO LABS</span>
+      <span class="slide-counter">5 / 5</span>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -194,7 +194,7 @@ export default function ProfileContentPage() {
                 <CardContent>
                   {/* Preview dos carrosséis */}
                   <div className="space-y-3">
-                    {content.carousels?.slice(0, 3).map((carousel: any, idx: number) => (
+                    {(content.carousels || []).slice(0, 3).map((carousel: any, idx: number) => (
                       <div
                         key={idx}
                         className="p-4 bg-neutral-800/50 rounded-lg border border-neutral-700"
