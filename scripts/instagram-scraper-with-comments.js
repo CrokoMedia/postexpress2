@@ -53,6 +53,7 @@ async function extractPosts(username, limit = 20) {
       username: profileData.username,
       fullName: profileData.fullName,
       biography: profileData.biography,
+      externalUrl: profileData.externalUrl || null, // Link externo do perfil
       followersCount: profileData.followersCount,
       followsCount: profileData.followsCount,
       postsCount: profileData.postsCount,
@@ -71,6 +72,7 @@ async function extractPosts(username, limit = 20) {
     if (profile.profilePicUrlHD || profile.profilePicUrl) {
       console.log(`      URL: ${(profile.profilePicUrlHD || profile.profilePicUrl)?.substring(0, 60)}...`);
     }
+    console.log(`   🔗 External URL: ${profile.externalUrl || '(nenhum)'}`);
     console.log('');
 
     return { profile, posts };
@@ -214,6 +216,7 @@ async function scrapWithComments(username, options = {}) {
 
       postsWithComments.push({
         ...post,
+        isPinned: post.isPinned || false, // Campo de post fixado (importante para ofertas)
         comments: {
           total: rawComments.length,
           relevant: relevantComments.length,
