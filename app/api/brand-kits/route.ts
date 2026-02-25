@@ -216,7 +216,7 @@ export async function POST(request: NextRequest) {
 
     // Verificar se profile existe
     const { data: profileExists, error: profileError } = await supabase
-      .from('instagram_profiles')
+      .from('profiles')
       .select('id')
       .eq('id', body.profile_id)
       .is('deleted_at', null)
