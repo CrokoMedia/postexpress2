@@ -17,22 +17,32 @@ cloudinary.config({
  */
 async function extractText(buffer: Buffer, mimeType: string): Promise<string> {
   try {
+    console.log(`[EXTRACT] Processing file type: ${mimeType}`)
+
     if (mimeType === 'application/pdf') {
+      console.log('[EXTRACT] Using pdf-parse')
       const data = await pdfParse(buffer)
+      console.log(`[EXTRACT] PDF: extracted ${data.text.length} chars from ${data.numpages} pages`)
       return data.text
     } else if (
       mimeType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
       mimeType === 'application/msword'
     ) {
+      console.log('[EXTRACT] Using mammoth for DOCX')
       const result = await mammoth.extractRawText({ buffer })
+      console.log(`[EXTRACT] DOCX: extracted ${result.value.length} chars`)
       return result.value
     } else if (mimeType === 'text/plain' || mimeType === 'text/markdown') {
-      return buffer.toString('utf-8')
+      console.log('[EXTRACT] Reading as plain text')
+      const text = buffer.toString('utf-8')
+      console.log(`[EXTRACT] Text: extracted ${text.length} chars`)
+      return text
     }
 
+    console.warn(`[EXTRACT] Unsupported mime type: ${mimeType}`)
     return ''
   } catch (error) {
-    console.error('Error extracting text:', error)
+    console.error('[EXTRACT] Error extracting text:', error)
     return ''
   }
 }
@@ -104,7 +114,9 @@ export async function POST(
     const buffer = Buffer.from(arrayBuffer)
 
     // Extrair texto do documento
+    console.log(`[UPLOAD] Extracting text from ${file.name} (${file.type}, ${file.size} bytes)`)
     const extractedText = await extractText(buffer, file.type)
+    console.log(`[UPLOAD] Extracted ${extractedText.length} characters`)
 
     // Upload para Cloudinary (como raw file)
     const uploadResult = await new Promise<any>((resolve, reject) => {
@@ -126,55 +138,55 @@ export async function POST(
     // Criar objeto do documento
     const document = {
       id: uuidv4(),
+      name: file.name, // Frontend usa 'name', não 'filename'
       filename: file.name,
       url: uploadResult.secure_url,
       cloudinary_public_id: uploadResult.public_id,
       type: file.type,
       size: file.size,
       uploaded_at: new Date().toISOString(),
-      extracted_text_length: extractedText.length
+      extracted_text_length: extractedText.length,
+      extractedText: extractedText, // Frontend precisa deste campo
+      extractionStatus: extractedText.length > 0 ? 'completed' : 'failed', // Frontend verifica este campo
+      wordCount: extractedText.length > 0 ? extractedText.split(/\s+/).length : 0
     }
 
     // Buscar contexto existente
     const { data: existingContext } = await supabase
       .from('profile_context')
-      .select('documents, raw_text, files')
+      .select('files, contexto_adicional')
       .eq('profile_id', profileId)
       .is('deleted_at', null)
       .maybeSingle()
 
-    const currentDocuments = existingContext?.documents || []
     const currentFiles = existingContext?.files || []
-    const currentRawText = existingContext?.raw_text || ''
+    const currentContexto = existingContext?.contexto_adicional || ''
 
-    const updatedDocuments = [...currentDocuments, document]
-    const updatedFiles = [...currentFiles, document] // Também adicionar em files para compatibilidade
-    const updatedRawText = currentRawText
-      ? `${currentRawText}\n\n--- ${file.name} ---\n${extractedText}`
-      : `--- ${file.name} ---\n${extractedText}`
+    const updatedFiles = [...currentFiles, document]
+    const updatedContexto = currentContexto
+      ? `${currentContexto}\n\n--- DOCUMENTO: ${file.name} ---\n${extractedText}`
+      : `--- DOCUMENTO: ${file.name} ---\n${extractedText}`
 
     // Salvar documento no contexto
     if (existingContext) {
       // UPDATE
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('profile_context')
         .update({
-          documents: updatedDocuments,
           files: updatedFiles,
-          raw_text: updatedRawText
+          contexto_adicional: updatedContexto
         })
         .eq('profile_id', profileId)
 
       if (error) throw error
     } else {
       // INSERT (criar contexto se não existir)
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('profile_context')
         .insert({
           profile_id: profileId,
-          documents: updatedDocuments,
           files: updatedFiles,
-          raw_text: updatedRawText
+          contexto_adicional: updatedContexto
         })
 
       if (error) throw error

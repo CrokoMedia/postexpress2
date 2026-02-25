@@ -103,7 +103,7 @@ export default function CompareAuditsPage() {
         breadcrumb={[
           { label: 'Dashboard', href: '/dashboard' },
           { label: `@${auditV1.profile?.username}`, href: `/dashboard/profiles/${auditV1.profile?.id}` },
-          { label: 'Auditoria', href: `/dashboard/audits/${id}` },
+          { label: 'Auditoria', href: `/dashboard/audits/${v1Id}` },
           { label: 'Comparação', href: null }
         ]}
       />

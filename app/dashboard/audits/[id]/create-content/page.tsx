@@ -203,7 +203,7 @@ export default function CreateContentPage() {
 ${carousel.titulo}
 ${carousel.tipo.toUpperCase()} | ${carousel.objetivo}
 
-${carousel.slides.map((slide: any) => `
+${(carousel.slides || []).map((slide: any) => `
 SLIDE ${slide.numero}:
 ${slide.titulo}
 ${slide.corpo}
@@ -213,7 +213,7 @@ CAPTION:
 ${carousel.caption}
 
 HASHTAGS:
-${carousel.hashtags.join(' ')}
+${(carousel.hashtags || []).join(' ')}
 
 CTA: ${carousel.cta}
     `.trim()
@@ -230,7 +230,7 @@ CTA: ${carousel.cta}
   }
 
   const handleCopyHashtags = (carousel: any, index: number) => {
-    const hashtagsText = carousel.hashtags.map((tag: string) => `#${tag}`).join(' ')
+    const hashtagsText = (carousel.hashtags || []).map((tag: string) => `#${tag}`).join(' ')
     navigator.clipboard.writeText(hashtagsText)
     setCopiedHashtags(index)
     setTimeout(() => setCopiedHashtags(null), 2000)
@@ -342,7 +342,7 @@ CTA: ${carousel.cta}
         const next = new Map(prev)
         if (approved) {
           const carousel = content?.carousels?.[carouselIndex]
-          if (carousel) {
+          if (carousel && carousel.slides) {
             next.set(carouselIndex, new Set(carousel.slides.map((_: any, i: number) => i)))
           }
         } else {
@@ -381,7 +381,7 @@ CTA: ${carousel.cta}
   // Selecionar/Desselecionar todos os slides de um carrossel
   const handleToggleAllSlides = (carouselIndex: number) => {
     const carousel = content?.carousels?.[carouselIndex]
-    if (!carousel) return
+    if (!carousel || !carousel.slides) return
 
     setSelectedSlides(prev => {
       const next = new Map(prev)
@@ -405,7 +405,7 @@ CTA: ${carousel.cta}
 
     // Verificar se TODOS os slides de TODOS os carrosséis aprovados estão selecionados
     const allSelected = content.carousels.every((carousel: any, index: number) => {
-      if (!carousel.approved) return true // ignora não aprovados
+      if (!carousel.approved || !carousel.slides) return true // ignora não aprovados ou sem slides
       const slideSel = selectedSlides.get(index)
       return slideSel && slideSel.size === carousel.slides.length
     })
@@ -414,7 +414,7 @@ CTA: ${carousel.cta}
       const next = new Map(prev)
 
       content.carousels.forEach((carousel: any, index: number) => {
-        if (!carousel.approved) return // só afeta aprovados
+        if (!carousel.approved || !carousel.slides) return // só afeta aprovados com slides
 
         if (allSelected) {
           // Desselecionar todos
@@ -456,9 +456,10 @@ CTA: ${carousel.cta}
     const carouselsToGenerate = content.carousels.map((c: any, i: number) => {
       if (!selectedForSlides.has(i)) return { ...c, approved: false }
       const slideSel = selectedSlides.get(i)
+      const slides = c.slides || []
       const filteredSlides = slideSel
-        ? c.slides.filter((_: any, si: number) => slideSel.has(si))
-        : c.slides
+        ? slides.filter((_: any, si: number) => slideSel.has(si))
+        : slides
       return { ...c, approved: true, slides: filteredSlides }
     })
 
@@ -514,9 +515,10 @@ CTA: ${carousel.cta}
     const carouselsToGenerate = content.carousels.map((c: any, i: number) => {
       if (!selectedForSlides.has(i)) return { ...c, approved: false }
       const slideSel = selectedSlides.get(i)
+      const slides = c.slides || []
       const filteredSlides = slideSel
-        ? c.slides.filter((_: any, si: number) => slideSel.has(si))
-        : c.slides
+        ? slides.filter((_: any, si: number) => slideSel.has(si))
+        : slides
       return { ...c, approved: true, slides: filteredSlides }
     })
 
@@ -636,9 +638,10 @@ CTA: ${carousel.cta}
     const carouselsToGenerate = content.carousels.map((c: any, i: number) => {
       if (i !== carouselIndex) return { ...c, approved: false }
       const slideSel = selectedSlides.get(i)
+      const slides = c.slides || []
       const filteredSlides = slideSel
-        ? c.slides.filter((_: any, si: number) => slideSel.has(si))
-        : c.slides
+        ? slides.filter((_: any, si: number) => slideSel.has(si))
+        : slides
       return { ...c, approved: true, slides: filteredSlides }
     })
 
@@ -681,9 +684,10 @@ CTA: ${carousel.cta}
     const carouselsToGenerate = content.carousels.map((c: any, i: number) => {
       if (i !== carouselIndex) return { ...c, approved: false }
       const slideSel = selectedSlides.get(i)
+      const slides = c.slides || []
       const filteredSlides = slideSel
-        ? c.slides.filter((_: any, si: number) => slideSel.has(si))
-        : c.slides
+        ? slides.filter((_: any, si: number) => slideSel.has(si))
+        : slides
       return { ...c, approved: true, slides: filteredSlides }
     })
 
@@ -979,7 +983,7 @@ CTA: ${carousel.cta}
         // Atualizar summary
         newSlides.summary = {
           totalCarousels: newSlides.carousels.length,
-          totalSlides: newSlides.carousels.reduce((acc: number, c: any) => acc + c.slides.length, 0)
+          totalSlides: newSlides.carousels.reduce((acc: number, c: any) => acc + (c.slides || []).length, 0)
         }
         return newSlides
       })
@@ -1317,7 +1321,7 @@ CTA: ${carousel.cta}
                         let totalSlides = 0
                         content.carousels?.forEach((carousel: any, idx: number) => {
                           if (carousel.approved) {
-                            totalSlides += carousel.slides.length
+                            totalSlides += (carousel.slides || []).length
                             totalSelected += selectedSlides.get(idx)?.size || 0
                           }
                         })
@@ -1335,7 +1339,7 @@ CTA: ${carousel.cta}
                       const allSelected = content.carousels?.every((carousel: any, index: number) => {
                         if (!carousel.approved) return true
                         const slideSel = selectedSlides.get(index)
-                        return slideSel && slideSel.size === carousel.slides.length
+                        return slideSel && slideSel.size === (carousel.slides || []).length
                       })
                       return (
                         <>
@@ -1669,7 +1673,7 @@ CTA: ${carousel.cta}
                   {/* Slides */}
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <h4 className="font-semibold">Slides ({carousel.slides.length})</h4>
+                      <h4 className="font-semibold">Slides ({(carousel.slides || []).length})</h4>
                       <Button
                         variant="ghost"
                         size="sm"
@@ -1678,17 +1682,17 @@ CTA: ${carousel.cta}
                       >
                         <input
                           type="checkbox"
-                          checked={(selectedSlides.get(index)?.size || 0) === carousel.slides.length}
+                          checked={(selectedSlides.get(index)?.size || 0) === (carousel.slides || []).length}
                           onChange={() => {}}
                           className="mr-2"
                         />
-                        {(selectedSlides.get(index)?.size || 0) === carousel.slides.length
+                        {(selectedSlides.get(index)?.size || 0) === (carousel.slides || []).length
                           ? 'Desselecionar Todos'
                           : 'Selecionar Todos'}
                       </Button>
                     </div>
                     <div className="space-y-3">
-                      {carousel.slides.map((slide: any, slideIndex: number) => {
+                      {(carousel.slides || []).map((slide: any, slideIndex: number) => {
                         const isSelected = selectedSlides.get(index)?.has(slideIndex) ?? false
                         return (
                           <Card key={slide.numero} className={`bg-white/50 dark:bg-neutral-800/50 transition-all ${
@@ -1777,7 +1781,7 @@ CTA: ${carousel.cta}
                       </Button>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {carousel.hashtags.map((tag: string, i: number) => (
+                      {(carousel.hashtags || []).map((tag: string, i: number) => (
                         <Badge key={i} variant="neutral">#{tag}</Badge>
                       ))}
                     </div>

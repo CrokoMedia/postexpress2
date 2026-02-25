@@ -48,7 +48,7 @@ export default function WhatsAppUsersPage() {
     e.preventDefault();
 
     try {
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('whatsapp_users')
         .insert({
           phone: newUser.phone,
@@ -69,7 +69,7 @@ export default function WhatsAppUsersPage() {
 
   async function toggleAuthorization(userId: string, currentStatus: boolean) {
     try {
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('whatsapp_users')
         .update({ authorized: !currentStatus })
         .eq('id', userId);

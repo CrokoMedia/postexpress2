@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  serverExternalPackages: ['pdf-parse', 'mammoth', '@remotion/renderer', '@remotion/bundler'],
+  serverExternalPackages: ['pdf-parse', 'mammoth', '@remotion/renderer', '@remotion/bundler', 'react-dom'],
   images: {
     remotePatterns: [
       {
