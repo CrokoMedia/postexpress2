@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
+import { requirePermission, Permission } from '@/lib/permissions'
 import Anthropic from '@anthropic-ai/sdk'
 
 const client = new Anthropic({
@@ -406,12 +407,18 @@ Agora analise a auditoria abaixo e crie as 3 sugestões de carrosséis:`
 // MAIN API HANDLER
 // ============================================
 
-export async function POST(
+/**
+ * POST /api/audits/[id]/generate-smart
+ * Gera conteúdo de forma inteligente com decisões automáticas
+ *
+ * Requer permissão: create_content
+ */
+export const POST = requirePermission(Permission.CREATE_CONTENT)(async (
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+  context: { params: Promise<{ id: string }> }
+) => {
   try {
-    const { id } = await params
+    const { id } = await context.params
     const supabase = getServerSupabase()
 
     console.log('🧠 [generate-smart] Iniciando geração automática para audit:', id)
@@ -672,4 +679,4 @@ export async function POST(
       { status: 500 }
     )
   }
-}
+})

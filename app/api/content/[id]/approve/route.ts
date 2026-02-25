@@ -1,17 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
+import { requirePermission, Permission } from '@/lib/permissions'
 
 /**
  * API para aprovar/desaprovar carrosséis
  * PUT /api/content/[id]/approve
  * Body: { carouselIndex: number, approved: boolean }
+ *
+ * Requer permissão: edit_content
  */
-export async function PUT(
+export const PUT = requirePermission(Permission.EDIT_CONTENT)(async (
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+  context: { params: Promise<{ id: string }> }
+) => {
   try {
-    const { id } = await params
+    const { id } = await context.params
     const body = await request.json()
     const { carouselIndex, approved } = body
 
@@ -80,19 +83,21 @@ export async function PUT(
       { status: 500 }
     )
   }
-}
+})
 
 /**
  * Aprovar múltiplos carrosséis de uma vez
  * POST /api/content/[id]/approve
  * Body: { approvals: [{ carouselIndex: number, approved: boolean }] }
+ *
+ * Requer permissão: edit_content
  */
-export async function POST(
+export const POST = requirePermission(Permission.EDIT_CONTENT)(async (
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+  context: { params: Promise<{ id: string }> }
+) => {
   try {
-    const { id } = await params
+    const { id } = await context.params
     const body = await request.json()
     const { approvals } = body
 
@@ -160,4 +165,4 @@ export async function POST(
       { status: 500 }
     )
   }
-}
+})

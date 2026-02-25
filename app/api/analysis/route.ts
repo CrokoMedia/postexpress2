@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
-import { requireAuth } from '@/lib/auth'
+import { requirePermission, Permission } from '@/lib/permissions'
 
-export async function POST(request: NextRequest) {
-  const authResult = await requireAuth(request)
-  if (authResult instanceof NextResponse) return authResult
+/**
+ * POST /api/analysis
+ * Cria uma nova análise/auditoria de perfil
+ *
+ * Requer permissão: view_audits
+ */
+export const POST = requirePermission(Permission.VIEW_AUDITS)(async (request: NextRequest) => {
 
   try {
     const supabase = getServerSupabase()
@@ -63,4 +67,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     )
   }
-}
+})

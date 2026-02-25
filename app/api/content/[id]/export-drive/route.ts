@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
-import { requireAuth } from '@/lib/auth'
+import { requirePermission, Permission } from '@/lib/permissions'
 import { getGoogleDriveClient, findOrCreateFolder, uploadFile } from '@/lib/google-drive'
 
 /**
@@ -15,16 +15,15 @@ import { getGoogleDriveClient, findOrCreateFolder, uploadFile } from '@/lib/goog
  *                 └── slide-2.png
  *
  * O [id] é o audit_id.
+ *
+ * Requer permissão: export_drive
  */
-export async function POST(
+export const POST = requirePermission(Permission.EXPORT_DRIVE)(async (
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  const authResult = await requireAuth(request)
-  if (authResult instanceof NextResponse) return authResult
-
+  context: { params: Promise<{ id: string }> }
+) => {
   try {
-    const { id } = await params
+    const { id } = await context.params
     const supabase = getServerSupabase()
 
     const rootFolderId = process.env.GOOGLE_DRIVE_FOLDER_ID
@@ -148,7 +147,7 @@ export async function POST(
       { status: 500 }
     )
   }
-}
+})
 
 function slugify(text: string): string {
   return text

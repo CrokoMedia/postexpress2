@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { Plus, Trash2, UserCheck, RefreshCw, Pencil, X, Check, Settings } from 'lucide-react'
+import { Plus, Trash2, UserCheck, RefreshCw, Pencil, X, Check, Settings, Shield } from 'lucide-react'
 import Link from 'next/link'
+import { PermissionsManager } from '@/components/organisms/PermissionsManager'
 
 interface UserRow {
   user_id: string
@@ -25,6 +26,12 @@ export default function AdminUsersPage() {
   const [showForm, setShowForm] = useState(false)
   const [editingUserId, setEditingUserId] = useState<string | null>(null)
   const [editingProfileIds, setEditingProfileIds] = useState<string[]>([])
+
+  // Permissions modal state
+  const [permissionsModalUserId, setPermissionsModalUserId] = useState<string | null>(null)
+  const [currentPermissions, setCurrentPermissions] = useState<string[]>([])
+  const [loadingPermissions, setLoadingPermissions] = useState(false)
+  const [permissionsSuccess, setPermissionsSuccess] = useState(false)
 
   const [form, setForm] = useState({
     email: '',
@@ -104,6 +111,53 @@ export default function AdminUsersPage() {
     if (!confirm('Deletar este usuário? Esta ação não pode ser desfeita.')) return
     const res = await fetch(`/api/admin/users?user_id=${userId}`, { method: 'DELETE' })
     if (res.ok) await fetchUsers()
+  }
+
+  async function openPermissionsModal(userId: string) {
+    setPermissionsModalUserId(userId)
+    setLoadingPermissions(true)
+    setPermissionsSuccess(false)
+
+    try {
+      const res = await fetch(`/api/admin/users/${userId}/permissions`)
+      const data = await res.json()
+      setCurrentPermissions(data.permissions || [])
+    } catch (error) {
+      console.error('Erro ao carregar permissões:', error)
+      setCurrentPermissions([])
+    } finally {
+      setLoadingPermissions(false)
+    }
+  }
+
+  function closePermissionsModal() {
+    setPermissionsModalUserId(null)
+    setCurrentPermissions([])
+    setPermissionsSuccess(false)
+  }
+
+  async function handleSavePermissions(permissions: string[]) {
+    if (!permissionsModalUserId) return
+
+    const res = await fetch(`/api/admin/users/${permissionsModalUserId}/permissions`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ permissions }),
+    })
+
+    if (!res.ok) {
+      const data = await res.json()
+      throw new Error(data.error || 'Erro ao salvar permissões')
+    }
+
+    // Atualizar permissões locais e mostrar feedback de sucesso
+    setCurrentPermissions(permissions)
+    setPermissionsSuccess(true)
+
+    // Fechar modal após 1.5s
+    setTimeout(() => {
+      closePermissionsModal()
+    }, 1500)
   }
 
   return (
@@ -313,6 +367,13 @@ export default function AdminUsersPage() {
                         <>
                           {user.role === 'client' && (
                             <>
+                              <button
+                                onClick={() => openPermissionsModal(user.user_id)}
+                                className="rounded p-1.5 text-neutral-500 hover:text-primary-400 hover:bg-primary-500/10 transition"
+                                title="Gerenciar permissões"
+                              >
+                                <Shield className="h-4 w-4" />
+                              </button>
                               <Link
                                 href={`/dashboard/admin/users/${user.user_id}/profiles`}
                                 className="rounded p-1.5 text-neutral-500 hover:text-primary-400 hover:bg-primary-500/10 transition"
@@ -349,6 +410,51 @@ export default function AdminUsersPage() {
           </tbody>
         </table>
       </div>
+
+      {/* Permissions Modal */}
+      {permissionsModalUserId && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xl border border-neutral-800 bg-neutral-900 p-6 shadow-2xl m-4">
+            {/* Close Button */}
+            <button
+              onClick={closePermissionsModal}
+              className="absolute top-4 right-4 rounded-lg p-2 text-neutral-400 hover:text-neutral-50 hover:bg-neutral-800 transition"
+              title="Fechar"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            {/* Success Message */}
+            {permissionsSuccess && (
+              <div className="mb-4 rounded-lg border border-green-500/20 bg-green-500/10 px-4 py-3">
+                <div className="flex items-center gap-3">
+                  <Check className="h-5 w-5 text-green-400" />
+                  <p className="text-sm font-medium text-green-400">
+                    Permissões salvas com sucesso!
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Loading State */}
+            {loadingPermissions ? (
+              <div className="flex items-center justify-center py-12">
+                <div className="text-center">
+                  <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent"></div>
+                  <p className="mt-4 text-sm text-neutral-400">Carregando permissões...</p>
+                </div>
+              </div>
+            ) : (
+              <PermissionsManager
+                userId={permissionsModalUserId}
+                currentPermissions={currentPermissions}
+                onSave={handleSavePermissions}
+                disabled={permissionsSuccess}
+              />
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -26,9 +26,10 @@ export async function GET(request: NextRequest) {
       const { data } = await supabase.auth.admin.getUserById(id)
       return { id, email: data.user?.email || '' }
     })),
+    // Usar VIEW para contornar cache do PostgREST (padrão do projeto)
     supabase
-      .from('user_profiles')
-      .select('user_id, profile_id, profile:instagram_profiles(id, username)')
+      .from('user_profiles_with_instagram')
+      .select('user_id, id, username')
       .in('user_id', userIds.length > 0 ? userIds : ['00000000-0000-0000-0000-000000000000']),
   ])
 
@@ -38,9 +39,8 @@ export async function GET(request: NextRequest) {
   const profilesByUser: Record<string, Array<{ id: string; username: string }>> = {}
   profileLinks.data?.forEach(link => {
     if (!profilesByUser[link.user_id]) profilesByUser[link.user_id] = []
-    if (link.profile) {
-      profilesByUser[link.user_id].push(link.profile as unknown as { id: string; username: string })
-    }
+    // VIEW já traz os dados do perfil no nível raiz
+    profilesByUser[link.user_id].push({ id: link.id, username: link.username })
   })
 
   const result = roles?.map(r => ({

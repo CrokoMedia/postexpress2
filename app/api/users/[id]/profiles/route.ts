@@ -31,39 +31,21 @@ export async function GET(request: NextRequest, context: RouteContext) {
   const supabase = getServerSupabase()
 
   // Buscar perfis vinculados ao usuário
-  const { data: links, error } = await supabase
-    .from('user_profiles')
-    .select(`
-      profile_id,
-      created_at,
-      profile:instagram_profiles(
-        id,
-        username,
-        full_name,
-        followers_count,
-        profile_pic_url_hd,
-        is_verified,
-        total_audits,
-        last_scraped_at
-      )
-    `)
+  // Usar VIEW para contornar cache do PostgREST (padrão do projeto)
+  const { data: profiles, error } = await supabase
+    .from('user_profiles_with_instagram')
+    .select('id, username, full_name, followers_count, profile_pic_url_hd, is_verified, total_audits, last_scraped_at, linked_at')
     .eq('user_id', targetUserId)
-    .order('created_at', { ascending: false })
+    .order('linked_at', { ascending: false })
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
-  // Formatar resposta
-  const profiles = links?.map(link => ({
-    ...link.profile,
-    linked_at: link.created_at,
-  })) || []
-
   return NextResponse.json({
     user_id: targetUserId,
-    profiles,
-    total: profiles.length,
+    profiles: profiles || [],
+    total: profiles?.length || 0,
   })
 }
 

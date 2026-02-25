@@ -8,6 +8,24 @@ export type AuditClassification = 'CRÍTICO' | 'RUIM' | 'MEDIANO' | 'BOM' | 'EXC
 export type CarouselType = 'educacional' | 'vendas' | 'autoridade' | 'viral'
 export type SlideType = 'hook' | 'conteudo' | 'contexto' | 'ponto' | 'aplicacao' | 'cta' | 'closer'
 
+// User Permissions
+export type UserPermission =
+  | 'view_audits'
+  | 'create_content'
+  | 'edit_content'
+  | 'delete_content'
+  | 'export_drive'
+  | 'export_zip'
+  | 'view_comparisons'
+  | 'manage_profiles'
+
+export interface UserPermissionRecord {
+  user_id: string
+  permission: UserPermission
+  enabled: boolean
+  created_at: string
+}
+
 export interface Profile {
   id: string
   username: string

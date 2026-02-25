@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
+import { requirePermission, Permission } from '@/lib/permissions'
 import Anthropic from '@anthropic-ai/sdk'
 
 const client = new Anthropic({
@@ -192,12 +193,18 @@ Retorne um JSON com esta estrutura EXATA:
 
 Agora analise a auditoria abaixo e crie as 3 sugestões de carrosséis:`
 
-export async function POST(
+/**
+ * POST /api/audits/[id]/generate-content
+ * Gera sugestões de conteúdo baseadas na auditoria
+ *
+ * Requer permissão: create_content
+ */
+export const POST = requirePermission(Permission.CREATE_CONTENT)(async (
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+  context: { params: Promise<{ id: string }> }
+) => {
   try {
-    const { id } = await params
+    const { id } = await context.params
     const supabase = getServerSupabase()
 
     // Extrair tema personalizado do body (se fornecido)
@@ -499,4 +506,4 @@ export async function POST(
       { status: 500 }
     )
   }
-}
+})
