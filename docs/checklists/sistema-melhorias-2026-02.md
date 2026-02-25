@@ -103,19 +103,6 @@
 
 ### 🆕 NOVO: Melhorias de Scraping (baseado na auditoria)
 
-#### IMPROVE-003: Extrair hashtags e mentions do caption
-- [ ] **Análise:** Criar regex para extrair hashtags (#tag)
-- [ ] **Análise:** Criar regex para extrair mentions (@user)
-- [ ] **Implementação:** Adicionar parsing no script
-- [ ] **Schema:** Garantir campos `hashtags` e `mentions` no DB
-- [ ] **Teste:** Validar extração em posts reais
-- **Agente responsável:** @dev
-- **Dependências:** IMPROVE-001 (auditoria) ✅
-- **Estimativa:** 2-3h
-- **Prioridade:** 🔴 **ALTA** - Impacta Framework de Copy
-- **Arquivos envolvidos:**
-  - `scripts/instagram-scraper-with-comments.js`
-
 #### IMPROVE-004: Coletar externalUrl e isPinned
 - [ ] **Implementação:** Adicionar coleta de `externalUrl` do perfil
 - [ ] **Implementação:** Adicionar coleta de `isPinned` dos posts

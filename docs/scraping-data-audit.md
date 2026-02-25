@@ -491,15 +491,14 @@ const profile = {
 
 ### Implementação sugerida (ordem de prioridade):
 
-1. ✅ **Fase 1 (ALTA)** - Extrair hashtags e mentions do caption
-2. ✅ **Fase 1 (ALTA)** - Coletar `externalUrl` do perfil
-3. ⚠️ **Fase 2 (MÉDIA)** - Coletar `isPinned` dos posts
-4. ⚠️ **Fase 2 (MÉDIA)** - Mapear threads de comentários
-5. ℹ️ **Fase 3 (BAIXA)** - Análise de sentimento
-6. ℹ️ **Fase 3 (BAIXA)** - Dados de contato
+1. ✅ **Fase 1 (ALTA)** - Coletar `externalUrl` do perfil
+2. ⚠️ **Fase 2 (MÉDIA)** - Coletar `isPinned` dos posts
+3. ⚠️ **Fase 2 (MÉDIA)** - Mapear threads de comentários
+4. ℹ️ **Fase 3 (BAIXA)** - Análise de sentimento
+5. ℹ️ **Fase 3 (BAIXA)** - Dados de contato
 
 ### Estimativa de esforço:
-- **Fase 1:** 2-3 horas (implementação + testes)
+- **Fase 1:** 1 hora (implementação + testes)
 - **Fase 2:** 4-6 horas (implementação + testes + validação)
 - **Fase 3:** 6-8 horas (pesquisa + integração + testes)
 
