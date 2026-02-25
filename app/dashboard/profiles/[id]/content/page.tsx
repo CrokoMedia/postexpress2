@@ -89,21 +89,15 @@ export default function ProfileContentPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <Button
-          variant="ghost"
-          onClick={() => router.push(`/dashboard/profiles/${id}`)}
-          className="mb-4"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Voltar para Perfil
-        </Button>
-
-        <PageHeader
-          title={`Conteúdos Gerados - @${profile.username}`}
-          description={`${contents.length} ${contents.length === 1 ? 'conteúdo gerado' : 'conteúdos gerados'} pelo Content Squad`}
-        />
-      </div>
+      <PageHeader
+        title={`Conteúdos Gerados - @${profile.username}`}
+        description={`${contents.length} ${contents.length === 1 ? 'conteúdo gerado' : 'conteúdos gerados'} pelo Content Squad`}
+        breadcrumb={[
+          { label: 'Dashboard', href: '/dashboard' },
+          { label: `@${profile.username}`, href: `/dashboard/profiles/${id}` },
+          { label: 'Conteúdos Gerados', href: null }
+        ]}
+      />
 
       {/* Empty State */}
       {contents.length === 0 && (

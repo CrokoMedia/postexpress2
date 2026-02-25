@@ -275,14 +275,11 @@ export default function ReelsPage() {
       <PageHeader
         title="Reel Production"
         description={`@${profile?.username} • ${totalApproved} carrossel${totalApproved !== 1 ? 'is' : ''} aprovado${totalApproved !== 1 ? 's' : ''}`}
-        action={
-          <Link href={`/dashboard/profiles/${id}`}>
-            <Button variant="ghost" size="sm">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Voltar ao perfil
-            </Button>
-          </Link>
-        }
+        breadcrumb={[
+          { label: 'Dashboard', href: '/dashboard' },
+          { label: `@${profile?.username}`, href: `/dashboard/profiles/${id}` },
+          { label: 'Reel Production', href: null }
+        ]}
       />
 
       {/* Stats resumo */}

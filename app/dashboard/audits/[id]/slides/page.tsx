@@ -359,15 +359,6 @@ export default function SlidesPage() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <Button
-          variant="ghost"
-          onClick={() => router.push(`/dashboard/audits/${id}/create-content`)}
-          className="mb-4"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Voltar para Criar Conteúdo
-        </Button>
-
         <div className="flex items-start justify-between flex-wrap gap-4">
           <PageHeader
             title={`Slides Gerados — @${audit?.profile.username}`}
@@ -376,6 +367,13 @@ export default function SlidesPage() {
                 ? `${totalSlides} slide${totalSlides !== 1 ? 's' : ''} gerado${totalSlides !== 1 ? 's' : ''} (${[totalV1 > 0 && `${totalV1} padrão`, totalV2 > 0 && `${totalV2} com IA`].filter(Boolean).join(' + ')})`
                 : 'Nenhum slide gerado ainda'
             }
+            breadcrumb={[
+              { label: 'Dashboard', href: '/dashboard' },
+              { label: `@${audit?.profile.username}`, href: `/dashboard/profiles/${audit?.profile.id}` },
+              { label: 'Auditoria', href: `/dashboard/audits/${id}` },
+              { label: 'Criar Conteúdo', href: `/dashboard/audits/${id}/create-content` },
+              { label: 'Slides Gerados', href: null }
+            ]}
           />
 
           {hasSlides && (

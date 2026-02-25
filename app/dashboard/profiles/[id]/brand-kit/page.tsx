@@ -183,18 +183,14 @@ export default function ProfileBrandKitPage() {
   // Com kits
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4 mb-6">
-        <Link href={`/dashboard/profiles/${profileId}`}>
-          <Button variant="ghost" size="sm">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Voltar
-          </Button>
-        </Link>
-      </div>
-
       <PageHeader
         title={`Brand Kits - @${profileData.username}`}
         description="Gerencie a identidade visual deste perfil"
+        breadcrumb={[
+          { label: 'Dashboard', href: '/dashboard' },
+          { label: `@${profileData.username}`, href: `/dashboard/profiles/${profileId}` },
+          { label: 'Brand Kits', href: null }
+        ]}
         action={
           <Button onClick={handleCreate}>
             <Plus className="h-4 w-4 mr-2" />

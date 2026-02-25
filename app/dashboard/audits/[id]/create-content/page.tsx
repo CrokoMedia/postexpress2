@@ -1035,21 +1035,16 @@ CTA: ${carousel.cta}
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div>
-          <Button
-            variant="ghost"
-            onClick={() => router.push(`/dashboard/audits/${id}`)}
-            className="mb-4"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Voltar para Auditoria
-          </Button>
-
-          <PageHeader
-            title={`Criar Conteúdo - @${audit.profile.username}`}
-            description="Sugestões de carrosséis baseadas nos insights da auditoria"
-          />
-        </div>
+        <PageHeader
+          title={`Criar Conteúdo - @${audit.profile.username}`}
+          description="Sugestões de carrosséis baseadas nos insights da auditoria"
+          breadcrumb={[
+            { label: 'Dashboard', href: '/dashboard' },
+            { label: `@${audit.profile.username}`, href: `/dashboard/profiles/${audit.profile.id}` },
+            { label: 'Auditoria', href: `/dashboard/audits/${id}` },
+            { label: 'Criar Conteúdo', href: null }
+          ]}
+        />
 
         <div className="flex items-center gap-2">
           {(slides || slidesV2) && (
@@ -1142,6 +1137,26 @@ CTA: ${carousel.cta}
               <span className="text-muted-foreground">Os carrosséis serão criados focados neste tema</span>
             </div>
           )}
+
+          {/* Botão de Gerar Conteúdo */}
+          <Button
+            onClick={handleGenerateContent}
+            disabled={generating || !audit}
+            className="w-full"
+            size="lg"
+          >
+            {generating ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Gerando Conteúdo...
+              </>
+            ) : (
+              <>
+                <Sparkles className="w-4 h-4 mr-2" />
+                Gerar Carrosséis {customTheme.trim() ? 'com Tema' : 'da Auditoria'}
+              </>
+            )}
+          </Button>
         </CardContent>
       </Card>
 

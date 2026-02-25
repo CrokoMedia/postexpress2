@@ -171,20 +171,17 @@ export default function ReelsPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <Button
-          variant="ghost"
-          onClick={() => router.push(`/dashboard/audits/${id}/create-content`)}
-          className="mb-4"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Voltar para Carrosséis
-        </Button>
-        <PageHeader
-          title={`Ideias de Reels — @${audit.profile.username}`}
-          description="Tópicos para gravar — sem roteiro, sem travar"
-        />
-      </div>
+      <PageHeader
+        title={`Ideias de Reels — @${audit.profile.username}`}
+        description="Tópicos para gravar — sem roteiro, sem travar"
+        breadcrumb={[
+          { label: 'Dashboard', href: '/dashboard' },
+          { label: `@${audit.profile.username}`, href: `/dashboard/profiles/${audit.profile.id}` },
+          { label: 'Auditoria', href: `/dashboard/audits/${id}` },
+          { label: 'Criar Conteúdo', href: `/dashboard/audits/${id}/create-content` },
+          { label: 'Ideias de Reels', href: null }
+        ]}
+      />
 
       {/* Tabs */}
       <div className="flex gap-1 bg-neutral-900 border border-neutral-800 rounded-xl p-1 w-fit">

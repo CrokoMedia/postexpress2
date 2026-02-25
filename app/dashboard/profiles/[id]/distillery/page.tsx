@@ -178,22 +178,16 @@ export default function DistilleryPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header com botão voltar */}
-      <div>
-        <Button
-          variant="ghost"
-          onClick={() => router.push(`/dashboard/profiles/${profileId}`)}
-          className="mb-4"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Voltar para Perfil
-        </Button>
-
-        <PageHeader
-          title={`Content Distillery - @${profile.username}`}
-          description="Transforme auditorias ou vídeos do YouTube em frameworks estruturados e 60+ peças de conteúdo"
-        />
-      </div>
+      {/* Header */}
+      <PageHeader
+        title={`Content Distillery - @${profile.username}`}
+        description="Transforme auditorias ou vídeos do YouTube em frameworks estruturados e 60+ peças de conteúdo"
+        breadcrumb={[
+          { label: 'Dashboard', href: '/dashboard' },
+          { label: `@${profile.username}`, href: `/dashboard/profiles/${profileId}` },
+          { label: 'Content Distillery', href: null }
+        ]}
+      />
 
       {/* Seletor de Modo */}
       <div className="flex gap-2 bg-neutral-900 border border-neutral-800 rounded-xl p-1 w-fit">

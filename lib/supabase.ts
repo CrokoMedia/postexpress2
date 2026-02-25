@@ -1,19 +1,10 @@
 import { createClient } from '@supabase/supabase-js'
 import { createBrowserClient } from '@supabase/ssr'
 
-// Helper para pegar variáveis de ambiente de forma segura (server e client)
-function getEnvVar(key: string): string | undefined {
-  // No browser, process.env é substituído por valores estáticos durante build
-  // Se não existir, retorna undefined ao invés de quebrar
-  if (typeof process !== 'undefined' && process.env) {
-    return process.env[key]
-  }
-  return undefined
-}
-
-// Lazy getters para variáveis de ambiente (validação apenas quando necessário)
+// Acessar variáveis de ambiente diretamente (Next.js substitui em build time)
 function getSupabaseUrl(): string {
-  const url = getEnvVar('NEXT_PUBLIC_SUPABASE_URL') || getEnvVar('SUPABASE_URL')
+  // No client, usar NEXT_PUBLIC_*; no server, pode usar ambas
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
   if (!url) {
     throw new Error('Missing SUPABASE_URL or NEXT_PUBLIC_SUPABASE_URL environment variable')
   }
@@ -21,7 +12,8 @@ function getSupabaseUrl(): string {
 }
 
 function getSupabaseAnonKey(): string {
-  const key = getEnvVar('NEXT_PUBLIC_SUPABASE_ANON_KEY') || getEnvVar('SUPABASE_ANON_KEY')
+  // No client, usar NEXT_PUBLIC_*; no server, pode usar ambas
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY
   if (!key) {
     throw new Error('Missing SUPABASE_ANON_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY environment variable')
   }
@@ -53,7 +45,7 @@ export const supabase = new Proxy({} as ReturnType<typeof createClient>, {
 
 // Server-only client com service role (para API routes e worker)
 export function getServerSupabase() {
-  const serviceRoleKey = getEnvVar('SUPABASE_SERVICE_ROLE_KEY')
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
   const url = getSupabaseUrl()
 
   if (!serviceRoleKey) {

@@ -566,21 +566,17 @@ export default function ConfigureSlidesPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <Button
-          variant="ghost"
-          onClick={() => router.push(`/dashboard/audits/${id}/create-content`)}
-          className="mb-4"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Voltar para Conteúdo
-        </Button>
-
-        <PageHeader
-          title={`Configurar Slides - @${audit.profile.username}`}
-          description="Configure as imagens de cada slide e gere os visuais"
-        />
-      </div>
+      <PageHeader
+        title={`Configurar Slides - @${audit.profile.username}`}
+        description="Configure as imagens de cada slide e gere os visuais"
+        breadcrumb={[
+          { label: 'Dashboard', href: '/dashboard' },
+          { label: `@${audit.profile.username}`, href: `/dashboard/profiles/${audit.profile.id}` },
+          { label: 'Auditoria', href: `/dashboard/audits/${id}` },
+          { label: 'Criar Conteúdo', href: `/dashboard/audits/${id}/create-content` },
+          { label: 'Configurar Slides', href: null }
+        ]}
+      />
 
       {/* Conteúdo principal */}
       <div className="space-y-6">

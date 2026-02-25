@@ -253,25 +253,19 @@ export default function ProfileSlidesPage() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <Button
-          variant="ghost"
-          onClick={() => router.push(`/dashboard/profiles/${id}`)}
-          className="mb-4"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Voltar para Perfil
-        </Button>
-
-        <PageHeader
-          title={`Todos os Slides — @${profile?.username || '...'}`}
-          description={
-            hasSlides
-              ? `${data.total_slides} slide${data.total_slides !== 1 ? 's' : ''} em ${data.total_audits} auditoria${data.total_audits !== 1 ? 's' : ''} (${[data.total_slides_v1 > 0 && `${data.total_slides_v1} padrão`, data.total_slides_v2 > 0 && `${data.total_slides_v2} com IA`].filter(Boolean).join(' + ')})`
-              : 'Nenhum slide gerado ainda'
-          }
-        />
-      </div>
+      <PageHeader
+        title={`Todos os Slides — @${profile?.username || '...'}`}
+        description={
+          hasSlides
+            ? `${data.total_slides} slide${data.total_slides !== 1 ? 's' : ''} em ${data.total_audits} auditoria${data.total_audits !== 1 ? 's' : ''} (${[data.total_slides_v1 > 0 && `${data.total_slides_v1} padrão`, data.total_slides_v2 > 0 && `${data.total_slides_v2} com IA`].filter(Boolean).join(' + ')})`
+            : 'Nenhum slide gerado ainda'
+        }
+        breadcrumb={[
+          { label: 'Dashboard', href: '/dashboard' },
+          { label: `@${profile?.username || 'perfil'}`, href: `/dashboard/profiles/${id}` },
+          { label: 'Slides', href: null }
+        ]}
+      />
 
       {/* Estado vazio */}
       {!hasSlides && (

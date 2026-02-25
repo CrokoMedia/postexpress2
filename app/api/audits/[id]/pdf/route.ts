@@ -69,6 +69,49 @@ export async function GET(
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
+// Gerar SVG icon inline (sem react-dom/server para compatibilidade com Next.js)
+function createSvgIcon(paths: string, size: number, color: string): string {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`
+}
+
+// SVG paths para cada ícone (extraídos do Lucide React)
+const SVG_PATHS = {
+  brain: '<path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"></path><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"></path><path d="M3.477 10.896a4 4 0 0 1 .585-.396"></path><path d="M19.938 10.5a4 4 0 0 1 .585.396"></path><path d="M6 18a4 4 0 0 1-1.967-.516"></path><path d="M19.967 17.484A4 4 0 0 1 18 18"></path>',
+  penLine: '<path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>',
+  dollarSign: '<line x1="12" y1="2" x2="12" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>',
+  barChart3: '<path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path>',
+  search: '<circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>',
+  heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>',
+  messageCircle: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>',
+  trendingUp: '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>',
+  zap: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>',
+  alertTriangle: '<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>'
+}
+
+// Mapeamento de dimensões → ícones
+const DIMENSION_ICONS = {
+  behavior: { path: SVG_PATHS.brain, color: '#8B5CF6' },        // purple-600
+  copy: { path: SVG_PATHS.penLine, color: '#EC4899' },          // pink-600
+  offers: { path: SVG_PATHS.dollarSign, color: '#10B981' },     // emerald-600
+  metrics: { path: SVG_PATHS.barChart3, color: '#3B82F6' },     // blue-600
+  anomalies: { path: SVG_PATHS.search, color: '#F59E0B' }       // amber-600
+}
+
+// Mapeamento de métricas → ícones
+const METRIC_ICONS = {
+  likes: { path: SVG_PATHS.heart, color: '#EF4444' },           // red-500
+  comments: { path: SVG_PATHS.messageCircle, color: '#6366F1' }, // indigo-500
+  engagement: { path: SVG_PATHS.trendingUp, color: '#10B981' },  // emerald-500
+  followers: { path: SVG_PATHS.users, color: '#8B5CF6' }         // primary-600
+}
+
+// Ícones de seções
+const SECTION_ICONS = {
+  strengths: { path: SVG_PATHS.zap, color: '#FBBF24' },         // yellow-500
+  problems: { path: SVG_PATHS.alertTriangle, color: '#EF4444' } // red-600
+}
+
 function getLogoBase64(): string {
   try {
     const logoPath = path.join(process.cwd(), 'public', 'croko-icon.png')
@@ -115,9 +158,10 @@ function scoreBar(score: number): string {
 
 function renderStrengths(items: any[]): string {
   if (!items || items.length === 0) return ''
+  const iconSvg = createSvgIcon(SECTION_ICONS.strengths.path, 28, SECTION_ICONS.strengths.color)
   return items.map(s => `
     <div style="display:flex;gap:12px;background:#f0fdf4;border:1px solid #bbf7d0;border-left:4px solid #10b981;border-radius:12px;padding:10px 16px;margin-bottom:8px;">
-      <div style="font-size:28px;line-height:1;flex-shrink:0;">${s.emoji || '💪'}</div>
+      <div style="flex-shrink:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;">${iconSvg}</div>
       <div>
         <div style="font-size:14px;font-weight:700;color:#065f46;margin-bottom:4px;">#${s.rank} ${escapeHtml(s.title)}</div>
         <div style="font-size:13px;color:#374151;line-height:1.6;">${escapeHtml(s.description)}</div>
@@ -127,6 +171,7 @@ function renderStrengths(items: any[]): string {
 
 function renderCriticalProblems(items: any[]): string {
   if (!items || items.length === 0) return ''
+  const iconSvg = createSvgIcon(SECTION_ICONS.problems.path, 28, SECTION_ICONS.problems.color)
   const severityColor: Record<string, string> = {
     'crítico': '#ef4444',
     'alto':    '#f97316',
@@ -140,7 +185,7 @@ function renderCriticalProblems(items: any[]): string {
       : ''
     return `
     <div style="display:flex;gap:12px;background:#fff5f5;border:1px solid #fecaca;border-left:4px solid #ef4444;border-radius:12px;padding:10px 16px;margin-bottom:8px;">
-      <div style="font-size:28px;line-height:1;flex-shrink:0;">${p.emoji || '⚠️'}</div>
+      <div style="flex-shrink:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;">${iconSvg}</div>
       <div>
         <div style="font-size:14px;font-weight:700;color:#991b1b;margin-bottom:4px;">#${p.rank} ${escapeHtml(p.title)}${severityBadge}</div>
         <div style="font-size:13px;color:#374151;line-height:1.6;">${escapeHtml(p.description)}</div>
@@ -180,11 +225,11 @@ function generateAuditHTML(audit: any): string {
   const logoBase64     = getLogoBase64()
 
   const dimensions = [
-    { name: 'Comportamento', icon: '🧠', score: audit.score_behavior  || 0, key: 'behavior'  },
-    { name: 'Copy',          icon: '✍️', score: audit.score_copy      || 0, key: 'copy'      },
-    { name: 'Ofertas',       icon: '💰', score: audit.score_offers    || 0, key: 'offers'    },
-    { name: 'Métricas',      icon: '📊', score: audit.score_metrics   || 0, key: 'metrics'   },
-    { name: 'Anomalias',     icon: '🔍', score: audit.score_anomalies || 0, key: 'anomalies' },
+    { name: 'Comportamento', icon: createSvgIcon(DIMENSION_ICONS.behavior.path, 32, '#fff'), score: audit.score_behavior  || 0, key: 'behavior'  },
+    { name: 'Copy',          icon: createSvgIcon(DIMENSION_ICONS.copy.path, 32, '#fff'),     score: audit.score_copy      || 0, key: 'copy'      },
+    { name: 'Ofertas',       icon: createSvgIcon(DIMENSION_ICONS.offers.path, 32, '#fff'),   score: audit.score_offers    || 0, key: 'offers'    },
+    { name: 'Métricas',      icon: createSvgIcon(DIMENSION_ICONS.metrics.path, 32, '#fff'),  score: audit.score_metrics   || 0, key: 'metrics'   },
+    { name: 'Anomalias',     icon: createSvgIcon(DIMENSION_ICONS.anomalies.path, 32, '#fff'), score: audit.score_anomalies || 0, key: 'anomalies' },
   ]
 
   const auditorSections = dimensions.map(dim => {
@@ -197,7 +242,7 @@ function generateAuditHTML(audit: any): string {
     <div style="margin-bottom:16px;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;">
       <!-- Cabeçalho da dimensão -->
       <div style="background:linear-gradient(135deg,#0a6e75 0%,#085862 100%);padding:12px 20px;display:flex;align-items:center;gap:16px;">
-        <div style="font-size:32px;line-height:1;">${dim.icon}</div>
+        <div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">${dim.icon}</div>
         <div>
           <h3 style="margin:0;color:#fff;font-size:18px;font-weight:700;">${dim.name}</h3>
           <p  style="margin:0;color:rgba(255,255,255,.7);font-size:13px;">Análise de ${dim.name}</p>
@@ -272,11 +317,17 @@ function generateAuditHTML(audit: any): string {
 
       <!-- Mini scores -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 32px;">
-        ${dimensions.map(d => `
+        ${dimensions.map(d => {
+          const miniIcon = createSvgIcon(DIMENSION_ICONS[d.key as keyof typeof DIMENSION_ICONS].path, 14, DIMENSION_ICONS[d.key as keyof typeof DIMENSION_ICONS].color)
+          return `
           <div>
-            <div style="font-size:12px;color:#9ca3af;margin-bottom:4px;">${d.icon} ${d.name}</div>
+            <div style="font-size:12px;color:#9ca3af;margin-bottom:4px;display:flex;align-items:center;gap:6px;">
+              <span style="display:inline-flex;width:14px;height:14px;">${miniIcon}</span>
+              <span>${d.name}</span>
+            </div>
             ${scoreBar(d.score)}
-          </div>`).join('')}
+          </div>`
+        }).join('')}
       </div>
     </div>
   </div>
@@ -286,30 +337,39 @@ function generateAuditHTML(audit: any): string {
     <h2 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#0a6e75;margin-bottom:12px;">Métricas de Engajamento</h2>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">
       ${[
-        { label: 'Total de Likes',        value: formatNumber(audit.total_likes      || 0), icon: '❤️'  },
-        { label: 'Total de Comentários',  value: formatNumber(audit.total_comments   || 0), icon: '💬'  },
-        { label: 'Taxa de Engajamento',   value: `${(audit.engagement_rate || 0).toFixed(2)}%`, icon: '📈' },
-        { label: 'Seguidores',            value: formatNumber(audit.snapshot_followers || 0), icon: '👥' },
-      ].map(m => `
+        { label: 'Total de Likes',        value: formatNumber(audit.total_likes      || 0), iconKey: 'likes'      },
+        { label: 'Total de Comentários',  value: formatNumber(audit.total_comments   || 0), iconKey: 'comments'   },
+        { label: 'Taxa de Engajamento',   value: `${(audit.engagement_rate || 0).toFixed(2)}%`, iconKey: 'engagement' },
+        { label: 'Seguidores',            value: formatNumber(audit.snapshot_followers || 0), iconKey: 'followers'  },
+      ].map(m => {
+        const metricIcon = createSvgIcon(METRIC_ICONS[m.iconKey as keyof typeof METRIC_ICONS].path, 24, METRIC_ICONS[m.iconKey as keyof typeof METRIC_ICONS].color)
+        return `
         <div style="background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:12px 18px;text-align:center;">
-          <div style="font-size:20px;margin-bottom:4px;">${m.icon}</div>
+          <div style="width:24px;height:24px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;">${metricIcon}</div>
           <div style="font-size:20px;font-weight:800;color:#111827;margin-bottom:2px;">${m.value}</div>
           <div style="font-size:11px;color:#9ca3af;font-weight:500;">${m.label}</div>
-        </div>`).join('')}
+        </div>`
+      }).join('')}
     </div>
   </div>
 
   <!-- Pontos Fortes -->
   ${audit.raw_json?.top_strengths?.length > 0 ? `
   <div style="padding:16px 52px;border-top:1px solid #e5e7eb;">
-    <h2 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#10b981;margin-bottom:12px;">💪 Pontos Fortes</h2>
+    <h2 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#10b981;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+      <span style="display:inline-flex;width:16px;height:16px;">${createSvgIcon(SECTION_ICONS.strengths.path, 16, '#10b981')}</span>
+      <span>Pontos Fortes</span>
+    </h2>
     ${renderStrengths(audit.raw_json.top_strengths)}
   </div>` : ''}
 
   <!-- Problemas Críticos -->
   ${audit.raw_json?.critical_problems?.length > 0 ? `
   <div style="padding:16px 52px;border-top:1px solid #e5e7eb;">
-    <h2 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#ef4444;margin-bottom:12px;">⚠️ Problemas Críticos</h2>
+    <h2 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#ef4444;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+      <span style="display:inline-flex;width:16px;height:16px;">${createSvgIcon(SECTION_ICONS.problems.path, 16, '#ef4444')}</span>
+      <span>Problemas Críticos</span>
+    </h2>
     ${renderCriticalProblems(audit.raw_json.critical_problems)}
   </div>` : ''}
 

@@ -97,20 +97,15 @@ export default function CompareAuditsPage() {
 
   return (
     <div>
-      <div className="flex items-center gap-4 mb-8">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => router.push(`/dashboard/profiles/${auditV1.profile?.id}`)}
-        >
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Voltar ao Perfil
-        </Button>
-      </div>
-
       <PageHeader
         title="Comparação de Auditorias"
         description={`@${auditV1.profile?.username} - v1.0 vs v2.0 com Contexto`}
+        breadcrumb={[
+          { label: 'Dashboard', href: '/dashboard' },
+          { label: `@${auditV1.profile?.username}`, href: `/dashboard/profiles/${auditV1.profile?.id}` },
+          { label: 'Auditoria', href: `/dashboard/audits/${id}` },
+          { label: 'Comparação', href: null }
+        ]}
       />
 
       {/* Context Info */}

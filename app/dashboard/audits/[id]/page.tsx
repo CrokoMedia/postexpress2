@@ -125,6 +125,11 @@ export default function AuditPage() {
           description={new Date(audit.audit_date).toLocaleDateString('pt-BR', {
             dateStyle: 'full'
           })}
+          breadcrumb={[
+            { label: 'Dashboard', href: '/dashboard' },
+            { label: `@${audit.profile.username}`, href: `/dashboard/profiles/${audit.profile.id}` },
+            { label: 'Auditoria', href: null }
+          ]}
         />
         <div className="flex gap-2">
           <Button
