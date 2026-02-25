@@ -18,7 +18,7 @@ interface ContentItem {
   slides_json: any
   slides_v2_json: any
   generated_at: string
-  profiles: {
+  instagram_profiles: {
     username: string
     full_name: string
   }
@@ -52,7 +52,7 @@ export default function BauPage() {
           slides_json,
           slides_v2_json,
           generated_at,
-          profiles!left(username, full_name),
+          instagram_profiles!left(username, full_name),
           audits!left(classification)
         `)
         .order('generated_at', { ascending: false })
@@ -62,7 +62,7 @@ export default function BauPage() {
       // Processar dados para formato correto
       const processedData = (data || []).map((item: any) => ({
         ...item,
-        profiles: Array.isArray(item.profiles) ? item.profiles[0] : item.profiles,
+        instagram_profiles: Array.isArray(item.instagram_profiles) ? item.instagram_profiles[0] : item.instagram_profiles,
         audits: Array.isArray(item.audits) ? item.audits[0] : item.audits,
       }))
 
@@ -174,11 +174,11 @@ export default function BauPage() {
                       <div className="flex items-center gap-3 mb-2">
                         <User className="w-4 h-4 text-muted-foreground" />
                         <CardTitle className="text-xl">
-                          {item.profiles?.full_name || item.profiles?.username || 'Perfil desconhecido'}
+                          {item.instagram_profiles?.full_name || item.instagram_profiles?.username || 'Perfil desconhecido'}
                         </CardTitle>
-                        {item.profiles?.username && (
+                        {item.instagram_profiles?.username && (
                           <Badge variant="neutral" className="text-xs">
-                            @{item.profiles.username}
+                            @{item.instagram_profiles.username}
                           </Badge>
                         )}
                       </div>
