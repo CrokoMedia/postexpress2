@@ -1,29 +1,55 @@
-# CLAUDE.md - Croko Lab
+# CLAUDE.md - Croko Labs
 
 > Contexto completo do projeto para o Claude Code.
 > Leia este arquivo antes de qualquer tarefa no repositório.
 
 ---
 
-## 🎯 O QUE É O CROKO LAB
+## 🎯 O QUE É A CROKO LABS
 
-**Croko Lab é o laboratório de conteúdo científico da Agência Croko.**
+**Croko Labs é a ferramenta de infraestrutura autônoma da Agência Croko.**
 
-Não é um "app", não é "software", não é "SaaS", não é "ferramenta de IA". É um **serviço que transforma creators de achistas em estrategistas data-driven**.
+Não é um "app", não é "software", não é "SaaS", não é "ferramenta de IA". É uma **infraestrutura que transforma conteúdo em ativo operacional previsível**.
 
-### O que entregamos:
+### A Ferramenta (Croko Labs)
+Plataforma técnica que:
 1. **Croko Audit** - Análise profunda de qualquer perfil do Instagram em 3 minutos
 2. **Perguntas do público** - Exatamente o que a audiência pergunta nos comentários (= ideias infinitas de conteúdo)
 3. **Leitura dos slides** - Extraímos o texto completo de carrosséis dos concorrentes (ninguém mais faz isso)
 4. **5 frameworks científicos** - Hormozi, Schwartz, Kahneman, Cagan, Paul Graham aplicados ao conteúdo
-5. **📱 Tudo via WhatsApp** - Da ideia aos slides prontos, sem sair do celular (diferencial único)
+5. **Geração de conteúdo autônomo** - Produção consistente e previsível de carrosséis e posts
+6. **📱 Tudo via WhatsApp** - Da análise aos slides prontos, sem sair do celular (diferencial único)
 
-### Transformação entregue:
-- **ANTES:** "Não sei o que postar, fico 4 horas travado sem ideia"
-- **DEPOIS:** "Tenho 20 ideias acionáveis em 3 minutos, baseadas no que meu público realmente quer"
+### O Método (Motor de Conteúdo Autônomo™)
+
+**Big Idea:** "O problema não é a criatividade. É depender dela."
+
+**Versão manifesto:** "Criatividade não escala. Infraestrutura sim."
+
+**Posicionamento Nuclear:**
+> "Enquanto a maioria contrata mais criativos, nós instalamos infraestrutura porque criatividade não escala — sistema escala."
+
+**Território de Dominação:**
+Engenharia de Autoridade Autônoma para experts high ticket.
+
+**Transformação Central:**
+Implantamos infraestrutura autônoma que transforma conteúdo em ativo operacional previsível e elimina a dependência criativa do negócio.
 
 ### Desenvolvido por:
-**Agência Croko** | Versão 1.0 | Fevereiro 2026
+**Agência Croko** | Versão 2.0 | Fevereiro 2026
+
+---
+
+## ⚙️ OS 4 PILARES DO MOTOR DE CONTEÚDO AUTÔNOMO™
+
+| Pilar | Descrição |
+|-------|-----------|
+| **1. Arquitetura de Voz Estratégica** | Mapeamento de tese, posicionamento e tom para que o sistema preserve identidade sem depender de inspiração humana |
+| **2. Engine de Produção Autônoma** | Estrutura proprietária que gera roteiros e conteúdos com consistência e velocidade previsível |
+| **3. Arquitetura Visual Padronizada** | Templates e padrões que eliminam gargalo criativo e mantêm autoridade visual forte e coerente |
+| **4. Protocolo de Ativação Autônoma** | Implantação e treinamento que garantem operação independente da Croko Labs |
+
+**Você não compra ferramenta. Você recebe instalação estrutural.**
 
 ---
 
@@ -32,38 +58,310 @@ Não é um "app", não é "software", não é "SaaS", não é "ferramenta de IA"
 ### ⛔ PALAVRAS PROIBIDAS (nunca usar em marketing/copy)
 | Proibido | Usar no lugar |
 |----------|--------------|
-| IA / Inteligência Artificial | "análise avançada", "método científico" |
+| IA / Inteligência Artificial | "infraestrutura autônoma", "sistema estrutural" |
 | OCR | "leitura dos slides", "extração de texto" |
 | Scraping | "coleta de dados", "análise de perfil" |
-| SaaS / Software / App / Ferramenta | "serviço", "auditoria", "método" |
+| SaaS / Software / App / Ferramenta | "infraestrutura", "sistema", "instalação estrutural" |
 | API / Backend / Pipeline | (nunca mencionar) |
-| Automatizado / Robô | (nunca mencionar) |
+| Automatizado / Robô | "autônomo", "independente" |
 | Machine Learning | (nunca mencionar) |
 | Big Data / Analytics | "análise de dados", "insights" |
 
 ### ✅ PALAVRAS PODEROSAS (sempre priorizar)
+
+**Vocabulário de Infraestrutura:**
+- "Infraestrutura autônoma"
+- "Arquitetura de autoridade"
+- "Sistema estrutural"
+- "Instalação operacional"
+- "Ativo previsível"
+- "Independência criativa"
+- "Engenharia de conteúdo"
+
+**Vocabulário de Transformação:**
+- "Eliminar dependência criativa"
+- "Conteúdo como ativo operacional"
+- "Autoridade previsível"
+- "Escala estrutural"
+- "Sistema acima de inspiração"
+- "Arquitetura acima de improviso"
+
+**Vocabulário de Análise (features secundárias):**
 - "Descubra exatamente"
 - "Em 3 minutos"
 - "Perguntas do seu público"
 - "Texto dos slides dos concorrentes"
-- "Nunca mais fique sem ideia"
-- "De achista para estrategista"
 - "Baseado em ciência comportamental"
-- "Método científico comprovado"
-- "Mesma auditoria que consultores cobram R$ 2.000"
 
-### 🎯 Frase de posicionamento
-> "Croko Lab: Laboratório de conteúdo científico que transforma creators de achistas em estrategistas. Descubra exatamente o que seu público pergunta, o que seus concorrentes fazem que funciona, e como replicar o sucesso deles — em 3 minutos."
+### 🎯 Frases de posicionamento
+
+**Primária (Infraestrutura):**
+> "Croko Labs: Instalamos infraestrutura autônoma de conteúdo para experts high ticket que querem eliminar dependência criativa e transformar autoridade em ativo operacional previsível."
+
+**Secundária (Análise):**
+> "Descubra exatamente o que seu público pergunta, o que seus concorrentes fazem que funciona, e replique o sucesso deles com sistema estrutural — não com esforço criativo."
+
+### 💬 O que combatemos vs o que defendemos
+
+**Combatemos:**
+- O culto à criatividade como modelo de crescimento
+- A dependência de equipe criativa inchada como solução de escala
+- A ideia de que escalar autoridade exige mais pessoas, mais talento e mais esforço manual
+
+**Defendemos:**
+- Infraestrutura autônoma como base real de autoridade e crescimento sustentável
+- Sistema acima de inspiração
+- Arquitetura acima de improviso
+- Conteúdo como ativo operacional, não atividade criativa
 
 ---
 
 ## 👥 AVATARES (quem compramos)
+
+### 🎯 PERSONA PRINCIPAL: João Mendes (Expert High Ticket)
+
+**Dados Básicos:**
+- **Nome:** João Mendes
+- **Idade:** 30 anos
+- **Profissão:** Mentor de marketing / estrategista high ticket
+- **Faturamento:** R$50k–150k/mês
+- **Time:** 2-3 pessoas (social, designer, copy)
+- **Modelo:** Vende mentorias e consultorias high ticket
+
+**Momento de Mercado:**
+- Não é iniciante. Já validou oferta. Já vende high ticket. Já tem audiência.
+- Mas ainda opera como criador estruturado manualmente
+- Ele não é pequeno. Mas ainda não é uma empresa de verdade.
+
+**Estado Mental:**
+- Vive com notificações constantes
+- Alterna entre call estratégica e microgestão
+- Acorda já pensando em conteúdo
+- Tem rotina flexível, mas mente sobrecarregada
+- **Ele não sofre de falta de dinheiro. Ele sofre de excesso de responsabilidade.**
+
+**Estrutura Atual:**
+- Produção ainda passa por ele
+- Time depende de briefing constante
+- Conteúdo é artesanal
+- Frequência é inconsistente
+- Crescimento depende da energia dele
+- **Ele já tem faturamento. Mas não tem infraestrutura.**
+
+**Frase que resume:** *"Eu deveria estar mais estruturado."*
+
+---
+
+### 📊 DISSECAÇÃO NEURAL - PERSONA PRINCIPAL
+
+#### DOR PRIMÁRIA
+- Sente que o negócio depende demais da própria cabeça e da criatividade humana
+- Se ele parar de produzir, a autoridade desacelera
+- O conteúdo ainda é artesanal, mesmo faturando alto
+- A frequência não é previsível, é emocional
+- Já tem time, mas tudo passa por ele
+- Vive apagando incêndio criativo
+- Sabe que poderia crescer mais rápido se fosse mais estruturado
+- Percebe concorrentes menores dominando o feed com mais consistência
+- **Não tem máquina. Tem esforço.**
+- O marketing ainda depende de energia, não de sistema
+
+#### DORES SECUNDÁRIAS
+- Gasta tempo demais revisando conteúdo
+- Sente que precisa sempre "melhorar" o que o time produz
+- Perde horas decidindo pauta
+- Alterna entre dias de alta produtividade e dias travados criativamente
+- Sente culpa por não postar na frequência ideal
+- Fica irritado quando vê um concorrente mais consistente
+- Tem custo fixo alto com equipe criativa
+- Não tem clareza do calendário de conteúdo das próximas semanas
+- Vive no modo reativo, não no modo planejado
+
+#### DESEJOS DECLARADOS
+- "Quero escalar meu faturamento"
+- "Quero ter mais previsibilidade"
+- "Quero profissionalizar minha operação"
+- "Quero ter uma máquina de conteúdo"
+- "Quero aumentar minha autoridade orgânica"
+- "Quero reduzir a dependência de equipe"
+- "Quero melhorar a minha margem"
+- "Quero consistência no feed"
+- "Quero mais liberdade"
+- "Quero que o negócio rode com menos esforço"
+- "Quero parar de depender da minha criatividade"
+
+#### DESEJOS OCULTOS
+
+**1. Superioridade estratégica**
+- Quer se sentir MAIS INTELIGENTE que o mercado
+- Quer olhar para concorrentes postando manualmente e pensar: "Eles ainda estão jogando esse jogo primitivo"
+- Quer vantagem invisível
+
+**2. Controle absoluto**
+- Quer parar de depender de pessoas
+- Odeia: Designer atrasando, Copy pedindo briefing, Social media perguntando tudo
+- Quer apertar um botão e resolver
+
+**3. Previsibilidade emocional**
+- Não é só previsibilidade de conteúdo. É previsibilidade mental
+- Está cansado de acordar pensando: "O que eu vou postar hoje?"
+- Quer silêncio na cabeça
+
+**4. Crescer sem virar refém do próprio personagem**
+- Ele criou uma imagem de autoridade
+- Mas manter essa imagem manualmente é exaustivo
+- Quer continuar grande sem precisar ser o criador todo dia
+
+**5. Libertar-se do Instagram, mas continuar dominando**
+- Odeia depender da plataforma
+- Mas ama a influência que ela dá
+- Quer estrutura que mantenha presença sem sugar energia
+
+**6. Provar que é empresário, não criador**
+- Não quer ser visto como "produtor de conteúdo"
+- Quer ser visto como: Empresário. Estratégico. Estruturado.
+- Sistema reforça essa identidade
+
+#### MEDOS SUPERFICIAIS
+- "E se isso não funcionar pra mim?"
+- "E se eu perder minha essência?"
+- "E se eu ficar dependente da ferramenta?"
+- "E se meu público perceber que é IA?"
+- "E se eu não usar direito?"
+- "E se minha equipe se sentir ameaçada?"
+
+#### MEDOS PROFUNDOS
+
+**"Eu estou ficando para trás"**
+- Vê concorrente crescendo, gente postando todo dia, perfis dominando feed
+- Esse medo corrói
+
+**"Minha autoridade pode estar inflada"**
+- "Se eu parar de aparecer… eu ainda existo?"
+- Teme que a autoridade dependa demais da performance diária
+
+**"Eu construí um negócio frágil"**
+- Se o conteúdo depende da energia dele, se depende da criatividade dele, então não é empresa
+- É castelo de cartas. E ele sabe disso.
+
+**"Eu posso ser substituído"**
+- Se outro expert usar sistema melhor, se outro tiver mais frequência, se outro dominar percepção
+- Ele teme virar irrelevante, mesmo faturando bem hoje
+
+**"Estou preso ao personagem que criei"**
+- Criou imagem, criou padrão, criou expectativa
+- Agora sente que precisa manter aquilo eternamente
+- Isso cansa. Ele quer sair da prisão invisível.
+
+**"Se eu parar de produzir, meu faturamento cai"**
+- Sabe que o orgânico influencia vendas
+- Vive sob tensão constante
+- Produzir virou mecanismo de sobrevivência
+
+#### VOCABULÁRIO VISCERAL (frases exatas que ele usa)
+- "Eu não aguento mais depender de criatividade"
+- "Minha produção depende muito do meu humor"
+- "Eu sei que deveria postar mais, mas não dá"
+- "Meu conteúdo é bom, mas não é consistente"
+- "Eu preciso escalar isso sem virar escravo do Instagram"
+- "Eu gasto muito tempo pensando no que postar"
+- "Eu tenho equipe, mas ainda passa por mim"
+- "Se eu parar de postar, o negócio sente"
+- "Meu concorrente é muito mais frequente que eu"
+- "Eu preciso estruturar isso melhor"
+- "Eu não quero contratar mais gente"
+- "Eu sinto que estou sempre apagando incêndio"
+- "Eu não quero virar criador full time"
+- "Eu queria ter um sistema"
+- "Não dá pra depender só da minha cabeça"
+- **"Isso precisa virar máquina"**
+
+#### OBJEÇÕES INTERNAS
+- "Eu já consigo fazer do meu jeito" (racionaliza que funciona até aqui)
+- "Talvez eu esteja exagerando o problema" (minimiza a dor)
+- "Dá pra continuar assim por enquanto" (procrastinação estratégica)
+- "Eu deveria resolver isso internamente" (orgulho/ego)
+- "Será que isso vai tirar minha autenticidade?" (associa sistema com artificial)
+- "E se isso for só hype de IA?" (já viu promessa demais)
+- "Eu estou ocupado demais agora" (clássica: "Depois eu vejo isso")
+- "Implantação dá trabalho" (mesmo que você diga 21 dias)
+- "E se eu investir e não usar?" (já comprou curso que não aplicou)
+- "Se eu automatizar demais, eu perco o controle?" (medo paradoxal)
+
+#### GATILHOS DE COMPRA (quando ele age)
+
+**1. Quando percebe que está PERDENDO espaço**
+- Vê concorrente menor crescendo mais rápido
+- "Ele posta todo dia… eu não"
+- Comparação dói. E comparação acelera decisão.
+
+**2. Quando sente EXAUSTÃO real**
+- Não é cansaço leve
+- É quando pensa: "Eu não quero mais fazer isso desse jeito"
+- O momento em que o artesanal começa a irritar
+
+**3. Quando o time falha**
+- Designer atrasa. Copy erra. Social pede mais prazo.
+- Nesse dia ele pensa: "Eu preciso estruturar isso"
+- **Esse é momento quente**
+
+**4. Quando enxerga vantagem estratégica**
+- Se percebe que o Motor não é ferramenta, mas vantagem invisível
+- Ele ativa modo empresário
+- **Ele não compra por dor. Ele compra por vantagem.**
+
+**5. Quando percebe risco estrutural**
+- "Se eu parar de produzir, minha máquina desacelera"
+- Esse medo de fragilidade gera ação
+
+**6. Quando vê PROVA concreta**
+- Case real. Demonstração prática. Feed funcionando na prática.
+- Ele precisa ver rodando.
+
+**7. Quando sente que é exclusivo**
+- Implantação sob aplicação. Poucas vagas. Boutique.
+- Ele quer estar do lado dos estruturados.
+
+**8. Quando entende que o custo é menor que o vazamento**
+- Quanto ele perde por inconsistência
+- Quanto ele gasta com equipe criativa
+- Quanto tempo ele desperdiça
+- Ele compara. E decide.
+
+---
+
+### 📋 AVATARES SECUNDÁRIOS
 
 | Avatar | Quem é | Dor Principal | CTA Certo |
 |--------|--------|--------------|-----------|
 | **Creator Solo** | 25-45 anos, 1k-100k seguidores, vende infoproduto ou mentoria | "Não sei o que postar, trava toda semana" | "Teste grátis, 3 auditorias" |
 | **Agência Boutique** | 3-15 pessoas, atende creators e marcas | "Cliente pede resultado, demora 3 dias entregar auditoria" | "Entregue em 3 min o que levava 3 dias" |
 | **Consultor de Conteúdo** | Freelancer que vende consultoria | "Quero cobrar R$ 500-2.000 por auditoria mas não tenho dados pra justificar" | "Venda auditoria por R$ 500 que custa centavos" |
+
+---
+
+## 💰 ESTRUTURA DE OFERTAS
+
+### High Ticket Premium
+
+**Produto:** Motor de Conteúdo Autônomo™ — Implantação Premium
+
+**Modelo:** Sob aplicação (boutique, exclusivo)
+
+**Investimento:**
+- **R$ 5.000** — Implantação Founder (personalizada em até 21 dias)
+- **R$ 997–1.500/mês** — Licença estratégica evolutiva
+
+**Formato de Entrega:**
+- Implantação personalizada em até 21 dias
+- Licença estratégica evolutiva (mensalidade)
+- Acesso completo à infraestrutura Croko Labs
+- Suporte técnico e estratégico contínuo
+
+**Diferenciais:**
+- Não é ferramenta self-service. É instalação estrutural.
+- Não é curso. É implantação operacional.
+- Não é template. É arquitetura personalizada.
 
 ---
 
@@ -110,11 +408,15 @@ postexpress2/
 │   └── ocr-mistral-analyzer.js
 ├── squad-auditores/              # Sistema de auditoria
 │   ├── BRIEFING-TEMPLATE.md      # Template de briefing de clientes
-│   ├── briefing-croko-lab.md   # Briefing do Croko Lab preenchido
+│   ├── briefing-croko-lab.md     # Briefing do Croko Lab preenchido
 │   ├── DNA-CONTEUDO-SPEC.md      # Especificação técnica do DNA
 │   ├── SQUAD-DNA-CONTEUDO.md     # Composição do squad
 │   ├── data/                     # JSONs de análises realizadas
 │   └── output/                   # Relatórios gerados (.md)
+├── SobreCrokolabs/               # Documentos estratégicos
+│   ├── DISSECAÇÃO NEURAL _ PERSONA MCA.docx
+│   ├── DOCUMENTO FUNDAÇÕES _ MCA.docx
+│   └── POSICIONAMENTO NUCLEAR _ MCA.docx
 ├── database/                     # Schema SQL e migrações
 │   └── optimized-schema.sql
 ├── worker/                       # Worker de processamento (em desenvolvimento)
@@ -295,9 +597,7 @@ POST /message/document
 
 ### Diferencial competitivo
 
-> **"Único serviço de análise de conteúdo que entrega tudo via WhatsApp. Do briefing aos slides prontos, sem sair do celular."**
-
-Isso elimina a principal barreira de uso: **creators odeiam dashboards complexos**.
+> **"Única infraestrutura de conteúdo que entrega tudo via WhatsApp. Da análise aos slides prontos, sem sair do celular. Zero dependência de dashboards complexos."**
 
 ---
 
@@ -443,6 +743,9 @@ Cliente (WhatsApp) → UAZapi Webhook → API Router → Squad Processor → UAZ
 
 | Arquivo | Conteúdo |
 |---------|----------|
+| `SobreCrokolabs/DISSECAÇÃO NEURAL _ PERSONA MCA.docx` | Persona João Mendes - 10 lâminas de análise profunda |
+| `SobreCrokolabs/DOCUMENTO FUNDAÇÕES _ MCA.docx` | Big Idea, 4 Pilares, Posicionamento, Estrutura de Ofertas |
+| `SobreCrokolabs/POSICIONAMENTO NUCLEAR _ MCA.docx` | Posicionamento nuclear, território de dominação, promessa central |
 | `squad-auditores/BRIEFING-TEMPLATE.md` | Template para briefing de clientes |
 | `squad-auditores/briefing-croko-lab.md` | Briefing completo do Croko Lab (produto) |
 | `squad-auditores/DNA-CONTEUDO-SPEC.md` | Especificação técnica do DNA de Conteúdo |
@@ -463,17 +766,22 @@ Cliente (WhatsApp) → UAZapi Webhook → API Router → Squad Processor → UAZ
 5. Sempre tipar com TypeScript (sem `any`)
 
 ### Ao gerar conteúdo/marketing:
-1. **NUNCA** usar as palavras proibidas (IA, OCR, SaaS, etc.)
-2. **SEMPRE** falar de transformação, não de features
-3. Focar no avatar (Creator Solo como principal)
-4. Usar frameworks dos 5 auditores como credencial
-5. Ancoragem de preço: "mesma auditoria que consultores cobram R$ 2.000"
+1. **NUNCA** usar as palavras proibidas (IA, OCR, SaaS, ferramenta, etc.)
+2. **SEMPRE** falar de infraestrutura, não de features
+3. **SEMPRE** falar de transformação estrutural, não de funcionalidades
+4. Focar na persona João Mendes (expert high ticket como principal)
+5. Usar vocabulário do Motor de Conteúdo Autônomo™
+6. Reforçar a Big Idea: "O problema não é a criatividade. É depender dela."
+7. Posicionar contra o culto à criatividade
+8. Defender infraestrutura autônoma como solução estrutural
+9. Ancoragem de preço: R$ 5.000 implantação + R$ 997-1.500/mês (premium boutique)
 
 ### Ao tomar decisões de arquitetura:
 1. Preferir soluções simples que resolvam o problema atual
 2. Não over-engineer para casos hipotéticos futuros
 3. Reutilizar componentes e utilidades existentes
 4. Manter consistência com o stack já escolhido (Next.js + Supabase)
+5. Pensar em "infraestrutura operacional", não em "ferramenta"
 
 ### Ao fazer debugging:
 1. Verificar variáveis de ambiente primeiro
@@ -483,5 +791,15 @@ Cliente (WhatsApp) → UAZapi Webhook → API Router → Squad Processor → UAZ
 
 ---
 
-*Última atualização: 2026-02-24*
-*Versão: 1.1 - Integração WhatsApp (UAZapi)*
+## 🎯 CONHECIMENTO PROPRIETÁRIO (insights estratégicos)
+
+1. **Criatividade humana é gargalo estrutural** - Não é talento. É fragilidade operacional.
+2. **Autoridade é arquitetura, não talento** - Presença consistente nasce de sistema, não de inspiração.
+3. **Escala de conteúdo depende de sistema, não de equipe** - Contratar mais criativos não resolve. Instalar infraestrutura resolve.
+4. **Conteúdo como ativo operacional** - Deixa de ser atividade criativa e vira ativo previsível.
+5. **Independência criativa é vantagem competitiva** - Quem elimina dependência de criatividade ganha vantagem invisível.
+
+---
+
+*Última atualização: 2026-02-25*
+*Versão: 2.0 - Motor de Conteúdo Autônomo™*
