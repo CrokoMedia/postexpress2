@@ -170,7 +170,7 @@ export async function checkPermissions(
  * ```
  */
 export function requirePermission(permission: string) {
-  return function <TContext extends { params?: any } | undefined = undefined>(
+  return function <TContext extends { params?: any } = {}>(
     handler: (
       req: NextRequest,
       context: TContext
@@ -242,7 +242,7 @@ export function requirePermissions(
   permissions: string[],
   requireAll: boolean = true
 ) {
-  return function <TContext extends { params?: any } | undefined = undefined>(
+  return function <TContext extends { params?: any } = {}>(
     handler: (
       req: NextRequest,
       context: TContext

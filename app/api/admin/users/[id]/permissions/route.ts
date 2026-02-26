@@ -23,12 +23,12 @@ function isValidPermission(permission: string): permission is Permission {
 // GET /api/admin/users/[id]/permissions — listar permissões do usuário
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const authResult = await requireAdmin(request)
   if (authResult instanceof NextResponse) return authResult
 
-  const userId = params.id
+  const { id: userId } = await params
 
   if (!userId) {
     return NextResponse.json({ error: 'user_id é obrigatório' }, { status: 400 })
@@ -62,12 +62,12 @@ export async function GET(
 // PUT /api/admin/users/[id]/permissions — substituir todas as permissões (replace)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const authResult = await requireAdmin(request)
   if (authResult instanceof NextResponse) return authResult
 
-  const userId = params.id
+  const { id: userId } = await params
 
   if (!userId) {
     return NextResponse.json({ error: 'user_id é obrigatório' }, { status: 400 })
@@ -141,12 +141,12 @@ export async function PUT(
 // POST /api/admin/users/[id]/permissions — adicionar uma permissão específica
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const authResult = await requireAdmin(request)
   if (authResult instanceof NextResponse) return authResult
 
-  const userId = params.id
+  const { id: userId } = await params
 
   if (!userId) {
     return NextResponse.json({ error: 'user_id é obrigatório' }, { status: 400 })
@@ -211,12 +211,12 @@ export async function POST(
 // DELETE /api/admin/users/[id]/permissions?permission=xxx — remover uma permissão específica
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const authResult = await requireAdmin(request)
   if (authResult instanceof NextResponse) return authResult
 
-  const userId = params.id
+  const { id: userId } = await params
 
   if (!userId) {
     return NextResponse.json({ error: 'user_id é obrigatório' }, { status: 400 })

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
-import { requirePermission, Permission } from '@/lib/permissions'
+import { checkPermission, Permission } from '@/lib/permissions'
+import { requireAuth } from '@/lib/auth'
 
 /**
  * POST /api/analysis
@@ -8,7 +9,27 @@ import { requirePermission, Permission } from '@/lib/permissions'
  *
  * Requer permissão: view_audits
  */
-export const POST = requirePermission(Permission.VIEW_AUDITS)(async (request: NextRequest) => {
+export async function POST(request: NextRequest) {
+  // Verificar autenticação
+  const authResult = await requireAuth(request)
+  if (authResult instanceof NextResponse) return authResult
+
+  const { user, roleData } = authResult
+
+  // Verificar permissão (admins sempre têm permissão)
+  if (roleData.role !== 'admin') {
+    const hasPermission = await checkPermission(user.id, Permission.VIEW_AUDITS)
+    if (!hasPermission) {
+      return NextResponse.json(
+        {
+          error: 'Acesso negado',
+          message: 'Você não tem permissão: view_audits',
+          required_permission: Permission.VIEW_AUDITS
+        },
+        { status: 403 }
+      )
+    }
+  }
 
   try {
     const supabase = getServerSupabase()
@@ -67,4 +88,4 @@ export const POST = requirePermission(Permission.VIEW_AUDITS)(async (request: Ne
       { status: 500 }
     )
   }
-})
+}
