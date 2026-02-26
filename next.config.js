@@ -66,6 +66,33 @@ const nextConfig = {
     bodySizeLimit: '10mb',
   },
 
+  // Headers para forçar revalidação de cache (autenticação desabilitada)
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate, max-age=0',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          },
+          {
+            key: 'X-Auth-Disabled',
+            value: 'true',
+          },
+        ],
+      },
+    ]
+  },
+
   // Webpack config para otimizar tamanho
   webpack: (config, { isServer }) => {
     if (isServer) {

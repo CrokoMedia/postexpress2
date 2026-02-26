@@ -2,14 +2,20 @@ import { NextRequest, NextResponse } from 'next/server'
 // import { createServerClient } from '@supabase/ssr'
 
 /**
- * AUTENTICAÇÃO DESABILITADA
+ * AUTENTICAÇÃO DESABILITADA (2026-02-27)
  *
  * Todas as rotas são públicas para facilitar desenvolvimento/testes.
  * Para reativar autenticação, descomente o código abaixo.
  */
 export async function middleware(request: NextRequest) {
   // Permitir acesso a todas as rotas sem autenticação
-  return NextResponse.next()
+  const response = NextResponse.next()
+
+  // Headers para identificar versão sem auth e forçar revalidação
+  response.headers.set('X-Auth-Disabled', 'true')
+  response.headers.set('X-Auth-Disabled-Date', '2026-02-27')
+
+  return response
 
   /* CÓDIGO DE AUTENTICAÇÃO DESABILITADO - DESCOMENTE PARA REATIVAR
   const { pathname } = request.nextUrl
