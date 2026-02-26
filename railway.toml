@@ -8,6 +8,14 @@
 builder = "DOCKERFILE"
 dockerfilePath = "Dockerfile"
 
+# CRITICAL: Pass environment variables as build args for NEXT_PUBLIC_* to be embedded
+[build.buildArgs]
+NEXT_PUBLIC_SUPABASE_URL = "$NEXT_PUBLIC_SUPABASE_URL"
+NEXT_PUBLIC_SUPABASE_ANON_KEY = "$NEXT_PUBLIC_SUPABASE_ANON_KEY"
+SUPABASE_URL = "$SUPABASE_URL"
+SUPABASE_ANON_KEY = "$SUPABASE_ANON_KEY"
+SUPABASE_SERVICE_ROLE_KEY = "$SUPABASE_SERVICE_ROLE_KEY"
+
 [deploy]
 startCommand = "node server.js"
 restartPolicyType = "ON_FAILURE"
