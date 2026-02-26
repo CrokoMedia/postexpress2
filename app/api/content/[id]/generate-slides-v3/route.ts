@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { getRemotionBundle } from '@/lib/remotion-bundle'
+import { getServerlessRenderOptions } from '@/lib/remotion-chromium'
 import { generateImageSmart, generateEditorialBackgroundSmart } from '@/lib/smart-image-generator'
 import { createContextualImagePrompt } from '@/lib/contextual-image-prompt'
 import { enhancePrompt, cleanPrompt } from '@/lib/prompt-enhancer'
@@ -92,6 +93,7 @@ export async function POST(
 
     // 1. Obter bundle Remotion (pré-compilado ou cacheado)
     const bundleLocation = await getRemotionBundle()
+    const renderOptions = await getServerlessRenderOptions()
 
     // Contexto de nicho do expert
     const nicheContext = [
@@ -274,6 +276,7 @@ export async function POST(
           composition,
           output: outputPath,
           inputProps: stillInputProps,
+          ...renderOptions,
         })
 
         console.log(`   ✅ renderStill concluído (${Date.now() - renderStart}ms)`)

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
 import { getServerSupabase } from '@/lib/supabase'
 import { getRemotionBundle } from '@/lib/remotion-bundle'
+import { getServerlessRenderOptions } from '@/lib/remotion-chromium'
 import { generateContentImage } from '@/lib/nano-banana'
 import { searchStockVideosForSlides } from '@/lib/stock-video'
 import { generateAndUploadVoiceover } from '@/lib/tts'
@@ -305,6 +306,7 @@ export async function POST(
 
     // Bundle Remotion composition (cached after first call)
     const bundleLocation = await getRemotionBundle()
+    const renderOptions = await getServerlessRenderOptions()
 
     const results = []
 
@@ -584,6 +586,7 @@ export async function POST(
             )
           }
         },
+        ...renderOptions,
       })
 
       console.log(`   Reel renderizado: ${outputPath}`)

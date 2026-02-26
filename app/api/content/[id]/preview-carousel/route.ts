@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { getRemotionBundle } from '@/lib/remotion-bundle'
+import { getServerlessRenderOptions } from '@/lib/remotion-chromium'
 import { renderStill, selectComposition } from '@remotion/renderer'
 import path from 'path'
 import fs from 'fs'
@@ -136,6 +137,9 @@ export async function GET(
       totalSlides: carousel.slides.length, // Remotion precisa do total
     }
 
+    // Obter opções de renderização para serverless
+    const renderOptions = await getServerlessRenderOptions()
+
     const composition = await selectComposition({
       serveUrl: bundleLocation,
       id: compositionId,
@@ -147,6 +151,7 @@ export async function GET(
       output: outputPath,
       serveUrl: bundleLocation,
       inputProps,
+      ...renderOptions,
     })
 
     console.log(`✅ [Preview] Rendered: ${outputPath}`)

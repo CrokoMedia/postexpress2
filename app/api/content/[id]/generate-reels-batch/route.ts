@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { getRemotionBundle } from '@/lib/remotion-bundle'
+import { getServerlessRenderOptions } from '@/lib/remotion-chromium'
 import { generateContentImage } from '@/lib/nano-banana'
 import { generateAndUploadVoiceover } from '@/lib/tts'
 import type { TTSVoice, TTSProvider } from '@/lib/tts'
@@ -166,7 +167,8 @@ async function renderSingleReel(
   profile: Record<string, unknown>,
   bundleLocation: string,
   sharedSoundEffectUrls: SoundEffectUrls | undefined,
-  reelIndex: number
+  reelIndex: number,
+  renderOptions: Record<string, unknown>
 ): Promise<BatchReelResult> {
   const carouselSlides = carousel.slides as Record<string, string>[]
   const carouselName = `batch-reel-${reelIndex + 1}`
@@ -375,6 +377,7 @@ async function renderSingleReel(
         )
       }
     },
+    ...renderOptions,
   })
 
   // Step 7: Upload to Cloudinary
@@ -512,6 +515,7 @@ export async function POST(
 
     // Pre-warm: bundle Remotion (shared across all renders)
     const bundleLocation = await getRemotionBundle()
+    const renderOptions = await getServerlessRenderOptions()
 
     // Pre-generate sound effects if any config uses them (shared resource)
     let sharedSoundEffectUrls: SoundEffectUrls | undefined
@@ -537,7 +541,8 @@ export async function POST(
           profile || {},
           bundleLocation,
           sharedSoundEffectUrls,
-          reelIndex
+          reelIndex,
+          renderOptions
         )
         return result
       } catch (error: unknown) {

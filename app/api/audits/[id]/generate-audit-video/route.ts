@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { getRemotionBundle } from '@/lib/remotion-bundle'
+import { getServerlessRenderOptions } from '@/lib/remotion-chromium'
 import { renderMedia, selectComposition } from '@remotion/renderer'
 import cloudinary from 'cloudinary'
 import path from 'path'
@@ -133,6 +134,7 @@ export async function POST(
 
     // 5. Bundle Remotion (cached)
     const bundleLocation = await getRemotionBundle()
+    const renderOptions = await getServerlessRenderOptions()
 
     // 6. Selecionar composicao
     const composition = await selectComposition({
@@ -161,6 +163,7 @@ export async function POST(
           console.log(`Rendering audit video: ${Math.round(progress * 100)}%`)
         }
       },
+      ...renderOptions,
     })
 
     console.log(`Video renderizado: ${outputPath}`)
