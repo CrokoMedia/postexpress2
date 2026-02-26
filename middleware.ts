@@ -39,15 +39,15 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  // TEMPORÁRIO: Autenticação desabilitada para testes
-  // const { data: { user } } = await supabase.auth.getUser()
+  // Verificar autenticação
+  const { data: { user } } = await supabase.auth.getUser()
 
-  // if (!user) {
-  //   if (pathname.startsWith('/api/')) {
-  //     return NextResponse.json({ error: 'Não autenticado' }, { status: 401 })
-  //   }
-  //   return NextResponse.redirect(new URL('/login', request.url))
-  // }
+  if (!user) {
+    if (pathname.startsWith('/api/')) {
+      return NextResponse.json({ error: 'Não autenticado' }, { status: 401 })
+    }
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
 
   return response
 }
