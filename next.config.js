@@ -25,7 +25,7 @@ const nextConfig = {
       'node_modules/@remotion/**/*.d.ts',
       'node_modules/@remotion/**/package.json',
       'node_modules/@sparticuz/chromium/bin/*.br', // Chromium comprimido (não usado)
-      'node_modules/@swc/**/*', // SWC não necessário em prod
+      // REMOVIDO: node_modules/@swc/**/* - É necessário em produção!
       '.git/**/*',
       'docs/**/*',
       '__tests__/**/*',
