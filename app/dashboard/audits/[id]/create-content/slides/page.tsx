@@ -317,8 +317,21 @@ export default function ConfigureSlidesPage() {
         }),
       })
 
+      // Verificar se a resposta é JSON válido
+      const contentType = response.headers.get('content-type')
+      if (!contentType || !contentType.includes('application/json')) {
+        const textResponse = await response.text()
+        console.error('Resposta não-JSON da API:', textResponse.substring(0, 500))
+        throw new Error('API retornou resposta inválida (não-JSON). Verifique os logs do servidor.')
+      }
+
       if (!response.ok) {
-        const errorData = await response.json()
+        let errorData
+        try {
+          errorData = await response.json()
+        } catch {
+          throw new Error(`API retornou erro ${response.status}: ${response.statusText}`)
+        }
         throw new Error(errorData.error || 'Falha ao gerar slides')
       }
 

@@ -92,8 +92,13 @@ export async function POST(
     console.log(`🎨 [V3/Remotion] Gerando slides (${format} ${formatConfig.width}x${formatConfig.height}) para ${approvedCarousels.length} carrosséis (template: ${templateId}, theme: ${theme})...`)
 
     // 1. Obter bundle Remotion (pré-compilado ou cacheado)
+    console.log('📦 [V3/Remotion] Carregando bundle Remotion...')
     const bundleLocation = await getRemotionBundle()
+    console.log('✅ [V3/Remotion] Bundle carregado:', bundleLocation)
+
+    console.log('🌐 [V3/Remotion] Configurando Chromium serverless...')
     const renderOptions = await getServerlessRenderOptions()
+    console.log('✅ [V3/Remotion] Render options:', Object.keys(renderOptions))
 
     // Contexto de nicho do expert
     const nicheContext = [
