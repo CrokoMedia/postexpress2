@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+/tmp/
+.DS_Store
+
+# Remotion bundle (será gerado no build)
+# .remotion-bundle/
