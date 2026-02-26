@@ -19,13 +19,30 @@ import type {
 // CONFIGURATION
 // ============================================
 
-const TWITTER_BEARER_TOKEN = process.env.TWITTER_BEARER_TOKEN!;
 const TWITTER_API_BASE = 'https://api.twitter.com/2';
 
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY! // Usa service_role para escrita
-);
+/**
+ * Get Supabase client com lazy initialization
+ * Evita erro durante Next.js build quando env vars não estão disponíveis
+ */
+function getSupabaseClient() {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error('SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set');
+  }
+
+  return createClient(supabaseUrl, supabaseKey);
+}
+
+function getTwitterBearerToken(): string {
+  const token = process.env.TWITTER_BEARER_TOKEN;
+  if (!token) {
+    throw new Error('TWITTER_BEARER_TOKEN must be set');
+  }
+  return token;
+}
 
 // ============================================
 // TYPES
@@ -70,6 +87,7 @@ export async function addRule(
   themes: string[]
 ): Promise<string> {
   // 1. Buscar dados do expert
+  const supabase = getSupabaseClient();
   const { data: expert, error: expertError } = await supabase
     .from('twitter_experts')
     .select('*')
@@ -80,18 +98,22 @@ export async function addRule(
     throw new Error(`Expert not found: ${expertId}`);
   }
 
+  // Type assertion para garantir tipo correto
+  const typedExpert = expert as TwitterExpert;
+
   // 2. Construir regra
-  const ruleValue = buildRuleFromExpert(expert, themes);
-  const ruleTag = `${expert.twitter_username}-${themes[0]}`;
+  const ruleValue = buildRuleFromExpert(typedExpert, themes);
+  const ruleTag = `${typedExpert.twitter_username}-${themes[0]}`;
 
   // 3. Validar regra
   validateRule(ruleValue);
 
   // 4. Adicionar ao Twitter API
+  const bearerToken = getTwitterBearerToken();
   const response = await fetch(`${TWITTER_API_BASE}/tweets/search/stream/rules`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${TWITTER_BEARER_TOKEN}`,
+      'Authorization': `Bearer ${bearerToken}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -121,6 +143,7 @@ export async function addRule(
     last_synced_at: new Date().toISOString()
   };
 
+  // supabase já foi inicializado no início da função
   const { error: insertError } = await supabase
     .from('twitter_stream_rules')
     .insert(ruleInsert);
@@ -148,6 +171,7 @@ export async function addRule(
  */
 export async function removeRule(ruleId: string): Promise<void> {
   // 1. Buscar regra no Supabase
+  const supabase = getSupabaseClient();
   const { data: rule, error } = await supabase
     .from('twitter_stream_rules')
     .select('*')
@@ -193,9 +217,10 @@ export async function removeRule(ruleId: string): Promise<void> {
  * Lista todas as regras ativas no Twitter API
  */
 export async function listRules(): Promise<TwitterRule[]> {
+  const bearerToken = getTwitterBearerToken();
   const response = await fetch(`${TWITTER_API_BASE}/tweets/search/stream/rules`, {
     headers: {
-      'Authorization': `Bearer ${TWITTER_BEARER_TOKEN}`
+      'Authorization': `Bearer ${bearerToken}`
     }
   });
 
@@ -217,6 +242,7 @@ export async function syncRules(): Promise<void> {
   const twitterRules = await listRules();
 
   // 2. Listar regras ativas no Supabase
+  const supabase = getSupabaseClient();
   const { data: supabaseRules, error } = await supabase
     .from('twitter_stream_rules')
     .select('*')
@@ -269,6 +295,7 @@ export async function updateExpertThemes(
   newThemes: string[]
 ): Promise<void> {
   // 1. Buscar regra ativa do expert
+  const supabase = getSupabaseClient();
   const { data: existingRule } = await supabase
     .from('twitter_stream_rules')
     .select('id')
@@ -324,10 +351,11 @@ function validateRule(ruleValue: string): void {
  * Remove regra do Twitter API (helper interno)
  */
 async function removeRuleFromTwitter(twitterRuleId: string): Promise<void> {
+  const bearerToken = getTwitterBearerToken();
   const response = await fetch(`${TWITTER_API_BASE}/tweets/search/stream/rules`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${TWITTER_BEARER_TOKEN}`,
+      'Authorization': `Bearer ${bearerToken}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -346,6 +374,7 @@ async function removeRuleFromTwitter(twitterRuleId: string): Promise<void> {
  * Log de eventos no Supabase
  */
 async function logEvent(eventType: string, success: boolean, metadata: unknown): Promise<void> {
+  const supabase = getSupabaseClient();
   await supabase.from('twitter_monitoring_log').insert({
     event_type: eventType,
     success,
@@ -367,10 +396,11 @@ export async function deleteAllRules(): Promise<void> {
 
   const ids = rules.map(r => r.id);
 
+  const bearerToken = getTwitterBearerToken();
   const response = await fetch(`${TWITTER_API_BASE}/tweets/search/stream/rules`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${TWITTER_BEARER_TOKEN}`,
+      'Authorization': `Bearer ${bearerToken}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
