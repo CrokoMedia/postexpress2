@@ -90,19 +90,13 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy built Next.js app
-COPY --from=builder /app/public ./public
+# Copy built Next.js app (standalone já inclui tudo necessário)
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
 
 # Copy Remotion bundle (CRITICAL for slide generation)
 COPY --from=builder /app/.remotion-bundle ./.remotion-bundle
-
-# Copy necessary libs and scripts
-COPY --from=builder /app/lib ./lib
-COPY --from=builder /app/types ./types
-COPY --from=builder /app/scripts ./scripts
-COPY --from=builder /app/remotion ./remotion
 
 # Set ownership
 RUN chown -R nextjs:nodejs /app
