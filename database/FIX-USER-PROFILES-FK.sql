@@ -63,10 +63,7 @@ LEFT JOIN instagram_profiles ip ON up.profile_id = ip.id
 WHERE ip.deleted_at IS NULL;
 
 -- Comentários
-COMMENT ON VIEW user_profiles_with_instagram IS
-  'View consolidada de user_profiles + instagram_profiles. ' ||
-  'Contorna cache do PostgREST que não detecta FK automaticamente. ' ||
-  'Usar .from(''user_profiles_with_instagram'').select(''*'') em vez de JOIN manual.';
+COMMENT ON VIEW user_profiles_with_instagram IS 'View consolidada de user_profiles + instagram_profiles. Contorna cache do PostgREST que não detecta FK automaticamente. Usar .from(user_profiles_with_instagram).select(*) em vez de JOIN manual.';
 
 -- Passo 5: Recarregar schema cache do PostgREST
 NOTIFY pgrst, 'reload schema';
