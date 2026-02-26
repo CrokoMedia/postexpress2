@@ -12,6 +12,10 @@
  * Em desenvolvimento: retorna opções vazias (Remotion usa Chromium local)
  */
 export async function getServerlessRenderOptions() {
+  console.log('🔧 [Remotion] getServerlessRenderOptions chamado')
+  console.log('   NODE_ENV:', process.env.NODE_ENV)
+  console.log('   Platform:', process.platform)
+
   const isProduction = process.env.NODE_ENV === 'production'
 
   if (!isProduction) {
@@ -21,17 +25,24 @@ export async function getServerlessRenderOptions() {
 
   // Em produção: passar executável do Chromium serverless
   try {
+    console.log('📦 [Remotion] Importando @sparticuz/chromium...')
     const chromium = await import('@sparticuz/chromium')
-    const executablePath = await chromium.default.executablePath()
+    console.log('✅ [Remotion] @sparticuz/chromium importado com sucesso')
 
-    console.log('🌐 [Remotion] Usando Chromium serverless:', executablePath)
+    console.log('🔍 [Remotion] Obtendo executablePath...')
+    const executablePath = await chromium.default.executablePath()
+    console.log('✅ [Remotion] executablePath obtido:', executablePath)
 
     return {
       browserExecutable: executablePath,
     }
   } catch (error) {
-    console.error('❌ [Remotion] Erro ao carregar Chromium serverless:', error)
-    // Fallback: deixar Remotion usar default (pode falhar em serverless)
+    console.error('❌ [Remotion] ERRO ao carregar Chromium serverless:')
+    console.error('   Erro:', error)
+    console.error('   Stack:', error instanceof Error ? error.stack : 'N/A')
+
+    // Fallback: retornar vazio (Remotion tentará usar Chromium padrão)
+    console.warn('⚠️ [Remotion] Fallback: usando configuração vazia')
     return {}
   }
 }

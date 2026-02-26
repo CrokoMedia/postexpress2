@@ -57,9 +57,19 @@ export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  console.log('🚀 [V3/Remotion] Iniciando POST /api/content/[id]/generate-slides-v3')
+
   try {
     const { id } = await params
+    console.log('📝 [V3/Remotion] ID do audit:', id)
+
     const body = await request.json()
+    console.log('📦 [V3/Remotion] Body recebido:', {
+      carouselsCount: body.carousels?.length,
+      templateId: body.templateId,
+      format: body.format,
+    })
+
     const { carousels, profile, slideImageOptions, templateId = 'minimalist', format = 'feed', theme = 'light' } = body
 
     // Mapear formato para composição Still e dimensões
@@ -274,17 +284,24 @@ export async function POST(
           totalSlides: carousel.slides.length,
         }
 
+        console.log(`   🎬 [V3] Selecionando composition: ${formatConfig.compositionId}`)
         const composition = await getStillComposition(bundleLocation, formatConfig.compositionId, stillInputProps)
+        console.log(`   ✅ [V3] Composition selecionada`)
 
-        await renderStill({
-          serveUrl: bundleLocation,
-          composition,
-          output: outputPath,
-          inputProps: stillInputProps,
-          ...renderOptions,
-        })
-
-        console.log(`   ✅ renderStill concluído (${Date.now() - renderStart}ms)`)
+        console.log(`   🎥 [V3] Iniciando renderStill...`)
+        try {
+          await renderStill({
+            serveUrl: bundleLocation,
+            composition,
+            output: outputPath,
+            inputProps: stillInputProps,
+            ...renderOptions,
+          })
+          console.log(`   ✅ [V3] renderStill concluído (${Date.now() - renderStart}ms)`)
+        } catch (renderError) {
+          console.error(`   ❌ [V3] ERRO no renderStill:`, renderError)
+          throw new Error(`Falha ao renderizar slide ${j + 1}: ${renderError instanceof Error ? renderError.message : String(renderError)}`)
+        }
 
         // 4. Upload para Cloudinary
         const uploadStart = Date.now()
@@ -383,11 +400,22 @@ export async function POST(
       template: 'v3-remotion',
     })
   } catch (error: unknown) {
-    console.error('Error generating slides V3:', error)
+    console.error('❌ [V3/Remotion] ERRO CAPTURADO:', error)
+    console.error('❌ [V3/Remotion] Stack:', error instanceof Error ? error.stack : 'N/A')
+
     const msg = error instanceof Error ? error.message : String(error)
+
+    // Garantir que SEMPRE retornamos JSON
     return NextResponse.json(
-      { error: msg || 'Failed to generate slides V3' },
+      {
+        error: msg || 'Failed to generate slides V3',
+        timestamp: new Date().toISOString(),
+        endpoint: 'generate-slides-v3',
+      },
       { status: 500 }
     )
   }
 }
+
+// Handler de erros não capturados (fallback)
+export const runtime = 'nodejs'
