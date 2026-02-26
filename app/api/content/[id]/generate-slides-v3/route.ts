@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
+import { getRemotionBundle } from '@/lib/remotion-bundle'
 import { generateImageSmart, generateEditorialBackgroundSmart } from '@/lib/smart-image-generator'
 import { createContextualImagePrompt } from '@/lib/contextual-image-prompt'
 import { enhancePrompt, cleanPrompt } from '@/lib/prompt-enhancer'
 import { breakdownComplexPrompt, buildFocusedPrompt } from '@/lib/prompt-weighting'
-import { bundle } from '@remotion/bundler'
 import { renderStill, selectComposition } from '@remotion/renderer'
 import cloudinary from 'cloudinary'
 import path from 'path'
@@ -19,28 +19,6 @@ cloudinary.v2.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 })
-
-// Cache do bundle entre requests (evita re-bundlar para cada slide)
-let cachedBundlePath: string | null = null
-
-async function getBundle(): Promise<string> {
-  if (cachedBundlePath && fs.existsSync(cachedBundlePath)) {
-    console.log('📦 Usando bundle cacheado')
-    return cachedBundlePath
-  }
-
-  console.log('📦 Criando bundle Remotion...')
-  const startTime = Date.now()
-
-  const entryPoint = path.resolve(process.cwd(), 'remotion/index.tsx')
-  cachedBundlePath = await bundle({
-    entryPoint,
-    webpackOverride: (config) => config,
-  })
-
-  console.log(`📦 Bundle criado em ${Date.now() - startTime}ms`)
-  return cachedBundlePath
-}
 
 async function getStillComposition(bundleLocation: string, compositionId: string, inputProps: Record<string, unknown>) {
   return selectComposition({
@@ -112,8 +90,8 @@ export async function POST(
 
     console.log(`🎨 [V3/Remotion] Gerando slides (${format} ${formatConfig.width}x${formatConfig.height}) para ${approvedCarousels.length} carrosséis (template: ${templateId}, theme: ${theme})...`)
 
-    // 1. Criar bundle (cacheado)
-    const bundleLocation = await getBundle()
+    // 1. Obter bundle Remotion (pré-compilado ou cacheado)
+    const bundleLocation = await getRemotionBundle()
 
     // Contexto de nicho do expert
     const nicheContext = [

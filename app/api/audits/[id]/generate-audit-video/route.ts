@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
-import { bundle } from '@remotion/bundler'
+import { getRemotionBundle } from '@/lib/remotion-bundle'
 import { renderMedia, selectComposition } from '@remotion/renderer'
 import cloudinary from 'cloudinary'
 import path from 'path'
@@ -16,22 +16,7 @@ cloudinary.v2.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
-// Cache do bundle Remotion entre requests no mesmo processo
-let cachedBundleLocation: string | null = null
-
-async function getBundleLocation(): Promise<string> {
-  if (cachedBundleLocation) {
-    return cachedBundleLocation
-  }
-
-  console.log('Bundling Remotion composition (primeira vez, pode levar 15-30s)...')
-  cachedBundleLocation = await bundle({
-    entryPoint: path.join(process.cwd(), 'remotion/index.tsx'),
-    webpackOverride: (config) => config,
-  })
-  console.log('Remotion bundle pronto')
-  return cachedBundleLocation
-}
+// Bundle management moved to @/lib/remotion-bundle
 
 /**
  * Extrai os top 3 insights do raw_json da auditoria.
@@ -147,7 +132,7 @@ export async function POST(
     }
 
     // 5. Bundle Remotion (cached)
-    const bundleLocation = await getBundleLocation()
+    const bundleLocation = await getRemotionBundle()
 
     // 6. Selecionar composicao
     const composition = await selectComposition({

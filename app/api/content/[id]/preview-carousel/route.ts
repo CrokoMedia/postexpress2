@@ -1,26 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
-import { bundle } from '@remotion/bundler'
+import { getRemotionBundle } from '@/lib/remotion-bundle'
 import { renderStill, selectComposition } from '@remotion/renderer'
 import path from 'path'
 import fs from 'fs'
-
-// Cache do bundle (igual ao generate-slides-v3)
-let cachedBundlePath: string | null = null
-
-async function getBundle(): Promise<string> {
-  if (cachedBundlePath && fs.existsSync(cachedBundlePath)) {
-    return cachedBundlePath
-  }
-
-  const entryPoint = path.resolve(process.cwd(), 'remotion/index.tsx')
-  cachedBundlePath = await bundle({
-    entryPoint,
-    webpackOverride: (config) => config,
-  })
-
-  return cachedBundlePath
-}
 
 /**
  * GET /api/content/[id]/preview-carousel?carouselIndex=0&slideIndex=0&templateId=minimalist&format=feed&theme=light
@@ -128,8 +111,8 @@ export async function GET(
     }
     const compositionId = FORMAT_TO_STILL[format] || 'CarouselStill'
 
-    // 1. Criar bundle Remotion (cacheado)
-    const bundleLocation = await getBundle()
+    // 1. Obter bundle Remotion (pré-compilado ou cacheado)
+    const bundleLocation = await getRemotionBundle()
 
     // 2. Renderizar slide via Remotion
     const tempDir = path.join('/tmp', 'preview-carousel', id)

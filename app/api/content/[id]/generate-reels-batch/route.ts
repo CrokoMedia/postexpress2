@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
+import { getRemotionBundle } from '@/lib/remotion-bundle'
 import { generateContentImage } from '@/lib/nano-banana'
 import { generateAndUploadVoiceover } from '@/lib/tts'
 import type { TTSVoice, TTSProvider } from '@/lib/tts'
@@ -9,7 +10,6 @@ import { transcribeMultipleAudios } from '@/lib/captions'
 import type { CaptionWord } from '@/lib/captions'
 import { getVerifiedTrackForMood, getMusicVolume } from '@/lib/music-library'
 import type { MusicMood } from '@/lib/music-library'
-import { bundle } from '@remotion/bundler'
 import { renderMedia, selectComposition } from '@remotion/renderer'
 import cloudinary from 'cloudinary'
 import path from 'path'
@@ -100,22 +100,7 @@ function getSlideFields(slide: Record<string, string>): { titulo: string; corpo:
   return { titulo: '', corpo: slide.content || '' }
 }
 
-// Cache the bundle location across requests in the same process
-let cachedBundleLocation: string | null = null
-
-async function getBundleLocation(): Promise<string> {
-  if (cachedBundleLocation) {
-    return cachedBundleLocation
-  }
-
-  console.log('Bundling Remotion composition (first time, may take 15-30s)...')
-  cachedBundleLocation = await bundle({
-    entryPoint: path.join(process.cwd(), 'remotion/index.tsx'),
-    webpackOverride: (config) => config,
-  })
-  console.log('Remotion bundle ready')
-  return cachedBundleLocation
-}
+// Bundle management moved to @/lib/remotion-bundle
 
 // ----- Semaphore for concurrency control -----
 
@@ -526,7 +511,7 @@ export async function POST(
     console.log(`[Batch] Iniciando geracao de ${batchConfigs.length} reels em paralelo (max 3 concorrentes)...`)
 
     // Pre-warm: bundle Remotion (shared across all renders)
-    const bundleLocation = await getBundleLocation()
+    const bundleLocation = await getRemotionBundle()
 
     // Pre-generate sound effects if any config uses them (shared resource)
     let sharedSoundEffectUrls: SoundEffectUrls | undefined

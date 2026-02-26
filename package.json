@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
-    "build": "next build",
+    "build": "npm run build:remotion && next build",
+    "build:remotion": "node scripts/build-remotion-bundle.js",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",

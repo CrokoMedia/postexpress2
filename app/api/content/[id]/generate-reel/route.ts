@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
 import { getServerSupabase } from '@/lib/supabase'
+import { getRemotionBundle } from '@/lib/remotion-bundle'
 import { generateContentImage } from '@/lib/nano-banana'
 import { searchStockVideosForSlides } from '@/lib/stock-video'
 import { generateAndUploadVoiceover } from '@/lib/tts'
@@ -11,7 +12,6 @@ import { transcribeMultipleAudios } from '@/lib/captions'
 import type { CaptionWord } from '@/lib/captions'
 import { getVerifiedTrackForMood, getMusicVolume } from '@/lib/music-library'
 import type { MusicMood } from '@/lib/music-library'
-import { bundle } from '@remotion/bundler'
 import { renderMedia, selectComposition } from '@remotion/renderer'
 import cloudinary from 'cloudinary'
 import path from 'path'
@@ -167,22 +167,7 @@ Responda APENAS com JSON válido, sem markdown:
   })
 }
 
-// Cache the bundle location across requests in the same process
-let cachedBundleLocation: string | null = null
-
-async function getBundleLocation(): Promise<string> {
-  if (cachedBundleLocation) {
-    return cachedBundleLocation
-  }
-
-  console.log('Bundling Remotion composition (first time, may take 15-30s)...')
-  cachedBundleLocation = await bundle({
-    entryPoint: path.join(process.cwd(), 'remotion/index.tsx'),
-    webpackOverride: (config) => config,
-  })
-  console.log('Remotion bundle ready')
-  return cachedBundleLocation
-}
+// Bundle management moved to @/lib/remotion-bundle
 
 /**
  * POST - Generate animated Reel (MP4) from approved carousels using Remotion.
@@ -319,7 +304,7 @@ export async function POST(
     }
 
     // Bundle Remotion composition (cached after first call)
-    const bundleLocation = await getBundleLocation()
+    const bundleLocation = await getRemotionBundle()
 
     const results = []
 
