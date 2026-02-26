@@ -1,0 +1,47 @@
+# Vercel Ignore - Reduzir tamanho do deploy
+
+# Source maps do bundle Remotion
+.remotion-bundle/*.map
+
+# Documentação
+docs/
+README*.md
+CHANGELOG.md
+*.md
+
+# Testes
+__tests__/
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+playwright-report/
+test-results/
+coverage/
+
+# Development
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dados locais (não vão para produção)
+minds/
+expansion-packs/
+figma-plugin/
+squad-auditores/data/
+squad-auditores/output/
+
+# Git
+.git/
+.github/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Temporary
+tmp/
+temp/
+*.tmp
