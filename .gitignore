@@ -80,3 +80,15 @@ squad-auditores/output/
 # TypeScript build info
 *.tsbuildinfo
 .vercel
+
+# Environment & Secrets (AIOS)
+*.key
+*.pem
+
+# Dependencies (AIOS)
+node_modules
+
+# AIOS Local (AIOS)
+.aios-core/local/
+.claude/settings.local.json
+.aios/install-log.txt
