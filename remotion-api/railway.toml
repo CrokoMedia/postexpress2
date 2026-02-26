@@ -8,9 +8,3 @@ packages = ["nodejs", "chromium", "nss", "freetype", "harfbuzz", "ca-certificate
 startCommand = "npm start"
 healthcheckPath = "/health"
 healthcheckTimeout = 300
-restartPolicyType = "on-failure"
-restartPolicyMaxRetries = 3
-
-[[deploy.environmentVariables]]
-name = "NODE_ENV"
-value = "production"
