@@ -1,7 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient } from '@supabase/ssr'
+// import { createServerClient } from '@supabase/ssr'
 
+/**
+ * AUTENTICAÇÃO DESABILITADA
+ *
+ * Todas as rotas são públicas para facilitar desenvolvimento/testes.
+ * Para reativar autenticação, descomente o código abaixo.
+ */
 export async function middleware(request: NextRequest) {
+  // Permitir acesso a todas as rotas sem autenticação
+  return NextResponse.next()
+
+  /* CÓDIGO DE AUTENTICAÇÃO DESABILITADO - DESCOMENTE PARA REATIVAR
   const { pathname } = request.nextUrl
 
   // Rotas públicas — sem redirect no middleware
@@ -50,6 +60,7 @@ export async function middleware(request: NextRequest) {
   }
 
   return response
+  */
 }
 
 export const config = {
