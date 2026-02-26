@@ -14,3 +14,8 @@ restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
 healthcheckPath = "/api/health"
 healthcheckTimeout = 30
+
+[env]
+NODE_ENV = "production"
+PORT = "3000"
+HOSTNAME = "0.0.0.0"
