@@ -100,7 +100,10 @@ RUN adduser --system --uid 1001 nextjs
 # Copy built Next.js app (standalone já inclui tudo necessário)
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/public ./public
+
+# CRITICAL: Standalone mode doesn't copy public folder automatically
+# Copy public assets (images, icons, etc.)
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 # Copy Remotion bundle (CRITICAL for slide generation)
 COPY --from=builder /app/.remotion-bundle ./.remotion-bundle
