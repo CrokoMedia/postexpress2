@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
+    "check-env": "node scripts/check-env.js",
     "worker": "tsx worker/analysis-worker.ts",
     "worker:dev": "tsx watch worker/analysis-worker.ts",
     "test": "jest",
