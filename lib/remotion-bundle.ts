@@ -18,7 +18,8 @@ import fs from 'fs'
  * @throws Error se bundle não existir em produção
  */
 export async function getRemotionBundle(): Promise<string> {
-  const bundlePath = path.resolve(process.cwd(), '.next', 'remotion-bundle')
+  // IMPORTANTE: Bundle está em .remotion-bundle/ (não em .next/) para evitar limpeza do Next.js build
+  const bundlePath = path.resolve(process.cwd(), '.remotion-bundle')
 
   // Em produção, usar bundle pré-compilado
   if (process.env.NODE_ENV === 'production') {
@@ -50,7 +51,7 @@ export async function getRemotionBundle(): Promise<string> {
     webpackOverride: (config) => config,
   })
 
-  // Copiar para .next/remotion-bundle para cache
+  // Copiar para .remotion-bundle/ para cache (fora de .next/ para persistência)
   fs.mkdirSync(bundlePath, { recursive: true })
   fs.cpSync(tempBundle, bundlePath, { recursive: true })
 

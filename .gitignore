@@ -17,6 +17,7 @@ dist/
 build/
 .next/
 out/
+.remotion-bundle/
 
 # Logs
 logs/

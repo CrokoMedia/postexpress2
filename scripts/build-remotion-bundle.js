@@ -38,8 +38,8 @@ async function buildRemotionBundle() {
 
     console.log('✅ Bundle created at:', bundleLocation)
 
-    // Copiar bundle para .next/remotion-bundle/ para persistência
-    const targetDir = path.resolve(__dirname, '..', '.next', 'remotion-bundle')
+    // Copiar bundle para .remotion-bundle/ (fora de .next/ para evitar limpeza do Next.js)
+    const targetDir = path.resolve(__dirname, '..', '.remotion-bundle')
 
     if (fs.existsSync(targetDir)) {
       fs.rmSync(targetDir, { recursive: true })
