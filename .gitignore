@@ -92,3 +92,6 @@ node_modules
 .aios-core/local/
 .claude/settings.local.json
 .aios/install-log.txt
+
+# Local backups
+.backups/
