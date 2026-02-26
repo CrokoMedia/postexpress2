@@ -63,12 +63,19 @@ COPY . .
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Set dummy env vars for build (real ones set at runtime via Railway)
-ENV SUPABASE_URL=https://placeholder.supabase.co
-ENV SUPABASE_ANON_KEY=placeholder-key
-ENV SUPABASE_SERVICE_ROLE_KEY=placeholder-key
-ENV NEXT_PUBLIC_SUPABASE_URL=https://placeholder.supabase.co
-ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=placeholder-key
+# Accept build args from Railway (required for NEXT_PUBLIC_* to be embedded in build)
+ARG SUPABASE_URL
+ARG SUPABASE_ANON_KEY
+ARG SUPABASE_SERVICE_ROLE_KEY
+ARG NEXT_PUBLIC_SUPABASE_URL
+ARG NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+# Set as environment variables for build
+ENV SUPABASE_URL=$SUPABASE_URL
+ENV SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY
+ENV SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY
+ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=$NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 # Build Remotion bundle first (required for Next.js build)
 RUN npm run build:remotion
