@@ -1,2 +1,0 @@
-# Force Nixpacks builder (ignore Dockerfile)
-providers = ["node"]
