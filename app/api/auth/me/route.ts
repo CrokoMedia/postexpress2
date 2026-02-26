@@ -1,7 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getAuthUser, getUserRole } from '@/lib/auth'
+// import { getAuthUser, getUserRole } from '@/lib/auth'
 
+/**
+ * AUTENTICAÇÃO DESABILITADA
+ *
+ * Retorna dados mock para permitir acesso sem login.
+ * Para reativar autenticação, descomente o código abaixo.
+ */
 export async function GET(request: NextRequest) {
+  // Mock data para desenvolvimento sem autenticação
+  return NextResponse.json({
+    user_id: 'mock-user-id',
+    email: 'dev@crokolabs.com',
+    role: 'admin',
+    profile_ids: [],
+  })
+
+  /* CÓDIGO DE AUTENTICAÇÃO DESABILITADO - DESCOMENTE PARA REATIVAR
   const user = await getAuthUser(request)
 
   if (!user) {
@@ -20,4 +35,5 @@ export async function GET(request: NextRequest) {
     role: roleData.role,
     profile_ids: roleData.profile_ids,
   })
+  */
 }
