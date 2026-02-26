@@ -6,7 +6,7 @@
 
 FROM node:20-alpine AS base
 
-# Install system dependencies for Chromium + Remotion
+# Install system dependencies for Chromium + Remotion + Node native modules
 RUN apk add --no-cache \
     chromium \
     nss \
@@ -16,7 +16,16 @@ RUN apk add --no-cache \
     ttf-freefont \
     python3 \
     make \
-    g++
+    g++ \
+    gcc \
+    musl-dev \
+    linux-headers \
+    pkgconfig \
+    pixman-dev \
+    cairo-dev \
+    pango-dev \
+    libjpeg-turbo-dev \
+    giflib-dev
 
 # Tell Puppeteer/Remotion to use system Chromium
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
@@ -34,7 +43,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies (include dev deps for build)
-RUN npm ci --legacy-peer-deps
+# Using npm install instead of npm ci for better compatibility with Docker builds
+RUN npm install --legacy-peer-deps
 
 # ============================================
 # STAGE 2: Build
