@@ -17,7 +17,7 @@ dist/
 build/
 .next/
 out/
-.remotion-bundle/
+# .remotion-bundle/ → COMMITADO para funcionar em produção serverless (Railway/Vercel)
 
 # Logs
 logs/
