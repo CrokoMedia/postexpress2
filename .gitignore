@@ -8,7 +8,7 @@ secrets.txt
 
 # Dependencies
 node_modules/
-package-lock.json
+# package-lock.json → COMMITADO para npm ci funcionar em produção (Railway/Vercel)
 yarn.lock
 pnpm-lock.yaml
 
