@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { getRemotionBundle } from '@/lib/remotion-bundle'
 import { getServerlessRenderOptions } from '@/lib/remotion-chromium'
+import { safeApiHandler } from '@/lib/safe-api-handler'
 import { generateImageSmart, generateEditorialBackgroundSmart } from '@/lib/smart-image-generator'
 import { createContextualImagePrompt } from '@/lib/contextual-image-prompt'
 import { enhancePrompt, cleanPrompt } from '@/lib/prompt-enhancer'
@@ -53,11 +54,16 @@ function getSlideFields(slide: any): { titulo: string; corpo: string } {
  * POST /api/content/[id]/generate-slides-v3
  * Gera slides PNG via renderStill() do Remotion (substitui Puppeteer)
  */
-export async function POST(
+async function generateSlidesHandler(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
-) {
+): Promise<NextResponse> {
   console.log('🚀 [V3/Remotion] Iniciando POST /api/content/[id]/generate-slides-v3')
+  console.log('🌍 [V3/Remotion] Environment:', {
+    NODE_ENV: process.env.NODE_ENV,
+    platform: process.platform,
+    cwd: process.cwd(),
+  })
 
   try {
     const { id } = await params
@@ -416,6 +422,9 @@ export async function POST(
     )
   }
 }
+
+// Exportar handler com safe wrapper (garante sempre retornar JSON)
+export const POST = safeApiHandler(generateSlidesHandler)
 
 // Handler de erros não capturados (fallback)
 export const runtime = 'nodejs'
