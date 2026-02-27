@@ -58,33 +58,21 @@ export async function getRemotionBundle(): Promise<string> {
     return bundlePath
   }
 
-  // Em desenvolvimento, criar bundle sob demanda (uma vez)
-  if (fs.existsSync(bundlePath)) {
-    console.log('📦 [Remotion] Usando bundle cacheado')
-    return bundlePath
+  // Em desenvolvimento, usar bundle pré-compilado (mesmo que em produção)
+  // IMPORTANTE: Sempre rodar "npm run build:remotion" antes de iniciar dev server
+  const exists = fs.existsSync(bundlePath)
+  console.log('   - Bundle exists:', exists)
+
+  if (!exists) {
+    throw new Error(
+      `Remotion bundle not found at ${bundlePath}.\n` +
+      `Run "npm run build:remotion" to create the bundle before starting the dev server.`
+    )
   }
 
-  console.log('🎬 [Remotion] Criando bundle para desenvolvimento...')
-  const startTime = Date.now()
-  const entryPoint = path.resolve(process.cwd(), 'remotion/index.tsx')
+  const bundleContents = fs.readdirSync(bundlePath)
+  console.log('✅ [Remotion] Bundle found with', bundleContents.length, 'items')
+  console.log('📦 [Remotion] Usando bundle pré-compilado')
 
-  if (!fs.existsSync(entryPoint)) {
-    throw new Error(`Remotion entry point not found: ${entryPoint}`)
-  }
-
-  // CRITICAL: Dynamic import of @remotion/bundler (only available in dev)
-  // This prevents MODULE_NOT_FOUND errors in production
-  const { bundle } = await import('@remotion/bundler')
-
-  const tempBundle = await bundle({
-    entryPoint,
-    webpackOverride: (config) => config,
-  })
-
-  // Copiar para .remotion-bundle/ para cache (fora de .next/ para persistência)
-  fs.mkdirSync(bundlePath, { recursive: true })
-  fs.cpSync(tempBundle, bundlePath, { recursive: true })
-
-  console.log(`✅ [Remotion] Bundle criado em ${Date.now() - startTime}ms`)
   return bundlePath
 }
