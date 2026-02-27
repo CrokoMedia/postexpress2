@@ -11,7 +11,11 @@ import { transcribeMultipleAudios } from '@/lib/captions'
 import type { CaptionWord } from '@/lib/captions'
 import { getVerifiedTrackForMood, getMusicVolume } from '@/lib/music-library'
 import type { MusicMood } from '@/lib/music-library'
+import { createRequire } from 'module'
 import cloudinary from 'cloudinary'
+
+// CRITICAL: Force traditional require() to bypass Next.js bundler
+const require = createRequire(import.meta.url)
 import path from 'path'
 import fs from 'fs'
 
@@ -517,8 +521,8 @@ export async function POST(
     // Pre-warm: bundle Remotion (shared across all renders)
     const bundleLocation = await getRemotionBundle()
 
-    // Dynamic import do @remotion/renderer (CRITICAL para produção)
-    const { renderMedia, selectComposition } = await import('@remotion/renderer')
+    // Force traditional require() instead of import() (bypasses Next.js bundler)
+    const { renderMedia, selectComposition } = require('@remotion/renderer')
 
     const renderOptions = await getServerlessRenderOptions()
 

@@ -6,9 +6,13 @@ import { generateImageSmart, generateEditorialBackgroundSmart } from '@/lib/smar
 import { createContextualImagePrompt } from '@/lib/contextual-image-prompt'
 import { enhancePrompt, cleanPrompt } from '@/lib/prompt-enhancer'
 import { breakdownComplexPrompt, buildFocusedPrompt } from '@/lib/prompt-weighting'
+import { createRequire } from 'module'
 import cloudinary from 'cloudinary'
 import path from 'path'
 import fs from 'fs'
+
+// CRITICAL: Force traditional require() to bypass Next.js bundler
+const require = createRequire(import.meta.url)
 
 // Permitir até 5 minutos para renderizar todos os slides
 export const maxDuration = 300
@@ -109,8 +113,8 @@ export async function POST(
     const bundleLocation = await getRemotionBundle()
     console.log('✅ [V3/Remotion] Bundle carregado:', bundleLocation)
 
-    // 2. Dynamic import do @remotion/renderer (CRITICAL para produção)
-    const { renderStill, selectComposition } = await import('@remotion/renderer')
+    // 2. Force traditional require() instead of import() (bypasses Next.js bundler)
+    const { renderStill, selectComposition } = require('@remotion/renderer')
 
     // 3. Helper function para selectComposition
     const getStillComposition = async (loc: string, compId: string, props: Record<string, unknown>) => {

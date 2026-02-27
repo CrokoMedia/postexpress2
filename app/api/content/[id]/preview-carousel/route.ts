@@ -2,8 +2,13 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { getRemotionBundle } from '@/lib/remotion-bundle'
 import { getServerlessRenderOptions } from '@/lib/remotion-chromium'
+import { createRequire } from 'module'
 import path from 'path'
 import fs from 'fs'
+
+// CRITICAL: Force traditional require() to bypass Next.js bundler
+// Next.js breaks dynamic import() even with serverExternalPackages
+const require = createRequire(import.meta.url)
 
 /**
  * GET /api/content/[id]/preview-carousel?carouselIndex=0&slideIndex=0&templateId=minimalist&format=feed&theme=light
@@ -114,8 +119,8 @@ export async function GET(
     // 1. Obter bundle Remotion (pré-compilado ou cacheado)
     const bundleLocation = await getRemotionBundle()
 
-    // 2. Dynamic import do @remotion/renderer (CRITICAL para produção)
-    const { renderStill, selectComposition } = await import('@remotion/renderer')
+    // 2. Force traditional require() instead of import() (bypasses Next.js bundler)
+    const { renderStill, selectComposition } = require('@remotion/renderer')
 
     // 4. Renderizar slide via Remotion
     const tempDir = path.join('/tmp', 'preview-carousel', id)

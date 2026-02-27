@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { getRemotionBundle } from '@/lib/remotion-bundle'
 import { getServerlessRenderOptions } from '@/lib/remotion-chromium'
+import { createRequire } from 'module'
 import cloudinary from 'cloudinary'
+
+// CRITICAL: Force traditional require() to bypass Next.js bundler
+const require = createRequire(import.meta.url)
 import path from 'path'
 import fs from 'fs'
 
@@ -134,8 +138,8 @@ export async function POST(
     // 5. Bundle Remotion (cached)
     const bundleLocation = await getRemotionBundle()
 
-    // 6. Dynamic import do @remotion/renderer (CRITICAL para produção)
-    const { renderMedia, selectComposition } = await import('@remotion/renderer')
+    // 6. Force traditional require() instead of import() (bypasses Next.js bundler)
+    const { renderMedia, selectComposition } = require('@remotion/renderer')
 
     const renderOptions = await getServerlessRenderOptions()
 
@@ -161,7 +165,7 @@ export async function POST(
       codec: 'h264',
       outputLocation: outputPath,
       inputProps,
-      onProgress: ({ progress }) => {
+      onProgress: ({ progress }: { progress: number }) => {
         if (Math.round(progress * 100) % 25 === 0) {
           console.log(`Rendering audit video: ${Math.round(progress * 100)}%`)
         }
