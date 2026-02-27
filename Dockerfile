@@ -77,6 +77,11 @@ ENV SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY
 ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
 ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=$NEXT_PUBLIC_SUPABASE_ANON_KEY
 
+# CRITICAL FIX: Copy Remotion index files to root BEFORE Next.js build
+# This ensures Next.js bundler finds the correct path
+RUN cd node_modules/@remotion/renderer && cp dist/index.js index.js && cp dist/index.mjs index.mjs && \
+    cd /app/node_modules/@remotion/bundler && cp dist/index.js index.js && cp dist/index.mjs index.mjs
+
 # Build Remotion bundle first (required for Next.js build)
 RUN npm run build:remotion
 
@@ -117,12 +122,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 # Copy Remotion bundle and compositions
 COPY --from=builder /app/.remotion-bundle ./.remotion-bundle
 COPY --from=builder /app/remotion ./remotion
-
-# CRITICAL FIX: Create symlinks for Remotion packages to fix module resolution
-# Node.js is looking for index.js but package.json points to dist/index.js
-# Do this BEFORE changing user to avoid permission issues
-RUN cd /app/node_modules/@remotion/renderer && ln -sf dist/index.js index.js && ln -sf dist/index.mjs index.mjs && \
-    cd /app/node_modules/@remotion/bundler && ln -sf dist/index.js index.js && ln -sf dist/index.mjs index.mjs
 
 # Set ownership
 RUN chown -R nextjs:nodejs /app
