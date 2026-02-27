@@ -61,7 +61,6 @@ export async function GET() {
       name: 'Chromium',
       status: 'OK',
       browserExecutable: options.browserExecutable || 'default',
-      chromiumPath: options.chromiumPath,
       env: {
         PUPPETEER_EXECUTABLE_PATH: process.env.PUPPETEER_EXECUTABLE_PATH,
         REMOTION_CHROMIUM_PATH: process.env.REMOTION_CHROMIUM_PATH
