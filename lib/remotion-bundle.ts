@@ -5,14 +5,13 @@
  * O bundle é gerado durante o build via scripts/build-remotion-bundle.js
  */
 
-import { bundle } from '@remotion/bundler'
 import path from 'path'
 import fs from 'fs'
 
 /**
  * Retorna o caminho para o bundle pré-compilado do Remotion.
  *
- * - Em produção: usa bundle pré-compilado em .next/remotion-bundle/
+ * - Em produção: usa bundle pré-compilado em .remotion-bundle/
  * - Em desenvolvimento: cria bundle sob demanda e cacheia
  *
  * @throws Error se bundle não existir em produção
@@ -72,6 +71,10 @@ export async function getRemotionBundle(): Promise<string> {
   if (!fs.existsSync(entryPoint)) {
     throw new Error(`Remotion entry point not found: ${entryPoint}`)
   }
+
+  // CRITICAL: Dynamic import of @remotion/bundler (only available in dev)
+  // This prevents MODULE_NOT_FOUND errors in production
+  const { bundle } = await import('@remotion/bundler')
 
   const tempBundle = await bundle({
     entryPoint,
