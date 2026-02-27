@@ -1,3 +1,8 @@
+import { fileURLToPath } from 'url'
+import path from 'path'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // DISABLED: Standalone mode causes MODULE_NOT_FOUND in production
@@ -84,33 +89,32 @@ const nextConfig = {
   },
 
   // Webpack config para otimizar tamanho
-  webpack: (config, { isServer }) => {
+  webpack: (config, { isServer, webpack }) => {
     if (isServer) {
       // Excluir source maps em produção
       config.devtool = false
+
+      // SERVER-SIDE: Externalizar @remotion/* para evitar bundling de pacotes nativos
+      config.externals = config.externals || []
+      config.externals.push(({context, request}, callback) => {
+        if (request && request.startsWith('@remotion/')) {
+          return callback(null, `commonjs ${request}`)
+        }
+        callback()
+      })
     }
 
-    // CLIENT-SIDE: Ignorar completamente pacotes Remotion (server-only)
+    // CLIENT-SIDE: Substituir @remotion/* por módulo vazio
     if (!isServer) {
-      // Adicionar plugin para interceptar resolução de módulos
       config.plugins = config.plugins || []
-      config.plugins.push({
-        apply: (compiler) => {
-          compiler.hooks.normalModuleFactory.tap('IgnoreRemotionPlugin', (nmf) => {
-            nmf.hooks.beforeResolve.tap('IgnoreRemotionPlugin', (resolveData) => {
-              const request = resolveData.request
 
-              // Ignorar TODOS os pacotes @remotion/* no client-side
-              if (request && request.startsWith('@remotion/')) {
-                return false // Cancela a resolução
-              }
-
-              // Permitir outras resoluções
-              return undefined
-            })
-          })
-        },
-      })
+      // SOLUÇÃO MAIS AGRESSIVA: Substituir QUALQUER import de @remotion/* por módulo vazio
+      config.plugins.push(
+        new webpack.NormalModuleReplacementPlugin(
+          /^@remotion\/.*/,
+          path.join(__dirname, 'lib', 'remotion-noop.js')
+        )
+      )
 
       // Fallbacks adicionais para segurança
       config.resolve = config.resolve || {}
