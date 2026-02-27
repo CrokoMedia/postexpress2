@@ -97,29 +97,20 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy built Next.js app (standalone já inclui tudo necessário)
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+# Copy FULL Next.js build (not standalone - includes everything)
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
 
-# CRITICAL: Copy API routes explicitly (standalone may cache/miss new routes)
-# This ensures all API routes are available, including newly added ones
-COPY --from=builder /app/.next/server ./.next/server
-
-# CRITICAL: Copy lib/ source files (needed for @/lib/* imports in API routes)
-# Standalone doesn't include these by default
+# Copy source files needed at runtime
 COPY --from=builder /app/lib ./lib
-
-# CRITICAL: Copy types/ for TypeScript definitions
 COPY --from=builder /app/types ./types
-
-# CRITICAL: Standalone mode doesn't copy public folder automatically
-# Copy public assets (images, icons, etc.)
+COPY --from=builder /app/components ./components
+COPY --from=builder /app/hooks ./hooks
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
-# Copy Remotion bundle (CRITICAL for slide generation)
+# Copy Remotion bundle and compositions
 COPY --from=builder /app/.remotion-bundle ./.remotion-bundle
-
-# Copy remotion/ folder (needed for Remotion compositions)
 COPY --from=builder /app/remotion ./remotion
 
 # Set ownership
@@ -133,5 +124,5 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Start Next.js server
-CMD ["node", "server.js"]
+# Start Next.js server (full build mode)
+CMD ["node_modules/.bin/next", "start"]

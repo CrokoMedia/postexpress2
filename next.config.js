@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Standalone output para deploy otimizado
-  output: 'standalone',
+  // DISABLED: Standalone mode causes MODULE_NOT_FOUND in production
+  // output: 'standalone',
 
   // Externalizar pacotes pesados (não incluir no bundle serverless)
   serverExternalPackages: [
