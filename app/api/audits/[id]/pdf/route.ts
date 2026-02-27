@@ -114,12 +114,28 @@ const SECTION_ICONS = {
 
 function getLogoBase64(): string {
   try {
-    const logoPath = path.join(process.cwd(), 'public', 'croko-icon.png')
-    const logoBuffer = fs.readFileSync(logoPath)
-    return `data:image/png;base64,${logoBuffer.toString('base64')}`
+    // Tenta diferentes caminhos possíveis
+    const possiblePaths = [
+      path.join(process.cwd(), 'public', 'croko-icon.png'),
+      path.join(process.cwd(), '.next', 'static', 'media', 'croko-icon.png'),
+      '/app/public/croko-icon.png', // Railway path
+    ]
+
+    for (const logoPath of possiblePaths) {
+      if (fs.existsSync(logoPath)) {
+        console.log('✅ Logo encontrado:', logoPath)
+        const logoBuffer = fs.readFileSync(logoPath)
+        return `data:image/png;base64,${logoBuffer.toString('base64')}`
+      }
+    }
+
+    console.warn('⚠️ Logo não encontrado em nenhum caminho. Usando fallback SVG.')
+    // Fallback: retorna um SVG simples inline
+    return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI4IiBmaWxsPSIjOEI1Q0Y2Ii8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPkM8L3RleHQ+PC9zdmc+'
   } catch (error) {
-    console.error('Erro ao carregar logo:', error)
-    return ''
+    console.error('❌ Erro ao carregar logo:', error)
+    // Fallback SVG (letra "C" roxa)
+    return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI4IiBmaWxsPSIjOEI1Q0Y2Ii8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiPkM8L3RleHQ+PC9zdmc+'
   }
 }
 

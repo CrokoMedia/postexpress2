@@ -20,13 +20,7 @@ cloudinary.v2.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 })
 
-async function getStillComposition(bundleLocation: string, compositionId: string, inputProps: Record<string, unknown>) {
-  return selectComposition({
-    serveUrl: bundleLocation,
-    id: compositionId,
-    inputProps,
-  })
-}
+// Função helper movida para dentro do POST para usar import dinâmico
 
 /**
  * Extrai o título e corpo do slide a partir da estrutura do Content Squad
@@ -114,6 +108,18 @@ export async function POST(
     console.log('📦 [V3/Remotion] Carregando bundle Remotion...')
     const bundleLocation = await getRemotionBundle()
     console.log('✅ [V3/Remotion] Bundle carregado:', bundleLocation)
+
+    // 2. Dynamic import do @remotion/renderer (CRITICAL para produção)
+    const { renderStill, selectComposition } = await import('@remotion/renderer')
+
+    // 3. Helper function para selectComposition
+    const getStillComposition = async (loc: string, compId: string, props: Record<string, unknown>) => {
+      return selectComposition({
+        serveUrl: loc,
+        id: compId,
+        inputProps: props,
+      })
+    }
 
     console.log('🌐 [V3/Remotion] Configurando Chromium serverless...')
     const renderOptions = await getServerlessRenderOptions()

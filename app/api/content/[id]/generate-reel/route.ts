@@ -13,7 +13,6 @@ import { transcribeMultipleAudios } from '@/lib/captions'
 import type { CaptionWord } from '@/lib/captions'
 import { getVerifiedTrackForMood, getMusicVolume } from '@/lib/music-library'
 import type { MusicMood } from '@/lib/music-library'
-import { renderMedia, selectComposition } from '@remotion/renderer'
 import cloudinary from 'cloudinary'
 import path from 'path'
 import fs from 'fs'
@@ -306,6 +305,10 @@ export async function POST(
 
     // Bundle Remotion composition (cached after first call)
     const bundleLocation = await getRemotionBundle()
+
+    // Dynamic import do @remotion/renderer (CRITICAL para produção)
+    const { renderMedia, selectComposition } = await import('@remotion/renderer')
+
     const renderOptions = await getServerlessRenderOptions()
 
     const results = []

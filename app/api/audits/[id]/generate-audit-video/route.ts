@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { getRemotionBundle } from '@/lib/remotion-bundle'
 import { getServerlessRenderOptions } from '@/lib/remotion-chromium'
-import { renderMedia, selectComposition } from '@remotion/renderer'
 import cloudinary from 'cloudinary'
 import path from 'path'
 import fs from 'fs'
@@ -134,9 +133,13 @@ export async function POST(
 
     // 5. Bundle Remotion (cached)
     const bundleLocation = await getRemotionBundle()
+
+    // 6. Dynamic import do @remotion/renderer (CRITICAL para produção)
+    const { renderMedia, selectComposition } = await import('@remotion/renderer')
+
     const renderOptions = await getServerlessRenderOptions()
 
-    // 6. Selecionar composicao
+    // 7. Selecionar composicao
     const composition = await selectComposition({
       serveUrl: bundleLocation,
       id: 'AuditResult',
