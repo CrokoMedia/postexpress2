@@ -118,6 +118,13 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder /app/.remotion-bundle ./.remotion-bundle
 COPY --from=builder /app/remotion ./remotion
 
+# CRITICAL FIX: Create symlinks for Remotion packages to fix module resolution
+# Node.js is looking for index.js but package.json points to dist/index.js
+RUN ln -sf dist/index.js node_modules/@remotion/renderer/index.js && \
+    ln -sf dist/index.js node_modules/@remotion/bundler/index.js && \
+    ln -sf dist/index.mjs node_modules/@remotion/renderer/index.mjs && \
+    ln -sf dist/index.mjs node_modules/@remotion/bundler/index.mjs
+
 # Set ownership
 RUN chown -R nextjs:nodejs /app
 
