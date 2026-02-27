@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { getRemotionBundle } from '@/lib/remotion-bundle'
 import { getServerlessRenderOptions } from '@/lib/remotion-chromium'
-import { safeApiHandler } from '@/lib/safe-api-handler'
 import { generateImageSmart, generateEditorialBackgroundSmart } from '@/lib/smart-image-generator'
 import { createContextualImagePrompt } from '@/lib/contextual-image-prompt'
 import { enhancePrompt, cleanPrompt } from '@/lib/prompt-enhancer'
@@ -53,19 +52,24 @@ function getSlideFields(slide: any): { titulo: string; corpo: string } {
 /**
  * POST /api/content/[id]/generate-slides-v3
  * Gera slides PNG via renderStill() do Remotion (substitui Puppeteer)
+ *
+ * CRITICAL: Wrapped in top-level try-catch to ALWAYS return JSON
  */
-async function generateSlidesHandler(
+export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ): Promise<NextResponse> {
-  console.log('🚀 [V3/Remotion] Iniciando POST /api/content/[id]/generate-slides-v3')
-  console.log('🌍 [V3/Remotion] Environment:', {
-    NODE_ENV: process.env.NODE_ENV,
-    platform: process.platform,
-    cwd: process.cwd(),
-  })
-
+  // OUTER TRY-CATCH: Garante JSON sempre, mesmo em crashes de import/compilação
   try {
+    console.log('🚀 [V3/Remotion] Iniciando POST /api/content/[id]/generate-slides-v3')
+    console.log('🌍 [V3/Remotion] Environment:', {
+      NODE_ENV: process.env.NODE_ENV,
+      platform: process.platform,
+      cwd: process.cwd(),
+    })
+
+    // INNER TRY-CATCH: Lógica principal
+    try {
     const { id } = await params
     console.log('📝 [V3/Remotion] ID do audit:', id)
 
@@ -405,26 +409,49 @@ async function generateSlidesHandler(
       },
       template: 'v3-remotion',
     })
-  } catch (error: unknown) {
-    console.error('❌ [V3/Remotion] ERRO CAPTURADO:', error)
-    console.error('❌ [V3/Remotion] Stack:', error instanceof Error ? error.stack : 'N/A')
+    } catch (error: unknown) {
+      // INNER CATCH: Erros da lógica principal
+      console.error('❌ [V3/Remotion] ERRO CAPTURADO (inner):', error)
+      console.error('❌ [V3/Remotion] Stack:', error instanceof Error ? error.stack : 'N/A')
 
-    const msg = error instanceof Error ? error.message : String(error)
+      const msg = error instanceof Error ? error.message : String(error)
 
-    // Garantir que SEMPRE retornamos JSON
-    return NextResponse.json(
-      {
-        error: msg || 'Failed to generate slides V3',
+      // Garantir que SEMPRE retornamos JSON
+      return NextResponse.json(
+        {
+          error: msg || 'Failed to generate slides V3',
+          timestamp: new Date().toISOString(),
+          endpoint: 'generate-slides-v3',
+          layer: 'inner',
+        },
+        { status: 500 }
+      )
+    }
+  } catch (outerError: unknown) {
+    // OUTER CATCH: Erros de import, compilação, ou crashes antes do código executar
+    console.error('❌ [V3/Remotion] CRITICAL ERROR (outer):', outerError)
+
+    const msg = outerError instanceof Error ? outerError.message : String(outerError)
+
+    // FALLBACK ABSOLUTO: Garantir JSON mesmo em crash total
+    return new NextResponse(
+      JSON.stringify({
+        error: msg || 'Critical server error',
         timestamp: new Date().toISOString(),
         endpoint: 'generate-slides-v3',
-      },
-      { status: 500 }
+        layer: 'outer',
+        details: outerError instanceof Error ? {
+          name: outerError.name,
+          stack: outerError.stack?.split('\n').slice(0, 5),
+        } : undefined,
+      }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      }
     )
   }
 }
-
-// Exportar handler com safe wrapper (garante sempre retornar JSON)
-export const POST = safeApiHandler(generateSlidesHandler)
 
 // Handler de erros não capturados (fallback)
 export const runtime = 'nodejs'
