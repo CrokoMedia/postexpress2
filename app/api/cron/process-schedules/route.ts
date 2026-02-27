@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
       .from('content_generation_schedules')
       .select(`
         *,
-        profiles:profile_id (id, username, full_name),
+        instagram_profiles:profile_id (id, username, full_name),
         audits:audit_id (id, profile_id, score_overall)
       `)
       .eq('status', 'pending')
@@ -102,7 +102,7 @@ export async function POST(req: NextRequest) {
         // Gerar conteúdo via Content Creation Squad
         const contentJson = await generateWithSquad({
           audit: schedule.audits,
-          profile: schedule.profiles,
+          profile: schedule.instagram_profiles,
           quantity: schedule.quantity,
           customTheme: schedule.custom_theme,
         })
