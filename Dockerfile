@@ -97,12 +97,12 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy package files for production install
+# Copy package files for runtime install
 COPY --from=builder /app/package*.json ./
 
-# Install ONLY production dependencies (no devDependencies)
-# This dramatically reduces image size
-RUN npm ci --production --legacy-peer-deps && npm cache clean --force
+# Install ALL dependencies (including dev) for Remotion dynamic imports to work
+# Remotion renderer requires all deps at runtime for dynamic composition loading
+RUN npm ci --legacy-peer-deps && npm cache clean --force
 
 # Copy built Next.js app
 COPY --from=builder /app/.next ./.next
