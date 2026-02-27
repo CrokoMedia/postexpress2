@@ -77,12 +77,8 @@ ENV SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY
 ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
 ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=$NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-# CRITICAL FIX: Copy Remotion index files to root BEFORE Next.js build
-# This ensures Next.js bundler finds the correct path
-RUN cd node_modules/@remotion/renderer && cp dist/index.js index.js && cp dist/index.mjs index.mjs && \
-    cd /app/node_modules/@remotion/bundler && cp dist/index.js index.js && cp dist/index.mjs index.mjs
-
 # Build Remotion bundle first (required for Next.js build)
+# Note: postinstall script already fixed Remotion paths after npm install
 RUN npm run build:remotion
 
 # Build Next.js

@@ -1,15 +1,82 @@
-# Vercel Ignore - Reduzir tamanho do deploy
+# ============================================
+# VERCEL IGNORE - OTIMIZADO PARA CUSTOS
+# Versão: 2.0 (27/02/2026)
+# Objetivo: Reduzir deploy de 600MB → 100MB
+# ============================================
 
-# Source maps do bundle Remotion
-.remotion-bundle/*.map
+# ============================================
+# 1. SQUADS & DOCUMENTAÇÃO (~380 MB) ❌
+# ============================================
+# Estes são sistemas de IA/documentação que NÃO rodam na Vercel
+content-creation-squad/
+content-distillery/
+squad-auditores/
+squads/
+mmos-squad/
+reel-production-squad/
+post-express-template/
+SobreCrokolabs/
 
-# Documentação
-docs/
-README*.md
-CHANGELOG.md
-*.md
+# ============================================
+# 2. WORKER SEPARADO (~47 MB) ❌
+# ============================================
+# Worker roda separadamente, não no Next.js
+worker/
 
-# Testes
+# ============================================
+# 3. EXPANSION PACKS & ETL (~65 MB) ❌
+# ============================================
+expansion-packs/
+minds/
+
+# ============================================
+# 4. APIS SEPARADAS (~12 MB) ❌
+# ============================================
+remotion-api/
+
+# ============================================
+# 5. DESIGN & TEMPLATES (~22 MB) ❌
+# ============================================
+figma-plugin/
+figma-plugin-garyvee-pipelines/
+TemplateFigma/
+05. Fontes/
+design/
+
+# ============================================
+# 6. CLIENTES ESPECÍFICOS (~13 MB) ❌
+# ============================================
+ONEPERCENT/
+logocroko/
+
+# ============================================
+# 7. ARQUIVOS TEMPORÁRIOS & UPLOADS (~12 MB) ❌
+# ============================================
+temp/
+tmp/
+uploads/
+*.tmp
+carrossel-venda-output/
+
+# ============================================
+# 8. TESSERACT OCR LOCAL (~2.3 MB) ❌
+# ============================================
+# Tesseract não roda na Vercel (ambiente serverless)
+*.traineddata
+por.traineddata
+eng.traineddata
+
+# ============================================
+# 9. PLAYER SCRIPTS DUPLICADOS (~4.6 MB) ❌
+# ============================================
+# Scripts de player do Remotion duplicados na raiz
+*-player-script.js
+1771503616530-player-script.js
+1771503616521-player-script.js
+
+# ============================================
+# 10. TESTES (~8 MB) ❌
+# ============================================
 __tests__/
 **/*.test.ts
 **/*.test.tsx
@@ -18,30 +85,113 @@ __tests__/
 playwright-report/
 test-results/
 coverage/
+*.test.js
+*.spec.js
 
-# Development
+# ============================================
+# 11. BANCO DE DADOS & SCRIPTS SQL ❌
+# ============================================
+# Schemas SQL não rodam na Vercel
+database/
+supabase/
+*.sql
+
+# ============================================
+# 12. SCRIPTS DE ANÁLISE LOCAL (~15 MB) ❌
+# ============================================
+# Scripts Node que rodam localmente, não na Vercel
+scripts/instagram-scraper-with-comments.js
+scripts/ocr-gemini-analyzer.js
+scripts/ocr-mistral-analyzer.js
+scripts/ocr-image-analyzer.js
+scripts/complete-post-analyzer.js
+scripts/fix-missing-profile-pics.js
+scripts/upload-profile-pics-to-cloudinary.js
+scripts/test-*.js
+scripts/build-remotion-bundle.js
+scripts/check-env.js
+apify-actors/
+
+# ============================================
+# 13. FRAMEWORKS DE DESENVOLVIMENTO ❌
+# ============================================
+# AIOS, Claude, Cursor configs não precisam em produção
+.aios-core/
+.claude/
+.cursor/
+.codex/
+.gemini/
+.agent/
+.agents/
+.antigravity/
+.backups/
+
+# ============================================
+# 14. DOCUMENTAÇÃO MARKDOWN (~5 MB) ❌
+# ============================================
+docs/
+README*.md
+CHANGELOG.md
+CLAUDE.md
+IMPLEMENTATION*.md
+FLUXO*.md
+SISTEMA*.md
+*.md
+!app/**/*.md
+!components/**/*.md
+
+# ============================================
+# 15. SOURCE MAPS REMOTION (~20 MB) ❌
+# ============================================
+.remotion-bundle/*.map
+
+# ============================================
+# 16. GIT & GITHUB ❌
+# ============================================
+.git/
+.github/
+.gitignore
+.gitattributes
+
+# ============================================
+# 17. EDITORES & IDEs ❌
+# ============================================
 .vscode/
 .idea/
 *.swp
 *.swo
+.DS_Store
 
-# Dados locais (não vão para produção)
-minds/
-expansion-packs/
-figma-plugin/
-squad-auditores/data/
-squad-auditores/output/
-
-# Git
-.git/
-.github/
-
-# Logs
+# ============================================
+# 18. LOGS ❌
+# ============================================
 logs/
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Temporary
-tmp/
-temp/
-*.tmp
+# ============================================
+# 19. ENVIRONMENT & CONFIGS LOCAL ❌
+# ============================================
+.env.local
+.env*.local
+
+# ============================================
+# 20. STORE & STATE LOCAL ❌
+# ============================================
+store/
+
+# ============================================
+# 21. ASSETS NÃO USADOS ❌
+# ============================================
+assets/
+
+# ============================================
+# RESUMO DE ECONOMIA
+# ============================================
+# Antes: ~550-600 MB
+# Depois: ~80-120 MB
+# Redução: 75-80%
+# Economia: $60 → $10-15 por deploy
+# ============================================
