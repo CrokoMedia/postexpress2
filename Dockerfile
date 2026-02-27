@@ -97,12 +97,12 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy package files for runtime install
-COPY --from=builder /app/package*.json ./
+# Copy node_modules directly from builder (garantees same packages that worked in build)
+# This is heavier but 100% reliable - avoids any npm install issues in runner
+COPY --from=builder /app/node_modules ./node_modules
 
-# Install ALL dependencies (including dev) for Remotion dynamic imports to work
-# Remotion renderer requires all deps at runtime for dynamic composition loading
-RUN npm ci --legacy-peer-deps && npm cache clean --force
+# Copy package files for reference
+COPY --from=builder /app/package*.json ./
 
 # Copy built Next.js app
 COPY --from=builder /app/.next ./.next
