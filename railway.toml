@@ -17,7 +17,7 @@ SUPABASE_ANON_KEY = "$SUPABASE_ANON_KEY"
 SUPABASE_SERVICE_ROLE_KEY = "$SUPABASE_SERVICE_ROLE_KEY"
 
 [deploy]
-startCommand = "node server.js"
+startCommand = "node_modules/.bin/next start"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
 healthcheckPath = "/api/health"
