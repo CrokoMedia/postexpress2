@@ -101,6 +101,10 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
+# CRITICAL: Copy API routes explicitly (standalone may cache/miss new routes)
+# This ensures all API routes are available, including newly added ones
+COPY --from=builder /app/.next/server ./.next/server
+
 # CRITICAL: Standalone mode doesn't copy public folder automatically
 # Copy public assets (images, icons, etc.)
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
