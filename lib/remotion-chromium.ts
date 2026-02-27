@@ -15,8 +15,13 @@ export async function getServerlessRenderOptions() {
   console.log('🔧 [Remotion] getServerlessRenderOptions chamado')
   console.log('   NODE_ENV:', process.env.NODE_ENV)
   console.log('   Platform:', process.platform)
+  console.log('   RAILWAY_ENVIRONMENT:', process.env.RAILWAY_ENVIRONMENT)
 
-  const isProduction = process.env.NODE_ENV === 'production'
+  // Detectar produção: NODE_ENV=production OU ambiente Railway
+  const isProduction =
+    process.env.NODE_ENV === 'production' ||
+    process.env.RAILWAY_ENVIRONMENT === 'production' ||
+    !!process.env.RAILWAY_PROJECT_ID
 
   if (!isProduction) {
     console.log('💻 [Remotion] Usando Chromium local (desenvolvimento)')
