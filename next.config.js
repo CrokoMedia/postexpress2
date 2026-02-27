@@ -4,18 +4,13 @@ const nextConfig = {
   // output: 'standalone',
 
   // Externalizar pacotes pesados (não incluir no bundle serverless)
+  // REMOVED @remotion/* packages - they MUST be bundled to work properly
   serverExternalPackages: [
     'pdf-parse',
     'mammoth',
-    '@remotion/renderer',
-    '@remotion/bundler',
-    '@remotion/player',
-    '@remotion/transitions',
-    '@remotion/captions',
     '@sparticuz/chromium',
     'puppeteer',
     'puppeteer-core',
-    'react-dom',
   ],
 
   // Excluir arquivos desnecessários do tracing
