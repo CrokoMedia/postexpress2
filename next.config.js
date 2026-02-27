@@ -90,26 +90,36 @@ const nextConfig = {
       config.devtool = false
     }
 
-    // CLIENT-SIDE: Ignorar pacotes nativos do Remotion (não devem ser incluídos no browser)
+    // CLIENT-SIDE: Ignorar completamente pacotes Remotion (server-only)
     if (!isServer) {
+      // Adicionar plugin para interceptar resolução de módulos
+      config.plugins = config.plugins || []
+      config.plugins.push({
+        apply: (compiler) => {
+          compiler.hooks.normalModuleFactory.tap('IgnoreRemotionPlugin', (nmf) => {
+            nmf.hooks.beforeResolve.tap('IgnoreRemotionPlugin', (resolveData) => {
+              const request = resolveData.request
+
+              // Ignorar TODOS os pacotes @remotion/* no client-side
+              if (request && request.startsWith('@remotion/')) {
+                return false // Cancela a resolução
+              }
+
+              // Permitir outras resoluções
+              return undefined
+            })
+          })
+        },
+      })
+
+      // Fallbacks adicionais para segurança
       config.resolve = config.resolve || {}
       config.resolve.fallback = config.resolve.fallback || {}
-
-      // Ignorar todos os pacotes de compositor nativos do Remotion
-      config.resolve.fallback['@remotion/compositor-win32-x64-msvc'] = false
-      config.resolve.fallback['@remotion/compositor-darwin-x64'] = false
-      config.resolve.fallback['@remotion/compositor-darwin-arm64'] = false
-      config.resolve.fallback['@remotion/compositor-linux-x64-gnu'] = false
-      config.resolve.fallback['@remotion/compositor-linux-arm64-gnu'] = false
-
-      // Ignorar pacotes pesados do Remotion no cliente
-      config.resolve.fallback['@remotion/renderer'] = false
-      config.resolve.fallback['@remotion/bundler'] = false
-
-      // Ignorar módulos Node.js que o Remotion pode tentar usar
       config.resolve.fallback['fs'] = false
       config.resolve.fallback['path'] = false
       config.resolve.fallback['child_process'] = false
+      config.resolve.fallback['crypto'] = false
+      config.resolve.fallback['stream'] = false
     }
 
     return config

@@ -6,6 +6,10 @@ import { createRequire } from 'module'
 import path from 'path'
 import fs from 'fs'
 
+// CRITICAL: Force Node.js runtime (prevents client-side bundling)
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
+
 // CRITICAL: Force traditional require() to bypass Next.js bundler
 // Next.js breaks dynamic import() even with serverExternalPackages
 const require = createRequire(import.meta.url)
