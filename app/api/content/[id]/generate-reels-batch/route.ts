@@ -167,7 +167,9 @@ async function renderSingleReel(
   bundleLocation: string,
   sharedSoundEffectUrls: SoundEffectUrls | undefined,
   reelIndex: number,
-  renderOptions: Record<string, unknown>
+  renderOptions: Record<string, unknown>,
+  selectComposition: any,
+  renderMedia: any
 ): Promise<BatchReelResult> {
   const carouselSlides = carousel.slides as Record<string, string>[]
   const carouselName = `batch-reel-${reelIndex + 1}`
@@ -369,7 +371,7 @@ async function renderSingleReel(
     codec: 'h264',
     outputLocation: outputPath,
     inputProps,
-    onProgress: ({ progress }) => {
+    onProgress: ({ progress }: { progress: number }) => {
       if (Math.round(progress * 100) % 25 === 0) {
         console.log(
           `  [Batch ${reelIndex + 1}] Rendering: ${Math.round(progress * 100)}%`
@@ -545,7 +547,9 @@ export async function POST(
           bundleLocation,
           sharedSoundEffectUrls,
           reelIndex,
-          renderOptions
+          renderOptions,
+          selectComposition,
+          renderMedia
         )
         return result
       } catch (error: unknown) {
