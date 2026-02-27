@@ -56,11 +56,6 @@ const nextConfig = {
     ],
   },
 
-  // Aumentar timeout de serverless functions (Vercel)
-  serverOptions: {
-    bodySizeLimit: '10mb',
-  },
-
   // Headers para forçar revalidação de cache (autenticação desabilitada)
   async headers() {
     return [
@@ -94,6 +89,29 @@ const nextConfig = {
       // Excluir source maps em produção
       config.devtool = false
     }
+
+    // CLIENT-SIDE: Ignorar pacotes nativos do Remotion (não devem ser incluídos no browser)
+    if (!isServer) {
+      config.resolve = config.resolve || {}
+      config.resolve.fallback = config.resolve.fallback || {}
+
+      // Ignorar todos os pacotes de compositor nativos do Remotion
+      config.resolve.fallback['@remotion/compositor-win32-x64-msvc'] = false
+      config.resolve.fallback['@remotion/compositor-darwin-x64'] = false
+      config.resolve.fallback['@remotion/compositor-darwin-arm64'] = false
+      config.resolve.fallback['@remotion/compositor-linux-x64-gnu'] = false
+      config.resolve.fallback['@remotion/compositor-linux-arm64-gnu'] = false
+
+      // Ignorar pacotes pesados do Remotion no cliente
+      config.resolve.fallback['@remotion/renderer'] = false
+      config.resolve.fallback['@remotion/bundler'] = false
+
+      // Ignorar módulos Node.js que o Remotion pode tentar usar
+      config.resolve.fallback['fs'] = false
+      config.resolve.fallback['path'] = false
+      config.resolve.fallback['child_process'] = false
+    }
+
     return config
   },
 }
