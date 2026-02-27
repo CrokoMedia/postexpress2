@@ -6,7 +6,6 @@ import { generateImageSmart, generateEditorialBackgroundSmart } from '@/lib/smar
 import { createContextualImagePrompt } from '@/lib/contextual-image-prompt'
 import { enhancePrompt, cleanPrompt } from '@/lib/prompt-enhancer'
 import { breakdownComplexPrompt, buildFocusedPrompt } from '@/lib/prompt-weighting'
-import { renderStill, selectComposition } from '@remotion/renderer'
 import cloudinary from 'cloudinary'
 import path from 'path'
 import fs from 'fs'

@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSupabase } from '@/lib/supabase'
 import { getRemotionBundle } from '@/lib/remotion-bundle'
 import { getServerlessRenderOptions } from '@/lib/remotion-chromium'
-import { renderStill, selectComposition } from '@remotion/renderer'
 import path from 'path'
 import fs from 'fs'
 
@@ -115,7 +114,10 @@ export async function GET(
     // 1. Obter bundle Remotion (pré-compilado ou cacheado)
     const bundleLocation = await getRemotionBundle()
 
-    // 2. Renderizar slide via Remotion
+    // 2. Dynamic import do @remotion/renderer (CRITICAL para produção)
+    const { renderStill, selectComposition } = await import('@remotion/renderer')
+
+    // 4. Renderizar slide via Remotion
     const tempDir = path.join('/tmp', 'preview-carousel', id)
     if (!fs.existsSync(tempDir)) {
       fs.mkdirSync(tempDir, { recursive: true })
@@ -156,10 +158,10 @@ export async function GET(
 
     console.log(`✅ [Preview] Rendered: ${outputPath}`)
 
-    // 3. Ler PNG e retornar
+    // 5. Ler PNG e retornar
     const imageBuffer = fs.readFileSync(outputPath)
 
-    // 4. Deletar arquivo temporário (cleanup)
+    // 6. Deletar arquivo temporário (cleanup)
     fs.unlinkSync(outputPath)
 
     return new NextResponse(imageBuffer, {

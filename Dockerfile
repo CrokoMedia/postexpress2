@@ -97,10 +97,15 @@ ENV NEXT_TELEMETRY_DISABLED=1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy FULL Next.js build (not standalone - includes everything)
+# Copy package files for production install
+COPY --from=builder /app/package*.json ./
+
+# Install ONLY production dependencies (no devDependencies)
+# This dramatically reduces image size
+RUN npm ci --production --legacy-peer-deps && npm cache clean --force
+
+# Copy built Next.js app
 COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
 
 # Copy source files needed at runtime
 COPY --from=builder /app/lib ./lib
