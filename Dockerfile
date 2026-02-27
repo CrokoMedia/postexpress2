@@ -120,10 +120,9 @@ COPY --from=builder /app/remotion ./remotion
 
 # CRITICAL FIX: Create symlinks for Remotion packages to fix module resolution
 # Node.js is looking for index.js but package.json points to dist/index.js
-RUN ln -sf dist/index.js node_modules/@remotion/renderer/index.js && \
-    ln -sf dist/index.js node_modules/@remotion/bundler/index.js && \
-    ln -sf dist/index.mjs node_modules/@remotion/renderer/index.mjs && \
-    ln -sf dist/index.mjs node_modules/@remotion/bundler/index.mjs
+# Do this BEFORE changing user to avoid permission issues
+RUN cd /app/node_modules/@remotion/renderer && ln -sf dist/index.js index.js && ln -sf dist/index.mjs index.mjs && \
+    cd /app/node_modules/@remotion/bundler && ln -sf dist/index.js index.js && ln -sf dist/index.mjs index.mjs
 
 # Set ownership
 RUN chown -R nextjs:nodejs /app
