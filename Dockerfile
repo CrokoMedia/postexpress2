@@ -105,12 +105,22 @@ COPY --from=builder /app/.next/static ./.next/static
 # This ensures all API routes are available, including newly added ones
 COPY --from=builder /app/.next/server ./.next/server
 
+# CRITICAL: Copy lib/ source files (needed for @/lib/* imports in API routes)
+# Standalone doesn't include these by default
+COPY --from=builder /app/lib ./lib
+
+# CRITICAL: Copy types/ for TypeScript definitions
+COPY --from=builder /app/types ./types
+
 # CRITICAL: Standalone mode doesn't copy public folder automatically
 # Copy public assets (images, icons, etc.)
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 # Copy Remotion bundle (CRITICAL for slide generation)
 COPY --from=builder /app/.remotion-bundle ./.remotion-bundle
+
+# Copy remotion/ folder (needed for Remotion compositions)
+COPY --from=builder /app/remotion ./remotion
 
 # Set ownership
 RUN chown -R nextjs:nodejs /app
