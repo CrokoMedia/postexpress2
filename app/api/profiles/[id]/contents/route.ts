@@ -27,7 +27,7 @@ export async function GET(
           slides_json,
           generated_at,
           profile_id,
-          original_profile:instagram_profiles!content_suggestions_profile_id_fkey (
+          original_profile:instagram_profiles (
             id,
             username,
             full_name
