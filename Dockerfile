@@ -1,36 +1,38 @@
 # ============================================
 # Post Express - Next.js App + Remotion + Chromium
 # ============================================
-# Deploy: Railway (sem timeout limits)
-# Suporta: Geração de slides via Remotion, rendering de vídeos, IA
+# Deploy: Railway
+# Base: Debian (node:18) para melhor compatibilidade com Chromium
 
-FROM node:20-alpine AS base
+FROM node:18 AS base
 
-# Install system dependencies for Chromium + Remotion + Node native modules
-RUN apk add --no-cache \
+# Instalar Chromium + dependências necessárias
+RUN apt-get update && apt-get install -y \
     chromium \
-    nss \
-    freetype \
-    harfbuzz \
-    ca-certificates \
-    ttf-freefont \
-    python3 \
-    make \
-    g++ \
-    gcc \
-    musl-dev \
-    linux-headers \
-    pkgconfig \
-    pixman-dev \
-    cairo-dev \
-    pango-dev \
-    libjpeg-turbo-dev \
-    giflib-dev
+    chromium-driver \
+    fonts-liberation \
+    libasound2 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libcups2 \
+    libdbus-1-3 \
+    libdrm2 \
+    libgbm1 \
+    libgtk-3-0 \
+    libnspr4 \
+    libnss3 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxrandr2 \
+    xdg-utils \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
-# Tell Puppeteer/Remotion to use system Chromium
+# CRITICAL: Forçar Remotion/Puppeteer a usar Chromium instalado
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
-ENV REMOTION_CHROMIUM_PATH=/usr/bin/chromium-browser
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+ENV CHROME_BIN=/usr/bin/chromium
+ENV REMOTION_BROWSER_EXECUTABLE=/usr/bin/chromium
 
 # ============================================
 # STAGE 1: Dependencies
@@ -43,8 +45,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies (include dev deps for build)
-# Using npm install instead of npm ci for better compatibility with Docker builds
-RUN npm install --legacy-peer-deps
+RUN npm ci --legacy-peer-deps
 
 # ============================================
 # STAGE 2: Build
@@ -77,10 +78,6 @@ ENV SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY
 ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
 ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=$NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-# Build Remotion bundle first (required for Next.js build)
-# Note: postinstall script already fixed Remotion paths after npm install
-RUN npm run build:remotion
-
 # Build Next.js
 RUN npm run build
 
@@ -95,14 +92,13 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
 # Create non-root user for security
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN groupadd --system --gid 1001 nodejs
+RUN useradd --system --uid 1001 nextjs
 
-# Copy node_modules directly from builder (garantees same packages that worked in build)
-# This is heavier but 100% reliable - avoids any npm install issues in runner
+# Copy node_modules from builder
 COPY --from=builder /app/node_modules ./node_modules
 
-# Copy package files for reference
+# Copy package files
 COPY --from=builder /app/package*.json ./
 
 # Copy built Next.js app
@@ -115,9 +111,10 @@ COPY --from=builder /app/components ./components
 COPY --from=builder /app/hooks ./hooks
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
-# Copy Remotion bundle and compositions
+# Copy Remotion bundle and compositions (if built separately)
 COPY --from=builder /app/.remotion-bundle ./.remotion-bundle
 COPY --from=builder /app/remotion ./remotion
+COPY --from=builder /app/templates ./templates
 
 # Set ownership
 RUN chown -R nextjs:nodejs /app
@@ -130,5 +127,5 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Start Next.js server (full build mode)
-CMD ["node_modules/.bin/next", "start"]
+# Start Next.js server
+CMD ["npm", "start"]
