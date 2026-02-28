@@ -65,12 +65,20 @@ export async function getServerlessRenderOptions() {
     }
   }
 
+  // CRITICAL: Forçar PUPPETEER_EXECUTABLE_PATH como env var
+  // Remotion 5.x ignora browserExecutable em algumas situações e lê PUPPETEER_EXECUTABLE_PATH
+  if (!process.env.PUPPETEER_EXECUTABLE_PATH && executablePath) {
+    console.log('🔧 [Remotion] Definindo PUPPETEER_EXECUTABLE_PATH:', executablePath)
+    process.env.PUPPETEER_EXECUTABLE_PATH = executablePath
+  }
+
   // Retornar configuração do browser para Remotion
   const config = {
     browserExecutable: executablePath,
   }
 
   console.log('📋 [Remotion] Configuração final:', config)
+  console.log('🌍 [Remotion] PUPPETEER_EXECUTABLE_PATH:', process.env.PUPPETEER_EXECUTABLE_PATH)
   return config
 }
 
