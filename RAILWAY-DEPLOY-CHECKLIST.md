@@ -112,6 +112,12 @@ UAZAPI_WEBHOOK_URL = https://seu-app.up.railway.app/api/whatsapp/webhook
 GOOGLE_DRIVE_CLIENT_EMAIL = service-account@....iam.gserviceaccount.com
 GOOGLE_DRIVE_PRIVATE_KEY = "-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
 GOOGLE_DRIVE_FOLDER_ID = 1abc...
+
+# Chromium / Puppeteer (Remotion rendering)
+# Opcional - deixe em branco para auto-detecção
+# Railway: sistema detecta /usr/bin/chromium automaticamente
+# Só defina se precisar sobrescrever a detecção automática
+PUPPETEER_EXECUTABLE_PATH =
 ```
 
 ---

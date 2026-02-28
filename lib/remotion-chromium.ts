@@ -17,6 +17,7 @@ export async function getServerlessRenderOptions() {
   console.log('   Platform:', process.platform)
   console.log('   RAILWAY_ENVIRONMENT:', process.env.RAILWAY_ENVIRONMENT)
   console.log('   RAILWAY_PROJECT_ID:', process.env.RAILWAY_PROJECT_ID ? 'SET' : 'NOT SET')
+  console.log('   PUPPETEER_EXECUTABLE_PATH:', process.env.PUPPETEER_EXECUTABLE_PATH || 'NOT SET')
 
   // Detectar produção: NODE_ENV=production OU ambiente Railway
   const isProduction =
@@ -31,29 +32,45 @@ export async function getServerlessRenderOptions() {
     return {}
   }
 
-  console.log('🚀 [Remotion] Modo PRODUÇÃO detectado! Usando @sparticuz/chromium')
+  console.log('🚀 [Remotion] Modo PRODUÇÃO detectado!')
 
-  // Em produção: passar executável do Chromium serverless
-  try {
-    console.log('📦 [Remotion] Importando @sparticuz/chromium...')
-    const chromium = await import('@sparticuz/chromium')
-    console.log('✅ [Remotion] @sparticuz/chromium importado com sucesso')
+  // Prioridade de detecção do executável Chromium:
+  // 1. PUPPETEER_EXECUTABLE_PATH (env var explícita)
+  // 2. @sparticuz/chromium (Lambda-optimized bundled)
+  // 3. /usr/bin/chromium (nixpacks no Railway)
 
-    console.log('🔍 [Remotion] Obtendo executablePath...')
-    const executablePath = await chromium.default.executablePath()
-    console.log('✅ [Remotion] executablePath obtido:', executablePath)
+  let executablePath: string | undefined
 
-    return {
-      browserExecutable: executablePath,
+  // 1. Tentar PUPPETEER_EXECUTABLE_PATH primeiro
+  if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+    executablePath = process.env.PUPPETEER_EXECUTABLE_PATH
+    console.log('✅ [Remotion] Usando PUPPETEER_EXECUTABLE_PATH:', executablePath)
+  } else {
+    // 2. Tentar @sparticuz/chromium
+    try {
+      console.log('📦 [Remotion] Tentando importar @sparticuz/chromium...')
+      const chromium = await import('@sparticuz/chromium')
+      console.log('✅ [Remotion] @sparticuz/chromium importado com sucesso')
+
+      console.log('🔍 [Remotion] Obtendo executablePath...')
+      executablePath = await chromium.default.executablePath()
+      console.log('✅ [Remotion] executablePath obtido:', executablePath)
+    } catch (error) {
+      console.error('❌ [Remotion] ERRO ao carregar @sparticuz/chromium:')
+      console.error('   Erro:', error)
+
+      // 3. Fallback: /usr/bin/chromium (nixpacks instala aqui)
+      executablePath = '/usr/bin/chromium'
+      console.warn('⚠️ [Remotion] Fallback: usando /usr/bin/chromium (nixpacks)')
     }
-  } catch (error) {
-    console.error('❌ [Remotion] ERRO ao carregar Chromium serverless:')
-    console.error('   Erro:', error)
-    console.error('   Stack:', error instanceof Error ? error.stack : 'N/A')
-
-    // Fallback: retornar vazio (Remotion tentará usar Chromium padrão)
-    console.warn('⚠️ [Remotion] Fallback: usando configuração vazia')
-    return {}
   }
+
+  // Retornar configuração do browser para Remotion
+  const config = {
+    browserExecutable: executablePath,
+  }
+
+  console.log('📋 [Remotion] Configuração final:', config)
+  return config
 }
 
