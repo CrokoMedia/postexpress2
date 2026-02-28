@@ -1,8 +1,9 @@
 # ============================================
 # Post Express - Next.js App + Remotion + Chromium
 # ============================================
-# Deploy: Railway
+# Deploy: Railway (FORCED REBUILD)
 # Base: Debian (node:18) para melhor compatibilidade com Chromium
+# Build Date: 2026-02-28
 
 FROM node:18 AS base
 
