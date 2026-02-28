@@ -16,6 +16,7 @@ export async function getServerlessRenderOptions() {
   console.log('   NODE_ENV:', process.env.NODE_ENV)
   console.log('   Platform:', process.platform)
   console.log('   RAILWAY_ENVIRONMENT:', process.env.RAILWAY_ENVIRONMENT)
+  console.log('   RAILWAY_PROJECT_ID:', process.env.RAILWAY_PROJECT_ID ? 'SET' : 'NOT SET')
 
   // Detectar produção: NODE_ENV=production OU ambiente Railway
   const isProduction =
@@ -23,10 +24,14 @@ export async function getServerlessRenderOptions() {
     process.env.RAILWAY_ENVIRONMENT === 'production' ||
     !!process.env.RAILWAY_PROJECT_ID
 
+  console.log('🎯 [Remotion] isProduction:', isProduction)
+
   if (!isProduction) {
     console.log('💻 [Remotion] Usando Chromium local (desenvolvimento)')
     return {}
   }
+
+  console.log('🚀 [Remotion] Modo PRODUÇÃO detectado! Usando @sparticuz/chromium')
 
   // Em produção: passar executável do Chromium serverless
   try {
