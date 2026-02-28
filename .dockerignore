@@ -1,0 +1,162 @@
+# ============================================
+# .dockerignore - Post Express (Croko Lab)
+# ============================================
+# Otimizado para Digital Ocean App Platform
+# Reduz tamanho do build context e acelera deploy
+
+# ============================================
+# Git & Version Control
+# ============================================
+.git
+.gitignore
+.gitattributes
+.github
+
+# ============================================
+# Dependencies (serão instaladas no container)
+# ============================================
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json.bak
+
+# ============================================
+# Build Outputs (serão gerados no container)
+# ============================================
+.next
+out
+dist
+build
+.remotion-bundle
+
+# ============================================
+# Environment & Secrets
+# ============================================
+.env
+.env.local
+.env.*.local
+.env.production
+SECRETS-*.txt
+secrets.txt
+*.key
+*.pem
+
+# ============================================
+# Testing
+# ============================================
+coverage
+.nyc_output
+test-results
+playwright-report
+playwright/.cache
+__tests__
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# ============================================
+# IDE & Editor
+# ============================================
+.vscode
+.idea
+.cursor
+.gemini
+.codex
+.agent
+.agents
+.antigravity
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ============================================
+# AIOS Framework (local development only)
+# ============================================
+.aios-core
+.aios
+.claude
+
+# ============================================
+# Documentation & Design (não necessários em runtime)
+# ============================================
+README.md
+README-*.md
+CHANGELOG.md
+LICENSE
+docs
+design
+figma-plugin
+SobreCrokolabs
+
+# ============================================
+# Data Folders (dados locais, não vão para produção)
+# ============================================
+minds
+squad-auditores/data
+squad-auditores/output
+content-creation-squad/generated
+content-distillery
+expansion-packs
+post-express-template
+
+# ============================================
+# Temporary & Uploads
+# ============================================
+temp
+tmp
+uploads
+*.tmp
+*.log
+
+# ============================================
+# Database (schema vai, dados não)
+# ============================================
+database/migrations/*.sql.bak
+.supabase
+
+# ============================================
+# Vercel & Railway (outras plataformas)
+# ============================================
+.vercel
+.vercelignore
+nixpacks.toml
+
+# ============================================
+# Backups
+# ============================================
+.backups
+
+# ============================================
+# Media Files (servidos via Cloudinary em produção)
+# ============================================
+*.pdf
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+*.mp3
+*.wav
+
+# ============================================
+# TypeScript Build Info
+# ============================================
+*.tsbuildinfo
+
+# ============================================
+# Docker
+# ============================================
+Dockerfile.dev
+docker-compose*.yml
+.dockerignore
+
+# ============================================
+# Scripts de desenvolvimento (não usados em runtime)
+# ============================================
+scripts/test-*.js
+scripts/fix-*.js
+scripts/upload-*.js
