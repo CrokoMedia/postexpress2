@@ -12,7 +12,7 @@
  * Em desenvolvimento: retorna opções vazias (Remotion usa Chromium local)
  */
 export async function getServerlessRenderOptions() {
-  console.log('🔧 [Remotion] getServerlessRenderOptions chamado')
+  console.log('🔧 [Remotion] getServerlessRenderOptions chamado (Dockerfile Debian build)')
   console.log('   NODE_ENV:', process.env.NODE_ENV)
   console.log('   Platform:', process.platform)
   console.log('   RAILWAY_ENVIRONMENT:', process.env.RAILWAY_ENVIRONMENT)
