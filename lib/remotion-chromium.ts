@@ -72,13 +72,26 @@ export async function getServerlessRenderOptions() {
     process.env.PUPPETEER_EXECUTABLE_PATH = executablePath
   }
 
+  // CRITICAL: Também setar REMOTION_BROWSER_EXECUTABLE (env var específica do Remotion 5.x)
+  if (!process.env.REMOTION_BROWSER_EXECUTABLE && executablePath) {
+    console.log('🔧 [Remotion] Definindo REMOTION_BROWSER_EXECUTABLE:', executablePath)
+    process.env.REMOTION_BROWSER_EXECUTABLE = executablePath
+  }
+
   // Retornar configuração do browser para Remotion
   const config = {
     browserExecutable: executablePath,
+    // CRITICAL: Callback para prevenir download automático de Chrome
+    onBrowserDownload: () => {
+      console.log('🚫 [Remotion] Download de Chrome BLOQUEADO - usando Chromium configurado')
+      // Retornar false cancela o download
+      return false
+    },
   }
 
   console.log('📋 [Remotion] Configuração final:', config)
   console.log('🌍 [Remotion] PUPPETEER_EXECUTABLE_PATH:', process.env.PUPPETEER_EXECUTABLE_PATH)
+  console.log('🌍 [Remotion] REMOTION_BROWSER_EXECUTABLE:', process.env.REMOTION_BROWSER_EXECUTABLE)
   return config
 }
 
