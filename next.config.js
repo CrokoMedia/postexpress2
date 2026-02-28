@@ -10,10 +10,10 @@ const nextConfig = {
 
   // Externalizar pacotes pesados (não incluir no bundle serverless)
   // REMOVED @remotion/* packages - they MUST be bundled to work properly
+  // CRITICAL: @sparticuz/chromium MUST be bundled (NOT externalized) to work in Railway
   serverExternalPackages: [
     'pdf-parse',
     'mammoth',
-    '@sparticuz/chromium',
     'puppeteer',
     'puppeteer-core',
   ],
