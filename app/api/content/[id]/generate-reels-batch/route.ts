@@ -358,6 +358,7 @@ async function renderSingleReel(
     serveUrl: bundleLocation,
     id: formatConfig.compositionId,
     inputProps,
+    ...renderOptions,
   })
 
   console.log(

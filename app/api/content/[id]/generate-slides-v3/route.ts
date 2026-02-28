@@ -117,11 +117,12 @@ export async function POST(
     const { renderStill, selectComposition } = require('@remotion/renderer')
 
     // 3. Helper function para selectComposition
-    const getStillComposition = async (loc: string, compId: string, props: Record<string, unknown>) => {
+    const getStillComposition = async (loc: string, compId: string, props: Record<string, unknown>, options: Record<string, unknown>) => {
       return selectComposition({
         serveUrl: loc,
         id: compId,
         inputProps: props,
+        ...options,
       })
     }
 
@@ -304,7 +305,7 @@ export async function POST(
         }
 
         console.log(`   🎬 [V3] Selecionando composition: ${formatConfig.compositionId}`)
-        const composition = await getStillComposition(bundleLocation, formatConfig.compositionId, stillInputProps)
+        const composition = await getStillComposition(bundleLocation, formatConfig.compositionId, stillInputProps, renderOptions)
         console.log(`   ✅ [V3] Composition selecionada`)
 
         console.log(`   🎥 [V3] Iniciando renderStill...`)

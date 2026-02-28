@@ -148,6 +148,7 @@ export async function POST(
       serveUrl: bundleLocation,
       id: 'AuditResult',
       inputProps,
+      ...renderOptions,
     })
 
     console.log(

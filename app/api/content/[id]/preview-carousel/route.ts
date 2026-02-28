@@ -155,6 +155,7 @@ export async function GET(
       serveUrl: bundleLocation,
       id: compositionId,
       inputProps,
+      ...renderOptions,
     })
 
     await renderStill({

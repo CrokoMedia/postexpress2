@@ -569,6 +569,7 @@ export async function POST(
         serveUrl: bundleLocation,
         id: formatConfig.compositionId,
         inputProps,
+        ...renderOptions,
       })
 
       console.log(
