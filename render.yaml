@@ -1,0 +1,101 @@
+# ============================================
+# Post Express - Render.com Configuration
+# ============================================
+# Deploy automático no Render.com
+# Stack: Next.js 15 + Puppeteer + Remotion + Supabase
+# ============================================
+
+services:
+  # ============================================
+  # Web Service - Next.js App Principal
+  # ============================================
+  - type: web
+    name: postexpress-app
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter
+    autoDeploy: true
+    branch: main
+    region: oregon
+
+    # Health check
+    healthCheckPath: /api/health
+
+    # Environment variables (set in Render dashboard)
+    envVars:
+      # Node.js
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: HOSTNAME
+        value: "0.0.0.0"
+      - key: NEXT_TELEMETRY_DISABLED
+        value: 1
+
+      # Supabase (PUBLIC - embedded in build)
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+
+      # Supabase (PRIVATE - server-side only)
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+
+      # Cloudinary (imagens)
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+
+      # UAZapi (WhatsApp)
+      - key: UAZAPI_INSTANCE_ID
+        sync: false
+      - key: UAZAPI_TOKEN
+        sync: false
+      - key: UAZAPI_WEBHOOK_URL
+        sync: false
+
+      # IA APIs
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: GOOGLE_AI_API_KEY
+        sync: false
+      - key: MISTRAL_API_KEY
+        sync: false
+
+      # Apify (scraping)
+      - key: APIFY_API_TOKEN
+        sync: false
+
+      # Google Drive Export
+      - key: GOOGLE_DRIVE_CLIENT_EMAIL
+        sync: false
+      - key: GOOGLE_DRIVE_PRIVATE_KEY
+        sync: false
+      - key: GOOGLE_DRIVE_FOLDER_ID
+        sync: false
+
+      # Puppeteer/Chromium
+      - key: PUPPETEER_SKIP_CHROMIUM_DOWNLOAD
+        value: true
+      - key: PUPPETEER_EXECUTABLE_PATH
+        value: /usr/bin/chromium
+      - key: CHROME_BIN
+        value: /usr/bin/chromium
+      - key: REMOTION_BROWSER_EXECUTABLE
+        value: /usr/bin/chromium
+
+# ============================================
+# Databases (usando Supabase externo)
+# ============================================
+# Não precisa de banco de dados no Render.com
+# Todas as tabelas estão no Supabase
