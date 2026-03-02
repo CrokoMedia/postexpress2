@@ -31,27 +31,25 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@clack/prompts": "^1.0.1",
     "ajv": "^8.17.1",
     "chalk": "^4.1.2",
     "commander": "^12.1.0",
     "diff": "^5.2.0",
     "execa": "^5.1.1",
     "fast-glob": "^3.3.3",
-    "fs-extra": "^11.3.3",
+    "fs-extra": "^11.3.0",
     "glob": "^10.4.4",
     "highlight.js": "^11.9.0",
-    "inquirer": "^8.2.7",
+    "inquirer": "^8.2.6",
     "js-yaml": "^4.1.0",
     "semver": "^7.7.2",
     "tar": "^7.5.7",
-    "validator": "^13.15.15",
-    "yaml": "^2.8.2"
+    "validator": "^13.15.15"
   },
   "peerDependencies": {
     "@aios-fullstack/memory": "^4.31.0",
-    "@aios-fullstack/performance": "^4.31.0",
     "@aios-fullstack/security": "^4.31.0",
+    "@aios-fullstack/performance": "^4.31.0",
     "@aios-fullstack/telemetry": "^4.31.0"
   },
   "peerDependenciesMeta": {

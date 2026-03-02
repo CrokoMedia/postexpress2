@@ -1,0 +1,38 @@
+# JARVIS - Padrões de Erros Detectados
+
+version: 1.0.0
+last_updated: "2026-02-28T17:00:00Z"
+total_patterns: 0
+
+# Estrutura de um padrão de erro:
+#
+# error_pattern_id:
+#   name: "Nome descritivo do erro"
+#   frequency: 0  # Quantas vezes ocorreu
+#   first_seen: "YYYY-MM-DDTHH:MM:SSZ"
+#   last_seen: "YYYY-MM-DDTHH:MM:SSZ"
+#   context: "Contexto onde ocorre"
+#   symptoms:
+#     - "Sintoma 1"
+#     - "Sintoma 2"
+#   root_cause: "Causa raiz identificada"
+#   solution: "Como resolver"
+#   prevention: "Como prevenir"
+#   severity: "LOW|MEDIUM|HIGH|CRITICAL"
+
+# Exemplo (comentado):
+# ERR001:
+#   name: "Perda de contexto entre sessões"
+#   frequency: 0
+#   first_seen: "2026-02-28T17:00:00Z"
+#   last_seen: null
+#   context: "JARVIS sem sistema de persistência"
+#   symptoms:
+#     - "Esquece decisões anteriores"
+#     - "Repete perguntas já respondidas"
+#   root_cause: "Ausência de STATE.json e MEMORY.md"
+#   solution: "Implementar estrutura de persistência completa"
+#   prevention: "Salvar estado ao fim de cada sessão"
+#   severity: "HIGH"
+
+patterns: {}

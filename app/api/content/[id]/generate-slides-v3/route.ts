@@ -114,7 +114,7 @@ export async function POST(
     console.log('✅ [V3/Remotion] Bundle carregado:', bundleLocation)
 
     // 2. Force traditional require() instead of import() (bypasses Next.js bundler)
-    const { renderStill, selectComposition } = require('@remotion/renderer')
+    const { renderStill, selectComposition, openBrowser } = require('@remotion/renderer')
 
     // 3. Helper function para selectComposition
     const getStillComposition = async (loc: string, compId: string, props: Record<string, unknown>, options: Record<string, unknown>) => {
@@ -129,6 +129,22 @@ export async function POST(
     console.log('🌐 [V3/Remotion] Configurando Chromium serverless...')
     const renderOptions = await getServerlessRenderOptions()
     console.log('✅ [V3/Remotion] Render options:', Object.keys(renderOptions))
+
+    // 3b. Abrir browser uma vez com argumentos customizados (reutilizar para todos os slides)
+    console.log('🚀 [V3/Remotion] Abrindo browser com chromiumArgs...')
+    const browserInstance = await openBrowser('chrome', {
+      browserExecutable: renderOptions.browserExecutable,
+      chromiumOptions: {
+        args: renderOptions.chromiumArgs || [],
+        // Forçar headless para produção
+        headless: true,
+      },
+      shouldDumpIo: false,
+    })
+    console.log('✅ [V3/Remotion] Browser aberto com sucesso')
+
+    // Garantir que browser será fechado mesmo em caso de erro
+    try {
 
     // Contexto de nicho do expert
     const nicheContext = [
@@ -308,14 +324,15 @@ export async function POST(
         const composition = await getStillComposition(bundleLocation, formatConfig.compositionId, stillInputProps, renderOptions)
         console.log(`   ✅ [V3] Composition selecionada`)
 
-        console.log(`   🎥 [V3] Iniciando renderStill...`)
+        console.log(`   🎥 [V3] Iniciando renderStill com puppeteerInstance...`)
+
         try {
           await renderStill({
             serveUrl: bundleLocation,
             composition,
             output: outputPath,
             inputProps: stillInputProps,
-            ...renderOptions,
+            puppeteerInstance: browserInstance,
           })
           console.log(`   ✅ [V3] renderStill concluído (${Date.now() - renderStart}ms)`)
         } catch (renderError) {
@@ -364,6 +381,17 @@ export async function POST(
     console.log(`\n🎉 [V3/Remotion] Todos os slides gerados com sucesso!`)
     console.log(`   Total de carrosséis: ${results.length}`)
     console.log(`   Total de slides: ${results.reduce((acc, r) => acc + r.slides.length, 0)}`)
+
+    } finally {
+      // Sempre fechar browser, mesmo se houver erro
+      console.log('🔒 [V3/Remotion] Fechando browser...')
+      try {
+        await browserInstance.close()
+        console.log('✅ [V3/Remotion] Browser fechado')
+      } catch (closeError) {
+        console.warn('⚠️ [V3/Remotion] Erro ao fechar browser (não crítico):', closeError)
+      }
+    }
 
     // 5. Salvar no banco
     console.log('💾 Salvando slides V3 no banco...')

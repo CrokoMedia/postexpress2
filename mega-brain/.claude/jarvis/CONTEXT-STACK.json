@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "max_size": 50,
+  "current_size": 1,
+  "stack": [
+    {
+      "timestamp": "2026-02-28T17:00:00Z",
+      "context_id": "CTX-001",
+      "type": "session_start",
+      "summary": "Análise de ativos vendáveis do Mega Brain",
+      "focus": [
+        "Inventário de agentes de vendas",
+        "Análise do JARVIS",
+        "Identificação de gaps comerciais"
+      ],
+      "decisions": [],
+      "artifacts_created": [
+        "STATE.json",
+        "JARVIS-MEMORY.md",
+        "PENDING.md",
+        "CURRENT-TASK.md"
+      ]
+    }
+  ]
+}

@@ -10,9 +10,7 @@
  */
 export type ServerlessRenderOptions = {
   browserExecutable?: string
-  chromiumOptions?: {
-    args?: string[]
-  }
+  chromiumArgs?: string[]
   onBrowserDownload?: () => boolean
 }
 
@@ -121,9 +119,7 @@ export async function getServerlessRenderOptions(): Promise<ServerlessRenderOpti
   // Retornar configuração do browser para Remotion
   const config: ServerlessRenderOptions = {
     browserExecutable: executablePath,
-    chromiumOptions: {
-      args: chromiumArgs,
-    },
+    chromiumArgs,
     // CRITICAL: Callback para prevenir download automático de Chrome
     onBrowserDownload: () => {
       console.log('🚫 [Remotion] Download de Chrome BLOQUEADO - usando Chromium configurado')
@@ -134,8 +130,8 @@ export async function getServerlessRenderOptions(): Promise<ServerlessRenderOpti
 
   console.log('📋 [Remotion] Configuração final:')
   console.log('   browserExecutable:', config.browserExecutable)
-  console.log('   chromiumOptions.args:', config.chromiumOptions?.args?.length, 'argumentos')
-  console.log('   args:', config.chromiumOptions?.args?.slice(0, 5).join(' '), '...')
+  console.log('   chromiumArgs:', config.chromiumArgs?.length, 'argumentos')
+  console.log('   args preview:', config.chromiumArgs?.slice(0, 5).join(' '), '...')
   console.log('🌍 [Remotion] PUPPETEER_EXECUTABLE_PATH:', process.env.PUPPETEER_EXECUTABLE_PATH)
   console.log('🌍 [Remotion] REMOTION_BROWSER_EXECUTABLE:', process.env.REMOTION_BROWSER_EXECUTABLE)
   return config

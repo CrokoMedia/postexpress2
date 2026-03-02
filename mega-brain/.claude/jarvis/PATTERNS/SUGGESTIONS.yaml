@@ -1,0 +1,64 @@
+# JARVIS - Sugestões de Melhoria Detectadas
+
+version: 1.0.0
+last_updated: "2026-02-28T17:00:00Z"
+total_suggestions: 2
+
+# Melhorias identificadas automaticamente através de uso e padrões
+
+suggestions:
+  SUGG001:
+    title: "Criar script de auto-save ao fim de sessão"
+    priority: "HIGH"
+    category: "automation"
+    detected_at: "2026-02-28T17:00:00Z"
+    problem: "Sistema de persistência manual (requer save explícito)"
+    proposed_solution: |
+      Criar hook que ao detectar fim de sessão:
+      1. Atualiza STATE.json automaticamente
+      2. Salva CONTEXT-STACK.json
+      3. Cria checkpoint em /CHECKPOINTS/
+      4. Atualiza JARVIS-MEMORY.md com resumo da sessão
+    benefits:
+      - "Zero perda de contexto entre sessões"
+      - "Memória persistente automática"
+      - "Recuperação de estado garantida"
+    effort: "MEDIUM (2-3 horas)"
+    impact: "HIGH"
+    status: "PENDING"
+
+  SUGG002:
+    title: "Sistema de briefing diário automático"
+    priority: "MEDIUM"
+    category: "productivity"
+    detected_at: "2026-02-28T17:00:00Z"
+    problem: "Senhor precisa pedir briefing manualmente"
+    proposed_solution: |
+      Criar hook SessionStart que:
+      1. Carrega estado da última sessão
+      2. Gera briefing automático visual
+      3. Mostra pendências de alta prioridade
+      4. Sugere próxima ação
+    benefits:
+      - "Contexto imediato ao abrir sessão"
+      - "Zero tempo perdido se orientando"
+      - "Foco direto na ação mais importante"
+    effort: "LOW (1 hora)"
+    impact: "MEDIUM"
+    status: "PENDING"
+
+# Template para novas sugestões:
+# SUGGxxx:
+#   title: "Título da sugestão"
+#   priority: "LOW|MEDIUM|HIGH|CRITICAL"
+#   category: "automation|productivity|quality|performance|security"
+#   detected_at: "YYYY-MM-DDTHH:MM:SSZ"
+#   problem: "Problema identificado"
+#   proposed_solution: |
+#     Solução proposta
+#   benefits:
+#     - "Benefício 1"
+#     - "Benefício 2"
+#   effort: "LOW|MEDIUM|HIGH (tempo estimado)"
+#   impact: "LOW|MEDIUM|HIGH"
+#   status: "PENDING|IN_PROGRESS|IMPLEMENTED|REJECTED"

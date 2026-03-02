@@ -41,6 +41,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aios-fullstack/pro": "^0.2.0",
     "@anthropic-ai/sdk": "^0.74.0",
     "@distube/ytdl-core": "^4.16.12",
     "@fal-ai/client": "^1.9.1",

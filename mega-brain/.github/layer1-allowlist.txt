@@ -1,0 +1,80 @@
+# Layer 1 Allowlist - PUBLIC content (free/community)
+# ===================================================
+# ONLY paths listed here are included in Layer 1 (public repo).
+# Everything else is PREMIUM by default (Layer 2+).
+#
+# Format: one glob pattern per line
+# Lines starting with # are comments
+# Blank lines are ignored
+#
+# RULE: New files/folders are PREMIUM by default.
+#       To make something public, add it here explicitly.
+# ===================================================
+
+# === CLI & INSTALLER (always public) ===
+bin/
+package.json
+.npmignore
+.gitignore
+.gitattributes
+.claudeignore
+README.md
+LICENSE
+
+# === CLAUDE CODE INTEGRATION (structure only) ===
+.claude/CLAUDE.md
+.claude/commands/
+.claude/hooks/
+.claude/rules/
+.claude/skills/
+.claude/jarvis/STATE.json.example
+.claude/templates/
+
+# === SYSTEM (protocols + templates, no data) ===
+system/protocols/
+system/database/schema.sql
+system/docs/
+system/templates/
+system/config/
+
+# === REFERENCE (public docs only) ===
+reference/
+
+# === INTEGRATIONS (setup instructions) ===
+integrations/
+
+# === AGENTS STRUCTURE (empty + examples only) ===
+agents/council/
+agents/boardroom/
+agents/constitution/
+agents/protocols/
+agents/_templates/
+agents/persons/.gitkeep
+agents/persons/_example/
+agents/cargo/.gitkeep
+agents/sua-empresa/.gitkeep
+agents/sua-empresa/README.md
+agents/sua-empresa/_example/
+agents/sua-empresa/org/.gitkeep
+agents/sua-empresa/roles/.gitkeep
+agents/sua-empresa/jds/.gitkeep
+agents/sua-empresa/operations/.gitkeep
+agents/sua-empresa/metrics/.gitkeep
+agents/sua-empresa/memory/.gitkeep
+agents/sua-empresa/sow/.gitkeep
+
+# === EMPTY DIRECTORIES (structure only) ===
+inbox/.gitkeep
+processing/chunks/.gitkeep
+processing/canonical/.gitkeep
+processing/insights/.gitkeep
+processing/narratives/.gitkeep
+knowledge/dossiers/persons/.gitkeep
+knowledge/dossiers/persons/DOSSIER-EXAMPLE.md
+knowledge/dossiers/themes/.gitkeep
+knowledge/dossiers/system/.gitkeep
+knowledge/sources/.gitkeep
+knowledge/playbooks/.gitkeep
+knowledge/playbooks/PLAYBOOK-EXAMPLE.md
+knowledge/dna/.gitkeep
+logs/.gitkeep

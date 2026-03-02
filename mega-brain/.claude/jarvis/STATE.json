@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-02-28T17:00:00Z",
+  "session": {
+    "id": "SESSION-2026-02-28-001",
+    "started_at": "2026-02-28T17:00:00Z",
+    "last_action_at": "2026-02-28T17:00:00Z",
+    "is_active": true,
+    "turns_count": 0
+  },
+  "mission": {
+    "current_mission_id": null,
+    "phase": null,
+    "status": "IDLE",
+    "progress_percent": 0
+  },
+  "context": {
+    "current_focus": "Análise de estrutura do Mega Brain",
+    "active_agents": [],
+    "pending_tasks": [],
+    "last_decision": null
+  },
+  "health": {
+    "score": 100,
+    "last_check": "2026-02-28T17:00:00Z",
+    "issues": []
+  },
+  "statistics": {
+    "total_files_processed": 0,
+    "total_insights_extracted": 0,
+    "total_agents_created": 9,
+    "total_dossiers": 1
+  }
+}
