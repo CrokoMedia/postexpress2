@@ -112,10 +112,9 @@ COPY --from=builder /app/components ./components
 COPY --from=builder /app/hooks ./hooks
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
-# Copy Remotion bundle and compositions (if built separately)
+# Copy Remotion bundle and compositions
 COPY --from=builder /app/.remotion-bundle ./.remotion-bundle
 COPY --from=builder /app/remotion ./remotion
-COPY --from=builder /app/templates ./templates
 
 # Set ownership
 RUN chown -R nextjs:nodejs /app
