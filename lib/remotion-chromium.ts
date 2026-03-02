@@ -10,6 +10,9 @@
  */
 export type ServerlessRenderOptions = {
   browserExecutable?: string
+  chromiumOptions?: {
+    args?: string[]
+  }
   onBrowserDownload?: () => boolean
 }
 
@@ -48,11 +51,24 @@ export async function getServerlessRenderOptions(): Promise<ServerlessRenderOpti
   // 3. /usr/bin/chromium (nixpacks no Railway)
 
   let executablePath: string | undefined
+  let chromiumArgs: string[] = []
 
   // 1. Tentar PUPPETEER_EXECUTABLE_PATH primeiro
   if (process.env.PUPPETEER_EXECUTABLE_PATH) {
     executablePath = process.env.PUPPETEER_EXECUTABLE_PATH
     console.log('✅ [Remotion] Usando PUPPETEER_EXECUTABLE_PATH:', executablePath)
+
+    // Usar args default de segurança quando não tem @sparticuz/chromium
+    chromiumArgs = [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-accelerated-2d-canvas',
+      '--disable-gpu',
+      '--single-process',
+      '--no-zygote',
+    ]
+    console.log('🔧 [Remotion] Usando args default de segurança')
   } else {
     // 2. Tentar @sparticuz/chromium
     try {
@@ -63,6 +79,10 @@ export async function getServerlessRenderOptions(): Promise<ServerlessRenderOpti
       console.log('🔍 [Remotion] Obtendo executablePath...')
       executablePath = await chromium.default.executablePath()
       console.log('✅ [Remotion] executablePath obtido:', executablePath)
+
+      // CRITICAL: Obter args otimizados do @sparticuz/chromium
+      chromiumArgs = chromium.default.args
+      console.log('✅ [Remotion] chromiumArgs obtidos:', chromiumArgs.length, 'argumentos')
     } catch (error) {
       console.error('❌ [Remotion] ERRO ao carregar @sparticuz/chromium:')
       console.error('   Erro:', error)
@@ -70,6 +90,18 @@ export async function getServerlessRenderOptions(): Promise<ServerlessRenderOpti
       // 3. Fallback: /usr/bin/chromium (nixpacks instala aqui)
       executablePath = '/usr/bin/chromium'
       console.warn('⚠️ [Remotion] Fallback: usando /usr/bin/chromium (nixpacks)')
+
+      // Usar args default de segurança no fallback
+      chromiumArgs = [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--disable-gpu',
+        '--single-process',
+        '--no-zygote',
+      ]
+      console.log('🔧 [Remotion] Usando args default de segurança (fallback)')
     }
   }
 
@@ -87,8 +119,11 @@ export async function getServerlessRenderOptions(): Promise<ServerlessRenderOpti
   }
 
   // Retornar configuração do browser para Remotion
-  const config = {
+  const config: ServerlessRenderOptions = {
     browserExecutable: executablePath,
+    chromiumOptions: {
+      args: chromiumArgs,
+    },
     // CRITICAL: Callback para prevenir download automático de Chrome
     onBrowserDownload: () => {
       console.log('🚫 [Remotion] Download de Chrome BLOQUEADO - usando Chromium configurado')
@@ -97,7 +132,10 @@ export async function getServerlessRenderOptions(): Promise<ServerlessRenderOpti
     },
   }
 
-  console.log('📋 [Remotion] Configuração final:', config)
+  console.log('📋 [Remotion] Configuração final:')
+  console.log('   browserExecutable:', config.browserExecutable)
+  console.log('   chromiumOptions.args:', config.chromiumOptions?.args?.length, 'argumentos')
+  console.log('   args:', config.chromiumOptions?.args?.slice(0, 5).join(' '), '...')
   console.log('🌍 [Remotion] PUPPETEER_EXECUTABLE_PATH:', process.env.PUPPETEER_EXECUTABLE_PATH)
   console.log('🌍 [Remotion] REMOTION_BROWSER_EXECUTABLE:', process.env.REMOTION_BROWSER_EXECUTABLE)
   return config
