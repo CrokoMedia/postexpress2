@@ -6,12 +6,20 @@
  */
 
 /**
+ * Tipo de retorno para opções de renderização serverless
+ */
+export type ServerlessRenderOptions = {
+  browserExecutable?: string
+  onBrowserDownload?: () => boolean
+}
+
+/**
  * Retorna opções de renderização para ambiente serverless
  *
  * Em produção: usa @sparticuz/chromium (Lambda-optimized)
  * Em desenvolvimento: retorna opções vazias (Remotion usa Chromium local)
  */
-export async function getServerlessRenderOptions() {
+export async function getServerlessRenderOptions(): Promise<ServerlessRenderOptions> {
   console.log('🔧 [Remotion] getServerlessRenderOptions chamado (Dockerfile Debian build)')
   console.log('   NODE_ENV:', process.env.NODE_ENV)
   console.log('   Platform:', process.platform)
