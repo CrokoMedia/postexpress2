@@ -8,7 +8,7 @@
  */
 
 import { NextResponse } from 'next/server'
-import { getServerSupabase } from '@/lib/supabase-server'
+import { createServerSupabase } from '@/lib/supabase-server'
 
 export async function GET() {
   const startTime = Date.now()
@@ -67,7 +67,7 @@ export async function GET() {
   let supabaseConnectionOk = false
   if (publicVarsOk && privateVarsOk) {
     try {
-      const supabase = await getServerSupabase()
+      const supabase = await createServerSupabase()
       const { error } = await supabase
         .from('instagram_profiles')
         .select('id')
