@@ -382,18 +382,7 @@ export async function POST(
     console.log(`   Total de carrosséis: ${results.length}`)
     console.log(`   Total de slides: ${results.reduce((acc, r) => acc + r.slides.length, 0)}`)
 
-    } finally {
-      // Sempre fechar browser, mesmo se houver erro
-      console.log('🔒 [V3/Remotion] Fechando browser...')
-      try {
-        await browserInstance.close()
-        console.log('✅ [V3/Remotion] Browser fechado')
-      } catch (closeError) {
-        console.warn('⚠️ [V3/Remotion] Erro ao fechar browser (não crítico):', closeError)
-      }
-    }
-
-    // 5. Salvar no banco
+    // 5. Salvar no banco (DENTRO do try para ter acesso a 'results')
     console.log('💾 Salvando slides V3 no banco...')
     const supabase = getServerSupabase()
 
@@ -438,7 +427,8 @@ export async function POST(
 
     console.log('✅ Slides V3 salvos no banco com sucesso')
 
-    return NextResponse.json({
+    // 6. Retornar resposta de sucesso
+    const responseData = {
       success: true,
       carousels: results,
       summary: {
@@ -446,7 +436,20 @@ export async function POST(
         totalSlides: results.reduce((acc, r) => acc + r.slides.length, 0),
       },
       template: 'v3-remotion',
-    })
+    }
+
+    return NextResponse.json(responseData)
+
+    } finally {
+      // Sempre fechar browser, mesmo se houver erro
+      console.log('🔒 [V3/Remotion] Fechando browser...')
+      try {
+        await browserInstance.close()
+        console.log('✅ [V3/Remotion] Browser fechado')
+      } catch (closeError) {
+        console.warn('⚠️ [V3/Remotion] Erro ao fechar browser (não crítico):', closeError)
+      }
+    }
     } catch (error: unknown) {
       // INNER CATCH: Erros da lógica principal
       console.error('❌ [V3/Remotion] ERRO CAPTURADO (inner):', error)
