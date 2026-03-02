@@ -522,7 +522,7 @@ Squad processa a solicitação:
 Cliente aprova via WhatsApp ("/aprovar")
         ↓
 Sistema gera slides visuais:
-  1. Puppeteer renderiza os slides
+  1. Remotion renderiza os slides (renderStill)
   2. Upload para Cloudinary
   3. Processa imagens
         ↓
@@ -698,6 +698,86 @@ Cliente (WhatsApp) → UAZapi Webhook → API Router → Squad Processor → UAZ
 - `*extract <URL>` → Só extrair frameworks
 - `*derive <path>` → Derivar conteúdo de frameworks existentes
 - `*compare <pathA> <pathB>` → Comparar duas fontes
+
+---
+
+## 🧠 MEGA BRAIN - Sistema de Clonagem Cognitiva
+
+**O Mega Brain é o núcleo de conhecimento que alimenta todos os squads.**
+
+### O que é o Mega Brain
+
+Sistema de clonagem cognitiva industrial que transforma **qualquer conteúdo de experts** (vídeos, PDFs, cursos, posts) em **agentes operacionais** com:
+
+- **DNA do Expert** (5 camadas de conhecimento)
+- **Agentes de Pessoa** (clones cognitivos)
+- **Playbooks Operacionais** (frameworks aplicáveis)
+- **Conselho de Deliberação** (debate multi-agente)
+
+### Localização
+
+```
+/mega-brain/                    # Sistema completo
+├── inbox/                      # Materiais brutos
+├── knowledge/                  # Base de conhecimento
+│   ├── dna/                   # DNA schemas (5 camadas)
+│   ├── playbooks/             # Playbooks operacionais
+│   └── dossiers/              # Dossiês temáticos
+├── agents/                     # Agentes especializados
+│   ├── persons/               # Clones de experts
+│   └── cargo/                 # Agentes de função (CRO, CMO)
+└── .claude/                   # Configurações Claude Code
+```
+
+### DNA Schema (5 Camadas de Conhecimento)
+
+| Camada | Nome | O que contém |
+|--------|------|--------------|
+| L1 | **FILOSOFIAS** | Crenças fundamentais, visão de mundo |
+| L2 | **MODELOS-MENTAIS** | Frameworks de pensamento e decisão |
+| L3 | **HEURÍSTICAS** | Regras práticas, atalhos de decisão |
+| L4 | **FRAMEWORKS** | Metodologias estruturadas |
+| L5 | **METODOLOGIAS** | Implementações passo-a-passo |
+
+### Comandos Principais
+
+| Comando | Descrição |
+|---------|-----------|
+| `/jarvis-briefing` | Status operacional + health score |
+| `/jarvis-full` | Pipeline completo (ingest + process + enrich) |
+| `/conclave` | Sessão do Conselho (debate multi-agente) |
+| `/ingest` | Ingestão de material novo |
+| `/save` | Salvar sessão atual |
+| `/resume` | Retomar sessão anterior |
+
+### Integração com Post Express
+
+```
+1. ETL Data Collector → Coleta conteúdo dos experts
+   └── Gary Vaynerchuk: 25 vídeos + 99 posts
+
+2. Mega Brain → Processa e extrai DNA
+   └── DNA Gary (5 camadas) + Agente GARY-VAYNERCHUK
+
+3. Content Squad → Usa DNA para gerar conteúdo
+   └── Carrosséis no estilo Gary, com frameworks dele
+
+4. Resultado → Conteúdo autêntico, baseado em conhecimento real
+```
+
+### Experts Disponíveis (em construção)
+
+| Expert | Status | Conteúdo Coletado | DNA Extraído |
+|--------|--------|-------------------|--------------|
+| **Gary Vaynerchuk** | 🔄 Em processo | 25 vídeos + 99 posts | ⏳ Pendente |
+| **Alex Hormozi** | 📋 Planejado | - | - |
+| **Jeremy Haynes** | 📋 Planejado | - | - |
+
+### Documentação
+
+- **Guia de Integração:** `mega-brain/INTEGRACAO-POSTEXPRESS.md`
+- **README Completo:** `mega-brain/README.md`
+- **Instruções Claude:** `mega-brain/.claude/CLAUDE.md`
 
 ### AIOS Master (`@aios-master`)
 **Quando usar:** Orchestrar agentes, criar stories de desenvolvimento
